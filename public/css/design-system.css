@@ -3,122 +3,160 @@
 
 :root {
   /* 主题模式标识 */
-  --theme-mode: 'light';
+  --theme-mode: light;
   
-  /* 背景颜色系统 */
-  --background-primary: #ffffff;
-  --background-secondary: #f8f9fa;
-  --background-card: #ffffff;
+  /* 参考网站变量 */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+  
+  /* 兼容性映射 - 保持原系统变量名 */
+  --background-primary: hsl(var(--background));
+  --background-secondary: hsl(var(--muted));
+  --background-card: hsl(var(--card));
   --background-overlay: rgba(0, 0, 0, 0.08);
-  
-  /* 文字颜色系统 */
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-tertiary: #999999;
-  --text-inverse: #ffffff;
-  --text-disabled: #cccccc;
-  
-  /* 强调色系统 */
-  --accent-primary: #165DFF;
-  --accent-primary-dark: #1452D6;
-  --accent-success: #36D399;
-  --accent-error: #F87272;
-  --accent-warning: #FFB02E;
-  --accent-info: #5A7DFF;
-  
-  /* 边框与分割线 */
-  --border-color: #e0e0e0;
-  --border-color-light: #f0f0f0;
-  --border-color-dark: #cccccc;
-  
-  /* 阴影系统 */
+  --text-primary: hsl(var(--foreground));
+  --text-secondary: hsl(var(--muted-foreground));
+  --text-tertiary: hsl(var(--muted-foreground));
+  --text-inverse: hsl(var(--primary-foreground));
+  --text-disabled: hsl(var(--muted-foreground));
+  --accent-primary: hsl(var(--primary));
+  --accent-primary-dark: hsl(var(--primary) / 0.9);
+  --accent-success: hsl(var(--success, 142 71% 45%));
+  --accent-error: hsl(var(--destructive));
+  --accent-warning: hsl(var(--warning, 38 92% 50%));
+  --accent-info: hsl(var(--info, 199 89% 48%));
+  --border-color: hsl(var(--border));
+  --border-color-light: hsl(var(--border) / 0.5);
+  --border-color-dark: hsl(var(--border) / 0.9);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
-  --shadow-focus: 0 0 0 1px var(--accent-primary), 0 2px 8px rgba(0, 0, 0, 0.12);
-  
-  /* 圆角系统 */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --shadow-focus: 0 0 0 1px hsl(var(--primary)), 0 2px 8px rgba(0, 0, 0, 0.12);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
   --radius-full: 999px;
-  
-  /* 间距系统 */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
-  
-  /* 过渡动画 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-  
-  /* 字体系统 */
   --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
   --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-md: 18px;
-  --font-size-lg: 20px;
-  --font-size-xl: 24px;
-  --font-size-2xl: 32px;
-  --font-size-3xl: 40px;
-  
-  /* 工具站品牌标识 */
-  --brand-logo-color: var(--accent-primary);
-  --brand-text-color: var(--text-primary);
-  
-  /* 广告位规范 */
-  --ad-background: var(--background-secondary);
-  --ad-border: var(--border-color);
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --brand-logo-color: hsl(var(--primary));
+  --brand-text-color: hsl(var(--foreground));
+  --ad-background: hsl(var(--muted));
+  --ad-border: hsl(var(--border));
 }
 
 /* DevToolCafe 温暖暗色主题 */
 [data-theme="dark"], .theme-dark {
   /* 主题模式标识 */
-  --theme-mode: 'dark';
+  --theme-mode: dark;
   
-  /* 背景颜色系统 - 温暖暗色 */
-  --background-primary: #1a1b26;
-  --background-secondary: #24283b;
-  --background-card: #24283b;
+  /* 参考网站变量 */
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 5.9% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  
+  /* 兼容性映射 - 保持原系统变量名 */
+  --background-primary: hsl(var(--background));
+  --background-secondary: hsl(var(--muted));
+  --background-card: hsl(var(--card));
   --background-overlay: rgba(255, 255, 255, 0.08);
-  
-  /* 文字颜色系统 - 柔和色调 */
-  --text-primary: #c0caf5;
-  --text-secondary: #9aa5ce;
-  --text-tertiary: #737aa2;
-  --text-inverse: #1a1b26;
-  --text-disabled: #565f89;
-  
-  /* 强调色系统 - DevToolCafe 温暖色调 */
-  --accent-primary: #bb9af7;
-  --accent-primary-dark: #a88fe0;
-  --accent-success: #9ece6a;
-  --accent-error: #f7768e;
-  --accent-warning: #e0af68;
-  --accent-info: #7aa2f7;
-  
-  /* 边框与分割线 */
-  --border-color: #414868;
-  --border-color-light: #565f89;
-  --border-color-dark: #2f334d;
-  
-  /* 阴影系统 */
+  --text-primary: hsl(var(--foreground));
+  --text-secondary: hsl(var(--muted-foreground));
+  --text-tertiary: hsl(var(--muted-foreground));
+  --text-inverse: hsl(var(--primary-foreground));
+  --text-disabled: hsl(var(--muted-foreground));
+  --accent-primary: hsl(var(--primary));
+  --accent-primary-dark: hsl(var(--primary) / 0.9);
+  --accent-success: hsl(var(--success, 142 71% 45%));
+  --accent-error: hsl(var(--destructive));
+  --accent-warning: hsl(var(--warning, 38 92% 50%));
+  --accent-info: hsl(var(--info, 199 89% 48%));
+  --border-color: hsl(var(--border));
+  --border-color-light: hsl(var(--border) / 0.5);
+  --border-color-dark: hsl(var(--border) / 0.9);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.45);
-  --shadow-focus: 0 0 0 1px var(--accent-primary), 0 2px 8px rgba(0, 0, 0, 0.25);
-  
-  /* 广告位规范 - 暗色适配 */
-  --ad-background: #2a2e43;
-  --ad-border: #414868;
+  --shadow-focus: 0 0 0 1px hsl(var(--primary)), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 999px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --brand-logo-color: hsl(var(--primary));
+  --brand-text-color: hsl(var(--foreground));
+  --ad-background: hsl(var(--muted));
+  --ad-border: hsl(var(--border));
 }
 
 /* 全局基础样式 */
@@ -143,14 +181,13 @@ body {
 .layout-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: auto;
 }
 
 /* 导航区 - 10% 高度 */
 .navigation-area {
-  height: 10vh;
-  min-height: 60px;
-  max-height: 80px;
+  height: 60px;
+  max-height: 60px;
   background-color: var(--background-card);
   border-bottom: 1px solid var(--border-color);
   padding: 0 var(--spacing-xl);
@@ -282,10 +319,9 @@ body {
   .navigation-area {
     flex-direction: column;
     height: 100vh;
-    width: 10%;
     min-height: auto;
-    min-width: 80px;
-    max-width: 100px;
+    min-width: 260px;
+    max-width: 260px;
     padding: var(--spacing-xl) var(--spacing-md);
     justify-content: flex-start;
     gap: var(--spacing-2xl);
@@ -301,7 +337,7 @@ body {
   }
   
   .examples-sidebar {
-    width: 30%;
+    width: 35%;
     min-width: 300px;
     max-width: 400px;
     height: 100vh;
@@ -511,10 +547,87 @@ body {
 /* 加载动画 */
 @keyframes key-spin {
   0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  100% { transform: rotate(360de
+[data-theme="dark"] .navigation-area {
+  background-color: #1e2030;
+  border-bottom-color: #32364d;
 }
 
-.key-spin-animation {
-  animation: key-spin 1.5s linear infinite;
-  display: inline-block;
+/* 工具卡片样式 */
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  height: 100
+/* 工具卡片样式 */
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tool-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.tool-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-info));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-inverse);
+  font-weight: bold;
+  font-size: var(--font-size-lg);
+}
+
+.tool-card h3 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.tool-card p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+  flex-grow: 1;
+}
+
+/* 页脚样式 */
+.site-footer {
+  margin-top: var(--spacing-2xl);
+  padding: var(--spacing-xl) var(--spacing-xl);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+  border-top: 1px solid var(--border-color);
+}
+
+/* 工具详情页面样式 */
+.tool-detail {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tool-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.tool-title {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.tool-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-xl);
 }

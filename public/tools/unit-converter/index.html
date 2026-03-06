@@ -23,6 +23,62 @@
             --radius: 12px;
             --transition: all 0.2s ease;
         }
+        
+        .layout-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .navigation-area {
+            height: 10vh;
+            min-height: 60px;
+            max-height: 80px;
+            background-color: var(--background-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            width: 100%;
+        }
+        
+        .navigation-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+            color: var(--brand-logo-color);
+        }
+        
+        .theme-toggle-button {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: var(--font-size-lg);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-md);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .theme-toggle-button:hover {
+            background-color: var(--background-overlay);
+        }
 
         [data-bs-theme="dark"] {
             --bg: var(--dark-bg);
@@ -63,53 +119,7 @@
             }
         }
 
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-        }
 
-        [data-bs-theme="dark"] .header {
-            border-bottom-color: rgba(255,255,255,0.05);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .logo i {
-            font-size: 1.8rem;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: scale(1.05);
-        }
 
         /* Main converter */
         .converter-card {
@@ -494,17 +504,21 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <a href="#" class="logo">
-                <i class="fas fa-ruler-combined"></i>
-                <span>Unitly</span>
-            </a>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-                <i class="fas fa-moon"></i>
-            </button>
-        </header>
+    <div class="layout-container">
+        <!-- Navigation Area -->
+        <nav class="navigation-area">
+            <div class="nav-container">
+                <div class="navigation-brand">
+                    <span>Unit Converter</span>
+                </div>
+                <button class="theme-toggle-button" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="container">
 
         <!-- Breadcrumb Navigation -->
         <div class="breadcrumb">
@@ -647,6 +661,7 @@
                 <a href="privacy.html">Privacy Policy</a>
             </div>
         </footer>
+        </div>
     </div>
 
     <!-- History Sidebar -->

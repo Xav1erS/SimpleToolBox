@@ -14,10 +14,25 @@
     
     <!-- Minimal tool-specific styles -->
     <style>
-        .tool-content-area {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: var(--spacing-xl);
+            padding: 0 var(--spacing-xl);
+            width: 100%;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .tool-content-area {
+            padding: var(--spacing-xl) 0;
             width: 100%;
         }
         
@@ -45,6 +60,23 @@
             color: var(--text-tertiary);
         }
         
+        /* Footer */
+        .footer-area {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            color: var(--text);
+            margin-top: 60px;
+            width: 100%;
+        }
+        
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        
         .tool-header {
             text-align: center;
             margin-bottom: var(--spacing-2xl);
@@ -62,6 +94,11 @@
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.6;
+        }
+        
+        .navigation-area {
+            width: 100%;
+            padding: 0;
         }
         
         /* Token generator specific styling using design system variables */
@@ -273,17 +310,18 @@
     <div class="layout-container">
         <!-- Navigation Area -->
         <nav class="navigation-area">
-            <div class="navigation-brand">
-                <div class="brand-logo">STB</div>
-                <span>Simple Toolbox</span>
+            <div class="nav-container">
+                <div class="navigation-brand">
+                    <span>Password</span>
+                </div>
+                <button class="theme-toggle-button" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
-            
-            <button class="theme-toggle-button" id="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-moon"></i>
-            </button>
         </nav>
 
         <!-- Main Content Area -->
+        <div class="container">
         <main class="main-content-area">
             <!-- Breadcrumb Navigation -->
             <div class="breadcrumb">
@@ -294,15 +332,6 @@
                 <span>Password Generator</span>
             </div>
 
-            <!-- Breadcrumb Navigation -->
-            <div class="breadcrumb">
-                <a href="/">Home</a>
-                <span class="breadcrumb-separator">></span>
-                <a href="/tools">Tools</a>
-                <span class="breadcrumb-separator">></span>
-                <span>Password Generator</span>
-            </div>
-            
             <!-- Tool Header -->
             <header class="tool-header">
                 <h1>Password Generator</h1>
@@ -406,14 +435,14 @@
                 </div>
             </div>
         </main>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer class="footer-area">
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="brand-logo">STB</div>
-                <span>Simple Toolbox (STB)</span>
+                <span>simpletoolbox.dev</span>
             </div>
             
             <div class="footer-links">

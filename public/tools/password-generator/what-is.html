@@ -69,13 +69,32 @@
         }
 
         .nav-links a {
-            color: var(--text);
-            text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
+            color: var(--linear-text-secondary);
+            text-decoration: none;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--linear-transition);
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--linear-text);
+        }
+
+        .nav-links a.active {
+            color: var(--linear-text);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--linear-primary-gradient);
+            border-radius: 1px;
         }
 
         .content {

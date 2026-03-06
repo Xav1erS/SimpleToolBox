@@ -92,14 +92,32 @@
         }
 
         .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
             font-size: 14px;
-            transition: color var(--transition-speed);
+            font-weight: 500;
+            color: var(--linear-text-secondary);
+            text-decoration: none;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--linear-transition);
         }
 
         .nav-link:hover {
-            color: var(--primary-color);
+            color: var(--linear-text);
+        }
+
+        .nav-link.active {
+            color: var(--linear-text);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--linear-primary-gradient);
+            border-radius: 1px;
         }
 
         /* 主要content区 */
@@ -373,9 +391,9 @@
 </head>
 <body>
     <header class="header">
-        <a href="../07-PDF to Word Converter-pdf-to-word-converter/index.html" class="logo">
+        <a href="/" class="logo">
             <div class="logo-icon"></div>
-            <span>randomkey.dev</span>
+            <span>Simple Toolbox</span>
         </a>
         <nav class="nav">
             <a href="../07-PDF to Word Converter-pdf-to-word-converter/index.html" class="nav-link">Home</a>

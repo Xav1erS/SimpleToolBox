@@ -15,6 +15,69 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        .layout-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            width: 100%;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .navigation-area {
+            height: 10vh;
+            min-height: 60px;
+            max-height: 80px;
+            background-color: var(--background-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            width: 100%;
+        }
+        
+        .navigation-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+            color: var(--brand-logo-color);
+        }
+        
+        .theme-toggle-button {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: var(--font-size-lg);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-md);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .theme-toggle-button:hover {
+            background-color: var(--background-overlay);
+        }
 
         :root {
             --primary-color: #165DFF;
@@ -47,61 +110,6 @@
             color: var(--text-primary);
             background-color: var(--bg-light);
             transition: background-color var(--transition-speed);
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 头部样式 */
-        .header {
-            display: flex;
-            align-items: center;
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        .logo-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            background-color: var(--primary-color);
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .logo-icon::after {
-            content: '↔️';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 12px;
-        }
-
-        .nav {
-            margin-left: auto;
-            display: flex;
-            gap: 24px;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color var(--transition-speed);
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
         }
 
         /* 主内容区 */
@@ -474,17 +482,21 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <a href="/" class="logo">
-            <div class="logo-icon"></div>
-            <span>randomkey.dev</span>
-        </a>
-        <nav class="nav">
-            <a href="/tools" class="nav-link">Tools</a>
-            <a href="/about" class="nav-link">About</a>
-            <a href="/contact" class="nav-link">Contact</a>
+    <div class="layout-container">
+        <!-- Navigation Area -->
+        <nav class="navigation-area">
+            <div class="nav-container">
+                <div class="navigation-brand">
+                    <span>PDF to Word</span>
+                </div>
+                <button class="theme-toggle-button" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
         </nav>
-    </header>
+
+        <!-- Main Content Area -->
+        <div class="container">
 
     <!-- Breadcrumb Navigation -->
     <div class="breadcrumb">
@@ -582,6 +594,8 @@
             </div>
         </section>
     </main>
+        </div>
+    </div>
 
     <script>
         // 核心变量声明
@@ -855,5 +869,36 @@
     </script>
 
     <script src="/js/spa-router.js"></script>
+    
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // 初始化主题
+        const savedTheme = localStorage.getItem('stb-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        let currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+        applyTheme(currentTheme);
+        
+        // 切换主题按钮点击事件
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(currentTheme);
+            localStorage.setItem('stb-theme', currentTheme);
+        });
+        
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-moon';
+                themeIcon.setAttribute('aria-label', 'Switch to light theme');
+            } else {
+                themeIcon.className = 'fas fa-sun';
+                themeIcon.setAttribute('aria-label', 'Switch to dark theme');
+            }
+        }
+    </script>
 </body>
 </html>

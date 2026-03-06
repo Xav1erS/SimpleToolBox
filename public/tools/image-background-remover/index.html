@@ -16,20 +16,37 @@
             min-height: 100vh;
         }
         
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            width: 100%;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
         .navigation-area {
             height: 10vh;
             min-height: 60px;
             max-height: 80px;
             background-color: var(--background-card);
             border-bottom: 1px solid var(--border-color);
-            padding: 0 var(--spacing-xl);
+            padding: 0;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: var(--shadow-sm);
+            width: 100%;
         }
         
         .navigation-brand {
@@ -56,9 +73,7 @@
         .main-content-area {
             flex: 1;
             min-height: 60vh;
-            padding: var(--spacing-2xl) var(--spacing-xl);
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: var(--spacing-2xl) 0;
             width: 100%;
         }
         
@@ -224,6 +239,20 @@
             text-decoration: none;
         }
         
+        .footer-area {
+            background-color: var(--background-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: var(--spacing-xl);
+            text-align: center;
+            color: var(--text-secondary);
+            width: 100%;
+        }
+        
+        .footer-brand {
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -253,8 +282,14 @@
             .main-content-area {
                 flex: 1;
                 min-height: 100vh;
-                padding: var(--spacing-2xl);
+                padding: var(--spacing-2xl) 0;
                 overflow-y: auto;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: var(--spacing-2xl);
+                padding: 0;
             }
             
             .examples-sidebar {
@@ -369,16 +404,18 @@
     <div class="layout-container">
         <!-- 导航区 (10%) -->
         <nav class="navigation-area">
-            <div class="navigation-brand"><div class="brand-logo">STB</div>
-                <span>Simple Toolbox</span></div>
-                <span>Background</span>
+            <div class="nav-container">
+                <div class="navigation-brand">
+                    <span>Background</span>
+                </div>
+                <button class="theme-toggle-button" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
-            <button class="theme-toggle-button" id="themeToggle" aria-label="Toggle theme">
-                <i class="fas fa-moon"></i>
-            </button>
         </nav>
         
         <!-- 核心功能区 (60%) -->
+        <div class="container">
         <main class="main-content-area">
             <!-- Breadcrumb Navigation -->
             <div class="breadcrumb">
@@ -533,6 +570,7 @@
             <!-- 另一个广告区域 -->
             
         </main>
+        </div>
         
         <!-- 使用示例区 (30%) -->
         <aside class="examples-sidebar">
@@ -576,7 +614,7 @@
     </div>
     
     <!-- 页脚 -->
-    <footer>
+    <footer class="footer-area">
         <div class="footer-container">
             <div class="footer-links">
                 <a href="#privacy">Privacy Policy</a>
@@ -585,7 +623,7 @@
                 <a href="#about">About</a>
             </div>
             <p style="color: var(--text-tertiary); margin-bottom: var(--spacing-sm);">&copy; <span id="currentYear"></span> AI Background Remover. All rights reserved.</p>
-            <p style="color: var(--text-tertiary); font-size: var(--font-size-sm);">simpletoolbox.dev | Free AI image background remover</p>
+            <p style="color: var(--text-tertiary); font-size: var(--font-size-sm);"><span class="footer-brand">simpletoolbox.dev</span> | Free AI image background remover</p>
         </div>
     </footer>
     

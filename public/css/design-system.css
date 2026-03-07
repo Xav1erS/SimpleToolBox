@@ -181,6 +181,53 @@ body.light::before {
     border-radius: 1px;
 }
 
+/* Navigation area styles for tool pages */
+.navigation-area {
+    width: 100%;
+    background-color: var(--linear-bg);
+    border-bottom: 1px solid var(--linear-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(20px);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigation-brand {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--linear-text);
+}
+
+.theme-toggle-button {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--linear-border);
+    background: var(--linear-bg-secondary);
+    color: var(--linear-text-secondary);
+    border-radius: var(--linear-radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--linear-transition);
+}
+
+.theme-toggle-button:hover {
+    background: var(--linear-bg-tertiary);
+    color: var(--linear-text);
+    box-shadow: var(--linear-shadow-sm);
+}
+
 .theme-toggle {
     width: 40px;
     height: 40px;
@@ -713,5 +760,14 @@ body.dark .theme-toggle .icon-moon {
     
     .footer-container {
         padding: 0 16px;
+    }
+    
+    /* Navigation area mobile styles */
+    .nav-container {
+        padding: 12px 16px;
+    }
+    
+    .navigation-brand {
+        font-size: 16px;
     }
 }

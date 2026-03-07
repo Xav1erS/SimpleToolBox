@@ -6,14 +6,18 @@
 
 :root {
     --linear-bg: #0f0f11;
+    --linear-bg-primary: #0f0f11;
     --linear-bg-secondary: #18181b;
     --linear-bg-tertiary: #27272a;
     --linear-bg-hover: #3f3f46;
+    --linear-bg-overlay: rgba(255, 255, 255, 0.05);
     --linear-border: #3f3f46;
     --linear-border-light: #52525b;
     --linear-text: #f4f4f5;
+    --linear-text-primary: #f4f4f5;
     --linear-text-secondary: #a1a1aa;
     --linear-text-tertiary: #71717a;
+    --linear-text-inverse: #ffffff;
     --linear-primary: #6366f1;
     --linear-primary-hover: #4f46e5;
     --linear-primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
@@ -21,25 +25,47 @@
     --linear-accent-gradient: linear-gradient(135deg, #10b981, #34d399);
     --linear-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     --linear-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --linear-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
     --linear-radius: 8px;
     --linear-radius-sm: 4px;
     --linear-radius-lg: 12px;
     --linear-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --linear-transition-fast: all 0.1s ease;
     --linear-font: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+    --linear-font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    --linear-font-size-xs: 0.75rem;
+    --linear-font-size-sm: 0.875rem;
+    --linear-font-size-base: 1rem;
+    --linear-font-size-md: 1.125rem;
+    --linear-font-size-lg: 1.25rem;
+    --linear-font-size-xl: 1.5rem;
+    --linear-font-size-2xl: 2rem;
+    --linear-font-size-3xl: 2.5rem;
+    --linear-spacing-xs: 0.25rem;
+    --linear-spacing-sm: 0.5rem;
+    --linear-spacing-md: 1rem;
+    --linear-spacing-lg: 1.5rem;
+    --linear-spacing-xl: 2rem;
+    --linear-spacing-2xl: 3rem;
 }
 
 body.light {
     --linear-bg: #ffffff;
+    --linear-bg-primary: #ffffff;
     --linear-bg-secondary: #f9fafb;
     --linear-bg-tertiary: #f3f4f6;
     --linear-bg-hover: #e5e7eb;
+    --linear-bg-overlay: rgba(0, 0, 0, 0.05);
     --linear-border: #e5e7eb;
     --linear-border-light: #d1d5db;
     --linear-text: #111827;
+    --linear-text-primary: #111827;
     --linear-text-secondary: #6b7280;
     --linear-text-tertiary: #9ca3af;
+    --linear-text-inverse: #ffffff;
     --linear-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     --linear-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --linear-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -370,7 +396,7 @@ body.dark .theme-toggle .icon-moon {
 }
 
 .tools {
-    padding: 16px 0 40px;
+    padding: 16px 0 80px;
 }
 
 .tools-container {
@@ -596,61 +622,6 @@ body.dark .theme-toggle .icon-moon {
     color: var(--linear-text-tertiary);
 }
 
-/* Privacy Section */
-.privacy-section {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-}
-
-.privacy-section h2 {
-    color: var(--linear-primary);
-    font-size: 1.5rem;
-    margin: 2rem 0 1rem;
-}
-
-.divider {
-    height: 1px;
-    background-color: var(--linear-border);
-    margin: 1rem 0 2rem;
-}
-
-/* Content Section */
-.content-section {
-    margin: 0 0 2rem;
-    padding: 1.5rem 24px;
-    background-color: var(--linear-bg-secondary);
-    border-radius: var(--linear-radius-lg);
-    border: 1px solid var(--linear-border);
-    box-shadow: var(--linear-shadow-sm);
-}
-
-.content-section h2 {
-    color: var(--linear-primary);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.content-section p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
-.content-section ul {
-    margin-left: 20px;
-    margin-bottom: 1rem;
-}
-
-.content-section li {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
-    color: var(--linear-text-secondary);
-}
-
-.content-section li strong {
-    color: var(--linear-text);
-}
-
 @media (max-width: 1024px) {
     .tools-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -708,14 +679,6 @@ body.dark .theme-toggle .icon-moon {
     
     .tools-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .privacy-section {
-        padding: 0 16px;
-    }
-    
-    .content-section {
-        padding: 1.5rem 16px;
     }
     
     .footer-container {

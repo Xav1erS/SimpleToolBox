@@ -201,10 +201,7 @@
     
     // 处理浏览器前进/后退
     function handlePopState(event) {
-        // 避免页面刷新时的重复导航
-        if (event.state) {
-            navigateTo(window.location.href);
-        }
+        navigateTo(window.location.href);
     }
     
     // 初始化

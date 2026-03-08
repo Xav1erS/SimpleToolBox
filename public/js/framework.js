@@ -24,7 +24,7 @@ const STBFramework = {
         let currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
         this.applyTheme(currentTheme);
         
-        themeToggle.addEventListener('click', () =&gt; {
+        themeToggle.addEventListener('click', () => {
             currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
             this.applyTheme(currentTheme);
             localStorage.setItem(this.config.themeStorageKey, currentTheme);
@@ -56,7 +56,7 @@ const STBFramework = {
         
         if (!mobileMenuBtn || !mobileNavMenu) return;
 
-        mobileMenuBtn.addEventListener('click', () =&gt; {
+        mobileMenuBtn.addEventListener('click', () => {
             mobileNavMenu.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
             if (icon) {
@@ -68,8 +68,8 @@ const STBFramework = {
             }
         });
 
-        document.addEventListener('click', (e) =&gt; {
-            if (!mobileMenuBtn.contains(e.target) &amp;&amp; !mobileNavMenu.contains(e.target)) {
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileNavMenu.contains(e.target)) {
                 mobileNavMenu.classList.remove('active');
                 const icon = mobileMenuBtn.querySelector('i');
                 if (icon) {
@@ -80,11 +80,11 @@ const STBFramework = {
     },
 
     initCopyrightYear: function() {
-        document.addEventListener('DOMContentLoaded', () =&gt; {
+        document.addEventListener('DOMContentLoaded', () => {
             const copyrightElements = document.querySelectorAll('.stb-footer-copyright, .footer-copyright');
             const currentYear = new Date().getFullYear();
             
-            copyrightElements.forEach(el =&gt; {
+            copyrightElements.forEach(el => {
                 const text = el.innerHTML || el.textContent;
                 if (text) {
                     el.innerHTML = text.replace(/202\d/, currentYear);
@@ -110,10 +110,10 @@ const STBFramework = {
         toast.textContent = message;
         container.appendChild(toast);
 
-        setTimeout(() =&gt; {
+        setTimeout(() => {
             toast.style.opacity = '0';
             toast.style.transform = 'translateY(20px)';
-            setTimeout(() =&gt; toast.remove(), 300);
+            setTimeout(() => toast.remove(), 300);
         }, duration);
     },
 
@@ -179,7 +179,7 @@ const STBFramework = {
             id: Date.now(),
             timestamp: new Date().toISOString()
         });
-        if (history[toolId].length &gt; 20) {
+        if (history[toolId].length > 20) {
             history[toolId] = history[toolId].slice(0, 20);
         }
         localStorage.setItem(this.config.historyStorageKey, JSON.stringify(history));
@@ -215,17 +215,17 @@ const STBFramework = {
     removeFavorite: function(toolId, favoriteId) {
         const favorites = JSON.parse(localStorage.getItem(this.config.favoritesStorageKey) || '{}');
         if (favorites[toolId]) {
-            favorites[toolId] = favorites[toolId].filter(f =&gt; f.id !== favoriteId);
+            favorites[toolId] = favorites[toolId].filter(f => f.id !== favoriteId);
             localStorage.setItem(this.config.favoritesStorageKey, JSON.stringify(favorites));
         }
     },
 
     formatNumber: function(num) {
         if (num === 0) return '0';
-        if (Math.abs(num) &gt;= 1000) {
+        if (Math.abs(num) >= 1000) {
             return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
-        if (Math.abs(num) &gt;= 0.01) {
+        if (Math.abs(num) >= 0.01) {
             return num.toFixed(4).replace(/\.?0+$/, '');
         }
         return num.toExponential(4);
@@ -238,7 +238,7 @@ const STBFramework = {
     debounce: function(func, wait) {
         let timeout;
         return function executedFunction(...args) {
-            const later = () =&gt; {
+            const later = () => {
                 clearTimeout(timeout);
                 func(...args);
             };
@@ -252,15 +252,15 @@ const STBFramework = {
         if (!container) return;
 
         container.innerHTML = '';
-        features.forEach(feature =&gt; {
+        features.forEach(feature => {
             const card = document.createElement('div');
             card.className = 'stb-feature-card';
             card.innerHTML = `
-                &lt;div class="stb-feature-icon-wrapper"&gt;
-                    &lt;i class="fas ${feature.icon} stb-feature-icon"&gt;&lt;/i&gt;
-                &lt;/div&gt;
-                &lt;h3 class="stb-feature-title"&gt;${feature.title}&lt;/h3&gt;
-                &lt;p class="stb-feature-description"&gt;${feature.description}&lt;/p&gt;
+                <div class="stb-feature-icon-wrapper">
+                    <i class="fas ${feature.icon} stb-feature-icon"></i>
+                </div>
+                <h3 class="stb-feature-title">${feature.title}</h3>
+                <p class="stb-feature-description">${feature.description}</p>
             `;
             container.appendChild(card);
         });
@@ -271,34 +271,34 @@ const STBFramework = {
         section.className = 'stb-why-choose-section';
         
         let html = `
-            &lt;div class="stb-container"&gt;
-                &lt;div class="stb-section-header"&gt;
-                    &lt;h2 class="stb-section-title"&gt;Why Choose Our ${toolName}?&lt;/h2&gt;
-                    &lt;p class="stb-section-subtitle"&gt;${subtitle}&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div class="stb-features-grid" id="why-choose-features"&gt;&lt;/div&gt;
+            <div class="stb-container">
+                <div class="stb-section-header">
+                    <h2 class="stb-section-title">Why Choose Our ${toolName}?</h2>
+                    <p class="stb-section-subtitle">${subtitle}</p>
+                </div>
+                <div class="stb-features-grid" id="why-choose-features"></div>
         `;
         
         if (socialProof) {
             html += `
-                &lt;div class="stb-social-proof"&gt;
-                    &lt;div class="stb-proof-item"&gt;
-                        &lt;span class="stb-proof-number"&gt;${socialProof.users}+&lt;/span&gt;
-                        &lt;span class="stb-proof-label"&gt;Happy Users&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;div class="stb-proof-item"&gt;
-                        &lt;span class="stb-proof-number"&gt;${socialProof.tools}+&lt;/span&gt;
-                        &lt;span class="stb-proof-label"&gt;Free Tools&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;div class="stb-proof-item"&gt;
-                        &lt;span class="stb-proof-number"&gt;${socialProof.rating}&lt;/span&gt;
-                        &lt;span class="stb-proof-label"&gt;Rating&lt;/span&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
+                <div class="stb-social-proof">
+                    <div class="stb-proof-item">
+                        <span class="stb-proof-number">${socialProof.users}+</span>
+                        <span class="stb-proof-label">Happy Users</span>
+                    </div>
+                    <div class="stb-proof-item">
+                        <span class="stb-proof-number">${socialProof.tools}+</span>
+                        <span class="stb-proof-label">Free Tools</span>
+                    </div>
+                    <div class="stb-proof-item">
+                        <span class="stb-proof-number">${socialProof.rating}</span>
+                        <span class="stb-proof-label">Rating</span>
+                    </div>
+                </div>
             `;
         }
         
-        html += '&lt;/div&gt;';
+        html += '</div>';
         section.innerHTML = html;
         
         return section;

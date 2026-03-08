@@ -935,3 +935,121 @@
     color: var(--linear-text-tertiary);
     pointer-events: none;
 }
+
+/* Media Queries for Responsive Navigation */
+@media (max-width: 1024px) {
+    .stb-nav-desktop {
+        gap: var(--linear-spacing-lg);
+    }
+    
+    .stb-nav-search-input {
+        width: 160px;
+    }
+    
+    .stb-nav-search-input:focus {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stb-nav-desktop {
+        display: none;
+    }
+    
+    .stb-mobile-menu-btn {
+        display: flex;
+    }
+    
+    .stb-nav-actions {
+        gap: var(--linear-spacing-sm);
+    }
+    
+    .stb-nav-search {
+        display: none;
+    }
+    
+    .stb-container {
+        padding: 0 var(--linear-spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .stb-header-inner {
+        height: 56px;
+    }
+    
+    :root {
+        --stb-header-height: 56px;
+    }
+    
+    .stb-brand {
+        font-size: var(--linear-font-size-base);
+    }
+    
+    .stb-mobile-nav-menu {
+        padding: var(--linear-spacing-md);
+    }
+    
+    .stb-container {
+        padding: 0 var(--linear-spacing-md);
+    }
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .stb-nav-desktop {
+        gap: var(--linear-spacing-md);
+    }
+    
+    .stb-nav-link {
+        font-size: 13px;
+    }
+}
+
+/* Ensure proper hover behavior on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .stb-nav-dropdown-menu {
+        display: none;
+    }
+    
+    .stb-nav-dropdown:hover .stb-nav-dropdown-menu {
+        display: none;
+    }
+}
+
+/* High-resolution display adjustments */
+@media (-webkit-device-pixel-ratio: 2), (resolution: 192dpi) {
+    .stb-layout-header {
+        backdrop-filter: blur(40px);
+    }
+    
+    .stb-layout-footer {
+        backdrop-filter: blur(40px);
+    }
+}
+
+/* Print styles */
+@media print {
+    .stb-layout-header {
+        position: relative;
+        background: white;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .stb-mobile-menu-btn {
+        display: none;
+    }
+    
+    .stb-nav-actions {
+        display: none;
+    }
+    
+    .stb-nav-desktop {
+        display: flex;
+        gap: var(--linear-spacing-md);
+    }
+    
+    .stb-nav-dropdown-menu {
+        display: none;
+    }
+}

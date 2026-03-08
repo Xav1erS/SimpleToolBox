@@ -3,58 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Tool Name] | Simple Toolbox</title>
-    <meta name="description" content="[Tool description. 150-160 characters for SEO]">
+    <title>[Page Title] - Simple Toolbox</title>
+    <meta name="description" content="[Page description goes here. 150-160 characters for SEO.]">
     <meta name="keywords" content="[keywords separated by commas]">
     <meta name="author" content="SimpleToolBox">
     <meta name="robots" content="index, follow">
     
-    <link rel="canonical" href="https://simpletoolbox.dev/tools/[tool-slug]">
+    <link rel="canonical" href="https://simpletoolbox.dev[page-path]">
     
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://simpletoolbox.dev/tools/[tool-slug]">
-    <meta property="og:title" content="[Tool Name] | Simple Toolbox">
-    <meta property="og:description" content="[Tool description]">
+    <meta property="og:url" content="https://simpletoolbox.dev[page-path]">
+    <meta property="og:title" content="[Page Title] - Simple Toolbox">
+    <meta property="og:description" content="[Page description goes here.]">
     <meta property="og:site_name" content="Simple Toolbox">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://simpletoolbox.dev/tools/[tool-slug]">
-    <meta name="twitter:title" content="[Tool Name] | Simple Toolbox">
-    <meta name="twitter:description" content="[Tool description]">
+    <meta name="twitter:url" content="https://simpletoolbox.dev[page-path]">
+    <meta name="twitter:title" content="[Page Title] - Simple Toolbox">
+    <meta name="twitter:description" content="[Page description goes here.]">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../css/design-system.css">
-    <link rel="stylesheet" href="../../css/framework.css">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/framework.css">
     
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "[Tool Name]",
-  "alternateName": "[Short Tool Name]",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Web",
-  "url": "https://simpletoolbox.dev/tools/[tool-slug]",
+  "@type": "[WebApplication or WebPage]",
+  "name": "[Page Title]",
+  "description": "[Page description goes here.]",
+  "url": "https://simpletoolbox.dev[page-path]",
   "author": {
     "@type": "Organization",
     "name": "SimpleToolBox"
   },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
+  "publisher": {
+    "@type": "Organization",
+    "name": "SimpleToolBox"
   },
-  "description": "[Tool description]",
-  "featureList": [
-    "Fast & Efficient",
-    "Privacy First",
-    "Mobile Optimized"
-  ],
   "inLanguage": "English",
   "potentialAction": {
     "@type": "UseAction",
-    "target": "https://simpletoolbox.dev/tools/[tool-slug]"
+    "target": "https://simpletoolbox.dev[page-path]"
   }
 }
     </script>
@@ -80,7 +70,7 @@
                     
                     <nav class="stb-nav-desktop">
                         <a href="/" class="stb-nav-link" data-nav="home">Home</a>
-                        <a href="/tools" class="stb-nav-link active" data-nav="tools">Tools</a>
+                        <a href="/tools" class="stb-nav-link" data-nav="tools">Tools</a>
                         <a href="/about.html" class="stb-nav-link" data-nav="about">About</a>
                         <a href="/contact.html" class="stb-nav-link" data-nav="contact">Contact</a>
                     </nav>
@@ -111,29 +101,12 @@
         <main class="stb-layout-main">
             <section class="stb-tool-area">
                 <div class="stb-container">
-                    <div class="stb-breadcrumb">
-                        <a href="/">Home</a>
-                        <span class="stb-breadcrumb-separator">&gt;</span>
-                        <a href="/tools">Tools</a>
-                        <span class="stb-breadcrumb-separator">&gt;</span>
-                        <span>[Tool Name]</span>
-                    </div>
                     
-                    <header class="stb-tool-header">
-                        <h1 class="stb-tool-title">[Tool Name]</h1>
-                        <p class="stb-tool-description">[Tool description. Explain what the tool does and its benefits.]</p>
-                    </header>
-                    
-                    <div class="stb-content-card stb-tool-custom">
+                    <div class="stb-tool-main">
                         
+                        <!-- 主要内容区域 - 根据页面类型定制 -->
                         
                     </div>
-                    
-                    <section class="stb-features-section">
-                        <h2 class="stb-section-title">Why Choose This Tool?</h2>
-                        <div class="stb-features-grid" id="features-container">
-                        </div>
-                    </section>
                 </div>
             </section>
         </main>
@@ -146,9 +119,8 @@
                     </div>
                     
                     <div class="stb-footer-links">
-                        <a href="what-is.html">What Is</a>
-                        <a href="how-to-use.html">How to Use</a>
                         <a href="/about.html">About Us</a>
+                        <a href="/contact.html">Contact</a>
                         <a href="/terms.html">Terms of Use</a>
                         <a href="/privacy.html">Privacy Policy</a>
                     </div>
@@ -162,45 +134,37 @@
         </footer>
     </div>
     
-    <script src="../../js/framework.js"></script>
+    <script src="../js/framework.js"></script>
     <script>
-        const toolConfig = {
-            id: '[tool-id]',
-            name: '[Tool Name]',
-            slug: '[tool-slug]'
+        const pageConfig = {
+            type: '[page-type]',
+            id: '[page-id]',
+            navActive: '[nav-item]'
         };
         
-        const features = [
-            {
-                icon: 'fa-bolt',
-                title: 'Fast & Efficient',
-                description: 'Get results instantly with our optimized processing.'
-            },
-            {
-                icon: 'fa-shield-alt',
-                title: 'Privacy First',
-                description: 'All processing happens locally in your browser.'
-            },
-            {
-                icon: 'fa-mobile-alt',
-                title: 'Mobile Optimized',
-                description: 'Works perfectly on all devices.'
-            }
-        ];
-        
         document.addEventListener('DOMContentLoaded', function() {
-            STBFramework.generateFeatureCards(features, 'features-container');
-            initTool();
+            if (pageConfig.navActive) {
+                const navLink = document.querySelector(`[data-nav="${pageConfig.navActive}"]`);
+                if (navLink) {
+                    navLink.classList.add('active');
+                }
+            }
+            initPage();
         });
         
         document.addEventListener('pageLoaded', function(event) {
-            STBFramework.generateFeatureCards(features, 'features-container');
-            if (typeof initTool === 'function') {
-                initTool();
+            if (pageConfig.navActive) {
+                const navLink = document.querySelector(`[data-nav="${pageConfig.navActive}"]`);
+                if (navLink) {
+                    navLink.classList.add('active');
+                }
+            }
+            if (typeof initPage === 'function') {
+                initPage();
             }
         });
         
-        function initTool() {
+        function initPage() {
         }
     </script>
 </body>

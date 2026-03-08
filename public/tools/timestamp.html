@@ -350,6 +350,7 @@
     if (ms < -8640000000000000 || ms > 8640000000000000) {
       tsInput.classList.add('has-error');
       tsError.textContent = 'Timestamp out of range';
+      tsResult.innerHTML = '<div class="result-content"><span class="result-empty">Result will appear here</span></div>';
       return;
     }
     renderTsResult(ms);

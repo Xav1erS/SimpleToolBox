@@ -1402,6 +1402,17 @@
         
         // Initialize with empty analysis
         analyzeText('');
-    </script>
-</body>
+        // 监听pageLoaded事件（SPA导航）
+        document.addEventListener('pageLoaded', function(event) {
+            console.log('pageLoaded event received on word-counter-tool/index.html:', event.detail);
+            // 如果页面有init函数，调用它
+            if (typeof init === 'function') {
+                init();
+            }
+            if (typeof initToolPage === 'function') {
+                initToolPage();
+            }
+        });
+
+    </script></body>
 </html>

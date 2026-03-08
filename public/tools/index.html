@@ -319,33 +319,53 @@
 
     <!-- JavaScript -->
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        
-        // Initialize theme
-        const savedTheme = localStorage.getItem('stb-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        let currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-        applyTheme(currentTheme);
-        
-        // Toggle theme on button click
-        themeToggle.addEventListener('click', () => {
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(currentTheme);
-            localStorage.setItem('stb-theme', currentTheme);
-        });
-        
-        function applyTheme(theme) {
-            document.body.className = theme;
-        }
-        
-        // Update copyright year
-        document.addEventListener('DOMContentLoaded', () => {
+        // 初始化函数
+        function initToolsPage() {
+            console.log('Initializing Tools page');
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            if (themeToggle) {
+                // Initialize theme
+                const savedTheme = localStorage.getItem('stb-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                let currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+                applyTheme(currentTheme);
+                
+                // Toggle theme on button click
+                themeToggle.addEventListener('click', () => {
+                    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    applyTheme(currentTheme);
+                    localStorage.setItem('stb-theme', currentTheme);
+                });
+            }
+            
+            function applyTheme(theme) {
+                document.body.className = theme;
+                // 确保html元素也有正确的class
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }
+            
+            // Update copyright year
             const yearElement = document.querySelector('.footer-container p');
             if (yearElement) {
                 yearElement.innerHTML = yearElement.innerHTML.replace('2026', new Date().getFullYear());
             }
+        }
+        
+        // 监听DOMContentLoaded事件（首次加载）
+        document.addEventListener('DOMContentLoaded', initToolsPage);
+        
+        // 监听pageLoaded事件（SPA导航）
+        document.addEventListener('pageLoaded', function(event) {
+            console.log('pageLoaded event received on Tools page:', event.detail);
+            initToolsPage();
         });
     </script>
 

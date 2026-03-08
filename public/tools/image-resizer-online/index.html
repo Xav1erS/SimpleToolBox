@@ -40,8 +40,20 @@
     }
     </script>
     <!-- External libraries for image processing -->
-    <script src="https://cdn.jsdelivr.net/npm/pica@9.0.1/dist/pica.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pica@9.0.1/dist/pica.min.js">
+        // 监听pageLoaded事件（SPA导航）
+        document.addEventListener('pageLoaded', function(event) {
+            console.log('pageLoaded event received on image-resizer-online/index.html:', event.detail);
+            // 如果页面有init函数，调用它
+            if (typeof init === 'function') {
+                init();
+            }
+            if (typeof initToolPage === 'function') {
+                initToolPage();
+            }
+        });
+
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <style>
         :root {

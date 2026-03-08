@@ -895,9 +895,19 @@
                 uploadArea.style.minHeight = '300px';
             }
         });
-    </script>
+        // 监听pageLoaded事件（SPA导航）
+        document.addEventListener('pageLoaded', function(event) {
+            console.log('pageLoaded event received on pdf-to-word-converter/index.html:', event.detail);
+            // 如果页面有init函数，调用它
+            if (typeof init === 'function') {
+                init();
+            }
+            if (typeof initToolPage === 'function') {
+                initToolPage();
+            }
+        });
 
-    <script src="/js/spa-router.js"></script>
+    </script><script src="/js/spa-router.js"></script>
     
     <script>
         // 主题切换功能

@@ -1212,6 +1212,14 @@
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', init);
+        
+        // 监听pageLoaded事件（SPA导航）
+        document.addEventListener('pageLoaded', function(event) {
+            console.log('pageLoaded event received on Unit Converter:', event.detail);
+            if (typeof init === 'function') {
+                init();
+            }
+        });
     </script>
 
     <script src="/js/spa-router.js"></script>

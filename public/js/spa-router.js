@@ -77,25 +77,64 @@
         
         if (!contentArea) return;
         
-        // 添加过渡类
-        contentArea.classList.add('content-transition');
+        console.log('Updating page content...');
         
-        // 短暂延迟后更新内容并激活过渡
-        setTimeout(() => {
-            contentArea.innerHTML = content;
-            document.title = title;
-            
-            // 激活过渡
-            setTimeout(() => {
-                contentArea.classList.add('active');
-            }, 10);
-            
-            // 移除过渡类（保持活动状态）
-            setTimeout(() => {
-                contentArea.classList.remove('content-transition');
-                contentArea.classList.remove('active');
-            }, config.transitionDuration + 50);
-        }, 10);
+        // 保存当前body和html的class、data属性状态
+        const savedBodyClasses = document.body.className;
+        const savedBodyAttributes = {};
+        for (let i = 0; i < document.body.attributes.length; i++) {
+            const attr = document.body.attributes[i];
+            if (attr.name.startsWith('data-')) {
+                savedBodyAttributes[attr.name] = attr.value;
+            }
+        }
+        
+        const savedHtmlClasses = document.documentElement.className;
+        const savedHtmlAttributes = {};
+        for (let i = 0; i < document.documentElement.attributes.length; i++) {
+            const attr = document.documentElement.attributes[i];
+            if (attr.name.startsWith('data-')) {
+                savedHtmlAttributes[attr.name] = attr.value;
+            }
+        }
+        
+        // 直接更新内容，不使用复杂的过渡效果以避免布局问题
+        contentArea.innerHTML = content;
+        document.title = title;
+        
+        // 确保body的class和data属性状态保持正确
+        if (document.body.className !== savedBodyClasses) {
+            console.log('Restoring body classes:', savedBodyClasses);
+            document.body.className = savedBodyClasses;
+        }
+        for (const [name, value] of Object.entries(savedBodyAttributes)) {
+            document.body.setAttribute(name, value);
+        }
+        
+        // 确保html元素的class和data属性状态也正确
+        if (document.documentElement.className !== savedHtmlClasses) {
+            console.log('Restoring HTML classes:', savedHtmlClasses);
+            document.documentElement.className = savedHtmlClasses;
+        }
+        for (const [name, value] of Object.entries(savedHtmlAttributes)) {
+            document.documentElement.setAttribute(name, value);
+        }
+        
+        // 确保所有主题相关的属性都正确设置
+        if (!document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.add('dark');
+        }
+        if (!document.body.classList.contains('dark')) {
+            document.body.classList.add('dark');
+        }
+        if (!document.documentElement.getAttribute('data-theme')) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        if (!document.documentElement.getAttribute('data-bs-theme')) {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+        }
+        
+        console.log('Page content updated successfully');
     }
     
     // 处理链接点击
@@ -131,7 +170,29 @@
     
     // 导航到新URL
     async function navigateTo(url) {
+        console.log('Navigating to:', url);
         isLoading = true;
+        
+        // 保存当前页面状态
+        const savedBodyClasses = document.body.className;
+        const savedBodyAttributes = {};
+        for (let i = 0; i < document.body.attributes.length; i++) {
+            const attr = document.body.attributes[i];
+            if (attr.name.startsWith('data-')) {
+                savedBodyAttributes[attr.name] = attr.value;
+            }
+        }
+        
+        const savedHtmlClasses = document.documentElement.className;
+        const savedHtmlAttributes = {};
+        for (let i = 0; i < document.documentElement.attributes.length; i++) {
+            const attr = document.documentElement.attributes[i];
+            if (attr.name.startsWith('data-')) {
+                savedHtmlAttributes[attr.name] = attr.value;
+            }
+        }
+        
+        console.log('Saved state - Body classes:', savedBodyClasses, 'HTML classes:', savedHtmlClasses);
         
         // 显示加载指示器（可选）
         showLoadingIndicator();
@@ -142,6 +203,37 @@
             
             // 更新内容
             updatePageContent(content, title);
+            
+            // 恢复并确保状态正确
+            if (document.body.className !== savedBodyClasses) {
+                console.log('Restoring body classes to:', savedBodyClasses);
+                document.body.className = savedBodyClasses;
+            }
+            for (const [name, value] of Object.entries(savedBodyAttributes)) {
+                document.body.setAttribute(name, value);
+            }
+            
+            if (document.documentElement.className !== savedHtmlClasses) {
+                console.log('Restoring HTML classes to:', savedHtmlClasses);
+                document.documentElement.className = savedHtmlClasses;
+            }
+            for (const [name, value] of Object.entries(savedHtmlAttributes)) {
+                document.documentElement.setAttribute(name, value);
+            }
+            
+            // 确保所有主题相关的属性都正确设置
+            if (!document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.add('dark');
+            }
+            if (!document.body.classList.contains('dark')) {
+                document.body.classList.add('dark');
+            }
+            if (!document.documentElement.getAttribute('data-theme')) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+            if (!document.documentElement.getAttribute('data-bs-theme')) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+            }
             
             // 更新浏览器历史记录（pushState）
             window.history.pushState({}, title, url);
@@ -169,67 +261,59 @@
     function initializePageScripts() {
         console.log('Initializing page scripts...');
         
-        // 方法1: 检查是否存在页面特定的初始化函数
-        if (typeof init !== 'undefined' && typeof init === 'function') {
-            try {
-                console.log('Calling page-specific init() function');
-                init();
-            } catch (e) {
-                console.error('Error initializing page scripts:', e);
-            }
-        }
+        // 首先确保主题一致性
+        ensureThemeConsistency();
         
-        // 方法2: 查找并执行所有script标签中的代码
-        const scripts = document.querySelectorAll('script');
-        scripts.forEach(script => {
-            // 跳过已执行的脚本（有src属性且非内联）
-            if (script.src && !script.hasAttribute('data-reexecutable')) {
-                return;
-            }
-            
-            // 对于内联脚本，尝试重新执行（需要谨慎处理）
-            if (!script.src && script.textContent.trim()) {
-                // 检查是否包含DOMContentLoaded监听器
-                if (script.textContent.includes('DOMContentLoaded')) {
-                    console.log('Found script with DOMContentLoaded, attempting to re-execute');
-                }
-            }
-        });
-        
-        // 方法3: 手动触发DOMContentLoaded的替代方案
-        // 查找所有可能的初始化函数模式
-        try {
-            // 检查是否有工具特定的初始化函数
-            if (typeof initEventListeners === 'function') {
-                console.log('Calling initEventListeners()');
-                initEventListeners();
-            }
-            if (typeof initBackgroundSelector === 'function') {
-                console.log('Calling initBackgroundSelector()');
-                initBackgroundSelector();
-            }
-            if (typeof loadDefaultModel === 'function') {
-                console.log('Calling loadDefaultModel()');
-                loadDefaultModel();
-            }
-            if (typeof initEnhancements === 'function') {
-                console.log('Calling initEnhancements()');
-                initEnhancements();
-            }
-        } catch (e) {
-            console.error('Error calling tool-specific init functions:', e);
-        }
-        
-        // 方法4: 触发自定义事件，让工具页面可以监听
+        // 触发自定义事件，让工具页面可以监听
         const customEvent = new CustomEvent('pageLoaded', { 
             detail: { url: window.location.href } 
         });
         document.dispatchEvent(customEvent);
         
+        // 检查是否存在页面特定的初始化函数
+        const initFunctions = ['init', 'initToolPage', 'initEventListeners', 'initBackgroundSelector', 'loadDefaultModel', 'initEnhancements'];
+        initFunctions.forEach(funcName => {
+            if (typeof window[funcName] === 'function') {
+                try {
+                    console.log(`Calling ${funcName}()`);
+                    window[funcName]();
+                } catch (e) {
+                    console.error(`Error calling ${funcName}:`, e);
+                }
+            }
+        });
+        
         // 重新绑定事件监听器
         reattachEventListeners();
         
         console.log('Page scripts initialization complete');
+    }
+    
+    // 确保主题一致性
+    function ensureThemeConsistency() {
+        console.log('Ensuring theme consistency...');
+        
+        const savedTheme = localStorage.getItem('stb-theme') || 'dark';
+        
+        // 确保 body 有正确的 class
+        if (!document.body.classList.contains(savedTheme)) {
+            document.body.className = savedTheme;
+        }
+        
+        // 确保 html 有正确的 class
+        if (!document.documentElement.classList.contains(savedTheme)) {
+            document.documentElement.classList.add(savedTheme);
+        }
+        
+        // 确保 html 有正确的 data 属性
+        if (!document.documentElement.getAttribute('data-theme')) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        if (!document.documentElement.getAttribute('data-bs-theme')) {
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        }
+        
+        console.log('Theme consistency ensured');
     }
     
     // 重新绑定事件监听器

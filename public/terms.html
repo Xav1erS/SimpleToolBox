@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Terms of Use — Simple ToolBox</title>
+  <meta name="description" content="Simple ToolBox Terms of Use. Free developer tools with no warranties. Read our terms before using the service." />
+  <link rel="icon" href="logo 1.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0F11; --bg-surface: #16161A;
+      --border: rgba(255,255,255,0.07);
+      --text-primary: #E2E2E5; --text-secondary: #8B8B9A; --text-muted: #555560;
+      --accent: #5E6AD2; --accent-dim: rgba(94,106,210,0.12);
+      --green: #22c55e; --purple: #9B8DEB;
+      --radius-sm: 6px; --radius-md: 10px;
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --nav-h: 60px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .nav { position: sticky; top: 0; z-index: 100; height: var(--nav-h); display: flex; align-items: center; padding: 0 24px; gap: 16px; background: rgba(15,15,17,0.85); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 13px; padding: 5px 10px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; white-space: nowrap; text-decoration: none; }
+    .nav-back:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); text-decoration: none; }
+    .nav-logo { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 15px; letter-spacing: -0.3px; color: var(--text-primary); text-decoration: none; }
+    .logo-img { object-fit: contain; display: block; border-radius: 6px; }
+    .nav-divider { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+    .nav-page-name { font-size: 14px; color: var(--text-secondary); }
+    .nav-spacer { flex: 1; }
+
+    .page { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+
+    .toc { position: sticky; top: calc(var(--nav-h) + 20px); }
+    .toc-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 12px; }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .toc-list a { font-size: 13px; color: var(--text-secondary); text-decoration: none; padding: 4px 8px; border-radius: var(--radius-sm); display: block; transition: color 0.15s, background 0.15s; border-left: 2px solid transparent; }
+    .toc-list a:hover { color: var(--text-primary); background: rgba(255,255,255,0.04); text-decoration: none; }
+    .toc-list a.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-dim); }
+
+    .doc { display: flex; flex-direction: column; gap: 32px; }
+    .doc-header { padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .doc-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid rgba(94,106,210,0.3); color: var(--purple); font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; font-family: var(--mono); }
+    .doc-title { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .doc-meta { font-size: 12px; color: var(--text-muted); }
+    .doc-section { display: flex; flex-direction: column; gap: 12px; }
+    .doc-section h2 { font-size: 16px; font-weight: 700; letter-spacing: -0.2px; scroll-margin-top: calc(var(--nav-h) + 20px); }
+    .doc-section p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+    .doc-section ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .doc-section ul li { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .doc-section ul li strong { color: var(--text-primary); }
+
+    @media (max-width: 720px) {
+      .page { grid-template-columns: 1fr; padding: 32px 16px 60px; gap: 32px; }
+      .toc { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Home
+  </a>
+  <div class="nav-divider"></div>
+  <a href="index.html" class="nav-logo">
+    <img src="logo 1.svg" class="logo-img" width="24" height="24" alt="Simple ToolBox" />
+    <span>Simple ToolBox</span>
+  </a>
+  <div class="nav-divider"></div>
+  <span class="nav-page-name">Terms of Use</span>
+  <div class="nav-spacer"></div>
+</nav>
+
+<div class="page">
+
+  <aside class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#acceptance">Acceptance</a></li>
+      <li><a href="#description">Description</a></li>
+      <li><a href="#permitted-use">Permitted Use</a></li>
+      <li><a href="#prohibited">Prohibited Use</a></li>
+      <li><a href="#disclaimer">Disclaimer</a></li>
+      <li><a href="#liability">Limitation of Liability</a></li>
+      <li><a href="#ip">Intellectual Property</a></li>
+      <li><a href="#links">Third-Party Links</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </aside>
+
+  <main class="doc">
+
+    <div class="doc-header">
+      <div class="doc-badge">Last updated: March 2026</div>
+      <h1 class="doc-title">Terms of Use</h1>
+      <p class="doc-meta">Effective date: January 1, 2025 &nbsp;·&nbsp; Simple ToolBox</p>
+    </div>
+
+    <div class="doc-section" id="acceptance">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing or using Simple ToolBox ("the Service"), you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use the Service.</p>
+    </div>
+
+    <div class="doc-section" id="description">
+      <h2>2. Description of Service</h2>
+      <p>Simple ToolBox provides a collection of free, browser-based developer utilities including encoders, decoders, formatters, converters, and generators. All tools run entirely client-side in your web browser. No user data is transmitted to or processed by our servers.</p>
+    </div>
+
+    <div class="doc-section" id="permitted-use">
+      <h2>3. Permitted Use</h2>
+      <p>You may use Simple ToolBox for any lawful personal or professional purpose, including:</p>
+      <ul>
+        <li>Encoding and decoding data for development and testing</li>
+        <li>Formatting and validating code or structured data</li>
+        <li>Generating random identifiers, passwords, or other values</li>
+        <li>Converting data between formats for personal or professional projects</li>
+      </ul>
+    </div>
+
+    <div class="doc-section" id="prohibited">
+      <h2>4. Prohibited Use</h2>
+      <p>You agree not to use the Service to:</p>
+      <ul>
+        <li>Violate any applicable local, national, or international law or regulation</li>
+        <li>Attempt to interfere with or disrupt the integrity or performance of the Service</li>
+        <li>Reverse-engineer, decompile, or extract the source code beyond what is publicly available</li>
+        <li>Use automated tools to scrape or overload the Service</li>
+      </ul>
+    </div>
+
+    <div class="doc-section" id="disclaimer">
+      <h2>5. Disclaimer of Warranties</h2>
+      <p>The Service is provided "as is" and "as available" without warranties of any kind, either express or implied. We do not warrant that the Service will be error-free, uninterrupted, or that the results obtained from using the tools will be accurate or reliable.</p>
+      <p>You use the output of any tool entirely at your own risk. Always validate critical data independently before using it in production environments.</p>
+    </div>
+
+    <div class="doc-section" id="liability">
+      <h2>6. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, Simple ToolBox and its creators shall not be liable for any indirect, incidental, special, consequential, or punitive damages — including loss of data, profits, or goodwill — arising from your use of or inability to use the Service.</p>
+    </div>
+
+    <div class="doc-section" id="ip">
+      <h2>7. Intellectual Property</h2>
+      <p>The source code, design, and content of Simple ToolBox are the intellectual property of their respective creators. You may not reproduce, distribute, or create derivative works without explicit written permission.</p>
+      <p>The tools themselves rely on standard browser APIs and open web technologies. Your input and output data belong entirely to you.</p>
+    </div>
+
+    <div class="doc-section" id="links">
+      <h2>8. Third-Party Links</h2>
+      <p>The Service may contain links to third-party websites or services. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites.</p>
+    </div>
+
+    <div class="doc-section" id="changes">
+      <h2>9. Changes to Terms</h2>
+      <p>We reserve the right to update these Terms of Use at any time. The "Last updated" date at the top reflects any changes. Continued use of the Service after any changes constitutes acceptance of the updated terms.</p>
+    </div>
+
+    <div class="doc-section" id="contact">
+      <h2>10. Contact</h2>
+      <p>If you have questions about these Terms of Use, please <a href="contact.html">contact us</a>.</p>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('.doc-section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

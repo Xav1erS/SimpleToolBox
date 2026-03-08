@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Contact — Simple ToolBox</title>
+  <meta name="description" content="Contact Simple ToolBox. Send us feedback, tool suggestions, or bug reports. We'd love to hear from you." />
+  <link rel="icon" href="logo 1.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0F11; --bg-surface: #16161A; --bg-hover: #1C1C22;
+      --border: rgba(255,255,255,0.07); --border-hover: rgba(94,106,210,0.5);
+      --text-primary: #E2E2E5; --text-secondary: #8B8B9A; --text-muted: #555560;
+      --accent: #5E6AD2; --accent-hover: #6E7AE2;
+      --accent-dim: rgba(94,106,210,0.12); --accent-glow: rgba(94,106,210,0.25);
+      --green: #22c55e; --purple: #9B8DEB;
+      --radius-sm: 6px; --radius-md: 10px;
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --nav-h: 60px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 100; height: var(--nav-h); display: flex; align-items: center; padding: 0 24px; gap: 16px; background: rgba(15,15,17,0.85); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 13px; padding: 5px 10px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; white-space: nowrap; }
+    .nav-back:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .nav-logo { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 15px; letter-spacing: -0.3px; }
+    .logo-img { object-fit: contain; display: block; border-radius: 6px; }
+    .nav-divider { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+    .nav-page-name { font-size: 14px; color: var(--text-secondary); }
+    .nav-spacer { flex: 1; }
+
+    /* HERO */
+    .hero { position: relative; padding: 72px 24px 56px; text-align: center; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(94,106,210,0.15) 0%, transparent 70%); pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid rgba(94,106,210,0.3); color: var(--purple); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; font-family: var(--mono); }
+    .hero-title { font-size: clamp(24px, 4vw, 40px); font-weight: 700; letter-spacing: -0.8px; margin-bottom: 12px; }
+    .hero-sub { font-size: 15px; color: var(--text-secondary); max-width: 460px; margin: 0 auto; }
+
+    /* CONTENT */
+    .content { max-width: 820px; margin: 0 auto; padding: 0 24px 80px; display: grid; grid-template-columns: 1fr 380px; gap: 24px; align-items: start; }
+
+    /* FORM */
+    .form-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; }
+    .form-card h2 { font-size: 16px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.2px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group:last-of-type { margin-bottom: 20px; }
+    .form-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 10px 12px; border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      color: var(--text-primary); font-family: var(--font); font-size: 14px;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+    option { background: var(--bg-surface); }
+    .form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+    .form-input.error, .form-textarea.error { border-color: #ef4444; }
+    .form-error { font-size: 11px; color: #ef4444; display: none; }
+    .form-input.error ~ .form-error,
+    .form-textarea.error ~ .form-error { display: block; }
+    .btn-submit { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 500; padding: 12px; border-radius: var(--radius-md); transition: background 0.2s, transform 0.15s; }
+    .btn-submit:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+
+    /* SUCCESS */
+    .success-msg { display: none; text-align: center; padding: 32px 20px; }
+    .success-msg .success-icon { font-size: 40px; margin-bottom: 12px; }
+    .success-msg h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .success-msg p { font-size: 14px; color: var(--text-secondary); }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .info-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; }
+    .info-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .contact-detail { }
+    .contact-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .contact-value { font-size: 13px; color: var(--text-primary); }
+    .contact-value a { color: var(--accent); }
+    .contact-value a:hover { text-decoration: underline; }
+
+    .topic-list { display: flex; flex-direction: column; gap: 8px; }
+    .topic-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-secondary); }
+    .topic-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    @media (max-width: 720px) {
+      .content { grid-template-columns: 1fr; }
+      .hero { padding: 48px 20px 40px; }
+      .content { padding: 0 16px 60px; }
+      .nav { padding: 0 16px; }
+      .nav-logo span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Home
+  </a>
+  <div class="nav-divider"></div>
+  <a href="index.html" class="nav-logo">
+    <img src="logo 1.svg" class="logo-img" width="24" height="24" alt="Simple ToolBox" />
+    <span>Simple ToolBox</span>
+  </a>
+  <div class="nav-divider"></div>
+  <span class="nav-page-name">Contact</span>
+  <div class="nav-spacer"></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">💬 Get in touch</div>
+  <h1 class="hero-title">We'd love to hear from you</h1>
+  <p class="hero-sub">Bug report, tool suggestion, or just a hello — we read every message.</p>
+</section>
+
+<div class="content">
+
+  <!-- FORM -->
+  <div class="form-card">
+    <h2>Send a message</h2>
+    <div id="formContent">
+      <div class="form-group">
+        <label class="form-label" for="fieldName">Name</label>
+        <input type="text" class="form-input" id="fieldName" placeholder="Your name" autocomplete="name" />
+        <span class="form-error">Please enter your name</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="fieldEmail">Email</label>
+        <input type="email" class="form-input" id="fieldEmail" placeholder="you@example.com" autocomplete="email" />
+        <span class="form-error">Please enter a valid email address</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="fieldTopic">Topic</label>
+        <select class="form-select" id="fieldTopic">
+          <option value="">Select a topic…</option>
+          <option value="bug">🐛 Bug report</option>
+          <option value="feature">✨ Tool suggestion</option>
+          <option value="feedback">💬 General feedback</option>
+          <option value="other">📌 Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="fieldMessage">Message</label>
+        <textarea class="form-textarea" id="fieldMessage" placeholder="Describe your bug, idea, or question…"></textarea>
+        <span class="form-error">Please enter a message</span>
+      </div>
+      <button class="btn-submit" id="btnSubmit">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send Message
+      </button>
+    </div>
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">🎉</div>
+      <h3>Message sent!</h3>
+      <p>Thanks for reaching out. We'll get back to you as soon as we can.</p>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="info-card">
+      <h3>Contact Info</h3>
+      <div class="contact-item">
+        <span class="contact-icon">📧</span>
+        <div class="contact-detail">
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:hello@simpletoolbox.dev">hello@simpletoolbox.dev</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🐙</span>
+        <div class="contact-detail">
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value"><a href="https://github.com" target="_blank" rel="noopener">github.com/simpletoolbox</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">⏱️</span>
+        <div class="contact-detail">
+          <div class="contact-label">Response time</div>
+          <div class="contact-value">Usually within 48 hours</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>What can we help with?</h3>
+      <div class="topic-list">
+        <div class="topic-item"><span class="topic-dot"></span>Reporting a bug in a tool</div>
+        <div class="topic-item"><span class="topic-dot"></span>Suggesting a new tool</div>
+        <div class="topic-item"><span class="topic-dot"></span>Incorrect output from a tool</div>
+        <div class="topic-item"><span class="topic-dot"></span>Accessibility or UX feedback</div>
+        <div class="topic-item"><span class="topic-dot"></span>Anything else on your mind</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const fieldName    = document.getElementById('fieldName');
+  const fieldEmail   = document.getElementById('fieldEmail');
+  const fieldMessage = document.getElementById('fieldMessage');
+  const btnSubmit    = document.getElementById('btnSubmit');
+  const formContent  = document.getElementById('formContent');
+  const successMsg   = document.getElementById('successMsg');
+
+  function validate() {
+    let valid = true;
+    // Name
+    if (!fieldName.value.trim()) { fieldName.classList.add('error'); valid = false; }
+    else fieldName.classList.remove('error');
+    // Email
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(fieldEmail.value.trim())) { fieldEmail.classList.add('error'); valid = false; }
+    else fieldEmail.classList.remove('error');
+    // Message
+    if (!fieldMessage.value.trim()) { fieldMessage.classList.add('error'); valid = false; }
+    else fieldMessage.classList.remove('error');
+    return valid;
+  }
+
+  [fieldName, fieldEmail, fieldMessage].forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('error'));
+  });
+
+  btnSubmit.addEventListener('click', () => {
+    if (!validate()) return;
+    // Simulate submission (no server — just show success UI)
+    formContent.style.display = 'none';
+    successMsg.style.display = 'block';
+  });
+</script>
+</body>
+</html>

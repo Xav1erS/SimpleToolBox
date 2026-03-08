@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>UUID Generator — Simple ToolBox</title>
+  <meta name="description" content="Free online UUID v4 generator. Generate bulk UUIDs with options for case, hyphens, and braces. Cryptographically secure. Runs entirely in your browser." />
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0F11; --bg-surface: #16161A; --bg-hover: #1C1C22;
+      --border: rgba(255,255,255,0.07); --border-hover: rgba(94,106,210,0.5);
+      --text-primary: #E2E2E5; --text-secondary: #8B8B9A; --text-muted: #555560;
+      --accent: #5E6AD2; --accent-hover: #6E7AE2;
+      --accent-dim: rgba(94,106,210,0.12); --accent-glow: rgba(94,106,210,0.25);
+      --green: #22c55e; --radius-sm: 6px; --radius-md: 10px;
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --nav-h: 60px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 100; height: var(--nav-h); display: flex; align-items: center; padding: 0 24px; gap: 16px; background: rgba(15,15,17,0.85); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 13px; padding: 5px 10px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; white-space: nowrap; }
+    .nav-back:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .nav-logo { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 15px; letter-spacing: -0.3px; }
+    .logo-img { object-fit: contain; display: block; border-radius: 6px; }
+    .nav-divider { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+    .nav-tool-name { font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+    .nav-tool-badge { font-family: var(--mono); font-size: 10px; background: var(--accent-dim); border: 1px solid rgba(94,106,210,0.3); color: #9B8DEB; padding: 2px 7px; border-radius: 4px; }
+    .nav-spacer { flex: 1; }
+    .nav-privacy { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-muted); }
+    .nav-privacy-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+
+    /* TOOL HEADER */
+    .tool-header { background: var(--bg-surface); border-bottom: 1px solid var(--border); padding: 32px 32px 28px; position: relative; overflow: hidden; }
+    .tool-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 100% at 0% 50%, rgba(94,106,210,0.1) 0%, transparent 70%); pointer-events: none; }
+    .tool-header-inner { max-width: 1100px; margin: 0 auto; }
+    .tool-title-row { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    .tool-title-icon { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--accent-dim); border: 1px solid rgba(94,106,210,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .tool-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    .tool-desc-text { font-size: 14px; color: var(--text-secondary); max-width: 560px; }
+    .tool-tags { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+    .tool-tag-pill { font-family: var(--mono); font-size: 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-muted); padding: 2px 8px; border-radius: 4px; }
+
+    /* MAIN LAYOUT */
+    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
+
+    /* PANEL */
+    .panel { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+    .panel-section { padding: 18px 20px; border-bottom: 1px solid var(--border); }
+    .panel-section:last-child { border-bottom: none; }
+    .panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 14px; }
+
+    /* SLIDER */
+    .slider-row { display: flex; align-items: center; gap: 12px; }
+    .slider-wrap { flex: 1; }
+    input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; border-radius: 2px; background: var(--border); outline: none; cursor: pointer; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-surface); box-shadow: 0 0 0 2px var(--accent-dim); transition: box-shadow 0.15s; }
+    input[type=range]::-webkit-slider-thumb:hover { box-shadow: 0 0 0 4px var(--accent-glow); }
+    input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-surface); }
+    .slider-value { font-family: var(--mono); font-size: 18px; font-weight: 600; color: var(--text-primary); min-width: 36px; text-align: right; }
+    .slider-limits { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 6px; font-family: var(--mono); }
+
+    /* CHECKBOXES */
+    .checkbox-list { display: flex; flex-direction: column; gap: 10px; }
+    .checkbox-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: background 0.15s, border-color 0.15s; user-select: none; }
+    .checkbox-item:hover { background: rgba(255,255,255,0.03); border-color: var(--border); }
+    .checkbox-item.checked { background: var(--accent-dim); border-color: rgba(94,106,210,0.25); }
+    .checkbox-box { width: 16px; height: 16px; flex-shrink: 0; border-radius: 4px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; transition: background 0.15s, border-color 0.15s; }
+    .checkbox-item.checked .checkbox-box { background: var(--accent); border-color: var(--accent); }
+    .checkbox-box-check { color: #fff; font-size: 10px; font-weight: 700; opacity: 0; transition: opacity 0.15s; }
+    .checkbox-item.checked .checkbox-box-check { opacity: 1; }
+    .checkbox-label { flex: 1; font-size: 13px; color: var(--text-primary); }
+    .checkbox-sample { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+
+    /* OUTPUT PANEL */
+    .output-panel { display: flex; flex-direction: column; gap: 14px; }
+
+    /* UUID LIST */
+    .uuid-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+    .uuid-card-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--border); }
+    .uuid-card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .uuid-row { display: flex; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    .uuid-row:last-child { border-bottom: none; }
+    .uuid-row:hover { background: var(--bg-hover); }
+    .uuid-num { font-family: var(--mono); font-size: 11px; color: var(--text-muted); min-width: 28px; flex-shrink: 0; }
+    .uuid-text { flex: 1; font-family: var(--mono); font-size: 14px; color: var(--text-primary); letter-spacing: 0.02em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all; }
+    .copy-btn { flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); color: var(--text-muted); transition: color 0.15s, background 0.15s; font-size: 13px; }
+    .copy-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+    .copy-btn.copied { color: var(--green); }
+
+    /* ACTIONS */
+    .actions-row { display: flex; gap: 10px; }
+    .btn-generate { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 500; padding: 12px 20px; border-radius: var(--radius-md); transition: background 0.2s, transform 0.15s; }
+    .btn-generate:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-generate:active { transform: translateY(0); }
+    .btn-copy-all { display: flex; align-items: center; justify-content: center; gap: 7px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-secondary); font-size: 13px; font-weight: 500; padding: 12px 18px; border-radius: var(--radius-md); transition: background 0.2s, color 0.2s; }
+    .btn-copy-all:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); }
+    .btn-copy-all.copied { color: var(--green); border-color: rgba(34,197,94,0.3); }
+
+    /* INFO */
+    .info-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 18px; display: flex; align-items: flex-start; gap: 12px; }
+    .info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .info-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+    .info-text strong { color: var(--text-primary); font-weight: 600; }
+
+    @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .tool-header { padding: 20px 16px 18px; }
+      .main { padding: 16px 16px 48px; }
+      .nav { padding: 0 16px; }
+      .nav-logo span { display: none; }
+    }
+  </style>
+</head>
+<body>
+<noscript><div style="text-align:center;padding:40px;color:#8B8B9A;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Home
+  </a>
+  <div class="nav-divider"></div>
+  <a href="../index.html" class="nav-logo">
+    <img src="../logo 1.svg" class="logo-img" width="24" height="24" alt="Simple ToolBox" />
+    <span>Simple ToolBox</span>
+  </a>
+  <div class="nav-divider"></div>
+  <div class="nav-tool-name">
+    UUID Generator
+    <span class="nav-tool-badge">generate</span>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="nav-privacy"><span class="nav-privacy-dot"></span>Runs locally — no data sent</div>
+</nav>
+
+<div class="tool-header">
+  <div class="tool-header-inner">
+    <div class="tool-title-row">
+      <div class="tool-title-icon">🆔</div>
+      <h1 class="tool-title">UUID Generator</h1>
+    </div>
+    <p class="tool-desc-text">Generate cryptographically secure UUID v4 identifiers in bulk. Customize format with uppercase, hyphens, and braces options. All client-side, no server involved.</p>
+    <div class="tool-tags">
+      <span class="tool-tag-pill">UUID v4</span>
+      <span class="tool-tag-pill">crypto.randomUUID</span>
+      <span class="tool-tag-pill">bulk generation</span>
+      <span class="tool-tag-pill">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- LEFT: SETTINGS -->
+  <div class="panel">
+
+    <!-- Count -->
+    <div class="panel-section">
+      <div class="panel-label">Number of UUIDs</div>
+      <div class="slider-row">
+        <div class="slider-wrap">
+          <input type="range" id="countSlider" min="1" max="100" value="10" />
+          <div class="slider-limits"><span>1</span><span>100</span></div>
+        </div>
+        <div class="slider-value" id="countVal">10</div>
+      </div>
+    </div>
+
+    <!-- Format options -->
+    <div class="panel-section">
+      <div class="panel-label">Format Options</div>
+      <div class="checkbox-list">
+        <div class="checkbox-item" id="cb-uppercase">
+          <div class="checkbox-box"><span class="checkbox-box-check">✓</span></div>
+          <span class="checkbox-label">Uppercase</span>
+          <span class="checkbox-sample">A-F</span>
+        </div>
+        <div class="checkbox-item checked" id="cb-hyphens">
+          <div class="checkbox-box"><span class="checkbox-box-check">✓</span></div>
+          <span class="checkbox-label">Include hyphens</span>
+          <span class="checkbox-sample">xxxxxxxx-xxxx…</span>
+        </div>
+        <div class="checkbox-item" id="cb-braces">
+          <div class="checkbox-box"><span class="checkbox-box-check">✓</span></div>
+          <span class="checkbox-label">Wrap in braces</span>
+          <span class="checkbox-sample">{…}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: OUTPUT -->
+  <div class="output-panel">
+
+    <div class="uuid-card">
+      <div class="uuid-card-header">
+        <span class="uuid-card-title">Generated UUIDs</span>
+      </div>
+      <div id="uuidList"></div>
+    </div>
+
+    <div class="actions-row">
+      <button class="btn-generate" id="btnGenerate">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+        Generate
+      </button>
+      <button class="btn-copy-all" id="btnCopyAll">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy All
+      </button>
+    </div>
+
+    <div class="info-card">
+      <span class="info-icon">🔒</span>
+      <div class="info-text">
+        UUIDs are generated using <strong>crypto.randomUUID()</strong> (with a polyfill via <strong>crypto.getRandomValues()</strong> for older browsers). UUID v4 is entirely random — the probability of a collision is astronomically small (~1 in 10³⁶). Nothing is ever logged or sent anywhere.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const state = { count: 10, uppercase: false, hyphens: true, braces: false };
+  let currentUUIDs = [];
+
+  const countSlider = document.getElementById('countSlider');
+  const countVal    = document.getElementById('countVal');
+  const uuidList    = document.getElementById('uuidList');
+  const btnGenerate = document.getElementById('btnGenerate');
+  const btnCopyAll  = document.getElementById('btnCopyAll');
+
+  function generateUUID() {
+    if (crypto.randomUUID) return crypto.randomUUID();
+    // polyfill
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16));
+  }
+
+  function formatUUID(raw) {
+    let s = raw;
+    if (!state.hyphens) s = s.replace(/-/g, '');
+    if (state.uppercase) s = s.toUpperCase();
+    if (state.braces) s = `{${s}}`;
+    return s;
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function render() {
+    currentUUIDs = [];
+    for (let i = 0; i < state.count; i++) currentUUIDs.push(formatUUID(generateUUID()));
+    uuidList.innerHTML = '';
+    currentUUIDs.forEach((uuid, idx) => {
+      const row = document.createElement('div');
+      row.className = 'uuid-row';
+      row.innerHTML = `
+        <span class="uuid-num">${idx + 1}</span>
+        <span class="uuid-text" title="${escHtml(uuid)}">${escHtml(uuid)}</span>
+        <button class="copy-btn" data-idx="${idx}" title="Copy UUID">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>`;
+      uuidList.appendChild(row);
+    });
+  }
+
+  // Slider
+  function updateSliderTrack(slider) {
+    const pct = ((+slider.value - +slider.min) / (+slider.max - +slider.min)) * 100;
+    slider.style.background = `linear-gradient(to right, var(--accent) ${pct}%, rgba(255,255,255,0.08) ${pct}%)`;
+  }
+  countSlider.addEventListener('input', () => {
+    state.count = +countSlider.value;
+    countVal.textContent = state.count;
+    updateSliderTrack(countSlider);
+    render();
+  });
+
+  // Checkboxes
+  ['uppercase','hyphens','braces'].forEach(key => {
+    const el = document.getElementById('cb-' + key);
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'checkbox');
+    el.setAttribute('aria-checked', el.classList.contains('checked') ? 'true' : 'false');
+    el.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); el.click(); }});
+    el.addEventListener('click', () => {
+      state[key] = !state[key];
+      el.classList.toggle('checked', state[key]);
+      el.setAttribute('aria-checked', state[key] ? 'true' : 'false');
+      render();
+    });
+  });
+
+  // Copy individual
+  uuidList.addEventListener('click', async e => {
+    const btn = e.target.closest('.copy-btn');
+    if (!btn) return;
+    const idx = +btn.dataset.idx;
+    const text = currentUUIDs[idx];
+    const orig = btn.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
+  });
+
+  // Copy all
+  btnCopyAll.addEventListener('click', async () => {
+    const text = currentUUIDs.join('\n');
+    const prev = btnCopyAll.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    btnCopyAll.classList.add('copied');
+    btnCopyAll.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+    setTimeout(() => { btnCopyAll.classList.remove('copied'); btnCopyAll.innerHTML = prev; }, 2000);
+  });
+
+  btnGenerate.addEventListener('click', render);
+
+  // Keyboard: G to regenerate
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT') return;
+    if (e.key === 'g' || e.key === 'G') render();
+  });
+
+  // Init
+  updateSliderTrack(countSlider);
+  render();
+</script>
+</body>
+</html>

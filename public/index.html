@@ -1249,7 +1249,7 @@
     dropdownEl.classList.add('open');
   }
 
-  function filterBySearch(query) {
+  function filterBySearch(query, shouldScroll) {
     const q = query.trim().toLowerCase();
     toolCards.forEach(card => {
       if (!q) { card.style.display = ''; return; }
@@ -1259,7 +1259,7 @@
       card.style.display = (name.includes(q) || desc.includes(q) || tag.includes(q)) ? '' : 'none';
     });
     clearFilterBtn.style.display = q ? 'flex' : 'none';
-    if (q) document.getElementById('toolSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (q && shouldScroll) document.getElementById('toolSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function clearSearch() {
@@ -1275,7 +1275,8 @@
     document.getElementById(otherId).value = query;
     buildDropdown(ownDropdown, query);
     buildDropdown(otherDropdown, query);
-    filterBySearch(query);
+    // Only scroll to tool section when triggered from nav search (tool section may not be visible)
+    filterBySearch(query, otherId === 'heroSearch');
     if (!query.trim()) {
       clearCategoryActive();
       document.querySelectorAll('.hero-tag').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));

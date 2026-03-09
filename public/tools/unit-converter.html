@@ -13,6 +13,9 @@
   <meta property="og:title" content="Unit Converter — Simple ToolBox" />
   <meta property="og:description" content="Free online unit converter for length, weight, temperature, area, volume, speed, and more. Fast, accurate conversions with no sign-up required. Runs entirely in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unit Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert between units of length, weight, temperature, volume, speed, area, and more. Instant conversion with a clean, easy-to-use interface.","featureList":["Length conversion","Weight and mass conversion","Temperature conversion","Volume conversion","Speed and area conversion"]}
+  </script>
   <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -147,6 +150,16 @@
       .converter-row { grid-template-columns: 1fr; }
       .btn-swap { width: 100%; height: 36px; }
     }
+    /* Related Tools */
+    .related-tools { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .related-title { font-size: 15px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.2px; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .related-card { display: flex; align-items: center; gap: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px; transition: border-color 0.2s; text-decoration: none; }
+    .related-card:hover { border-color: rgba(94,106,210,0.5); }
+    .related-icon { font-size: 20px; flex-shrink: 0; }
+    .related-name { font-size: 13px; font-weight: 500; margin-bottom: 2px; color: var(--text-primary); }
+    .related-desc { font-size: 11px; color: var(--text-muted); }
+    @media (max-width: 720px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -232,6 +245,15 @@
       <span class="ref-subtitle" id="refSubtitle">1 unit = …</span>
     </div>
     <div class="ref-grid" id="refGrid"></div>
+  </div>
+
+  <div class="related-tools">
+    <h2 class="related-title">Related Tools</h2>
+    <div class="related-grid">
+      <a href="timestamp.html" class="related-card"><span class="related-icon">🕐</span><div><div class="related-name">Timestamp Converter</div><div class="related-desc">Convert Unix timestamps</div></div></a>
+      <a href="random-number-generator.html" class="related-card"><span class="related-icon">🎲</span><div><div class="related-name">Random Number Generator</div><div class="related-desc">Generate random numbers</div></div></a>
+      <a href="image-resizer.html" class="related-card"><span class="related-icon">🖼️</span><div><div class="related-name">Image Resizer</div><div class="related-desc">Resize images to exact dimensions</div></div></a>
+    </div>
   </div>
 
 </div>

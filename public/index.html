@@ -1271,25 +1271,26 @@
     document.getElementById('navSearchDropdown').innerHTML = '';
   }
 
-  function handleSearch(query, ownDropdown, otherDropdown, otherId) {
-    buildDropdown(ownDropdown, query);
-    buildDropdown(otherDropdown, query);
-    // Only scroll to tool section when triggered from nav search (tool section may not be visible)
-    filterBySearch(query, otherId === 'heroSearch');
-    if (!query.trim()) {
-      clearCategoryActive();
-      document.querySelectorAll('.hero-tag').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));
-    }
-  }
-
   const heroDropdown = document.getElementById('heroSearchDropdown');
   const navDropdown  = document.getElementById('navSearchDropdown');
 
   document.getElementById('heroSearch').addEventListener('input', e => {
-    handleSearch(e.target.value, heroDropdown, navDropdown, 'navSearch');
+    const query = e.target.value;
+    buildDropdown(heroDropdown, query);
+    filterBySearch(query, false);
+    if (!query.trim()) {
+      clearCategoryActive();
+      document.querySelectorAll('.hero-tag').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));
+    }
   });
   document.getElementById('navSearch').addEventListener('input', e => {
-    handleSearch(e.target.value, navDropdown, heroDropdown, 'heroSearch');
+    const query = e.target.value;
+    buildDropdown(navDropdown, query);
+    filterBySearch(query, true);
+    if (!query.trim()) {
+      clearCategoryActive();
+      document.querySelectorAll('.hero-tag').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));
+    }
   });
 
   // Close dropdowns on outside click

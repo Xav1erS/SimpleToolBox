@@ -22,7 +22,7 @@
       --bg: #0F0F11; --bg-surface: #16161A; --bg-hover: #1C1C22;
       --border: rgba(255,255,255,0.07); --border-hover: rgba(94,106,210,0.5);
       --text-primary: #E2E2E5; --text-secondary: #8B8B9A; --text-muted: #555560;
-      --accent: #5E6AD2; --accent-hover: #6E7AE2; --accent-dim: rgba(94,106,210,0.12);
+      --accent: #5E6AD2; --accent-hover: #6E7AE2; --accent-dim: rgba(94,106,210,0.12); --accent-glow: rgba(94,106,210,0.25);
       --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
       --font: 'Inter', system-ui, sans-serif;
       --mono: 'JetBrains Mono', monospace;
@@ -30,15 +30,33 @@
     }
     body { font-family: var(--font); background: var(--bg); color: var(--text-primary); min-height: 100vh; }
 
-    /* Nav */
-    .nav { position: sticky; top: 0; z-index: 100; height: var(--nav-h); background: rgba(15,15,17,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; gap: 16px; transition: box-shadow 0.2s; }
-    .nav.scrolled { box-shadow: 0 1px 24px rgba(0,0,0,0.4); }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
-    .nav-logo-text { font-size: 15px; font-weight: 600; color: var(--text-primary); }
-    .nav-spacer { flex: 1; }
-    .nav-link { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
-    .nav-link:hover { color: var(--text-primary); }
+    /* ── NAV ── */
+    .nav { position: sticky; top: 0; z-index: 100; height: var(--nav-h); display: flex; align-items: center; padding: 0 24px; gap: 16px; background: rgba(15,15,17,0.8); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
+    .nav.scrolled { border-bottom-color: rgba(255,255,255,0.1); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; letter-spacing: -0.3px; white-space: nowrap; flex-shrink: 0; }
+    .nav-logo-icon { width: 28px; height: 28px; background: linear-gradient(135deg, #5E6AD2, #9B8DEB); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .nav-search { flex: 1; max-width: 380px; margin: 0 auto; position: relative; }
+    .nav-search input { width: 100%; height: 34px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 13px; font-family: var(--font); padding: 0 12px 0 34px; outline: none; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; }
+    .nav-search input::placeholder { color: var(--text-muted); }
+    .nav-search input:focus { border-color: var(--accent); background: rgba(94,106,210,0.06); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .nav-search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+    .nav-search kbd { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 10px; color: var(--text-muted); background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .nav-link { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 13px; padding: 6px 10px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; }
+    .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .btn-primary { background: var(--accent); color: #fff; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: var(--radius-sm); transition: background 0.2s, transform 0.15s; letter-spacing: -0.1px; }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .search-dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 300; overflow: hidden; }
+    .search-dropdown.open { display: block; }
+    .search-suggestion { display: flex; align-items: center; gap: 10px; padding: 10px 14px; transition: background 0.15s; text-decoration: none; color: inherit; }
+    .search-suggestion:hover, .search-suggestion.focused { background: var(--bg-hover); }
+    .suggestion-icon { font-size: 18px; flex-shrink: 0; }
+    .suggestion-text { min-width: 0; }
+    .suggestion-name { font-size: 13px; font-weight: 500; }
+    .suggestion-desc { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .suggestion-name mark, .suggestion-desc mark { background: rgba(94,106,210,0.3); color: var(--accent); border-radius: 2px; }
+    .search-no-result { padding: 14px; text-align: center; font-size: 13px; color: var(--text-muted); }
 
     /* Page header */
     .page-header { max-width: 1100px; margin: 0 auto; padding: 48px 24px 0; }
@@ -89,11 +107,28 @@
 
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo">
-    <img src="logo 1.svg" alt="Simple ToolBox" />
-    <span class="nav-logo-text">Simple ToolBox</span>
+    <div class="nav-logo-icon"><img src="logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
   </a>
-  <div class="nav-spacer"></div>
-  <a href="index.html" class="nav-link">Home</a>
+
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="navSearch" placeholder="Search tools…" autocomplete="off" />
+    <kbd>⌘K</kbd>
+    <div class="search-dropdown" id="navSearchDropdown"></div>
+  </div>
+
+  <div class="nav-actions">
+    <a href="https://github.com/Xav1erS/SimpleToolBox" target="_blank" rel="noopener" class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      GitHub
+    </a>
+    <a href="contact.html" class="btn-primary">Submit a Tool</a>
+  </div>
 </nav>
 
 <div class="page-header">
@@ -273,9 +308,55 @@
 </footer>
 
 <script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8);
-  }, { passive: true });
+  const NAV_TOOLS = [
+    { name: 'Base64 Encode / Decode',       href: 'tools/base64.html',                 tag: 'encode',   icon: '📦', desc: 'Encode or decode text and files to Base64' },
+    { name: 'JSON Formatter',               href: 'tools/json-formatter.html',          tag: 'format',   icon: '🎨', desc: 'Prettify, minify, validate JSON; convert to CSV or SQL' },
+    { name: 'Password Generator',           href: 'tools/password-generator.html',      tag: 'generate', icon: '🔑', desc: 'Generate strong random passwords locally' },
+    { name: 'Timestamp Converter',          href: 'tools/timestamp.html',               tag: 'convert',  icon: '⏱️', desc: 'Convert Unix timestamps to readable dates' },
+    { name: 'URL Encode / Decode',          href: 'tools/url-encode.html',              tag: 'encode',   icon: '🔗', desc: 'Encode or decode URL parameters and components' },
+    { name: 'UUID Generator',               href: 'tools/uuid-generator.html',          tag: 'generate', icon: '🆔', desc: 'Generate UUID v1/v4 identifiers in bulk' },
+    { name: 'Word Counter',                 href: 'tools/word-counter.html',            tag: 'text',     icon: '📝', desc: 'Count words, characters, and estimate reading time' },
+    { name: 'Random Number Generator',      href: 'tools/random-number-generator.html', tag: 'generate', icon: '🎲', desc: 'Generate random numbers, shuffle lists, roll dice' },
+    { name: 'Unit Converter',               href: 'tools/unit-converter.html',          tag: 'convert',  icon: '📐', desc: 'Convert length, weight, temperature, speed and more' },
+    { name: 'Image Resizer',                href: 'tools/image-resizer.html',           tag: 'image',    icon: '🖼️', desc: 'Resize images client-side with preset dimensions' },
+    { name: 'YouTube Thumbnail Downloader', href: 'tools/youtube-thumbnail.html',       tag: 'image',    icon: '📺', desc: 'Download YouTube video thumbnails in all resolutions' },
+    { name: 'QR Code Generator',            href: 'tools/qr-code-generator.html',       tag: 'generate', icon: '📷', desc: 'Create QR codes for URLs, WiFi, contacts, email' },
+    { name: 'URL Slug Generator',           href: 'tools/slug-generator.html',          tag: 'text',     icon: '🔗', desc: 'Convert titles to clean SEO-friendly URL slugs' },
+    { name: 'Lorem Ipsum Generator',        href: 'tools/lorem-ipsum-generator.html',   tag: 'text',     icon: '📄', desc: 'Generate placeholder text in multiple themes' },
+    { name: 'Color Picker',                 href: 'tools/color-picker.html',            tag: 'convert',  icon: '🎨', desc: 'Convert colors between HEX, RGB, HSL, and CMYK' },
+    { name: 'Regex Tester',                 href: 'tools/regex-tester.html',            tag: 'text',     icon: '🔍', desc: 'Test regular expressions with live match highlighting' },
+    { name: 'Markdown Preview',             href: 'tools/markdown-preview.html',        tag: 'text',     icon: '📝', desc: 'Write Markdown and see a live rendered preview' },
+    { name: 'Cron Expression Builder',      href: 'tools/cron-builder.html',            tag: 'generate', icon: '⏰', desc: 'Build cron expressions visually with descriptions' },
+    { name: 'JWT Decoder / Inspector',      href: 'tools/jwt-decoder.html',             tag: 'encode',   icon: '🔐', desc: 'Decode JWT header, payload, signature and inspect claims' },
+    { name: 'HTML Entity Encode / Decode',  href: 'tools/html-entities.html',           tag: 'encode',   icon: '🏷️', desc: 'Encode or decode HTML entities — named and numeric formats' },
+    { name: 'Hash Generator',               href: 'tools/hash-generator.html',          tag: 'generate', icon: '#️⃣', desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 from text or file' },
+  ];
+  function navHighlightMatch(text, q) {
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return text;
+    return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+  }
+  function buildNavDropdown(dropdownEl, query) {
+    const q = query.trim().toLowerCase();
+    if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
+    const results = NAV_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)).slice(0, 6);
+    if (!results.length) { dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>'; }
+    else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
+    dropdownEl.classList.add('open');
+  }
+  const navDropdown = document.getElementById('navSearchDropdown');
+  document.getElementById('navSearch').addEventListener('input', e => buildNavDropdown(navDropdown, e.target.value));
+  document.addEventListener('click', e => { if (!e.target.closest('.nav-search')) navDropdown.classList.remove('open'); });
+  document.getElementById('navSearch').addEventListener('keydown', e => {
+    const items = navDropdown.querySelectorAll('.search-suggestion');
+    let idx = [...items].findIndex(el => el.classList.contains('focused'));
+    if (e.key === 'ArrowDown') { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.min(idx + 1, items.length - 1); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.max(idx - 1, 0); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
+    else if (e.key === 'Enter') { e.preventDefault(); const f = navDropdown.querySelector('.search-suggestion.focused'); if (f) f.click(); else if (items.length) items[0].click(); }
+    else if (e.key === 'Escape') { navDropdown.classList.remove('open'); }
+  });
+  document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('navSearch').focus(); } });
+  window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 
   const cards = Array.from(document.querySelectorAll('.tool-card'));
   const countBadge = document.getElementById('countBadge');

@@ -59,7 +59,8 @@
     .nav-back:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
     .nav-tools-link { display: flex; align-items: center; font-size: 13px; color: var(--text-secondary); padding: 5px 10px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; white-space: nowrap; flex-shrink: 0; }
     .nav-tools-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
-    .nav-logo { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 15px; letter-spacing: -0.3px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; letter-spacing: -0.3px; white-space: nowrap; flex-shrink: 0; text-decoration: none; color: var(--text-primary); }
+    .nav-logo-icon { width: 28px; height: 28px; background: linear-gradient(135deg, #5E6AD2, #9B8DEB); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
     .logo-img { object-fit: contain; display: block; border-radius: 6px; }
     .nav-divider { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
     .nav-tool-name { font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
@@ -255,7 +256,6 @@
       .main, .list-main, .dice-main { grid-template-columns: 1fr; padding: 16px 16px 48px; }
       .tool-header { padding: 24px 20px 20px; }
       .nav { padding: 0 16px; }
-      .nav-logo span { display: none; }
       .nav-privacy { display: none; }
       .mode-bar { padding: 16px 16px 0; }
     }
@@ -276,8 +276,8 @@
 <nav class="nav">
   
   <a href="../index.html" class="nav-logo">
-    <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
-    <span>Simple ToolBox</span>
+    <div class="nav-logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
   </a>
   <div class="nav-divider"></div>
   <a href="../all-tools.html" class="nav-tools-link">Tools</a>

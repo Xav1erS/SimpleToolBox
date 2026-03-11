@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -c \"print\\(''ok''\\)\")"
+      "Bash(python -c \"print\\(''ok''\\)\")",
+      "Bash(python -c \"print\\(''hello''\\)\")",
+      "Bash(python:*)"
     ]
   }
 }

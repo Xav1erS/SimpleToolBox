@@ -3,7 +3,12 @@
     "allow": [
       "Bash(python -c \"print\\(''ok''\\)\")",
       "Bash(python -c \"print\\(''hello''\\)\")",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $f.html ===\")",
+      "Read(//c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/**)",
+      "Bash(done)"
     ]
   }
 }

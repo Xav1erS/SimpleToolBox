@@ -77,11 +77,11 @@
       align-items: center;
       padding: 0 24px;
       gap: 16px;
-      background: rgba(15,15,17,0.8);
+      background: rgba(15,15,17,0.82);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid var(--border);
-      transition: border-color 0.3s;
+      transition: border-color var(--ds-duration-base);
     }
     .nav.scrolled { border-bottom-color: rgba(255,255,255,0.1); }
 
@@ -114,22 +114,22 @@
     }
     .nav-search input {
       width: 100%;
-      height: 34px;
+      height: 40px;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       color: var(--text-primary);
       font-size: 13px;
       font-family: var(--font);
-      padding: 0 12px 0 34px;
+      padding: 0 40px 0 34px;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      transition: border-color var(--ds-duration-fast), box-shadow var(--ds-duration-fast), background var(--ds-duration-fast);
     }
     .nav-search input::placeholder { color: var(--text-muted); }
     .nav-search input:focus {
       border-color: var(--accent);
       background: rgba(94,106,210,0.06);
-      box-shadow: 0 0 0 3px var(--accent-glow);
+      box-shadow: var(--ds-shadow-focus);
     }
     .nav-search-icon {
       position: absolute;
@@ -141,7 +141,7 @@
     }
     .nav-search kbd {
       position: absolute;
-      right: 8px;
+      right: 10px;
       top: 50%;
       transform: translateY(-50%);
       font-family: var(--mono);
@@ -266,13 +266,13 @@
       font-family: var(--font);
       padding: 0 52px 0 48px;
       outline: none;
-      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+      transition: border-color var(--ds-duration-fast), box-shadow var(--ds-duration-fast), background var(--ds-duration-fast);
     }
     .hero-search input::placeholder { color: var(--text-muted); }
     .hero-search input:focus {
       border-color: var(--accent);
       background: rgba(94,106,210,0.06);
-      box-shadow: 0 0 0 4px var(--accent-glow), 0 8px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 0 0 4px rgba(94,106,210,0.25), var(--ds-shadow-popover);
     }
     .hero-search-icon {
       position: absolute;
@@ -301,9 +301,9 @@
     .hero-search input:focus ~ .hero-search-enter { opacity: 1; }
 
     /* SEARCH DROPDOWN */
-    .search-dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 300; overflow: hidden; }
+    .search-dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--ds-shadow-popover); z-index: 300; overflow: hidden; }
     .search-dropdown.open { display: block; }
-    .search-suggestion { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--border); transition: background 0.1s; color: var(--text-primary); text-decoration: none; }
+    .search-suggestion { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--border); transition: background var(--ds-duration-fast); color: var(--text-primary); text-decoration: none; }
     .search-suggestion:last-child { border-bottom: none; }
     .search-suggestion:hover, .search-suggestion.focused { background: rgba(255,255,255,0.05); }
     .suggestion-icon { font-size: 18px; flex-shrink: 0; }
@@ -477,13 +477,13 @@
     .tool-card {
       background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 20px;
+      border-radius: var(--ds-radius-md);
+      padding: var(--ds-space-5);
       cursor: pointer;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+      transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast), transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: var(--ds-space-3);
     }
     .tool-card:hover {
       border-color: var(--border-hover);
@@ -509,13 +509,14 @@
       flex-shrink: 0;
     }
     .tool-name {
-      font-size: 14px;
+      font-size: var(--ds-font-size-h4);
       font-weight: 600;
       color: var(--text-primary);
-      letter-spacing: -0.2px;
+      line-height: 1.25;
+      letter-spacing: var(--ds-letter-normal);
     }
     .tool-desc {
-      font-size: 13px;
+      font-size: var(--ds-font-size-body-sm);
       color: var(--text-secondary);
       line-height: 1.6;
       flex: 1;
@@ -527,13 +528,17 @@
       gap: 8px;
     }
     .tool-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 20px;
+      padding: 0 8px;
+      border-radius: var(--ds-radius-xs);
+      border: 1px solid rgba(94,106,210,0.22);
+      background: var(--accent-dim);
+      color: var(--ds-color-accent-soft);
       font-family: var(--mono);
-      font-size: 10px;
-      color: var(--text-muted);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2px 7px;
+      font-size: var(--ds-font-size-micro);
+      letter-spacing: 0.02em;
     }
     .tool-arrow {
       color: var(--text-muted);
@@ -698,9 +703,9 @@
 <body class="ds-page">
 
 <!-- NAV -->
-<nav class="nav" id="nav">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-icon"><img src="logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+<nav class="nav ds-nav" id="nav">
+  <a href="index.html" class="nav-logo ds-nav__brand">
+    <div class="nav-logo-icon"><img src="logo 1.svg" class="logo-img ds-nav__logo" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox
   </a>
 
@@ -708,7 +713,7 @@
     <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
-    <input type="text" id="navSearch" placeholder="Search tools…" autocomplete="off" />
+    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools…" autocomplete="off" />
     <kbd>⌘K</kbd>
     <div class="search-dropdown" id="navSearchDropdown"></div>
   </div>
@@ -737,7 +742,7 @@
     <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
-    <input type="text" id="heroSearch" placeholder="Search tools, e.g. Base64, JSON Formatter…" autocomplete="off" />
+  <input type="text" id="heroSearch" class="ds-input" placeholder="Search tools, e.g. Base64, JSON Formatter…" autocomplete="off" />
     <span class="hero-search-enter">↵</span>
     <div class="search-dropdown" id="heroSearchDropdown"></div>
   </div>

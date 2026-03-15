@@ -1,30 +1,94 @@
-# SimpleToolBox Project Memory
+# SimpleToolBox Memory
 
-## Pending Tasks
+## Current Focus
 
-### [TODO] 抽取共享 nav 组件
-将 nav 的 CSS + HTML + 交互逻辑提取到 `public/nav.js`，通过 JS 动态注入，彻底解决各页面 nav 不一致问题。
+The current focus is to consolidate existing page styles into one design system instead of introducing a new visual direction.
 
-**执行步骤：**
-1. 创建 `public/nav.js`，包含：
-   - 注入 nav CSS（canonical 版本）
-   - 注入 nav HTML（logo + search + actions）
-   - 迁移 nav 交互逻辑（search dropdown、scrolled class、keyboard shortcut）
-2. 更新 5 个二级页面（about/all-tools/contact/privacy/terms）：删除内联 nav CSS + HTML，改为 `<script src="nav.js"></script>`
-3. 更新 21 个工具页（`public/tools/*.html`）：同上
+The project keeps the current dark visual language and gradually moves repeated inline page styles into shared tokens, base rules, and component classes.
 
-**背景：**
-目前每个页面都内联完整的 nav CSS + HTML，导致反复出现不一致。根本原因是复制粘贴漂移 + 各页面全局 `a { }` 规则不同。
+## Design System Files
 
----
+- `public/styles/design-system.css`
+- `public/styles/design-tokens.css`
+- `public/styles/design-base.css`
+- `public/styles/design-components.css`
+- `DESIGN_SYSTEM.md`
+- `public/design-system.html`
 
-## Project Overview
-- **Stack**: Vanilla HTML/CSS/JS，无构建步骤
-- **Structure**: `public/` 一级（index.html）、二级（about/all-tools/contact/privacy/terms）、三级工具页（`tools/*.html`）
-- **Python**: 用 `python`（不是 `python3`，Windows 11 环境 `python3` 返回 exit code 49）
+## Site-Wide Status
 
-## Nav Canonical CSS
-已统一应用到所有页面的 canonical nav 版本见会话历史。关键点：
-- `.nav-logo` 需显式设置 `color: var(--text-primary); text-decoration: none;`（防止全局 `a { color: var(--accent); }` 覆盖）
-- `.nav-logo:hover { text-decoration: none; }` 需单独声明（防止 `a:hover { text-decoration: underline; }` 覆盖）
-- `.nav-logo-icon { background: none !important; ... }` 覆盖去掉渐变方框，显示纯图标
+### Non-Tool Pages
+
+These pages are already migrated:
+
+- `public/index.html`
+- `public/all-tools.html`
+- `public/about.html`
+- `public/privacy.html`
+- `public/terms.html`
+- `public/contact.html`
+
+Shared capabilities already in place:
+
+- Shared site entry CSS
+- Shared nav skeleton
+- Shared search input and search interaction layer
+- Shared hero and marketing page patterns
+- Shared legal document page pattern
+- Shared buttons, inputs, pills, tags, notices, cards, and panels
+- Shared Contact form states and success states
+
+### Tool Pages
+
+#### `public/tools/base64.html`
+
+- Most complete sample page
+- Most repeated CSS already removed
+- Shared layer controls nav, header, two-pane workbench, actions, and note card
+
+#### `public/tools/json-formatter.html`
+
+- Nearly complete
+- `Format / Validate / JSON->CSV / CSV->JSON` workbenches already aligned with shared components
+- Keeps page-specific styles such as `toolbar`, `history`, `sql-section`, and `io-valid`
+
+#### `public/tools/qr-code-generator.html`
+
+- First round plus layout cleanup completed
+- Established the "settings sidepanel + result preview" shared pattern
+
+#### `public/tools/password-generator.html`
+
+- Core layout migration completed
+- Keeps unique controls such as slider, checkbox, advanced collapse, strength bar, and password list
+
+#### `public/tools/url-encode.html`
+
+- Migration completed
+- Original file had encoding corruption and was rebuilt
+- Original URL encode/decode behavior and key SEO metadata were preserved
+
+## Migration Principles
+
+- Minimum necessary change
+- Reuse shared design system classes first
+- Attach shared skeleton first, then delete repeated local CSS
+- Keep page-specific business styles when needed
+- Do not roll back completed design system migrations
+- Do not refactor unrelated pages
+
+## Recommended Next Work
+
+Continue with a tool page that has a different layout type so the design system can cover more real cases.
+
+Suggested directions:
+
+1. More configuration form plus result cards
+2. Batch input or list output pages
+3. Upload, download, and preview combinations
+
+## Historical Note
+
+There was an earlier idea to extract the nav into a separate `public/nav.js` injection flow.
+
+That is no longer the current priority. The current priority is to stabilize the design system migration first. If shared navigation extraction is still needed later, evaluate it after the design system work is mostly complete.

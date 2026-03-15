@@ -1428,6 +1428,94 @@
   font-size: 11px;
 }
 
+.ds-tool-split {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.ds-tool-sidepanel,
+.ds-tool-preview {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-color-surface);
+}
+
+.ds-tool-sidepanel__header,
+.ds-tool-preview__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.ds-tool-sidepanel__header {
+  color: var(--ds-color-text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ds-tool-sidepanel__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.ds-tool-sidepanel__section:last-child {
+  border-bottom: none;
+}
+
+.ds-tool-sidepanel__section-title,
+.ds-tool-preview__label {
+  color: var(--ds-color-text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ds-tool-preview__actions {
+  display: flex;
+  gap: 6px;
+}
+
+.ds-tool-preview__canvas {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+  padding: 40px;
+}
+
+.ds-tool-preview__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  border: 1px dashed var(--ds-color-border);
+  border-radius: var(--ds-radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ds-tool-preview__footer {
+  display: flex;
+  gap: 8px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--ds-color-border);
+}
+
 @media (max-width: 720px) {
   .ds-tool-workbench {
     grid-template-columns: 1fr;
@@ -1444,6 +1532,12 @@
 
   .ds-tool-arrow__circle {
     transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 800px) {
+  .ds-tool-split {
+    grid-template-columns: 1fr;
   }
 }
 

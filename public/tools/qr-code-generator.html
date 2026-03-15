@@ -21,18 +21,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <link rel="stylesheet" href="../styles/design-system.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0F0F11; --bg-surface: #16161A; --bg-hover: #1C1C22;
-      --border: rgba(255,255,255,0.07); --border-hover: rgba(94,106,210,0.5);
-      --text-primary: #E2E2E5; --text-secondary: #8B8B9A; --text-muted: #555560;
-      --accent: #5E6AD2; --accent-hover: #6E7AE2;
-      --accent-dim: rgba(94,106,210,0.12); --accent-glow: rgba(94,106,210,0.25);
+      --bg: var(--ds-color-bg); --bg-surface: var(--ds-color-surface); --bg-hover: var(--ds-color-surface-strong);
+      --border: var(--ds-color-border); --border-hover: var(--ds-color-border-accent);
+      --text-primary: var(--ds-color-text-primary); --text-secondary: var(--ds-color-text-secondary); --text-muted: var(--ds-color-text-muted);
+      --accent: var(--ds-color-accent); --accent-hover: var(--ds-color-accent-hover);
+      --accent-dim: var(--ds-color-surface-tint); --accent-glow: rgba(94,106,210,0.25);
       --green: #22c55e; --red: #ef4444; --yellow: #eab308;
-      --radius-sm: 6px; --radius-md: 10px;
-      --font: 'Inter', system-ui, sans-serif; --mono: 'JetBrains Mono', monospace;
-      --nav-h: 60px;
+      --radius-sm: var(--ds-radius-sm); --radius-md: var(--ds-radius-md);
+      --font: var(--ds-font-sans); --mono: var(--ds-font-mono);
+      --nav-h: var(--ds-nav-height);
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font); background: var(--bg); color: var(--text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
@@ -41,44 +42,14 @@
     ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
     /* NAV */
-    .nav { position: sticky; top: 0; z-index: 100; height: var(--nav-h); display: flex; align-items: center; padding: 0 24px; gap: 16px; background: rgba(15,15,17,0.85); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border); }
-    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 13px; padding: 5px 10px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; white-space: nowrap; }
-    .nav-back:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
-    .nav-tools-link { display: flex; align-items: center; font-size: 13px; color: var(--text-secondary); padding: 5px 10px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; white-space: nowrap; flex-shrink: 0; }
-    .nav-tools-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; letter-spacing: -0.3px; white-space: nowrap; flex-shrink: 0; text-decoration: none; color: var(--text-primary); }
     .nav-logo-icon { width: 28px; height: 28px; background: linear-gradient(135deg, #5E6AD2, #9B8DEB); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
     .logo-img { object-fit: contain; display: block; border-radius: 6px; }
     .nav-logo-icon { background: none !important; border-radius: 0 !important; border: none !important; width: auto !important; height: auto !important; }
-    .nav-divider { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
-    .nav-tool-name { font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
-    .nav-tool-badge { font-family: var(--mono); font-size: 10px; background: var(--accent-dim); border: 1px solid rgba(94,106,210,0.3); color: #9B8DEB; padding: 2px 7px; border-radius: 4px; }
-    .nav-spacer { flex: 1; }
-    .nav-privacy { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-muted); }
-    .nav-privacy-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
 
     /* TOOL HEADER */
-    .tool-header { background: var(--bg-surface); border-bottom: 1px solid var(--border); padding: 32px 32px 28px; position: relative; overflow: hidden; }
-    .tool-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 100% at 0% 50%, rgba(94,106,210,0.1) 0%, transparent 70%); pointer-events: none; }
-    .tool-header-inner { max-width: 1100px; margin: 0 auto; }
-    .tool-title-row { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
     .tool-title-icon { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--accent-dim); border: 1px solid rgba(94,106,210,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; }
-    .tool-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
-    .tool-desc-text { font-size: 14px; color: var(--text-secondary); max-width: 560px; }
-    .tool-tags { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
-    .tool-tag-pill { font-family: var(--mono); font-size: 11px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-muted); padding: 2px 8px; border-radius: 4px; }
-
-    /* MAIN LAYOUT */
-    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
     /* SETTINGS PANEL */
-    .settings-panel { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; }
-    .settings-header { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
-    .settings-body { padding: 0; }
-    .settings-section { padding: 16px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
-    .settings-section:last-child { border-bottom: none; }
-    .settings-section-title { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
-
     .field { display: flex; flex-direction: column; gap: 5px; }
     .field-label { font-size: 12px; color: var(--text-secondary); }
     .field-input { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px; color: var(--text-primary); font-family: var(--font); font-size: 13px; outline: none; transition: border-color 0.15s; width: 100%; }
@@ -110,21 +81,14 @@
     .logo-remove:hover { color: var(--red); }
 
     /* PREVIEW PANEL */
-    .preview-panel { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; }
-    .preview-header { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .preview-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
-    .preview-actions { display: flex; gap: 6px; }
     .btn-action { display: flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; border: 1px solid var(--border); color: var(--text-secondary); background: rgba(255,255,255,0.04); transition: all 0.15s; }
     .btn-action:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); }
     .btn-action.primary { background: var(--accent); color: #fff; border-color: transparent; }
     .btn-action.primary:hover { background: var(--accent-hover); }
-    .preview-canvas-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px; min-height: 340px; }
     #qrWrap { position: relative; display: inline-block; }
     #qrWrap canvas, #qrWrap img { display: block; }
-    #qrPlaceholder { width: 200px; height: 200px; background: rgba(255,255,255,0.03); border: 1px dashed var(--border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
     .placeholder-text { font-size: 13px; color: var(--text-muted); text-align: center; line-height: 1.5; }
     #qrLogoOverlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
-    .preview-footer { padding: 14px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
 
     /* Input type tabs */
     .input-tabs { display: flex; border-bottom: 1px solid var(--border); }
@@ -135,10 +99,7 @@
     .input-mode.active { display: flex; }
 
     @media (max-width: 800px) {
-      .main { grid-template-columns: 1fr; padding: 16px 16px 48px; }
-      .tool-header { padding: 24px 20px 20px; }
-      .nav { padding: 0 16px; }
-      .nav-privacy { display: none; }
+      .ds-tool-main { padding: 16px 16px 48px; }
     }
     /* Related Tools */
     .related-tools { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); grid-column: 1 / -1; }
@@ -152,44 +113,44 @@
     @media (max-width: 720px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
-<body>
+<body class="ds-page">
 
-<nav class="nav">
+<nav class="nav ds-nav">
   
-  <a href="../index.html" class="nav-logo">
-    <div class="nav-logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+  <a href="../index.html" class="nav-logo ds-nav__brand">
+    <div class="nav-logo-icon"><img src="../logo 1.svg" class="logo-img ds-nav__logo" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox
   </a>
-  <div class="nav-divider"></div>
-  <a href="../all-tools.html" class="nav-tools-link">Tools</a>
-  <div class="nav-divider"></div>
-  <div class="nav-tool-name">QR Code Generator <span class="nav-tool-badge">generate</span></div>
-  <div class="nav-spacer"></div>
-  <div class="nav-privacy"><span class="nav-privacy-dot"></span>Runs locally — no data sent</div>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">QR Code Generator <span class="nav-tool-badge ds-tool-badge">generate</span></div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy"><span class="nav-privacy-dot ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
 </nav>
 
-<div class="tool-header">
-  <div class="tool-header-inner">
-    <div class="tool-title-row">
-      <div class="tool-title-icon">📷</div>
-      <h1 class="tool-title">QR Code Generator</h1>
+<div class="tool-header ds-tool-header">
+  <div class="tool-header-inner ds-tool-header__inner">
+    <div class="tool-title-row ds-tool-header__row">
+      <div class="tool-title-icon ds-tool-header__icon">📷</div>
+      <h1 class="tool-title ds-tool-header__title">QR Code Generator</h1>
     </div>
-    <p class="tool-desc-text">Generate custom QR codes for URLs, WiFi credentials, contact cards, and email. Add custom colors and a logo. Download as PNG or SVG.</p>
-    <div class="tool-tags">
-      <span class="tool-tag-pill">URL</span>
-      <span class="tool-tag-pill">WiFi</span>
-      <span class="tool-tag-pill">VCard</span>
-      <span class="tool-tag-pill">custom colors</span>
-      <span class="tool-tag-pill">PNG / SVG</span>
+    <p class="tool-desc-text ds-tool-header__desc">Generate custom QR codes for URLs, WiFi credentials, contact cards, and email. Add custom colors and a logo. Download as PNG or SVG.</p>
+    <div class="tool-tags ds-tool-tag-row">
+      <span class="tool-tag-pill ds-tag">URL</span>
+      <span class="tool-tag-pill ds-tag">WiFi</span>
+      <span class="tool-tag-pill ds-tag">VCard</span>
+      <span class="tool-tag-pill ds-tag">custom colors</span>
+      <span class="tool-tag-pill ds-tag">PNG / SVG</span>
     </div>
   </div>
 </div>
 
-<div class="main">
+<div class="main ds-tool-main ds-tool-split">
 
   <!-- SETTINGS -->
-  <div class="settings-panel">
-    <div class="settings-header">Content</div>
+  <div class="settings-panel ds-tool-sidepanel">
+    <div class="settings-header ds-tool-sidepanel__header">Content</div>
 
     <!-- Input type tabs -->
     <div class="input-tabs">
@@ -268,8 +229,8 @@
     </div>
 
     <!-- Style Settings -->
-    <div class="settings-section">
-      <div class="settings-section-title">Style</div>
+    <div class="settings-section ds-tool-sidepanel__section">
+      <div class="settings-section-title ds-tool-sidepanel__section-title">Style</div>
       <div class="color-row">
         <div class="color-field">
           <div class="field-label">Foreground</div>
@@ -307,8 +268,8 @@
     </div>
 
     <!-- Logo Settings -->
-    <div class="settings-section">
-      <div class="settings-section-title">Logo (optional)</div>
+    <div class="settings-section ds-tool-sidepanel__section">
+      <div class="settings-section-title ds-tool-sidepanel__section-title">Logo (optional)</div>
       <input type="file" id="logoFile" accept="image/*" style="display:none" />
       <div class="logo-dropzone" id="logoDropzone">
         <div class="logo-dropzone-text">Click or drag an image to embed a logo</div>
@@ -322,23 +283,23 @@
   </div>
 
   <!-- PREVIEW -->
-  <div class="preview-panel">
-    <div class="preview-header">
-      <span class="preview-label">Preview</span>
-      <div class="preview-actions">
+  <div class="preview-panel ds-tool-preview">
+    <div class="preview-header ds-tool-preview__header">
+      <span class="preview-label ds-tool-preview__label">Preview</span>
+      <div class="preview-actions ds-tool-preview__actions">
         <button class="btn-action primary" id="btnGenerate">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
           Generate
         </button>
       </div>
     </div>
-    <div class="preview-canvas-wrap">
+    <div class="preview-canvas-wrap ds-tool-preview__canvas">
       <div id="qrWrap">
-        <div id="qrPlaceholder"><p class="placeholder-text">Enter content<br>and click Generate</p></div>
+        <div id="qrPlaceholder" class="ds-tool-preview__placeholder"><p class="placeholder-text">Enter content<br>and click Generate</p></div>
         <img id="qrLogoOverlay" src="" alt="" style="display:none;max-width:20%;max-height:20%;border-radius:4px;" />
       </div>
     </div>
-    <div class="preview-footer">
+    <div class="preview-footer ds-tool-preview__footer">
       <button class="btn-action" id="btnDownloadPng">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PNG

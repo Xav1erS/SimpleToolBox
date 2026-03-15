@@ -107,8 +107,8 @@
     .history-empty { padding: 14px 12px; font-size: 12px; color: var(--text-muted); text-align: center; }
 
     /* CSV/JSON PANELS */
-    .csv-panels { display: grid; grid-template-columns: 1fr 48px 1fr; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; min-height: 380px; }
-    .csv-actions-col { display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--border); border-right: 1px solid var(--border); background: var(--bg); }
+    .csv-panels { min-height: 380px; }
+    .csv-actions-col { min-height: 100%; }
     .sql-section { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
     .sql-row { display: flex; align-items: center; gap: 10px; }
     .sql-label { font-size: 12px; color: var(--text-secondary); white-space: nowrap; }
@@ -117,8 +117,8 @@
 
     /* RESPONSIVE */
     @media (max-width: 720px) {
-      .csv-panels { grid-template-columns: 1fr; grid-template-rows: 1fr auto 1fr; }
-      .csv-actions-col { height: 36px; border-left: none; border-right: none; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+      .csv-panels { min-height: auto; }
+      .csv-actions-col { min-height: 36px; }
     }
     /* Related Tools */
     .related-tools { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
@@ -296,31 +296,31 @@
         Copy CSV
       </button>
     </div>
-    <div class="csv-panels">
-      <div class="io-panel" id="jsonCsvInputPanel">
-        <div class="io-header">
-          <span class="io-label">Input JSON (array of objects)</span>
-          <div class="io-actions">
-            <button class="io-btn" id="btnClearJsonCsvInput">
+    <div class="csv-panels ds-tool-workbench">
+      <div class="io-panel ds-tool-pane" id="jsonCsvInputPanel">
+        <div class="io-header ds-tool-pane__header">
+          <span class="io-label ds-tool-pane__label">Input JSON (array of objects)</span>
+          <div class="io-actions ds-tool-pane__actions">
+            <button class="io-btn ds-tool-pane__btn" id="btnClearJsonCsvInput">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
               Clear
             </button>
           </div>
         </div>
-        <textarea class="io-textarea" id="jsonCsvInput" placeholder='[{"name":"Alice","age":30},{"name":"Bob","age":25}]' spellcheck="false"></textarea>
-        <div class="io-footer">
-          <span class="io-stat" id="jsonCsvInputStat">0 chars</span>
-          <span class="io-error" id="jsonCsvError"></span>
+        <textarea class="io-textarea ds-tool-textarea" id="jsonCsvInput" placeholder='[{"name":"Alice","age":30},{"name":"Bob","age":25}]' spellcheck="false"></textarea>
+        <div class="io-footer ds-tool-pane__footer">
+          <span class="io-stat ds-tool-stat" id="jsonCsvInputStat">0 chars</span>
+          <span class="io-error ds-tool-error" id="jsonCsvError"></span>
         </div>
       </div>
-      <div class="csv-actions-col"><div class="arrow-circle">→</div></div>
-      <div class="io-panel">
-        <div class="io-header">
-          <span class="io-label">Output CSV</span>
+      <div class="csv-actions-col ds-tool-arrow"><div class="arrow-circle ds-tool-arrow__circle">→</div></div>
+      <div class="io-panel ds-tool-pane">
+        <div class="io-header ds-tool-pane__header">
+          <span class="io-label ds-tool-pane__label">Output CSV</span>
         </div>
-        <textarea class="io-textarea" id="csvOutput" placeholder="CSV output will appear here…" readonly spellcheck="false"></textarea>
-        <div class="io-footer">
-          <span class="io-stat" id="csvOutputStat">0 chars</span>
+        <textarea class="io-textarea ds-tool-textarea" id="csvOutput" placeholder="CSV output will appear here…" readonly spellcheck="false"></textarea>
+        <div class="io-footer ds-tool-pane__footer">
+          <span class="io-stat ds-tool-stat" id="csvOutputStat">0 chars</span>
         </div>
       </div>
     </div>
@@ -355,31 +355,31 @@
         Copy JSON
       </button>
     </div>
-    <div class="csv-panels">
-      <div class="io-panel" id="csvJsonInputPanel">
-        <div class="io-header">
-          <span class="io-label">Input CSV (first row = headers)</span>
-          <div class="io-actions">
-            <button class="io-btn" id="btnClearCsvJsonInput">
+    <div class="csv-panels ds-tool-workbench">
+      <div class="io-panel ds-tool-pane" id="csvJsonInputPanel">
+        <div class="io-header ds-tool-pane__header">
+          <span class="io-label ds-tool-pane__label">Input CSV (first row = headers)</span>
+          <div class="io-actions ds-tool-pane__actions">
+            <button class="io-btn ds-tool-pane__btn" id="btnClearCsvJsonInput">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
               Clear
             </button>
           </div>
         </div>
-        <textarea class="io-textarea" id="csvJsonInput" placeholder="name,age,city&#10;Alice,30,London&#10;Bob,25,Paris" spellcheck="false"></textarea>
-        <div class="io-footer">
-          <span class="io-stat" id="csvJsonInputStat">0 chars</span>
-          <span class="io-error" id="csvJsonError"></span>
+        <textarea class="io-textarea ds-tool-textarea" id="csvJsonInput" placeholder="name,age,city&#10;Alice,30,London&#10;Bob,25,Paris" spellcheck="false"></textarea>
+        <div class="io-footer ds-tool-pane__footer">
+          <span class="io-stat ds-tool-stat" id="csvJsonInputStat">0 chars</span>
+          <span class="io-error ds-tool-error" id="csvJsonError"></span>
         </div>
       </div>
-      <div class="csv-actions-col"><div class="arrow-circle">→</div></div>
-      <div class="io-panel">
-        <div class="io-header">
-          <span class="io-label">Output JSON</span>
+      <div class="csv-actions-col ds-tool-arrow"><div class="arrow-circle ds-tool-arrow__circle">→</div></div>
+      <div class="io-panel ds-tool-pane">
+        <div class="io-header ds-tool-pane__header">
+          <span class="io-label ds-tool-pane__label">Output JSON</span>
         </div>
-        <textarea class="io-textarea" id="jsonFromCsvOutput" placeholder="JSON output will appear here…" readonly spellcheck="false"></textarea>
-        <div class="io-footer">
-          <span class="io-stat" id="jsonFromCsvStat">0 chars</span>
+        <textarea class="io-textarea ds-tool-textarea" id="jsonFromCsvOutput" placeholder="JSON output will appear here…" readonly spellcheck="false"></textarea>
+        <div class="io-footer ds-tool-pane__footer">
+          <span class="io-stat ds-tool-stat" id="jsonFromCsvStat">0 chars</span>
         </div>
       </div>
     </div>

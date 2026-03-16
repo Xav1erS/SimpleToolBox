@@ -34,6 +34,15 @@
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.02em;
+  color: var(--ds-color-text-primary);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.ds-nav__logo-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .ds-nav__logo {
@@ -910,18 +919,6 @@
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   transition: border-color var(--ds-duration-base) var(--ds-ease-standard);
-}
-
-.ds-tool-nav-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  white-space: nowrap;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--ds-color-text-primary);
-  text-decoration: none;
 }
 
 .ds-tool-nav-link,

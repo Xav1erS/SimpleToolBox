@@ -274,6 +274,10 @@
     <div class="preview-header ds-tool-preview__header">
       <span class="preview-label ds-tool-preview__label">Preview</span>
       <div class="preview-actions ds-tool-preview__actions">
+        <button class="btn-action" id="btnReset">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+          Reset
+        </button>
         <button class="btn-action primary" id="btnGenerate">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
           Generate
@@ -311,7 +315,8 @@
 
 <script>
   // ── STATE ──────────────────────────────────────────────
-  let qrCanvas = null;       // The canvas element created by qrcode.js
+  let qrCanvas    = null;    // The canvas element created by qrcode.js
+  let qrContainer = null;    // The wrapper div inserted by generate()
   let logoDataUrl = null;    // Logo image data URL
   let currentECL  = 'M';
   let currentSize = 256;
@@ -381,13 +386,14 @@
     const content = buildContent();
     if (!content) { alert('Please enter some content first.'); return; }
 
-    // Remove old QR
-    if (qrCanvas) { qrCanvas.remove(); qrCanvas = null; }
+    // Remove old QR container entirely (fixes stacking/height bug)
+    if (qrContainer) { qrContainer.remove(); qrContainer = null; qrCanvas = null; }
     qrPlaceholder.style.display = 'none';
     qrLogoOverlay.style.display = 'none';
 
     const previewSize = Math.min(currentSize, 300); // cap preview at 300px
     const container   = document.createElement('div');
+    qrContainer = container;
     qrWrap.insertBefore(container, qrLogoOverlay);
 
     new QRCode(container, {
@@ -543,6 +549,46 @@
     a.click(); URL.revokeObjectURL(a.href);
   });
 
+  // ── RESET ──────────────────────────────────────────────
+  function resetAll() {
+    // Clear QR
+    if (qrContainer) { qrContainer.remove(); qrContainer = null; qrCanvas = null; }
+    qrPlaceholder.style.display = '';
+    qrLogoOverlay.style.display = 'none';
+
+    // Reset to text tab
+    currentType = 'text';
+    document.querySelectorAll('.input-tab').forEach(t => t.classList.toggle('active', t.dataset.type === 'text'));
+    document.querySelectorAll('.input-mode').forEach(m => m.classList.toggle('active', m.id === 'modeText'));
+
+    // Clear all inputs
+    ['textInput','wifiSsid','wifiPass','vcardName','vcardPhone','vcardEmail','vcardOrg','vcardUrl','emailTo','emailSubject','emailBody']
+      .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+
+    // Reset colors
+    colorFg.value = '#000000'; colorFgHex.value = '#000000';
+    colorBg.value = '#ffffff'; colorBgHex.value = '#ffffff';
+
+    // Reset ECL to M
+    currentECL = 'M';
+    document.querySelectorAll('[data-ecl]').forEach(b => b.classList.toggle('active', b.dataset.ecl === 'M'));
+
+    // Reset size to 256
+    currentSize = 256;
+    document.querySelectorAll('[data-size]').forEach(b => b.classList.toggle('active', +b.dataset.size === 256));
+
+    // Reset WiFi security to WPA
+    wifiSec = 'WPA';
+    document.querySelectorAll('[data-wifi-sec]').forEach(b => b.classList.toggle('active', b.dataset.wifiSec === 'WPA'));
+
+    // Remove logo
+    logoDataUrl = null; logoFile.value = '';
+    logoDropzone.style.display = '';
+    logoPreviewWrap.classList.remove('visible');
+    logoThumb.src = ''; logoFileName.textContent = '';
+  }
+
+  document.getElementById('btnReset').addEventListener('click', resetAll);
   document.getElementById('btnGenerate').addEventListener('click', generate);
 
   // Generate on Enter key (when not in textarea)

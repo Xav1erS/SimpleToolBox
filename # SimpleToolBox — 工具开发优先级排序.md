@@ -32,7 +32,7 @@
 - **需求频率**：开发者日常使用频率（参考 Google 搜索量、Stack Overflow 讨论热度）
 - **协同性**：与现有 18 个工具的功能联动价值
 - **实现成本**：纯前端实现的难度（低=1-2天，中=3-5天，高=1+周）
-- **差异化**：相对竞品（如 transform.tools、devtoolsdaily.com）的独特价值
+- **差异化**：相对竞品（如 transform.tools、de2vtoolsdaily.com）的独特价值
 
 ---
 

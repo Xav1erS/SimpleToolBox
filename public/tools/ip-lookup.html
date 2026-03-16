@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>IP Address Lookup &amp; Geolocation - Simple ToolBox</title>
+  <meta
+    name="description"
+    content="Look up any IP address to get location, ISP, ASN, timezone, and geolocation data. Auto-detects your own IP. Free, powered by ipapi.co."
+  />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/ip-lookup.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/ip-lookup.html" />
+  <meta property="og:title" content="IP Address Lookup &amp; Geolocation - Simple ToolBox" />
+  <meta
+    property="og:description"
+    content="Look up any IP address to get location, ISP, ASN, timezone, and geolocation data. Auto-detects your own IP. Free, powered by ipapi.co."
+  />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"IP Address Lookup & Geolocation","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Look up any IP address to get location, ISP, ASN, timezone, and geolocation data. Auto-detects your own IP. Free, powered by ipapi.co.","featureList":["Own IP auto-detection","Any IP geolocation lookup","City, region, country info","ISP and ASN data","Timezone detection"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .main { max-width: 760px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 20px; }
+
+    /* ── Lookup bar ─────────────────────────────── */
+    .lookup-bar { display: flex; gap: 10px; }
+    .lookup-input {
+      flex: 1;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 9px 14px;
+      font-size: 14px;
+      font-family: var(--ds-font-mono);
+      color: var(--ds-color-text-primary);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .lookup-input:focus { border-color: var(--ds-color-accent); }
+    .lookup-input::placeholder { color: var(--ds-color-text-muted); font-family: var(--ds-font-sans); }
+
+    /* ── IP result card ─────────────────────────── */
+    .ip-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+    }
+    .ip-card__header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--ds-color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--ds-color-bg);
+    }
+    .ip-address {
+      font-family: var(--ds-font-mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ds-color-accent);
+      letter-spacing: 0.02em;
+    }
+    .ip-type {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      padding: 3px 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── IP grid rows ───────────────────────────── */
+    .ip-row {
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.1s;
+    }
+    .ip-row:last-child { border-bottom: none; }
+    .ip-row:hover { background: rgba(255,255,255,0.02); }
+    .ip-row-key { font-size: 12px; font-weight: 500; color: var(--ds-color-text-muted); }
+    .ip-row-val { font-family: var(--ds-font-mono); font-size: 13px; color: var(--ds-color-text-primary); }
+    .ip-row-val.empty { color: var(--ds-color-text-muted); font-style: italic; }
+    .ip-row-copy {
+      font-size: 10px;
+      padding: 2px 7px;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      color: var(--ds-color-text-muted);
+      background: none;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      flex-shrink: 0;
+    }
+    .ip-row-copy:hover { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
+    .ip-row-copy.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    /* ── Error card ─────────────────────────────── */
+    .error-card {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: var(--ds-radius-md);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .error-icon { font-size: 20px; }
+    .error-msg { font-size: 14px; color: #ef4444; }
+
+    /* ── Loading card ───────────────────────────── */
+    .loading-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 20px 24px;
+      text-align: center;
+    }
+    .loading-text { font-size: 14px; color: var(--ds-color-text-muted); }
+
+    /* ── Note card ──────────────────────────────── */
+    .note-card {
+      background: rgba(94,106,210,0.06);
+      border: 1px solid rgba(94,106,210,0.2);
+      border-radius: var(--ds-radius-md);
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--ds-color-text-secondary);
+      line-height: 1.6;
+    }
+    .note-card strong { color: var(--ds-color-text-primary); font-weight: 600; }
+
+    @media (max-width: 560px) {
+      .lookup-bar { flex-direction: column; }
+      .ip-row { grid-template-columns: 110px 1fr auto; }
+      .ds-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="ds-page">
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    IP Lookup
+    <span class="nav-tool-badge ds-tool-badge">network</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot" style="background:#f59e0b"></span>
+    Uses ipapi.co &middot; no data stored
+  </div>
+</nav>
+
+<div class="tool-header ds-tool-header">
+  <div class="tool-header-inner ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🌐</div>
+      <h1 class="ds-tool-header__title">IP Address Lookup &amp; Geolocation</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Look up any IP address to get location, ISP, ASN, and timezone data.
+      Leave the field blank to auto-detect your own IP. Powered by ipapi.co.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">IP Address</span>
+      <span class="ds-tag">Geolocation</span>
+      <span class="ds-tag">Network</span>
+      <span class="ds-tag">ISP</span>
+      <span class="ds-tag">DNS</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <!-- Lookup bar -->
+  <div class="lookup-bar">
+    <input class="lookup-input" id="lookupInput" type="text"
+      placeholder="Enter IP address (leave blank for your own IP)…"
+      autocomplete="off" />
+    <button class="ds-tool-primary" id="btnLookup">
+      Look Up
+    </button>
+  </div>
+
+  <!-- Loading state -->
+  <div class="loading-card" id="loadingCard" style="display:none">
+    <div class="loading-text">Looking up IP…</div>
+  </div>
+
+  <!-- Error state -->
+  <div class="error-card" id="errorCard" style="display:none">
+    <div class="error-icon">⚠</div>
+    <div class="error-msg" id="errorMsg">—</div>
+  </div>
+
+  <!-- Results card -->
+  <div class="ip-card" id="ipCard" style="display:none">
+    <div class="ip-card__header">
+      <div class="ip-address" id="resultIp">—</div>
+      <div class="ip-type" id="resultType"></div>
+    </div>
+    <div class="ip-grid" id="ipGrid">
+      <!-- rows rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Privacy note -->
+  <div class="note-card">
+    <strong>Privacy:</strong> IP lookups are sent to <a href="https://ipapi.co" style="color:var(--ds-color-accent)">ipapi.co</a> — a third-party geolocation service. We do not store your IP or lookup history. Free tier allows up to 1,000 requests/day.
+  </div>
+
+  <!-- Related tools -->
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="url-encode.html" class="ds-related-card">
+        <span class="ds-related-icon">🔗</span>
+        <div>
+          <div class="ds-related-name">URL Encode / Decode</div>
+          <div class="ds-related-desc">Percent-encode strings for safe URL use</div>
+        </div>
+      </a>
+      <a href="http-status.html" class="ds-related-card">
+        <span class="ds-related-icon">📡</span>
+        <div>
+          <div class="ds-related-name">HTTP Status Codes</div>
+          <div class="ds-related-desc">Complete reference for all HTTP status codes</div>
+        </div>
+      </a>
+      <a href="json-formatter.html" class="ds-related-card">
+        <span class="ds-related-icon">🎨</span>
+        <div>
+          <div class="ds-related-name">JSON Formatter</div>
+          <div class="ds-related-desc">Prettify and validate JSON API responses</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const FIELDS = [
+    { key: 'city',         label: 'City' },
+    { key: 'region',       label: 'Region' },
+    { key: 'country_name', label: 'Country' },
+    { key: 'country_code', label: 'Country Code' },
+    { key: 'postal',       label: 'Postal Code' },
+    { key: 'latitude',     label: 'Latitude' },
+    { key: 'longitude',    label: 'Longitude' },
+    { key: 'timezone',     label: 'Timezone' },
+    { key: 'org',          label: 'ISP / Org' },
+    { key: 'asn',          label: 'ASN' },
+  ];
+
+  const lookupInput = document.getElementById('lookupInput');
+  const btnLookup   = document.getElementById('btnLookup');
+  const ipCard      = document.getElementById('ipCard');
+  const errorCard   = document.getElementById('errorCard');
+  const loadingCard = document.getElementById('loadingCard');
+  const resultIp    = document.getElementById('resultIp');
+  const resultType  = document.getElementById('resultType');
+  const ipGrid      = document.getElementById('ipGrid');
+  const errorMsg    = document.getElementById('errorMsg');
+
+  async function lookup(ip) {
+    const url = ip ? `https://ipapi.co/${encodeURIComponent(ip)}/json/` : 'https://ipapi.co/json/';
+    showState('loading');
+    try {
+      const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (data.error) throw new Error(data.reason || data.error);
+      renderResult(data);
+    } catch (e) {
+      showError(e.message || 'Lookup failed. Check the IP format and try again.');
+    }
+  }
+
+  function showState(state) {
+    ipCard.style.display      = state === 'result'  ? '' : 'none';
+    errorCard.style.display   = state === 'error'   ? '' : 'none';
+    loadingCard.style.display = state === 'loading' ? '' : 'none';
+  }
+
+  function showError(msg) {
+    errorMsg.textContent = msg;
+    showState('error');
+  }
+
+  function renderResult(data) {
+    resultIp.textContent = data.ip || '—';
+    resultType.textContent = data.version || (data.ip && data.ip.includes(':') ? 'IPv6' : 'IPv4');
+
+    ipGrid.innerHTML = '';
+    FIELDS.forEach(f => {
+      const val = data[f.key];
+      const row = document.createElement('div');
+      row.className = 'ip-row';
+      const displayVal = (val !== null && val !== undefined && val !== '') ? String(val) : '—';
+      const isEmpty = displayVal === '—';
+      row.innerHTML = `
+        <span class="ip-row-key">${f.label}</span>
+        <span class="ip-row-val${isEmpty ? ' empty' : ''}">${displayVal}</span>
+        <button class="ip-row-copy"${isEmpty ? ' style="visibility:hidden"' : ''}>Copy</button>
+      `;
+      if (!isEmpty) {
+        row.querySelector('.ip-row-copy').addEventListener('click', e => {
+          const btn = e.currentTarget;
+          navigator.clipboard.writeText(displayVal).catch(() => {});
+          btn.textContent = '✓';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+        });
+      }
+      ipGrid.appendChild(row);
+    });
+    showState('result');
+  }
+
+  // Lookup on Enter key
+  lookupInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') lookup(lookupInput.value.trim());
+  });
+  btnLookup.addEventListener('click', () => lookup(lookupInput.value.trim()));
+
+  // Auto-lookup own IP on load
+  lookup('');
+</script>
+</body>
+</html>

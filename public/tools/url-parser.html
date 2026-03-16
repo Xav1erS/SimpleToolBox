@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>URL Parser &amp; Builder - Simple ToolBox</title>
+  <meta
+    name="description"
+    content="Parse any URL into its components (protocol, host, path, query params, hash) or build a URL from parts. Free, browser-based, no data sent."
+  />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/url-parser.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/url-parser.html" />
+  <meta property="og:title" content="URL Parser &amp; Builder - Simple ToolBox" />
+  <meta
+    property="og:description"
+    content="Parse any URL into its components (protocol, host, path, query params, hash) or build a URL from parts. Free, browser-based, no data sent."
+  />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL Parser & Builder","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Parse any URL into its components or build a URL from individual fields. Uses the browser's native URL API. Privacy-first, no data sent.","featureList":["URL component parsing","Query parameter extraction","URL builder from components","Automatic percent-encoding","One-click copy per field"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .mode-btn.active { background: var(--ds-color-accent); color: #fff; }
+
+    .io-btn.copied  { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
+    .io-textarea:focus { background: rgba(94,106,210,0.025); }
+
+    /* URL breakdown (parse mode right pane) */
+    .url-breakdown {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .url-row {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .url-row:last-child { border-bottom: none; }
+    .url-key { font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .url-val { font-family: var(--ds-font-mono); font-size: 12px; color: var(--ds-color-text-primary); word-break: break-all; }
+    .url-val.empty { color: var(--ds-color-text-muted); font-style: italic; }
+    .url-copy-btn {
+      font-size: 10px;
+      padding: 2px 7px;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      color: var(--ds-color-text-muted);
+      background: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .url-copy-btn:hover { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
+    .url-copy-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    .param-section { margin-top: 12px; border-top: 1px solid var(--ds-color-border); padding-top: 12px; }
+    .param-title { font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .param-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; margin-bottom: 6px; align-items: center; }
+    .param-key { font-family: var(--ds-font-mono); font-size: 12px; color: #f59e0b; }
+    .param-eq { color: var(--ds-color-text-muted); }
+    .param-value { font-family: var(--ds-font-mono); font-size: 12px; color: var(--ds-color-text-primary); }
+
+    /* Build mode form */
+    .build-form { padding: 16px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; flex: 1; }
+    .form-field { display: flex; flex-direction: column; gap: 4px; }
+    .form-label { font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .form-input {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      padding: 7px 11px;
+      font-size: 13px;
+      font-family: var(--ds-font-mono);
+      color: var(--ds-color-text-primary);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-input:focus { border-color: var(--ds-color-accent); }
+    .param-builder-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; align-items: center; }
+    .param-del { font-size: 11px; color: var(--ds-color-text-muted); padding: 4px 7px; border: 1px solid transparent; border-radius: 3px; cursor: pointer; background: none; transition: color 0.15s, background 0.15s; }
+    .param-del:hover { color: #ef4444; background: rgba(239,68,68,0.1); }
+    .btn-add-param { font-size: 12px; color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.3); border-radius: var(--ds-radius-sm); padding: 5px 12px; cursor: pointer; align-self: flex-start; }
+    .btn-add-param:hover { background: rgba(94,106,210,0.18); }
+    .param-builder-list { display: flex; flex-direction: column; gap: 6px; }
+
+    /* Parse pane right: use scrollable div instead of textarea */
+    .parse-output-pane {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .parse-output-scroll {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
+
+    @media (max-width: 720px) {
+      .panels-arrow {
+        height: 36px;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--ds-color-border);
+        border-bottom: 1px solid var(--ds-color-border);
+      }
+      .arrow-circle { transform: rotate(90deg); }
+      .ds-related-grid { grid-template-columns: 1fr; }
+      .param-row { grid-template-columns: 1fr 1fr; }
+      .param-row .param-eq { display: none; }
+    }
+  </style>
+</head>
+<body class="ds-page">
+<noscript>
+  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+    This tool requires JavaScript to run.
+  </div>
+</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    URL Parser &amp; Builder
+    <span class="nav-tool-badge ds-tool-badge">network</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="tool-header ds-tool-header">
+  <div class="tool-header-inner ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🔗</div>
+      <h1 class="ds-tool-header__title">URL Parser &amp; Builder</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Parse any URL into its components — protocol, host, path, query params, hash — or assemble a URL from individual fields.
+      Uses the browser's native URL API &middot; no server, no tracking.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">URL</span>
+      <span class="ds-tag">Parse</span>
+      <span class="ds-tag">Build</span>
+      <span class="ds-tag">Network</span>
+      <span class="ds-tag">Query Params</span>
+      <span class="ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-modebar">
+    <button class="mode-btn ds-tool-modebtn active" id="btnParse">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Parse
+    </button>
+    <div class="ds-tool-modeseparator"></div>
+    <button class="mode-btn ds-tool-modebtn" id="btnBuild">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      Build
+    </button>
+  </div>
+
+  <!-- PARSE MODE -->
+  <div id="parseMode">
+    <div class="ds-tool-workbench">
+      <div class="io-panel ds-tool-pane" id="parseInputPanel">
+        <div class="ds-tool-pane__header">
+          <span class="ds-tool-pane__label">URL Input</span>
+          <div class="ds-tool-pane__actions">
+            <button class="io-btn ds-tool-pane__btn" id="btnPasteUrl">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+              Paste
+            </button>
+            <button class="io-btn ds-tool-pane__btn" id="btnClearParseInput">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              Clear
+            </button>
+          </div>
+        </div>
+        <textarea
+          class="io-textarea ds-tool-textarea"
+          id="parseInput"
+          placeholder="https://user:pass@example.com:8080/path/to/page?foo=bar&amp;baz=qux#section"
+          spellcheck="false"
+          autocomplete="off"
+        ></textarea>
+        <div class="ds-tool-pane__footer">
+          <span class="ds-tool-stat" id="parseInputStat">0 chars</span>
+          <span class="ds-tool-error" id="parseError" style="display:none">Invalid URL</span>
+        </div>
+      </div>
+
+      <div class="panels-arrow ds-tool-arrow">
+        <div class="arrow-circle ds-tool-arrow__circle">→</div>
+      </div>
+
+      <div class="io-panel ds-tool-pane parse-output-pane" id="parseOutputPanel">
+        <div class="ds-tool-pane__header">
+          <span class="ds-tool-pane__label">Components</span>
+          <div class="ds-tool-pane__actions">
+            <button class="io-btn ds-tool-pane__btn" id="btnCopyAll">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy All
+            </button>
+          </div>
+        </div>
+        <div class="parse-output-scroll" id="parseBreakdown">
+          <div class="url-breakdown" id="urlBreakdown">
+            <div style="color: var(--ds-color-text-muted); font-size: 13px; padding: 20px 0; text-align: center;">
+              Enter a URL on the left to see its components.
+            </div>
+          </div>
+        </div>
+        <div class="ds-tool-pane__footer">
+          <span class="ds-tool-stat" id="parseOutputStat">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILD MODE -->
+  <div id="buildMode" style="display:none">
+    <div class="ds-tool-workbench">
+      <div class="io-panel ds-tool-pane" id="buildFormPanel">
+        <div class="ds-tool-pane__header">
+          <span class="ds-tool-pane__label">Fields</span>
+          <div class="ds-tool-pane__actions">
+            <button class="io-btn ds-tool-pane__btn" id="btnClearBuild">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              Clear
+            </button>
+          </div>
+        </div>
+        <div class="build-form" id="buildForm">
+          <div class="form-field">
+            <label class="form-label" for="buildProtocol">Protocol</label>
+            <input class="form-input" id="buildProtocol" type="text" placeholder="https" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="buildUsername">Username <span style="font-weight:400;text-transform:none;font-size:10px;">(optional)</span></label>
+            <input class="form-input" id="buildUsername" type="text" placeholder="user" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="buildPassword">Password <span style="font-weight:400;text-transform:none;font-size:10px;">(optional)</span></label>
+            <input class="form-input" id="buildPassword" type="text" placeholder="secret" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="buildHostname">Hostname</label>
+            <input class="form-input" id="buildHostname" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="buildPort">Port <span style="font-weight:400;text-transform:none;font-size:10px;">(optional)</span></label>
+            <input class="form-input" id="buildPort" type="text" placeholder="8080" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="buildPathname">Pathname</label>
+            <input class="form-input" id="buildPathname" type="text" placeholder="/path/to/page" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">Query Parameters</label>
+            <div class="param-builder-list" id="paramBuilderList">
+              <!-- rows injected by JS -->
+            </div>
+            <button class="btn-add-param" id="btnAddParam">+ Add Parameter</button>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="buildHash">Hash <span style="font-weight:400;text-transform:none;font-size:10px;">(optional)</span></label>
+            <input class="form-input" id="buildHash" type="text" placeholder="section" autocomplete="off" spellcheck="false" />
+          </div>
+        </div>
+      </div>
+
+      <div class="panels-arrow ds-tool-arrow">
+        <div class="arrow-circle ds-tool-arrow__circle">→</div>
+      </div>
+
+      <div class="io-panel ds-tool-pane" id="buildOutputPanel">
+        <div class="ds-tool-pane__header">
+          <span class="ds-tool-pane__label">Assembled URL</span>
+          <div class="ds-tool-pane__actions">
+            <button class="io-btn ds-tool-pane__btn" id="btnCopyBuildHeader">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+        <textarea
+          class="io-textarea ds-tool-textarea"
+          id="buildOutput"
+          placeholder="Assembled URL will appear here…"
+          readonly
+          spellcheck="false"
+        ></textarea>
+        <div class="ds-tool-pane__footer">
+          <span class="ds-tool-stat" id="buildOutputStat">0 chars</span>
+          <span class="ds-tool-error" id="buildError" style="display:none">Invalid URL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span id="runLabel">Parse</span>
+    </button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Result
+    </button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14H6L5 6M9 6V4h6v2"/></svg>
+      Clear All
+    </button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">💡</span>
+    <div class="info-text ds-tool-note__text">
+      Parses any valid URL into its components using the browser's native URL API.
+      Build mode assembles a URL from individual fields and encodes query parameters automatically.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="url-encode.html" class="ds-related-card">
+        <span class="ds-related-icon">🔒</span>
+        <div>
+          <div class="ds-related-name">URL Encode / Decode</div>
+          <div class="ds-related-desc">Percent-encode strings for safe URL use</div>
+        </div>
+      </a>
+      <a href="http-status.html" class="ds-related-card">
+        <span class="ds-related-icon">📡</span>
+        <div>
+          <div class="ds-related-name">HTTP Status Codes</div>
+          <div class="ds-related-desc">Reference for all HTTP response status codes</div>
+        </div>
+      </a>
+      <a href="string-escape.html" class="ds-related-card">
+        <span class="ds-related-icon">✏️</span>
+        <div>
+          <div class="ds-related-name">String Escape</div>
+          <div class="ds-related-desc">Escape and unescape special characters in strings</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentMode = 'parse'; // 'parse' | 'build'
+
+  // ── Element refs ───────────────────────────────────────────
+  const btnParseModeBtn  = document.getElementById('btnParse');
+  const btnBuildModeBtn  = document.getElementById('btnBuild');
+  const parseMode        = document.getElementById('parseMode');
+  const buildMode        = document.getElementById('buildMode');
+
+  // Parse mode
+  const parseInput       = document.getElementById('parseInput');
+  const parseInputStat   = document.getElementById('parseInputStat');
+  const parseOutputStat  = document.getElementById('parseOutputStat');
+  const parseError       = document.getElementById('parseError');
+  const parseInputPanel  = document.getElementById('parseInputPanel');
+  const urlBreakdown     = document.getElementById('urlBreakdown');
+  const btnPasteUrl      = document.getElementById('btnPasteUrl');
+  const btnClearParseInput = document.getElementById('btnClearParseInput');
+  const btnCopyAll       = document.getElementById('btnCopyAll');
+
+  // Build mode
+  const buildProtocol    = document.getElementById('buildProtocol');
+  const buildUsername    = document.getElementById('buildUsername');
+  const buildPassword    = document.getElementById('buildPassword');
+  const buildHostname    = document.getElementById('buildHostname');
+  const buildPort        = document.getElementById('buildPort');
+  const buildPathname    = document.getElementById('buildPathname');
+  const buildHash        = document.getElementById('buildHash');
+  const paramBuilderList = document.getElementById('paramBuilderList');
+  const btnAddParam      = document.getElementById('btnAddParam');
+  const buildOutput      = document.getElementById('buildOutput');
+  const buildOutputStat  = document.getElementById('buildOutputStat');
+  const buildError       = document.getElementById('buildError');
+  const btnClearBuild    = document.getElementById('btnClearBuild');
+  const btnCopyBuildHeader = document.getElementById('btnCopyBuildHeader');
+
+  // Shared
+  const btnRun           = document.getElementById('btnRun');
+  const runLabel         = document.getElementById('runLabel');
+  const btnCopyResult    = document.getElementById('btnCopyResult');
+  const btnClearAll      = document.getElementById('btnClearAll');
+
+  // ── URL component rows definition ──────────────────────────
+  const URL_FIELDS = [
+    { key: 'Protocol',  prop: 'protocol' },
+    { key: 'Username',  prop: 'username' },
+    { key: 'Password',  prop: 'password' },
+    { key: 'Host',      prop: 'host' },
+    { key: 'Hostname',  prop: 'hostname' },
+    { key: 'Port',      prop: 'port' },
+    { key: 'Pathname',  prop: 'pathname' },
+    { key: 'Search',    prop: 'search' },
+    { key: 'Hash',      prop: 'hash' },
+    { key: 'Origin',    prop: 'origin' },
+  ];
+
+  // ── Parse logic ────────────────────────────────────────────
+  function runParse() {
+    const raw = parseInput.value.trim();
+    parseInputStat.textContent = parseInput.value.length
+      ? `${parseInput.value.length.toLocaleString()} chars`
+      : '0 chars';
+
+    parseError.style.display = 'none';
+    parseInputPanel.classList.remove('has-error');
+
+    if (!raw) {
+      urlBreakdown.innerHTML = `<div style="color: var(--ds-color-text-muted); font-size: 13px; padding: 20px 0; text-align: center;">Enter a URL on the left to see its components.</div>`;
+      parseOutputStat.textContent = '—';
+      return;
+    }
+
+    let parsed;
+    try {
+      parsed = new URL(raw);
+    } catch (e) {
+      parseError.textContent = 'Invalid URL';
+      parseError.style.display = '';
+      parseInputPanel.classList.add('has-error');
+      urlBreakdown.innerHTML = `<div style="color: #ef4444; font-size: 13px; padding: 20px 0; text-align: center;">Could not parse URL: ${escapeHtml(e.message)}</div>`;
+      parseOutputStat.textContent = '—';
+      return;
+    }
+
+    // Build breakdown HTML
+    let html = '';
+    for (const field of URL_FIELDS) {
+      const val = parsed[field.prop] || '';
+      const isEmpty = !val;
+      html += `
+        <div class="url-row">
+          <span class="url-key">${field.key}</span>
+          <span class="url-val${isEmpty ? ' empty' : ''}">${isEmpty ? '(empty)' : escapeHtml(val)}</span>
+          ${!isEmpty ? `<button class="url-copy-btn" data-val="${escapeAttr(val)}">Copy</button>` : '<span></span>'}
+        </div>`;
+    }
+
+    // Query params section
+    const params = Array.from(parsed.searchParams.entries());
+    if (params.length > 0) {
+      html += `<div class="param-section"><div class="param-title">Query Parameters (${params.length})</div>`;
+      for (const [k, v] of params) {
+        html += `
+          <div class="param-row">
+            <span class="param-key">${escapeHtml(k)}</span>
+            <span class="param-eq">=</span>
+            <span class="param-value">${escapeHtml(v)}</span>
+          </div>`;
+      }
+      html += `</div>`;
+    }
+
+    urlBreakdown.innerHTML = html;
+    parseOutputStat.textContent = `${URL_FIELDS.length} fields · ${params.length} params`;
+
+    // Attach copy buttons
+    urlBreakdown.querySelectorAll('.url-copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.dataset.val;
+        copyTextFn(val, btn, 'Copy', 'Copied!');
+      });
+    });
+  }
+
+  // ── Build logic ────────────────────────────────────────────
+  function addParamRow(key = '', val = '') {
+    const row = document.createElement('div');
+    row.className = 'param-builder-row';
+    row.innerHTML = `
+      <input class="form-input param-key-input" type="text" placeholder="key" value="${escapeAttr(key)}" spellcheck="false" autocomplete="off" />
+      <input class="form-input param-val-input" type="text" placeholder="value" value="${escapeAttr(val)}" spellcheck="false" autocomplete="off" />
+      <button class="param-del" title="Remove">✕</button>`;
+    row.querySelector('.param-del').addEventListener('click', () => {
+      row.remove();
+      runBuild();
+    });
+    row.querySelectorAll('input').forEach(inp => inp.addEventListener('input', runBuild));
+    paramBuilderList.appendChild(row);
+  }
+
+  function runBuild() {
+    buildError.style.display = 'none';
+
+    const protocol = (buildProtocol.value.trim() || 'https').replace(/:$/, '');
+    const hostname = buildHostname.value.trim();
+
+    if (!hostname) {
+      buildOutput.value = '';
+      buildOutputStat.textContent = '0 chars';
+      return;
+    }
+
+    let urlStr = `${protocol}://${hostname}`;
+    const port = buildPort.value.trim();
+    if (port) urlStr += `:${port}`;
+
+    let pathname = buildPathname.value.trim();
+    if (pathname && !pathname.startsWith('/')) pathname = '/' + pathname;
+    if (pathname) urlStr += pathname;
+
+    let parsed;
+    try {
+      parsed = new URL(urlStr);
+    } catch (e) {
+      buildError.textContent = 'Invalid URL';
+      buildError.style.display = '';
+      buildOutput.value = '';
+      buildOutputStat.textContent = '0 chars';
+      return;
+    }
+
+    // credentials
+    const username = buildUsername.value.trim();
+    const password = buildPassword.value.trim();
+    if (username) parsed.username = username;
+    if (password) parsed.password = password;
+
+    // query params
+    parsed.search = '';
+    paramBuilderList.querySelectorAll('.param-builder-row').forEach(row => {
+      const k = row.querySelector('.param-key-input').value.trim();
+      const v = row.querySelector('.param-val-input').value;
+      if (k) parsed.searchParams.append(k, v);
+    });
+
+    // hash
+    const hash = buildHash.value.trim();
+    if (hash) parsed.hash = hash.startsWith('#') ? hash : '#' + hash;
+
+    buildOutput.value = parsed.href;
+    buildOutputStat.textContent = `${parsed.href.length.toLocaleString()} chars`;
+  }
+
+  // ── Mode switching ─────────────────────────────────────────
+  function setMode(mode) {
+    currentMode = mode;
+    const isParse = mode === 'parse';
+    btnParseModeBtn.classList.toggle('active', isParse);
+    btnBuildModeBtn.classList.toggle('active', !isParse);
+    parseMode.style.display = isParse ? '' : 'none';
+    buildMode.style.display = isParse ? 'none' : '';
+    runLabel.textContent = isParse ? 'Parse' : 'Build URL';
+    if (isParse) runParse(); else runBuild();
+  }
+
+  btnParseModeBtn.addEventListener('click', () => setMode('parse'));
+  btnBuildModeBtn.addEventListener('click', () => setMode('build'));
+
+  // ── Copy helper ────────────────────────────────────────────
+  async function copyTextFn(text, button, defaultLabel, doneLabel) {
+    if (!text) return;
+    const originalHtml = button.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ${doneLabel}`;
+    setTimeout(() => {
+      button.classList.remove('copied');
+      button.innerHTML = originalHtml;
+    }, 1500);
+  }
+
+  // ── Escape helpers ─────────────────────────────────────────
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+  function escapeAttr(str) {
+    return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  // ── Event bindings ─────────────────────────────────────────
+  parseInput.addEventListener('input', runParse);
+  btnRun.addEventListener('click', () => {
+    if (currentMode === 'parse') runParse(); else runBuild();
+  });
+
+  btnPasteUrl.addEventListener('click', async () => {
+    try { parseInput.value = await navigator.clipboard.readText(); runParse(); } catch {}
+  });
+  btnClearParseInput.addEventListener('click', () => {
+    parseInput.value = '';
+    runParse();
+  });
+
+  btnCopyAll.addEventListener('click', () => {
+    // Copy a plain text summary of all fields
+    const raw = parseInput.value.trim();
+    if (!raw) return;
+    let parsed;
+    try { parsed = new URL(raw); } catch { return; }
+    const lines = URL_FIELDS.map(f => `${f.key.padEnd(12)}: ${parsed[f.prop] || '(empty)'}`);
+    const params = Array.from(parsed.searchParams.entries());
+    if (params.length) {
+      lines.push('');
+      lines.push('Query Parameters:');
+      params.forEach(([k, v]) => lines.push(`  ${k} = ${v}`));
+    }
+    copyTextFn(lines.join('\n'), btnCopyAll, 'Copy All', 'Copied!');
+  });
+
+  btnCopyBuildHeader.addEventListener('click', () => copyTextFn(buildOutput.value, btnCopyBuildHeader, 'Copy', 'Copied!'));
+
+  btnCopyResult.addEventListener('click', () => {
+    if (currentMode === 'parse') {
+      const raw = parseInput.value.trim();
+      if (!raw) return;
+      let parsed; try { parsed = new URL(raw); } catch { return; }
+      const lines = URL_FIELDS.map(f => `${f.key.padEnd(12)}: ${parsed[f.prop] || '(empty)'}`);
+      copyTextFn(lines.join('\n'), btnCopyResult, 'Copy Result', 'Copied!');
+    } else {
+      copyTextFn(buildOutput.value, btnCopyResult, 'Copy Result', 'Copied!');
+    }
+  });
+
+  btnClearAll.addEventListener('click', () => {
+    parseInput.value = '';
+    buildProtocol.value = '';
+    buildUsername.value = '';
+    buildPassword.value = '';
+    buildHostname.value = '';
+    buildPort.value = '';
+    buildPathname.value = '';
+    buildHash.value = '';
+    paramBuilderList.innerHTML = '';
+    addParamRow();
+    runParse();
+    runBuild();
+  });
+
+  btnClearBuild.addEventListener('click', () => {
+    buildProtocol.value = '';
+    buildUsername.value = '';
+    buildPassword.value = '';
+    buildHostname.value = '';
+    buildPort.value = '';
+    buildPathname.value = '';
+    buildHash.value = '';
+    paramBuilderList.innerHTML = '';
+    addParamRow();
+    runBuild();
+  });
+
+  btnAddParam.addEventListener('click', () => {
+    addParamRow();
+  });
+
+  // Build fields live update
+  [buildProtocol, buildUsername, buildPassword, buildHostname, buildPort, buildPathname, buildHash]
+    .forEach(el => el.addEventListener('input', runBuild));
+
+  // ── Init ───────────────────────────────────────────────────
+  addParamRow();
+  setMode('parse');
+</script>
+</body>
+</html>

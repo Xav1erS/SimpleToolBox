@@ -46,7 +46,15 @@
       "Bash('/c/Program Files/GitHub CLI/gh.exe' auth status)",
       "Bash(powershell.exe -Command \"& ''C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe'' auth status\")",
       "Bash(ls c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
-      "Bash(xargs -I{} basename {})"
+      "Bash(xargs -I{} basename {})",
+      "Bash(sed -i 's/Browse all 30 free online developer tools/Browse all 35 free online developer tools/' all-tools.html)",
+      "Bash(sed -i 's/Browse all 26 free online developer tools\\\\. Filter by category: encode, format, convert, generate, text, image, reference\\\\./Browse all 35 free online developer tools. Filter by category: encode, format, convert, generate, text, image, reference./' all-tools.html)",
+      "Bash(sed -i 's/30 free, privacy-first tools\\\\./35 free, privacy-first tools./' all-tools.html)",
+      "Bash(sed -i 's/<span class=\"\"count-badge\"\" id=\"\"countBadge\"\">30 tools<\\\\/span>/<span class=\"\"count-badge\"\" id=\"\"countBadge\"\">35 tools<\\\\/span>/' all-tools.html)",
+      "Bash(python3 \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/all-tools.html\")",
+      "Bash(python3 -c \"print\\(''ok''\\)\")",
+      "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
+      "Bash(__NEW_LINE_03b85ace9732bd8d__ node -e \":*)"
     ]
   }
 }

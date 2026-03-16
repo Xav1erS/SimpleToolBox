@@ -8,32 +8,11 @@
   <meta name="description" content="Simple ToolBox Privacy Policy. We collect no personal data. All tool processing happens entirely in your browser." />
   <link rel="canonical" href="https://simpletoolbox.dev/privacy.html" />
   <link rel="icon" href="logo 1.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/design-system.css?v=7" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: var(--ds-color-bg); --bg-surface: var(--ds-color-surface);
-      --border: var(--ds-color-border);
-      --text-primary: var(--ds-color-text-primary); --text-secondary: var(--ds-color-text-secondary); --text-muted: var(--ds-color-text-muted);
-      --accent: var(--ds-color-accent); --accent-hover: var(--ds-color-accent-hover); --accent-dim: var(--ds-color-surface-tint); --accent-glow: rgba(94,106,210,0.25);
-      --green: #22c55e; --purple: #9B8DEB;
-      --radius-sm: var(--ds-radius-sm); --radius-md: var(--ds-radius-md);
-      --font: var(--ds-font-sans);
-      --mono: var(--ds-font-mono);
-      --nav-h: var(--ds-nav-height);
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font); background: var(--bg); color: var(--text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
-    a { color: var(--accent); text-decoration: none; }
+    body { background: var(--ds-color-bg); min-height: 100vh; }
+    a { color: var(--ds-color-accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-
-    /* ── NAV ── */
 
     @media (max-width: 720px) {
       .toc { display: none; }
@@ -116,7 +95,7 @@
 
     <div class="doc-section legal-section ds-panel" id="local-processing">
       <h2>2. Local Processing</h2>
-      <p>Every tool on this site runs entirely within your web browser using standard JavaScript APIs such as <code style="font-family:var(--mono);font-size:12px;background:rgba(255,255,255,0.06);padding:1px 4px;border-radius:3px">Web Crypto API</code>, <code style="font-family:var(--mono);font-size:12px;background:rgba(255,255,255,0.06);padding:1px 4px;border-radius:3px">TextEncoder</code>, and <code style="font-family:var(--mono);font-size:12px;background:rgba(255,255,255,0.06);padding:1px 4px;border-radius:3px">JSON.parse</code>.</p>
+      <p>Every tool on this site runs entirely within your web browser using standard JavaScript APIs such as <code style="font-family:var(--ds-font-mono);font-size:12px;background:rgba(255,255,255,0.06);padding:1px 4px;border-radius:3px">Web Crypto API</code>, <code style="font-family:var(--ds-font-mono);font-size:12px;background:rgba(255,255,255,0.06);padding:1px 4px;border-radius:3px">TextEncoder</code>, and <code style="font-family:var(--ds-font-mono);font-size:12px;background:rgba(255,255,255,0.06);padding:1px 4px;border-radius:3px">JSON.parse</code>.</p>
       <p>Any text, files, or data you provide to a tool never leave your device. There are no API calls, no backend servers processing your input, and no data transmission of any kind related to your usage of the tools.</p>
     </div>
 

@@ -58,7 +58,8 @@
       "Bash(sed -i 's/<span>21<\\\\/span>+/<span>35<\\\\/span>+/' index.html)",
       "Bash(sed -i 's/and 16+ more\\\\. No sign-up/and 28+ more. No sign-up/' index.html)",
       "Bash(sed -i 's/and 13+ more\\\\. No sign-up/and 28+ more. No sign-up/' index.html)",
-      "Bash(sed -i 's/21+ free developer tools/35+ free developer tools/' index.html)"
+      "Bash(sed -i 's/21+ free developer tools/35+ free developer tools/' index.html)",
+      "Bash(ls /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/sitemap* /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/robots.txt)"
     ]
   }
 }

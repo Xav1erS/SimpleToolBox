@@ -67,72 +67,6 @@
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
-    /* ── NAV ── */
-    .nav-search {
-      flex: 1;
-      max-width: 380px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .nav-search input {
-      width: 100%;
-      height: 40px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      color: var(--text-primary);
-      font-size: 13px;
-      font-family: var(--font);
-      padding: 0 40px 0 34px;
-      outline: none;
-      transition: border-color var(--ds-duration-fast), box-shadow var(--ds-duration-fast), background var(--ds-duration-fast);
-    }
-    .nav-search input::placeholder { color: var(--text-muted); }
-    .nav-search input:focus {
-      border-color: var(--accent);
-      background: rgba(94,106,210,0.06);
-      box-shadow: var(--ds-shadow-focus);
-    }
-    .nav-search-icon {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-    .nav-search kbd {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--text-muted);
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 1px 5px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-secondary);
-      font-size: 13px;
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      transition: color 0.2s, background 0.2s;
-    }
-    .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
-
     .btn-primary { letter-spacing: -0.1px; }
 
     /* ── HERO ── */
@@ -554,13 +488,6 @@
     }
     .footer-brand { display: flex; flex-direction: column; gap: 12px; }
     .footer-logo { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; }
-    .footer-logo-icon {
-      width: 24px; height: 24px;
-      background: linear-gradient(135deg, #5E6AD2, #9B8DEB);
-      border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px;
-    }
     .footer-tagline { font-size: 13px; color: var(--text-secondary); line-height: 1.6; max-width: 220px; }
     .footer-col h4 { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
     .footer-links { display: flex; flex-direction: column; gap: 10px; }
@@ -603,8 +530,6 @@
       .nav-actions .nav-link { display: none; }
     }
 
-    /* ── LOGO IMAGE ── */
-    .footer-logo-icon { background: none !important; border-radius: 0 !important; border: none !important; width: auto !important; height: auto !important; }
 
     /* ── HIDDEN CARD ── */
     .category-card.hidden { display: none; }
@@ -1083,7 +1008,7 @@
   <footer class="footer">
     <div class="footer-brand">
       <div class="footer-logo">
-        <div class="footer-logo-icon"><img src="logo 1.svg" class="logo-img" width="24" height="24" alt="Simple ToolBox" /></div>
+        <div class="ds-footer-logo-icon"><img src="logo 1.svg" class="logo-img" width="24" height="24" alt="Simple ToolBox" /></div>
         Simple ToolBox
       </div>
       <p class="footer-tagline">A one-stop online toolbox for developers. Free, fast, and privacy-first.</p>

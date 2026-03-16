@@ -143,7 +143,7 @@ When creating a new tool page, follow this checklist:
 
 1. Link `../styles/design-system.css` (no Google Fonts needed — DS provides Inter + JetBrains Mono).
 2. Use DS token aliases in `:root` (not hardcoded hex values).
-3. Add logo override: `.ds-tool-nav-logo-icon { background: none !important; ... }`.
+3. Use `ds-nav__brand` for the logo link and `ds-nav__logo-icon` for the icon wrapper — no local override CSS needed.
 4. Use `ds-tool-nav` + `ds-tool-nav-*` for the sticky nav bar.
 5. Use `ds-tool-header` + `ds-tool-header__*` for the page header band.
 6. Use `ds-tool-main` (+ `ds-tool-split` or `ds-tool-stack`) for the main content container.
@@ -161,6 +161,13 @@ When creating a new tool page, follow this checklist:
 - `ds-tool-stack`
 - `ds-tool-tag-row`
 - `ds-tool-nav-*`
+
+### Brand / Logo Pattern (used on all pages)
+
+- `ds-nav__brand` — logo link (`<a>`) for both site pages and tool pages
+- `ds-nav__logo-icon` — icon wrapper div (no background or border override needed)
+- `ds-footer-logo-icon` — footer icon wrapper div
+- `logo-img` — the `<img>` element inside the icon wrapper
 
 ### Two-Pane Workbench Pattern
 
@@ -185,7 +192,9 @@ When creating a new tool page, follow this checklist:
 
 ## Migration Status
 
-**All 21 tool pages are now migrated.** No further migration work is needed.
+**All 21 tool pages and all 6 site pages are fully migrated.** No further migration work is needed.
+
+Brand logo classes are unified across all 27 pages: `ds-nav__brand` + `ds-nav__logo-icon` (nav), `ds-footer-logo-icon` (footer). No local override CSS required.
 
 Future work should focus on:
 

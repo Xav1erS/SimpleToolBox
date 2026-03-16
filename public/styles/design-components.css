@@ -45,6 +45,11 @@
   flex-shrink: 0;
 }
 
+.ds-footer-logo-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
 
 .logo-img {
   display: block;

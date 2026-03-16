@@ -26,7 +26,24 @@
       "Bash(node -e \":*)",
       "Bash(xxd \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/styles/design-components.css\")",
       "Bash(chmod +x \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox/.git/hooks/pre-commit\")",
-      "Bash(xargs sed:*)"
+      "Bash(xargs sed:*)",
+      "Bash(python3 -c \"print\\(''hello''\\)\")",
+      "Bash(echo $?)",
+      "Bash(do sed:*)",
+      "Bash(echo \"Done: $f\")",
+      "Bash(sed -i -e 's/var\\(--bg-surface\\)/var\\(--ds-color-surface\\)/g' -e 's/var\\(--bg-hover\\)/var\\(--ds-color-surface-strong\\)/g' -e 's/var\\(--bg\\)/var\\(--ds-color-bg\\)/g' -e 's/var\\(--border-hover\\)/rgba\\(94,106,210,0.5\\)/g' -e 's/var\\(--border\\)/var\\(--ds-color-border\\)/g' -e 's/var\\(--text-primary\\)/var\\(--ds-color-text-primary\\)/g' -e 's/var\\(--text-secondary\\)/var\\(--ds-color-text-secondary\\)/g' -e 's/var\\(--text-muted\\)/var\\(--ds-color-text-muted\\)/g' -e 's/var\\(--accent-hover\\)/var\\(--ds-color-accent-hover\\)/g' -e 's/var\\(--accent-dim\\)/var\\(--ds-color-surface-tint\\)/g' -e 's/var\\(--accent-glow\\)/rgba\\(94,106,210,0.25\\)/g' -e 's/var\\(--accent\\)/var\\(--ds-color-accent\\)/g' -e 's/var\\(--radius-sm\\)/var\\(--ds-radius-sm\\)/g' -e 's/var\\(--radius-md\\)/var\\(--ds-radius-md\\)/g' -e 's/var\\(--font\\)/var\\(--ds-font-sans\\)/g' -e 's/var\\(--mono\\)/var\\(--ds-font-mono\\)/g' 'c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/image-resizer.html')",
+      "Bash(echo \"exit: $?\")",
+      "Bash(gh pr:*)",
+      "Bash(gh --version)",
+      "Bash(gh auth:*)",
+      "Bash(where gh:*)",
+      "Read(//c/Users/Windows11/**)",
+      "Read(//c/Program Files/**)",
+      "Bash(powershell.exe -Command \"Get-Command gh -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "Bash(powershell.exe -Command \"gh --version\")",
+      "Bash(powershell.exe -Command \"gh auth status\")",
+      "Bash('/c/Program Files/GitHub CLI/gh.exe' --version)",
+      "Bash('/c/Program Files/GitHub CLI/gh.exe' auth status)"
     ]
   }
 }

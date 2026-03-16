@@ -152,6 +152,38 @@ When creating a new tool page, follow this checklist:
 9. Use `ds-tool-textarea` for primary text input areas.
 10. Keep only page-specific business CSS local — do not re-implement nav, header, or base styles.
 
+## Interaction Quality Checklist
+
+Every interactive element must satisfy this checklist before shipping:
+
+### Button Groups / Option Selectors
+
+- Every clickable option button that belongs to a group (tabs, presets, segment controls) **must** have a `.active` CSS class defined — visually identical to its `:hover` style so selected = highlighted.
+- The JS handler **must** (1) remove `.active` from all siblings in the group, (2) add `.active` to the clicked element.
+- Mutually exclusive groups (e.g. Quick Scale vs. Social Media Presets) must also clear each other's `.active` on click.
+
+### Standard `.active` Pattern
+
+```css
+/* hover and active should look the same */
+.your-btn:hover  { color: var(--accent); background: var(--accent-dim); border-color: rgba(94,106,210,0.3); }
+.your-btn.active { color: var(--accent); background: var(--accent-dim); border-color: rgba(94,106,210,0.3); }
+```
+
+```js
+// in every click handler for a grouped button:
+container.querySelectorAll('.your-btn').forEach(b => b.classList.remove('active'));
+clickedBtn.classList.add('active');
+```
+
+### Copy / Action Buttons
+
+- Must show a temporary `.copied` / `.done` state (change label + icon) for ~1.5 s after the action.
+
+### Inputs with Side Effects
+
+- After any preset/option click that changes an input value, the corresponding output/preview must update immediately in the same handler — do not rely on the user re-triggering an `input` event.
+
 ## Reusable Tool Page Patterns Already Established
 
 ### Shared Tool Skeleton

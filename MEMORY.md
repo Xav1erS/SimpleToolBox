@@ -68,6 +68,27 @@ Shared capabilities already in place:
 - Original file had encoding corruption and was rebuilt
 - Original URL encode/decode behavior and key SEO metadata were preserved
 
+#### `public/tools/hash-generator.html`
+
+- Migration completed
+- Established the "vertical-stack panels" tool page pattern (input panel + results panel, no side-by-side workbench)
+- Shared classes now control nav, header, pane headers/labels/actions/buttons, and textarea
+- Kept local: underline tabs (Text/File), column-centered drop zone, hash result rows, case toggle, file info strip
+
+#### `public/tools/timestamp.html`
+
+- Migration completed
+- Established the "converter form cards" tool page pattern (live clock + multiple input→result converter cards, vertical stack)
+- Shared classes now control nav and header
+- Kept local: `.main` (flex column 900px), `.live-clock`, `.card*`, `.field-*`, `.btn-convert`, `.seg-ctrl`, `.result-*`, `.info-card`, related tools
+
+#### `public/tools/word-counter.html`
+
+- Migration completed
+- Established the "wide editor + sidebar stats cards" tool page pattern (left textarea + right column of multiple stat cards)
+- Shared classes now control nav, header, pane header/label/actions/buttons, textarea, pane footer, stat label
+- Kept local: `.main` grid layout (1fr 300px), `.editor-panel` container, `.stats-col`, all stat card internals, platform bars, related tools section
+
 ## Migration Principles
 
 - Minimum necessary change

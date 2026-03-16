@@ -8,7 +8,15 @@
       "Bash(do)",
       "Bash(echo \"=== $f.html ===\")",
       "Read(//c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(do grep:*)",
+      "Bash(grep -rn \"\\\\.related-tools\\\\|\\\\.related-grid\\\\|\\\\.related-card\" /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
+      "Bash(echo \"total pages with related-tools CSS\" grep -rln \"\\\\.related-tools\" /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
+      "Bash(grep -rln \"\\\\.card {\" /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
+      "Bash(ls /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
+      "Bash(do echo:*)",
+      "Bash(TOOLS_DIR=\"/c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools\" __NEW_LINE_5a0a62494ce5a4cf__ echo \"=== 检查残留的 .related- CSS 规则 ===\" grep -rn \"\\\\.related-tools\\\\|\\\\.related-title\\\\|\\\\.related-grid\\\\|\\\\.related-card\\\\|\\\\.related-icon\\\\|\\\\.related-name\\\\|\\\\.related-desc\" $TOOLS_DIR/*.html __NEW_LINE_5a0a62494ce5a4cf__ echo \"\" echo \"=== 检查 HTML 中残留的旧 class 名 ===\" grep -rn 'class=\"\"\"\"related-\\\\|class=\"\"\"\"card\"\"\"\"\\\\|class=\"\"\"\"card-header\"\"\"\"\\\\|class=\"\"\"\"card-body\"\"\"\"' $TOOLS_DIR/*.html __NEW_LINE_5a0a62494ce5a4cf__ echo \"\" echo \"=== 检查 ds-related-* 类是否正确写入 ===\" grep -c \"ds-related-tools\" $TOOLS_DIR/*.html)",
+      "Read(//c/Users/Windows11/Documents/GitHub/SimpleToolBox/=== 检查 timestamp.html 保留的 .card-title/.card-badge/**)"
     ]
   }
 }

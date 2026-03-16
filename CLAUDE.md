@@ -75,6 +75,83 @@ These pages already use shared navigation, hero, page containers, cards, inputs,
   - The page was rebuilt because the original file had encoding corruption and broken nodes.
   - Shared classes now control nav, header, two-pane workbench, actions, and notes.
 
+- `public/tools/hash-generator.html`
+  - Established the "vertical-stack panels" tool page pattern (input panel + results panel).
+  - Shared classes control nav, header, pane headers/labels/actions/buttons, and textarea.
+  - Kept local: underline tabs (Text/File), column-centered drop zone, hash result rows, case toggle.
+
+- `public/tools/word-counter.html`
+  - Established the "editor + stats column" pattern (1fr + 300px right column).
+  - Shared classes control nav, header, pane header/actions/buttons, textarea, pane footer.
+  - Kept local: stat-card grid, time-row, word-row, platform-bar.
+
+- `public/tools/timestamp.html`
+  - Single-column stack of converter cards.
+  - Shared classes control nav and header.
+  - Kept local: live-clock, card, field-row, result-box, btn-convert.
+
+- `public/tools/uuid-generator.html`
+  - Uses `ds-tool-main ds-tool-split` + `ds-tool-sidepanel` + `ds-tool-sidepanel__section`.
+  - Kept local: slider, checkboxes, uuid-row list, actions buttons, info-card.
+
+- `public/tools/slug-generator.html`
+  - Single-column stack (`ds-tool-main ds-tool-stack`), cards kept local.
+  - Kept local: card container, options-row, segment controls, slug output, copy buttons, SEO hint.
+
+- `public/tools/lorem-ipsum-generator.html`
+  - Uses `ds-tool-main ds-tool-split` + `ds-tool-sidepanel` pattern.
+  - Kept local: theme-grid, output-panel/header/footer, output-textarea.
+
+- `public/tools/random-number-generator.html`
+  - Three layout modes (numbers/list/dice). All use local `.main`/`.list-main`/`.dice-main`.
+  - Shared classes control nav and header only.
+
+- `public/tools/unit-converter.html`
+  - Single-column stack with local `.body-wrap`.
+  - Kept local: category tabs, converter-card, ref-table.
+
+- `public/tools/youtube-thumbnail.html`
+  - Single-column layout. Shared classes control nav and header.
+
+- `public/tools/color-picker.html`
+  - Sidebar (340px) + color preview panel layout. Shared classes control nav and header.
+
+- `public/tools/image-resizer.html`
+  - Sidebar (300px) + preview panel layout. Shared classes control nav and header.
+
+- `public/tools/jwt-decoder.html`
+  - Single-column stack with three-column card grid output. Shared classes control nav and header.
+
+- `public/tools/html-entities.html`
+  - Two-pane IO + reference table with modebar. Shared classes control nav and header.
+
+- `public/tools/markdown-preview.html`
+  - Full-height editor + preview split layout. Shared classes control nav and header.
+  - Kept local: workspace, toolbar, split-area, editor/preview pane, Markdown render styles.
+
+- `public/tools/regex-tester.html`
+  - Pattern input UI + test area + match detail list. Shared classes control nav and header.
+  - Kept local: pattern-bar, flag checkboxes, match highlights, match list, quick-ref panel.
+
+- `public/tools/cron-builder.html`
+  - Cron expression builder with 5-field grid. Shared classes control nav and header.
+  - Kept local: expr-bar, fields-grid, field-card, field controls, runs-list, presets.
+
+## Migration Checklist for New Tool Pages
+
+When creating a new tool page, follow this checklist:
+
+1. Link `../styles/design-system.css` (no Google Fonts needed — DS provides Inter + JetBrains Mono).
+2. Use DS token aliases in `:root` (not hardcoded hex values).
+3. Add logo override: `.ds-tool-nav-logo-icon { background: none !important; ... }`.
+4. Use `ds-tool-nav` + `ds-tool-nav-*` for the sticky nav bar.
+5. Use `ds-tool-header` + `ds-tool-header__*` for the page header band.
+6. Use `ds-tool-main` (+ `ds-tool-split` or `ds-tool-stack`) for the main content container.
+7. Use `ds-tool-sidepanel` + `ds-tool-sidepanel__section` for 300px left settings panels.
+8. Use `ds-tool-pane__header/label/actions/btn/footer` for pane internals.
+9. Use `ds-tool-textarea` for primary text input areas.
+10. Keep only page-specific business CSS local — do not re-implement nav, header, or base styles.
+
 ## Reusable Tool Page Patterns Already Established
 
 ### Shared Tool Skeleton
@@ -106,15 +183,14 @@ These pages already use shared navigation, hero, page containers, cards, inputs,
 - `ds-tool-sidepanel*`
 - `ds-tool-preview*`
 
-## Recommended Next Steps
+## Migration Status
 
-Pick another tool page with a different structural pattern so the design system can cover more cases.
+**All 21 tool pages are now migrated.** No further migration work is needed.
 
-Recommended order:
+Future work should focus on:
 
-1. Attach `design-system.css` and existing `ds-*` skeleton classes.
-2. Remove local CSS that is already covered by the shared layer.
-3. Keep only page-specific business styles and behavior.
+- Extracting repeated local patterns (`.related-tools`, `.card`, etc.) into shared DS components if they appear in 3+ pages.
+- Adding new tool pages using the Migration Checklist above.
 
 ## Files To Read First
 

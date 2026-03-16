@@ -24,7 +24,8 @@
       "Bash(echo \"MISSING: $f\")",
       "Bash(fi)",
       "Bash(node -e \":*)",
-      "Bash(xxd \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/styles/design-components.css\")"
+      "Bash(xxd \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/styles/design-components.css\")",
+      "Bash(chmod +x \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox/.git/hooks/pre-commit\")"
     ]
   }
 }

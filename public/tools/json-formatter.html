@@ -41,9 +41,8 @@
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
     /* NAV */
-    .nav-logo-icon { width: 28px; height: 28px; background: linear-gradient(135deg, #5E6AD2, #9B8DEB); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+    .ds-tool-nav-logo-icon { background: none !important; border-radius: 0 !important; border: none !important; width: auto !important; height: auto !important; }
     .logo-img { object-fit: contain; display: block; border-radius: 6px; }
-    .nav-logo-icon { background: none !important; border-radius: 0 !important; border: none !important; width: auto !important; height: auto !important; }
 
     /* TOOL HEADER */
     .tool-title-icon { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--accent-dim); border: 1px solid rgba(94,106,210,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; }
@@ -122,21 +121,20 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8B8B9A;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 
-<nav class="nav ds-nav">
-  
-  <a href="../index.html" class="nav-logo ds-nav__brand">
-    <div class="nav-logo-icon"><img src="../logo 1.svg" class="logo-img ds-nav__logo" width="28" height="28" alt="Simple ToolBox" /></div>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-tool-nav-logo">
+    <div class="ds-tool-nav-logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox
   </a>
-  <div class="nav-divider ds-tool-nav-divider"></div>
-  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
-  <div class="nav-divider ds-tool-nav-divider"></div>
-  <div class="nav-tool-name ds-tool-nav-name">
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
     JSON Formatter
-    <span class="nav-tool-badge ds-tool-badge">format</span>
+    <span class="ds-tool-badge">format</span>
   </div>
-  <div class="nav-spacer ds-tool-spacer"></div>
-  <div class="nav-privacy ds-tool-privacy"><span class="nav-privacy-dot ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
 </nav>
 
 <div class="tool-header ds-tool-header">
@@ -383,11 +381,13 @@
 
 </div>
 
+<script src="../scripts/tool-persist.js"></script>
 <script>
   // ── STATE ──────────────────────────────────────────────
   let indentValue  = 4;
   let currentMode  = 'format'; // 'format' | 'json-csv' | 'csv-json'
   const HISTORY_KEY = 'stb_json_history';
+  const PERSIST_ID  = 'json-formatter';
   const EXAMPLE_JSON = `[\n  { "id": 1, "name": "Alice", "role": "engineer", "active": true },\n  { "id": 2, "name": "Bob",   "role": "designer",  "active": false },\n  { "id": 3, "name": "Carol","role": "manager",   "active": true }\n]`;
 
   // ── ELEMENT REFS ───────────────────────────────────────
@@ -503,8 +503,10 @@
     outputStat.textContent = `${oc.toLocaleString()} chars`;
   }
 
-  let validateTimer;
+  let validateTimer, _persistTimer;
   inputText.addEventListener('input', () => {
+    clearTimeout(_persistTimer);
+    _persistTimer = setTimeout(() => ToolPersist.save(PERSIST_ID, { input: inputText.value }), 800);
     clearTimeout(validateTimer);
     validateTimer = setTimeout(() => {
       const raw = inputText.value.trim();
@@ -676,6 +678,10 @@
   document.getElementById('btnCopyJsonOut').addEventListener('click', () => copyText(jsonFromCsvOutput.value, document.getElementById('btnCopyJsonOut')));
 
   // ── INIT ───────────────────────────────────────────────
+  (function () {
+    const s = ToolPersist.load(PERSIST_ID);
+    if (s && s.input) { inputText.value = s.input; prettify(); }
+  })();
   updateStats();
 </script>
 </body>

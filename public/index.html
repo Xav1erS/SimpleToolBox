@@ -68,23 +68,6 @@
     ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
     /* ── NAV ── */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-      gap: 16px;
-      background: rgba(15,15,17,0.82);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--border);
-      transition: border-color var(--ds-duration-base);
-    }
-    .nav.scrolled { border-bottom-color: rgba(255,255,255,0.1); }
-
     .nav-logo {
       display: flex;
       align-items: center;
@@ -703,7 +686,7 @@
 <body class="ds-page">
 
 <!-- NAV -->
-<nav class="nav ds-nav" id="nav">
+<nav class="ds-nav" id="nav">
   <a href="index.html" class="nav-logo ds-nav__brand">
     <div class="nav-logo-icon"><img src="logo 1.svg" class="logo-img ds-nav__logo" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox

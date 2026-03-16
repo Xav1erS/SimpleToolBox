@@ -61,9 +61,8 @@
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
     /* NAV */
-    .nav-logo-icon { width: 28px; height: 28px; background: linear-gradient(135deg, #5E6AD2, #9B8DEB); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+    .ds-tool-nav-logo-icon { background: none !important; border-radius: 0 !important; border: none !important; width: auto !important; height: auto !important; }
     .logo-img { object-fit: contain; display: block; border-radius: 6px; }
-    .nav-logo-icon { background: none !important; border-radius: 0 !important; border: none !important; width: auto !important; height: auto !important; }
 
     /* TOOL HEADER */
     .tool-title-icon {
@@ -116,22 +115,21 @@
 <noscript><div style="text-align:center;padding:40px;color:#8B8B9A;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 
 <!-- NAV -->
-<nav class="nav ds-nav">
-  
-  <a href="../index.html" class="nav-logo ds-nav__brand">
-    <div class="nav-logo-icon"><img src="../logo 1.svg" class="logo-img ds-nav__logo" width="28" height="28" alt="Simple ToolBox" /></div>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-tool-nav-logo">
+    <div class="ds-tool-nav-logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox
   </a>
-  <div class="nav-divider ds-tool-nav-divider"></div>
-  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
-  <div class="nav-divider ds-tool-nav-divider"></div>
-  <div class="nav-tool-name ds-tool-nav-name">
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
     Base64 Encoder / Decoder
-    <span class="nav-tool-badge ds-tool-badge">encode</span>
+    <span class="ds-tool-badge">encode</span>
   </div>
-  <div class="nav-spacer ds-tool-spacer"></div>
-  <div class="nav-privacy ds-tool-privacy">
-    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
     Runs locally — no data sent
   </div>
 </nav>
@@ -284,10 +282,20 @@
 
 </div>
 
+<script src="../scripts/tool-persist.js"></script>
 <script>
   // ── State ────────────────────────────────────────────────
   let mode    = 'encode';
   let urlSafe = false;
+
+  // ── Persistence ──────────────────────────────────────────
+  const PERSIST_ID = 'base64';
+  let _persistTimer;
+  function persistState() {
+    clearTimeout(_persistTimer);
+    _persistTimer = setTimeout(() =>
+      ToolPersist.save(PERSIST_ID, { mode, urlSafe, input: inputText.value }), 800);
+  }
 
   // ── DOM refs ─────────────────────────────────────────────
   const btnEncode     = document.getElementById('btnEncode');
@@ -388,13 +396,14 @@
     dropZone.style.display  = m === 'encode' ? '' : 'none';
     outputPanel.classList.remove('has-error');
     run();
+    persistState();
   }
 
   btnEncode.addEventListener('click', () => setMode('encode'));
   btnDecode.addEventListener('click', () => setMode('decode'));
 
   // ── URL-safe toggle ──────────────────────────────────────
-  urlSafeToggle.addEventListener('change', () => { urlSafe = urlSafeToggle.checked; run(); });
+  urlSafeToggle.addEventListener('change', () => { urlSafe = urlSafeToggle.checked; run(); persistState(); });
 
   // ── Swap ─────────────────────────────────────────────────
   btnSwap.addEventListener('click', () => {
@@ -405,7 +414,7 @@
   });
 
   // ── Live update ──────────────────────────────────────────
-  inputText.addEventListener('input', run);
+  inputText.addEventListener('input', () => { run(); persistState(); });
 
   // ── Clipboard helpers ────────────────────────────────────
   async function copyToClipboard(text, btn, label) {
@@ -502,7 +511,17 @@
   });
 
   // ── Init ─────────────────────────────────────────────────
-  setMode('encode');
+  (function () {
+    const s = ToolPersist.load(PERSIST_ID);
+    if (s) {
+      urlSafe = !!s.urlSafe;
+      urlSafeToggle.checked = urlSafe;
+      setMode(s.mode === 'decode' ? 'decode' : 'encode');
+      if (s.input) { inputText.value = s.input; run(); }
+    } else {
+      setMode('encode');
+    }
+  })();
 </script>
 </body>
 </html>

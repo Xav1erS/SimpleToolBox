@@ -233,6 +233,59 @@ Future work should focus on:
 - Extracting repeated local patterns (`.related-tools`, `.card`, etc.) into shared DS components if they appear in 3+ pages.
 - Adding new tool pages using the Migration Checklist above.
 
+## 300+ Tools Roadmap
+
+### 目标
+
+将网站做到 300+ 个纯前端工具，全部浏览器端运行，不上传数据。当前已有 21 个工具。
+
+详细优先级排序见 `# SimpleToolBox — 工具开发优先级排序.md`（仓库根目录）。
+
+### 工具分类与优先级
+
+| 优先级 | 类别 | 示例工具 |
+| -------- | ---- | ------- |
+| 🔴 高 | 文本处理 | 行去重、行排序、大小写转换、文本差异对比、空白清理、字符统计 |
+| 🔴 高 | 开发工具 | CSS minify、JS minify、HTML formatter、YAML↔JSON、JSON↔CSV 扩展、diff viewer |
+| 🔴 高 | 编码/加密 | Base58、Base32、AES 加解密、HMAC、SHA-3、bcrypt 验证 |
+| 🟡 中 | 数字/数学 | 进制转换、科学计数、排列组合、斐波那契、质数生成 |
+| 🟡 中 | 时间日期 | 时区转换、工作日计算、日期差值、倒计时生成器 |
+| 🟡 中 | 颜色/设计 | 调色板生成、渐变生成器、对比度检查（WCAG）、色盲模拟 |
+| 🟡 中 | 网络/URL | UserAgent 解析、端口号参考、MIME 类型查询、URL 构建器 |
+| 🟢 低 | 生活工具 | BMI 计算、汇率换算、贷款计算、卡路里换算 |
+
+### 开发效率原则
+
+1. **工具粒度要小**：一个工具只做一件事。"文本工具集"应拆成"去除重复行"、"行排序"、"空白清理"等独立工具 — SEO 更好，开发更快。
+2. **同类工具批量开发**：同类工具共享 95% 的 HTML/CSS 骨架，只替换核心 JS 逻辑，一次可产出 3-5 个工具。
+3. **引入成熟库**：纯计算类工具优先用 `dayjs`、`math.js`、`fflate` 等库，不手写复杂算法。
+4. **模板复用**：每个新工具从最接近的已有工具复制骨架，按 Migration Checklist 逐项对照。
+
+### 分阶段里程碑
+
+| 阶段 | 目标工具数 | 重点方向 |
+| ---- | --------- | ------- |
+| 阶段一 | 50 个 | 文本、开发、编码类高频工具 |
+| 阶段二 | 100 个 | 数学、颜色、时间、网络类 |
+| 阶段三 | 200 个 | 细分场景专业工具 |
+| 阶段四 | 300+ 个 | 长尾需求、小众但有用 |
+
+### all-tools.html 维护规则
+
+- 工具数超过 50 个时，必须为 `all-tools.html` 加入分类筛选功能。
+- 每次新增工具后立即更新 `all-tools.html` 工具列表，分类须正确。
+- 每个工具条目需包含：工具名、描述、所属分类、页面链接。
+
+### 新工具上线前检查
+
+除 Migration Checklist 和 Interaction Quality Checklist 外，还需确认：
+
+- [ ] `<title>` 和 `<meta description>` 对该工具唯一且描述准确
+- [ ] `ld+json` Schema 已填写（`SoftwareApplication` 类型）
+- [ ] `all-tools.html` 已更新，分类正确
+- [ ] Related Tools 区域指向相关工具（至少 2 个）
+- [ ] 页面在移动端布局正常（≤480px）
+
 ## Files To Read First
 
 If Claude Code takes over, read these first:

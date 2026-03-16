@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>JSONPath Tester - Query JSON with JSONPath - Simple ToolBox</title>
+  <meta name="description" content="Test JSONPath expressions against JSON data. Supports $, *, [], ?() filter expressions. Real-time results. Free, browser-based, no data sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/jsonpath-tester.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/jsonpath-tester.html" />
+  <meta property="og:title" content="JSONPath Tester - Query JSON with JSONPath - Simple ToolBox" />
+  <meta property="og:description" content="Test JSONPath expressions against JSON data. Supports $, *, [], ?() filter expressions. Real-time results. Free, browser-based, no data sent." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSONPath Tester","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Test JSONPath expressions against JSON data. Supports $, *, [], ?() filter expressions. Real-time results. Free, browser-based, no data sent.","featureList":["JSONPath query","Real-time results","Filter expressions","Wildcard support","Pretty-print output"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <script src="https://cdn.jsdelivr.net/npm/jsonpath-plus@10/dist/index-browser-umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
+    .io-textarea:focus { background: rgba(94,106,210,0.025); }
+    .io-panel.has-error .io-textarea { color: #ef4444; }
+    .io-panel.has-error .io-error { display: block; }
+    .io-panel.has-error .io-stat { display: none; }
+    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
+    .info-text code {
+      font-family: var(--ds-font-mono);
+      font-size: 11px;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    /* Path bar */
+    .path-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 10px 16px;
+    }
+    .path-prefix {
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      color: var(--ds-color-text-muted);
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .path-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--ds-font-mono);
+      font-size: 14px;
+      color: var(--ds-color-text-primary);
+    }
+    .path-input::placeholder { color: var(--ds-color-text-muted); }
+    .path-run-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--ds-color-accent);
+      color: #fff;
+      border-radius: var(--ds-radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .path-run-btn:hover { opacity: 0.88; }
+
+    /* Results panel */
+    .results-panel {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+    }
+    .results-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--ds-color-border);
+      background: rgba(255,255,255,0.02);
+    }
+    .results-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex: 1;
+    }
+    .results-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--ds-color-surface-tint);
+      color: var(--ds-color-accent);
+    }
+    .results-badge.zero { background: rgba(255,255,255,0.04); color: var(--ds-color-text-muted); }
+    .results-badge.error { background: rgba(239,68,68,0.12); color: #ef4444; }
+    .results-output {
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ds-color-text-primary);
+      padding: 16px;
+      white-space: pre-wrap;
+      word-break: break-all;
+      min-height: 160px;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+    .results-empty {
+      color: var(--ds-color-text-muted);
+      font-family: var(--ds-font-sans);
+      font-size: 13px;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .results-error {
+      color: #ef4444;
+      font-family: var(--ds-font-sans);
+      font-size: 13px;
+      padding: 16px;
+    }
+    .results-no-match {
+      color: var(--ds-color-text-muted);
+      font-family: var(--ds-font-sans);
+      font-size: 13px;
+      padding: 16px;
+    }
+
+    /* Example chips */
+    .example-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .example-chip {
+      font-family: var(--ds-font-mono);
+      font-size: 11px;
+      padding: 3px 9px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      border-radius: 20px;
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .example-chip:hover {
+      color: var(--ds-color-accent);
+      border-color: rgba(94,106,210,0.3);
+      background: var(--ds-color-surface-tint);
+    }
+
+    @media (max-width: 720px) {
+      .ds-related-grid { grid-template-columns: 1fr; }
+      .path-bar { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body class="ds-page">
+<noscript>
+  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+    This tool requires JavaScript to run.
+  </div>
+</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    JSONPath Tester
+    <span class="nav-tool-badge ds-tool-badge">json</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="tool-header ds-tool-header">
+  <div class="tool-header-inner ds-tool-header__inner">
+    <div class="tool-title-row ds-tool-header__row">
+      <div class="tool-title-icon ds-tool-header__icon">&#128269;</div>
+      <h1 class="tool-title ds-tool-header__title">JSONPath Tester</h1>
+    </div>
+    <p class="tool-desc-text ds-tool-header__desc">
+      Test JSONPath expressions against JSON data. Supports <code style="font-family:var(--ds-font-mono);font-size:12px;background:rgba(255,255,255,0.06);padding:1px 4px;border-radius:3px">$</code>,
+      wildcards, array slices, and filter expressions. Real-time results in your browser.
+    </p>
+    <div class="tool-tags ds-tool-tag-row">
+      <span class="tool-tag-pill ds-tag">JSONPath</span>
+      <span class="tool-tag-pill ds-tag">JSON query</span>
+      <span class="tool-tag-pill ds-tag">filter expressions</span>
+      <span class="tool-tag-pill ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="main ds-tool-main ds-tool-stack">
+
+  <!-- JSON Input Panel -->
+  <div class="io-panel ds-tool-pane" id="inputPanel">
+    <div class="io-header ds-tool-pane__header">
+      <span class="io-label ds-tool-pane__label">JSON Input</span>
+      <div class="io-actions ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnPaste">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+          Paste
+        </button>
+        <button class="io-btn ds-tool-pane__btn" id="btnFormatJson">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
+          Format JSON
+        </button>
+        <button class="io-btn ds-tool-pane__btn" id="btnClearInput">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          Clear
+        </button>
+      </div>
+    </div>
+    <textarea class="io-textarea ds-tool-textarea" id="jsonInput" placeholder='Paste JSON here, e.g. {"store":{"book":[{"title":"A"},{"title":"B"}]}}' spellcheck="false" autocomplete="off"></textarea>
+    <div class="io-footer ds-tool-pane__footer">
+      <span class="io-stat ds-tool-stat" id="jsonStat">0 chars</span>
+      <span class="io-error ds-tool-error" id="jsonError">Invalid JSON</span>
+    </div>
+  </div>
+
+  <!-- Path bar -->
+  <div class="path-bar">
+    <span class="path-prefix">Path:</span>
+    <input type="text" class="path-input" id="pathInput" placeholder="$.store.book[*].title" spellcheck="false" autocomplete="off" />
+    <button class="path-run-btn" id="btnRun">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Run
+    </button>
+  </div>
+
+  <!-- Example path chips -->
+  <div class="example-chips" id="exampleChips">
+    <span style="font-size:11px;color:var(--ds-color-text-muted);align-self:center">Examples:</span>
+    <button class="example-chip" data-path="$">$ (root)</button>
+    <button class="example-chip" data-path="$..*">$..*</button>
+    <button class="example-chip" data-path="$[*]">$[*]</button>
+    <button class="example-chip" data-path="$.store.book[*].title">$.store.book[*].title</button>
+    <button class="example-chip" data-path="$.store.book[0]">$.store.book[0]</button>
+    <button class="example-chip" data-path="$.store.book[?(@.price < 10)]">$.store.book[?(@.price &lt; 10)]</button>
+  </div>
+
+  <!-- Results panel -->
+  <div class="results-panel">
+    <div class="results-header">
+      <span class="results-label">Results</span>
+      <span class="results-badge zero" id="resultsBadge">—</span>
+      <button class="io-btn ds-tool-pane__btn" id="btnCopyResults">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy
+      </button>
+    </div>
+    <div class="results-output" id="resultsOutput">
+      <div class="results-empty">Paste JSON and enter a JSONPath expression to see results</div>
+    </div>
+  </div>
+
+  <div class="info-card ds-tool-note">
+    <span class="info-icon ds-tool-note__icon">&#128161;</span>
+    <div class="info-text ds-tool-note__text">
+      <strong>JSONPath syntax:</strong>
+      <code>$</code> = root &middot;
+      <code>.</code> = child &middot;
+      <code>[*]</code> = all array items &middot;
+      <code>[0]</code> = index &middot;
+      <code>[0:2]</code> = slice &middot;
+      <code>..</code> = recursive descent &middot;
+      <code>?(@.price &lt; 10)</code> = filter expression.
+      Example: <code>$.store.book[?(@.category=="fiction")].title</code>
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="json-formatter.html" class="ds-related-card">
+        <span class="ds-related-icon">&#10003;</span>
+        <div>
+          <div class="ds-related-name">JSON Formatter</div>
+          <div class="ds-related-desc">Format and validate JSON data</div>
+        </div>
+      </a>
+      <a href="regex-tester.html" class="ds-related-card">
+        <span class="ds-related-icon">&#128269;</span>
+        <div>
+          <div class="ds-related-name">Regex Tester</div>
+          <div class="ds-related-desc">Test regular expressions live</div>
+        </div>
+      </a>
+      <a href="base64.html" class="ds-related-card">
+        <span class="ds-related-icon">&#128760;</span>
+        <div>
+          <div class="ds-related-name">Base64 Encoder</div>
+          <div class="ds-related-desc">Encode and decode Base64 strings</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let runTimer = null;
+  let lastResults = '';
+
+  const jsonInput = document.getElementById('jsonInput');
+  const pathInput = document.getElementById('pathInput');
+  const inputPanel = document.getElementById('inputPanel');
+  const jsonStat = document.getElementById('jsonStat');
+  const jsonError = document.getElementById('jsonError');
+  const resultsOutput = document.getElementById('resultsOutput');
+  const resultsBadge = document.getElementById('resultsBadge');
+
+  function getJSONPathFn() {
+    // Try various export patterns
+    if (window.JSONPathBrowserUmd && window.JSONPathBrowserUmd.JSONPath) return window.JSONPathBrowserUmd.JSONPath;
+    if (window.JSONPath && typeof window.JSONPath === 'function') return window.JSONPath;
+    if (window.JSONPath && window.JSONPath.JSONPath) return window.JSONPath.JSONPath;
+    // jsonpath-plus v10 may export directly
+    return null;
+  }
+
+  function runQuery() {
+    const raw = jsonInput.value.trim();
+    const path = pathInput.value.trim();
+
+    inputPanel.classList.remove('has-error');
+    resultsBadge.className = 'results-badge zero';
+    resultsBadge.textContent = '—';
+    lastResults = '';
+
+    if (!raw) {
+      resultsOutput.innerHTML = '<div class="results-empty">Paste JSON and enter a JSONPath expression to see results</div>';
+      jsonStat.textContent = '0 chars';
+      return;
+    }
+
+    jsonStat.textContent = `${raw.length.toLocaleString()} chars`;
+
+    let parsed;
+    try {
+      parsed = JSON.parse(raw);
+      inputPanel.classList.remove('has-error');
+    } catch (e) {
+      inputPanel.classList.add('has-error');
+      jsonError.textContent = `Invalid JSON: ${e.message}`;
+      resultsOutput.innerHTML = '<div class="results-error">Fix the JSON input first</div>';
+      resultsBadge.className = 'results-badge error';
+      resultsBadge.textContent = 'JSON error';
+      return;
+    }
+
+    if (!path) {
+      resultsOutput.innerHTML = '<div class="results-empty">Enter a JSONPath expression above</div>';
+      return;
+    }
+
+    const fn = getJSONPathFn();
+    if (!fn) {
+      resultsOutput.innerHTML = '<div class="results-error">JSONPath library not loaded. Please check your connection.</div>';
+      resultsBadge.className = 'results-badge error';
+      resultsBadge.textContent = 'lib error';
+      return;
+    }
+
+    try {
+      const results = fn({ path, json: parsed, wrap: true });
+      if (!results || results.length === 0) {
+        resultsOutput.innerHTML = '<div class="results-no-match">No matches found</div>';
+        resultsBadge.className = 'results-badge zero';
+        resultsBadge.textContent = '0 results';
+        lastResults = '';
+      } else {
+        const pretty = JSON.stringify(results, null, 2);
+        lastResults = pretty;
+        const escaped = pretty
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+        resultsOutput.innerHTML = escaped;
+        resultsBadge.className = 'results-badge';
+        resultsBadge.textContent = `${results.length} result${results.length !== 1 ? 's' : ''}`;
+      }
+    } catch (e) {
+      resultsOutput.innerHTML = `<div class="results-error">Error: ${e.message}</div>`;
+      resultsBadge.className = 'results-badge error';
+      resultsBadge.textContent = 'error';
+      lastResults = '';
+    }
+  }
+
+  function scheduleRun() {
+    clearTimeout(runTimer);
+    runTimer = setTimeout(runQuery, 300);
+  }
+
+  jsonInput.addEventListener('input', scheduleRun);
+  pathInput.addEventListener('input', scheduleRun);
+  document.getElementById('btnRun').addEventListener('click', runQuery);
+
+  document.getElementById('btnPaste').addEventListener('click', async () => {
+    try { jsonInput.value = await navigator.clipboard.readText(); scheduleRun(); } catch {}
+  });
+
+  document.getElementById('btnFormatJson').addEventListener('click', () => {
+    const raw = jsonInput.value.trim();
+    if (!raw) return;
+    try {
+      jsonInput.value = JSON.stringify(JSON.parse(raw), null, 2);
+      inputPanel.classList.remove('has-error');
+      scheduleRun();
+    } catch (e) {
+      inputPanel.classList.add('has-error');
+      jsonError.textContent = `Invalid JSON: ${e.message}`;
+    }
+  });
+
+  document.getElementById('btnClearInput').addEventListener('click', () => {
+    jsonInput.value = '';
+    inputPanel.classList.remove('has-error');
+    jsonStat.textContent = '0 chars';
+    resultsOutput.innerHTML = '<div class="results-empty">Paste JSON and enter a JSONPath expression to see results</div>';
+    resultsBadge.className = 'results-badge zero';
+    resultsBadge.textContent = '—';
+    lastResults = '';
+  });
+
+  document.querySelectorAll('.example-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      pathInput.value = chip.dataset.path;
+      runQuery();
+    });
+  });
+
+  async function copyText(text, button) {
+    if (!text) return;
+    const originalHtml = button.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = originalHtml; }, 1500);
+  }
+
+  document.getElementById('btnCopyResults').addEventListener('click', () => {
+    copyText(lastResults || resultsOutput.innerText, document.getElementById('btnCopyResults'));
+  });
+</script>
+</body>
+</html>

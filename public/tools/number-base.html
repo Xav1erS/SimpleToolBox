@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Number Base Converter - Binary, Octal, Decimal, Hex - Simple ToolBox</title>
+  <meta
+    name="description"
+    content="Convert numbers between binary, octal, decimal, and hexadecimal instantly. Supports two's complement, bitwise operations preview, and large integers. Free, browser-based."
+  />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/number-base.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/number-base.html" />
+  <meta property="og:title" content="Number Base Converter - Simple ToolBox" />
+  <meta
+    property="og:description"
+    content="Convert numbers between binary, octal, decimal, and hexadecimal instantly. Free, browser-based, no data sent."
+  />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Number Base Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert numbers between binary (base 2), octal (base 8), decimal (base 10), and hexadecimal (base 16). Supports two's complement and bitwise AND/OR/XOR preview. Free and browser-based.","featureList":["Binary to decimal conversion","Hexadecimal converter","Octal converter","Two's complement display","Bitwise AND OR XOR preview","Real-time conversion"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* ── layout ─────────────────────────────────────── */
+    .main { max-width: 720px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 20px; }
+
+    /* ── base cards ──────────────────────────────────── */
+    .base-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .base-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.15s;
+    }
+    .base-card:focus-within { border-color: var(--ds-color-accent); }
+    .base-header { display: flex; align-items: center; justify-content: space-between; }
+    .base-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); }
+    .base-name  { font-size: 12px; color: var(--ds-color-text-secondary); }
+    .base-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--ds-font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ds-color-text-primary);
+      padding: 4px 0;
+    }
+    .base-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; font-size: 15px; }
+    .base-input.has-error { color: #ef4444; }
+    .base-footer { display: flex; align-items: center; justify-content: space-between; min-height: 20px; }
+    .base-bits { font-size: 11px; color: var(--ds-color-text-muted); font-family: var(--ds-font-mono); }
+    .base-copy {
+      font-size: 11px;
+      color: var(--ds-color-text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: var(--ds-radius-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+    .base-copy:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .base-copy.copied { color: #22c55e; }
+
+    /* ── bit operations panel ────────────────────────── */
+    .ops-panel {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+    }
+    .ops-header {
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--ds-color-border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ops-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); }
+    .ops-body { padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; }
+    .ops-row { display: flex; align-items: center; gap: 10px; font-family: var(--ds-font-mono); font-size: 13px; }
+    .ops-row-label { width: 80px; color: var(--ds-color-text-secondary); flex-shrink: 0; }
+    .ops-value { color: var(--ds-color-text-primary); word-break: break-all; }
+    .ops-value.muted { color: var(--ds-color-text-muted); font-style: italic; font-family: var(--ds-font-sans); font-size: 12px; }
+
+    /* ── bitwise calculator ──────────────────────────── */
+    .bitwise-panel {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+    }
+    .bitwise-header { padding: 10px 18px; border-bottom: 1px solid var(--ds-color-border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .bitwise-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px 18px; }
+    .bitwise-field { display: flex; flex-direction: column; gap: 4px; }
+    .bitwise-field-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); }
+    .bitwise-input {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      padding: 8px 12px;
+      font-family: var(--ds-font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ds-color-text-primary);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .bitwise-input:focus { border-color: var(--ds-color-accent); }
+    .bitwise-input.has-error { color: #ef4444; border-color: rgba(239,68,68,0.4); }
+    .bitwise-results { padding: 0 18px 14px; display: flex; flex-direction: column; gap: 8px; }
+    .bitwise-row { display: flex; align-items: center; gap: 10px; font-family: var(--ds-font-mono); font-size: 13px; }
+    .bitwise-row-label { width: 80px; color: var(--ds-color-text-secondary); flex-shrink: 0; font-weight: 600; }
+    .bitwise-row-val { flex: 1; color: var(--ds-color-text-primary); word-break: break-all; }
+    .bitwise-row-val.muted { color: var(--ds-color-text-muted); font-family: var(--ds-font-sans); font-style: italic; font-size: 12px; }
+    .bitwise-copy {
+      font-size: 11px; color: var(--ds-color-text-muted); background: none; border: 1px solid transparent;
+      border-radius: var(--ds-radius-sm); padding: 2px 8px; cursor: pointer;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .bitwise-copy:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .bitwise-copy.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    /* ── info note ───────────────────────────────────── */
+    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
+    .info-text code {
+      font-family: var(--ds-font-mono);
+      font-size: 11px;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    @media (max-width: 560px) {
+      .base-grid { grid-template-columns: 1fr; }
+      .base-input { font-size: 15px; }
+      .ds-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="ds-page">
+<noscript>
+  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+    This tool requires JavaScript to run.
+  </div>
+</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    Number Base Converter
+    <span class="nav-tool-badge ds-tool-badge">convert</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="tool-header ds-tool-header">
+  <div class="tool-header-inner ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🔢</div>
+      <h1 class="ds-tool-header__title">Number Base Converter</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Convert numbers between binary, octal, decimal, and hexadecimal in real time.
+      Edit any field and all others update instantly. No server, no tracking.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">binary</span>
+      <span class="ds-tag">octal</span>
+      <span class="ds-tag">decimal</span>
+      <span class="ds-tag">hexadecimal</span>
+      <span class="ds-tag">bitwise</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="base-grid">
+    <!-- Binary -->
+    <div class="base-card">
+      <div class="base-header">
+        <span class="base-label">BIN</span>
+        <span class="base-name">Base 2 · Binary</span>
+      </div>
+      <input class="base-input" id="inputBin" type="text" inputmode="text" placeholder="0" spellcheck="false" autocomplete="off" />
+      <div class="base-footer">
+        <span class="base-bits" id="bitsBin"></span>
+        <button class="base-copy" id="copyBin">Copy</button>
+      </div>
+    </div>
+
+    <!-- Octal -->
+    <div class="base-card">
+      <div class="base-header">
+        <span class="base-label">OCT</span>
+        <span class="base-name">Base 8 · Octal</span>
+      </div>
+      <input class="base-input" id="inputOct" type="text" inputmode="text" placeholder="0" spellcheck="false" autocomplete="off" />
+      <div class="base-footer">
+        <span class="base-bits" id="bitsOct"></span>
+        <button class="base-copy" id="copyOct">Copy</button>
+      </div>
+    </div>
+
+    <!-- Decimal -->
+    <div class="base-card">
+      <div class="base-header">
+        <span class="base-label">DEC</span>
+        <span class="base-name">Base 10 · Decimal</span>
+      </div>
+      <input class="base-input" id="inputDec" type="text" inputmode="numeric" placeholder="0" spellcheck="false" autocomplete="off" />
+      <div class="base-footer">
+        <span class="base-bits" id="bitsDec"></span>
+        <button class="base-copy" id="copyDec">Copy</button>
+      </div>
+    </div>
+
+    <!-- Hex -->
+    <div class="base-card">
+      <div class="base-header">
+        <span class="base-label">HEX</span>
+        <span class="base-name">Base 16 · Hexadecimal</span>
+      </div>
+      <input class="base-input" id="inputHex" type="text" inputmode="text" placeholder="0" spellcheck="false" autocomplete="off" />
+      <div class="base-footer">
+        <span class="base-bits" id="bitsHex"></span>
+        <button class="base-copy" id="copyHex">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bit operations -->
+  <div class="ops-panel">
+    <div class="ops-header">
+      <span class="ops-label">Bit Info</span>
+    </div>
+    <div class="ops-body" id="opsBody">
+      <div class="ops-row">
+        <span class="ops-row-label">Bit length</span>
+        <span class="ops-value muted" id="opsBitLen">—</span>
+      </div>
+      <div class="ops-row">
+        <span class="ops-row-label">Bytes</span>
+        <span class="ops-value muted" id="opsBytes">—</span>
+      </div>
+      <div class="ops-row">
+        <span class="ops-row-label">NOT (1's)</span>
+        <span class="ops-value muted" id="opsNot">—</span>
+      </div>
+      <div class="ops-row">
+        <span class="ops-row-label">Unsigned</span>
+        <span class="ops-value muted" id="opsUnsigned">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bitwise Calculator -->
+  <div class="bitwise-panel">
+    <div class="bitwise-header">
+      <span class="ops-label">Bitwise Calculator (32-bit)</span>
+      <span style="font-size:11px;color:var(--ds-color-text-muted);">Enter two decimal values below</span>
+    </div>
+    <div class="bitwise-inputs">
+      <div class="bitwise-field">
+        <span class="bitwise-field-label">Operand A (decimal)</span>
+        <input class="bitwise-input" id="bwA" type="text" inputmode="numeric" placeholder="0" spellcheck="false" autocomplete="off" />
+      </div>
+      <div class="bitwise-field">
+        <span class="bitwise-field-label">Operand B (decimal)</span>
+        <input class="bitwise-input" id="bwB" type="text" inputmode="numeric" placeholder="0" spellcheck="false" autocomplete="off" />
+      </div>
+    </div>
+    <div class="bitwise-results">
+      <div class="bitwise-row">
+        <span class="bitwise-row-label">A AND B</span>
+        <span class="bitwise-row-val muted" id="bwAnd">—</span>
+        <button class="bitwise-copy" data-bw="bwAnd">Copy</button>
+      </div>
+      <div class="bitwise-row">
+        <span class="bitwise-row-label">A OR B</span>
+        <span class="bitwise-row-val muted" id="bwOr">—</span>
+        <button class="bitwise-copy" data-bw="bwOr">Copy</button>
+      </div>
+      <div class="bitwise-row">
+        <span class="bitwise-row-label">A XOR B</span>
+        <span class="bitwise-row-val muted" id="bwXor">—</span>
+        <button class="bitwise-copy" data-bw="bwXor">Copy</button>
+      </div>
+      <div class="bitwise-row">
+        <span class="bitwise-row-label">A &lt;&lt; 1</span>
+        <span class="bitwise-row-val muted" id="bwShl">—</span>
+        <button class="bitwise-copy" data-bw="bwShl">Copy</button>
+      </div>
+      <div class="bitwise-row">
+        <span class="bitwise-row-label">A &gt;&gt; 1</span>
+        <span class="bitwise-row-val muted" id="bwShr">—</span>
+        <button class="bitwise-copy" data-bw="bwShr">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">💡</span>
+    <div class="info-text ds-tool-note__text">
+      Edit any field to convert. Supports non-negative integers up to 2<sup>53</sup>−1 (JavaScript safe integer limit).
+      <strong>HEX</strong> input is case-insensitive — <code>0xFF</code> and <code>ff</code> both work.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="unit-converter.html" class="ds-related-card">
+        <span class="ds-related-icon">📐</span>
+        <div>
+          <div class="ds-related-name">Unit Converter</div>
+          <div class="ds-related-desc">Convert length, weight, temperature and more</div>
+        </div>
+      </a>
+      <a href="timestamp.html" class="ds-related-card">
+        <span class="ds-related-icon">🕐</span>
+        <div>
+          <div class="ds-related-name">Timestamp Converter</div>
+          <div class="ds-related-desc">Convert Unix timestamps to human-readable dates</div>
+        </div>
+      </a>
+      <a href="hash-generator.html" class="ds-related-card">
+        <span class="ds-related-icon">🔐</span>
+        <div>
+          <div class="ds-related-name">Hash Generator</div>
+          <div class="ds-related-desc">Generate MD5, SHA-1, SHA-256 and more</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const fields = [
+    { id: 'inputBin', base: 2,  bitsId: 'bitsBin', copyId: 'copyBin' },
+    { id: 'inputOct', base: 8,  bitsId: 'bitsOct', copyId: 'copyOct' },
+    { id: 'inputDec', base: 10, bitsId: 'bitsDec', copyId: 'copyDec' },
+    { id: 'inputHex', base: 16, bitsId: 'bitsHex', copyId: 'copyHex' },
+  ];
+
+  const els = fields.map(f => ({
+    ...f,
+    input: document.getElementById(f.id),
+    bits:  document.getElementById(f.bitsId),
+    copy:  document.getElementById(f.copyId),
+  }));
+
+  const opsBitLen   = document.getElementById('opsBitLen');
+  const opsBytes    = document.getElementById('opsBytes');
+  const opsNot      = document.getElementById('opsNot');
+  const opsUnsigned = document.getElementById('opsUnsigned');
+
+  let updating = false;
+
+  function clearOps() {
+    opsBitLen.textContent   = '—';
+    opsBytes.textContent    = '—';
+    opsNot.textContent      = '—';
+    opsUnsigned.textContent = '—';
+    [opsBitLen, opsBytes, opsNot, opsUnsigned].forEach(el => {
+      el.className = 'ops-value muted';
+    });
+  }
+
+  function updateOps(n) {
+    if (n < 0n) { clearOps(); return; }
+    const binStr    = n.toString(2);
+    const bitLen    = binStr.length;
+    const byteCount = Math.ceil(bitLen / 8);
+    // bitwise NOT using 32-bit representation
+    const u32       = Number(BigInt.asUintN(32, n));
+    const notVal    = (~u32 >>> 0).toString(16).toUpperCase();
+
+    opsBitLen.textContent   = `${bitLen} bit${bitLen !== 1 ? 's' : ''}`;
+    opsBytes.textContent    = `${byteCount} byte${byteCount !== 1 ? 's' : ''}`;
+    opsNot.textContent      = `0x${notVal}  (32-bit NOT)`;
+    opsUnsigned.textContent = u32.toString();
+
+    [opsBitLen, opsBytes, opsNot, opsUnsigned].forEach(el => {
+      el.className = 'ops-value';
+    });
+  }
+
+  function convert(sourceBase, rawValue) {
+    if (updating) return;
+    updating = true;
+
+    const trimmed = rawValue.trim().replace(/^0x/i, '');
+
+    if (trimmed === '' || trimmed === '0') {
+      els.forEach(f => {
+        if (f.base !== sourceBase) f.input.value = trimmed === '' ? '' : '0';
+        f.input.classList.remove('has-error');
+        f.bits.textContent = '';
+      });
+      clearOps();
+      updating = false;
+      return;
+    }
+
+    let bigVal;
+    try {
+      bigVal = BigInt('0b0'); // test BigInt support
+      bigVal = BigInt(parseInt(trimmed, sourceBase));
+      if (isNaN(parseInt(trimmed, sourceBase))) throw new Error('invalid');
+      // validate strictly
+      const reMap = { 2: /^[01]+$/, 8: /^[0-7]+$/, 10: /^\d+$/, 16: /^[0-9a-fA-F]+$/ };
+      if (!reMap[sourceBase].test(trimmed)) throw new Error('invalid');
+    } catch {
+      // mark source as error, clear others
+      els.forEach(f => {
+        if (f.base === sourceBase) {
+          f.input.classList.add('has-error');
+          f.bits.textContent = 'invalid';
+        } else {
+          f.input.value = '';
+          f.input.classList.remove('has-error');
+          f.bits.textContent = '';
+        }
+      });
+      clearOps();
+      updating = false;
+      return;
+    }
+
+    els.forEach(f => {
+      f.input.classList.remove('has-error');
+      if (f.base !== sourceBase) {
+        f.input.value = bigVal.toString(f.base).toUpperCase();
+        if (f.base === 2)  f.input.value = bigVal.toString(2);
+        if (f.base === 8)  f.input.value = bigVal.toString(8);
+        if (f.base === 10) f.input.value = bigVal.toString(10);
+        if (f.base === 16) f.input.value = bigVal.toString(16).toUpperCase();
+      }
+      const binStr = bigVal.toString(2);
+      f.bits.textContent = `${binStr.length} bit${binStr.length !== 1 ? 's' : ''}`;
+    });
+
+    updateOps(bigVal);
+    updating = false;
+  }
+
+  els.forEach(({ input, base, copy }) => {
+    input.addEventListener('input', () => convert(base, input.value));
+    copy.addEventListener('click', () => {
+      const val = input.value;
+      if (!val) return;
+      navigator.clipboard.writeText(val).catch(() => {});
+      copy.textContent = '✓';
+      copy.classList.add('copied');
+      setTimeout(() => {
+        copy.textContent = 'Copy';
+        copy.classList.remove('copied');
+      }, 1500);
+    });
+  });
+
+  // ── Bitwise Calculator ─────────────────────────────────────
+  const bwA   = document.getElementById('bwA');
+  const bwB   = document.getElementById('bwB');
+  const bwIds = ['bwAnd','bwOr','bwXor','bwShl','bwShr'];
+  const bwEls = Object.fromEntries(bwIds.map(id => [id, document.getElementById(id)]));
+
+  function parseBwInput(el) {
+    const v = el.value.trim();
+    if (v === '' || v === '0') { el.classList.remove('has-error'); return 0; }
+    const n = parseInt(v, 10);
+    if (isNaN(n) || !/^\d+$/.test(v)) { el.classList.add('has-error'); return null; }
+    el.classList.remove('has-error');
+    return n;
+  }
+
+  function fmtBw(n) {
+    const u = n >>> 0; // unsigned 32-bit
+    return `${u}  (0x${u.toString(16).toUpperCase().padStart(8,'0')}  ${u.toString(2).padStart(32,'0')})`;
+  }
+
+  function updateBitwise() {
+    const a = parseBwInput(bwA);
+    const b = parseBwInput(bwB);
+    if (a === null || b === null) {
+      bwIds.forEach(id => { bwEls[id].textContent = '—'; bwEls[id].className = 'bitwise-row-val muted'; });
+      return;
+    }
+    const results = {
+      bwAnd: (a & b) >>> 0,
+      bwOr:  (a | b) >>> 0,
+      bwXor: (a ^ b) >>> 0,
+      bwShl: (a << 1) >>> 0,
+      bwShr: (a >> 1) >>> 0,
+    };
+    bwIds.forEach(id => {
+      bwEls[id].textContent = fmtBw(results[id]);
+      bwEls[id].className = 'bitwise-row-val';
+    });
+  }
+
+  bwA.addEventListener('input', updateBitwise);
+  bwB.addEventListener('input', updateBitwise);
+
+  document.querySelectorAll('.bitwise-copy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id  = btn.dataset.bw;
+      const val = bwEls[id].textContent;
+      if (!val || val === '—') return;
+      // copy just the decimal value
+      const dec = val.split(' ')[0];
+      navigator.clipboard.writeText(dec).catch(() => {});
+      btn.textContent = '✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>String Escape / Unescape - Simple ToolBox</title>
+  <meta
+    name="description"
+    content="Escape and unescape strings for JSON, JavaScript, HTML, and SQL. Convert special characters to escape sequences and back. Free, instant, browser-based."
+  />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/string-escape.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/string-escape.html" />
+  <meta property="og:title" content="String Escape / Unescape - Simple ToolBox" />
+  <meta
+    property="og:description"
+    content="Escape and unescape strings for JSON, JavaScript, HTML, and SQL. Free, instant, browser-based."
+  />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"String Escape / Unescape","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Escape and unescape strings for JSON, JavaScript, HTML, and SQL. Supports escape sequences like \\n, \\t, \\uXXXX, HTML entities, and SQL single-quote escaping. Free and browser-based.","featureList":["JSON string escape/unescape","JavaScript escape sequences","HTML entity encoding","SQL string escaping","Real-time conversion","One-click copy"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .mode-btn.active { background: var(--ds-color-accent); color: #fff; }
+
+    .seg-ctrl { display: flex; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); overflow: hidden; }
+    .seg-btn { padding: 5px 14px; font-size: 12px; font-weight: 500; color: var(--ds-color-text-secondary); transition: color 0.15s, background 0.15s; }
+    .seg-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
+    .seg-btn:not(.active):hover { background: rgba(255,255,255,0.04); color: var(--ds-color-text-primary); }
+
+    .io-btn.copied  { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
+    .io-textarea:focus { background: rgba(94,106,210,0.025); }
+    .io-panel.has-error .io-textarea { color: #ef4444; }
+    .io-panel.has-error .io-error { display: block; }
+    .io-panel.has-error .io-stat { display: none; }
+
+    .info-text code {
+      font-family: var(--ds-font-mono);
+      font-size: 11px;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
+
+    @media (max-width: 720px) {
+      .panels-arrow { height: 36px; border-left: none; border-right: none; border-top: 1px solid var(--ds-color-border); border-bottom: 1px solid var(--ds-color-border); }
+      .arrow-circle { transform: rotate(90deg); }
+      .ds-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="ds-page">
+<noscript>
+  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+    This tool requires JavaScript to run.
+  </div>
+</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    String Escape / Unescape
+    <span class="nav-tool-badge ds-tool-badge">encode</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="tool-header ds-tool-header">
+  <div class="tool-header-inner ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">✏️</div>
+      <h1 class="ds-tool-header__title">String Escape / Unescape</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Escape special characters for JSON, JavaScript, HTML, and SQL — or unescape them back to readable text.
+      Everything runs in your browser &middot; no server, no tracking.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">JSON</span>
+      <span class="ds-tag">JavaScript</span>
+      <span class="ds-tag">HTML entities</span>
+      <span class="ds-tag">SQL</span>
+      <span class="ds-tag">escape sequences</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-modebar">
+    <button class="mode-btn ds-tool-modebtn active" id="btnEscape">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9l6 6m0-6l-6 6"/><circle cx="12" cy="12" r="10"/></svg>
+      Escape
+    </button>
+    <div class="ds-tool-modeseparator"></div>
+    <button class="mode-btn ds-tool-modebtn" id="btnUnescape">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12h6M12 9v6"/></svg>
+      Unescape
+    </button>
+  </div>
+
+  <div class="ds-tool-options">
+    <span class="ds-tool-option-hint">Format:</span>
+    <div class="seg-ctrl" id="fmtCtrl">
+      <button class="seg-btn active" data-fmt="json">JSON</button>
+      <button class="seg-btn" data-fmt="js">JavaScript</button>
+      <button class="seg-btn" data-fmt="html">HTML</button>
+      <button class="seg-btn" data-fmt="sql">SQL</button>
+    </div>
+    <div class="ds-tool-option-spacer"></div>
+    <button class="ds-tool-swap" id="btnSwap">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4m0 0L3 8m4-4 4 4"/><path d="M17 8v12m0 0 4-4m-4 4-4-4"/></svg>
+      Swap panels
+    </button>
+  </div>
+
+  <div class="ds-tool-workbench">
+    <div class="io-panel ds-tool-pane" id="inputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="inputLabel">Raw String</span>
+        <div class="ds-tool-pane__actions">
+          <button class="io-btn ds-tool-pane__btn" id="btnPaste">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+          </button>
+          <button class="io-btn ds-tool-pane__btn" id="btnClearInput">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+      <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder='Type or paste text here…' spellcheck="false" autocomplete="off"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="inputStat">0 chars</span>
+      </div>
+    </div>
+
+    <div class="panels-arrow ds-tool-arrow">
+      <div class="arrow-circle ds-tool-arrow__circle">→</div>
+    </div>
+
+    <div class="io-panel ds-tool-pane" id="outputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="outputLabel">JSON Escaped</span>
+        <div class="ds-tool-pane__actions">
+          <button class="io-btn ds-tool-pane__btn" id="btnCopyHeader">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+      </div>
+      <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Output will appear here…" readonly spellcheck="false"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="outputStat">0 chars</span>
+        <span class="ds-tool-error" id="errorMsg">Unescape failed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <span id="runLabel">Escape</span>
+    </button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Result
+    </button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14H6L5 6M9 6V4h6v2"/></svg>
+      Clear All
+    </button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">💡</span>
+    <div class="info-text ds-tool-note__text">
+      <strong>JSON</strong>: escapes <code>\n</code> <code>\t</code> <code>\"</code> <code>\\</code> and non-ASCII chars as <code>\uXXXX</code>.
+      <strong>HTML</strong>: converts <code>&lt;</code> <code>&gt;</code> <code>&amp;</code> <code>&quot;</code> to named entities.
+      <strong>SQL</strong>: escapes single quotes by doubling them (<code>'</code> → <code>''</code>).
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="json-formatter.html" class="ds-related-card">
+        <span class="ds-related-icon">🎨</span>
+        <div>
+          <div class="ds-related-name">JSON Formatter</div>
+          <div class="ds-related-desc">Prettify and validate JSON</div>
+        </div>
+      </a>
+      <a href="url-encode.html" class="ds-related-card">
+        <span class="ds-related-icon">🔗</span>
+        <div>
+          <div class="ds-related-name">URL Encode / Decode</div>
+          <div class="ds-related-desc">Percent-encode strings for safe URL use</div>
+        </div>
+      </a>
+      <a href="html-entities.html" class="ds-related-card">
+        <span class="ds-related-icon">🏷️</span>
+        <div>
+          <div class="ds-related-name">HTML Entities</div>
+          <div class="ds-related-desc">Encode and decode HTML entities</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let mode   = 'escape';
+  let format = 'json';
+
+  const btnEscape   = document.getElementById('btnEscape');
+  const btnUnescape = document.getElementById('btnUnescape');
+  const fmtCtrl     = document.getElementById('fmtCtrl');
+  const btnSwap     = document.getElementById('btnSwap');
+  const inputText   = document.getElementById('inputText');
+  const outputText  = document.getElementById('outputText');
+  const inputStat   = document.getElementById('inputStat');
+  const outputStat  = document.getElementById('outputStat');
+  const inputLabel  = document.getElementById('inputLabel');
+  const outputLabel = document.getElementById('outputLabel');
+  const runLabel    = document.getElementById('runLabel');
+  const btnRun      = document.getElementById('btnRun');
+  const btnCopyHeader = document.getElementById('btnCopyHeader');
+  const btnCopyResult = document.getElementById('btnCopyResult');
+  const btnPaste    = document.getElementById('btnPaste');
+  const btnClearInput = document.getElementById('btnClearInput');
+  const btnClearAll = document.getElementById('btnClearAll');
+  const outputPanel = document.getElementById('outputPanel');
+  const errorMsg    = document.getElementById('errorMsg');
+
+  // ── Escape / Unescape logic ────────────────────────────────
+  const ESCAPERS = {
+    json: {
+      escape(s) {
+        return s
+          .replace(/\\/g, '\\\\')
+          .replace(/"/g,  '\\"')
+          .replace(/\n/g, '\\n')
+          .replace(/\r/g, '\\r')
+          .replace(/\t/g, '\\t')
+          .replace(/[\x00-\x1f\x7f-\x9f]/g, c => {
+            const h = c.charCodeAt(0).toString(16).padStart(4, '0');
+            return `\\u${h}`;
+          });
+      },
+      unescape(s) {
+        // Use JSON.parse with surrounding quotes for strict unescape
+        return JSON.parse('"' + s + '"');
+      }
+    },
+    js: {
+      escape(s) {
+        return s
+          .replace(/\\/g, '\\\\')
+          .replace(/'/g,  "\\'")
+          .replace(/"/g,  '\\"')
+          .replace(/`/g,  '\\`')
+          .replace(/\n/g, '\\n')
+          .replace(/\r/g, '\\r')
+          .replace(/\t/g, '\\t')
+          .replace(/[\x00-\x1f\x7f]/g, c => {
+            const h = c.charCodeAt(0).toString(16).padStart(2, '0');
+            return `\\x${h}`;
+          });
+      },
+      unescape(s) {
+        // eslint-disable-next-line no-new-func
+        return Function('"use strict"; return "' + s.replace(/"/g, '\\"') + '"')();
+      }
+    },
+    html: {
+      escape(s) {
+        return s
+          .replace(/&/g,  '&amp;')
+          .replace(/</g,  '&lt;')
+          .replace(/>/g,  '&gt;')
+          .replace(/"/g,  '&quot;')
+          .replace(/'/g,  '&#39;');
+      },
+      unescape(s) {
+        const el = document.createElement('textarea');
+        el.innerHTML = s;
+        return el.value;
+      }
+    },
+    sql: {
+      escape(s) {
+        return s.replace(/'/g, "''");
+      },
+      unescape(s) {
+        return s.replace(/''/g, "'");
+      }
+    }
+  };
+
+  function fmtLabel(fmt) {
+    return { json: 'JSON', js: 'JavaScript', html: 'HTML', sql: 'SQL' }[fmt];
+  }
+
+  function run() {
+    const input = inputText.value;
+    outputPanel.classList.remove('has-error');
+
+    if (!input) {
+      outputText.value = '';
+      updateStats();
+      return;
+    }
+
+    try {
+      outputText.value = mode === 'escape'
+        ? ESCAPERS[format].escape(input)
+        : ESCAPERS[format].unescape(input);
+    } catch (e) {
+      outputPanel.classList.add('has-error');
+      outputText.value = '';
+      errorMsg.textContent = e.message || 'Failed to unescape';
+    }
+
+    updateStats();
+  }
+
+  function updateStats() {
+    const ic = inputText.value.length;
+    const oc = outputText.value.length;
+    inputStat.textContent  = ic ? `${ic.toLocaleString()} chars` : '0 chars';
+    outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
+  }
+
+  function setMode(nextMode) {
+    mode = nextMode;
+    const isEsc = nextMode === 'escape';
+    btnEscape.classList.toggle('active', isEsc);
+    btnUnescape.classList.toggle('active', !isEsc);
+    inputLabel.textContent  = isEsc ? 'Raw String'                          : `${fmtLabel(format)} Escaped`;
+    outputLabel.textContent = isEsc ? `${fmtLabel(format)} Escaped`         : 'Unescaped String';
+    inputText.placeholder   = isEsc ? 'Type or paste text here\u2026'       : 'Paste escaped string here\u2026';
+    runLabel.textContent    = isEsc ? 'Escape'                              : 'Unescape';
+    outputPanel.classList.remove('has-error');
+    run();
+  }
+
+  function setFmt(f) {
+    format = f;
+    fmtCtrl.querySelectorAll('.seg-btn').forEach(b => b.classList.toggle('active', b.dataset.fmt === f));
+    inputLabel.textContent  = mode === 'escape' ? 'Raw String'                  : `${fmtLabel(f)} Escaped`;
+    outputLabel.textContent = mode === 'escape' ? `${fmtLabel(f)} Escaped`      : 'Unescaped String';
+    run();
+  }
+
+  btnEscape.addEventListener('click',   () => setMode('escape'));
+  btnUnescape.addEventListener('click', () => setMode('unescape'));
+
+  fmtCtrl.querySelectorAll('.seg-btn').forEach(btn => {
+    btn.addEventListener('click', () => setFmt(btn.dataset.fmt));
+  });
+
+  btnSwap.addEventListener('click', () => {
+    const out = outputText.value;
+    if (!out) return;
+    inputText.value = out;
+    setMode(mode === 'escape' ? 'unescape' : 'escape');
+  });
+
+  inputText.addEventListener('input', run);
+  btnRun.addEventListener('click', run);
+
+  async function copyText(text, button) {
+    if (!text) return;
+    const orig = button.innerHTML;
+    try { await navigator.clipboard.writeText(text); }
+    catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = orig; }, 1500);
+  }
+
+  btnCopyHeader.addEventListener('click', () => copyText(outputText.value, btnCopyHeader));
+  btnCopyResult.addEventListener('click', () => copyText(outputText.value, btnCopyResult));
+
+  btnPaste.addEventListener('click', async () => {
+    try { inputText.value = await navigator.clipboard.readText(); run(); } catch {}
+  });
+
+  function clearAll() {
+    inputText.value = '';
+    outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    updateStats();
+  }
+
+  btnClearInput.addEventListener('click', clearAll);
+  btnClearAll.addEventListener('click', clearAll);
+
+  setMode('escape');
+</script>
+</body>
+</html>

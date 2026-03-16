@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>YAML to JSON Converter - Simple ToolBox</title>
+  <meta
+    name="description"
+    content="Convert YAML to JSON and JSON to YAML instantly. Supports nested objects, arrays, comments, and multi-line strings. Free, browser-based, no data sent."
+  />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/yaml-json.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/yaml-json.html" />
+  <meta property="og:title" content="YAML to JSON Converter - Simple ToolBox" />
+  <meta
+    property="og:description"
+    content="Convert YAML to JSON and JSON to YAML instantly. Supports nested objects, arrays, comments, and multi-line strings. Free, browser-based, no data sent."
+  />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"YAML to JSON Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert YAML to JSON and JSON to YAML instantly in your browser. Supports nested structures, arrays, multi-line strings, and anchor references. Privacy-first, no data sent.","featureList":["YAML to JSON conversion","JSON to YAML conversion","Configurable JSON indent (2 or 4 spaces)","Real-time conversion","Syntax error highlighting","One-click copy"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .seg-ctrl {
+      display: flex;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      overflow: hidden;
+    }
+    .seg-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ds-color-text-secondary);
+      transition: color 0.15s, background 0.15s;
+    }
+    .seg-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
+    .seg-btn:not(.active):hover { background: rgba(255,255,255,0.04); color: var(--ds-color-text-primary); }
+
+    .mode-btn.active { background: var(--ds-color-accent); color: #fff; }
+
+    .io-btn.copied  { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
+    .io-textarea:focus { background: rgba(94,106,210,0.025); }
+
+    .io-panel.has-error .io-textarea { color: #ef4444; }
+    .io-panel.has-error .io-error { display: block; }
+    .io-panel.has-error .io-stat { display: none; }
+
+    .info-text code {
+      font-family: var(--ds-font-mono);
+      font-size: 11px;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
+
+    @media (max-width: 720px) {
+      .panels-arrow {
+        height: 36px;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--ds-color-border);
+        border-bottom: 1px solid var(--ds-color-border);
+      }
+      .arrow-circle { transform: rotate(90deg); }
+      .ds-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="ds-page">
+<noscript>
+  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+    This tool requires JavaScript to run.
+  </div>
+</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    YAML ↔ JSON
+    <span class="nav-tool-badge ds-tool-badge">convert</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="tool-header ds-tool-header">
+  <div class="tool-header-inner ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">⇄</div>
+      <h1 class="ds-tool-header__title">YAML ↔ JSON Converter</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Convert between YAML and JSON instantly. Supports nested objects, arrays, multi-line strings,
+      and anchor references. Everything runs in your browser &middot; no server, no tracking.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">YAML</span>
+      <span class="ds-tag">JSON</span>
+      <span class="ds-tag">DevOps</span>
+      <span class="ds-tag">client-side only</span>
+      <span class="ds-tag">no tracking</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-modebar">
+    <button class="mode-btn ds-tool-modebtn active" id="btnYamlToJson">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      YAML → JSON
+    </button>
+    <div class="ds-tool-modeseparator"></div>
+    <button class="mode-btn ds-tool-modebtn" id="btnJsonToYaml">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      JSON → YAML
+    </button>
+  </div>
+
+  <div class="ds-tool-options">
+    <span class="ds-tool-option-hint" id="indentLabel">JSON indent:</span>
+    <div class="seg-ctrl" id="indentCtrl">
+      <button class="seg-btn active" data-indent="2">2 spaces</button>
+      <button class="seg-btn" data-indent="4">4 spaces</button>
+    </div>
+    <div class="ds-tool-option-spacer"></div>
+    <button class="ds-tool-swap" id="btnSwap">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4m0 0L3 8m4-4 4 4"/><path d="M17 8v12m0 0 4-4m-4 4-4-4"/></svg>
+      Swap panels
+    </button>
+  </div>
+
+  <div class="ds-tool-workbench">
+    <div class="io-panel ds-tool-pane" id="inputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="inputLabel">YAML</span>
+        <div class="ds-tool-pane__actions">
+          <button class="io-btn ds-tool-pane__btn" id="btnPaste">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+          </button>
+          <button class="io-btn ds-tool-pane__btn" id="btnClearInput">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+      <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste YAML here…" spellcheck="false" autocomplete="off"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="inputStat">0 chars</span>
+      </div>
+    </div>
+
+    <div class="panels-arrow ds-tool-arrow">
+      <div class="arrow-circle ds-tool-arrow__circle">→</div>
+    </div>
+
+    <div class="io-panel ds-tool-pane" id="outputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="outputLabel">JSON</span>
+        <div class="ds-tool-pane__actions">
+          <button class="io-btn ds-tool-pane__btn" id="btnCopyHeader">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+      </div>
+      <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Output will appear here…" readonly spellcheck="false"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="outputStat">0 chars</span>
+        <span class="ds-tool-error" id="errorMsg">Parse error</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <span id="runLabel">Convert</span>
+    </button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Result
+    </button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14H6L5 6M9 6V4h6v2"/></svg>
+      Clear All
+    </button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">💡</span>
+    <div class="info-text ds-tool-note__text">
+      <strong>YAML → JSON</strong>: parses any valid YAML (including anchors &amp; aliases) and outputs pretty-printed JSON.
+      <strong>JSON → YAML</strong>: converts any valid JSON into clean, readable YAML.
+      YAML comments are stripped during conversion as JSON has no comment syntax.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="json-formatter.html" class="ds-related-card">
+        <span class="ds-related-icon">🎨</span>
+        <div>
+          <div class="ds-related-name">JSON Formatter</div>
+          <div class="ds-related-desc">Prettify, minify, and validate JSON</div>
+        </div>
+      </a>
+      <a href="url-encode.html" class="ds-related-card">
+        <span class="ds-related-icon">🔗</span>
+        <div>
+          <div class="ds-related-name">URL Encode / Decode</div>
+          <div class="ds-related-desc">Percent-encode strings for safe URL use</div>
+        </div>
+      </a>
+      <a href="base64.html" class="ds-related-card">
+        <span class="ds-related-icon">📦</span>
+        <div>
+          <div class="ds-related-name">Base64 Encode / Decode</div>
+          <div class="ds-related-desc">Encode and decode Base64 strings</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let mode   = 'yaml2json'; // 'yaml2json' | 'json2yaml'
+  let indent = 2;
+
+  const btnYamlToJson = document.getElementById('btnYamlToJson');
+  const btnJsonToYaml = document.getElementById('btnJsonToYaml');
+  const indentCtrl    = document.getElementById('indentCtrl');
+  const indentLabel   = document.getElementById('indentLabel');
+  const btnSwap       = document.getElementById('btnSwap');
+  const inputText     = document.getElementById('inputText');
+  const outputText    = document.getElementById('outputText');
+  const inputStat     = document.getElementById('inputStat');
+  const outputStat    = document.getElementById('outputStat');
+  const inputLabel    = document.getElementById('inputLabel');
+  const outputLabel   = document.getElementById('outputLabel');
+  const btnRun        = document.getElementById('btnRun');
+  const btnCopyHeader = document.getElementById('btnCopyHeader');
+  const btnCopyResult = document.getElementById('btnCopyResult');
+  const btnPaste      = document.getElementById('btnPaste');
+  const btnClearInput = document.getElementById('btnClearInput');
+  const btnClearAll   = document.getElementById('btnClearAll');
+  const outputPanel   = document.getElementById('outputPanel');
+  const errorMsg      = document.getElementById('errorMsg');
+
+  // ── Conversion ─────────────────────────────────────────────
+  function run() {
+    const input = inputText.value.trim();
+    outputPanel.classList.remove('has-error');
+
+    if (!input) {
+      outputText.value = '';
+      updateStats();
+      return;
+    }
+
+    try {
+      let result;
+      if (mode === 'yaml2json') {
+        const parsed = jsyaml.load(input);
+        result = JSON.stringify(parsed, null, indent);
+      } else {
+        const parsed = JSON.parse(input);
+        result = jsyaml.dump(parsed, { indent: 2, lineWidth: -1 });
+      }
+      outputText.value = result;
+    } catch (e) {
+      outputPanel.classList.add('has-error');
+      outputText.value = '';
+      errorMsg.textContent = e.message || 'Parse error';
+    }
+
+    updateStats();
+  }
+
+  function updateStats() {
+    const ic = inputText.value.length;
+    const oc = outputText.value.length;
+    inputStat.textContent  = ic ? `${ic.toLocaleString()} chars` : '0 chars';
+    outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
+  }
+
+  // ── Mode switching ─────────────────────────────────────────
+  function setMode(nextMode) {
+    mode = nextMode;
+    const isY2J = nextMode === 'yaml2json';
+    btnYamlToJson.classList.toggle('active', isY2J);
+    btnJsonToYaml.classList.toggle('active', !isY2J);
+    inputLabel.textContent       = isY2J ? 'YAML' : 'JSON';
+    outputLabel.textContent      = isY2J ? 'JSON' : 'YAML';
+    inputText.placeholder        = isY2J ? 'Paste YAML here…' : 'Paste JSON here…';
+    indentLabel.style.display    = isY2J ? '' : 'none';
+    indentCtrl.style.display     = isY2J ? '' : 'none';
+    outputPanel.classList.remove('has-error');
+    run();
+  }
+
+  btnYamlToJson.addEventListener('click', () => setMode('yaml2json'));
+  btnJsonToYaml.addEventListener('click', () => setMode('json2yaml'));
+
+  // ── Indent control ─────────────────────────────────────────
+  indentCtrl.querySelectorAll('.seg-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      indent = parseInt(btn.dataset.indent);
+      indentCtrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      run();
+    });
+  });
+
+  // ── Swap ───────────────────────────────────────────────────
+  btnSwap.addEventListener('click', () => {
+    const output = outputText.value;
+    if (!output) return;
+    inputText.value = output;
+    setMode(mode === 'yaml2json' ? 'json2yaml' : 'yaml2json');
+  });
+
+  // ── Live conversion ────────────────────────────────────────
+  inputText.addEventListener('input', run);
+  btnRun.addEventListener('click', run);
+
+  // ── Copy helpers ───────────────────────────────────────────
+  async function copyText(text, button) {
+    if (!text) return;
+    const originalHtml = button.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => {
+      button.classList.remove('copied');
+      button.innerHTML = originalHtml;
+    }, 1500);
+  }
+
+  btnCopyHeader.addEventListener('click', () => copyText(outputText.value, btnCopyHeader));
+  btnCopyResult.addEventListener('click', () => copyText(outputText.value, btnCopyResult));
+
+  btnPaste.addEventListener('click', async () => {
+    try { inputText.value = await navigator.clipboard.readText(); run(); } catch {}
+  });
+
+  function clearAll() {
+    inputText.value = '';
+    outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    updateStats();
+  }
+
+  btnClearInput.addEventListener('click', clearAll);
+  btnClearAll.addEventListener('click', clearAll);
+
+  setMode('yaml2json');
+</script>
+</body>
+</html>

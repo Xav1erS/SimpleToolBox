@@ -98,18 +98,49 @@ Shared capabilities already in place:
 - Do not roll back completed design system migrations
 - Do not refactor unrelated pages
 
-## Recommended Next Work
+## Current Goal: 300+ Tools
 
-Continue with a tool page that has a different layout type so the design system can cover more real cases.
+设计系统迁移已全部完成（21 个工具 + 6 个站点页面）。当前主要工作是新增工具，目标 300+ 个。
 
-Suggested directions:
+### 工具开发优先级
 
-1. More configuration form plus result cards
-2. Batch input or list output pages
-3. Upload, download, and preview combinations
+1. **文本处理**：行去重、行排序、大小写转换、文本差异对比、空白清理
+2. **开发工具**：CSS/JS minify、YAML↔JSON、HTML formatter、diff viewer
+3. **编码/加密**：Base58、Base32、AES 加解密、HMAC、SHA-3
+4. **数字/数学**：进制转换、科学计数、排列组合
+5. **时间日期**：时区转换、工作日计算、日期差值
+6. **颜色/设计**：调色板生成、渐变生成、WCAG 对比度检查
+7. **网络/URL**：UserAgent 解析、端口参考、MIME 查询
+
+### 关键开发原则
+
+- 工具粒度要小，一个工具只做一件事
+- 同类工具批量开发，共享骨架只换核心逻辑
+- 纯计算工具优先引入成熟 JS 库（dayjs、math.js 等）
+- 工具数超过 50 个时，`all-tools.html` 必须加分类筛选
+- 每次新增工具后同步更新 `all-tools.html`
+
+### 分阶段里程碑
+
+| 阶段 | 目标 | 重点 |
+| ---- | ---- | ---- |
+| 阶段一 | 50 个 | 文本、开发、编码 |
+| 阶段二 | 100 个 | 数学、颜色、时间、网络 |
+| 阶段三 | 200 个 | 细分场景专业工具 |
+| 阶段四 | 300+ 个 | 长尾需求 |
+
+### 新工具上线检查清单
+
+完整检查清单见 `CLAUDE.md` → "新工具上线前检查"。核心项：
+
+- Migration Checklist（设计系统骨架）
+- Interaction Quality Checklist（按钮/复制/预设交互）
+- 独立 SEO 元数据（title、description、ld+json）
+- `all-tools.html` 已更新
+- 移动端布局正常
 
 ## Historical Note
 
 There was an earlier idea to extract the nav into a separate `public/nav.js` injection flow.
 
-That is no longer the current priority. The current priority is to stabilize the design system migration first. If shared navigation extraction is still needed later, evaluate it after the design system work is mostly complete.
+That is no longer the current priority. The design system migration is complete. If shared navigation extraction is needed later, evaluate it after reaching 100+ tools.

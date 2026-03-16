@@ -43,7 +43,10 @@
       "Bash(powershell.exe -Command \"gh --version\")",
       "Bash(powershell.exe -Command \"gh auth status\")",
       "Bash('/c/Program Files/GitHub CLI/gh.exe' --version)",
-      "Bash('/c/Program Files/GitHub CLI/gh.exe' auth status)"
+      "Bash('/c/Program Files/GitHub CLI/gh.exe' auth status)",
+      "Bash(powershell.exe -Command \"& ''C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe'' auth status\")",
+      "Bash(ls c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
+      "Bash(xargs -I{} basename {})"
     ]
   }
 }

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Text Diff Viewer - Compare Two Texts - Simple ToolBox</title>
+  <meta name="description" content="Compare two texts and see differences highlighted. Line, word, and character-level diff. Great for comparing configs, code, or documents. Free, browser-based." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/diff-viewer.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/diff-viewer.html" />
+  <meta property="og:title" content="Text Diff Viewer - Compare Two Texts - Simple ToolBox" />
+  <meta property="og:description" content="Compare two texts and see differences highlighted. Line, word, and character-level diff. Great for comparing configs, code, or documents. Free, browser-based." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Diff Viewer","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compare two texts and see differences highlighted. Line, word, and character-level diff. Great for comparing configs, code, or documents. Free, browser-based.","featureList":["Line diff","Word diff","Character diff","Ignore whitespace option","Context lines","Copy diff output"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <script src="https://cdn.jsdelivr.net/npm/diff@7/dist/diff.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .seg-ctrl {
+      display: flex;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      overflow: hidden;
+    }
+    .seg-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ds-color-text-secondary);
+      transition: color 0.15s, background 0.15s;
+    }
+    .seg-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
+    .seg-btn:not(.active):hover { background: rgba(255,255,255,0.04); color: var(--ds-color-text-primary); }
+    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
+    .io-textarea:focus { background: rgba(94,106,210,0.025); }
+    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
+    .info-text code {
+      font-family: var(--ds-font-mono);
+      font-size: 11px;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    /* Diff output panel */
+    .diff-result-panel {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+    }
+    .diff-result-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--ds-color-border);
+      background: rgba(255,255,255,0.02);
+    }
+    .diff-result-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex: 1;
+    }
+    .diff-summary {
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+    }
+    .diff-summary .diff-added-count { color: #22c55e; font-weight: 600; }
+    .diff-summary .diff-removed-count { color: #ef4444; font-weight: 600; }
+    .diff-output-wrap {
+      overflow-y: auto;
+      max-height: 480px;
+      min-height: 160px;
+    }
+    .diff-output {
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .diff-line {
+      padding: 1px 12px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .diff-added   { background: rgba(34,197,94,0.12);  color: #22c55e; }
+    .diff-removed { background: rgba(239,68,68,0.12);  color: #ef4444; }
+    .diff-context { color: var(--ds-color-text-secondary); }
+    .diff-sep     { color: var(--ds-color-text-muted); font-style: italic; padding: 4px 12px; font-family: var(--ds-font-mono); font-size: 12px; }
+    .diff-prefix  { user-select: none; margin-right: 8px; opacity: 0.6; }
+    .diff-empty {
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--ds-color-text-muted);
+      font-size: 13px;
+    }
+
+    /* Ignore whitespace checkbox */
+    .opt-check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .opt-check-row input[type="checkbox"] {
+      accent-color: var(--ds-color-accent);
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+    .opt-check-row label {
+      font-size: 12px;
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 720px) {
+      .panels-arrow {
+        height: 36px;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--ds-color-border);
+        border-bottom: 1px solid var(--ds-color-border);
+      }
+      .arrow-circle { transform: rotate(90deg); }
+      .ds-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="ds-page">
+<noscript>
+  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+    This tool requires JavaScript to run.
+  </div>
+</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    Diff Viewer
+    <span class="nav-tool-badge ds-tool-badge">diff</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="tool-header ds-tool-header">
+  <div class="tool-header-inner ds-tool-header__inner">
+    <div class="tool-title-row ds-tool-header__row">
+      <div class="tool-title-icon ds-tool-header__icon">&#128260;</div>
+      <h1 class="tool-title ds-tool-header__title">Text Diff Viewer</h1>
+    </div>
+    <p class="tool-desc-text ds-tool-header__desc">
+      Compare two texts and see the differences highlighted. Supports line, word, and character-level diff.
+      Perfect for config files, code review, or document comparison.
+    </p>
+    <div class="tool-tags ds-tool-tag-row">
+      <span class="tool-tag-pill ds-tag">line diff</span>
+      <span class="tool-tag-pill ds-tag">word diff</span>
+      <span class="tool-tag-pill ds-tag">compare text</span>
+      <span class="tool-tag-pill ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="main ds-tool-main ds-tool-stack">
+  <!-- Two input panes side by side -->
+  <div class="panels-row ds-tool-workbench">
+    <div class="io-panel ds-tool-pane">
+      <div class="io-header ds-tool-pane__header">
+        <span class="io-label ds-tool-pane__label">Original (A)</span>
+        <div class="io-actions ds-tool-pane__actions">
+          <button class="io-btn ds-tool-pane__btn" id="btnPasteA">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+          </button>
+          <button class="io-btn ds-tool-pane__btn" id="btnClearA">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+      <textarea class="io-textarea ds-tool-textarea" id="textA" placeholder="Paste original text here..." spellcheck="false" autocomplete="off"></textarea>
+      <div class="io-footer ds-tool-pane__footer">
+        <span class="io-stat ds-tool-stat" id="statA">0 lines</span>
+      </div>
+    </div>
+
+    <div class="panels-arrow ds-tool-arrow">
+      <div class="arrow-circle ds-tool-arrow__circle">vs</div>
+    </div>
+
+    <div class="io-panel ds-tool-pane">
+      <div class="io-header ds-tool-pane__header">
+        <span class="io-label ds-tool-pane__label">Modified (B)</span>
+        <div class="io-actions ds-tool-pane__actions">
+          <button class="io-btn ds-tool-pane__btn" id="btnPasteB">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+          </button>
+          <button class="io-btn ds-tool-pane__btn" id="btnClearB">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+      <textarea class="io-textarea ds-tool-textarea" id="textB" placeholder="Paste modified text here..." spellcheck="false" autocomplete="off"></textarea>
+      <div class="io-footer ds-tool-pane__footer">
+        <span class="io-stat ds-tool-stat" id="statB">0 lines</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Options bar -->
+  <div class="options-bar ds-tool-options">
+    <span class="opt-label ds-tool-option-hint">Diff mode:</span>
+    <div class="seg-ctrl">
+      <button class="seg-btn active" data-diffmode="lines">Line</button>
+      <button class="seg-btn" data-diffmode="words">Word</button>
+      <button class="seg-btn" data-diffmode="chars">Char</button>
+    </div>
+    <div class="options-spacer ds-tool-option-spacer"></div>
+    <div class="opt-check-row">
+      <input type="checkbox" id="ignoreWhitespace" />
+      <label for="ignoreWhitespace">Ignore whitespace</label>
+    </div>
+  </div>
+
+  <!-- Compare button -->
+  <div class="actions-row ds-tool-actions">
+    <button class="btn-run ds-tool-primary" id="btnCompare">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+      Compare
+    </button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyDiff">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Diff
+    </button>
+    <div class="actions-spacer ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14H6L5 6M9 6V4h6v2"/></svg>
+      Clear All
+    </button>
+  </div>
+
+  <!-- Diff output -->
+  <div class="diff-result-panel">
+    <div class="diff-result-header">
+      <span class="diff-result-label">Diff Output</span>
+      <span class="diff-summary" id="diffSummary"></span>
+    </div>
+    <div class="diff-output-wrap">
+      <div class="diff-output" id="diffOutput">
+        <div class="diff-empty">Paste text in both panels above to compare</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-card ds-tool-note">
+    <span class="info-icon ds-tool-note__icon">&#128161;</span>
+    <div class="info-text ds-tool-note__text">
+      <strong>Line diff</strong> is best for comparing files and configs &middot;
+      <strong>Word diff</strong> is ideal for prose and natural language text &middot;
+      <strong>Char diff</strong> shows exact character-level changes.
+      Context shows ±3 lines around each change — unchanged sections are collapsed.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="regex-tester.html" class="ds-related-card">
+        <span class="ds-related-icon">&#128269;</span>
+        <div>
+          <div class="ds-related-name">Regex Tester</div>
+          <div class="ds-related-desc">Test regular expressions live</div>
+        </div>
+      </a>
+      <a href="markdown-preview.html" class="ds-related-card">
+        <span class="ds-related-icon">&#128221;</span>
+        <div>
+          <div class="ds-related-name">Markdown Preview</div>
+          <div class="ds-related-desc">Preview Markdown as HTML</div>
+        </div>
+      </a>
+      <a href="json-formatter.html" class="ds-related-card">
+        <span class="ds-related-icon">&#10003;</span>
+        <div>
+          <div class="ds-related-name">JSON Formatter</div>
+          <div class="ds-related-desc">Format and validate JSON data</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const CONTEXT_LINES = 3;
+  let diffMode = 'lines';
+  let diffTimer = null;
+  let lastDiffText = '';
+
+  const textA = document.getElementById('textA');
+  const textB = document.getElementById('textB');
+  const statA = document.getElementById('statA');
+  const statB = document.getElementById('statB');
+  const diffOutput = document.getElementById('diffOutput');
+  const diffSummary = document.getElementById('diffSummary');
+  const ignoreWS = document.getElementById('ignoreWhitespace');
+
+  function lineCount(text) {
+    if (!text) return 0;
+    return text.split('\n').length;
+  }
+
+  function updateStats() {
+    statA.textContent = `${lineCount(textA.value)} lines`;
+    statB.textContent = `${lineCount(textB.value)} lines`;
+  }
+
+  function compare() {
+    const a = textA.value;
+    const b = textB.value;
+
+    if (!a && !b) {
+      diffOutput.innerHTML = '<div class="diff-empty">Paste text in both panels above to compare</div>';
+      diffSummary.innerHTML = '';
+      lastDiffText = '';
+      return;
+    }
+
+    const DiffLib = window.Diff;
+    if (!DiffLib) {
+      diffOutput.innerHTML = '<div class="diff-empty" style="color:#ef4444">diff library not loaded</div>';
+      return;
+    }
+
+    let parts;
+    const opts = { ignoreWhitespace: ignoreWS.checked };
+
+    try {
+      if (diffMode === 'lines') {
+        parts = DiffLib.diffLines(a, b, opts);
+      } else if (diffMode === 'words') {
+        parts = DiffLib.diffWords(a, b, opts);
+      } else {
+        parts = DiffLib.diffChars(a, b, opts);
+      }
+    } catch (e) {
+      diffOutput.innerHTML = `<div class="diff-empty" style="color:#ef4444">Error: ${e.message}</div>`;
+      return;
+    }
+
+    let addedCount = 0;
+    let removedCount = 0;
+
+    if (diffMode === 'lines') {
+      // For line diff: render with context collapsing
+      const lines = [];
+      for (const part of parts) {
+        const partLines = part.value.split('\n');
+        // Remove trailing empty string from split
+        if (partLines[partLines.length - 1] === '') partLines.pop();
+        for (const line of partLines) {
+          if (part.added) { lines.push({ type: 'added', text: line }); addedCount++; }
+          else if (part.removed) { lines.push({ type: 'removed', text: line }); removedCount++; }
+          else { lines.push({ type: 'context', text: line }); }
+        }
+      }
+
+      // Determine which context lines to show
+      const changedIndexes = new Set();
+      lines.forEach((l, i) => { if (l.type !== 'context') changedIndexes.add(i); });
+
+      const visible = new Set();
+      changedIndexes.forEach(i => {
+        for (let j = Math.max(0, i - CONTEXT_LINES); j <= Math.min(lines.length - 1, i + CONTEXT_LINES); j++) {
+          visible.add(j);
+        }
+      });
+
+      const html = [];
+      let prevVisible = true;
+      for (let i = 0; i < lines.length; i++) {
+        if (!visible.has(i)) {
+          if (prevVisible) {
+            html.push('<div class="diff-sep">...</div>');
+            prevVisible = false;
+          }
+          continue;
+        }
+        prevVisible = true;
+        const line = lines[i];
+        const cls = line.type === 'added' ? 'diff-line diff-added'
+                  : line.type === 'removed' ? 'diff-line diff-removed'
+                  : 'diff-line diff-context';
+        const prefix = line.type === 'added' ? '+' : line.type === 'removed' ? '-' : ' ';
+        const escaped = escapeHtml(line.text);
+        html.push(`<div class="${cls}"><span class="diff-prefix">${prefix}</span>${escaped}</div>`);
+      }
+
+      diffOutput.innerHTML = html.length ? html.join('') : '<div class="diff-empty" style="color:#22c55e">No differences found</div>';
+    } else {
+      // Word/char diff: inline highlighting
+      const html = [];
+      for (const part of parts) {
+        if (part.added) {
+          addedCount += part.value.length;
+          html.push(`<span style="background:rgba(34,197,94,0.18);color:#22c55e">${escapeHtml(part.value)}</span>`);
+        } else if (part.removed) {
+          removedCount += part.value.length;
+          html.push(`<span style="background:rgba(239,68,68,0.18);color:#ef4444;text-decoration:line-through">${escapeHtml(part.value)}</span>`);
+        } else {
+          html.push(`<span style="color:var(--ds-color-text-secondary)">${escapeHtml(part.value)}</span>`);
+        }
+      }
+      const label = diffMode === 'words' ? 'words' : 'chars';
+      diffOutput.innerHTML = `<div class="diff-line diff-context" style="white-space:pre-wrap;word-break:break-all">${html.join('')}</div>`;
+    }
+
+    // Summary
+    const addedLabel = diffMode === 'lines' ? 'lines added' : diffMode === 'words' ? 'words added' : 'chars added';
+    const removedLabel = diffMode === 'lines' ? 'lines removed' : diffMode === 'words' ? 'words removed' : 'chars removed';
+    diffSummary.innerHTML = addedCount || removedCount
+      ? `<span class="diff-added-count">+${addedCount}</span> ${addedLabel}, <span class="diff-removed-count">-${removedCount}</span> ${removedLabel}`
+      : '<span style="color:#22c55e">Identical</span>';
+
+    // Store plain-text diff for copy
+    lastDiffText = Array.from(diffOutput.querySelectorAll('.diff-line, .diff-sep'))
+      .map(el => el.textContent).join('\n');
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function scheduleDiff() {
+    clearTimeout(diffTimer);
+    diffTimer = setTimeout(compare, 300);
+    updateStats();
+  }
+
+  textA.addEventListener('input', scheduleDiff);
+  textB.addEventListener('input', scheduleDiff);
+  ignoreWS.addEventListener('change', compare);
+  document.getElementById('btnCompare').addEventListener('click', compare);
+
+  document.querySelectorAll('[data-diffmode]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      diffMode = btn.dataset.diffmode;
+      document.querySelectorAll('[data-diffmode]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      compare();
+    });
+  });
+
+  document.getElementById('btnPasteA').addEventListener('click', async () => {
+    try { textA.value = await navigator.clipboard.readText(); scheduleDiff(); } catch {}
+  });
+  document.getElementById('btnPasteB').addEventListener('click', async () => {
+    try { textB.value = await navigator.clipboard.readText(); scheduleDiff(); } catch {}
+  });
+  document.getElementById('btnClearA').addEventListener('click', () => { textA.value = ''; scheduleDiff(); });
+  document.getElementById('btnClearB').addEventListener('click', () => { textB.value = ''; scheduleDiff(); });
+
+  document.getElementById('btnClearAll').addEventListener('click', () => {
+    textA.value = '';
+    textB.value = '';
+    diffOutput.innerHTML = '<div class="diff-empty">Paste text in both panels above to compare</div>';
+    diffSummary.innerHTML = '';
+    lastDiffText = '';
+    updateStats();
+  });
+
+  async function copyText(text, button) {
+    if (!text) return;
+    const originalHtml = button.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = originalHtml; }, 1500);
+  }
+
+  document.getElementById('btnCopyDiff').addEventListener('click', () => {
+    const btn = document.getElementById('btnCopyDiff');
+    copyText(lastDiffText || diffOutput.innerText, btn);
+  });
+</script>
+</body>
+</html>

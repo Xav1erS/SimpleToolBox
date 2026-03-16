@@ -357,6 +357,10 @@ Write your **Markdown** here and see it convert to HTML instantly.
 
     outputSource.value = htmlResult;
     outputPreview.innerHTML = htmlResult;
+    outputPreview.querySelectorAll('a[href^="http"]').forEach(a => {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
     updateStats();
   }
 

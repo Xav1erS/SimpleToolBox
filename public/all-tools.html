@@ -736,6 +736,18 @@
     searchQuery = e.target.value;
     applyFilters();
   });
+
+  // Activate filter from URL param ?cat=xxx (linked from homepage category cards)
+  const catParam = new URLSearchParams(window.location.search).get('cat');
+  if (catParam) {
+    const btn = document.querySelector(`.filter-tag[data-filter="${catParam}"]`);
+    if (btn) {
+      document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTag = catParam;
+      applyFilters();
+    }
+  }
 </script>
 </body>
 </html>

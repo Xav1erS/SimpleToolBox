@@ -739,7 +739,7 @@
 <div class="divider"></div>
 <div class="section fade-in" id="toolSection">
   <div class="section-header">
-    <h2 class="section-title">All Tools</h2>
+    <h2 class="section-title">Popular Tools</h2>
     <button id="clearFilter">✕ Clear filter</button>
     <a href="all-tools.html" class="section-more">All tools →</a>
   </div>
@@ -750,6 +750,28 @@
         <div class="tool-name">Base64 Encode / Decode</div>
       </div>
       <div class="tool-desc">Convert text or file contents to and from Base64. URL-safe mode, one-click copy and download.</div>
+      <div class="tool-footer">
+        <span class="tool-tag">encode</span>
+        <span class="tool-arrow">→</span>
+      </div>
+    </a>
+    <a href="tools/url-encode.html" class="tool-card" data-tags="encode">
+      <div class="tool-card-top">
+        <div class="tool-icon">🔗</div>
+        <div class="tool-name">URL Encode / Decode</div>
+      </div>
+      <div class="tool-desc">Encode or decode URL parameters at the full or component level.</div>
+      <div class="tool-footer">
+        <span class="tool-tag">encode</span>
+        <span class="tool-arrow">→</span>
+      </div>
+    </a>
+    <a href="tools/jwt-decoder.html" class="tool-card" data-tags="encode">
+      <div class="tool-card-top">
+        <div class="tool-icon">🔐</div>
+        <div class="tool-name">JWT Decoder / Inspector</div>
+      </div>
+      <div class="tool-desc">Decode JWT tokens into Header, Payload, and Signature. View expiration status and all claims.</div>
       <div class="tool-footer">
         <span class="tool-tag">encode</span>
         <span class="tool-arrow">→</span>
@@ -766,17 +788,6 @@
         <span class="tool-arrow">→</span>
       </div>
     </a>
-    <a href="tools/password-generator.html" class="tool-card" data-tags="generate">
-      <div class="tool-card-top">
-        <div class="tool-icon">🔑</div>
-        <div class="tool-name">Password Generator</div>
-      </div>
-      <div class="tool-desc">Customize length and character sets to generate strong random passwords locally.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">generate</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
     <a href="tools/timestamp.html" class="tool-card" data-tags="convert">
       <div class="tool-card-top">
         <div class="tool-icon">⏱️</div>
@@ -788,14 +799,25 @@
         <span class="tool-arrow">→</span>
       </div>
     </a>
-    <a href="tools/url-encode.html" class="tool-card" data-tags="encode">
+    <a href="tools/unit-converter.html" class="tool-card" data-tags="convert">
       <div class="tool-card-top">
-        <div class="tool-icon">🔗</div>
-        <div class="tool-name">URL Encode / Decode</div>
+        <div class="tool-icon">📐</div>
+        <div class="tool-name">Unit Converter</div>
       </div>
-      <div class="tool-desc">Encode or decode URL parameters at the full or component level.</div>
+      <div class="tool-desc">Convert length, weight, temperature, area, volume, speed, data, and time.</div>
       <div class="tool-footer">
-        <span class="tool-tag">encode</span>
+        <span class="tool-tag">convert</span>
+        <span class="tool-arrow">→</span>
+      </div>
+    </a>
+    <a href="tools/password-generator.html" class="tool-card" data-tags="generate">
+      <div class="tool-card-top">
+        <div class="tool-icon">🔑</div>
+        <div class="tool-name">Password Generator</div>
+      </div>
+      <div class="tool-desc">Customize length and character sets to generate strong random passwords locally.</div>
+      <div class="tool-footer">
+        <span class="tool-tag">generate</span>
         <span class="tool-arrow">→</span>
       </div>
     </a>
@@ -805,6 +827,17 @@
         <div class="tool-name">UUID Generator</div>
       </div>
       <div class="tool-desc">Bulk-generate UUID v1/v4 with options for case, hyphens, and more.</div>
+      <div class="tool-footer">
+        <span class="tool-tag">generate</span>
+        <span class="tool-arrow">→</span>
+      </div>
+    </a>
+    <a href="tools/qr-code-generator.html" class="tool-card" data-tags="generate">
+      <div class="tool-card-top">
+        <div class="tool-icon">📷</div>
+        <div class="tool-name">QR Code Generator</div>
+      </div>
+      <div class="tool-desc">Create custom QR codes for URLs, WiFi, contacts, and email. Add colors and logo.</div>
       <div class="tool-footer">
         <span class="tool-tag">generate</span>
         <span class="tool-arrow">→</span>
@@ -821,25 +854,14 @@
         <span class="tool-arrow">→</span>
       </div>
     </a>
-    <a href="tools/random-number-generator.html" class="tool-card" data-tags="generate">
+    <a href="tools/regex-tester.html" class="tool-card" data-tags="text">
       <div class="tool-card-top">
-        <div class="tool-icon">🎲</div>
-        <div class="tool-name">Random Number Generator</div>
+        <div class="tool-icon">🔍</div>
+        <div class="tool-name">Regex Tester</div>
       </div>
-      <div class="tool-desc">Generate cryptographically random integers or decimals in any range.</div>
+      <div class="tool-desc">Test regular expressions with real-time match highlighting, group capture, and replace mode.</div>
       <div class="tool-footer">
-        <span class="tool-tag">generate</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/unit-converter.html" class="tool-card" data-tags="convert">
-      <div class="tool-card-top">
-        <div class="tool-icon">📐</div>
-        <div class="tool-name">Unit Converter</div>
-      </div>
-      <div class="tool-desc">Convert length, weight, temperature, area, volume, speed, data, and time.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">convert</span>
+        <span class="tool-tag">text</span>
         <span class="tool-arrow">→</span>
       </div>
     </a>
@@ -865,102 +887,14 @@
         <span class="tool-arrow">→</span>
       </div>
     </a>
-    <a href="tools/qr-code-generator.html" class="tool-card" data-tags="generate">
+    <a href="tools/http-status.html" class="tool-card" data-tags="reference">
       <div class="tool-card-top">
-        <div class="tool-icon">📷</div>
-        <div class="tool-name">QR Code Generator</div>
+        <div class="tool-icon">🌐</div>
+        <div class="tool-name">HTTP Status Codes</div>
       </div>
-      <div class="tool-desc">Create custom QR codes for URLs, WiFi, contacts, and email. Add colors and logo.</div>
+      <div class="tool-desc">Quick reference for all HTTP status codes with descriptions and use-case examples.</div>
       <div class="tool-footer">
-        <span class="tool-tag">generate</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/slug-generator.html" class="tool-card" data-tags="text">
-      <div class="tool-card-top">
-        <div class="tool-icon">🔗</div>
-        <div class="tool-name">URL Slug Generator</div>
-      </div>
-      <div class="tool-desc">Convert titles to clean SEO-friendly URL slugs. Supports Chinese to pinyin conversion.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">text</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/lorem-ipsum-generator.html" class="tool-card" data-tags="text">
-      <div class="tool-card-top">
-        <div class="tool-icon">📄</div>
-        <div class="tool-name">Lorem Ipsum Generator</div>
-      </div>
-      <div class="tool-desc">Generate placeholder text in Classic Lorem, Chinese, Tech, or Business themes.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">text</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/color-picker.html" class="tool-card" data-tags="convert">
-      <div class="tool-card-top">
-        <div class="tool-icon">🎨</div>
-        <div class="tool-name">Color Picker</div>
-      </div>
-      <div class="tool-desc">Convert colors between HEX, RGB, HSL, and CMYK. Pick, copy, and save to history.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">convert</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/regex-tester.html" class="tool-card" data-tags="text">
-      <div class="tool-card-top">
-        <div class="tool-icon">🔍</div>
-        <div class="tool-name">Regex Tester</div>
-      </div>
-      <div class="tool-desc">Test regular expressions with real-time match highlighting, group capture, and replace mode.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">text</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/markdown-preview.html" class="tool-card" data-tags="text">
-      <div class="tool-card-top">
-        <div class="tool-icon">📝</div>
-        <div class="tool-name">Markdown Preview</div>
-      </div>
-      <div class="tool-desc">Write Markdown and see a live rendered preview. Copy HTML or download the source file.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">text</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/cron-builder.html" class="tool-card" data-tags="generate">
-      <div class="tool-card-top">
-        <div class="tool-icon">⏰</div>
-        <div class="tool-name">Cron Expression Builder</div>
-      </div>
-      <div class="tool-desc">Build cron expressions visually with human-readable descriptions and next run time preview.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">generate</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/jwt-decoder.html" class="tool-card" data-tags="encode">
-      <div class="tool-card-top">
-        <div class="tool-icon">🔐</div>
-        <div class="tool-name">JWT Decoder / Inspector</div>
-      </div>
-      <div class="tool-desc">Decode JWT tokens into Header, Payload, and Signature. View expiration status, algorithm, and all claims.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">encode</span>
-        <span class="tool-arrow">→</span>
-      </div>
-    </a>
-    <a href="tools/html-entities.html" class="tool-card" data-tags="encode">
-      <div class="tool-card-top">
-        <div class="tool-icon">🏷️</div>
-        <div class="tool-name">HTML Entity Encode / Decode</div>
-      </div>
-      <div class="tool-desc">Encode special characters to named or numeric HTML entities, or decode them back to plain text.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">encode</span>
+        <span class="tool-tag">reference</span>
         <span class="tool-arrow">→</span>
       </div>
     </a>
@@ -969,9 +903,20 @@
         <div class="tool-icon">#️⃣</div>
         <div class="tool-name">Hash Generator</div>
       </div>
-      <div class="tool-desc">Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from text or file input. All algorithms run in parallel.</div>
+      <div class="tool-desc">Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from text or file input.</div>
       <div class="tool-footer">
         <span class="tool-tag">generate</span>
+        <span class="tool-arrow">→</span>
+      </div>
+    </a>
+    <a href="tools/date-calculator.html" class="tool-card" data-tags="calculator">
+      <div class="tool-card-top">
+        <div class="tool-icon">📅</div>
+        <div class="tool-name">Date Calculator</div>
+      </div>
+      <div class="tool-desc">Calculate date differences, business days, add or subtract days, and compute exact age.</div>
+      <div class="tool-footer">
+        <span class="tool-tag">calculator</span>
         <span class="tool-arrow">→</span>
       </div>
     </a>
@@ -1166,7 +1111,7 @@
   document.getElementById('navSearch').addEventListener('input', e => {
     const query = e.target.value;
     buildDropdown(navDropdown, query);
-    filterBySearch(query, true);
+    filterBySearch(query, false);
     if (!query.trim()) {
       clearCategoryActive();
       document.querySelectorAll('.hero-tag').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));

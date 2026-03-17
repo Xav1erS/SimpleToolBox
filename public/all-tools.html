@@ -728,6 +728,9 @@
       document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeTag = btn.dataset.filter;
+      const url = new URL(window.location);
+      if (activeTag === 'all') { url.searchParams.delete('cat'); } else { url.searchParams.set('cat', activeTag); }
+      history.replaceState(null, '', url);
       applyFilters();
     });
   });

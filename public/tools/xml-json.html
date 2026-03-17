@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>XML to JSON Converter - Simple ToolBox</title>
+  <meta name="description" content="Convert XML to JSON and JSON to XML instantly. Handles attributes, nested elements, arrays, and CDATA. Free, browser-based, no data sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/xml-json.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/xml-json.html" />
+  <meta property="og:title" content="XML to JSON Converter - Simple ToolBox" />
+  <meta property="og:description" content="Convert XML to JSON and JSON to XML instantly. Free, browser-based, no data sent." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"XML to JSON Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert XML to JSON and JSON to XML instantly in your browser. Handles attributes, nested elements, arrays, and CDATA.","featureList":["XML to JSON","JSON to XML","Attribute handling","Nested elements","No data sent"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    .mode-btn.active { background: var(--ds-color-accent); color: #fff; }
+    .seg-ctrl { display: flex; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); overflow: hidden; }
+    .seg-btn { padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--ds-color-text-secondary); transition: color 0.15s, background 0.15s; }
+    .seg-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
+    .seg-btn:not(.active):hover { background: rgba(255,255,255,0.04); color: var(--ds-color-text-primary); }
+    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .ds-tool-pane.has-error .ds-tool-textarea { color: #ef4444; }
+    .ds-tool-pane.has-error .ds-tool-error { display: block; }
+    .ds-tool-pane.has-error .ds-tool-stat { display: none; }
+    @media (max-width: 720px) { .ds-tool-arrow { height: 36px; border-left: none; border-right: none; border-top: 1px solid var(--ds-color-border); border-bottom: 1px solid var(--ds-color-border); } .ds-tool-arrow__circle { transform: rotate(90deg); } }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">XML ↔ JSON <span class="ds-tool-badge">format</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">&#128260;</div>
+      <h1 class="ds-tool-header__title">XML ↔ JSON Converter</h1>
+    </div>
+    <p class="ds-tool-header__desc">Convert between XML and JSON format. Handles nested elements, attributes, text nodes, and arrays. Everything runs in your browser &mdash; no server, no tracking.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">xml</span><span class="ds-tag">json</span><span class="ds-tag">convert</span><span class="ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-modebar">
+    <button class="mode-btn ds-tool-modebtn active" id="btnXmlToJson">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      XML → JSON
+    </button>
+    <div class="ds-tool-modeseparator"></div>
+    <button class="mode-btn ds-tool-modebtn" id="btnJsonToXml">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      JSON → XML
+    </button>
+  </div>
+
+  <div class="ds-tool-options" id="optionsBar">
+    <span class="ds-tool-option-hint">JSON indent:</span>
+    <div class="seg-ctrl">
+      <button class="seg-btn active" data-indent="2">2 spaces</button>
+      <button class="seg-btn" data-indent="4">4 spaces</button>
+    </div>
+  </div>
+
+  <div class="ds-tool-workbench">
+    <div class="ds-tool-pane" id="inputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="inputLabel">XML Input</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn" id="btnPaste">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+          </button>
+          <button class="ds-tool-pane__btn" id="btnSample">Sample</button>
+          <button class="ds-tool-pane__btn" id="btnClearInput">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Paste XML here..." spellcheck="false" autocomplete="off"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="inputStat">0 chars</span>
+      </div>
+    </div>
+    <div class="ds-tool-arrow"><div class="ds-tool-arrow__circle">&#8594;</div></div>
+    <div class="ds-tool-pane" id="outputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="outputLabel">JSON Output</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn io-btn" id="btnCopyHeader">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea" id="outputText" placeholder="Output will appear here..." readonly spellcheck="false"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="outputStat">0 chars</span>
+        <span class="ds-tool-error" id="errorMsg"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Convert
+    </button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Result
+    </button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14H6L5 6M9 6V4h6v2"/></svg>
+      Clear All
+    </button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">&#128161;</span>
+    <div class="ds-tool-note__text">
+      XML attributes are stored under <strong>@attributes</strong> key. Text content is stored as <strong>#text</strong>. Repeated sibling elements become JSON arrays automatically. Use <strong>JSON → XML</strong> to convert back or generate XML from data.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">&#10003;</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Format and validate JSON data</div></div></a>
+      <a href="yaml-json.html" class="ds-related-card"><span class="ds-related-icon">&#128260;</span><div><div class="ds-related-name">YAML ↔ JSON</div><div class="ds-related-desc">Convert between YAML and JSON</div></div></a>
+      <a href="toml-json.html" class="ds-related-card"><span class="ds-related-icon">&#128260;</span><div><div class="ds-related-name">TOML ↔ JSON</div><div class="ds-related-desc">Convert between TOML and JSON</div></div></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SAMPLE_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+  <book category="fiction">
+    <title lang="en">The Great Gatsby</title>
+    <author>F. Scott Fitzgerald</author>
+    <year>1925</year>
+    <price>12.99</price>
+  </book>
+  <book category="non-fiction">
+    <title lang="en">Sapiens</title>
+    <author>Yuval Noah Harari</author>
+    <year>2011</year>
+    <price>15.99</price>
+  </book>
+</bookstore>`;
+
+  const SAMPLE_JSON = `{
+  "bookstore": {
+    "book": [
+      {
+        "@attributes": { "category": "fiction" },
+        "title": { "@attributes": { "lang": "en" }, "#text": "The Great Gatsby" },
+        "author": "F. Scott Fitzgerald",
+        "year": "1925",
+        "price": "12.99"
+      },
+      {
+        "@attributes": { "category": "non-fiction" },
+        "title": { "@attributes": { "lang": "en" }, "#text": "Sapiens" },
+        "author": "Yuval Noah Harari",
+        "year": "2011",
+        "price": "15.99"
+      }
+    ]
+  }
+}`;
+
+  let currentMode = 'xml-to-json';
+  let indentSize = 2;
+
+  // XML → JSON
+  function xmlNodeToObj(node) {
+    const obj = {};
+    if (node.attributes && node.attributes.length > 0) {
+      obj['@attributes'] = {};
+      for (const attr of node.attributes) obj['@attributes'][attr.name] = attr.value;
+    }
+    if (node.childNodes.length === 1 && node.childNodes[0].nodeType === 3) {
+      const text = node.childNodes[0].nodeValue.trim();
+      if (Object.keys(obj).length === 0) return text;
+      if (text) obj['#text'] = text;
+      return obj;
+    }
+    for (const child of node.childNodes) {
+      if (child.nodeType === 3) {
+        const text = child.nodeValue.trim();
+        if (text) obj['#text'] = (obj['#text'] || '') + text;
+      } else if (child.nodeType === 4) {
+        obj['#cdata'] = child.nodeValue;
+      } else if (child.nodeType === 1) {
+        const val = xmlNodeToObj(child);
+        if (obj[child.nodeName] === undefined) obj[child.nodeName] = val;
+        else if (!Array.isArray(obj[child.nodeName])) obj[child.nodeName] = [obj[child.nodeName], val];
+        else obj[child.nodeName].push(val);
+      }
+    }
+    return obj;
+  }
+
+  function xmlToJson(xmlStr) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xmlStr, 'application/xml');
+    const err = doc.querySelector('parsererror');
+    if (err) throw new Error(err.textContent.split('\n')[0] || 'XML parse error');
+    const root = doc.documentElement;
+    const result = {};
+    result[root.nodeName] = xmlNodeToObj(root);
+    return JSON.stringify(result, null, indentSize);
+  }
+
+  // JSON → XML
+  function objToXml(key, val, indent) {
+    indent = indent || '';
+    const ni = indent + '  ';
+    if (val === null || val === undefined) return indent + '<' + key + '/>\n';
+    if (Array.isArray(val)) return val.map(item => objToXml(key, item, indent)).join('');
+    if (typeof val !== 'object') return indent + '<' + key + '>' + escXml(String(val)) + '</' + key + '>\n';
+    let attrs = '';
+    let body = '';
+    for (const [k, v] of Object.entries(val)) {
+      if (k === '@attributes' && typeof v === 'object') {
+        attrs = ' ' + Object.entries(v).map(([ak, av]) => ak + '="' + escXml(String(av)) + '"').join(' ');
+      } else if (k === '#text') {
+        body += escXml(String(v));
+      } else if (k === '#cdata') {
+        body += '<![CDATA[' + v + ']]>';
+      } else {
+        body += objToXml(k, v, ni);
+      }
+    }
+    const hasChildren = body.includes('\n') || body.includes('<');
+    if (!body) return indent + '<' + key + attrs + '/>\n';
+    if (hasChildren) return indent + '<' + key + attrs + '>\n' + body + indent + '</' + key + '>\n';
+    return indent + '<' + key + attrs + '>' + body + '</' + key + '>\n';
+  }
+
+  function escXml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+  }
+
+  function jsonToXml(jsonStr) {
+    const obj = JSON.parse(jsonStr);
+    const keys = Object.keys(obj);
+    if (keys.length !== 1) throw new Error('JSON root must have exactly one key (the XML root element)');
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + objToXml(keys[0], obj[keys[0]], '').trimEnd();
+  }
+
+  const inputText = document.getElementById('inputText');
+  const outputText = document.getElementById('outputText');
+  const inputLabel = document.getElementById('inputLabel');
+  const outputLabel = document.getElementById('outputLabel');
+  const outputPanel = document.getElementById('outputPanel');
+  const errorMsg = document.getElementById('errorMsg');
+
+  function run() {
+    outputPanel.classList.remove('has-error');
+    errorMsg.textContent = '';
+    if (!inputText.value.trim()) { outputText.value = ''; updateStats(); return; }
+    try {
+      outputText.value = currentMode === 'xml-to-json' ? xmlToJson(inputText.value) : jsonToXml(inputText.value);
+    } catch (e) {
+      outputPanel.classList.add('has-error');
+      outputText.value = '';
+      errorMsg.textContent = e.message || 'Conversion failed';
+    }
+    updateStats();
+  }
+
+  function updateStats() {
+    document.getElementById('inputStat').textContent = inputText.value.length.toLocaleString() + ' chars';
+    document.getElementById('outputStat').textContent = outputText.value.length.toLocaleString() + ' chars';
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.getElementById('btnXmlToJson').classList.toggle('active', mode === 'xml-to-json');
+    document.getElementById('btnJsonToXml').classList.toggle('active', mode === 'json-to-xml');
+    document.getElementById('optionsBar').style.display = mode === 'xml-to-json' ? '' : 'none';
+    inputLabel.textContent = mode === 'xml-to-json' ? 'XML Input' : 'JSON Input';
+    outputLabel.textContent = mode === 'xml-to-json' ? 'JSON Output' : 'XML Output';
+    inputText.placeholder = mode === 'xml-to-json' ? 'Paste XML here...' : 'Paste JSON here...';
+    inputText.value = ''; outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    updateStats();
+  }
+
+  async function copyText(text, btn) {
+    if (!text) return;
+    const orig = btn.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch { const ta=Object.assign(document.createElement('textarea'),{value:text});ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta); }
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
+  }
+
+  document.getElementById('btnXmlToJson').addEventListener('click', () => setMode('xml-to-json'));
+  document.getElementById('btnJsonToXml').addEventListener('click', () => setMode('json-to-xml'));
+  document.querySelectorAll('[data-indent]').forEach(btn => { btn.addEventListener('click', () => { indentSize=parseInt(btn.dataset.indent,10); document.querySelectorAll('[data-indent]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); run(); }); });
+  inputText.addEventListener('input', run);
+  document.getElementById('btnRun').addEventListener('click', run);
+  document.getElementById('btnPaste').addEventListener('click', async () => { try { inputText.value = await navigator.clipboard.readText(); run(); } catch {} });
+  document.getElementById('btnSample').addEventListener('click', () => { inputText.value = currentMode==='xml-to-json'?SAMPLE_XML:SAMPLE_JSON; run(); });
+  document.getElementById('btnClearInput').addEventListener('click', () => { inputText.value=''; outputText.value=''; outputPanel.classList.remove('has-error'); updateStats(); });
+  document.getElementById('btnClearAll').addEventListener('click', () => { inputText.value=''; outputText.value=''; outputPanel.classList.remove('has-error'); updateStats(); });
+  document.getElementById('btnCopyHeader').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyHeader')));
+  document.getElementById('btnCopyResult').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyResult')));
+</script>
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>JWT Builder / Generator - Create JSON Web Tokens | Simple ToolBox</title>
+  <meta name="description" content="Build and sign JSON Web Tokens (JWT) with HMAC (HS256/HS384/HS512). Set header, payload claims, and secret key. Free, browser-based, no data sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/jwt-builder.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/jwt-builder.html" />
+  <meta property="og:title" content="JWT Builder / Generator - Create JSON Web Tokens | Simple ToolBox" />
+  <meta property="og:description" content="Build and sign JSON Web Tokens with HMAC. Set header, payload claims, and secret. Free, browser-based, no data sent." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JWT Builder / Generator","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Build and sign JSON Web Tokens (JWT) with HMAC algorithms. Set algorithm, payload claims, expiry, and secret key. 100% browser-based.","featureList":["JWT generation","HS256 / HS384 / HS512 signing","Custom payload claims","Expiry helpers","One-click copy","No data sent"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* Layout */
+    .builder-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 900px) { .builder-layout { grid-template-columns: 1fr; } }
+
+    /* Cards */
+    .card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--ds-color-border);
+    }
+    .card-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ds-color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot-header { background: #5E6AD2; }
+    .dot-payload { background: #f59e0b; }
+    .dot-sig { background: #22c55e; }
+    .card-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+
+    /* Form rows */
+    .field-row {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .field-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .field-input {
+      width: 100%;
+      padding: 7px 10px;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .field-input:focus { border-color: rgba(94,106,210,0.5); }
+    .field-select {
+      width: 100%;
+      padding: 7px 10px;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-sans);
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Payload claims editor */
+    .claims-list { display: flex; flex-direction: column; gap: 6px; }
+    .claim-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 6px;
+      align-items: center;
+    }
+    .claim-key, .claim-val {
+      padding: 6px 8px;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.15s;
+    }
+    .claim-key:focus, .claim-val:focus { border-color: rgba(94,106,210,0.5); }
+    .btn-remove-claim {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ds-color-text-muted);
+      border-radius: var(--ds-radius-sm);
+      flex-shrink: 0;
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-remove-claim:hover { color: #ef4444; background: rgba(239,68,68,0.1); }
+    .btn-add-claim {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 10px;
+      border-radius: var(--ds-radius-sm);
+      font-size: 12px;
+      color: var(--ds-color-accent);
+      background: var(--ds-color-surface-tint);
+      border: 1px solid rgba(94,106,210,0.25);
+      transition: background 0.15s;
+      width: fit-content;
+    }
+    .btn-add-claim:hover { background: rgba(94,106,210,0.15); }
+
+    /* Exp helpers */
+    .exp-helpers { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+    .exp-btn {
+      padding: 3px 9px;
+      font-size: 11px;
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      transition: color 0.15s, background 0.15s;
+    }
+    .exp-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+
+    /* Output token */
+    .token-display {
+      width: 100%;
+      min-height: 100px;
+      padding: 12px 14px;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--ds-color-text-secondary);
+      word-break: break-all;
+      white-space: pre-wrap;
+      user-select: all;
+      grid-column: 1 / -1;
+    }
+    .token-part-header { color: #9B8DEB; }
+    .token-part-payload { color: #fbbf24; }
+    .token-part-sig { color: #4ade80; }
+    .token-dot { color: var(--ds-color-text-muted); }
+
+    /* Secret section */
+    .secret-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .secret-row .field-input { flex: 1; }
+    .btn-gen-secret {
+      padding: 7px 11px;
+      border-radius: var(--ds-radius-sm);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ds-color-text-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      white-space: nowrap;
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-gen-secret:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.08); }
+
+    .btn-copy-token {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--ds-radius-sm);
+      font-size: 12px; font-weight: 500;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      transition: all 0.15s;
+    }
+    .btn-copy-token:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.08); }
+    .btn-copy-token.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    .token-actions-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      grid-column: 1 / -1;
+      align-items: center;
+    }
+    .token-stat {
+      font-size: 11px;
+      color: var(--ds-color-text-muted);
+      margin-left: auto;
+    }
+
+    .error-banner {
+      grid-column: 1 / -1;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: var(--ds-radius-sm);
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #fca5a5;
+      display: none;
+    }
+    .error-banner.show { display: block; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    JWT Builder
+    <span class="ds-tool-badge">encode</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">&#128273;</div>
+      <h1 class="ds-tool-header__title">JWT Builder / Generator</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Create and sign JSON Web Tokens with HMAC (HS256, HS384, HS512). Set payload claims, expiry, and secret key. Signed in your browser using the Web Crypto API &mdash; no server, no tracking.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">jwt</span>
+      <span class="ds-tag">hmac</span>
+      <span class="ds-tag">hs256</span>
+      <span class="ds-tag">authentication</span>
+      <span class="ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="builder-layout">
+
+    <!-- Header card -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><span class="card-dot dot-header"></span>Header</span>
+      </div>
+      <div class="card-body">
+        <div class="field-row">
+          <label class="field-label" for="algSelect">Algorithm</label>
+          <select class="field-select" id="algSelect">
+            <option value="HS256" selected>HS256 — HMAC SHA-256</option>
+            <option value="HS384">HS384 — HMAC SHA-384</option>
+            <option value="HS512">HS512 — HMAC SHA-512</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <label class="field-label">Type</label>
+          <input class="field-input" value="JWT" readonly style="opacity:0.5;cursor:not-allowed" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Secret card -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><span class="card-dot dot-sig"></span>Signing Secret</span>
+      </div>
+      <div class="card-body">
+        <div class="field-row">
+          <label class="field-label" for="secretInput">Secret Key</label>
+          <div class="secret-row">
+            <input class="field-input" id="secretInput" type="text" placeholder="your-secret-key" autocomplete="off" spellcheck="false" />
+            <button class="btn-gen-secret" id="btnGenSecret">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+              Generate
+            </button>
+          </div>
+        </div>
+        <div class="field-row">
+          <label class="field-label">Encoding</label>
+          <select class="field-select" id="secretEncoding">
+            <option value="utf8" selected>UTF-8 string</option>
+            <option value="base64">Base64</option>
+            <option value="hex">Hex</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payload card (full width) -->
+    <div class="card" style="grid-column: 1 / -1">
+      <div class="card-header">
+        <span class="card-title"><span class="card-dot dot-payload"></span>Payload Claims</span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="exp-btn" data-exp="300">+5 min</button>
+          <button class="exp-btn" data-exp="3600">+1 h</button>
+          <button class="exp-btn" data-exp="86400">+1 d</button>
+          <button class="exp-btn" data-exp="604800">+7 d</button>
+          <button class="exp-btn" id="btnAddIat">+iat now</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px;padding-bottom:4px;border-bottom:1px solid var(--ds-color-border)">
+          <span style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--ds-color-text-muted)">Key</span>
+          <span style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--ds-color-text-muted)">Value</span>
+          <span></span>
+        </div>
+        <div class="claims-list" id="claimsList"></div>
+        <button class="btn-add-claim" id="btnAddClaim">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Add Claim
+        </button>
+      </div>
+    </div>
+
+    <!-- Error banner -->
+    <div class="error-banner" id="errorBanner"></div>
+
+    <!-- Token output (full width) -->
+    <div class="card" style="grid-column: 1 / -1">
+      <div class="card-header">
+        <span class="card-title">Generated Token</span>
+        <button class="btn-copy-token" id="btnCopyToken">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Token
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="token-display" id="tokenDisplay">
+          <span style="color:var(--ds-color-text-muted);font-style:italic">Fill in the fields above to generate a token…</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div style="display:flex;gap:8px;font-size:11px;color:var(--ds-color-text-muted)">
+            <span><span style="color:#9B8DEB">■</span> Header</span>
+            <span><span style="color:#fbbf24">■</span> Payload</span>
+            <span><span style="color:#4ade80">■</span> Signature</span>
+          </div>
+          <span class="token-stat" id="tokenStat"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnBuild">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Build &amp; Sign
+    </button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Token
+    </button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnReset">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      Reset
+    </button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">&#128161;</span>
+    <div class="ds-tool-note__text">
+      Signing uses the browser's native <strong>Web Crypto API</strong> — your secret never leaves the page. HMAC tokens can be verified by any JWT library using the same secret. Use the <strong>JWT Decoder</strong> to inspect the generated token or paste tokens from your app.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="jwt-decoder.html" class="ds-related-card">
+        <span class="ds-related-icon">&#128274;</span>
+        <div>
+          <div class="ds-related-name">JWT Decoder</div>
+          <div class="ds-related-desc">Inspect and decode JWT tokens</div>
+        </div>
+      </a>
+      <a href="hmac.html" class="ds-related-card">
+        <span class="ds-related-icon">&#128272;</span>
+        <div>
+          <div class="ds-related-name">HMAC Generator</div>
+          <div class="ds-related-desc">Generate HMAC signatures</div>
+        </div>
+      </a>
+      <a href="base64.html" class="ds-related-card">
+        <span class="ds-related-icon">&#128760;</span>
+        <div>
+          <div class="ds-related-name">Base64 Encoder</div>
+          <div class="ds-related-desc">Encode and decode Base64 strings</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const DEFAULT_CLAIMS = [
+    { key: 'sub', val: '1234567890' },
+    { key: 'name', val: 'John Doe' },
+    { key: 'iat', val: String(Math.floor(Date.now() / 1000)) },
+  ];
+
+  const claimsList = document.getElementById('claimsList');
+  const tokenDisplay = document.getElementById('tokenDisplay');
+  const tokenStat = document.getElementById('tokenStat');
+  const errorBanner = document.getElementById('errorBanner');
+  let generatedToken = '';
+
+  function addClaimRow(key, val) {
+    key = key || '';
+    val = val || '';
+    const row = document.createElement('div');
+    row.className = 'claim-row';
+    row.innerHTML = `
+      <input class="claim-key" type="text" placeholder="claim key" value="${escHtml(key)}" spellcheck="false" />
+      <input class="claim-val" type="text" placeholder="value" value="${escHtml(val)}" spellcheck="false" />
+      <button class="btn-remove-claim" title="Remove">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>`;
+    row.querySelector('.btn-remove-claim').addEventListener('click', () => { row.remove(); buildToken(); });
+    row.querySelectorAll('input').forEach(inp => inp.addEventListener('input', buildToken));
+    claimsList.appendChild(row);
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function getClaims() {
+    const claims = {};
+    claimsList.querySelectorAll('.claim-row').forEach(row => {
+      const key = row.querySelector('.claim-key').value.trim();
+      const rawVal = row.querySelector('.claim-val').value.trim();
+      if (!key) return;
+      // Auto-type numeric values
+      if (rawVal === 'true') claims[key] = true;
+      else if (rawVal === 'false') claims[key] = false;
+      else if (rawVal !== '' && !isNaN(rawVal) && rawVal !== '') claims[key] = Number(rawVal);
+      else claims[key] = rawVal;
+    });
+    return claims;
+  }
+
+  function b64url(str) {
+    return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  }
+
+  function b64urlFromBytes(buf) {
+    return btoa(String.fromCharCode(...new Uint8Array(buf)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  }
+
+  function decodeSecret(raw, encoding) {
+    if (encoding === 'base64') {
+      const bin = atob(raw.replace(/-/g,'+').replace(/_/g,'/'));
+      return Uint8Array.from(bin, c => c.charCodeAt(0));
+    }
+    if (encoding === 'hex') {
+      const hex = raw.replace(/\s/g,'');
+      const bytes = new Uint8Array(hex.length / 2);
+      for (let i = 0; i < bytes.length; i++) bytes[i] = parseInt(hex.substr(i*2,2),16);
+      return bytes;
+    }
+    return new TextEncoder().encode(raw);
+  }
+
+  async function buildToken() {
+    errorBanner.classList.remove('show');
+    const alg = document.getElementById('algSelect').value;
+    const secret = document.getElementById('secretInput').value;
+    const encoding = document.getElementById('secretEncoding').value;
+
+    if (!secret) {
+      tokenDisplay.innerHTML = '<span style="color:var(--ds-color-text-muted);font-style:italic">Enter a signing secret to generate a token…</span>';
+      tokenStat.textContent = '';
+      generatedToken = '';
+      return;
+    }
+
+    try {
+      const header = { alg, typ: 'JWT' };
+      const payload = getClaims();
+
+      const headerB64 = b64url(JSON.stringify(header));
+      const payloadB64 = b64url(JSON.stringify(payload));
+      const signingInput = headerB64 + '.' + payloadB64;
+
+      const hashAlg = { HS256: 'SHA-256', HS384: 'SHA-384', HS512: 'SHA-512' }[alg];
+      const keyData = decodeSecret(secret, encoding);
+      const key = await crypto.subtle.importKey('raw', keyData, { name: 'HMAC', hash: hashAlg }, false, ['sign']);
+      const sigBuf = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(signingInput));
+      const sigB64 = b64urlFromBytes(sigBuf);
+
+      generatedToken = signingInput + '.' + sigB64;
+      tokenDisplay.innerHTML =
+        `<span class="token-part-header">${escHtml(headerB64)}</span>` +
+        `<span class="token-dot">.</span>` +
+        `<span class="token-part-payload">${escHtml(payloadB64)}</span>` +
+        `<span class="token-dot">.</span>` +
+        `<span class="token-part-sig">${escHtml(sigB64)}</span>`;
+      tokenStat.textContent = generatedToken.length + ' chars';
+    } catch (e) {
+      generatedToken = '';
+      errorBanner.textContent = 'Signing failed: ' + (e.message || 'Unknown error');
+      errorBanner.classList.add('show');
+      tokenDisplay.innerHTML = '<span style="color:#fca5a5">Error generating token</span>';
+      tokenStat.textContent = '';
+    }
+  }
+
+  async function copyText(text, button) {
+    if (!text) return;
+    const orig = button.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = button.innerHTML.replace(/Copy.*/, '&#10003; Copied');
+    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = orig; }, 1500);
+  }
+
+  // Wire up events
+  document.getElementById('algSelect').addEventListener('change', buildToken);
+  document.getElementById('secretInput').addEventListener('input', buildToken);
+  document.getElementById('secretEncoding').addEventListener('change', buildToken);
+
+  document.getElementById('btnBuild').addEventListener('click', buildToken);
+  document.getElementById('btnCopyToken').addEventListener('click', () => copyText(generatedToken, document.getElementById('btnCopyToken')));
+  document.getElementById('btnCopyResult').addEventListener('click', () => copyText(generatedToken, document.getElementById('btnCopyResult')));
+
+  document.getElementById('btnAddClaim').addEventListener('click', () => {
+    addClaimRow('', '');
+  });
+
+  document.getElementById('btnGenSecret').addEventListener('click', () => {
+    const bytes = crypto.getRandomValues(new Uint8Array(32));
+    document.getElementById('secretInput').value = Array.from(bytes).map(b => b.toString(16).padStart(2,'0')).join('');
+    document.getElementById('secretEncoding').value = 'hex';
+    buildToken();
+  });
+
+  document.getElementById('btnAddIat').addEventListener('click', () => {
+    const existing = [...claimsList.querySelectorAll('.claim-key')].find(k => k.value.trim() === 'iat');
+    if (existing) {
+      existing.closest('.claim-row').querySelector('.claim-val').value = String(Math.floor(Date.now() / 1000));
+    } else {
+      addClaimRow('iat', String(Math.floor(Date.now() / 1000)));
+    }
+    buildToken();
+  });
+
+  document.querySelectorAll('[data-exp]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const seconds = parseInt(btn.dataset.exp, 10);
+      const exp = Math.floor(Date.now() / 1000) + seconds;
+      const existing = [...claimsList.querySelectorAll('.claim-key')].find(k => k.value.trim() === 'exp');
+      if (existing) {
+        existing.closest('.claim-row').querySelector('.claim-val').value = String(exp);
+      } else {
+        addClaimRow('exp', String(exp));
+      }
+      buildToken();
+    });
+  });
+
+  document.getElementById('btnReset').addEventListener('click', () => {
+    claimsList.innerHTML = '';
+    DEFAULT_CLAIMS.forEach(c => addClaimRow(c.key, c.val));
+    document.getElementById('algSelect').value = 'HS256';
+    document.getElementById('secretInput').value = '';
+    document.getElementById('secretEncoding').value = 'utf8';
+    tokenDisplay.innerHTML = '<span style="color:var(--ds-color-text-muted);font-style:italic">Fill in the fields above to generate a token…</span>';
+    tokenStat.textContent = '';
+    generatedToken = '';
+    errorBanner.classList.remove('show');
+  });
+
+  // Init with default claims
+  DEFAULT_CLAIMS.forEach(c => addClaimRow(c.key, c.val));
+</script>
+</body>
+</html>

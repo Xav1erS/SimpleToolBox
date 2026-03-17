@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>WCAG Color Contrast Checker - Batch AA/AAA Test | Simple ToolBox</title>
+  <meta name="description" content="Check color contrast ratios against WCAG AA and AAA standards. Test multiple text/background color pairs at once. Free, browser-based, no data sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/color-contrast-aa.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/color-contrast-aa.html" />
+  <meta property="og:title" content="WCAG Color Contrast Checker - Batch AA/AAA Test | Simple ToolBox" />
+  <meta property="og:description" content="Check color contrast against WCAG AA/AAA for multiple color pairs. Free, browser-based." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"WCAG Color Contrast Checker","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Check color contrast ratios against WCAG AA and AAA accessibility standards. Test multiple color pairs in batch.","featureList":["WCAG 2.1 AA/AAA","Multiple pairs","Live preview","Contrast ratio","No data sent"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* Pair row */
+    .pair-list { display: flex; flex-direction: column; gap: 8px; }
+    .pair-row {
+      display: grid;
+      grid-template-columns: 40px 1fr 1fr auto;
+      gap: 8px;
+      align-items: center;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 10px 14px;
+    }
+    @media (max-width: 600px) { .pair-row { grid-template-columns: 1fr 1fr; gap: 6px; } .pair-row .pair-preview { display: none; } .pair-row .btn-remove { grid-column: 1 / -1; justify-self: end; } }
+
+    .pair-preview {
+      width: 36px; height: 36px;
+      border-radius: var(--ds-radius-sm);
+      border: 1px solid var(--ds-color-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700;
+      user-select: none; flex-shrink: 0;
+    }
+
+    .color-field {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .color-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ds-color-text-muted); }
+    .color-input-row { display: flex; gap: 6px; align-items: center; }
+    .color-swatch {
+      width: 26px; height: 26px; border-radius: var(--ds-radius-sm);
+      border: 1px solid var(--ds-color-border); cursor: pointer; flex-shrink: 0;
+      overflow: hidden;
+    }
+    .color-swatch input[type="color"] { width: 150%; height: 150%; transform: translate(-17%, -17%); border: none; cursor: pointer; padding: 0; background: none; }
+    .color-hex {
+      flex: 1; padding: 5px 8px;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono); font-size: 12px;
+      outline: none; transition: border-color 0.15s;
+    }
+    .color-hex:focus { border-color: rgba(94,106,210,0.5); }
+
+    .btn-remove {
+      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      color: var(--ds-color-text-muted); border-radius: var(--ds-radius-sm);
+      transition: color 0.15s, background 0.15s; flex-shrink: 0;
+    }
+    .btn-remove:hover { color: #ef4444; background: rgba(239,68,68,0.1); }
+
+    /* Results */
+    .result-panel {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .result-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+    }
+    .result-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--ds-color-border);
+      flex-wrap: wrap;
+    }
+    .result-swatch { width: 42px; height: 42px; border-radius: var(--ds-radius-sm); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+    .result-ratio { font-family: var(--ds-font-mono); font-size: 22px; font-weight: 700; }
+    .result-ratio.great { color: #22c55e; }
+    .result-ratio.good  { color: #84cc16; }
+    .result-ratio.warn  { color: #eab308; }
+    .result-ratio.fail  { color: #ef4444; }
+    .result-colors { font-family: var(--ds-font-mono); font-size: 11px; color: var(--ds-color-text-muted); display: flex; flex-direction: column; gap: 1px; }
+    .badges-row { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+    .wcag-badge {
+      display: flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: var(--ds-radius-sm);
+      font-size: 11px; font-weight: 600;
+    }
+    .badge-pass { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+    .badge-fail { background: rgba(239,68,68,0.1); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+    .result-preview { padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 500px) { .result-preview { grid-template-columns: 1fr; } }
+    .preview-block { border-radius: var(--ds-radius-sm); padding: 12px 14px; }
+    .preview-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.6; margin-bottom: 6px; }
+    .preview-normal { font-size: 16px; font-weight: 400; margin-bottom: 3px; }
+    .preview-bold   { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .preview-small  { font-size: 12px; font-weight: 400; }
+
+    .btn-add-pair {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: var(--ds-radius-sm); font-size: 12px; font-weight: 500;
+      color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.25);
+      transition: background 0.15s; width: fit-content;
+    }
+    .btn-add-pair:hover { background: rgba(94,106,210,0.15); }
+
+    .btn-bar { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-random {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: var(--ds-radius-sm); font-size: 12px; font-weight: 500;
+      color: var(--ds-color-text-secondary); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border);
+      transition: background 0.15s, color 0.15s; width: fit-content;
+    }
+    .btn-random:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.25); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Contrast Checker <span class="ds-tool-badge">design</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">&#9878;</div>
+      <h1 class="ds-tool-header__title">WCAG Color Contrast Checker</h1>
+    </div>
+    <p class="ds-tool-header__desc">Test multiple text/background color pairs against WCAG 2.1 AA and AAA standards. Live preview shows exactly how text will look at different sizes and weights.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">wcag</span><span class="ds-tag">accessibility</span><span class="ds-tag">contrast ratio</span><span class="ds-tag">a11y</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="pair-list" id="pairList"></div>
+
+  <div class="btn-bar">
+    <button class="btn-add-pair" id="btnAddPair">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+      Add Color Pair
+    </button>
+    <button class="btn-random" id="btnRandomPair">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 1.9-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.9c1.1 0 2.1.4 2.9 1.1"/><path d="m18 14 4 4-4 4"/></svg>
+      Random AA Pair
+    </button>
+  </div>
+
+  <div style="height:1px;background:var(--ds-color-border)"></div>
+
+  <div class="result-panel" id="resultPanel"></div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">&#128161;</span>
+    <div class="ds-tool-note__text">
+      <strong>WCAG AA</strong> requires 4.5:1 for normal text, 3:1 for large text (18pt or 14pt bold). <strong>WCAG AAA</strong> requires 7:1 for normal text, 4.5:1 for large text. Aiming for AA is the legal minimum in most accessibility regulations.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="color-blindness.html" class="ds-related-card"><span class="ds-related-icon">&#128065;</span><div><div class="ds-related-name">Color Blindness Simulator</div><div class="ds-related-desc">Simulate color vision deficiency</div></div></a>
+      <a href="color-picker.html" class="ds-related-card"><span class="ds-related-icon">&#127752;</span><div><div class="ds-related-name">Color Picker</div><div class="ds-related-desc">Pick, convert, and explore colors</div></div></a>
+      <a href="color-palette.html" class="ds-related-card"><span class="ds-related-icon">&#127912;</span><div><div class="ds-related-name">Color Palette</div><div class="ds-related-desc">Generate accessible color palettes</div></div></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const DEFAULT_PAIRS = [
+    { fg: '#ffffff', bg: '#1a1a2e' },
+    { fg: '#1a1a2e', bg: '#f8fafc' },
+    { fg: '#5e6ad2', bg: '#ffffff' },
+    { fg: '#ffffff', bg: '#5e6ad2' },
+  ];
+
+  let pairs = JSON.parse(JSON.stringify(DEFAULT_PAIRS));
+
+  function hexToRgb(hex) {
+    hex = hex.replace(/^#/, '');
+    if (hex.length === 3) hex = hex.split('').map(c => c+c).join('');
+    const n = parseInt(hex, 16);
+    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+  }
+
+  function luminance(rgb) {
+    return ['r','g','b'].reduce((acc, c, i) => {
+      const v = rgb[c] / 255;
+      return acc + (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)) * [0.2126, 0.7152, 0.0722][i];
+    }, 0);
+  }
+
+  function contrastRatio(hex1, hex2) {
+    const l1 = luminance(hexToRgb(hex1));
+    const l2 = luminance(hexToRgb(hex2));
+    const lighter = Math.max(l1, l2);
+    const darker  = Math.min(l1, l2);
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  function isValidHex(h) { return /^#[0-9a-fA-F]{3,6}$/.test(h.trim()); }
+
+  function ratioClass(r) {
+    if (r >= 7) return 'great';
+    if (r >= 4.5) return 'good';
+    if (r >= 3) return 'warn';
+    return 'fail';
+  }
+
+  function renderPairs() {
+    const list = document.getElementById('pairList');
+    list.innerHTML = '';
+    pairs.forEach((pair, i) => {
+      const row = document.createElement('div');
+      row.className = 'pair-row';
+      row.innerHTML = `
+        <div class="pair-preview" id="prev-${i}" style="background:${pair.bg};color:${pair.fg}">Aa</div>
+        <div class="color-field">
+          <div class="color-label">Text color</div>
+          <div class="color-input-row">
+            <div class="color-swatch"><input type="color" value="${pair.fg}" data-i="${i}" data-role="fg" /></div>
+            <input class="color-hex" type="text" value="${pair.fg}" maxlength="7" data-i="${i}" data-role="fg" spellcheck="false" />
+          </div>
+        </div>
+        <div class="color-field">
+          <div class="color-label">Background</div>
+          <div class="color-input-row">
+            <div class="color-swatch"><input type="color" value="${pair.bg}" data-i="${i}" data-role="bg" /></div>
+            <input class="color-hex" type="text" value="${pair.bg}" maxlength="7" data-i="${i}" data-role="bg" spellcheck="false" />
+          </div>
+        </div>
+        ${pairs.length > 1 ? `<button class="btn-remove" data-i="${i}" title="Remove pair">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>` : '<span></span>'}`;
+      list.appendChild(row);
+    });
+
+    list.querySelectorAll('[data-role]').forEach(el => {
+      el.addEventListener('input', e => {
+        const i = parseInt(e.target.dataset.i);
+        const role = e.target.dataset.role;
+        let val = e.target.value.trim();
+        if (e.target.type === 'color') val = val;
+        else { if (!val.startsWith('#')) val = '#' + val; }
+        // Sync color swatch <-> hex input
+        const row = list.querySelectorAll('.pair-row')[i];
+        if (e.target.type === 'color') {
+          row.querySelectorAll(`[data-role="${role}"][type="text"]`)[0].value = val;
+        } else {
+          const sw = row.querySelectorAll(`[data-role="${role}"][type="color"]`)[0];
+          if (isValidHex(val)) sw.value = val;
+        }
+        if (isValidHex(val)) {
+          pairs[i][role] = val;
+          renderResults();
+          document.getElementById(`prev-${i}`).style[role === 'fg' ? 'color' : 'background'] = val;
+        }
+      });
+    });
+
+    list.querySelectorAll('.btn-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        pairs.splice(parseInt(btn.dataset.i), 1);
+        renderPairs();
+        renderResults();
+      });
+    });
+  }
+
+  function renderResults() {
+    const panel = document.getElementById('resultPanel');
+    panel.innerHTML = pairs.map(p => {
+      if (!isValidHex(p.fg) || !isValidHex(p.bg)) return '';
+      const ratio = contrastRatio(p.fg, p.bg);
+      const ratioStr = ratio.toFixed(2) + ':1';
+      const cls = ratioClass(ratio);
+
+      const aa_normal  = ratio >= 4.5;
+      const aa_large   = ratio >= 3.0;
+      const aaa_normal = ratio >= 7.0;
+      const aaa_large  = ratio >= 4.5;
+
+      function badge(label, pass) {
+        return `<span class="wcag-badge ${pass ? 'badge-pass' : 'badge-fail'}">
+          ${pass ? '✓' : '✗'} ${label}
+        </span>`;
+      }
+
+      return `<div class="result-card">
+        <div class="result-header">
+          <div class="result-swatch" style="background:${p.bg};color:${p.fg}">Aa</div>
+          <div>
+            <div class="result-ratio ${cls}">${ratioStr}</div>
+            <div class="result-colors">
+              <span>Text: ${p.fg.toUpperCase()}</span>
+              <span>BG: ${p.bg.toUpperCase()}</span>
+            </div>
+          </div>
+          <div class="badges-row">
+            ${badge('AA Normal', aa_normal)}
+            ${badge('AA Large', aa_large)}
+            ${badge('AAA Normal', aaa_normal)}
+            ${badge('AAA Large', aaa_large)}
+          </div>
+        </div>
+        <div class="result-preview">
+          <div class="preview-block" style="background:${p.bg};color:${p.fg}">
+            <div class="preview-label" style="color:${p.fg}">Preview on background</div>
+            <div class="preview-normal">Normal text (16px)</div>
+            <div class="preview-bold">Bold text (14px bold)</div>
+            <div class="preview-small">Small text (12px) — harder to read</div>
+          </div>
+          <div class="preview-block" style="background:${p.fg};color:${p.bg}">
+            <div class="preview-label" style="color:${p.bg}">Inverted colors</div>
+            <div class="preview-normal">Normal text (16px)</div>
+            <div class="preview-bold">Bold text (14px bold)</div>
+            <div class="preview-small">Small text (12px) — harder to read</div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('btnAddPair').addEventListener('click', () => {
+    pairs.push({ fg: '#ffffff', bg: '#374151' });
+    renderPairs();
+    renderResults();
+  });
+
+  function hslToHex(h, s, l) {
+    s /= 100; l /= 100;
+    const a = s * Math.min(l, 1 - l);
+    const f = n => {
+      const k = (n + h / 30) % 12;
+      const c = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+      return Math.round(255 * c).toString(16).padStart(2, '0');
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
+  }
+
+  function generateAAColors() {
+    // Try up to 200 times to find a random AA pair
+    for (let i = 0; i < 200; i++) {
+      const h = Math.random() * 360;
+      const s = 20 + Math.random() * 70;   // 20–90%
+      const l = 10 + Math.random() * 75;   // 10–85%
+      const bg = hslToHex(h, s, l);
+      // Try both white and black as foreground
+      for (const fg of ['#ffffff', '#000000']) {
+        if (contrastRatio(fg, bg) >= 4.5) return { fg, bg };
+      }
+    }
+    return { fg: '#ffffff', bg: '#1a1a2e' }; // safe fallback
+  }
+
+  document.getElementById('btnRandomPair').addEventListener('click', () => {
+    pairs.push(generateAAColors());
+    renderPairs();
+    renderResults();
+  });
+
+  renderPairs();
+  renderResults();
+</script>
+</body>
+</html>

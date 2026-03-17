@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>CSS Minifier - Compress CSS Online | Simple ToolBox</title>
+  <meta name="description" content="Minify and compress CSS code instantly. Remove comments, whitespace, and redundant code to reduce file size for production. Free, browser-based, no data sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/css-minifier.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/css-minifier.html" />
+  <meta property="og:title" content="CSS Minifier - Compress CSS Online | Simple ToolBox" />
+  <meta property="og:description" content="Minify and compress CSS code instantly. Remove comments, whitespace, and redundant code. Free, browser-based, no data sent." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSS Minifier","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Minify and compress CSS code instantly. Remove comments, whitespace, and redundant code to reduce file size for production. Free, browser-based, no data sent.","featureList":["CSS minification","Remove comments","Compression ratio","No data sent"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .ratio-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 16px;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+    .ratio-item { display: flex; align-items: center; gap: 6px; color: var(--ds-color-text-secondary); }
+    .ratio-label { color: var(--ds-color-text-muted); font-size: 11px; }
+    .ratio-value { font-weight: 600; color: var(--ds-color-text-primary); font-family: var(--ds-font-mono); }
+    .ratio-value.good { color: #22c55e; }
+    .ratio-sep { color: var(--ds-color-border); }
+
+    .opt-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .opt-label { font-size: 12px; color: var(--ds-color-text-muted); font-weight: 500; }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      user-select: none;
+    }
+    .check-item input[type="checkbox"] {
+      width: 13px; height: 13px;
+      accent-color: var(--ds-color-accent);
+      cursor: pointer;
+    }
+    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    @media (max-width: 720px) {
+      .panels-arrow { height: 36px; border-left: none; border-right: none; border-top: 1px solid var(--ds-color-border); border-bottom: 1px solid var(--ds-color-border); }
+      .arrow-circle { transform: rotate(90deg); }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    CSS Minifier
+    <span class="ds-tool-badge">format</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">&#9889;</div>
+      <h1 class="ds-tool-header__title">CSS Minifier</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Compress CSS by removing comments, whitespace, and redundant code. Shows exact byte savings and compression ratio. Everything runs in your browser &mdash; no server, no tracking.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">css minify</span>
+      <span class="ds-tag">compress</span>
+      <span class="ds-tag">optimize</span>
+      <span class="ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="opt-row">
+    <span class="opt-label">Options:</span>
+    <label class="check-item">
+      <input type="checkbox" id="optComments" checked />
+      Remove comments
+    </label>
+    <label class="check-item">
+      <input type="checkbox" id="optWhitespace" checked />
+      Collapse whitespace
+    </label>
+    <label class="check-item">
+      <input type="checkbox" id="optSemicolons" checked />
+      Remove trailing semicolons
+    </label>
+    <label class="check-item">
+      <input type="checkbox" id="optZeros" checked />
+      Shorten zero values
+    </label>
+  </div>
+
+  <div class="ds-tool-workbench">
+    <div class="ds-tool-pane" id="inputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label">CSS Input</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn" id="btnPaste">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+          </button>
+          <button class="ds-tool-pane__btn" id="btnSample">Sample</button>
+          <button class="ds-tool-pane__btn" id="btnClearInput">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Paste your CSS here..." spellcheck="false" autocomplete="off"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="inputStat">0 bytes</span>
+      </div>
+    </div>
+
+    <div class="ds-tool-arrow">
+      <div class="ds-tool-arrow__circle">&#8594;</div>
+    </div>
+
+    <div class="ds-tool-pane" id="outputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label">Minified CSS</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn io-btn" id="btnCopyHeader">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea" id="outputText" placeholder="Minified output will appear here..." readonly spellcheck="false"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="outputStat">0 bytes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ratio-bar" id="ratioBar" style="display:none">
+    <div class="ratio-item">
+      <span class="ratio-label">Original</span>
+      <span class="ratio-value" id="origSize">—</span>
+    </div>
+    <span class="ratio-sep">→</span>
+    <div class="ratio-item">
+      <span class="ratio-label">Minified</span>
+      <span class="ratio-value" id="minSize">—</span>
+    </div>
+    <span class="ratio-sep">·</span>
+    <div class="ratio-item">
+      <span class="ratio-label">Saved</span>
+      <span class="ratio-value good" id="savedSize">—</span>
+    </div>
+    <span class="ratio-sep">·</span>
+    <div class="ratio-item">
+      <span class="ratio-label">Ratio</span>
+      <span class="ratio-value good" id="ratioVal">—</span>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Minify
+    </button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Result
+    </button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14H6L5 6M9 6V4h6v2"/></svg>
+      Clear All
+    </button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">&#128161;</span>
+    <div class="ds-tool-note__text">
+      CSS Minifier removes comments and unnecessary whitespace to reduce file size without changing functionality. Use the <strong>CSS Formatter</strong> tool if you need to beautify minified CSS for editing. Typical compression: <strong>20–40%</strong> smaller.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="css-formatter.html" class="ds-related-card">
+        <span class="ds-related-icon">&#127912;</span>
+        <div>
+          <div class="ds-related-name">CSS Formatter</div>
+          <div class="ds-related-desc">Beautify and format CSS code</div>
+        </div>
+      </a>
+      <a href="js-minifier.html" class="ds-related-card">
+        <span class="ds-related-icon">&#9889;</span>
+        <div>
+          <div class="ds-related-name">JS Minifier</div>
+          <div class="ds-related-desc">Compress JavaScript for production</div>
+        </div>
+      </a>
+      <a href="html-formatter.html" class="ds-related-card">
+        <span class="ds-related-icon">&#128196;</span>
+        <div>
+          <div class="ds-related-name">HTML Formatter</div>
+          <div class="ds-related-desc">Beautify and format HTML markup</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SAMPLE_CSS = `/* Main navigation styles */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background-color: #1a1a2e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav__brand {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-primary {
+  background-color: #5e6ad2;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #6b77db;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+}`;
+
+  const inputText = document.getElementById('inputText');
+  const outputText = document.getElementById('outputText');
+  const inputStat = document.getElementById('inputStat');
+  const outputStat = document.getElementById('outputStat');
+  const ratioBar = document.getElementById('ratioBar');
+  const origSize = document.getElementById('origSize');
+  const minSize = document.getElementById('minSize');
+  const savedSize = document.getElementById('savedSize');
+  const ratioVal = document.getElementById('ratioVal');
+
+  function formatBytes(n) {
+    if (n < 1024) return n + ' B';
+    return (n / 1024).toFixed(1) + ' KB';
+  }
+
+  function minifyCSS(css) {
+    const removeComments = document.getElementById('optComments').checked;
+    const collapseWS = document.getElementById('optWhitespace').checked;
+    const removeSemicolons = document.getElementById('optSemicolons').checked;
+    const shortenZeros = document.getElementById('optZeros').checked;
+
+    let result = css;
+
+    if (removeComments) {
+      result = result.replace(/\/\*[\s\S]*?\*\//g, '');
+    }
+
+    if (collapseWS) {
+      result = result
+        .replace(/\s+/g, ' ')
+        .replace(/\s*{\s*/g, '{')
+        .replace(/\s*}\s*/g, '}')
+        .replace(/\s*:\s*/g, ':')
+        .replace(/\s*;\s*/g, ';')
+        .replace(/\s*,\s*/g, ',')
+        .replace(/\s*>\s*/g, '>')
+        .replace(/\s*~\s*/g, '~')
+        .replace(/\s*\+\s*/g, '+');
+    }
+
+    if (removeSemicolons) {
+      result = result.replace(/;}/g, '}');
+    }
+
+    if (shortenZeros) {
+      result = result
+        .replace(/:0px/g, ':0')
+        .replace(/:0em/g, ':0')
+        .replace(/:0rem/g, ':0')
+        .replace(/:0%/g, ':0')
+        .replace(/\s0px/g, ' 0')
+        .replace(/\s0em/g, ' 0')
+        .replace(/\s0rem/g, ' 0')
+        .replace(/\s0%/g, ' 0')
+        .replace(/(^|[^0-9])0\.([0-9]+)/g, '$1.$2');
+    }
+
+    return result.trim();
+  }
+
+  function run() {
+    const input = inputText.value;
+
+    if (!input.trim()) {
+      outputText.value = '';
+      updateStats('', '');
+      return;
+    }
+
+    const result = minifyCSS(input);
+    outputText.value = result;
+    updateStats(input, result);
+  }
+
+  function updateStats(input, output) {
+    const ic = new TextEncoder().encode(input).length;
+    const oc = new TextEncoder().encode(output).length;
+    inputStat.textContent = formatBytes(ic);
+    outputStat.textContent = formatBytes(oc);
+
+    if (ic > 0 && oc > 0) {
+      const saved = ic - oc;
+      const pct = ((saved / ic) * 100).toFixed(1);
+      origSize.textContent = formatBytes(ic);
+      minSize.textContent = formatBytes(oc);
+      savedSize.textContent = formatBytes(saved) + ' (' + pct + '%)';
+      ratioVal.textContent = pct + '% smaller';
+      ratioBar.style.display = 'flex';
+    } else {
+      ratioBar.style.display = 'none';
+    }
+  }
+
+  async function copyText(text, button) {
+    if (!text) return;
+    const originalHtml = button.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = originalHtml; }, 1500);
+  }
+
+  inputText.addEventListener('input', run);
+  document.getElementById('btnRun').addEventListener('click', run);
+
+  document.getElementById('btnPaste').addEventListener('click', async () => {
+    try { inputText.value = await navigator.clipboard.readText(); run(); } catch {}
+  });
+  document.getElementById('btnSample').addEventListener('click', () => {
+    inputText.value = SAMPLE_CSS; run();
+  });
+  document.getElementById('btnClearInput').addEventListener('click', () => {
+    inputText.value = ''; run();
+  });
+  document.getElementById('btnClearAll').addEventListener('click', () => {
+    inputText.value = ''; outputText.value = '';
+    updateStats('', '');
+  });
+  document.getElementById('btnCopyHeader').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyHeader')));
+  document.getElementById('btnCopyResult').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyResult')));
+
+  ['optComments','optWhitespace','optSemicolons','optZeros'].forEach(id => {
+    document.getElementById(id).addEventListener('change', run);
+  });
+</script>
+</body>
+</html>

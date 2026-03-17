@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Color Blindness Simulator - Test UI Accessibility | Simple ToolBox</title>
+  <meta name="description" content="Simulate how images appear to people with color vision deficiency. Test protanopia, deuteranopia, tritanopia, and achromatopsia. Free, browser-based, no data sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/color-blindness.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/color-blindness.html" />
+  <meta property="og:title" content="Color Blindness Simulator - Test UI Accessibility | Simple ToolBox" />
+  <meta property="og:description" content="Simulate how images appear to people with color vision deficiency. Test protanopia, deuteranopia, tritanopia, and more." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Color Blindness Simulator","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Simulate how images appear to people with color vision deficiency. Test protanopia, deuteranopia, tritanopia, and achromatopsia to improve UI accessibility.","featureList":["Protanopia simulation","Deuteranopia simulation","Tritanopia simulation","Achromatopsia simulation","Drag and drop image upload","Side-by-side comparison","No data sent"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* Vision type buttons */
+    .vision-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--ds-radius-sm);
+      border: 1px solid var(--ds-color-border);
+      background: var(--ds-color-bg);
+      text-align: left;
+      transition: border-color 0.15s, background 0.15s;
+      cursor: pointer;
+    }
+    .vision-btn:hover { border-color: rgba(94,106,210,0.4); background: rgba(94,106,210,0.05); }
+    .vision-btn.active { border-color: rgba(94,106,210,0.6); background: rgba(94,106,210,0.1); }
+    .vision-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .vision-info { display: flex; flex-direction: column; gap: 1px; }
+    .vision-name { font-size: 12px; font-weight: 600; color: var(--ds-color-text-primary); }
+    .vision-sub { font-size: 11px; color: var(--ds-color-text-muted); }
+    .vision-pct { font-size: 10px; color: var(--ds-color-text-muted); }
+
+    .vision-list { display: flex; flex-direction: column; gap: 6px; }
+
+    /* Drop zone */
+    .drop-zone {
+      border: 2px dashed var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: rgba(94,106,210,0.5);
+      background: rgba(94,106,210,0.05);
+    }
+    .drop-icon { font-size: 28px; margin-bottom: 6px; }
+    .drop-text { font-size: 12px; color: var(--ds-color-text-secondary); }
+    .drop-hint { font-size: 11px; color: var(--ds-color-text-muted); margin-top: 3px; }
+
+    /* Preview area */
+    .preview-wrap {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 420px;
+    }
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--ds-color-border);
+      flex-shrink: 0;
+    }
+    .preview-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ds-color-text-muted);
+    }
+    .preview-body {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .canvas-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .canvas-col + .canvas-col {
+      border-left: 1px solid var(--ds-color-border);
+    }
+    .canvas-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ds-color-text-muted);
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--ds-color-border);
+      flex-shrink: 0;
+    }
+    .canvas-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      overflow: hidden;
+      background: #111;
+      min-height: 200px;
+    }
+    canvas {
+      max-width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      display: block;
+    }
+    .empty-preview {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--ds-color-text-muted);
+      gap: 8px;
+      padding: 40px;
+    }
+    .empty-preview-icon { font-size: 36px; }
+    .empty-preview-text { font-size: 13px; }
+
+    /* Download button */
+    .btn-dl {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 10px;
+      border-radius: var(--ds-radius-sm);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ds-color-text-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-dl:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.08); }
+
+    .stat-badge {
+      font-size: 11px;
+      color: var(--ds-color-text-muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      padding: 2px 8px;
+    }
+
+    @media (max-width: 768px) {
+      .preview-body { flex-direction: column; }
+      .canvas-col + .canvas-col { border-left: none; border-top: 1px solid var(--ds-color-border); }
+    }
+
+    /* Panoramic grid mode */
+    .btn-panoramic {
+      display: flex; align-items: center; gap: 6px;
+      width: 100%; padding: 8px 12px;
+      border-radius: var(--ds-radius-sm);
+      border: 1px solid var(--ds-color-border);
+      background: var(--ds-color-bg);
+      font-size: 12px; font-weight: 500;
+      color: var(--ds-color-text-secondary);
+      transition: border-color 0.15s, background 0.15s;
+      margin-top: 8px;
+    }
+    .btn-panoramic:hover { border-color: rgba(94,106,210,0.4); background: rgba(94,106,210,0.05); color: var(--ds-color-accent); }
+    .btn-panoramic.active { border-color: rgba(94,106,210,0.6); background: rgba(94,106,210,0.1); color: var(--ds-color-accent); }
+
+    .panoramic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      flex: 1;
+      overflow: auto;
+    }
+    @media (max-width: 900px) { .panoramic-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px)  { .panoramic-grid { grid-template-columns: 1fr; } }
+
+    .pano-cell {
+      display: flex; flex-direction: column;
+      border-right: 1px solid var(--ds-color-border);
+      border-bottom: 1px solid var(--ds-color-border);
+    }
+    .pano-cell:nth-child(4n) { border-right: none; }
+    .pano-label {
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--ds-color-text-muted);
+      padding: 5px 8px;
+      border-bottom: 1px solid var(--ds-color-border);
+      flex-shrink: 0;
+    }
+    .pano-canvas-wrap {
+      flex: 1; display: flex;
+      align-items: center; justify-content: center;
+      padding: 4px; background: #111; min-height: 80px;
+    }
+    .pano-canvas-wrap canvas { max-width: 100%; max-height: 160px; object-fit: contain; display: block; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    Color Blindness Simulator
+    <span class="ds-tool-badge">design</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">&#128065;</div>
+      <h1 class="ds-tool-header__title">Color Blindness Simulator</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Upload any image and see how it looks to people with color vision deficiency. Test your UI, charts, and designs for accessibility. Simulation runs entirely in your browser &mdash; no uploads, no server.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">accessibility</span>
+      <span class="ds-tag">color vision</span>
+      <span class="ds-tag">wcag</span>
+      <span class="ds-tag">design</span>
+      <span class="ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-split">
+
+  <!-- Left sidebar -->
+  <div class="ds-tool-sidepanel">
+
+    <div class="ds-tool-sidepanel__section">
+      <div class="ds-tool-pane__label" style="margin-bottom:8px">Image</div>
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">&#128247;</div>
+        <div class="drop-text">Drop image here or click to upload</div>
+        <div class="drop-hint">PNG, JPG, GIF, WebP &mdash; up to 10 MB</div>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" style="display:none" />
+      <button class="ds-tool-primary" id="btnSample" style="width:100%;margin-top:8px;justify-content:center">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Use Sample Image
+      </button>
+    </div>
+
+    <div class="ds-tool-sidepanel__section">
+      <div class="ds-tool-pane__label" style="margin-bottom:8px">Vision Type</div>
+      <div class="vision-list">
+        <button class="vision-btn active" data-type="normal">
+          <span class="vision-dot" style="background:#22c55e"></span>
+          <div class="vision-info">
+            <span class="vision-name">Normal Vision</span>
+            <span class="vision-sub">No simulation</span>
+          </div>
+        </button>
+        <button class="vision-btn" data-type="protanopia">
+          <span class="vision-dot" style="background:#ef4444"></span>
+          <div class="vision-info">
+            <span class="vision-name">Protanopia</span>
+            <span class="vision-sub">Red-blind</span>
+            <span class="vision-pct">~1% of males</span>
+          </div>
+        </button>
+        <button class="vision-btn" data-type="deuteranopia">
+          <span class="vision-dot" style="background:#f59e0b"></span>
+          <div class="vision-info">
+            <span class="vision-name">Deuteranopia</span>
+            <span class="vision-sub">Green-blind</span>
+            <span class="vision-pct">~1% of males</span>
+          </div>
+        </button>
+        <button class="vision-btn" data-type="tritanopia">
+          <span class="vision-dot" style="background:#3b82f6"></span>
+          <div class="vision-info">
+            <span class="vision-name">Tritanopia</span>
+            <span class="vision-sub">Blue-blind</span>
+            <span class="vision-pct">~0.003% of people</span>
+          </div>
+        </button>
+        <button class="vision-btn" data-type="protanomaly">
+          <span class="vision-dot" style="background:#f87171"></span>
+          <div class="vision-info">
+            <span class="vision-name">Protanomaly</span>
+            <span class="vision-sub">Red-weak</span>
+            <span class="vision-pct">~1% of males</span>
+          </div>
+        </button>
+        <button class="vision-btn" data-type="deuteranomaly">
+          <span class="vision-dot" style="background:#fbbf24"></span>
+          <div class="vision-info">
+            <span class="vision-name">Deuteranomaly</span>
+            <span class="vision-sub">Green-weak (most common)</span>
+            <span class="vision-pct">~5% of males</span>
+          </div>
+        </button>
+        <button class="vision-btn" data-type="achromatopsia">
+          <span class="vision-dot" style="background:#94a3b8"></span>
+          <div class="vision-info">
+            <span class="vision-name">Achromatopsia</span>
+            <span class="vision-sub">Total color blindness</span>
+            <span class="vision-pct">~0.003% of people</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="ds-tool-sidepanel__section">
+      <button class="btn-panoramic" id="btnPanoramic">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Panoramic View (All Types)
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Preview panel -->
+  <div class="ds-tool-preview" style="display:flex;flex-direction:column;gap:12px">
+    <div class="preview-wrap" id="previewWrap">
+      <div class="empty-preview" id="emptyState">
+        <div class="empty-preview-icon">&#128065;</div>
+        <div class="empty-preview-text">Upload an image to simulate color blindness</div>
+      </div>
+      <div id="canvasArea" style="display:none;flex:1;flex-direction:column">
+        <div class="preview-header">
+          <span class="preview-title" id="previewTitle">Normal Vision</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="stat-badge" id="imageSizeBadge"></span>
+            <button class="btn-dl" id="btnDownload">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
+        </div>
+        <!-- Single compare view -->
+        <div class="preview-body" id="compareView">
+          <div class="canvas-col">
+            <div class="canvas-label">Original</div>
+            <div class="canvas-wrap">
+              <canvas id="canvasOriginal"></canvas>
+            </div>
+          </div>
+          <div class="canvas-col">
+            <div class="canvas-label" id="simLabel">Simulated</div>
+            <div class="canvas-wrap">
+              <canvas id="canvasSimulated"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- Panoramic grid view -->
+        <div class="panoramic-grid" id="panoramicView" style="display:none"></div>
+      </div>
+    </div>
+
+    <div class="ds-tool-note">
+      <span class="ds-tool-note__icon">&#128161;</span>
+      <div class="ds-tool-note__text">
+        Simulation uses LMS-based color transformation matrices (Brettel method). About <strong>8% of males</strong> and <strong>0.5% of females</strong> have some form of color vision deficiency. Use the <strong>Contrast Checker</strong> to ensure text meets WCAG AA/AAA standards.
+      </div>
+    </div>
+
+    <div class="ds-related-tools">
+      <h2 class="ds-related-title">Related Tools</h2>
+      <div class="ds-related-grid">
+        <a href="contrast-checker.html" class="ds-related-card">
+          <span class="ds-related-icon">&#9878;</span>
+          <div>
+            <div class="ds-related-name">Contrast Checker</div>
+            <div class="ds-related-desc">Check WCAG color contrast ratios</div>
+          </div>
+        </a>
+        <a href="color-picker.html" class="ds-related-card">
+          <span class="ds-related-icon">&#127752;</span>
+          <div>
+            <div class="ds-related-name">Color Picker</div>
+            <div class="ds-related-desc">Pick, convert, and explore colors</div>
+          </div>
+        </a>
+        <a href="color-palette.html" class="ds-related-card">
+          <span class="ds-related-icon">&#127912;</span>
+          <div>
+            <div class="ds-related-name">Color Palette</div>
+            <div class="ds-related-desc">Generate accessible color palettes</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Color blindness matrices (LMS-based, Brettel/Viénot method)
+  // Each entry: [R_out = r*m[0]+g*m[1]+b*m[2], G_out = ..., B_out = ...]
+  const MATRICES = {
+    normal: null, // no transform
+    protanopia: [
+      0.152286, 1.052583, -0.204868,
+      0.114503, 0.786281,  0.099216,
+     -0.003882,-0.048116,  1.051998
+    ],
+    deuteranopia: [
+      0.367322, 0.860646, -0.227968,
+      0.280085, 0.672501,  0.047413,
+     -0.011820, 0.042940,  0.968881
+    ],
+    tritanopia: [
+      1.255528,-0.076749,-0.178779,
+     -0.078411, 0.930809, 0.147602,
+      0.004733, 0.691367, 0.303900
+    ],
+    protanomaly: [
+      0.458064, 0.679578,-0.137642,
+      0.092785, 0.846313, 0.060902,
+     -0.007494,-0.016807, 1.024301
+    ],
+    deuteranomaly: [
+      0.547494, 0.607765,-0.155259,
+      0.181692, 0.781846, 0.036462,
+     -0.010410, 0.027275, 0.983136
+    ],
+    achromatopsia: null // handled separately
+  };
+
+  const LABELS = {
+    normal: 'Normal Vision',
+    protanopia: 'Protanopia (Red-blind)',
+    deuteranopia: 'Deuteranopia (Green-blind)',
+    tritanopia: 'Tritanopia (Blue-blind)',
+    protanomaly: 'Protanomaly (Red-weak)',
+    deuteranomaly: 'Deuteranomaly (Green-weak)',
+    achromatopsia: 'Achromatopsia (Monochromacy)'
+  };
+
+  let currentType = 'normal';
+  let sourceImage = null;
+
+  // Generate a colorful sample image in-browser
+  function generateSampleImage() {
+    const c = document.createElement('canvas');
+    c.width = 600; c.height = 400;
+    const ctx = c.getContext('2d');
+
+    // Background
+    ctx.fillStyle = '#1a1a2e';
+    ctx.fillRect(0, 0, 600, 400);
+
+    // Color swatches
+    const colors = [
+      '#ef4444','#f97316','#eab308','#22c55e',
+      '#14b8a6','#3b82f6','#8b5cf6','#ec4899',
+      '#84cc16','#06b6d4','#f43f5e','#a855f7'
+    ];
+    colors.forEach((color, i) => {
+      const x = (i % 6) * 90 + 30;
+      const y = Math.floor(i / 6) * 90 + 30;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.roundRect(x, y, 75, 75, 8);
+      ctx.fill();
+    });
+
+    // Text labels
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 16px sans-serif';
+    ctx.fillText('Red', 45, 205);
+    ctx.fillText('Green', 225, 205);
+    ctx.fillText('Blue', 405, 205);
+
+    // Color bars
+    const grad = ctx.createLinearGradient(30, 220, 570, 220);
+    grad.addColorStop(0, '#ef4444');
+    grad.addColorStop(0.5, '#22c55e');
+    grad.addColorStop(1, '#3b82f6');
+    ctx.fillStyle = grad;
+    ctx.fillRect(30, 220, 540, 40);
+
+    // Grayscale bar
+    const grad2 = ctx.createLinearGradient(30, 270, 570, 270);
+    grad2.addColorStop(0, '#000000');
+    grad2.addColorStop(1, '#ffffff');
+    ctx.fillStyle = grad2;
+    ctx.fillRect(30, 270, 540, 40);
+
+    // Typical UI elements
+    ctx.fillStyle = '#22c55e';
+    ctx.fillRect(30, 330, 160, 50);
+    ctx.fillStyle = '#ef4444';
+    ctx.fillRect(210, 330, 160, 50);
+    ctx.fillStyle = '#3b82f6';
+    ctx.fillRect(390, 330, 160, 50);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 14px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Success', 110, 361);
+    ctx.fillText('Error', 290, 361);
+    ctx.fillText('Info', 470, 361);
+
+    return c;
+  }
+
+  function applyMatrix(imageData, matrix, isAchromato) {
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i] / 255;
+      const g = data[i+1] / 255;
+      const b = data[i+2] / 255;
+
+      let nr, ng, nb;
+      if (isAchromato) {
+        const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+        nr = ng = nb = lum;
+      } else {
+        nr = matrix[0]*r + matrix[1]*g + matrix[2]*b;
+        ng = matrix[3]*r + matrix[4]*g + matrix[5]*b;
+        nb = matrix[6]*r + matrix[7]*g + matrix[8]*b;
+      }
+
+      data[i]   = Math.max(0, Math.min(255, Math.round(nr * 255)));
+      data[i+1] = Math.max(0, Math.min(255, Math.round(ng * 255)));
+      data[i+2] = Math.max(0, Math.min(255, Math.round(nb * 255)));
+    }
+    return imageData;
+  }
+
+  function renderImage(img) {
+    sourceImage = img;
+    const emptyState = document.getElementById('emptyState');
+    const canvasArea = document.getElementById('canvasArea');
+    emptyState.style.display = 'none';
+    canvasArea.style.display = 'flex';
+
+    const canvasOrig = document.getElementById('canvasOriginal');
+    const ctxOrig = canvasOrig.getContext('2d');
+    canvasOrig.width = img.naturalWidth || img.width;
+    canvasOrig.height = img.naturalHeight || img.height;
+    ctxOrig.drawImage(img, 0, 0);
+
+    document.getElementById('imageSizeBadge').textContent = canvasOrig.width + ' × ' + canvasOrig.height;
+
+    simulate();
+  }
+
+  function simulate() {
+    if (!sourceImage) return;
+
+    const canvasOrig = document.getElementById('canvasOriginal');
+    const canvasSim = document.getElementById('canvasSimulated');
+    const ctx = canvasOrig.getContext('2d');
+
+    canvasSim.width = canvasOrig.width;
+    canvasSim.height = canvasOrig.height;
+    const ctxSim = canvasSim.getContext('2d');
+    ctxSim.drawImage(canvasOrig, 0, 0);
+
+    document.getElementById('previewTitle').textContent = LABELS[currentType];
+    document.getElementById('simLabel').textContent = currentType === 'normal' ? 'Original (no simulation)' : LABELS[currentType];
+
+    if (currentType === 'normal') {
+      return; // Already drawn original
+    }
+
+    const imageData = ctxSim.getImageData(0, 0, canvasSim.width, canvasSim.height);
+    const isAchromato = currentType === 'achromatopsia';
+    const matrix = MATRICES[currentType];
+    applyMatrix(imageData, matrix, isAchromato);
+    ctxSim.putImageData(imageData, 0, 0);
+  }
+
+  function loadImageFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    if (file.size > 10 * 1024 * 1024) { alert('Image too large (max 10 MB)'); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => renderImage(img);
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Drop zone
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    loadImageFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', () => loadImageFile(fileInput.files[0]));
+
+  // Sample
+  document.getElementById('btnSample').addEventListener('click', () => {
+    const sampleCanvas = generateSampleImage();
+    const img = new Image();
+    img.onload = () => renderImage(img);
+    img.src = sampleCanvas.toDataURL();
+  });
+
+  // Vision type buttons
+  document.querySelectorAll('.vision-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.vision-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentType = btn.dataset.type;
+      simulate();
+    });
+  });
+
+  // Download simulated image
+  document.getElementById('btnDownload').addEventListener('click', () => {
+    const canvas = document.getElementById('canvasSimulated');
+    if (!canvas.width) return;
+    const link = document.createElement('a');
+    link.download = 'color-blindness-' + currentType + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+
+  // Panoramic view
+  const PANO_TYPES = ['normal','protanopia','deuteranopia','tritanopia','protanomaly','deuteranomaly','achromatopsia'];
+  let panoramicMode = false;
+
+  function buildPanorama() {
+    if (!sourceImage) return;
+    const grid = document.getElementById('panoramicView');
+    grid.innerHTML = '';
+    const canvasOrig = document.getElementById('canvasOriginal');
+
+    PANO_TYPES.forEach(type => {
+      const cell = document.createElement('div');
+      cell.className = 'pano-cell';
+      const lbl = document.createElement('div');
+      lbl.className = 'pano-label';
+      lbl.textContent = LABELS[type];
+      const wrap = document.createElement('div');
+      wrap.className = 'pano-canvas-wrap';
+      const c = document.createElement('canvas');
+      c.width = canvasOrig.width;
+      c.height = canvasOrig.height;
+      const ctx = c.getContext('2d');
+      ctx.drawImage(canvasOrig, 0, 0);
+      if (type !== 'normal') {
+        const imageData = ctx.getImageData(0, 0, c.width, c.height);
+        applyMatrix(imageData, MATRICES[type], type === 'achromatopsia');
+        ctx.putImageData(imageData, 0, 0);
+      }
+      wrap.appendChild(c);
+      cell.appendChild(lbl);
+      cell.appendChild(wrap);
+      grid.appendChild(cell);
+    });
+  }
+
+  document.getElementById('btnPanoramic').addEventListener('click', () => {
+    panoramicMode = !panoramicMode;
+    const btn = document.getElementById('btnPanoramic');
+    const compareView = document.getElementById('compareView');
+    const panoramicView = document.getElementById('panoramicView');
+    btn.classList.toggle('active', panoramicMode);
+
+    if (panoramicMode) {
+      compareView.style.display = 'none';
+      panoramicView.style.display = 'grid';
+      if (sourceImage) buildPanorama();
+    } else {
+      compareView.style.display = '';
+      panoramicView.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>

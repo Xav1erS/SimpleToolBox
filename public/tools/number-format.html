@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Number Formatter - Format Numbers, Currency & Scientific Notation | Simple ToolBox</title>
+  <meta name="description" content="Format numbers with thousand separators, currency symbols, decimal places, and scientific notation. Supports locale-aware formatting. Free, browser-based, no data sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/number-format.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/number-format.html" />
+  <meta property="og:title" content="Number Formatter - Format Numbers Online | Simple ToolBox" />
+  <meta property="og:description" content="Format numbers with thousand separators, currency, and scientific notation. Free, browser-based." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Number Formatter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Format numbers with thousand separators, currency symbols, scientific notation, and locale-aware output.","featureList":["Thousand separators","Currency formatting","Scientific notation","Locale-aware","No data sent"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .input-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 20px;
+    }
+    .num-input {
+      width: 100%;
+      font-family: var(--ds-font-mono);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--ds-color-text-primary);
+      background: transparent;
+      border: none;
+      outline: none;
+      text-align: center;
+      padding: 12px 0;
+    }
+    .num-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; }
+    .num-hint { text-align: center; font-size: 12px; color: var(--ds-color-text-muted); margin-top: 4px; }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 640px) { .options-grid { grid-template-columns: 1fr; } }
+
+    .opt-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 14px 16px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .opt-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); }
+    .field-row { display: flex; flex-direction: column; gap: 4px; }
+    .field-label { font-size: 11px; color: var(--ds-color-text-muted); }
+    .field-input, .field-select {
+      width: 100%;
+      padding: 6px 10px;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-sans);
+      font-size: 12px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .field-input:focus, .field-select:focus { border-color: rgba(94,106,210,0.5); }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+    .result-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 12px 14px;
+      display: flex; flex-direction: column; gap: 4px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .result-card:hover { border-color: rgba(94,106,210,0.4); }
+    .result-card.copied { border-color: rgba(34,197,94,0.4); }
+    .result-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ds-color-text-muted); }
+    .result-value { font-family: var(--ds-font-mono); font-size: 18px; font-weight: 600; color: var(--ds-color-text-primary); word-break: break-all; }
+    .result-value.empty { color: var(--ds-color-text-muted); font-style: italic; font-size: 13px; }
+    .result-copy-hint { font-size: 10px; color: var(--ds-color-text-muted); }
+    .result-copy-hint.copied-msg { color: #22c55e; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Number Formatter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">&#128290;</div>
+      <h1 class="ds-tool-header__title">Number Formatter</h1>
+    </div>
+    <p class="ds-tool-header__desc">Format any number with thousand separators, currency symbols, custom decimal places, and scientific notation. Click any result to copy it instantly.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">number</span><span class="ds-tag">format</span><span class="ds-tag">currency</span><span class="ds-tag">scientific notation</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="input-card">
+    <input class="num-input" id="numInput" type="text" placeholder="Enter a number…" autocomplete="off" spellcheck="false" />
+    <div class="num-hint" id="numHint">Type any integer or decimal number</div>
+  </div>
+
+  <div class="options-grid">
+    <div class="opt-card">
+      <div class="opt-title">Separators</div>
+      <div class="field-row">
+        <label class="field-label">Thousand separator</label>
+        <select class="field-select" id="sepThousand">
+          <option value="," selected>Comma (1,000,000)</option>
+          <option value=".">Period (1.000.000)</option>
+          <option value=" ">Space (1 000 000)</option>
+          <option value="_">Underscore (1_000_000)</option>
+          <option value="">None (1000000)</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <label class="field-label">Decimal separator</label>
+        <select class="field-select" id="sepDecimal">
+          <option value="." selected>Period (3.14)</option>
+          <option value=",">Comma (3,14)</option>
+        </select>
+      </div>
+    </div>
+    <div class="opt-card">
+      <div class="opt-title">Precision</div>
+      <div class="field-row">
+        <label class="field-label">Decimal places</label>
+        <select class="field-select" id="decPlaces">
+          <option value="-1" selected>Auto (as-is)</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <label class="field-label">Currency prefix</label>
+        <select class="field-select" id="currencyPrefix">
+          <option value="" selected>None</option>
+          <option value="$">$ (USD)</option>
+          <option value="€">€ (EUR)</option>
+          <option value="£">£ (GBP)</option>
+          <option value="¥">¥ (JPY/CNY)</option>
+          <option value="₹">₹ (INR)</option>
+          <option value="₩">₩ (KRW)</option>
+          <option value="C$">C$ (CAD)</option>
+          <option value="A$">A$ (AUD)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-grid" id="resultsGrid">
+    <div class="result-card" id="rc-standard">
+      <div class="result-label">Standard</div>
+      <div class="result-value empty" id="rv-standard">—</div>
+      <div class="result-copy-hint">Click to copy</div>
+    </div>
+    <div class="result-card" id="rc-scientific">
+      <div class="result-label">Scientific Notation</div>
+      <div class="result-value empty" id="rv-scientific">—</div>
+      <div class="result-copy-hint">Click to copy</div>
+    </div>
+    <div class="result-card" id="rc-engineering">
+      <div class="result-label">Engineering Notation</div>
+      <div class="result-value empty" id="rv-engineering">—</div>
+      <div class="result-copy-hint">Click to copy</div>
+    </div>
+    <div class="result-card" id="rc-words">
+      <div class="result-label">In Words (EN)</div>
+      <div class="result-value empty" id="rv-words">—</div>
+      <div class="result-copy-hint">Click to copy</div>
+    </div>
+    <div class="result-card" id="rc-binary">
+      <div class="result-label">Binary (integer part)</div>
+      <div class="result-value empty" id="rv-binary">—</div>
+      <div class="result-copy-hint">Click to copy</div>
+    </div>
+    <div class="result-card" id="rc-hex">
+      <div class="result-label">Hexadecimal (integer part)</div>
+      <div class="result-value empty" id="rv-hex">—</div>
+      <div class="result-copy-hint">Click to copy</div>
+    </div>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">&#128161;</span>
+    <div class="ds-tool-note__text">
+      <strong>Click any result card</strong> to copy the formatted value. Engineering notation uses exponents that are multiples of 3 (kilo, mega, giga scale). Large numbers in "In Words" are approximated above quadrillions.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="number-base.html" class="ds-related-card"><span class="ds-related-icon">&#128290;</span><div><div class="ds-related-name">Number Base Converter</div><div class="ds-related-desc">Convert between binary, octal, decimal, hex</div></div></a>
+      <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">&#128207;</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, and more</div></div></a>
+      <a href="random-number-generator.html" class="ds-related-card"><span class="ds-related-icon">&#127922;</span><div><div class="ds-related-name">Random Number Generator</div><div class="ds-related-desc">Generate random numbers and dice rolls</div></div></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ONES = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+  const TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+  function spellHundred(n) {
+    if (n === 0) return '';
+    if (n < 20) return ONES[n];
+    if (n < 100) return TENS[Math.floor(n/10)] + (n%10 ? '-'+ONES[n%10] : '');
+    return ONES[Math.floor(n/100)] + ' hundred' + (n%100 ? ' '+spellHundred(n%100) : '');
+  }
+  const MAGNITUDES = ['','thousand','million','billion','trillion','quadrillion'];
+  function numberToWords(n) {
+    if (isNaN(n) || !isFinite(n)) return '—';
+    if (n === 0) return 'zero';
+    let neg = n < 0; n = Math.abs(Math.round(n));
+    if (n > 999999999999999) return '≈ ' + n.toExponential(2) + ' (too large)';
+    const parts = [];
+    let mag = 0;
+    while (n > 0) { const chunk = n % 1000; if (chunk) parts.unshift(spellHundred(chunk) + (MAGNITUDES[mag] ? ' ' + MAGNITUDES[mag] : '')); n = Math.floor(n/1000); mag++; }
+    return (neg ? 'negative ' : '') + parts.join(', ');
+  }
+
+  function toEngineering(n) {
+    if (n === 0) return '0';
+    const exp = Math.floor(Math.log10(Math.abs(n)));
+    const engExp = Math.floor(exp / 3) * 3;
+    const mantissa = n / Math.pow(10, engExp);
+    return mantissa.toPrecision(4).replace(/\.?0+$/, '') + ' × 10^' + engExp;
+  }
+
+  function formatStandard(num, sepT, sepD, decPlaces, prefix) {
+    let [intPart, decPart] = (decPlaces >= 0 ? num.toFixed(decPlaces) : String(num)).split('.');
+    if (sepT) intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, sepT);
+    let result = intPart + (decPart !== undefined ? sepD + decPart : '');
+    return prefix + result;
+  }
+
+  function update() {
+    const raw = document.getElementById('numInput').value.trim().replace(/,/g,'');
+    const hint = document.getElementById('numHint');
+    const num = parseFloat(raw);
+
+    function setResult(id, val) {
+      const rv = document.getElementById('rv-' + id);
+      if (!raw || isNaN(num)) { rv.textContent = '—'; rv.className = 'result-value empty'; return; }
+      rv.textContent = val;
+      rv.className = 'result-value';
+    }
+
+    if (!raw || isNaN(num)) {
+      hint.textContent = 'Type any integer or decimal number';
+      ['standard','scientific','engineering','words','binary','hex'].forEach(id => setResult(id, ''));
+      return;
+    }
+
+    hint.textContent = 'Parsed: ' + num.toLocaleString();
+
+    const sepT = document.getElementById('sepThousand').value;
+    const sepD = document.getElementById('sepDecimal').value;
+    const decPlaces = parseInt(document.getElementById('decPlaces').value);
+    const prefix = document.getElementById('currencyPrefix').value;
+
+    setResult('standard', formatStandard(num, sepT, sepD, decPlaces, prefix));
+    setResult('scientific', num.toExponential(4).replace(/\.?0+e/, 'e').replace('e+','e+').replace('e','×10^'));
+    setResult('engineering', toEngineering(num));
+    setResult('words', numberToWords(num));
+
+    const intVal = Math.trunc(num);
+    setResult('binary', intVal < 0 ? '-'+Math.abs(intVal).toString(2) : intVal.toString(2));
+    setResult('hex', intVal < 0 ? '-0x'+Math.abs(intVal).toString(16).toUpperCase() : '0x'+intVal.toString(16).toUpperCase());
+  }
+
+  async function copyCard(cardId, valId) {
+    const val = document.getElementById(valId).textContent;
+    if (!val || val === '—') return;
+    const card = document.getElementById(cardId);
+    const hint = card.querySelector('.result-copy-hint');
+    try { await navigator.clipboard.writeText(val); } catch {}
+    card.classList.add('copied');
+    hint.textContent = '✓ Copied!';
+    hint.className = 'result-copy-hint copied-msg';
+    setTimeout(() => { card.classList.remove('copied'); hint.textContent = 'Click to copy'; hint.className = 'result-copy-hint'; }, 1500);
+  }
+
+  ['standard','scientific','engineering','words','binary','hex'].forEach(id => {
+    document.getElementById('rc-'+id).addEventListener('click', () => copyCard('rc-'+id, 'rv-'+id));
+  });
+
+  document.getElementById('numInput').addEventListener('input', update);
+  ['sepThousand','sepDecimal','decPlaces','currencyPrefix'].forEach(id => {
+    document.getElementById(id).addEventListener('change', update);
+  });
+</script>
+</body>
+</html>

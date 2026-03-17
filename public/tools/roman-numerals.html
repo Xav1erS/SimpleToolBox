@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Roman Numeral Converter — SimpleToolBox</title>
+  <meta name="description" content="Convert between Arabic numbers and Roman numerals instantly. Supports numbers from 1 to 3999. Free, runs entirely in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.com/tools/roman-numerals.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.com/tools/roman-numerals.html" />
+  <meta property="og:title" content="Roman Numeral Converter — SimpleToolBox" />
+  <meta property="og:description" content="Convert between Arabic numbers and Roman numerals instantly. Supports numbers from 1 to 3999." />
+  <meta property="og:site_name" content="SimpleToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Roman Numeral Converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert between Arabic numbers and Roman numerals instantly. Supports numbers from 1 to 3999. Free, runs entirely in your browser.","featureList":["Arabic to Roman numeral conversion","Roman to Arabic numeral conversion","Step-by-step breakdown","Reference table of Roman numerals"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <style>
+    .main { max-width: 760px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 20px; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 24px;
+    }
+
+    /* ── MODEBAR ── */
+    .modebar {
+      display: flex; gap: 6px; margin-bottom: 24px;
+    }
+    .mode-btn {
+      padding: 8px 20px; border-radius: var(--ds-radius-sm);
+      font-size: 13px; font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      border: 1px solid var(--ds-color-border);
+      background: transparent; cursor: pointer;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .mode-btn:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.04); }
+    .mode-btn.active { background: var(--ds-color-accent); color: #fff; border-color: var(--ds-color-accent); }
+
+    /* ── FIELD ── */
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field-label {
+      font-size: 12px; font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .field-input {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 15px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .field-input:focus { border-color: var(--ds-color-accent); }
+    .field-input.error-border { border-color: #ef4444; }
+
+    /* ── RESULT ── */
+    .result-area {
+      margin-top: 20px;
+    }
+    .result-label {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ds-color-text-muted);
+      margin-bottom: 10px;
+    }
+    .result-value {
+      font-family: var(--ds-font-mono);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--ds-color-text-primary);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      word-break: break-all;
+      min-height: 3.5rem;
+    }
+    .result-value.empty { color: var(--ds-color-text-muted); }
+
+    /* ── BREAKDOWN ── */
+    .breakdown {
+      margin-top: 12px;
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      color: var(--ds-color-text-secondary);
+      line-height: 1.6;
+      min-height: 18px;
+    }
+    .breakdown .bd-part {
+      display: inline-block;
+      background: var(--ds-color-surface-tint);
+      border: 1px solid rgba(94,106,210,0.2);
+      border-radius: var(--ds-radius-sm);
+      padding: 1px 7px;
+      margin: 2px 3px 2px 0;
+      color: var(--ds-color-accent);
+    }
+
+    /* ── ERROR ── */
+    .error-msg {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #ef4444;
+      min-height: 18px;
+    }
+
+    /* ── COPY BTN ── */
+    .copy-row { margin-top: 16px; }
+    .btn-copy {
+      padding: 8px 18px; border-radius: var(--ds-radius-sm);
+      background: var(--ds-color-surface-tint);
+      color: var(--ds-color-accent);
+      border: 1px solid rgba(94,106,210,0.3);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+    .btn-copy:hover { background: rgba(94,106,210,0.2); }
+    .btn-copy:disabled { opacity: 0.4; cursor: default; }
+
+    /* ── REFERENCE TABLE ── */
+    .ref-title {
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ds-color-text-muted);
+      margin-bottom: 14px;
+    }
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .ref-table th {
+      text-align: left;
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ds-color-text-muted);
+      padding: 6px 12px 8px;
+      border-bottom: 1px solid var(--ds-color-border);
+    }
+    .ref-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      font-family: var(--ds-font-mono);
+    }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-table td:first-child { color: var(--ds-color-accent); font-weight: 700; }
+    .ref-table td:nth-child(2) { color: var(--ds-color-text-primary); }
+
+    /* wrap into two columns on wider screens */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0 24px;
+    }
+
+    @media (max-width: 480px) {
+      .result-value { font-size: 2rem; }
+      .ref-grid { grid-template-columns: 1fr 1fr; gap: 0 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="ds-tool-nav">
+  <a href="/" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+    </div>
+    SimpleToolBox
+  </a>
+  <div class="ds-tool-nav__links">
+    <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
+    <a href="/about.html" class="ds-tool-nav__link">About</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__icon">🏛️</div>
+    <div>
+      <h1 class="ds-tool-header__title">Roman Numeral Converter</h1>
+      <p class="ds-tool-header__desc">Convert between Arabic numbers and Roman numerals instantly. Supports numbers from 1 to 3999.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="ds-tool-main ds-tool-stack">
+<div class="main">
+
+  <!-- CONVERTER CARD -->
+  <div class="card">
+    <!-- Mode bar -->
+    <div class="modebar" id="modebar">
+      <button class="mode-btn active" data-mode="to-roman">Arabic → Roman</button>
+      <button class="mode-btn" data-mode="to-arabic">Roman → Arabic</button>
+    </div>
+
+    <!-- To Roman mode -->
+    <div id="paneToRoman">
+      <div class="field">
+        <label class="field-label" for="arabicInput">Arabic Number (1 – 3999)</label>
+        <input class="field-input" type="number" id="arabicInput" min="1" max="3999" step="1" placeholder="e.g. 1994" value="1994" />
+      </div>
+      <div class="result-area">
+        <div class="result-label">Roman Numeral</div>
+        <div class="result-value" id="romanResult"></div>
+        <div class="breakdown" id="romanBreakdown"></div>
+        <div class="error-msg" id="toRomanError"></div>
+      </div>
+      <div class="copy-row">
+        <button class="btn-copy" id="copyRomanBtn">Copy</button>
+      </div>
+    </div>
+
+    <!-- To Arabic mode -->
+    <div id="paneToArabic" style="display:none;">
+      <div class="field">
+        <label class="field-label" for="romanInput">Roman Numeral</label>
+        <input class="field-input" type="text" id="romanInput" placeholder="e.g. MCMXCIV" maxlength="20" style="text-transform:uppercase;" />
+      </div>
+      <div class="result-area">
+        <div class="result-label">Arabic Number</div>
+        <div class="result-value" id="arabicResult"></div>
+        <div class="error-msg" id="toArabicError"></div>
+      </div>
+      <div class="copy-row">
+        <button class="btn-copy" id="copyArabicBtn">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFERENCE TABLE CARD -->
+  <div class="card">
+    <div class="ref-title">Roman Numeral Reference</div>
+    <div class="ref-grid">
+      <table class="ref-table">
+        <thead>
+          <tr><th>Roman</th><th>Arabic</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>I</td><td>1</td><td>–</td></tr>
+          <tr><td>IV</td><td>4</td><td>Subtractive</td></tr>
+          <tr><td>V</td><td>5</td><td>–</td></tr>
+          <tr><td>IX</td><td>9</td><td>Subtractive</td></tr>
+          <tr><td>X</td><td>10</td><td>–</td></tr>
+          <tr><td>XL</td><td>40</td><td>Subtractive</td></tr>
+          <tr><td>L</td><td>50</td><td>–</td></tr>
+          <tr><td>XC</td><td>90</td><td>Subtractive</td></tr>
+          <tr><td>C</td><td>100</td><td>–</td></tr>
+          <tr><td>CD</td><td>400</td><td>Subtractive</td></tr>
+          <tr><td>D</td><td>500</td><td>–</td></tr>
+          <tr><td>CM</td><td>900</td><td>Subtractive</td></tr>
+          <tr><td>M</td><td>1000</td><td>–</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="ds-related-tools">
+    <div class="ds-related-tools__title">Related Tools</div>
+    <div class="ds-related-tools__list">
+      <a href="./unit-converter.html" class="ds-related-tools__item">Unit Converter</a>
+      <a href="./timestamp.html" class="ds-related-tools__item">Timestamp Converter</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer class="ds-footer">
+  <div class="ds-footer__inner">
+    <a href="/" class="ds-nav__brand">
+      <div class="ds-footer-logo-icon">
+        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      </div>
+      SimpleToolBox
+    </a>
+    <p class="ds-footer__copy">© 2025 SimpleToolBox. Free tools for developers.</p>
+    <div class="ds-footer__links">
+      <a href="/about.html" class="ds-footer__link">About</a>
+      <a href="/privacy.html" class="ds-footer__link">Privacy</a>
+      <a href="/contact.html" class="ds-footer__link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── Conversion tables ──
+  const romanTable = [
+    [1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],
+    [100,'C'],[90,'XC'],[50,'L'],[40,'XL'],
+    [10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']
+  ];
+
+  function toRoman(num) {
+    if (!Number.isInteger(num) || num < 1 || num > 3999) {
+      throw new Error('Number must be an integer between 1 and 3999.');
+    }
+    let result = '';
+    let n = num;
+    for (const [val, sym] of romanTable) {
+      while (n >= val) { result += sym; n -= val; }
+    }
+    return result;
+  }
+
+  function toRomanBreakdown(num) {
+    const parts = [];
+    let n = num;
+    for (const [val, sym] of romanTable) {
+      while (n >= val) { parts.push(sym); n -= val; }
+    }
+    return parts;
+  }
+
+  function toArabic(roman) {
+    const upper = roman.toUpperCase().trim();
+    if (!upper) throw new Error('Please enter a Roman numeral.');
+    if (!/^[IVXLCDM]+$/.test(upper)) {
+      throw new Error('Invalid characters. Use only I, V, X, L, C, D, M.');
+    }
+    const map = { I:1, V:5, X:10, L:50, C:100, D:500, M:1000 };
+    let result = 0;
+    for (let i = 0; i < upper.length; i++) {
+      const cur  = map[upper[i]];
+      const next = map[upper[i + 1]];
+      if (next && cur < next) result -= cur;
+      else result += cur;
+    }
+    return result;
+  }
+
+  // ── DOM refs ──
+  const modebar       = document.getElementById('modebar');
+  const paneToRoman   = document.getElementById('paneToRoman');
+  const paneToArabic  = document.getElementById('paneToArabic');
+
+  const arabicInput      = document.getElementById('arabicInput');
+  const romanResult      = document.getElementById('romanResult');
+  const romanBreakdown   = document.getElementById('romanBreakdown');
+  const toRomanError     = document.getElementById('toRomanError');
+  const copyRomanBtn     = document.getElementById('copyRomanBtn');
+
+  const romanInput       = document.getElementById('romanInput');
+  const arabicResult     = document.getElementById('arabicResult');
+  const toArabicError    = document.getElementById('toArabicError');
+  const copyArabicBtn    = document.getElementById('copyArabicBtn');
+
+  let currentMode = 'to-roman';
+  let currentRoman = '';
+  let currentArabic = '';
+
+  // ── Mode switch ──
+  modebar.addEventListener('click', e => {
+    const btn = e.target.closest('.mode-btn');
+    if (!btn) return;
+    modebar.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMode = btn.dataset.mode;
+    if (currentMode === 'to-roman') {
+      paneToRoman.style.display  = '';
+      paneToArabic.style.display = 'none';
+      runToRoman();
+    } else {
+      paneToRoman.style.display  = 'none';
+      paneToArabic.style.display = '';
+      runToArabic();
+    }
+  });
+
+  // ── To Roman ──
+  function runToRoman() {
+    const raw = arabicInput.value.trim();
+    toRomanError.textContent = '';
+    arabicInput.classList.remove('error-border');
+    if (!raw) {
+      romanResult.textContent = '';
+      romanResult.className = 'result-value empty';
+      romanBreakdown.innerHTML = '';
+      copyRomanBtn.disabled = true;
+      currentRoman = '';
+      return;
+    }
+    const num = parseInt(raw, 10);
+    try {
+      const result = toRoman(num);
+      const parts  = toRomanBreakdown(num);
+      romanResult.textContent = result;
+      romanResult.className = 'result-value';
+      currentRoman = result;
+      copyRomanBtn.disabled = false;
+      // Breakdown
+      if (parts.length > 1) {
+        const html = parts.map(p => `<span class="bd-part">${p}</span>`).join(' + ');
+        romanBreakdown.innerHTML = `${num} = ${result} = ` + html;
+      } else {
+        romanBreakdown.innerHTML = '';
+      }
+    } catch (err) {
+      romanResult.textContent = '';
+      romanResult.className = 'result-value empty';
+      romanBreakdown.innerHTML = '';
+      toRomanError.textContent = err.message;
+      arabicInput.classList.add('error-border');
+      copyRomanBtn.disabled = true;
+      currentRoman = '';
+    }
+  }
+
+  arabicInput.addEventListener('input', runToRoman);
+
+  // ── To Arabic ──
+  function runToArabic() {
+    const raw = romanInput.value.trim();
+    toArabicError.textContent = '';
+    romanInput.classList.remove('error-border');
+    if (!raw) {
+      arabicResult.textContent = '';
+      arabicResult.className = 'result-value empty';
+      copyArabicBtn.disabled = true;
+      currentArabic = '';
+      return;
+    }
+    try {
+      const result = toArabic(raw);
+      arabicResult.textContent = result;
+      arabicResult.className = 'result-value';
+      currentArabic = String(result);
+      copyArabicBtn.disabled = false;
+    } catch (err) {
+      arabicResult.textContent = '';
+      arabicResult.className = 'result-value empty';
+      toArabicError.textContent = err.message;
+      romanInput.classList.add('error-border');
+      copyArabicBtn.disabled = true;
+      currentArabic = '';
+    }
+  }
+
+  romanInput.addEventListener('input', () => {
+    // Force uppercase display
+    const pos = romanInput.selectionStart;
+    romanInput.value = romanInput.value.toUpperCase();
+    romanInput.setSelectionRange(pos, pos);
+    runToArabic();
+  });
+
+  // ── Copy ──
+  function copyText(btn, text) {
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.innerHTML = '✓ Copied';
+      btn.style.color = '#22c55e';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 1500);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const orig = btn.textContent;
+      btn.innerHTML = '✓ Copied';
+      btn.style.color = '#22c55e';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 1500);
+    });
+  }
+
+  copyRomanBtn.addEventListener('click', () => copyText(copyRomanBtn, currentRoman));
+  copyArabicBtn.addEventListener('click', () => copyText(copyArabicBtn, currentArabic));
+
+  // ── Init ──
+  runToRoman();
+  copyArabicBtn.disabled = true;
+
+})();
+</script>
+</body>
+</html>

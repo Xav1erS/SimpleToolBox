@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Countdown Timer — SimpleToolBox</title>
+  <meta name="description" content="Create countdown timers to any future date and time. Share or bookmark your countdown. Free, runs entirely in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.com/tools/countdown.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.com/tools/countdown.html" />
+  <meta property="og:title" content="Countdown Timer — SimpleToolBox" />
+  <meta property="og:description" content="Create countdown timers to any future date and time. Share or bookmark your countdown." />
+  <meta property="og:site_name" content="SimpleToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Countdown Timer","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Create countdown timers to any future date and time. Share or bookmark your countdown. Free, runs entirely in your browser.","featureList":["Countdown to any date","Days, hours, minutes, seconds display","Quick presets for New Year, Christmas, Halloween","Custom event name"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <style>
+    .main { max-width: 760px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 20px; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 24px;
+    }
+    .card-title {
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--ds-color-text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* ── PRESET BUTTONS ── */
+    .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .preset-btn {
+      padding: 6px 14px; border-radius: var(--ds-radius-sm);
+      font-size: 13px; font-weight: 500;
+      color: var(--ds-color-text-secondary);
+      border: 1px solid var(--ds-color-border);
+      background: transparent;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+      cursor: pointer;
+    }
+    .preset-btn:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.04); }
+    .preset-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+
+    /* ── FORM FIELDS ── */
+    .field-group { display: flex; flex-direction: column; gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field-label {
+      font-size: 12px; font-weight: 600; color: var(--ds-color-text-secondary);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .field-input {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-sans);
+      font-size: 14px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .field-input:focus { border-color: var(--ds-color-accent); }
+
+    /* ── ACTIONS ── */
+    .action-row { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 10px 24px; border-radius: var(--ds-radius-sm);
+      background: var(--ds-color-accent); color: #fff;
+      font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-secondary {
+      padding: 10px 20px; border-radius: var(--ds-radius-sm);
+      background: transparent; color: var(--ds-color-text-secondary);
+      font-size: 14px; font-weight: 500;
+      border: 1px solid var(--ds-color-border); cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-secondary:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.04); }
+
+    /* ── ERROR ── */
+    .error-msg {
+      color: #ef4444; font-size: 13px; margin-top: 8px;
+      display: none;
+    }
+    .error-msg.visible { display: block; }
+
+    /* ── COUNTDOWN DISPLAY ── */
+    .countdown-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 32px 24px;
+      text-align: center;
+      display: none;
+    }
+    .countdown-card.visible { display: block; }
+
+    .countdown-event {
+      font-size: 16px; font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+
+    .countdown-blocks {
+      display: flex; justify-content: center; gap: 16px;
+      flex-wrap: wrap; margin-bottom: 28px;
+    }
+
+    .countdown-block {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 20px 24px 16px;
+      min-width: 90px;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+
+    .countdown-num {
+      font-family: var(--ds-font-mono);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--ds-color-text-primary);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .countdown-label {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--ds-color-text-muted);
+    }
+
+    .timeup-msg {
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--ds-color-accent);
+      display: none;
+      margin-bottom: 12px;
+    }
+    .timeup-msg.visible { display: block; }
+
+    /* ── RELATED TOOLS ── */
+    @media (max-width: 480px) {
+      .countdown-num { font-size: 2.4rem; }
+      .countdown-block { min-width: 70px; padding: 14px 12px 10px; }
+      .countdown-blocks { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="ds-tool-nav">
+  <a href="/" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+    </div>
+    SimpleToolBox
+  </a>
+  <div class="ds-tool-nav__links">
+    <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
+    <a href="/about.html" class="ds-tool-nav__link">About</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__icon">⏱️</div>
+    <div>
+      <h1 class="ds-tool-header__title">Countdown Timer</h1>
+      <p class="ds-tool-header__desc">Create countdown timers to any future date and time. Share or bookmark your countdown.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="ds-tool-main ds-tool-stack">
+<div class="main">
+
+  <!-- SETUP CARD -->
+  <div class="card">
+    <div class="card-title">Quick Presets</div>
+    <div class="preset-row" id="presetRow">
+      <button class="preset-btn" data-preset="New Year">🎆 New Year</button>
+      <button class="preset-btn" data-preset="Christmas">🎄 Christmas</button>
+      <button class="preset-btn" data-preset="Halloween">🎃 Halloween</button>
+      <button class="preset-btn active" data-preset="Custom">✏️ Custom</button>
+    </div>
+
+    <div class="field-group">
+      <div class="field">
+        <label class="field-label" for="eventName">Event Name</label>
+        <input class="field-input" type="text" id="eventName" placeholder="e.g. New Year 2026" value="New Year 2026" maxlength="80" />
+      </div>
+      <div class="field">
+        <label class="field-label" for="targetDate">Target Date &amp; Time</label>
+        <input class="field-input" type="datetime-local" id="targetDate" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <div class="action-row">
+      <button class="btn-primary" id="startBtn">▶ Start</button>
+      <button class="btn-secondary" id="stopBtn" style="display:none;">⏹ Stop</button>
+      <button class="btn-secondary" id="resetBtn" style="display:none;">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN DISPLAY CARD -->
+  <div class="countdown-card" id="countdownCard">
+    <div class="timeup-msg" id="timeupMsg">🎉 Time's up!</div>
+    <div class="countdown-event" id="countdownEvent"></div>
+    <div class="countdown-blocks" id="countdownBlocks">
+      <div class="countdown-block">
+        <span class="countdown-num" id="numDays">00</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <div class="countdown-block">
+        <span class="countdown-num" id="numHours">00</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <div class="countdown-block">
+        <span class="countdown-num" id="numMins">00</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <div class="countdown-block">
+        <span class="countdown-num" id="numSecs">00</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="ds-related-tools">
+    <div class="ds-related-tools__title">Related Tools</div>
+    <div class="ds-related-tools__list">
+      <a href="./timestamp.html" class="ds-related-tools__item">Timestamp Converter</a>
+      <a href="./unit-converter.html" class="ds-related-tools__item">Unit Converter</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer class="ds-footer">
+  <div class="ds-footer__inner">
+    <a href="/" class="ds-nav__brand">
+      <div class="ds-footer-logo-icon">
+        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      </div>
+      SimpleToolBox
+    </a>
+    <p class="ds-footer__copy">© 2025 SimpleToolBox. Free tools for developers.</p>
+    <div class="ds-footer__links">
+      <a href="/about.html" class="ds-footer__link">About</a>
+      <a href="/privacy.html" class="ds-footer__link">Privacy</a>
+      <a href="/contact.html" class="ds-footer__link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── DOM refs ──
+  const eventNameEl = document.getElementById('eventName');
+  const targetDateEl = document.getElementById('targetDate');
+  const startBtn     = document.getElementById('startBtn');
+  const stopBtn      = document.getElementById('stopBtn');
+  const resetBtn     = document.getElementById('resetBtn');
+  const errorMsg     = document.getElementById('errorMsg');
+  const countdownCard = document.getElementById('countdownCard');
+  const countdownEvent = document.getElementById('countdownEvent');
+  const countdownBlocks = document.getElementById('countdownBlocks');
+  const timeupMsg    = document.getElementById('timeupMsg');
+  const numDays      = document.getElementById('numDays');
+  const numHours     = document.getElementById('numHours');
+  const numMins      = document.getElementById('numMins');
+  const numSecs      = document.getElementById('numSecs');
+  const presetRow    = document.getElementById('presetRow');
+
+  let timerInterval = null;
+
+  // ── Default target: next Jan 1 00:00:00 ──
+  function getDefaultTarget() {
+    const now = new Date();
+    const next = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0);
+    return next;
+  }
+
+  function toLocalDatetimeValue(d) {
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  targetDateEl.value = toLocalDatetimeValue(getDefaultTarget());
+
+  // ── Presets ──
+  const presetDefs = {
+    'New Year': () => {
+      const now = new Date();
+      return new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0);
+    },
+    'Christmas': () => {
+      const now = new Date();
+      const t = new Date(now.getFullYear(), 11, 25, 0, 0, 0);
+      return t <= now ? new Date(now.getFullYear() + 1, 11, 25, 0, 0, 0) : t;
+    },
+    'Halloween': () => {
+      const now = new Date();
+      const t = new Date(now.getFullYear(), 9, 31, 0, 0, 0);
+      return t <= now ? new Date(now.getFullYear() + 1, 9, 31, 0, 0, 0) : t;
+    }
+  };
+
+  const presetNames = {
+    'New Year': 'New Year 2026',
+    'Christmas': 'Christmas',
+    'Halloween': 'Halloween'
+  };
+
+  presetRow.addEventListener('click', e => {
+    const btn = e.target.closest('.preset-btn');
+    if (!btn) return;
+    const preset = btn.dataset.preset;
+    presetRow.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    if (preset !== 'Custom' && presetDefs[preset]) {
+      const d = presetDefs[preset]();
+      targetDateEl.value = toLocalDatetimeValue(d);
+      eventNameEl.value = presetNames[preset] || preset;
+    }
+  });
+
+  // Mark Custom preset active when user types
+  eventNameEl.addEventListener('input', () => markCustom());
+  targetDateEl.addEventListener('change', () => markCustom());
+  function markCustom() {
+    presetRow.querySelectorAll('.preset-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.preset === 'Custom');
+    });
+  }
+
+  // ── Error helper ──
+  function showError(msg) {
+    errorMsg.textContent = msg;
+    errorMsg.classList.add('visible');
+  }
+  function clearError() {
+    errorMsg.textContent = '';
+    errorMsg.classList.remove('visible');
+  }
+
+  // ── Display update ──
+  function pad2(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+
+  function updateDisplay(days, hours, mins, secs) {
+    numDays.textContent  = pad2(days);
+    numHours.textContent = pad2(hours);
+    numMins.textContent  = pad2(mins);
+    numSecs.textContent  = pad2(secs);
+  }
+
+  function showTimeUp() {
+    timeupMsg.classList.add('visible');
+    countdownBlocks.style.display = 'none';
+    updateDisplay(0, 0, 0, 0);
+  }
+
+  function hideTimeUp() {
+    timeupMsg.classList.remove('visible');
+    countdownBlocks.style.display = '';
+  }
+
+  // ── Timer ──
+  function startTimer() {
+    clearError();
+    const rawVal = targetDateEl.value;
+    if (!rawVal) { showError('Please select a valid date and time.'); return; }
+    const target = new Date(rawVal).getTime();
+    if (isNaN(target)) { showError('Please select a valid date and time.'); return; }
+    if (target <= Date.now()) { showError('Target date must be in the future.'); return; }
+
+    clearInterval(timerInterval);
+    hideTimeUp();
+
+    countdownEvent.textContent = eventNameEl.value.trim() || 'Countdown';
+    countdownCard.classList.add('visible');
+
+    startBtn.style.display = 'none';
+    stopBtn.style.display  = '';
+    resetBtn.style.display = '';
+
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        showTimeUp();
+        stopBtn.style.display = 'none';
+        return;
+      }
+      const days  = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins  = Math.floor((diff % 3600000) / 60000);
+      const secs  = Math.floor((diff % 60000) / 1000);
+      updateDisplay(days, hours, mins, secs);
+    }
+    tick();
+    timerInterval = setInterval(tick, 1000);
+  }
+
+  function stopTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    stopBtn.style.display  = 'none';
+    startBtn.style.display = '';
+  }
+
+  function resetTimer() {
+    stopTimer();
+    countdownCard.classList.remove('visible');
+    hideTimeUp();
+    resetBtn.style.display = 'none';
+    startBtn.style.display = '';
+    updateDisplay(0, 0, 0, 0);
+  }
+
+  startBtn.addEventListener('click', startTimer);
+  stopBtn.addEventListener('click', stopTimer);
+  resetBtn.addEventListener('click', resetTimer);
+
+})();
+</script>
+</body>
+</html>

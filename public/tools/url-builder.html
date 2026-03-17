@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>URL Builder — SimpleToolBox</title>
+  <meta name="description" content="Build and parse URLs with scheme, host, path, and query parameters. Assemble URLs from parts or decode any URL into its components. Free, browser-based." />
+  <link rel="canonical" href="https://simpletoolbox.com/tools/url-builder.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.com/tools/url-builder.html" />
+  <meta property="og:title" content="URL Builder — SimpleToolBox" />
+  <meta property="og:description" content="Build and parse URLs with scheme, host, path, and query parameters. Copy the result instantly. Free, browser-based." />
+  <meta property="og:site_name" content="SimpleToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL Builder","url":"https://simpletoolbox.com/tools/url-builder.html","description":"Build and parse URLs with scheme, host, path, and query parameters.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"SimpleToolBox","url":"https://simpletoolbox.com"}}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* ── Mode bar ── */
+    .modebar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+    .modebtn {
+      padding: 7px 18px;
+      border-radius: var(--ds-radius-sm);
+      border: 1px solid var(--ds-color-border);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-secondary);
+      font-family: var(--ds-font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .modebtn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .modebtn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+    .card__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ds-color-text-primary);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Form fields ── */
+    .field-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .field-row:last-child { margin-bottom: 0; }
+    .field-label {
+      width: 90px;
+      flex-shrink: 0;
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+      font-weight: 500;
+    }
+    .field-input {
+      flex: 1;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      padding: 8px 10px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .field-input:focus { border-color: var(--ds-color-accent); }
+    .field-select {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-sans);
+      font-size: 13px;
+      padding: 8px 10px;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      min-width: 90px;
+    }
+    .field-select:focus { border-color: var(--ds-color-accent); }
+
+    /* ── Query params list ── */
+    .params-list { display: flex; flex-direction: column; gap: 8px; }
+    .param-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .param-row .param-key,
+    .param-row .param-val {
+      flex: 1;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      padding: 7px 10px;
+      outline: none;
+      min-width: 0;
+      transition: border-color 0.15s;
+    }
+    .param-row .param-key:focus,
+    .param-row .param-val:focus { border-color: var(--ds-color-accent); }
+    .param-row .param-key::placeholder,
+    .param-row .param-val::placeholder { color: var(--ds-color-text-muted); opacity: 0.6; }
+    .param-del {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--ds-radius-sm);
+      border: 1px solid var(--ds-color-border);
+      background: transparent;
+      color: var(--ds-color-text-muted);
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .param-del:hover { border-color: #ef4444; color: #ef4444; }
+    .params-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .params-header-labels {
+      display: flex;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--ds-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .params-header-labels span { flex: 1; }
+    .add-param-btn {
+      margin-top: 10px;
+      padding: 7px 14px;
+      border-radius: var(--ds-radius-sm);
+      border: 1px dashed var(--ds-color-border);
+      background: transparent;
+      color: var(--ds-color-text-muted);
+      font-family: var(--ds-font-sans);
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .add-param-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+
+    /* ── Output area ── */
+    .output-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .output-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--ds-color-border);
+    }
+    .output-card__label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ds-color-text-muted);
+    }
+    .copy-btn {
+      padding: 5px 14px;
+      border-radius: var(--ds-radius-sm);
+      border: 1px solid var(--ds-color-border);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-secondary);
+      font-family: var(--ds-font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .copy-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+    .output-url {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      padding: 14px 16px;
+      resize: none;
+      outline: none;
+      line-height: 1.6;
+      min-height: 72px;
+    }
+
+    /* ── Parse mode ── */
+    .parse-input-area {
+      width: 100%;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      padding: 12px 14px;
+      resize: vertical;
+      outline: none;
+      min-height: 72px;
+      line-height: 1.6;
+      transition: border-color 0.15s;
+      margin-bottom: 12px;
+    }
+    .parse-input-area:focus { border-color: var(--ds-color-accent); }
+    .parse-input-area::placeholder { color: var(--ds-color-text-muted); opacity: 0.6; }
+
+    .parse-btn {
+      padding: 8px 22px;
+      border-radius: var(--ds-radius-sm);
+      border: none;
+      background: var(--ds-color-accent);
+      color: #fff;
+      font-family: var(--ds-font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .parse-btn:hover { opacity: 0.88; }
+
+    .parse-result { margin-top: 20px; }
+    .parse-field-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--ds-color-border);
+    }
+    .parse-field-row:last-child { border-bottom: none; }
+    .parse-field-key {
+      width: 90px;
+      flex-shrink: 0;
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+      font-weight: 500;
+      padding-top: 1px;
+    }
+    .parse-field-val {
+      flex: 1;
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      color: var(--ds-color-text-primary);
+      word-break: break-all;
+    }
+    .parse-field-val.empty { color: var(--ds-color-text-muted); font-style: italic; font-family: var(--ds-font-sans); }
+
+    /* Query params result table */
+    .parse-params-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .parse-params-table th {
+      padding: 6px 10px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ds-color-text-muted);
+      border-bottom: 1px solid var(--ds-color-border);
+    }
+    .parse-params-table td {
+      padding: 8px 10px;
+      font-family: var(--ds-font-mono);
+      color: var(--ds-color-text-primary);
+      border-bottom: 1px solid var(--ds-color-border);
+      word-break: break-all;
+    }
+    .parse-params-table tr:last-child td { border-bottom: none; }
+
+    .error-msg {
+      color: #ef4444;
+      font-size: 13px;
+      padding: 10px 0;
+    }
+
+    /* ── Hidden utility ── */
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="/" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+    </div>
+    SimpleToolBox
+  </a>
+  <div class="ds-tool-nav__links">
+    <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
+    <a href="/about.html" class="ds-tool-nav__link">About</a>
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__icon">🔗</div>
+    <div>
+      <h1 class="ds-tool-header__title">URL Builder</h1>
+      <p class="ds-tool-header__desc">Build and parse URLs with scheme, host, path, and query parameters. Copy the result instantly.</p>
+    </div>
+  </div>
+</div>
+
+<main class="ds-tool-main ds-tool-stack">
+
+  <!-- Mode bar -->
+  <div class="modebar">
+    <button class="modebtn active" id="modeBuild">Build</button>
+    <button class="modebtn"        id="modeParse">Parse</button>
+  </div>
+
+  <!-- ══ BUILD MODE ══════════════════════════════════════════════ -->
+  <div id="buildPanel">
+
+    <div class="card">
+      <div class="card__title">URL Parts</div>
+
+      <!-- Scheme -->
+      <div class="field-row">
+        <span class="field-label">Scheme</span>
+        <select class="field-select" id="schemeSelect">
+          <option value="https">https</option>
+          <option value="http">http</option>
+          <option value="ftp">ftp</option>
+          <option value="custom">custom…</option>
+        </select>
+        <input type="text" class="field-input hidden" id="schemeCustom" placeholder="e.g. ssh" />
+      </div>
+
+      <!-- Host -->
+      <div class="field-row">
+        <span class="field-label">Host</span>
+        <input type="text" class="field-input" id="hostInput" placeholder="e.g. example.com" />
+      </div>
+
+      <!-- Path -->
+      <div class="field-row">
+        <span class="field-label">Path</span>
+        <input type="text" class="field-input" id="pathInput" placeholder="e.g. /api/users" value="/" />
+      </div>
+
+      <!-- Fragment -->
+      <div class="field-row">
+        <span class="field-label">Fragment</span>
+        <input type="text" class="field-input" id="fragmentInput" placeholder="e.g. section-1" />
+      </div>
+    </div>
+
+    <!-- Query Params -->
+    <div class="card">
+      <div class="params-header">
+        <div class="card__title" style="margin-bottom:0">Query Parameters</div>
+        <div class="params-header-labels">
+          <span style="min-width:120px">Key</span>
+          <span style="min-width:120px">Value</span>
+        </div>
+      </div>
+      <div class="params-list" id="paramsList"></div>
+      <button class="add-param-btn" id="addParamBtn">+ Add Parameter</button>
+    </div>
+
+    <!-- Output -->
+    <div class="output-card">
+      <div class="output-card__header">
+        <span class="output-card__label">Generated URL</span>
+        <button class="copy-btn" id="copyBuildBtn">Copy</button>
+      </div>
+      <textarea class="output-url" id="buildOutput" readonly></textarea>
+    </div>
+
+  </div>
+
+  <!-- ══ PARSE MODE ═════════════════════════════════════════════ -->
+  <div id="parsePanel" class="hidden">
+
+    <div class="card">
+      <div class="card__title">Input URL</div>
+      <textarea class="parse-input-area" id="parseInput" placeholder="Paste a URL here, e.g. https://example.com/path?foo=bar#section"></textarea>
+      <button class="parse-btn" id="parseBtn">Parse URL</button>
+    </div>
+
+    <div id="parseResult" class="hidden">
+      <div class="card">
+        <div class="card__title">Result</div>
+        <div class="parse-result" id="parseFields"></div>
+      </div>
+    </div>
+
+    <div id="parseError" class="hidden">
+      <div class="card">
+        <div class="error-msg" id="parseErrorMsg">Invalid URL — please check the input and try again.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Related tools -->
+  <div class="ds-related-tools">
+    <div class="ds-related-tools__title">Related Tools</div>
+    <div class="ds-related-tools__list">
+      <a href="./url-encode.html" class="ds-related-tools__item">URL Encode / Decode</a>
+      <a href="./json-formatter.html" class="ds-related-tools__item">JSON Formatter</a>
+      <a href="./hash-generator.html" class="ds-related-tools__item">Hash Generator</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="ds-footer">
+  <div class="ds-footer__inner">
+    <a href="/" class="ds-nav__brand">
+      <div class="ds-footer-logo-icon">
+        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      </div>
+      SimpleToolBox
+    </a>
+    <p class="ds-footer__copy">© 2025 SimpleToolBox. Free tools for developers.</p>
+    <div class="ds-footer__links">
+      <a href="/about.html" class="ds-footer__link">About</a>
+      <a href="/privacy.html" class="ds-footer__link">Privacy</a>
+      <a href="/contact.html" class="ds-footer__link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Mode switching ────────────────────────────────────────────────
+  const modeBuildBtn = document.getElementById('modeBuild');
+  const modeParseBtn = document.getElementById('modeParse');
+  const buildPanel   = document.getElementById('buildPanel');
+  const parsePanel   = document.getElementById('parsePanel');
+
+  modeBuildBtn.addEventListener('click', () => {
+    modeBuildBtn.classList.add('active');
+    modeParseBtn.classList.remove('active');
+    buildPanel.classList.remove('hidden');
+    parsePanel.classList.add('hidden');
+  });
+  modeParseBtn.addEventListener('click', () => {
+    modeParseBtn.classList.add('active');
+    modeBuildBtn.classList.remove('active');
+    parsePanel.classList.remove('hidden');
+    buildPanel.classList.add('hidden');
+  });
+
+  // ── BUILD MODE ────────────────────────────────────────────────────
+  const schemeSelect  = document.getElementById('schemeSelect');
+  const schemeCustom  = document.getElementById('schemeCustom');
+  const hostInput     = document.getElementById('hostInput');
+  const pathInput     = document.getElementById('pathInput');
+  const fragmentInput = document.getElementById('fragmentInput');
+  const paramsList    = document.getElementById('paramsList');
+  const addParamBtn   = document.getElementById('addParamBtn');
+  const buildOutput   = document.getElementById('buildOutput');
+  const copyBuildBtn  = document.getElementById('copyBuildBtn');
+
+  schemeSelect.addEventListener('change', () => {
+    if (schemeSelect.value === 'custom') {
+      schemeCustom.classList.remove('hidden');
+    } else {
+      schemeCustom.classList.add('hidden');
+    }
+    buildURL();
+  });
+  schemeCustom.addEventListener('input', buildURL);
+  hostInput.addEventListener('input', buildURL);
+  pathInput.addEventListener('input', buildURL);
+  fragmentInput.addEventListener('input', buildURL);
+
+  function getParamRows() {
+    return [...paramsList.querySelectorAll('.param-row')].map(row => ({
+      key: row.querySelector('.param-key').value.trim(),
+      val: row.querySelector('.param-val').value.trim()
+    })).filter(p => p.key !== '');
+  }
+
+  function addParamRow(key, val) {
+    const row = document.createElement('div');
+    row.className = 'param-row';
+    row.innerHTML = `
+      <input type="text" class="param-key" placeholder="key" value="${escAttr(key)}" />
+      <input type="text" class="param-val" placeholder="value" value="${escAttr(val)}" />
+      <button class="param-del" title="Remove">×</button>
+    `;
+    row.querySelector('.param-key').addEventListener('input', buildURL);
+    row.querySelector('.param-val').addEventListener('input', buildURL);
+    row.querySelector('.param-del').addEventListener('click', () => { row.remove(); buildURL(); });
+    paramsList.appendChild(row);
+    return row;
+  }
+
+  function escAttr(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  }
+
+  addParamBtn.addEventListener('click', () => {
+    addParamRow('', '');
+    buildURL();
+  });
+
+  function buildURL() {
+    const scheme = schemeSelect.value === 'custom'
+      ? (schemeCustom.value.trim() || 'https')
+      : schemeSelect.value;
+    const host     = hostInput.value.trim();
+    const rawPath  = pathInput.value.trim();
+    const path     = rawPath ? (rawPath.startsWith('/') ? rawPath : '/' + rawPath) : '/';
+    const fragment = fragmentInput.value.trim();
+    const params   = getParamRows();
+
+    if (!host) { buildOutput.value = ''; return; }
+
+    let url = `${scheme}://${host}${path}`;
+    if (params.length) {
+      url += '?' + params.map(p =>
+        encodeURIComponent(p.key) + (p.val !== '' ? '=' + encodeURIComponent(p.val) : '')
+      ).join('&');
+    }
+    if (fragment) url += '#' + fragment;
+    buildOutput.value = url;
+  }
+
+  copyBuildBtn.addEventListener('click', () => {
+    const text = buildOutput.value;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      copyBuildBtn.textContent = '✓ Copied';
+      copyBuildBtn.style.color = '#22c55e';
+      setTimeout(() => { copyBuildBtn.textContent = 'Copy'; copyBuildBtn.style.color = ''; }, 1500);
+    });
+  });
+
+  // Init one empty param row
+  addParamRow('', '');
+
+  // ── PARSE MODE ────────────────────────────────────────────────────
+  const parseInput    = document.getElementById('parseInput');
+  const parseBtn      = document.getElementById('parseBtn');
+  const parseResult   = document.getElementById('parseResult');
+  const parseFields   = document.getElementById('parseFields');
+  const parseError    = document.getElementById('parseError');
+  const parseErrorMsg = document.getElementById('parseErrorMsg');
+
+  function parseURL(raw) {
+    try {
+      const u = new URL(raw.trim());
+      return {
+        scheme:   u.protocol.replace(':', ''),
+        host:     u.hostname,
+        port:     u.port,
+        path:     u.pathname,
+        params:   [...u.searchParams.entries()].map(([k, v]) => ({ key: k, value: v })),
+        fragment: u.hash.slice(1)
+      };
+    } catch (e) { return null; }
+  }
+
+  function renderParseResult(data) {
+    parseResult.classList.remove('hidden');
+    parseError.classList.add('hidden');
+
+    const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+    const field = (label, val, isEmpty) => `
+      <div class="parse-field-row">
+        <span class="parse-field-key">${label}</span>
+        <span class="parse-field-val${isEmpty ? ' empty' : ''}">${isEmpty ? '(empty)' : esc(val)}</span>
+      </div>`;
+
+    let html = '';
+    html += field('Scheme',   data.scheme,   !data.scheme);
+    html += field('Host',     data.host,     !data.host);
+    html += field('Port',     data.port || '(default)', false);
+    html += field('Path',     data.path,     !data.path);
+
+    // Query params
+    if (data.params.length) {
+      const rows = data.params.map(p =>
+        `<tr><td>${esc(p.key)}</td><td>${esc(p.value)}</td></tr>`
+      ).join('');
+      html += `
+        <div class="parse-field-row">
+          <span class="parse-field-key">Params</span>
+          <div class="parse-field-val" style="flex:1">
+            <table class="parse-params-table">
+              <thead><tr><th>Key</th><th>Value</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        </div>`;
+    } else {
+      html += field('Params', '', true);
+    }
+
+    html += field('Fragment', data.fragment, !data.fragment);
+    parseFields.innerHTML = html;
+  }
+
+  parseBtn.addEventListener('click', () => {
+    const raw = parseInput.value.trim();
+    if (!raw) return;
+    const data = parseURL(raw);
+    if (data) {
+      renderParseResult(data);
+    } else {
+      parseResult.classList.add('hidden');
+      parseError.classList.remove('hidden');
+      parseErrorMsg.textContent = 'Invalid URL — please check the input and try again.';
+    }
+  });
+
+  // Also parse on Enter key in textarea
+  parseInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      parseBtn.click();
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AES Encrypt / Decrypt — SimpleToolBox</title>
+  <meta name="description" content="Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser — no data is sent to any server." />
+  <meta property="og:title" content="AES Encrypt / Decrypt — SimpleToolBox" />
+  <meta property="og:description" content="Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser — no data is sent to any server." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AES Encrypt / Decrypt — SimpleToolBox" />
+  <meta name="twitter:description" content="Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser — no data is sent to any server." />
+  <link rel="canonical" href="https://simpletoolbox.com/tools/aes.html" />
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AES Encrypt / Decrypt",
+    "description": "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser — no data is sent to any server.",
+    "url": "https://simpletoolbox.com/tools/aes.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <style>
+    .key-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+    }
+    .key-row label {
+      font-size: 0.82rem;
+      color: var(--ds-color-text-secondary);
+      white-space: nowrap;
+      font-family: var(--ds-font-sans);
+    }
+    .key-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--ds-font-mono);
+      font-size: 0.9rem;
+      color: var(--ds-color-text-primary);
+      min-width: 0;
+    }
+    .key-input::placeholder {
+      color: var(--ds-color-text-muted);
+    }
+    .key-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ds-color-text-secondary);
+      font-size: 1rem;
+      padding: 2px 4px;
+      border-radius: var(--ds-radius-sm);
+      line-height: 1;
+      transition: color 0.15s;
+    }
+    .key-toggle:hover {
+      color: var(--ds-color-accent);
+    }
+    .key-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .key-section-label {
+      font-size: 0.78rem;
+      color: var(--ds-color-text-muted);
+      font-family: var(--ds-font-sans);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-tool-nav">
+    <a href="/" class="ds-nav__brand">
+      <div class="ds-nav__logo-icon">
+        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      </div>
+      SimpleToolBox
+    </a>
+    <div class="ds-tool-nav__links">
+      <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
+      <a href="/about.html" class="ds-tool-nav__link">About</a>
+    </div>
+  </nav>
+
+  <div class="ds-tool-header">
+    <div class="ds-tool-header__inner">
+      <div class="ds-tool-header__icon">🔐</div>
+      <div>
+        <h1 class="ds-tool-header__title">AES Encrypt / Decrypt</h1>
+        <p class="ds-tool-header__desc">Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser.</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="ds-tool-main ds-tool-stack">
+    <div class="ds-tool-modebar">
+      <button class="ds-tool-modebtn active" data-mode="encrypt">Encrypt</button>
+      <button class="ds-tool-modebtn" data-mode="decrypt">Decrypt</button>
+    </div>
+
+    <div class="key-section">
+      <span class="key-section-label">Passphrase</span>
+      <div class="key-row">
+        <label for="keyInput">Key:</label>
+        <input type="password" class="key-input" id="keyInput" placeholder="Enter passphrase..." autocomplete="off" />
+        <button class="key-toggle" id="btnToggleKey" title="Show/hide passphrase">👁</button>
+      </div>
+    </div>
+
+    <div class="ds-tool-workbench">
+      <div class="ds-tool-pane">
+        <div class="ds-tool-pane__header">
+          <span class="ds-tool-pane__label" id="inputLabel">Plaintext</span>
+          <div class="ds-tool-pane__actions">
+            <button class="ds-tool-pane__btn" id="btnPaste">Paste</button>
+            <button class="ds-tool-pane__btn" id="btnClear">Clear</button>
+          </div>
+        </div>
+        <textarea class="ds-tool-textarea" id="inputText" placeholder="Enter text to encrypt..."></textarea>
+        <div class="ds-tool-pane__footer">
+          <span class="ds-tool-stat" id="inputStat">0 chars</span>
+        </div>
+      </div>
+
+      <div class="ds-tool-arrow">→</div>
+
+      <div class="ds-tool-pane">
+        <div class="ds-tool-pane__header">
+          <span class="ds-tool-pane__label" id="outputLabel">Ciphertext (Base64)</span>
+          <div class="ds-tool-pane__actions">
+            <button class="ds-tool-pane__btn" id="btnCopy">Copy</button>
+          </div>
+        </div>
+        <textarea class="ds-tool-textarea" id="outputText" readonly placeholder="Encrypted result will appear here..."></textarea>
+        <div class="ds-tool-pane__footer">
+          <span class="ds-tool-stat" id="outputStat">0 chars</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-tool-actions">
+      <button class="ds-tool-actions__btn ds-tool-actions__btn--primary" id="btnRun">Encrypt</button>
+    </div>
+
+    <div class="ds-tool-error" id="errorBox" style="display:none"></div>
+
+    <div class="ds-tool-note">
+      <strong>Note:</strong> Uses AES-256-GCM with PBKDF2 key derivation (100,000 iterations, SHA-256). A random salt (16 bytes) and IV (12 bytes) are generated for each encryption. The output is a single Base64 string containing salt + IV + ciphertext. Your passphrase is never uploaded — all processing happens in your browser. To decrypt, you must use the same passphrase that was used to encrypt.
+    </div>
+
+    <div class="ds-related-tools">
+      <div class="ds-related-tools__title">Related Tools</div>
+      <div class="ds-related-tools__list">
+        <a href="./hash-generator.html" class="ds-related-tools__item">Hash Generator</a>
+        <a href="./base64.html" class="ds-related-tools__item">Base64 Encoder</a>
+        <a href="./password-generator.html" class="ds-related-tools__item">Password Generator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="ds-footer">
+    <div class="ds-footer__inner">
+      <a href="/" class="ds-nav__brand">
+        <div class="ds-footer-logo-icon">
+          <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+        </div>
+        SimpleToolBox
+      </a>
+      <p class="ds-footer__copy">© 2025 SimpleToolBox. Free tools for developers.</p>
+      <div class="ds-footer__links">
+        <a href="/about.html" class="ds-footer__link">About</a>
+        <a href="/privacy.html" class="ds-footer__link">Privacy</a>
+        <a href="/contact.html" class="ds-footer__link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentMode = 'encrypt';
+
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const inputStat = document.getElementById('inputStat');
+    const outputStat = document.getElementById('outputStat');
+    const errorBox = document.getElementById('errorBox');
+    const inputLabel = document.getElementById('inputLabel');
+    const outputLabel = document.getElementById('outputLabel');
+    const btnRun = document.getElementById('btnRun');
+    const keyInput = document.getElementById('keyInput');
+
+    // Mode buttons
+    document.querySelectorAll('.ds-tool-modebtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ds-tool-modebtn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMode = btn.dataset.mode;
+        updateLabels();
+        outputText.value = '';
+        outputStat.textContent = '0 chars';
+        hideError();
+      });
+    });
+
+    function updateLabels() {
+      if (currentMode === 'encrypt') {
+        inputLabel.textContent = 'Plaintext';
+        outputLabel.textContent = 'Ciphertext (Base64)';
+        inputText.placeholder = 'Enter text to encrypt...';
+        outputText.placeholder = 'Encrypted result will appear here...';
+        btnRun.textContent = 'Encrypt';
+      } else {
+        inputLabel.textContent = 'Ciphertext (Base64)';
+        outputLabel.textContent = 'Plaintext';
+        inputText.placeholder = 'Paste Base64 ciphertext to decrypt...';
+        outputText.placeholder = 'Decrypted text will appear here...';
+        btnRun.textContent = 'Decrypt';
+      }
+    }
+
+    // Show/hide passphrase toggle
+    document.getElementById('btnToggleKey').addEventListener('click', () => {
+      const isPassword = keyInput.type === 'password';
+      keyInput.type = isPassword ? 'text' : 'password';
+      document.getElementById('btnToggleKey').textContent = isPassword ? '🙈' : '👁';
+    });
+
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.style.display = '';
+    }
+
+    function hideError() {
+      errorBox.style.display = 'none';
+      errorBox.textContent = '';
+    }
+
+    async function deriveKey(passphrase, salt) {
+      const enc = new TextEncoder();
+      const keyMaterial = await crypto.subtle.importKey(
+        'raw',
+        enc.encode(passphrase),
+        'PBKDF2',
+        false,
+        ['deriveKey']
+      );
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+        keyMaterial,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['encrypt', 'decrypt']
+      );
+    }
+
+    async function encryptText(plaintext, passphrase) {
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const key = await deriveKey(passphrase, salt);
+      const enc = new TextEncoder();
+      const cipherBuf = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(plaintext));
+      const result = new Uint8Array(salt.length + iv.length + cipherBuf.byteLength);
+      result.set(salt, 0);
+      result.set(iv, 16);
+      result.set(new Uint8Array(cipherBuf), 28);
+      return btoa(String.fromCharCode(...result));
+    }
+
+    async function decryptText(cipherBase64, passphrase) {
+      const data = Uint8Array.from(atob(cipherBase64), c => c.charCodeAt(0));
+      if (data.length < 29) throw new Error('Invalid ciphertext: data too short.');
+      const salt = data.slice(0, 16);
+      const iv = data.slice(16, 28);
+      const cipherBuf = data.slice(28);
+      const key = await deriveKey(passphrase, salt);
+      const dec = new TextDecoder();
+      const plainBuf = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, cipherBuf);
+      return dec.decode(plainBuf);
+    }
+
+    btnRun.addEventListener('click', async () => {
+      hideError();
+      const input = inputText.value.trim();
+      const passphrase = keyInput.value;
+
+      inputStat.textContent = inputText.value.length + ' chars';
+
+      if (!input) {
+        showError('Please enter ' + (currentMode === 'encrypt' ? 'plaintext' : 'ciphertext') + ' to process.');
+        return;
+      }
+      if (!passphrase) {
+        showError('Please enter a passphrase.');
+        return;
+      }
+
+      btnRun.disabled = true;
+      btnRun.textContent = currentMode === 'encrypt' ? 'Encrypting...' : 'Decrypting...';
+
+      try {
+        let result;
+        if (currentMode === 'encrypt') {
+          result = await encryptText(input, passphrase);
+        } else {
+          result = await decryptText(input, passphrase);
+        }
+        outputText.value = result;
+        outputStat.textContent = result.length + ' chars';
+      } catch (e) {
+        outputText.value = '';
+        outputStat.textContent = '0 chars';
+        if (currentMode === 'decrypt') {
+          showError('Decryption failed. Please check your passphrase and ciphertext. (' + e.message + ')');
+        } else {
+          showError('Encryption failed: ' + e.message);
+        }
+      } finally {
+        btnRun.disabled = false;
+        btnRun.textContent = currentMode === 'encrypt' ? 'Encrypt' : 'Decrypt';
+      }
+    });
+
+    inputText.addEventListener('input', () => {
+      inputStat.textContent = inputText.value.length + ' chars';
+    });
+
+    document.getElementById('btnPaste').addEventListener('click', async () => {
+      try {
+        const text = await navigator.clipboard.readText();
+        inputText.value = text;
+        inputStat.textContent = text.length + ' chars';
+      } catch (e) {
+        showError('Clipboard access denied. Please paste manually.');
+      }
+    });
+
+    document.getElementById('btnClear').addEventListener('click', () => {
+      inputText.value = '';
+      outputText.value = '';
+      inputStat.textContent = '0 chars';
+      outputStat.textContent = '0 chars';
+      hideError();
+    });
+
+    document.getElementById('btnCopy').addEventListener('click', () => {
+      const val = outputText.value;
+      if (!val) return;
+      navigator.clipboard.writeText(val).then(() => {
+        const btn = document.getElementById('btnCopy');
+        btn.innerHTML = '✓ Copied';
+        btn.style.color = '#22c55e';
+        setTimeout(() => { btn.innerHTML = 'Copy'; btn.style.color = ''; }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>

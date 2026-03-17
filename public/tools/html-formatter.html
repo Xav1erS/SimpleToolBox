@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Formatter / Minifier — SimpleToolBox</title>
+  <meta name="description" content="Format and minify HTML code online with customizable indentation. Free browser-based HTML beautifier and minifier." />
+  <meta property="og:title" content="HTML Formatter / Minifier — SimpleToolBox" />
+  <meta property="og:description" content="Format and minify HTML code online with customizable indentation. Free browser-based HTML beautifier and minifier." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="HTML Formatter / Minifier — SimpleToolBox" />
+  <meta name="twitter:description" content="Format and minify HTML code online with customizable indentation. Free browser-based HTML beautifier and minifier." />
+  <link rel="canonical" href="https://simpletoolbox.com/tools/html-formatter.html" />
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "HTML Formatter / Minifier",
+    "description": "Format and minify HTML code online with customizable indentation. Free browser-based HTML beautifier and minifier.",
+    "url": "https://simpletoolbox.com/tools/html-formatter.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <style>
+    .seg-btn {
+      padding: 4px 14px;
+      font-size: 0.82rem;
+      border: 1px solid var(--ds-color-border);
+      background: var(--ds-color-surface);
+      color: var(--ds-color-text-secondary);
+      border-radius: var(--ds-radius-sm);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .seg-btn:hover {
+      background: var(--ds-color-surface-tint);
+      color: var(--ds-color-accent);
+      border-color: rgba(94,106,210,0.3);
+    }
+    .seg-btn.active {
+      background: var(--ds-color-surface-tint);
+      color: var(--ds-color-accent);
+      border-color: rgba(94,106,210,0.3);
+    }
+    .options-label {
+      font-size: 0.82rem;
+      color: var(--ds-color-text-secondary);
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-tool-nav">
+    <a href="/" class="ds-nav__brand">
+      <div class="ds-nav__logo-icon">
+        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      </div>
+      SimpleToolBox
+    </a>
+    <div class="ds-tool-nav__links">
+      <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
+      <a href="/about.html" class="ds-tool-nav__link">About</a>
+    </div>
+  </nav>
+
+  <div class="ds-tool-header">
+    <div class="ds-tool-header__inner">
+      <div class="ds-tool-header__icon">🌐</div>
+      <div>
+        <h1 class="ds-tool-header__title">HTML Formatter / Minifier</h1>
+        <p class="ds-tool-header__desc">Format and minify HTML code with customizable indentation.</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="ds-tool-main ds-tool-stack">
+    <div class="ds-tool-modebar">
+      <button class="ds-tool-modebtn active" data-mode="format">Format</button>
+      <button class="ds-tool-modebtn" data-mode="minify">Minify</button>
+    </div>
+
+    <div class="ds-tool-options" id="optionsBar">
+      <span class="options-label">Indent:</span>
+      <button class="seg-btn active" data-indent="2">2 Spaces</button>
+      <button class="seg-btn" data-indent="4">4 Spaces</button>
+    </div>
+
+    <div class="ds-tool-workbench">
+      <div class="ds-tool-pane">
+        <div class="ds-tool-pane__header">
+          <span class="ds-tool-pane__label">Input HTML</span>
+          <div class="ds-tool-pane__actions">
+            <button class="ds-tool-pane__btn" id="btnPaste">Paste</button>
+            <button class="ds-tool-pane__btn" id="btnClear">Clear</button>
+          </div>
+        </div>
+        <textarea class="ds-tool-textarea" id="inputText" placeholder="Paste your HTML here..."></textarea>
+        <div class="ds-tool-pane__footer">
+          <span class="ds-tool-stat" id="inputStat">0 chars</span>
+        </div>
+      </div>
+
+      <div class="ds-tool-arrow">→</div>
+
+      <div class="ds-tool-pane">
+        <div class="ds-tool-pane__header">
+          <span class="ds-tool-pane__label">Output</span>
+          <div class="ds-tool-pane__actions">
+            <button class="ds-tool-pane__btn" id="btnCopy">Copy</button>
+          </div>
+        </div>
+        <textarea class="ds-tool-textarea" id="outputText" readonly placeholder="Formatted or minified HTML will appear here..."></textarea>
+        <div class="ds-tool-pane__footer">
+          <span class="ds-tool-stat" id="outputStat">0 chars</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-tool-actions">
+      <button class="ds-tool-actions__btn ds-tool-actions__btn--primary" id="btnRun">Format HTML</button>
+    </div>
+
+    <div class="ds-tool-error" id="errorBox" style="display:none"></div>
+
+    <div class="ds-tool-note">
+      <strong>Note:</strong> Format mode uses js-beautify to pretty-print your HTML with configurable indentation. Minify mode strips comments and collapses whitespace. All processing runs entirely in your browser — no data is sent to any server.
+    </div>
+
+    <div class="ds-related-tools">
+      <div class="ds-related-tools__title">Related Tools</div>
+      <div class="ds-related-tools__list">
+        <a href="./json-formatter.html" class="ds-related-tools__item">JSON Formatter</a>
+        <a href="./base64.html" class="ds-related-tools__item">Base64 Encoder</a>
+        <a href="./url-encode.html" class="ds-related-tools__item">URL Encoder</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="ds-footer">
+    <div class="ds-footer__inner">
+      <a href="/" class="ds-nav__brand">
+        <div class="ds-footer-logo-icon">
+          <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+        </div>
+        SimpleToolBox
+      </a>
+      <p class="ds-footer__copy">© 2025 SimpleToolBox. Free tools for developers.</p>
+      <div class="ds-footer__links">
+        <a href="/about.html" class="ds-footer__link">About</a>
+        <a href="/privacy.html" class="ds-footer__link">Privacy</a>
+        <a href="/contact.html" class="ds-footer__link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/js-beautify@1/js/lib/beautifier.min.js"></script>
+  <script>
+    let currentMode = 'format';
+    let currentIndent = 2;
+    let debounceTimer = null;
+
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const inputStat = document.getElementById('inputStat');
+    const outputStat = document.getElementById('outputStat');
+    const errorBox = document.getElementById('errorBox');
+    const optionsBar = document.getElementById('optionsBar');
+    const btnRun = document.getElementById('btnRun');
+
+    // Mode buttons
+    document.querySelectorAll('.ds-tool-modebtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ds-tool-modebtn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMode = btn.dataset.mode;
+        optionsBar.style.display = currentMode === 'format' ? '' : 'none';
+        btnRun.textContent = currentMode === 'format' ? 'Format HTML' : 'Minify HTML';
+        runTransform();
+      });
+    });
+
+    // Indent segment buttons
+    document.querySelectorAll('.seg-btn[data-indent]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.seg-btn[data-indent]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentIndent = parseInt(btn.dataset.indent, 10);
+        runTransform();
+      });
+    });
+
+    function minifyHTML(html) {
+      return html
+        .replace(/<!--(?!\[if)[\s\S]*?-->/g, '')
+        .replace(/>\s+</g, '><')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+    }
+
+    function runTransform() {
+      const input = inputText.value;
+      inputStat.textContent = input.length + ' chars';
+      hideError();
+
+      if (!input.trim()) {
+        outputText.value = '';
+        outputStat.textContent = '0 chars';
+        return;
+      }
+
+      try {
+        let result;
+        if (currentMode === 'format') {
+          if (typeof window.html_beautify === 'function') {
+            result = window.html_beautify(input, { indent_size: currentIndent, wrap_line_length: 120 });
+          } else {
+            showError('js-beautify library failed to load. Please check your network connection.');
+            return;
+          }
+        } else {
+          result = minifyHTML(input);
+        }
+        outputText.value = result;
+        outputStat.textContent = result.length + ' chars';
+      } catch (e) {
+        showError('Processing error: ' + e.message);
+      }
+    }
+
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.style.display = '';
+    }
+
+    function hideError() {
+      errorBox.style.display = 'none';
+      errorBox.textContent = '';
+    }
+
+    inputText.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runTransform, 300);
+    });
+
+    btnRun.addEventListener('click', runTransform);
+
+    document.getElementById('btnPaste').addEventListener('click', async () => {
+      try {
+        const text = await navigator.clipboard.readText();
+        inputText.value = text;
+        runTransform();
+      } catch (e) {
+        showError('Clipboard access denied. Please paste manually.');
+      }
+    });
+
+    document.getElementById('btnClear').addEventListener('click', () => {
+      inputText.value = '';
+      outputText.value = '';
+      inputStat.textContent = '0 chars';
+      outputStat.textContent = '0 chars';
+      hideError();
+    });
+
+    document.getElementById('btnCopy').addEventListener('click', () => {
+      const val = outputText.value;
+      if (!val) return;
+      navigator.clipboard.writeText(val).then(() => {
+        const btn = document.getElementById('btnCopy');
+        btn.innerHTML = '✓ Copied';
+        btn.style.color = '#22c55e';
+        setTimeout(() => { btn.innerHTML = 'Copy'; btn.style.color = ''; }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>

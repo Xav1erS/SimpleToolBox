@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Palette Generator — SimpleToolBox</title>
+  <meta name="description" content="Generate beautiful color palettes from a base color. Choose complementary, analogous, triadic, or monochromatic schemes and export as CSS, HEX, or JSON." />
+  <meta property="og:title" content="Color Palette Generator — SimpleToolBox" />
+  <meta property="og:description" content="Generate beautiful color palettes from a base color. Choose complementary, analogous, triadic, or monochromatic schemes and export as CSS, HEX, or JSON." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Color Palette Generator — SimpleToolBox" />
+  <meta name="twitter:description" content="Generate beautiful color palettes from a base color. Choose complementary, analogous, triadic, or monochromatic schemes and export as CSS, HEX, or JSON." />
+  <link rel="canonical" href="https://simpletoolbox.com/tools/color-palette.html" />
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Color Palette Generator",
+    "description": "Generate beautiful color palettes from a base color. Choose complementary, analogous, triadic, or monochromatic schemes and export as CSS, HEX, or JSON.",
+    "url": "https://simpletoolbox.com/tools/color-palette.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <style>
+    /* Sidepanel controls */
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .color-input-native {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 52px;
+      height: 52px;
+      border: 2px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      background: none;
+      cursor: pointer;
+      padding: 2px;
+    }
+    .color-input-native::-webkit-color-swatch-wrapper { padding: 0; }
+    .color-input-native::-webkit-color-swatch { border: none; border-radius: calc(var(--ds-radius-md) - 2px); }
+    .color-hex-text {
+      flex: 1;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 14px;
+      padding: 8px 10px;
+      width: 100%;
+    }
+    .color-hex-text:focus { outline: none; border-color: var(--ds-color-accent); }
+
+    /* Segment controls */
+    .seg-group {
+      display: flex;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      overflow: hidden;
+    }
+    .seg-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      border-right: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      font-family: var(--ds-font-sans);
+      font-size: 12px;
+      padding: 7px 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .seg-btn:last-child { border-right: none; }
+    .seg-btn:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
+    .seg-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); }
+
+    /* Slider */
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .count-slider {
+      flex: 1;
+      accent-color: var(--ds-color-accent);
+      cursor: pointer;
+    }
+    .count-val {
+      font-family: var(--ds-font-mono);
+      font-size: 14px;
+      color: var(--ds-color-text-primary);
+      min-width: 20px;
+      text-align: right;
+    }
+    .count-row-label {
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+      margin-bottom: 8px;
+    }
+
+    /* Generate button */
+    .btn-generate {
+      width: 100%;
+      background: var(--ds-color-accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--ds-radius-sm);
+      cursor: pointer;
+      font-family: var(--ds-font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px;
+      transition: opacity 0.15s;
+    }
+    .btn-generate:hover { opacity: 0.88; }
+
+    /* Preview area */
+    .palette-grid {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .swatch {
+      flex: 1;
+      min-width: 80px;
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+      border: 1px solid var(--ds-color-border);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .swatch:hover { transform: scale(1.03); }
+    .swatch__block {
+      height: 80px;
+      width: 100%;
+    }
+    .swatch__label {
+      background: var(--ds-color-surface);
+      font-family: var(--ds-font-mono);
+      font-size: 11px;
+      color: var(--ds-color-text-secondary);
+      text-align: center;
+      padding: 5px 4px;
+    }
+
+    /* Export area */
+    .export-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .export-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .btn-copy-all {
+      background: none;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      font-family: var(--ds-font-sans);
+      font-size: 12px;
+      padding: 4px 10px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-copy-all:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+    .export-textarea {
+      width: 100%;
+      box-sizing: border-box;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 10px 12px;
+      resize: vertical;
+      min-height: 100px;
+    }
+    .export-textarea:focus { outline: none; border-color: var(--ds-color-accent); }
+
+    /* Preview wrapper */
+    .preview-inner {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 20px;
+    }
+    .preview-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    /* Related tools */
+    .ds-related-tools {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+    }
+    .ds-related-tools__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .ds-related-tools__list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .ds-related-tools__item {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      font-size: 13px;
+      padding: 6px 14px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .ds-related-tools__item:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+
+    /* Disabled state for count row */
+    .count-row.disabled { opacity: 0.4; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <nav class="ds-tool-nav">
+    <a href="/" class="ds-nav__brand">
+      <div class="ds-nav__logo-icon">
+        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      </div>
+      SimpleToolBox
+    </a>
+    <div class="ds-tool-nav__links">
+      <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
+      <a href="/about.html" class="ds-tool-nav__link">About</a>
+    </div>
+  </nav>
+
+  <div class="ds-tool-header">
+    <div class="ds-tool-header__inner">
+      <div class="ds-tool-header__icon">🎨</div>
+      <div>
+        <h1 class="ds-tool-header__title">Color Palette Generator</h1>
+        <p class="ds-tool-header__desc">Generate beautiful color palettes from a base color. Export as CSS, HEX, or JSON.</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="ds-tool-main ds-tool-split">
+    <!-- Sidepanel -->
+    <div class="ds-tool-sidepanel">
+
+      <div class="ds-tool-sidepanel__section">
+        <div class="ds-tool-sidepanel__label">Base Color</div>
+        <div class="color-row">
+          <input type="color" class="color-input-native" id="baseColorPicker" value="#5E6AD2" />
+          <input type="text" class="color-hex-text" id="baseColorHex" value="#5E6AD2" maxlength="7" spellcheck="false" />
+        </div>
+      </div>
+
+      <div class="ds-tool-sidepanel__section">
+        <div class="ds-tool-sidepanel__label">Palette Type</div>
+        <div class="seg-group" id="typeGroup">
+          <button class="seg-btn" data-type="complementary">Comp.</button>
+          <button class="seg-btn active" data-type="analogous">Analogous</button>
+          <button class="seg-btn" data-type="triadic">Triadic</button>
+          <button class="seg-btn" data-type="monochromatic">Mono.</button>
+        </div>
+      </div>
+
+      <div class="ds-tool-sidepanel__section">
+        <div class="count-row" id="countRow">
+          <div class="count-row-label">Count (Monochromatic only): <span id="countDisplay">5</span></div>
+          <div class="slider-row">
+            <input type="range" class="count-slider" id="countSlider" min="3" max="10" value="5" />
+            <span class="count-val" id="countVal">5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-tool-sidepanel__section">
+        <div class="ds-tool-sidepanel__label">Export Format</div>
+        <div class="seg-group" id="exportGroup">
+          <button class="seg-btn active" data-fmt="hex">HEX</button>
+          <button class="seg-btn" data-fmt="css">CSS</button>
+          <button class="seg-btn" data-fmt="json">JSON</button>
+        </div>
+      </div>
+
+      <div class="ds-tool-sidepanel__section">
+        <button class="btn-generate" id="btnGenerate">Generate Palette</button>
+      </div>
+
+    </div>
+
+    <!-- Preview panel -->
+    <div class="ds-tool-preview">
+      <div class="preview-inner">
+        <div class="preview-title">Palette Preview</div>
+        <div class="palette-grid" id="paletteGrid"></div>
+        <div class="export-header">
+          <span class="export-label">Export</span>
+          <button class="btn-copy-all" id="btnCopyAll">Copy All</button>
+        </div>
+        <textarea class="export-textarea" id="exportOutput" readonly rows="6"></textarea>
+      </div>
+    </div>
+  </main>
+
+  <div class="ds-related-tools">
+    <div class="ds-related-tools__title">Related Tools</div>
+    <div class="ds-related-tools__list">
+      <a href="./color-picker.html" class="ds-related-tools__item">🎨 Color Picker</a>
+      <a href="./gradient-generator.html" class="ds-related-tools__item">🌈 Gradient Generator</a>
+      <a href="./contrast-checker.html" class="ds-related-tools__item">🔍 Contrast Checker</a>
+    </div>
+  </div>
+
+  <footer class="ds-footer">
+    <div class="ds-footer__inner">
+      <a href="/" class="ds-nav__brand">
+        <div class="ds-footer-logo-icon">
+          <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+        </div>
+        SimpleToolBox
+      </a>
+      <p class="ds-footer__copy">© 2025 SimpleToolBox. Free tools for developers.</p>
+      <div class="ds-footer__links">
+        <a href="/about.html" class="ds-footer__link">About</a>
+        <a href="/privacy.html" class="ds-footer__link">Privacy</a>
+        <a href="/contact.html" class="ds-footer__link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Color math ──────────────────────────────────────────────────────────
+    function hexToHsl(hex) {
+      let r = parseInt(hex.slice(1,3),16)/255,
+          g = parseInt(hex.slice(3,5),16)/255,
+          b = parseInt(hex.slice(5,7),16)/255;
+      const max = Math.max(r,g,b), min = Math.min(r,g,b);
+      const l = (max + min) / 2;
+      let h = 0, s = 0;
+      if (max !== min) {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
+    }
+
+    function hslToHex(h, s, l) {
+      s /= 100; l /= 100;
+      const a = s * Math.min(l, 1 - l);
+      const f = n => {
+        const k = (n + h / 30) % 12;
+        return l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+      };
+      return '#' + [f(0), f(8), f(4)]
+        .map(x => Math.round(x * 255).toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    function generatePalette(hex, type, count) {
+      const [h, s, l] = hexToHsl(hex);
+      switch (type) {
+        case 'complementary':
+          return [hex,
+            hslToHex((h + 180) % 360, s, l),
+            hslToHex((h + 30) % 360, s, l),
+            hslToHex((h + 210) % 360, s, l),
+            hslToHex((h + 60) % 360, s, l)];
+        case 'analogous':
+          return [-60, -30, 0, 30, 60].map(d => hslToHex((h + d + 360) % 360, s, l));
+        case 'triadic':
+          return [0, 120, 240].map(d => hslToHex((h + d) % 360, s, l));
+        case 'monochromatic':
+          return Array.from({ length: count }, (_, i) =>
+            hslToHex(h, s, Math.round(20 + i * (60 / count))));
+        default:
+          return [hex];
+      }
+    }
+
+    // ── State ────────────────────────────────────────────────────────────────
+    let currentType = 'analogous';
+    let currentFmt  = 'hex';
+    let currentCount = 5;
+
+    // ── DOM refs ─────────────────────────────────────────────────────────────
+    const picker       = document.getElementById('baseColorPicker');
+    const hexText      = document.getElementById('baseColorHex');
+    const typeGroup    = document.getElementById('typeGroup');
+    const countSlider  = document.getElementById('countSlider');
+    const countVal     = document.getElementById('countVal');
+    const countDisplay = document.getElementById('countDisplay');
+    const countRow     = document.getElementById('countRow');
+    const exportGroup  = document.getElementById('exportGroup');
+    const paletteGrid  = document.getElementById('paletteGrid');
+    const exportOutput = document.getElementById('exportOutput');
+    const btnGenerate  = document.getElementById('btnGenerate');
+    const btnCopyAll   = document.getElementById('btnCopyAll');
+
+    // ── Render ────────────────────────────────────────────────────────────────
+    function buildExport(colors) {
+      switch (currentFmt) {
+        case 'hex':
+          return colors.join('\n');
+        case 'css':
+          return colors.map((c, i) => `--color-${i + 1}: ${c};`).join('\n');
+        case 'json':
+          return JSON.stringify(colors, null, 2);
+      }
+    }
+
+    function render() {
+      const hex = picker.value;
+      const colors = generatePalette(hex, currentType, currentCount);
+
+      // Render swatches
+      paletteGrid.innerHTML = '';
+      colors.forEach(c => {
+        const swatch = document.createElement('div');
+        swatch.className = 'swatch';
+        swatch.title = 'Click to copy ' + c;
+        swatch.innerHTML = `
+          <div class="swatch__block" style="background:${c}"></div>
+          <div class="swatch__label">${c}</div>
+        `;
+        swatch.addEventListener('click', () => {
+          navigator.clipboard.writeText(c).catch(() => {});
+          const lbl = swatch.querySelector('.swatch__label');
+          const orig = lbl.textContent;
+          lbl.textContent = 'Copied!';
+          lbl.style.color = '#22c55e';
+          setTimeout(() => { lbl.textContent = orig; lbl.style.color = ''; }, 1500);
+        });
+        paletteGrid.appendChild(swatch);
+      });
+
+      exportOutput.value = buildExport(colors);
+    }
+
+    // ── Event: color picker ───────────────────────────────────────────────────
+    picker.addEventListener('input', () => {
+      hexText.value = picker.value.toUpperCase();
+      render();
+    });
+
+    hexText.addEventListener('input', () => {
+      const v = hexText.value.trim();
+      if (/^#[0-9a-fA-F]{6}$/.test(v)) {
+        picker.value = v;
+        render();
+      }
+    });
+
+    // ── Event: palette type ───────────────────────────────────────────────────
+    typeGroup.addEventListener('click', e => {
+      const btn = e.target.closest('.seg-btn');
+      if (!btn) return;
+      typeGroup.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentType = btn.dataset.type;
+      countRow.classList.toggle('disabled', currentType !== 'monochromatic');
+      render();
+    });
+
+    // ── Event: count slider ───────────────────────────────────────────────────
+    countSlider.addEventListener('input', () => {
+      currentCount = +countSlider.value;
+      countVal.textContent = currentCount;
+      countDisplay.textContent = currentCount;
+      render();
+    });
+
+    // ── Event: export format ──────────────────────────────────────────────────
+    exportGroup.addEventListener('click', e => {
+      const btn = e.target.closest('.seg-btn');
+      if (!btn) return;
+      exportGroup.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFmt = btn.dataset.fmt;
+      render();
+    });
+
+    // ── Event: generate ───────────────────────────────────────────────────────
+    btnGenerate.addEventListener('click', render);
+
+    // ── Event: copy all ───────────────────────────────────────────────────────
+    btnCopyAll.addEventListener('click', () => {
+      navigator.clipboard.writeText(exportOutput.value).catch(() => {});
+      btnCopyAll.textContent = '✓ Copied';
+      btnCopyAll.style.color = '#22c55e';
+      setTimeout(() => { btnCopyAll.textContent = 'Copy All'; btnCopyAll.style.color = ''; }, 1500);
+    });
+
+    // ── Init: count row disabled by default ──────────────────────────────────
+    countRow.classList.add('disabled');
+
+    // ── Initial render ────────────────────────────────────────────────────────
+    render();
+  </script>
+</body>
+</html>

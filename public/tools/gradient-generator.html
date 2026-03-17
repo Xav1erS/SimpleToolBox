@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Gradient Generator — SimpleToolBox</title>
+  <meta name="description" content="Create and preview CSS linear and radial gradients. Add color stops, choose direction, and copy ready-to-use CSS code instantly." />
+  <meta property="og:title" content="CSS Gradient Generator — SimpleToolBox" />
+  <meta property="og:description" content="Create and preview CSS linear and radial gradients. Add color stops, choose direction, and copy ready-to-use CSS code instantly." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="CSS Gradient Generator — SimpleToolBox" />
+  <meta name="twitter:description" content="Create and preview CSS linear and radial gradients. Add color stops, choose direction, and copy ready-to-use CSS code instantly." />
+  <link rel="canonical" href="https://simpletoolbox.com/tools/gradient-generator.html" />
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CSS Gradient Generator",
+    "description": "Create and preview CSS linear and radial gradients. Add color stops, choose direction, and copy ready-to-use CSS code instantly.",
+    "url": "https://simpletoolbox.com/tools/gradient-generator.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <style>
+    /* Segment controls */
+    .seg-group {
+      display: flex;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      overflow: hidden;
+    }
+    .seg-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      border-right: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      font-family: var(--ds-font-sans);
+      font-size: 13px;
+      padding: 8px 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .seg-btn:last-child { border-right: none; }
+    .seg-btn:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
+    .seg-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); }
+
+    /* Direction grid */
+    .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+    .dir-btn {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 8px;
+      text-align: center;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .dir-btn:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); }
+    .dir-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); }
+    /* center cell placeholder */
+    .dir-btn.dir-center {
+      background: none;
+      border-color: transparent;
+      cursor: default;
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+    }
+    .dir-btn.dir-center:hover { background: none; color: var(--ds-color-text-muted); border-color: transparent; }
+
+    /* Direction section visibility */
+    .direction-section { transition: opacity 0.2s; }
+    .direction-section.hidden { display: none; }
+
+    /* Color stops list */
+    .stops-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .stop-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stop-color-input {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      background: none;
+      cursor: pointer;
+      padding: 2px;
+      flex-shrink: 0;
+    }
+    .stop-color-input::-webkit-color-swatch-wrapper { padding: 0; }
+    .stop-color-input::-webkit-color-swatch { border: none; border-radius: 2px; }
+    .stop-pos-slider {
+      flex: 1;
+      accent-color: var(--ds-color-accent);
+      cursor: pointer;
+    }
+    .stop-pos-val {
+      font-family: var(--ds-font-mono);
+      font-size: 11px;
+      color: var(--ds-color-text-muted);
+      min-width: 30px;
+      text-align: right;
+    }
+    .stop-del-btn {
+      background: none;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-muted);
+      cursor: pointer;
+      font-size: 12px;
+      padding: 4px 7px;
+      line-height: 1;
+      transition: border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+    .stop-del-btn:hover { border-color: #ef4444; color: #ef4444; }
+    .stop-del-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .btn-add-stop {
+      width: 100%;
+      background: none;
+      border: 1px dashed var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      font-family: var(--ds-font-sans);
+      font-size: 13px;
+      padding: 8px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-add-stop:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+    .btn-add-stop:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* Copy CSS button */
+    .btn-copy-css {
+      width: 100%;
+      background: var(--ds-color-accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--ds-radius-sm);
+      cursor: pointer;
+      font-family: var(--ds-font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px;
+      transition: opacity 0.15s;
+    }
+    .btn-copy-css:hover { opacity: 0.88; }
+
+    /* Preview area */
+    .preview-inner {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .preview-rect {
+      width: 100%;
+      height: 260px;
+      border-radius: var(--ds-radius-md);
+      border: 1px solid var(--ds-color-border);
+      transition: background 0.2s;
+    }
+    .css-output-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .css-output-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .btn-copy-small {
+      background: none;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      font-family: var(--ds-font-sans);
+      font-size: 12px;
+      padding: 4px 10px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-copy-small:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+    .css-output-code {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 12px 14px;
+      word-break: break-all;
+      white-space: pre-wrap;
+      min-height: 56px;
+    }
+
+    /* Related tools */
+    .ds-related-tools {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+    }
+    .ds-related-tools__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .ds-related-tools__list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .ds-related-tools__item {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      font-size: 13px;
+      padding: 6px 14px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .ds-related-tools__item:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+  </style>
+</head>
+<body>
+  <nav class="ds-tool-nav">
+    <a href="/" class="ds-nav__brand">
+      <div class="ds-nav__logo-icon">
+        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      </div>
+      SimpleToolBox
+    </a>
+    <div class="ds-tool-nav__links">
+      <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
+      <a href="/about.html" class="ds-tool-nav__link">About</a>
+    </div>
+  </nav>
+
+  <div class="ds-tool-header">
+    <div class="ds-tool-header__inner">
+      <div class="ds-tool-header__icon">🌈</div>
+      <div>
+        <h1 class="ds-tool-header__title">CSS Gradient Generator</h1>
+        <p class="ds-tool-header__desc">Create and preview CSS linear and radial gradients. Copy ready-to-use CSS code.</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="ds-tool-main ds-tool-split">
+    <!-- Sidepanel -->
+    <div class="ds-tool-sidepanel">
+
+      <div class="ds-tool-sidepanel__section">
+        <div class="ds-tool-sidepanel__label">Gradient Type</div>
+        <div class="seg-group" id="typeGroup">
+          <button class="seg-btn active" data-type="linear">Linear</button>
+          <button class="seg-btn" data-type="radial">Radial</button>
+        </div>
+      </div>
+
+      <div class="ds-tool-sidepanel__section direction-section" id="dirSection">
+        <div class="ds-tool-sidepanel__label">Direction</div>
+        <div class="dir-grid" id="dirGrid">
+          <button class="dir-btn" data-angle="315" title="Top-left (315°)">↖</button>
+          <button class="dir-btn" data-angle="0" title="Up (0°)">↑</button>
+          <button class="dir-btn" data-angle="45" title="Top-right (45°)">↗</button>
+          <button class="dir-btn" data-angle="270" title="Left (270°)">←</button>
+          <div class="dir-btn dir-center">●</div>
+          <button class="dir-btn active" data-angle="90" title="Right (90°)">→</button>
+          <button class="dir-btn" data-angle="225" title="Bottom-left (225°)">↙</button>
+          <button class="dir-btn" data-angle="180" title="Down (180°)">↓</button>
+          <button class="dir-btn" data-angle="135" title="Bottom-right (135°)">↘</button>
+        </div>
+      </div>
+
+      <div class="ds-tool-sidepanel__section">
+        <div class="ds-tool-sidepanel__label">Color Stops</div>
+        <div class="stops-list" id="stopsList"></div>
+        <button class="btn-add-stop" id="btnAddStop">+ Add Stop</button>
+      </div>
+
+      <div class="ds-tool-sidepanel__section">
+        <button class="btn-copy-css" id="btnCopyCss">Copy CSS</button>
+      </div>
+
+    </div>
+
+    <!-- Preview panel -->
+    <div class="ds-tool-preview">
+      <div class="preview-inner">
+        <div class="preview-rect" id="previewRect"></div>
+        <div class="css-output-header">
+          <span class="css-output-label">CSS Output</span>
+          <button class="btn-copy-small" id="btnCopySmall">Copy</button>
+        </div>
+        <div class="css-output-code" id="cssOutput"></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="ds-related-tools">
+    <div class="ds-related-tools__title">Related Tools</div>
+    <div class="ds-related-tools__list">
+      <a href="./color-palette.html" class="ds-related-tools__item">🎨 Color Palette Generator</a>
+      <a href="./color-picker.html" class="ds-related-tools__item">🎨 Color Picker</a>
+      <a href="./contrast-checker.html" class="ds-related-tools__item">🔍 Contrast Checker</a>
+    </div>
+  </div>
+
+  <footer class="ds-footer">
+    <div class="ds-footer__inner">
+      <a href="/" class="ds-nav__brand">
+        <div class="ds-footer-logo-icon">
+          <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+        </div>
+        SimpleToolBox
+      </a>
+      <p class="ds-footer__copy">© 2025 SimpleToolBox. Free tools for developers.</p>
+      <div class="ds-footer__links">
+        <a href="/about.html" class="ds-footer__link">About</a>
+        <a href="/privacy.html" class="ds-footer__link">Privacy</a>
+        <a href="/contact.html" class="ds-footer__link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── State ────────────────────────────────────────────────────────────────
+    let gradientType = 'linear';
+    let angle = 90;
+    const MAX_STOPS = 6;
+
+    // Initial stops
+    let stops = [
+      { color: '#5E6AD2', pos: 0 },
+      { color: '#9B59B6', pos: 100 }
+    ];
+
+    // ── DOM refs ─────────────────────────────────────────────────────────────
+    const typeGroup   = document.getElementById('typeGroup');
+    const dirSection  = document.getElementById('dirSection');
+    const dirGrid     = document.getElementById('dirGrid');
+    const stopsList   = document.getElementById('stopsList');
+    const btnAddStop  = document.getElementById('btnAddStop');
+    const btnCopyCss  = document.getElementById('btnCopyCss');
+    const btnCopySmall= document.getElementById('btnCopySmall');
+    const previewRect = document.getElementById('previewRect');
+    const cssOutput   = document.getElementById('cssOutput');
+
+    // ── Build gradient CSS ────────────────────────────────────────────────────
+    function buildGradient() {
+      const sorted = [...stops].sort((a, b) => a.pos - b.pos);
+      const stopStr = sorted.map(s => `${s.color} ${s.pos}%`).join(', ');
+      if (gradientType === 'linear') {
+        return `linear-gradient(${angle}deg, ${stopStr})`;
+      } else {
+        return `radial-gradient(circle, ${stopStr})`;
+      }
+    }
+
+    // ── Update preview ────────────────────────────────────────────────────────
+    function updatePreview() {
+      const grad = buildGradient();
+      previewRect.style.background = grad;
+      cssOutput.textContent = `background: ${grad};`;
+    }
+
+    // ── Render stops list ─────────────────────────────────────────────────────
+    function renderStops() {
+      stopsList.innerHTML = '';
+      stops.forEach((stop, idx) => {
+        const row = document.createElement('div');
+        row.className = 'stop-row';
+        row.innerHTML = `
+          <input type="color" class="stop-color-input" value="${stop.color}" data-idx="${idx}" />
+          <input type="range" class="stop-pos-slider" min="0" max="100" value="${stop.pos}" data-idx="${idx}" />
+          <span class="stop-pos-val">${stop.pos}%</span>
+          <button class="stop-del-btn" data-idx="${idx}" ${stops.length <= 2 ? 'disabled' : ''}>✕</button>
+        `;
+
+        // Color change
+        row.querySelector('.stop-color-input').addEventListener('input', e => {
+          stops[+e.target.dataset.idx].color = e.target.value;
+          updatePreview();
+        });
+
+        // Position change
+        const slider = row.querySelector('.stop-pos-slider');
+        const posVal = row.querySelector('.stop-pos-val');
+        slider.addEventListener('input', e => {
+          const i = +e.target.dataset.idx;
+          stops[i].pos = +e.target.value;
+          posVal.textContent = e.target.value + '%';
+          updatePreview();
+        });
+
+        // Delete stop
+        row.querySelector('.stop-del-btn').addEventListener('click', e => {
+          const i = +e.target.dataset.idx;
+          if (stops.length > 2) {
+            stops.splice(i, 1);
+            renderStops();
+            updatePreview();
+          }
+        });
+
+        stopsList.appendChild(row);
+      });
+
+      btnAddStop.disabled = stops.length >= MAX_STOPS;
+    }
+
+    // ── Event: gradient type ──────────────────────────────────────────────────
+    typeGroup.addEventListener('click', e => {
+      const btn = e.target.closest('.seg-btn');
+      if (!btn) return;
+      typeGroup.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      gradientType = btn.dataset.type;
+      dirSection.classList.toggle('hidden', gradientType === 'radial');
+      updatePreview();
+    });
+
+    // ── Event: direction grid ─────────────────────────────────────────────────
+    dirGrid.addEventListener('click', e => {
+      const btn = e.target.closest('.dir-btn[data-angle]');
+      if (!btn) return;
+      dirGrid.querySelectorAll('.dir-btn[data-angle]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      angle = +btn.dataset.angle;
+      updatePreview();
+    });
+
+    // ── Event: add stop ───────────────────────────────────────────────────────
+    btnAddStop.addEventListener('click', () => {
+      if (stops.length >= MAX_STOPS) return;
+      // Insert a stop at the midpoint of the first gap
+      const sorted = [...stops].sort((a, b) => a.pos - b.pos);
+      let bestPos = 50;
+      let bestGap = -1;
+      for (let i = 0; i < sorted.length - 1; i++) {
+        const gap = sorted[i + 1].pos - sorted[i].pos;
+        if (gap > bestGap) {
+          bestGap = gap;
+          bestPos = Math.round((sorted[i].pos + sorted[i + 1].pos) / 2);
+        }
+      }
+      stops.push({ color: '#ffffff', pos: bestPos });
+      renderStops();
+      updatePreview();
+    });
+
+    // ── Copy helpers ──────────────────────────────────────────────────────────
+    function doCopy(btn, text, originalLabel) {
+      navigator.clipboard.writeText(text).catch(() => {});
+      btn.innerHTML = '✓ Copied';
+      btn.style.color = '#22c55e';
+      setTimeout(() => { btn.innerHTML = originalLabel; btn.style.color = ''; }, 1500);
+    }
+
+    btnCopyCss.addEventListener('click', () => {
+      doCopy(btnCopyCss, `background: ${buildGradient()};`, 'Copy CSS');
+    });
+
+    btnCopySmall.addEventListener('click', () => {
+      doCopy(btnCopySmall, `background: ${buildGradient()};`, 'Copy');
+    });
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    renderStops();
+    updatePreview();
+  </script>
+</body>
+</html>

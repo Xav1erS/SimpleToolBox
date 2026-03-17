@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>JSON ↔ CSV Converter — SimpleToolBox</title>
+  <meta name="description" content="Free online JSON to CSV and CSV to JSON converter. Supports custom delimiters (comma, tab, semicolon, pipe) and header row options. Runs entirely in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.com/tools/json-csv.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.com/tools/json-csv.html" />
+  <meta property="og:title" content="JSON ↔ CSV Converter — SimpleToolBox" />
+  <meta property="og:description" content="Free online JSON to CSV and CSV to JSON converter. Supports custom delimiters and header row options. Runs entirely in your browser." />
+  <meta property="og:site_name" content="SimpleToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON ↔ CSV Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert between JSON arrays and CSV format. Supports custom delimiters and header row options. 100% client-side processing.","featureList":["JSON to CSV conversion","CSV to JSON conversion","Custom delimiter support","Header row options","Real-time conversion"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; }
+
+    /* Options bar */
+    .options-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+    }
+    .options-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .options-label {
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* Segment control */
+    .seg-ctrl {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      overflow: hidden;
+    }
+    .seg-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-surface);
+      color: var(--ds-color-text-secondary);
+      border: none;
+      border-right: 1px solid var(--ds-color-border);
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+      white-space: nowrap;
+    }
+    .seg-btn:last-child { border-right: none; }
+    .seg-btn:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
+    .seg-btn.active { background: var(--ds-color-accent); color: #fff; }
+
+    /* Checkbox */
+    .chk-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--ds-color-text-secondary);
+      user-select: none;
+    }
+    .chk-label input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      accent-color: var(--ds-color-accent);
+      cursor: pointer;
+    }
+
+    /* Workbench tweaks: make textareas taller */
+    .ds-tool-textarea { min-height: 260px; }
+
+    /* Related tools */
+    .ds-related-tools { margin-top: 8px; }
+    .ds-related-tools__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ds-related-tools__list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ds-related-tools__item {
+      padding: 6px 14px;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      font-size: 13px;
+      color: var(--ds-color-text-secondary);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .ds-related-tools__item:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); }
+
+    @media (max-width: 600px) {
+      .options-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .ds-tool-workbench { flex-direction: column; }
+      .ds-tool-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="/" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+    </div>
+    SimpleToolBox
+  </a>
+  <div class="ds-tool-nav__links">
+    <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
+    <a href="/about.html" class="ds-tool-nav__link">About</a>
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__icon">🔄</div>
+    <div>
+      <h1 class="ds-tool-header__title">JSON ↔ CSV Converter</h1>
+      <p class="ds-tool-header__desc">Convert between JSON arrays and CSV format. Supports custom delimiters and header row options.</p>
+    </div>
+  </div>
+</div>
+
+<main class="ds-tool-main ds-tool-stack">
+
+  <!-- Mode selector -->
+  <div class="ds-tool-modebar">
+    <button class="ds-tool-modebtn active" data-mode="json2csv">JSON → CSV</button>
+    <button class="ds-tool-modebtn" data-mode="csv2json">CSV → JSON</button>
+  </div>
+
+  <!-- Options -->
+  <div class="options-bar">
+    <div class="options-group">
+      <span class="options-label">Delimiter</span>
+      <div class="seg-ctrl" id="delimCtrl">
+        <button class="seg-btn active" data-delim=",">Comma</button>
+        <button class="seg-btn" data-delim="&#9;">Tab</button>
+        <button class="seg-btn" data-delim=";">Semicolon</button>
+        <button class="seg-btn" data-delim="|">Pipe</button>
+      </div>
+    </div>
+    <div class="options-group">
+      <label class="chk-label">
+        <input type="checkbox" id="headerRow" checked />
+        Header Row
+      </label>
+    </div>
+  </div>
+
+  <!-- Workbench -->
+  <div class="ds-tool-workbench">
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="inputLabel">JSON Input</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn" id="btnPaste">Paste</button>
+          <button class="ds-tool-pane__btn" id="btnClear">Clear</button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea" id="inputArea" placeholder='[{"name":"Alice","age":30},{"name":"Bob","age":25}]' spellcheck="false"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="inputStat">0 chars</span>
+      </div>
+    </div>
+    <div class="ds-tool-arrow" id="arrowEl">→</div>
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="outputLabel">CSV Output</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn" id="btnCopy">Copy</button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea" id="outputArea" readonly placeholder="Output will appear here..."></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="outputStat">0 chars</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="ds-tool-actions">
+    <button class="ds-tool-actions__btn ds-tool-actions__btn--primary" id="btnConvert">Convert</button>
+  </div>
+
+  <!-- Error -->
+  <div class="ds-tool-error" id="errorBox" style="display:none;"></div>
+
+  <div class="ds-tool-note">
+    <strong>Note:</strong> JSON input must be an array of objects (e.g. <code>[{"key":"value"}]</code>). Nested objects are flattened to their string representation. All processing happens in your browser — no data is uploaded.
+  </div>
+
+  <div class="ds-related-tools">
+    <div class="ds-related-tools__title">Related Tools</div>
+    <div class="ds-related-tools__list">
+      <a href="./json-formatter.html" class="ds-related-tools__item">JSON Formatter</a>
+      <a href="./hash-generator.html" class="ds-related-tools__item">Hash Generator</a>
+      <a href="./base64.html" class="ds-related-tools__item">Base64 Encoder</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="ds-footer">
+  <div class="ds-footer__inner">
+    <a href="/" class="ds-nav__brand">
+      <div class="ds-footer-logo-icon">
+        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      </div>
+      SimpleToolBox
+    </a>
+    <p class="ds-footer__copy">© 2025 SimpleToolBox. Free tools for developers.</p>
+    <div class="ds-footer__links">
+      <a href="/about.html" class="ds-footer__link">About</a>
+      <a href="/privacy.html" class="ds-footer__link">Privacy</a>
+      <a href="/contact.html" class="ds-footer__link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const inputArea  = document.getElementById('inputArea');
+  const outputArea = document.getElementById('outputArea');
+  const inputLabel = document.getElementById('inputLabel');
+  const outputLabel= document.getElementById('outputLabel');
+  const inputStat  = document.getElementById('inputStat');
+  const outputStat = document.getElementById('outputStat');
+  const errorBox   = document.getElementById('errorBox');
+  const btnConvert = document.getElementById('btnConvert');
+  const btnPaste   = document.getElementById('btnPaste');
+  const btnClear   = document.getElementById('btnClear');
+  const btnCopy    = document.getElementById('btnCopy');
+  const headerRow  = document.getElementById('headerRow');
+  const arrowEl    = document.getElementById('arrowEl');
+
+  let currentMode = 'json2csv';
+  let currentDelim = ',';
+  let debounceTimer = null;
+
+  // ---- Mode buttons ----
+  document.querySelectorAll('.ds-tool-modebtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ds-tool-modebtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentMode = btn.dataset.mode;
+      updateLabels();
+      clearOutput();
+      debounceConvert();
+    });
+  });
+
+  // ---- Delimiter buttons ----
+  document.querySelectorAll('#delimCtrl .seg-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#delimCtrl .seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDelim = btn.dataset.delim;
+      debounceConvert();
+    });
+  });
+
+  headerRow.addEventListener('change', debounceConvert);
+
+  function updateLabels() {
+    if (currentMode === 'json2csv') {
+      inputLabel.textContent  = 'JSON Input';
+      outputLabel.textContent = 'CSV Output';
+      inputArea.placeholder   = '[{"name":"Alice","age":30},{"name":"Bob","age":25}]';
+      arrowEl.textContent = '→';
+    } else {
+      inputLabel.textContent  = 'CSV Input';
+      outputLabel.textContent = 'JSON Output';
+      inputArea.placeholder   = 'name,age\nAlice,30\nBob,25';
+      arrowEl.textContent = '→';
+    }
+  }
+
+  function clearOutput() {
+    outputArea.value = '';
+    outputStat.textContent = '0 chars';
+    hideError();
+  }
+
+  function showError(msg) {
+    errorBox.textContent = '⚠ ' + msg;
+    errorBox.style.display = 'block';
+  }
+
+  function hideError() {
+    errorBox.style.display = 'none';
+  }
+
+  // ---- JSON → CSV ----
+  function jsonToCSV(jsonStr, delimiter, hasHeader) {
+    const data = JSON.parse(jsonStr);
+    if (!Array.isArray(data) || data.length === 0) {
+      throw new Error('Input must be a non-empty JSON array of objects.');
+    }
+    if (typeof data[0] !== 'object' || data[0] === null || Array.isArray(data[0])) {
+      throw new Error('Each element in the JSON array must be an object.');
+    }
+    const keys = Object.keys(data[0]);
+    const escape = (v) => {
+      const s = String(v ?? '');
+      if (s.includes(delimiter) || s.includes('"') || s.includes('\n') || s.includes('\r')) {
+        return '"' + s.replace(/"/g, '""') + '"';
+      }
+      return s;
+    };
+    const rows = data.map(row => keys.map(k => escape(row[k])).join(delimiter));
+    if (hasHeader) {
+      return [keys.map(escape).join(delimiter), ...rows].join('\n');
+    }
+    return rows.join('\n');
+  }
+
+  // ---- CSV → JSON ----
+  function parseCsvLine(line, delimiter) {
+    const vals = [];
+    let i = 0;
+    const len = line.length;
+    const delimLen = delimiter.length;
+    while (i <= len) {
+      if (i === len) {
+        vals.push('');
+        break;
+      }
+      if (line[i] === '"') {
+        // quoted field
+        let end = i + 1;
+        let field = '';
+        while (end < len) {
+          if (line[end] === '"') {
+            if (line[end + 1] === '"') {
+              field += '"';
+              end += 2;
+            } else {
+              end++;
+              break;
+            }
+          } else {
+            field += line[end];
+            end++;
+          }
+        }
+        vals.push(field);
+        // skip delimiter after closing quote
+        if (line.slice(end, end + delimLen) === delimiter) {
+          i = end + delimLen;
+        } else {
+          i = end + 1;
+        }
+      } else {
+        const next = line.indexOf(delimiter, i);
+        if (next === -1) {
+          vals.push(line.slice(i));
+          break;
+        } else {
+          vals.push(line.slice(i, next));
+          i = next + delimLen;
+        }
+      }
+    }
+    return vals;
+  }
+
+  function csvToJSON(csvStr, delimiter, hasHeader) {
+    const lines = csvStr.trim().split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    if (lines.length === 0) throw new Error('Empty input.');
+    if (hasHeader) {
+      if (lines.length < 2) throw new Error('CSV must have at least a header row and one data row.');
+      const headers = parseCsvLine(lines[0], delimiter);
+      return lines.slice(1).map(line => {
+        const vals = parseCsvLine(line, delimiter);
+        const obj = {};
+        headers.forEach((h, idx) => { obj[h] = vals[idx] !== undefined ? vals[idx] : ''; });
+        return obj;
+      });
+    } else {
+      return lines.map(line => parseCsvLine(line, delimiter));
+    }
+  }
+
+  // ---- Main convert ----
+  function convert() {
+    hideError();
+    const input = inputArea.value;
+    if (!input.trim()) {
+      clearOutput();
+      return;
+    }
+    try {
+      let result;
+      if (currentMode === 'json2csv') {
+        result = jsonToCSV(input, currentDelim, headerRow.checked);
+      } else {
+        const arr = csvToJSON(input, currentDelim, headerRow.checked);
+        result = JSON.stringify(arr, null, 2);
+      }
+      outputArea.value = result;
+      outputStat.textContent = result.length.toLocaleString() + ' chars';
+    } catch (err) {
+      outputArea.value = '';
+      outputStat.textContent = '0 chars';
+      showError(err.message);
+    }
+  }
+
+  function debounceConvert() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(convert, 300);
+  }
+
+  // ---- Input stat update ----
+  inputArea.addEventListener('input', () => {
+    inputStat.textContent = inputArea.value.length.toLocaleString() + ' chars';
+    debounceConvert();
+  });
+
+  // ---- Buttons ----
+  btnConvert.addEventListener('click', convert);
+
+  btnPaste.addEventListener('click', async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      inputArea.value = text;
+      inputStat.textContent = text.length.toLocaleString() + ' chars';
+      debounceConvert();
+    } catch {
+      inputArea.focus();
+    }
+  });
+
+  btnClear.addEventListener('click', () => {
+    inputArea.value = '';
+    inputStat.textContent = '0 chars';
+    clearOutput();
+  });
+
+  btnCopy.addEventListener('click', () => {
+    const text = outputArea.value;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      btnCopy.innerHTML = '✓ Copied';
+      btnCopy.style.color = '#22c55e';
+      setTimeout(() => {
+        btnCopy.innerHTML = 'Copy';
+        btnCopy.style.color = '';
+      }, 1500);
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

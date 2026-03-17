@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>All Tools — Simple ToolBox</title>
-  <meta name="description" content="Browse all 35 free online developer tools — JSON formatter, regex tester, YAML converter, diff viewer, SQL formatter, and more. Filter by category." />
+  <meta name="description" content="Browse all 40 free online developer tools — JSON formatter, regex tester, YAML converter, diff viewer, SQL formatter, and more. Filter by category." />
   <link rel="canonical" href="https://simpletoolbox.dev/all-tools.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/all-tools.html" />
   <meta property="og:title" content="All Tools — Simple ToolBox" />
-  <meta property="og:description" content="Browse all 35 free online developer tools. Filter by category: encode, format, convert, generate, text, image, reference." />
+  <meta property="og:description" content="Browse all 40 free online developer tools. Filter by category: encode, format, convert, generate, text, image, reference." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo 1.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles/design-system.css?v=7" />
@@ -94,7 +94,7 @@
 
 <div class="page-header">
   <h1 class="page-title">All Tools</h1>
-  <p class="page-sub">35 free, privacy-first tools. All processing happens in your browser — no sign-up required.</p>
+  <p class="page-sub">40 free, privacy-first tools. All processing happens in your browser — no sign-up required.</p>
 </div>
 
 <div class="filter-bar">
@@ -112,7 +112,7 @@
     <button class="filter-tag ds-pill" data-filter="image">🖼️ Image</button>
     <button class="filter-tag ds-pill" data-filter="reference">📚 Reference</button>
   </div>
-  <span class="count-badge" id="countBadge">35 tools</span>
+  <span class="count-badge" id="countBadge">40 tools</span>
 </div>
 
 <div class="tool-grid" id="toolGrid">
@@ -396,6 +396,46 @@
     <div class="tool-desc">Look up geolocation, ISP, ASN, and country for any IP address. Auto-detects your own IP.</div>
     <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">→</span></div>
   </a>
+  <a href="tools/js-formatter.html" class="tool-card" data-tags="format" data-name="JavaScript Formatter Minifier Beautifier JS">
+    <div class="tool-card-top">
+      <div class="tool-icon">⚙️</div>
+      <div class="tool-name">JS Formatter &amp; Minifier</div>
+    </div>
+    <div class="tool-desc">Beautify or minify JavaScript code. Configurable indent, string-safe minifier. No data sent.</div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/line-tools.html" class="tool-card" data-tags="text" data-name="Line Tools Sort Deduplicate Reverse Remove Duplicates Trim Lines">
+    <div class="tool-card-top">
+      <div class="tool-icon">☰</div>
+      <div class="tool-name">Line Tools</div>
+    </div>
+    <div class="tool-desc">Sort, deduplicate, reverse, remove empty lines, and trim each line instantly.</div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/base32.html" class="tool-card" data-tags="encode" data-name="Base32 Encode Decode RFC 4648 Extended Hex">
+    <div class="tool-card-top">
+      <div class="tool-icon">🔡</div>
+      <div class="tool-name">Base32 Encode / Decode</div>
+    </div>
+    <div class="tool-desc">Encode text to Base32 or decode Base32 strings. Supports RFC 4648 and Extended Hex alphabets.</div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/hmac.html" class="tool-card" data-tags="encode" data-name="HMAC Generator SHA-256 SHA-512 Secret Key Signature">
+    <div class="tool-card-top">
+      <div class="tool-icon">🔐</div>
+      <div class="tool-name">HMAC Generator</div>
+    </div>
+    <div class="tool-desc">Generate HMAC-SHA-256/512 signatures with a secret key. HEX or Base64 output. Web Crypto API.</div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/timezone-converter.html" class="tool-card" data-tags="convert" data-name="Timezone Converter Time Zone UTC Offset Date Time">
+    <div class="tool-card-top">
+      <div class="tool-icon">🌐</div>
+      <div class="tool-name">Timezone Converter</div>
+    </div>
+    <div class="tool-desc">Convert date and time between 80+ global timezones. Auto-detects local timezone.</div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">→</span></div>
+  </a>
   <div class="no-result" id="noResult">No tools match your search.</div>
 </div>
 
@@ -442,6 +482,11 @@
     { name: 'URL Parser / Builder',         href: 'tools/url-parser.html',             tag: 'encode',    icon: '🔗', desc: 'Parse URLs into components or build URLs from scratch' },
     { name: 'Bcrypt Hash / Verify',         href: 'tools/bcrypt.html',                 tag: 'encode',    icon: '🔒', desc: 'Generate and verify bcrypt password hashes locally' },
     { name: 'IP Address Lookup',            href: 'tools/ip-lookup.html',              tag: 'reference', icon: '🌐', desc: 'Look up geolocation and ASN for any IP address' },
+    { name: 'JS Formatter & Minifier',      href: 'tools/js-formatter.html',           tag: 'format',    icon: '⚙️', desc: 'Beautify or minify JavaScript code with configurable indent' },
+    { name: 'Line Tools',                   href: 'tools/line-tools.html',             tag: 'text',      icon: '☰',  desc: 'Sort, deduplicate, reverse, and trim lines of text' },
+    { name: 'Base32 Encode / Decode',       href: 'tools/base32.html',                 tag: 'encode',    icon: '🔡', desc: 'Encode or decode Base32 strings — RFC 4648 and Extended Hex' },
+    { name: 'HMAC Generator',               href: 'tools/hmac.html',                   tag: 'encode',    icon: '🔐', desc: 'Generate HMAC-SHA-256/512 signatures with a secret key' },
+    { name: 'Timezone Converter',           href: 'tools/timezone-converter.html',     tag: 'convert',   icon: '🌐', desc: 'Convert date and time between 80+ global timezones' },
   ];
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());

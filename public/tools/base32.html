@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Base32 Encode / Decode — Simple ToolBox</title>
+  <meta name="description" content="Encode text to Base32 or decode Base32 strings. Supports RFC 4648 and Extended Hex alphabets. Free, browser-based, no data sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/base32.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/base32.html" />
+  <meta property="og:title" content="Base32 Encode / Decode — Simple ToolBox" />
+  <meta property="og:description" content="Encode text to Base32 or decode Base32 strings. Supports RFC 4648 and Extended Hex alphabets. Free, browser-based, no data sent." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base32 Encode / Decode","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode text to Base32 or decode Base32 strings online. Supports RFC 4648 and Extended Hex (base32hex) alphabets. Runs entirely in your browser — no data sent.","featureList":["Text to Base32 encoding","Base32 to text decoding","RFC 4648 alphabet","Extended Hex (base32hex) alphabet","100% client-side processing"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .ds-tool-modebtn.active { background: var(--ds-color-accent); color: #fff; }
+
+    .seg-ctrl { display: flex; gap: 4px; }
+    .seg-btn {
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: var(--ds-radius-sm);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .seg-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .seg-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+
+    .output-panel.has-error .out-textarea { color: var(--ds-color-text-muted); }
+    .out-error { display: none; }
+    .output-panel.has-error .out-error { display: block; }
+    .output-panel.has-error .out-stat { display: none; }
+
+    .ds-tool-pane__btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .ds-tool-secondary.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    .info-text { font-size: 12px; color: var(--ds-color-text-secondary); line-height: 1.6; }
+    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
+    .info-text code { font-family: var(--ds-font-mono); font-size: 11px; background: rgba(255,255,255,0.06); padding: 1px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8B8B9A;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Base32 Encoder / Decoder <span class="ds-tool-badge">encode</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🔡</div>
+      <h1 class="ds-tool-header__title">Base32 Encode / Decode</h1>
+    </div>
+    <p class="ds-tool-header__desc">Encode text to Base32 or decode Base32 strings back to plain text. Supports RFC 4648 and Extended Hex (base32hex) alphabets. Everything runs in your browser — no server, no tracking.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">RFC 4648</span>
+      <span class="ds-tag">base32hex</span>
+      <span class="ds-tag">encode / decode</span>
+      <span class="ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-modebar">
+    <button class="ds-tool-modebtn active" id="btnEncode">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Encode &nbsp;Text → Base32
+    </button>
+    <div class="ds-tool-modeseparator"></div>
+    <button class="ds-tool-modebtn" id="btnDecode">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><path d="M15 7h2v2"/></svg>
+      Decode &nbsp;Base32 → Text
+    </button>
+  </div>
+
+  <div class="ds-tool-options">
+    <span style="font-size:12px;color:var(--ds-color-text-secondary);font-weight:500;">Alphabet</span>
+    <div class="seg-ctrl" id="alphaCtrl">
+      <button class="seg-btn active" data-alpha="rfc4648">RFC 4648</button>
+      <button class="seg-btn" data-alpha="exthex">Extended Hex</button>
+    </div>
+    <div class="ds-tool-option-spacer"></div>
+    <button class="ds-tool-swap" id="btnSwap">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4m0 0L3 8m4-4 4 4"/><path d="M17 8v12m0 0 4-4m-4 4-4-4"/></svg>
+      Swap panels
+    </button>
+  </div>
+
+  <div class="ds-tool-workbench">
+    <div class="ds-tool-pane" id="inputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="inputLabel">Plain Text</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn" id="btnPaste">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+          </button>
+          <button class="ds-tool-pane__btn" id="btnClearInput">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here…" spellcheck="false" autocomplete="off"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="inputStat">0 chars</span>
+      </div>
+    </div>
+
+    <div class="ds-tool-arrow">
+      <div class="ds-tool-arrow__circle" id="arrowIcon">→</div>
+    </div>
+
+    <div class="ds-tool-pane output-panel" id="outputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="outputLabel">Base32</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn" id="btnCopyHeader">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea out-textarea" id="outputText" placeholder="Output will appear here…" readonly spellcheck="false"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat out-stat" id="outputStat">0 chars</span>
+        <span class="ds-tool-error out-error" id="errorMsg">Invalid Base32 string</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <span id="runLabel">Encode</span>
+    </button>
+    <button class="ds-tool-secondary" id="btnCopyResult">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Result
+    </button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="ds-tool-secondary" id="btnClearAll">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14H6L5 6M9 6V4h6v2"/></svg>
+      Clear All
+    </button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">💡</span>
+    <div class="ds-tool-note__text info-text">
+      <strong>Base32</strong> encodes binary data as ASCII text using 32 printable characters with <code>=</code> padding to a multiple of 8.
+      <strong>RFC 4648</strong> uses <code>A–Z</code> and <code>2–7</code>; it avoids visually ambiguous characters like <code>0</code>, <code>1</code>, <code>8</code>, <code>9</code>.
+      <strong>Extended Hex</strong> (base32hex) uses <code>0–9</code> and <code>A–V</code>, preserving sort order — useful for Crockford and NanoID variants.
+      All processing happens entirely in your browser — nothing is sent to any server.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="base64.html" class="ds-related-card">
+        <span class="ds-related-icon">📦</span>
+        <div><div class="ds-related-name">Base64 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div>
+      </a>
+      <a href="url-encode.html" class="ds-related-card">
+        <span class="ds-related-icon">🔗</span>
+        <div><div class="ds-related-name">URL Encoder / Decoder</div><div class="ds-related-desc">Encode and decode URL components</div></div>
+      </a>
+      <a href="hash-generator.html" class="ds-related-card">
+        <span class="ds-related-icon">#️⃣</span>
+        <div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">MD5, SHA-256, SHA-512 hashes</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ALPHABETS = {
+    rfc4648: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567',
+    exthex:  '0123456789ABCDEFGHIJKLMNOPQRSTUV'
+  };
+
+  function base32Encode(input, alpha) {
+    const charset = ALPHABETS[alpha];
+    const bytes = new TextEncoder().encode(input);
+    let bits = 0, value = 0, output = '';
+    for (let i = 0; i < bytes.length; i++) {
+      value = (value << 8) | bytes[i];
+      bits += 8;
+      while (bits >= 5) {
+        bits -= 5;
+        output += charset[(value >>> bits) & 0x1f];
+      }
+    }
+    if (bits > 0) output += charset[(value << (5 - bits)) & 0x1f];
+    while (output.length % 8 !== 0) output += '=';
+    return output;
+  }
+
+  function base32Decode(input, alpha) {
+    const charset = ALPHABETS[alpha];
+    const s = input.replace(/\s/g, '').toUpperCase().replace(/=+$/, '');
+    if (!s) return '';
+    for (const ch of s) {
+      if (charset.indexOf(ch) === -1) throw new Error('Invalid character in Base32 string: "' + ch + '"');
+    }
+    const bytes = [];
+    let bits = 0, value = 0;
+    for (let i = 0; i < s.length; i++) {
+      value = (value << 5) | charset.indexOf(s[i]);
+      bits += 5;
+      if (bits >= 8) {
+        bits -= 8;
+        bytes.push((value >>> bits) & 0xff);
+      }
+    }
+    return new TextDecoder().decode(new Uint8Array(bytes));
+  }
+
+  let mode = 'encode', alpha = 'rfc4648';
+
+  const btnEncode = document.getElementById('btnEncode');
+  const btnDecode = document.getElementById('btnDecode');
+  const btnSwap = document.getElementById('btnSwap');
+  const inputText = document.getElementById('inputText');
+  const outputText = document.getElementById('outputText');
+  const inputStat = document.getElementById('inputStat');
+  const outputStat = document.getElementById('outputStat');
+  const inputLabel = document.getElementById('inputLabel');
+  const outputLabel = document.getElementById('outputLabel');
+  const runLabel = document.getElementById('runLabel');
+  const btnRun = document.getElementById('btnRun');
+  const btnCopyHeader = document.getElementById('btnCopyHeader');
+  const btnCopyResult = document.getElementById('btnCopyResult');
+  const btnPaste = document.getElementById('btnPaste');
+  const btnClearInput = document.getElementById('btnClearInput');
+  const btnClearAll = document.getElementById('btnClearAll');
+  const outputPanel = document.getElementById('outputPanel');
+  const errorMsg = document.getElementById('errorMsg');
+  const arrowIcon = document.getElementById('arrowIcon');
+  const alphaCtrl = document.getElementById('alphaCtrl');
+
+  function run() {
+    const inp = inputText.value;
+    outputPanel.classList.remove('has-error');
+    if (!inp) { outputText.value = ''; updateStats(); return; }
+    try {
+      outputText.value = mode === 'encode' ? base32Encode(inp, alpha) : base32Decode(inp, alpha);
+    } catch (e) {
+      outputPanel.classList.add('has-error');
+      outputText.value = '';
+      errorMsg.textContent = e.message || 'Invalid Base32 — check for unexpected characters';
+    }
+    updateStats();
+  }
+
+  function updateStats() {
+    const ic = inputText.value.length, oc = outputText.value.length;
+    inputStat.textContent = ic ? ic.toLocaleString() + ' chars' : '0 chars';
+    outputStat.textContent = oc ? oc.toLocaleString() + ' chars' : '0 chars';
+  }
+
+  function setMode(m) {
+    mode = m;
+    btnEncode.classList.toggle('active', m === 'encode');
+    btnDecode.classList.toggle('active', m === 'decode');
+    inputLabel.textContent = m === 'encode' ? 'Plain Text' : 'Base32 String';
+    outputLabel.textContent = m === 'encode' ? 'Base32' : 'Decoded Text';
+    runLabel.textContent = m === 'encode' ? 'Encode' : 'Decode';
+    inputText.placeholder = m === 'encode' ? 'Type or paste text here…' : 'Paste Base32 string here…';
+    arrowIcon.textContent = m === 'encode' ? '→' : '←';
+    outputPanel.classList.remove('has-error');
+    run();
+  }
+
+  btnEncode.addEventListener('click', () => setMode('encode'));
+  btnDecode.addEventListener('click', () => setMode('decode'));
+
+  alphaCtrl.querySelectorAll('.seg-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      alphaCtrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      alpha = btn.dataset.alpha;
+      run();
+    });
+  });
+
+  btnSwap.addEventListener('click', () => {
+    const out = outputText.value;
+    if (!out) return;
+    inputText.value = out;
+    setMode(mode === 'encode' ? 'decode' : 'encode');
+  });
+
+  inputText.addEventListener('input', run);
+  btnRun.addEventListener('click', run);
+
+  async function copyToClipboard(text, btn) {
+    if (!text) return;
+    const orig = btn.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
+  }
+
+  btnCopyHeader.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyHeader));
+  btnCopyResult.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyResult));
+
+  btnPaste.addEventListener('click', async () => {
+    try { inputText.value = await navigator.clipboard.readText(); run(); } catch {}
+  });
+
+  function clearAll() {
+    inputText.value = ''; outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    updateStats();
+  }
+  btnClearInput.addEventListener('click', clearAll);
+  btnClearAll.addEventListener('click', clearAll);
+  document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run(); });
+
+  setMode('encode');
+</script>
+</body>
+</html>

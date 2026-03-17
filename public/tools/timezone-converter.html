@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Timezone Converter — Convert Time Between Timezones — Simple ToolBox</title>
+  <meta name="description" content="Convert date and time between any two time zones. Supports 80+ global timezones. Free, instant, browser-based timezone converter." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/timezone-converter.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/timezone-converter.html" />
+  <meta property="og:title" content="Timezone Converter — Simple ToolBox" />
+  <meta property="og:description" content="Convert date and time between any two time zones. Supports 80+ global timezones. Free, instant, browser-based timezone converter." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Timezone Converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert date and time between any two time zones. Supports 80+ global timezones. Free, instant, browser-based timezone converter.","featureList":["Convert time between 80+ timezones","Swap source and target timezone","Display UTC offset","Copy result to clipboard","Runs entirely in the browser"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/timezone.js"></script>
+  <style>
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-label { font-size: 12px; font-weight: 500; color: var(--ds-color-text-secondary); }
+    .field-input {
+      width: 100%; padding: 10px 12px; border-radius: var(--ds-radius-sm);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-primary); font-family: var(--ds-font-mono); font-size: 14px;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box;
+    }
+    .field-input:focus { border-color: var(--ds-color-accent); box-shadow: 0 0 0 3px rgba(94,106,210,0.25); }
+    .tz-select {
+      width: 100%; padding: 10px 12px; border-radius: var(--ds-radius-sm);
+      background: var(--ds-color-surface); border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-primary); font-family: var(--ds-font-sans); font-size: 13px;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px; box-sizing: border-box;
+    }
+    .tz-select:focus { border-color: var(--ds-color-accent); box-shadow: 0 0 0 3px rgba(94,106,210,0.25); }
+    .tz-select option { background: #1a1a2e; color: var(--ds-color-text-primary); }
+    .tz-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: end; }
+    .tz-row .field-group { min-width: 0; }
+    .btn-swap {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: var(--ds-radius-sm);
+      background: var(--ds-color-surface); border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary); transition: background 0.2s, color 0.2s, border-color 0.2s;
+      flex-shrink: 0; cursor: pointer;
+    }
+    .btn-swap:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); }
+    .btn-convert {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--ds-radius-sm);
+      background: var(--ds-color-accent); color: #fff;
+      font-size: 13px; font-weight: 600; border: none; cursor: pointer;
+      transition: background 0.2s; font-family: var(--ds-font-sans);
+    }
+    .btn-convert:hover { opacity: 0.9; }
+    .result-panel {
+      background: var(--ds-color-surface); border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md); padding: 24px 28px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .result-panel.empty .result-time,
+    .result-panel.empty .result-meta,
+    .result-panel.empty .result-actions { display: none; }
+    .result-panel.empty .result-placeholder { display: block; }
+    .result-placeholder { color: var(--ds-color-text-muted); font-size: 14px; text-align: center; padding: 12px 0; display: none; }
+    .result-time { font-family: var(--ds-font-mono); font-size: 30px; font-weight: 700; color: var(--ds-color-text-primary); letter-spacing: -0.5px; word-break: break-all; line-height: 1.2; }
+    .result-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .result-badge {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 4px;
+      font-size: 11px; font-weight: 600; background: rgba(94,106,210,0.12); border: 1px solid rgba(94,106,210,0.25);
+      color: var(--ds-color-accent); font-family: var(--ds-font-mono);
+    }
+    .result-tz-name { font-size: 12px; color: var(--ds-color-text-secondary); }
+    .result-actions { display: flex; gap: 8px; margin-top: 4px; }
+    .btn-copy {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: var(--ds-radius-sm); font-size: 12px; font-weight: 500;
+      color: var(--ds-color-text-secondary); background: var(--ds-color-surface-strong);
+      border: 1px solid var(--ds-color-border); cursor: pointer;
+      transition: color 0.15s, background 0.15s, border-color 0.15s; font-family: var(--ds-font-sans);
+    }
+    .btn-copy:hover { color: var(--ds-color-text-primary); border-color: rgba(94,106,210,0.3); }
+    .btn-copy.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
+    .tz-error { font-size: 12px; color: #ef4444; display: none; margin-top: 2px; }
+    .tz-error.visible { display: block; }
+    @media (max-width: 600px) {
+      .tz-row { grid-template-columns: 1fr; }
+      .btn-swap { width: 100%; height: 34px; }
+      .result-time { font-size: 22px; }
+    }
+  </style>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8B8B9A;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Timezone Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🌐</div>
+      <h1 class="ds-tool-header__title">Timezone Converter</h1>
+    </div>
+    <p class="ds-tool-header__desc">Convert a date and time between any two time zones. Supports 80+ global timezones — instant, browser-based, no data sent.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">timezone</span>
+      <span class="ds-tag">UTC offset</span>
+      <span class="ds-tag">date &amp; time</span>
+      <span class="ds-tag">client-side only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Input</span>
+    </div>
+    <div style="padding: 20px 20px 16px; display: flex; flex-direction: column; gap: 16px;">
+      <div class="field-group">
+        <label class="field-label" for="dtInput">Date &amp; Time</label>
+        <input type="datetime-local" class="field-input" id="dtInput" />
+      </div>
+      <div class="tz-row">
+        <div class="field-group">
+          <label class="field-label" for="fromTz">From Timezone</label>
+          <select class="tz-select" id="fromTz"></select>
+        </div>
+        <button class="btn-swap" id="btnSwap" title="Swap timezones" aria-label="Swap timezones">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </button>
+        <div class="field-group">
+          <label class="field-label" for="toTz">To Timezone</label>
+          <select class="tz-select" id="toTz"></select>
+        </div>
+      </div>
+      <div id="tzError" class="tz-error"></div>
+      <div>
+        <button class="btn-convert" id="btnConvert">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Convert
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Result</span>
+    </div>
+    <div style="padding: 20px;">
+      <div class="result-panel empty" id="resultPanel">
+        <div class="result-placeholder">Enter a date and time above, then click Convert.</div>
+        <div class="result-time" id="resultTime"></div>
+        <div class="result-meta" id="resultMeta"></div>
+        <div class="result-actions" id="resultActions"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">💡</span>
+    <div class="ds-tool-note__text">
+      Conversion uses the <strong>IANA timezone database</strong> via dayjs. DST transitions are applied automatically. All processing happens in your browser — no data is uploaded.
+    </div>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="timestamp.html" class="ds-related-card">
+        <span class="ds-related-icon">⏱️</span>
+        <div><div class="ds-related-name">Timestamp Converter</div><div class="ds-related-desc">Convert Unix timestamps to human-readable dates</div></div>
+      </a>
+      <a href="cron-builder.html" class="ds-related-card">
+        <span class="ds-related-icon">⏰</span>
+        <div><div class="ds-related-name">Cron Builder</div><div class="ds-related-desc">Build and validate cron schedule expressions</div></div>
+      </a>
+      <a href="unit-converter.html" class="ds-related-card">
+        <span class="ds-related-icon">📐</span>
+        <div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert between units of measurement</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  dayjs.extend(dayjs_plugin_utc);
+  dayjs.extend(dayjs_plugin_timezone);
+
+  const TIMEZONES = [
+    { label: 'UTC', value: 'UTC' },
+    { label: 'America/New_York (EST/EDT)', value: 'America/New_York' },
+    { label: 'America/Chicago (CST/CDT)', value: 'America/Chicago' },
+    { label: 'America/Denver (MST/MDT)', value: 'America/Denver' },
+    { label: 'America/Los_Angeles (PST/PDT)', value: 'America/Los_Angeles' },
+    { label: 'America/Anchorage', value: 'America/Anchorage' },
+    { label: 'America/Honolulu', value: 'America/Honolulu' },
+    { label: 'America/Toronto', value: 'America/Toronto' },
+    { label: 'America/Vancouver', value: 'America/Vancouver' },
+    { label: 'America/Mexico_City', value: 'America/Mexico_City' },
+    { label: 'America/Bogota', value: 'America/Bogota' },
+    { label: 'America/Lima', value: 'America/Lima' },
+    { label: 'America/Santiago', value: 'America/Santiago' },
+    { label: 'America/Buenos_Aires', value: 'America/Buenos_Aires' },
+    { label: 'America/Sao_Paulo', value: 'America/Sao_Paulo' },
+    { label: 'Europe/London (GMT/BST)', value: 'Europe/London' },
+    { label: 'Europe/Dublin', value: 'Europe/Dublin' },
+    { label: 'Europe/Lisbon', value: 'Europe/Lisbon' },
+    { label: 'Europe/Paris (CET/CEST)', value: 'Europe/Paris' },
+    { label: 'Europe/Berlin', value: 'Europe/Berlin' },
+    { label: 'Europe/Rome', value: 'Europe/Rome' },
+    { label: 'Europe/Madrid', value: 'Europe/Madrid' },
+    { label: 'Europe/Amsterdam', value: 'Europe/Amsterdam' },
+    { label: 'Europe/Brussels', value: 'Europe/Brussels' },
+    { label: 'Europe/Vienna', value: 'Europe/Vienna' },
+    { label: 'Europe/Zurich', value: 'Europe/Zurich' },
+    { label: 'Europe/Warsaw', value: 'Europe/Warsaw' },
+    { label: 'Europe/Prague', value: 'Europe/Prague' },
+    { label: 'Europe/Stockholm', value: 'Europe/Stockholm' },
+    { label: 'Europe/Oslo', value: 'Europe/Oslo' },
+    { label: 'Europe/Copenhagen', value: 'Europe/Copenhagen' },
+    { label: 'Europe/Helsinki', value: 'Europe/Helsinki' },
+    { label: 'Europe/Athens', value: 'Europe/Athens' },
+    { label: 'Europe/Bucharest', value: 'Europe/Bucharest' },
+    { label: 'Europe/Kiev', value: 'Europe/Kiev' },
+    { label: 'Europe/Moscow', value: 'Europe/Moscow' },
+    { label: 'Europe/Istanbul', value: 'Europe/Istanbul' },
+    { label: 'Asia/Dubai', value: 'Asia/Dubai' },
+    { label: 'Asia/Karachi', value: 'Asia/Karachi' },
+    { label: 'Asia/Kolkata (IST)', value: 'Asia/Kolkata' },
+    { label: 'Asia/Dhaka', value: 'Asia/Dhaka' },
+    { label: 'Asia/Yangon', value: 'Asia/Yangon' },
+    { label: 'Asia/Bangkok', value: 'Asia/Bangkok' },
+    { label: 'Asia/Ho_Chi_Minh', value: 'Asia/Ho_Chi_Minh' },
+    { label: 'Asia/Jakarta', value: 'Asia/Jakarta' },
+    { label: 'Asia/Singapore', value: 'Asia/Singapore' },
+    { label: 'Asia/Kuala_Lumpur', value: 'Asia/Kuala_Lumpur' },
+    { label: 'Asia/Manila', value: 'Asia/Manila' },
+    { label: 'Asia/Hong_Kong', value: 'Asia/Hong_Kong' },
+    { label: 'Asia/Shanghai (CST)', value: 'Asia/Shanghai' },
+    { label: 'Asia/Taipei', value: 'Asia/Taipei' },
+    { label: 'Asia/Seoul', value: 'Asia/Seoul' },
+    { label: 'Asia/Tokyo (JST)', value: 'Asia/Tokyo' },
+    { label: 'Asia/Makassar', value: 'Asia/Makassar' },
+    { label: 'Asia/Jayapura', value: 'Asia/Jayapura' },
+    { label: 'Asia/Riyadh', value: 'Asia/Riyadh' },
+    { label: 'Asia/Baghdad', value: 'Asia/Baghdad' },
+    { label: 'Asia/Tehran', value: 'Asia/Tehran' },
+    { label: 'Asia/Kabul', value: 'Asia/Kabul' },
+    { label: 'Asia/Tashkent', value: 'Asia/Tashkent' },
+    { label: 'Asia/Almaty', value: 'Asia/Almaty' },
+    { label: 'Asia/Kathmandu', value: 'Asia/Kathmandu' },
+    { label: 'Asia/Colombo', value: 'Asia/Colombo' },
+    { label: 'Africa/Cairo', value: 'Africa/Cairo' },
+    { label: 'Africa/Johannesburg', value: 'Africa/Johannesburg' },
+    { label: 'Africa/Lagos', value: 'Africa/Lagos' },
+    { label: 'Africa/Nairobi', value: 'Africa/Nairobi' },
+    { label: 'Africa/Casablanca', value: 'Africa/Casablanca' },
+    { label: 'Pacific/Auckland', value: 'Pacific/Auckland' },
+    { label: 'Pacific/Fiji', value: 'Pacific/Fiji' },
+    { label: 'Pacific/Guam', value: 'Pacific/Guam' },
+    { label: 'Pacific/Honolulu', value: 'Pacific/Honolulu' },
+    { label: 'Pacific/Midway', value: 'Pacific/Midway' },
+    { label: 'Australia/Sydney', value: 'Australia/Sydney' },
+    { label: 'Australia/Melbourne', value: 'Australia/Melbourne' },
+    { label: 'Australia/Brisbane', value: 'Australia/Brisbane' },
+    { label: 'Australia/Adelaide', value: 'Australia/Adelaide' },
+    { label: 'Australia/Perth', value: 'Australia/Perth' },
+  ];
+
+  const fromTzEl = document.getElementById('fromTz');
+  const toTzEl   = document.getElementById('toTz');
+
+  function buildOptions(selectEl, selectedValue) {
+    selectEl.innerHTML = '';
+    TIMEZONES.forEach(tz => {
+      const opt = document.createElement('option');
+      opt.value = tz.value;
+      opt.textContent = tz.label;
+      if (tz.value === selectedValue) opt.selected = true;
+      selectEl.appendChild(opt);
+    });
+  }
+
+  const guessedTz = (function () {
+    try {
+      const g = dayjs.tz.guess();
+      return TIMEZONES.find(t => t.value === g) ? g : 'UTC';
+    } catch (e) { return 'UTC'; }
+  })();
+
+  buildOptions(fromTzEl, guessedTz);
+  buildOptions(toTzEl, 'UTC');
+
+  (function () {
+    const now = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    document.getElementById('dtInput').value =
+      `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  })();
+
+  const dtInput       = document.getElementById('dtInput');
+  const btnConvert    = document.getElementById('btnConvert');
+  const btnSwap       = document.getElementById('btnSwap');
+  const tzError       = document.getElementById('tzError');
+  const resultPanel   = document.getElementById('resultPanel');
+  const resultTime    = document.getElementById('resultTime');
+  const resultMeta    = document.getElementById('resultMeta');
+  const resultActions = document.getElementById('resultActions');
+
+  function convert() {
+    const dtVal = dtInput.value;
+    const from  = fromTzEl.value;
+    const to    = toTzEl.value;
+    tzError.textContent = '';
+    tzError.classList.remove('visible');
+    if (!dtVal) { showError('Please select a date and time.'); return; }
+    try {
+      const result = dayjs.tz(dtVal, from).tz(to);
+      if (!result.isValid()) { showError('Conversion failed: invalid date or timezone.'); return; }
+      const formatted = result.format('YYYY-MM-DD HH:mm:ss');
+      const offset    = result.format('Z');
+      const utcLabel  = 'UTC' + offset;
+      resultPanel.classList.remove('empty');
+      resultTime.textContent = formatted;
+      resultMeta.innerHTML = `<span class="result-badge">${utcLabel}</span><span class="result-tz-name">${to}</span>`;
+      resultActions.innerHTML = '';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'btn-copy';
+      copyBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`;
+      copyBtn.addEventListener('click', () => copyText(formatted, copyBtn));
+      resultActions.appendChild(copyBtn);
+    } catch (e) {
+      showError('Conversion error: ' + (e.message || 'unknown error'));
+    }
+  }
+
+  function showError(msg) {
+    resultPanel.classList.add('empty');
+    resultTime.textContent = '';
+    resultMeta.innerHTML = '';
+    resultActions.innerHTML = '';
+    tzError.textContent = msg;
+    tzError.classList.add('visible');
+  }
+
+  btnSwap.addEventListener('click', () => {
+    const tmp = fromTzEl.value;
+    fromTzEl.value = toTzEl.value;
+    toTzEl.value = tmp;
+    if (!resultPanel.classList.contains('empty')) convert();
+  });
+
+  btnConvert.addEventListener('click', convert);
+  dtInput.addEventListener('keydown', e => { if (e.key === 'Enter') convert(); });
+
+  async function copyText(text, btn) {
+    const origHTML = btn.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = origHTML; }, 1500);
+  }
+</script>
+</body>
+</html>

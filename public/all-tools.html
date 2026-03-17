@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>All Tools — Simple ToolBox</title>
-  <meta name="description" content="Browse all 55 free online developer tools — JSON formatter, regex tester, AES encrypt, color palette, chmod calculator, and more. Filter by category." />
+  <meta name="description" content="Browse all 60 free online developer tools — JSON formatter, regex tester, AES encrypt, color palette, chmod calculator, and more. Filter by category." />
   <link rel="canonical" href="https://simpletoolbox.dev/all-tools.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/all-tools.html" />
   <meta property="og:title" content="All Tools — Simple ToolBox" />
-  <meta property="og:description" content="Browse all 55 free online developer tools. Filter by category: encode, format, convert, generate, text, image, reference." />
+  <meta property="og:description" content="Browse all 60 free online developer tools. Filter by category: encode, format, convert, generate, text, image, reference." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo 1.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles/design-system.css?v=7" />
@@ -102,7 +102,7 @@
 
 <div class="page-header">
   <h1 class="page-title">All Tools</h1>
-  <p class="page-sub">55 free, privacy-first tools. All processing happens in your browser — no sign-up required.</p>
+  <p class="page-sub">60 free, privacy-first tools. All processing happens in your browser — no sign-up required.</p>
 </div>
 
 <div class="filter-bar">
@@ -119,8 +119,9 @@
     <button class="filter-tag ds-pill" data-filter="text">📝 Text</button>
     <button class="filter-tag ds-pill" data-filter="image">🖼️ Image</button>
     <button class="filter-tag ds-pill" data-filter="reference">📚 Reference</button>
+    <button class="filter-tag ds-pill" data-filter="calculator">🧮 Calculator</button>
   </div>
-  <span class="count-badge" id="countBadge">55 tools</span>
+  <span class="count-badge" id="countBadge">60 tools</span>
 </div>
 
 <div class="tool-grid" id="toolGrid">
@@ -564,6 +565,46 @@
     <div class="tool-desc">Convert colors between HEX, RGB, HSL, and CMYK formats instantly. Includes a visual color picker and WCAG contrast preview.</div>
     <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">→</span></div>
   </a>
+  <a href="tools/date-calculator.html" class="tool-card" data-tags="calculator" data-name="Date Calculator Day Difference Business Days Age">
+    <div class="tool-card-top">
+      <div class="tool-icon">📅</div>
+      <div class="tool-name">Date Calculator</div>
+    </div>
+    <div class="tool-desc">Calculate date differences, add/subtract days, count business days, and compute exact age.</div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/bmi-calculator.html" class="tool-card" data-tags="calculator" data-name="BMI Calculator Body Mass Index Healthy Weight">
+    <div class="tool-card-top">
+      <div class="tool-icon">⚖️</div>
+      <div class="tool-name">BMI Calculator</div>
+    </div>
+    <div class="tool-desc">Calculate Body Mass Index with Metric or Imperial units. Shows BMI category, visual scale, and healthy weight range.</div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/loan-calculator.html" class="tool-card" data-tags="calculator" data-name="Loan Calculator Monthly Payment Amortization Mortgage">
+    <div class="tool-card-top">
+      <div class="tool-icon">🏦</div>
+      <div class="tool-name">Loan Calculator</div>
+    </div>
+    <div class="tool-desc">Calculate monthly payments, total interest, and view a year-by-year amortization schedule for any fixed-rate loan.</div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/ascii-table.html" class="tool-card" data-tags="reference" data-name="ASCII Table Character Code Decimal Hex Binary">
+    <div class="tool-card-top">
+      <div class="tool-icon">🔣</div>
+      <div class="tool-name">ASCII Table</div>
+    </div>
+    <div class="tool-desc">Full ASCII 0–127 reference with decimal, hex, octal, and binary values. Search by character, code, or description.</div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/text-cleaner.html" class="tool-card" data-tags="text" data-name="Text Cleaner Remove Spaces Blank Lines HTML Tags">
+    <div class="tool-card-top">
+      <div class="tool-icon">🧹</div>
+      <div class="tool-name">Text Cleaner</div>
+    </div>
+    <div class="tool-desc">Remove extra spaces, blank lines, duplicate lines, HTML tags, URLs and more. Live preview with one-click copy.</div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">→</span></div>
+  </a>
   <div class="no-result" id="noResult">No tools match your search.</div>
 </div>
 
@@ -630,6 +671,11 @@
     { name: 'chmod Calculator',             href: 'tools/chmod-calculator.html',       tag: 'reference', icon: '🔐', desc: 'Calculate Unix file permissions visually. Get octal and symbolic notation.' },
     { name: 'Binary / Text Converter',      href: 'tools/binary-text.html',            tag: 'encode',    icon: '💾', desc: 'Convert text to binary (0s and 1s) and binary back to text.' },
     { name: 'Color Format Converter',       href: 'tools/color-converter.html',        tag: 'convert',   icon: '🎨', desc: 'Convert colors between HEX, RGB, HSL, and CMYK formats.' },
+    { name: 'Date Calculator',              href: 'tools/date-calculator.html',        tag: 'calculator', icon: '📅', desc: 'Calculate date differences, business days, and exact age.' },
+    { name: 'BMI Calculator',               href: 'tools/bmi-calculator.html',         tag: 'calculator', icon: '⚖️', desc: 'Calculate Body Mass Index with Metric or Imperial units.' },
+    { name: 'Loan Calculator',              href: 'tools/loan-calculator.html',        tag: 'calculator', icon: '🏦', desc: 'Calculate monthly loan payments and amortization schedule.' },
+    { name: 'ASCII Table',                  href: 'tools/ascii-table.html',            tag: 'reference', icon: '🔣', desc: 'Full ASCII 0–127 reference with Dec, Hex, Oct, Bin values.' },
+    { name: 'Text Cleaner',                 href: 'tools/text-cleaner.html',           tag: 'text',      icon: '🧹', desc: 'Remove extra spaces, blank lines, HTML tags, and more.' },
   ];
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());

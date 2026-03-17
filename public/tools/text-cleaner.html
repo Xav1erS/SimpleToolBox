@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Text Cleaner — Remove Extra Spaces, Blank Lines & HTML Tags | Simple ToolBox</title>
+  <meta name="description" content="Clean and sanitize text instantly. Remove extra spaces, blank lines, duplicate lines, HTML tags, URLs, and more. Live preview with one-click copy." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/text-cleaner.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/text-cleaner.html" />
+  <meta property="og:title" content="Text Cleaner — Simple ToolBox" />
+  <meta property="og:description" content="Remove extra spaces, blank lines, HTML tags, URLs, and duplicate lines from text. Live preview." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Text Cleaner",
+    "description": "Clean and sanitize text by removing extra spaces, blank lines, HTML tags, URLs, duplicate lines, and more.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://simpletoolbox.dev/tools/text-cleaner.html"
+  }
+  </script>
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+
+    /* Options bar */
+    .options-bar { max-width: 1100px; margin: 0 auto; padding: 16px 24px; background: var(--ds-color-surface); border-bottom: 1px solid var(--ds-color-border); }
+    .options-row { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 10px; }
+    .opt-item { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px; color: var(--ds-color-text-secondary); user-select: none; }
+    .opt-item input[type="checkbox"] { accent-color: var(--ds-color-accent); width: 14px; height: 14px; cursor: pointer; }
+    .opt-item:hover { color: var(--ds-color-text-primary); }
+
+    .case-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .case-label { font-size: 12px; color: var(--ds-color-text-muted); font-weight: 500; }
+    .case-btn { padding: 4px 12px; border-radius: 20px; border: 1px solid var(--ds-color-border); background: transparent; color: var(--ds-color-text-secondary); font-size: 12px; cursor: pointer; font-family: var(--ds-font-sans); transition: all 0.15s; }
+    .case-btn:hover  { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
+    .case-btn.active { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
+
+    .preset-row { display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid var(--ds-color-border); flex-wrap: wrap; }
+    .preset-label { font-size: 12px; color: var(--ds-color-text-muted); }
+    .preset-btn { padding: 4px 12px; border-radius: 20px; border: 1px solid var(--ds-color-border); background: transparent; color: var(--ds-color-text-secondary); font-size: 12px; cursor: pointer; font-family: var(--ds-font-sans); transition: all 0.15s; }
+    .preset-btn:hover { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
+    .preset-btn.flash { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
+
+    /* Workbench */
+    .workbench-wrap { max-width: 1100px; margin: 0 auto; padding: 16px 24px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pane { display: flex; flex-direction: column; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    .pane-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--ds-color-border); }
+    .pane-label { font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .pane-actions { display: flex; gap: 6px; }
+    .pane-btn { padding: 4px 10px; border-radius: var(--ds-radius-sm); border: 1px solid var(--ds-color-border); background: transparent; color: var(--ds-color-text-secondary); font-size: 12px; cursor: pointer; font-family: var(--ds-font-sans); transition: all 0.15s; }
+    .pane-btn:hover { border-color: var(--ds-color-border-accent); color: var(--ds-color-text-primary); }
+    .pane-btn.copied { border-color: #34d399; color: #34d399; }
+    textarea { flex: 1; width: 100%; min-height: 360px; background: transparent; border: none; outline: none; resize: none; padding: 14px; font-size: 13px; color: var(--ds-color-text-primary); font-family: var(--ds-font-mono); line-height: 1.65; }
+    .pane-footer { padding: 6px 14px; border-top: 1px solid var(--ds-color-border); font-size: 11px; color: var(--ds-color-text-muted); display: flex; gap: 16px; }
+    .pane-footer span { white-space: nowrap; }
+
+    /* Stats bar */
+    .stats-bar { max-width: 1100px; margin: 8px auto 80px; padding: 0 24px; display: flex; gap: 16px; font-size: 12px; color: var(--ds-color-text-muted); flex-wrap: wrap; }
+    .stat-item { display: flex; gap: 4px; }
+    .stat-item strong { color: var(--ds-color-text-secondary); }
+
+    .related { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+    .related-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .related-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 14px 16px; text-decoration: none; color: var(--ds-color-text-secondary); font-size: 13px; transition: border-color 0.15s, color 0.15s; }
+    .related-card:hover { border-color: var(--ds-color-border-accent); color: var(--ds-color-text-primary); }
+
+    footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
+    footer a { color: var(--ds-color-text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--ds-color-text-primary); }
+
+    @media (max-width: 640px) {
+      .workbench-wrap { grid-template-columns: 1fr; }
+      .options-row { gap: 6px 14px; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+
+<nav class="ds-tool-nav" id="nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-center">
+    <span class="ds-tool-nav-title">Text Cleaner</span>
+  </div>
+  <div class="ds-tool-nav-actions">
+    <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <h1 class="ds-tool-header__title">Text Cleaner</h1>
+    <p class="ds-tool-header__desc">Remove extra spaces, blank lines, duplicate lines, HTML tags, URLs and more. Live preview with one-click copy.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tool-tag">text</span>
+      <span class="ds-tool-tag">format</span>
+    </div>
+  </div>
+</div>
+
+<div class="options-bar">
+  <div class="options-row">
+    <label class="opt-item"><input type="checkbox" id="optTrim" checked /> Trim whitespace</label>
+    <label class="opt-item"><input type="checkbox" id="optSpaces" /> Remove extra spaces</label>
+    <label class="opt-item"><input type="checkbox" id="optBlankLines" /> Remove blank lines</label>
+    <label class="opt-item"><input type="checkbox" id="optDupes" /> Remove duplicate lines</label>
+    <label class="opt-item"><input type="checkbox" id="optNormalize" /> Normalize line endings</label>
+    <label class="opt-item"><input type="checkbox" id="optHtml" /> Strip HTML tags</label>
+    <label class="opt-item"><input type="checkbox" id="optUrls" /> Remove URLs</label>
+    <label class="opt-item"><input type="checkbox" id="optNumbers" /> Remove numbers</label>
+    <label class="opt-item"><input type="checkbox" id="optPunct" /> Remove punctuation</label>
+  </div>
+  <div class="case-row">
+    <span class="case-label">Case:</span>
+    <button class="case-btn active" data-case="none">No change</button>
+    <button class="case-btn" data-case="lower">lowercase</button>
+    <button class="case-btn" data-case="upper">UPPERCASE</button>
+  </div>
+  <div class="preset-row">
+    <span class="preset-label">Presets:</span>
+    <button class="preset-btn" data-preset="whitespace">Clean Whitespace</button>
+    <button class="preset-btn" data-preset="dedup">Remove Duplicates</button>
+    <button class="preset-btn" data-preset="striphtml">Strip HTML</button>
+    <button class="preset-btn" data-preset="plaintext">Plain Text</button>
+  </div>
+</div>
+
+<div class="workbench-wrap">
+  <div class="pane">
+    <div class="pane-header">
+      <span class="pane-label">Input</span>
+      <div class="pane-actions">
+        <button class="pane-btn" id="btnClear">Clear</button>
+        <button class="pane-btn" id="btnPaste">Paste</button>
+      </div>
+    </div>
+    <textarea id="inputText" placeholder="Paste or type text here…" spellcheck="false"></textarea>
+    <div class="pane-footer">
+      <span id="inChars">0 chars</span>
+      <span id="inLines">0 lines</span>
+    </div>
+  </div>
+
+  <div class="pane">
+    <div class="pane-header">
+      <span class="pane-label">Output</span>
+      <div class="pane-actions">
+        <button class="pane-btn" id="btnCopy">Copy</button>
+      </div>
+    </div>
+    <textarea id="outputText" readonly placeholder="Cleaned text will appear here…" spellcheck="false"></textarea>
+    <div class="pane-footer">
+      <span id="outChars">0 chars</span>
+      <span id="outLines">0 lines</span>
+      <span id="linesRemoved"></span>
+    </div>
+  </div>
+</div>
+
+<div class="related" style="margin-top:24px">
+  <div class="related-title">Related Tools</div>
+  <div class="related-grid">
+    <a href="word-counter.html" class="related-card">📝 Word Counter</a>
+    <a href="line-tools.html" class="related-card">📋 Line Tools</a>
+    <a href="text-case.html" class="related-card">🔡 Text Case Converter</a>
+  </div>
+</div>
+
+<footer>
+  <a href="../index.html">Simple ToolBox</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>
+</footer>
+
+<script>
+  let caseMode = 'none';
+
+  const opts = {
+    trim: () => document.getElementById('optTrim').checked,
+    spaces: () => document.getElementById('optSpaces').checked,
+    blankLines: () => document.getElementById('optBlankLines').checked,
+    dupes: () => document.getElementById('optDupes').checked,
+    normalize: () => document.getElementById('optNormalize').checked,
+    html: () => document.getElementById('optHtml').checked,
+    urls: () => document.getElementById('optUrls').checked,
+    numbers: () => document.getElementById('optNumbers').checked,
+    punct: () => document.getElementById('optPunct').checked,
+  };
+
+  function clean(text) {
+    if (opts.normalize()) text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    if (opts.html()) text = text.replace(/<[^>]*>/g, '');
+    if (opts.urls()) text = text.replace(/https?:\/\/\S+/g, '');
+    if (opts.numbers()) text = text.replace(/\d/g, '');
+    if (opts.punct()) text = text.replace(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g, '');
+    if (opts.spaces()) text = text.replace(/[ \t]+/g, ' ');
+    if (opts.trim()) text = text.split('\n').map(l => l.trim()).join('\n');
+    if (opts.blankLines()) text = text.split('\n').filter(l => l.trim() !== '').join('\n');
+    if (opts.dupes()) {
+      const seen = new Set();
+      text = text.split('\n').filter(l => {
+        if (seen.has(l)) return false;
+        seen.add(l); return true;
+      }).join('\n');
+    }
+    if (caseMode === 'lower') text = text.toLowerCase();
+    if (caseMode === 'upper') text = text.toUpperCase();
+    return text;
+  }
+
+  function update() {
+    const input = document.getElementById('inputText').value;
+    const output = clean(input);
+    document.getElementById('outputText').value = output;
+
+    const inLines = input ? input.split('\n').length : 0;
+    const outLines = output ? output.split('\n').length : 0;
+    const removed = Math.max(0, inLines - outLines);
+
+    document.getElementById('inChars').textContent = input.length + ' chars';
+    document.getElementById('inLines').textContent = inLines + ' lines';
+    document.getElementById('outChars').textContent = output.length + ' chars';
+    document.getElementById('outLines').textContent = outLines + ' lines';
+    document.getElementById('linesRemoved').textContent = removed > 0 ? removed + ' lines removed' : '';
+  }
+
+  document.getElementById('inputText').addEventListener('input', update);
+
+  document.querySelectorAll('[id^="opt"]').forEach(el => el.addEventListener('change', update));
+
+  // Case buttons
+  document.querySelectorAll('.case-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      caseMode = btn.dataset.case;
+      document.querySelectorAll('.case-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      update();
+    });
+  });
+
+  // Presets
+  const PRESETS = {
+    whitespace: ['optTrim','optSpaces','optBlankLines'],
+    dedup: ['optDupes'],
+    striphtml: ['optHtml'],
+    plaintext: ['optTrim','optSpaces','optBlankLines','optHtml','optUrls'],
+  };
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ids = PRESETS[btn.dataset.preset];
+      // uncheck all first
+      Object.values({optTrim:1,optSpaces:1,optBlankLines:1,optDupes:1,optNormalize:1,optHtml:1,optUrls:1,optNumbers:1,optPunct:1})
+        .forEach((_, i) => {});
+      // check target ones
+      ids.forEach(id => { document.getElementById(id).checked = true; });
+      btn.classList.add('flash');
+      setTimeout(() => btn.classList.remove('flash'), 900);
+      update();
+    });
+  });
+
+  // Clear / Paste
+  document.getElementById('btnClear').addEventListener('click', () => {
+    document.getElementById('inputText').value = '';
+    update();
+  });
+  document.getElementById('btnPaste').addEventListener('click', async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      document.getElementById('inputText').value = text;
+      update();
+    } catch {}
+  });
+
+  // Copy output
+  document.getElementById('btnCopy').addEventListener('click', function() {
+    const out = document.getElementById('outputText').value;
+    if (!out) return;
+    navigator.clipboard.writeText(out).catch(() => {});
+    this.textContent = 'Copied!';
+    this.classList.add('copied');
+    setTimeout(() => { this.textContent = 'Copy'; this.classList.remove('copied'); }, 1500);
+  });
+</script>
+</body>
+</html>

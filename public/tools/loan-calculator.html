@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Loan Calculator — Monthly Payment & Amortization Schedule | Simple ToolBox</title>
+  <meta name="description" content="Calculate monthly loan payments, total interest, and view a full amortization schedule. Supports any fixed-rate loan — mortgage, car, personal loan." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/loan-calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/loan-calculator.html" />
+  <meta property="og:title" content="Loan Calculator — Simple ToolBox" />
+  <meta property="og:description" content="Calculate monthly payments, total interest, and amortization schedule for any fixed-rate loan." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Loan Calculator",
+    "description": "Calculate monthly loan payments, total interest, and amortization schedule for fixed-rate loans.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://simpletoolbox.dev/tools/loan-calculator.html"
+  }
+  </script>
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+
+    .body-wrap { max-width: 720px; margin: 0 auto; padding: 32px 24px 80px; display: flex; flex-direction: column; gap: 20px; }
+
+    .card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 24px; }
+    .card-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 20px; }
+
+    .input-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-group label { font-size: 12px; color: var(--ds-color-text-muted); font-weight: 500; }
+    .input-wrap { position: relative; }
+    .input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--ds-color-text-muted); pointer-events: none; }
+    .input-suffix { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--ds-color-text-muted); pointer-events: none; }
+    input[type="number"] { width: 100%; min-height: 38px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 0 10px; font-size: 14px; color: var(--ds-color-text-primary); font-family: var(--ds-font-sans); outline: none; transition: border-color 0.15s, box-shadow 0.15s; -moz-appearance: textfield; }
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input[type="number"]:focus { border-color: var(--ds-color-accent); box-shadow: var(--ds-shadow-focus); }
+    .has-prefix input { padding-left: 24px; }
+    .has-suffix input { padding-right: 32px; }
+
+    .term-toggle { display: flex; gap: 6px; }
+    .term-btn { flex: 1; padding: 7px 0; border-radius: var(--ds-radius-sm); border: 1px solid var(--ds-color-border); background: transparent; color: var(--ds-color-text-secondary); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; font-family: var(--ds-font-sans); }
+    .term-btn:hover  { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .term-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+
+    .results-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .result-item { background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.15); border-radius: var(--ds-radius-sm); padding: 16px; }
+    .result-item.primary { border-color: rgba(94,106,210,0.4); }
+    .result-label { font-size: 11px; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .result-value { font-size: 22px; font-weight: 700; color: var(--ds-color-text-primary); letter-spacing: -0.02em; }
+    .result-item.primary .result-value { font-size: 28px; color: var(--ds-color-accent); }
+    .result-sub { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 4px; }
+
+    .interest-bar { margin-top: 20px; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--ds-color-text-muted); margin-bottom: 6px; }
+    .bar-track { height: 8px; background: var(--ds-color-border); border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--ds-color-accent); border-radius: 4px; transition: width 0.4s; }
+
+    /* Amortization table */
+    .amort-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+    .amort-toggle-label { font-size: 13px; color: var(--ds-color-text-secondary); font-weight: 500; }
+    .amort-chevron { font-size: 12px; color: var(--ds-color-text-muted); transition: transform 0.2s; }
+    .amort-chevron.open { transform: rotate(180deg); }
+    .amort-body { display: none; margin-top: 16px; }
+    .amort-body.show { display: block; }
+    .amort-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .amort-table th { text-align: right; padding: 8px 10px; color: var(--ds-color-text-muted); font-weight: 500; font-size: 12px; border-bottom: 1px solid var(--ds-color-border); }
+    .amort-table th:first-child { text-align: left; }
+    .amort-table td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--ds-color-border); color: var(--ds-color-text-secondary); font-family: var(--ds-font-mono); font-size: 12px; }
+    .amort-table td:first-child { text-align: left; font-family: var(--ds-font-sans); color: var(--ds-color-text-primary); font-size: 13px; }
+    .amort-table tr:last-child td { border-bottom: none; }
+    .show-all-btn { margin-top: 12px; width: 100%; padding: 8px; background: transparent; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); color: var(--ds-color-text-secondary); font-size: 12px; cursor: pointer; font-family: var(--ds-font-sans); transition: all 0.15s; }
+    .show-all-btn:hover { border-color: var(--ds-color-border-accent); color: var(--ds-color-text-primary); }
+
+    .hidden-row { display: none; }
+
+    .related { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+    .related-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .related-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 14px 16px; text-decoration: none; color: var(--ds-color-text-secondary); font-size: 13px; transition: border-color 0.15s, color 0.15s; }
+    .related-card:hover { border-color: var(--ds-color-border-accent); color: var(--ds-color-text-primary); }
+
+    footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
+    footer a { color: var(--ds-color-text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--ds-color-text-primary); }
+
+    @media (max-width: 600px) {
+      .body-wrap { padding: 20px 16px 60px; }
+      .input-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+
+<nav class="ds-tool-nav" id="nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-center">
+    <span class="ds-tool-nav-title">Loan Calculator</span>
+  </div>
+  <div class="ds-tool-nav-actions">
+    <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <h1 class="ds-tool-header__title">Loan Calculator</h1>
+    <p class="ds-tool-header__desc">Calculate your monthly payment, total interest, and view a full year-by-year amortization schedule for any fixed-rate loan.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tool-tag">reference</span>
+      <span class="ds-tool-tag">finance</span>
+      <span class="ds-tool-tag">calculator</span>
+    </div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="card">
+    <div class="card-title">Loan Details</div>
+    <div class="input-grid">
+      <div class="field-group">
+        <label>Loan Amount</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="principal" value="200000" min="1" step="1000" />
+        </div>
+      </div>
+      <div class="field-group">
+        <label>Annual Interest Rate</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="rate" value="6.5" min="0" max="100" step="0.1" />
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field-group">
+        <label>Loan Term</label>
+        <div class="input-wrap has-suffix" style="margin-bottom:6px">
+          <input type="number" id="term" value="30" min="1" step="1" />
+          <span class="input-suffix" id="termSuffix">yrs</span>
+        </div>
+        <div class="term-toggle">
+          <button class="term-btn active" id="btnYears">Years</button>
+          <button class="term-btn" id="btnMonths">Months</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-grid" id="resultsGrid">
+      <div class="result-item primary">
+        <div class="result-label">Monthly Payment</div>
+        <div class="result-value" id="resMonthly">—</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Total Payment</div>
+        <div class="result-value" id="resTotal">—</div>
+        <div class="result-sub" id="resTotalSub"></div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Total Interest</div>
+        <div class="result-value" id="resInterest">—</div>
+        <div class="result-sub" id="resInterestSub"></div>
+      </div>
+    </div>
+
+    <div class="interest-bar" id="interestBar" style="display:none">
+      <div class="bar-label">
+        <span>Principal</span>
+        <span id="interestPct"></span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" id="barFill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="amortCard" style="display:none">
+    <div class="amort-toggle" id="amortToggle">
+      <span class="amort-toggle-label">Amortization Schedule (by year)</span>
+      <span class="amort-chevron open" id="amortChevron">▼</span>
+    </div>
+    <div class="amort-body show" id="amortBody">
+      <table class="amort-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Principal Paid</th>
+            <th>Interest Paid</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody id="amortBody2"></tbody>
+      </table>
+      <button class="show-all-btn" id="showAllBtn" style="display:none">Show all years</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="related">
+  <div class="related-title">Related Tools</div>
+  <div class="related-grid">
+    <a href="bmi-calculator.html" class="related-card">⚖️ BMI Calculator</a>
+    <a href="date-calculator.html" class="related-card">📅 Date Calculator</a>
+    <a href="unit-converter.html" class="related-card">📐 Unit Converter</a>
+  </div>
+</div>
+
+<footer>
+  <a href="../index.html">Simple ToolBox</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>
+</footer>
+
+<script>
+  let termInMonths = false;
+
+  document.getElementById('btnYears').addEventListener('click', () => {
+    termInMonths = false;
+    document.getElementById('btnYears').classList.add('active');
+    document.getElementById('btnMonths').classList.remove('active');
+    document.getElementById('termSuffix').textContent = 'yrs';
+    document.getElementById('term').value = 30;
+    calculate();
+  });
+  document.getElementById('btnMonths').addEventListener('click', () => {
+    termInMonths = true;
+    document.getElementById('btnMonths').classList.add('active');
+    document.getElementById('btnYears').classList.remove('active');
+    document.getElementById('termSuffix').textContent = 'mo';
+    document.getElementById('term').value = 360;
+    calculate();
+  });
+
+  ['principal','rate','term'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculate);
+  });
+
+  function fmt(n) {
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
+
+  function calculate() {
+    const P = parseFloat(document.getElementById('principal').value);
+    const annualRate = parseFloat(document.getElementById('rate').value);
+    const termVal = parseFloat(document.getElementById('term').value);
+
+    if (!P || P <= 0 || isNaN(annualRate) || !termVal || termVal <= 0) return;
+
+    const n = termInMonths ? Math.round(termVal) : Math.round(termVal * 12);
+    const r = annualRate / 100 / 12;
+
+    let monthly;
+    if (r === 0) {
+      monthly = P / n;
+    } else {
+      monthly = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+    }
+
+    const totalPayment = monthly * n;
+    const totalInterest = totalPayment - P;
+    const interestPct = (totalInterest / totalPayment * 100).toFixed(1);
+
+    document.getElementById('resMonthly').textContent = '$' + monthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById('resTotal').textContent = fmt(totalPayment);
+    document.getElementById('resTotalSub').textContent = n + ' monthly payments';
+    document.getElementById('resInterest').textContent = fmt(totalInterest);
+    document.getElementById('resInterestSub').textContent = interestPct + '% of total';
+
+    document.getElementById('interestBar').style.display = '';
+    document.getElementById('interestPct').textContent = 'Interest ' + interestPct + '%';
+    document.getElementById('barFill').style.width = (100 - interestPct) + '%';
+
+    // Build amortization by year
+    buildAmortization(P, r, monthly, n);
+  }
+
+  function buildAmortization(P, r, monthly, totalMonths) {
+    const tbody = document.getElementById('amortBody2');
+    tbody.innerHTML = '';
+    let balance = P;
+    const years = Math.ceil(totalMonths / 12);
+    const PREVIEW = 5;
+
+    for (let y = 1; y <= years; y++) {
+      let principalPaid = 0, interestPaid = 0;
+      const monthsThisYear = Math.min(12, totalMonths - (y - 1) * 12);
+      for (let m = 0; m < monthsThisYear; m++) {
+        const intPayment = balance * r;
+        const prinPayment = Math.min(monthly - intPayment, balance);
+        interestPaid += intPayment;
+        principalPaid += prinPayment;
+        balance = Math.max(0, balance - prinPayment);
+      }
+      const tr = document.createElement('tr');
+      if (y > PREVIEW) tr.classList.add('hidden-row');
+      tr.innerHTML = `<td>Year ${y}</td><td>${fmt(principalPaid)}</td><td>${fmt(interestPaid)}</td><td>${fmt(balance)}</td>`;
+      tbody.appendChild(tr);
+    }
+
+    const card = document.getElementById('amortCard');
+    card.style.display = '';
+
+    const showAllBtn = document.getElementById('showAllBtn');
+    if (years > PREVIEW) {
+      showAllBtn.style.display = '';
+      showAllBtn.textContent = 'Show all ' + years + ' years';
+    } else {
+      showAllBtn.style.display = 'none';
+    }
+  }
+
+  document.getElementById('showAllBtn').addEventListener('click', function() {
+    document.querySelectorAll('.hidden-row').forEach(r => r.style.display = '');
+    this.style.display = 'none';
+  });
+
+  document.getElementById('amortToggle').addEventListener('click', () => {
+    const body = document.getElementById('amortBody');
+    const chevron = document.getElementById('amortChevron');
+    body.classList.toggle('show');
+    chevron.classList.toggle('open');
+  });
+
+  // Initial calculation
+  calculate();
+</script>
+</body>
+</html>

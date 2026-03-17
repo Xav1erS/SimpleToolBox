@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>All Tools — Simple ToolBox</title>
-  <meta name="description" content="Browse all 50 free online developer tools — JSON formatter, regex tester, AES encrypt, color palette, countdown timer, and more. Filter by category." />
+  <meta name="description" content="Browse all 55 free online developer tools — JSON formatter, regex tester, AES encrypt, color palette, chmod calculator, and more. Filter by category." />
   <link rel="canonical" href="https://simpletoolbox.dev/all-tools.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/all-tools.html" />
   <meta property="og:title" content="All Tools — Simple ToolBox" />
-  <meta property="og:description" content="Browse all 50 free online developer tools. Filter by category: encode, format, convert, generate, text, image, reference." />
+  <meta property="og:description" content="Browse all 55 free online developer tools. Filter by category: encode, format, convert, generate, text, image, reference." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo 1.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles/design-system.css?v=7" />
@@ -63,6 +63,14 @@
       .tool-grid { padding: 0 16px 60px; grid-template-columns: 1fr; }
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
 </head>
 <body class="ds-page">
 
@@ -94,7 +102,7 @@
 
 <div class="page-header">
   <h1 class="page-title">All Tools</h1>
-  <p class="page-sub">50 free, privacy-first tools. All processing happens in your browser — no sign-up required.</p>
+  <p class="page-sub">55 free, privacy-first tools. All processing happens in your browser — no sign-up required.</p>
 </div>
 
 <div class="filter-bar">
@@ -112,7 +120,7 @@
     <button class="filter-tag ds-pill" data-filter="image">🖼️ Image</button>
     <button class="filter-tag ds-pill" data-filter="reference">📚 Reference</button>
   </div>
-  <span class="count-badge" id="countBadge">50 tools</span>
+  <span class="count-badge" id="countBadge">55 tools</span>
 </div>
 
 <div class="tool-grid" id="toolGrid">
@@ -122,6 +130,14 @@
       <div class="tool-name">Base64 Encode / Decode</div>
     </div>
     <div class="tool-desc">Convert text or file contents to and from Base64. URL-safe mode, one-click copy and download.</div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/base58.html" class="tool-card" data-tags="encode" data-name="Base58 Encode Decode Bitcoin Ripple Flickr">
+    <div class="tool-card-top">
+      <div class="tool-icon">🔢</div>
+      <div class="tool-name">Base58 Encode / Decode</div>
+    </div>
+    <div class="tool-desc">Encode text to Base58 or decode Base58 strings. Supports Bitcoin, Flickr, and Ripple alphabets.</div>
     <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">→</span></div>
   </a>
   <a href="tools/json-formatter.html" class="tool-card" data-tags="format" data-name="JSON Formatter Validator Minify Prettify">
@@ -516,6 +532,38 @@
     <div class="tool-desc">Convert between Arabic numbers and Roman numerals. Supports 1–3999.</div>
     <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">→</span></div>
   </a>
+  <a href="tools/morse-code.html" class="tool-card" data-tags="encode" data-name="Morse Code Encoder Decoder dots dashes telegraph">
+    <div class="tool-card-top">
+      <div class="tool-icon">📡</div>
+      <div class="tool-name">Morse Code Encoder / Decoder</div>
+    </div>
+    <div class="tool-desc">Encode text to Morse code or decode Morse code back to text. Supports A–Z, 0–9, and common punctuation.</div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/chmod-calculator.html" class="tool-card" data-tags="reference" data-name="chmod Calculator Unix File Permissions Octal rwx owner group others">
+    <div class="tool-card-top">
+      <div class="tool-icon">🔐</div>
+      <div class="tool-name">chmod Calculator</div>
+    </div>
+    <div class="tool-desc">Calculate Unix file permissions visually. Get octal and symbolic notation, chmod command, and ls -la preview instantly.</div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/binary-text.html" class="tool-card" data-tags="encode" data-name="Binary Text Converter encode decode bits bytes 01">
+    <div class="tool-card-top">
+      <div class="tool-icon">💾</div>
+      <div class="tool-name">Binary / Text Converter</div>
+    </div>
+    <div class="tool-desc">Convert text to binary (0s and 1s) and binary back to text. Supports space, newline, and no-delimiter formats.</div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/color-converter.html" class="tool-card" data-tags="convert" data-name="Color Format Converter HEX RGB HSL CMYK color picker">
+    <div class="tool-card-top">
+      <div class="tool-icon">🎨</div>
+      <div class="tool-name">Color Format Converter</div>
+    </div>
+    <div class="tool-desc">Convert colors between HEX, RGB, HSL, and CMYK formats instantly. Includes a visual color picker and WCAG contrast preview.</div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">→</span></div>
+  </a>
   <div class="no-result" id="noResult">No tools match your search.</div>
 </div>
 
@@ -528,6 +576,7 @@
 <script>
   const NAV_TOOLS = [
     { name: 'Base64 Encode / Decode',       href: 'tools/base64.html',                 tag: 'encode',   icon: '📦', desc: 'Encode or decode text and files to Base64' },
+    { name: 'Base58 Encode / Decode',       href: 'tools/base58.html',                 tag: 'encode',   icon: '🔢', desc: 'Encode text to Base58 or decode Base58 strings. Bitcoin, Flickr, Ripple alphabets.' },
     { name: 'JSON Formatter',               href: 'tools/json-formatter.html',          tag: 'format',   icon: '🎨', desc: 'Prettify, minify, validate JSON; convert to CSV or SQL' },
     { name: 'Password Generator',           href: 'tools/password-generator.html',      tag: 'generate', icon: '🔑', desc: 'Generate strong random passwords locally' },
     { name: 'Timestamp Converter',          href: 'tools/timestamp.html',               tag: 'convert',  icon: '⏱️', desc: 'Convert Unix timestamps to readable dates' },
@@ -577,6 +626,10 @@
     { name: 'JSON ↔ CSV Converter',         href: 'tools/json-csv.html',               tag: 'convert',   icon: '🔄', desc: 'Convert between JSON arrays and CSV with custom delimiter support' },
     { name: 'Countdown Timer',              href: 'tools/countdown.html',              tag: 'generate',  icon: '⏱️', desc: 'Create countdown timers to any future date and time' },
     { name: 'Roman Numeral Converter',      href: 'tools/roman-numerals.html',         tag: 'convert',   icon: '🏛️', desc: 'Convert between Arabic numbers and Roman numerals (1–3999)' },
+    { name: 'Morse Code Encoder / Decoder', href: 'tools/morse-code.html',             tag: 'encode',    icon: '📡', desc: 'Encode text to Morse code or decode Morse code to text' },
+    { name: 'chmod Calculator',             href: 'tools/chmod-calculator.html',       tag: 'reference', icon: '🔐', desc: 'Calculate Unix file permissions visually. Get octal and symbolic notation.' },
+    { name: 'Binary / Text Converter',      href: 'tools/binary-text.html',            tag: 'encode',    icon: '💾', desc: 'Convert text to binary (0s and 1s) and binary back to text.' },
+    { name: 'Color Format Converter',       href: 'tools/color-converter.html',        tag: 'convert',   icon: '🎨', desc: 'Convert colors between HEX, RGB, HSL, and CMYK formats.' },
   ];
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());

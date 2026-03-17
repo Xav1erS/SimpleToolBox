@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>chmod Calculator — Simple ToolBox</title>
+  <meta name="description" content="Free online chmod calculator. Select Unix file permissions visually, get octal and symbolic notation instantly. Supports owner, group, and others read/write/execute." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/chmod-calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/chmod-calculator.html" />
+  <meta property="og:title" content="chmod Calculator — Simple ToolBox" />
+  <meta property="og:description" content="Select Unix file permissions visually and get octal and symbolic notation instantly. Supports owner, group, and others read/write/execute." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "chmod Calculator",
+    "description": "Free online chmod calculator. Select Unix file permissions visually, get octal and symbolic notation instantly. Supports owner, group, and others read/write/execute.",
+    "url": "https://simpletoolbox.dev/tools/chmod-calculator.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--ds-color-border);
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .card-body { padding: 20px 16px; }
+
+    /* ── OCTAL INPUT ── */
+    .octal-input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .octal-label {
+      font-size: 13px;
+      color: var(--ds-color-text-secondary);
+      white-space: nowrap;
+    }
+    .octal-input {
+      width: 90px;
+      padding: 7px 11px;
+      font-family: var(--ds-font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-primary);
+      outline: none;
+      transition: border-color 0.15s;
+      text-align: center;
+    }
+    .octal-input:focus { border-color: var(--ds-color-accent); }
+    .octal-hint { font-size: 12px; color: var(--ds-color-text-muted); }
+
+    /* ── PRESETS ── */
+    .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .preset-btn {
+      padding: 5px 11px;
+      font-size: 12px;
+      font-family: var(--ds-font-mono);
+      font-weight: 500;
+      border-radius: var(--ds-radius-sm);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      transition: all 0.15s;
+    }
+    .preset-btn:hover,
+    .preset-btn.active {
+      color: var(--ds-color-accent);
+      background: var(--ds-color-surface-tint);
+      border-color: rgba(94,106,210,0.3);
+    }
+
+    /* ── PERMISSION MATRIX ── */
+    .perm-matrix {
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    .perm-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 340px;
+    }
+    .perm-table th,
+    .perm-table td {
+      padding: 0;
+      text-align: center;
+    }
+    .perm-table thead th {
+      padding-bottom: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .perm-table thead th:first-child { text-align: left; }
+    .row-label {
+      text-align: left !important;
+      padding: 8px 0 !important;
+    }
+    .row-label-inner {
+      display: inline-flex;
+      flex-direction: column;
+    }
+    .row-label-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ds-color-text-primary);
+    }
+    .row-label-code {
+      font-size: 11px;
+      color: var(--ds-color-text-muted);
+      font-family: var(--ds-font-mono);
+    }
+    .perm-cell { padding: 8px 0 !important; }
+
+    /* ── CUSTOM CHECKBOX ── */
+    .perm-check-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .perm-check {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--ds-color-border);
+      border-radius: 5px;
+      background: var(--ds-color-bg);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s;
+    }
+    .perm-check:hover {
+      border-color: var(--ds-color-accent);
+      background: var(--ds-color-surface-tint);
+    }
+    .perm-check:checked {
+      background: var(--ds-color-accent);
+      border-color: var(--ds-color-accent);
+    }
+    .perm-check:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 10px;
+      height: 6px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg);
+    }
+
+    /* column value indicators */
+    .perm-table .col-r th:nth-child(2) { color: #38bdf8; }
+    .perm-table .col-w th:nth-child(3) { color: #fb923c; }
+    .perm-table .col-x th:nth-child(4) { color: #4ade80; }
+
+    .col-head-r { color: #38bdf8 !important; }
+    .col-head-w { color: #fb923c !important; }
+    .col-head-x { color: #4ade80 !important; }
+
+    /* ── OUTPUT CARD ── */
+    .output-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 500px) {
+      .output-grid { grid-template-columns: 1fr; }
+    }
+    .output-item {
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      padding: 12px 14px;
+    }
+    .output-item-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ds-color-text-muted);
+      margin-bottom: 4px;
+    }
+    .output-item-value {
+      font-family: var(--ds-font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ds-color-text-primary);
+      word-break: break-all;
+    }
+    .output-item-value.large { font-size: 26px; }
+    .output-item-value.medium { font-size: 15px; }
+    .output-item-value.small { font-size: 12px; color: var(--ds-color-text-secondary); }
+
+    /* ── COMMAND ROW ── */
+    .cmd-row {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      padding: 10px 14px;
+    }
+    .cmd-prompt {
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      color: var(--ds-color-text-muted);
+      white-space: nowrap;
+    }
+    .cmd-text {
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      color: var(--ds-color-text-primary);
+      white-space: nowrap;
+    }
+    .cmd-filename {
+      font-family: var(--ds-font-mono);
+      font-size: 13px;
+      color: var(--ds-color-accent);
+      background: transparent;
+      border: none;
+      border-bottom: 1px dashed var(--ds-color-border);
+      outline: none;
+      width: 100px;
+      color: var(--ds-color-accent);
+      padding: 0 2px;
+    }
+    .cmd-filename:focus { border-bottom-color: var(--ds-color-accent); }
+    .cmd-spacer { flex: 1; }
+
+    /* copy button */
+    .btn-copy {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: var(--ds-radius-sm);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .btn-copy:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.08); }
+    .btn-copy.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    /* ── LS PREVIEW ── */
+    .ls-preview {
+      margin-top: 12px;
+      background: var(--ds-color-bg);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      padding: 12px 14px;
+    }
+    .ls-preview-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ds-color-text-muted);
+      margin-bottom: 8px;
+    }
+    .ls-line {
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      color: var(--ds-color-text-secondary);
+      white-space: pre;
+    }
+    .ls-perm { color: var(--ds-color-text-primary); }
+
+    /* ── NOTE ── */
+    .note-box {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 16px 18px;
+    }
+    .note-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      margin-bottom: 10px;
+    }
+    .note-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    .note-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .note-code {
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-accent);
+      min-width: 28px;
+    }
+    .note-eq {
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+    }
+    .note-sym {
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      color: var(--ds-color-text-secondary);
+    }
+    .note-desc {
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+    }
+    .note-text {
+      font-size: 12px;
+      color: var(--ds-color-text-muted);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    /* ── RELATED TOOLS ── */
+    .related-tools { }
+    .related-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .related-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .related-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      transition: all 0.15s;
+    }
+    .related-link:hover { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      .card-header { padding: 10px 12px; }
+      .card-body { padding: 14px 12px; }
+      .preset-btn { font-size: 11px; padding: 4px 9px; }
+      .output-item-value.large { font-size: 22px; }
+      .cmd-row { flex-wrap: wrap; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body>
+
+<noscript>JavaScript is required to use chmod Calculator.</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">chmod Calculator <span class="ds-tool-badge">reference</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🔐</div>
+      <h1 class="ds-tool-header__title">chmod Calculator</h1>
+    </div>
+    <p class="ds-tool-header__desc">Select Unix file permissions visually and get octal notation, symbolic notation, and the ready-to-run chmod command instantly.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">chmod</span>
+      <span class="ds-tag">Unix</span>
+      <span class="ds-tag">permissions</span>
+      <span class="ds-tag">octal</span>
+      <span class="ds-tag">symbolic</span>
+      <span class="ds-tag">client-side</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+
+  <!-- ── Permission Matrix Card ── -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Permissions</span>
+    </div>
+    <div class="card-body">
+
+      <!-- Octal reverse input + presets -->
+      <div class="octal-input-row">
+        <span class="octal-label">Octal:</span>
+        <input type="text" id="octalInput" class="octal-input" maxlength="4" placeholder="755" autocomplete="off" spellcheck="false" />
+        <span class="octal-hint">Enter 0–777 to set checkboxes</span>
+      </div>
+
+      <div class="preset-row" id="presetRow">
+        <button class="preset-btn" data-val="755" title="rwxr-xr-x — common dir / executable">755</button>
+        <button class="preset-btn" data-val="644" title="rw-r--r-- — common file">644</button>
+        <button class="preset-btn" data-val="777" title="rwxrwxrwx — full access">777</button>
+        <button class="preset-btn" data-val="600" title="rw------- — private key">600</button>
+        <button class="preset-btn" data-val="400" title="r-------- — read-only">400</button>
+        <button class="preset-btn" data-val="700" title="rwx------ — owner only">700</button>
+      </div>
+
+      <!-- 3×3 Matrix -->
+      <div class="perm-matrix">
+        <table class="perm-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-head-r">Read<br><small style="font-size:10px;font-weight:400">(r = 4)</small></th>
+              <th class="col-head-w">Write<br><small style="font-size:10px;font-weight:400">(w = 2)</small></th>
+              <th class="col-head-x">Execute<br><small style="font-size:10px;font-weight:400">(x = 1)</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">
+                <div class="row-label-inner">
+                  <span class="row-label-name">Owner</span>
+                  <span class="row-label-code">u</span>
+                </div>
+              </td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="owner-r" data-idx="0" /></div></td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="owner-w" data-idx="1" /></div></td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="owner-x" data-idx="2" /></div></td>
+            </tr>
+            <tr>
+              <td class="row-label">
+                <div class="row-label-inner">
+                  <span class="row-label-name">Group</span>
+                  <span class="row-label-code">g</span>
+                </div>
+              </td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="group-r" data-idx="3" /></div></td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="group-w" data-idx="4" /></div></td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="group-x" data-idx="5" /></div></td>
+            </tr>
+            <tr>
+              <td class="row-label">
+                <div class="row-label-inner">
+                  <span class="row-label-name">Others</span>
+                  <span class="row-label-code">o</span>
+                </div>
+              </td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="others-r" data-idx="6" /></div></td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="others-w" data-idx="7" /></div></td>
+              <td class="perm-cell"><div class="perm-check-wrap"><input type="checkbox" class="perm-check" id="others-x" data-idx="8" /></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Output Card ── -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Result</span>
+      <button class="btn-copy" id="copyBtn">Copy Command</button>
+    </div>
+    <div class="card-body">
+
+      <div class="output-grid">
+        <div class="output-item">
+          <div class="output-item-label">Octal</div>
+          <div class="output-item-value large" id="outOctal">644</div>
+        </div>
+        <div class="output-item">
+          <div class="output-item-label">Symbolic</div>
+          <div class="output-item-value medium" id="outSymbolic">rw-r--r--</div>
+        </div>
+      </div>
+
+      <!-- chmod command row -->
+      <div class="cmd-row">
+        <span class="cmd-prompt">$</span>
+        <span class="cmd-text">chmod</span>
+        <span class="cmd-text" id="cmdOctal">644</span>
+        <input type="text" id="cmdFilename" class="cmd-filename" value="filename" spellcheck="false" autocomplete="off" />
+        <div class="cmd-spacer"></div>
+      </div>
+
+      <!-- ls -la preview -->
+      <div class="ls-preview">
+        <div class="ls-preview-label">ls -la preview</div>
+        <div class="ls-line"><span class="ls-perm" id="lsPerm">-rw-r--r--</span><span id="lsRest"> 1 user group 0 Jan  1 00:00 filename</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Note ── -->
+  <div class="note-box">
+    <div class="note-title">How chmod octal notation works</div>
+    <p class="note-text">Each of the three digits represents one class (owner / group / others). The digit is the <strong>sum</strong> of r=4, w=2, x=1 for that class.</p>
+    <div class="note-grid">
+      <div class="note-row"><span class="note-code">7</span><span class="note-eq">=</span><span class="note-sym">111</span><span class="note-eq">=</span><span class="note-desc">rwx (read + write + execute)</span></div>
+      <div class="note-row"><span class="note-code">6</span><span class="note-eq">=</span><span class="note-sym">110</span><span class="note-eq">=</span><span class="note-desc">rw- (read + write)</span></div>
+      <div class="note-row"><span class="note-code">5</span><span class="note-eq">=</span><span class="note-sym">101</span><span class="note-eq">=</span><span class="note-desc">r-x (read + execute)</span></div>
+      <div class="note-row"><span class="note-code">4</span><span class="note-eq">=</span><span class="note-sym">100</span><span class="note-eq">=</span><span class="note-desc">r-- (read only)</span></div>
+      <div class="note-row"><span class="note-code">3</span><span class="note-eq">=</span><span class="note-sym">011</span><span class="note-eq">=</span><span class="note-desc">-wx (write + execute)</span></div>
+      <div class="note-row"><span class="note-code">2</span><span class="note-eq">=</span><span class="note-sym">010</span><span class="note-eq">=</span><span class="note-desc">-w- (write only)</span></div>
+      <div class="note-row"><span class="note-code">1</span><span class="note-eq">=</span><span class="note-sym">001</span><span class="note-eq">=</span><span class="note-desc">--x (execute only)</span></div>
+      <div class="note-row"><span class="note-code">0</span><span class="note-eq">=</span><span class="note-sym">000</span><span class="note-eq">=</span><span class="note-desc">--- (no permissions)</span></div>
+    </div>
+  </div>
+
+  <!-- ── Related Tools ── -->
+  <div class="related-tools">
+    <div class="related-title">Related Tools</div>
+    <div class="related-list">
+      <a href="hash-generator.html" class="related-link">🔑 Hash Generator</a>
+      <a href="password-generator.html" class="related-link">🔒 Password Generator</a>
+      <a href="aes.html" class="related-link">🛡️ AES Encrypt / Decrypt</a>
+    </div>
+  </div>
+
+</div><!-- /ds-tool-main -->
+
+<script>
+(function () {
+  'use strict';
+
+  // ── State ──────────────────────────────────────────
+  const checks = Array.from(document.querySelectorAll('.perm-check'));
+  const octalInput  = document.getElementById('octalInput');
+  const outOctal    = document.getElementById('outOctal');
+  const outSymbolic = document.getElementById('outSymbolic');
+  const cmdOctal    = document.getElementById('cmdOctal');
+  const cmdFilename = document.getElementById('cmdFilename');
+  const lsPerm      = document.getElementById('lsPerm');
+  const lsRest      = document.getElementById('lsRest');
+  const copyBtn     = document.getElementById('copyBtn');
+  const presetBtns  = document.querySelectorAll('.preset-btn');
+
+  // ── Core calculation ──────────────────────────────
+  function getBits() {
+    return checks.map(c => c.checked ? 1 : 0);
+  }
+
+  function calcOctal(bits) {
+    const o = bits[0]*4 + bits[1]*2 + bits[2];
+    const g = bits[3]*4 + bits[4]*2 + bits[5];
+    const x = bits[6]*4 + bits[7]*2 + bits[8];
+    return [o, g, x];
+  }
+
+  function toSymbolic(bits) {
+    const triplet = (b0, b1, b2) =>
+      (b0 ? 'r' : '-') + (b1 ? 'w' : '-') + (b2 ? 'x' : '-');
+    return triplet(bits[0], bits[1], bits[2]) +
+           triplet(bits[3], bits[4], bits[5]) +
+           triplet(bits[6], bits[7], bits[8]);
+  }
+
+  // ── Update UI ─────────────────────────────────────
+  function update() {
+    const bits    = getBits();
+    const [o,g,x] = calcOctal(bits);
+    const octal   = '' + o + g + x;
+    const sym     = toSymbolic(bits);
+    const fname   = cmdFilename.value.trim() || 'filename';
+
+    outOctal.textContent    = octal;
+    outSymbolic.textContent = sym;
+    cmdOctal.textContent    = octal;
+    lsPerm.textContent      = '-' + sym;
+    lsRest.textContent      = ' 1 user group 0 Jan  1 00:00 ' + fname;
+
+    // Sync octal input only if it doesn't have focus
+    if (document.activeElement !== octalInput) {
+      octalInput.value = octal;
+    }
+
+    // Highlight matching preset
+    presetBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.val === octal);
+    });
+  }
+
+  // ── Apply octal → checkboxes ──────────────────────
+  function applyOctal(valStr) {
+    // Accept 3-digit (755) or 4-digit with leading zero (0755)
+    const s = valStr.replace(/^0+/, '') || '0';
+    if (!/^[0-7]{1,3}$/.test(s)) return false;
+    const padded = s.padStart(3, '0');
+    const digits = padded.split('').map(Number);
+    // digit to 3 bits
+    const expand = d => [(d>>2)&1, (d>>1)&1, d&1];
+    const bits = [...expand(digits[0]), ...expand(digits[1]), ...expand(digits[2])];
+    checks.forEach((c, i) => { c.checked = !!bits[i]; });
+    return true;
+  }
+
+  // ── Event Listeners ───────────────────────────────
+  checks.forEach(c => c.addEventListener('change', update));
+
+  octalInput.addEventListener('input', function () {
+    const v = this.value.trim();
+    if (applyOctal(v)) update();
+  });
+
+  presetBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      applyOctal(this.dataset.val);
+      octalInput.value = this.dataset.val;
+      update();
+    });
+  });
+
+  cmdFilename.addEventListener('input', update);
+
+  copyBtn.addEventListener('click', function () {
+    const fname  = cmdFilename.value.trim() || 'filename';
+    const bits   = getBits();
+    const [o,g,x] = calcOctal(bits);
+    const cmd    = 'chmod ' + o + g + x + ' ' + fname;
+    navigator.clipboard.writeText(cmd).then(() => {
+      copyBtn.textContent = '✓ Copied';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy Command';
+        copyBtn.classList.remove('copied');
+      }, 1500);
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = cmd;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      copyBtn.textContent = '✓ Copied';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy Command';
+        copyBtn.classList.remove('copied');
+      }, 1500);
+    });
+  });
+
+  // ── Init with 644 ─────────────────────────────────
+  applyOctal('644');
+  update();
+
+})();
+</script>
+</body>
+</html>

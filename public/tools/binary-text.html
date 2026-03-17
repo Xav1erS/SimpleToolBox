@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Binary / Text Converter — Simple ToolBox</title>
+  <meta name="description" content="Convert text to binary and binary back to text. Supports space, newline, and no-delimiter formats. Fast, browser-based, no data uploaded." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/binary-text.html" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/binary-text.html" />
+  <meta property="og:title" content="Binary / Text Converter — Simple ToolBox" />
+  <meta property="og:description" content="Convert text to binary and binary back to text. Supports space, newline, and no-delimiter formats. Fast, browser-based, no data uploaded." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binary / Text Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert text to binary (and binary back to text) using UTF-8 encoding. Supports space, newline, and no-delimiter output formats. Runs entirely in your browser — no server, no tracking.","featureList":["Text to binary encoding","Binary to text decoding","Space / newline / no-delimiter modes","UTF-8 multi-byte support","100% client-side processing"]}
+  </script>
+  <link rel="icon" href="../logo 1.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=7" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* Active mode button */
+    .ds-tool-modebtn.active {
+      background: var(--ds-color-accent);
+      color: #fff;
+    }
+
+    /* Segment / option buttons */
+    .seg-btn {
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: var(--ds-radius-sm);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .seg-btn:hover,
+    .seg-btn.active {
+      color: var(--ds-color-accent);
+      background: var(--ds-color-surface-tint);
+      border-color: rgba(94,106,210,0.3);
+    }
+
+    /* Copied state */
+    .ds-tool-pane__btn.copied  { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .ds-tool-secondary.copied  { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+
+    /* Error / output states */
+    .output-panel.has-error .out-textarea { color: var(--ds-color-text-muted); }
+    .out-error { display: none; }
+    .output-panel.has-error .out-error { display: block; }
+    .output-panel.has-error .out-stat   { display: none; }
+
+    /* tool-title-icon */
+    .tool-title-icon {
+      width: 40px; height: 40px; border-radius: var(--ds-radius-md);
+      background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.25);
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+
+    /* info note text helpers */
+    .info-text { font-size: 12px; color: var(--ds-color-text-secondary); line-height: 1.6; }
+    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
+    .info-text code {
+      font-family: var(--ds-font-mono); font-size: 11px;
+      background: rgba(255,255,255,0.06); padding: 1px 4px; border-radius: 3px;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8B8B9A;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+
+<!-- NAV -->
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo 1.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    Binary / Text Converter
+    <span class="ds-tool-badge">encode</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally — no data sent
+  </div>
+</nav>
+
+<!-- TOOL HEADER -->
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="tool-title-icon">💾</div>
+      <h1 class="ds-tool-header__title">Binary / Text Converter</h1>
+    </div>
+    <p class="ds-tool-header__desc">Convert any text to its binary (0s &amp; 1s) representation and decode binary back to readable text. Uses UTF-8 encoding so multi-byte characters (CJK, emoji, etc.) are handled correctly. Everything runs in your browser.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">UTF-8</span>
+      <span class="ds-tag">8-bit groups</span>
+      <span class="ds-tag">space / newline / no-delimiter</span>
+      <span class="ds-tag">client-side only</span>
+      <span class="ds-tag">no tracking</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="ds-tool-main ds-tool-stack">
+
+  <!-- Mode bar -->
+  <div class="ds-tool-modebar">
+    <button class="ds-tool-modebtn active" id="btnEncode">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Encode &nbsp;Text → Binary
+    </button>
+    <div class="ds-tool-modeseparator"></div>
+    <button class="ds-tool-modebtn" id="btnDecode">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><path d="M15 7h2v2"/></svg>
+      Decode &nbsp;Binary → Text
+    </button>
+  </div>
+
+  <!-- Options bar -->
+  <div class="ds-tool-options">
+    <span style="font-size:12px;color:var(--ds-color-text-secondary);font-weight:500;flex-shrink:0;">Delimiter</span>
+    <div style="display:flex;gap:4px;" id="delimGroup">
+      <button class="seg-btn active" data-delim="space">Space</button>
+      <button class="seg-btn" data-delim="none">None</button>
+      <button class="seg-btn" data-delim="newline">New Line</button>
+    </div>
+    <div class="ds-tool-option-spacer"></div>
+    <button class="ds-tool-swap" id="btnSwap">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4m0 0L3 8m4-4 4 4"/><path d="M17 8v12m0 0 4-4m-4 4-4-4"/></svg>
+      Swap panels
+    </button>
+  </div>
+
+  <!-- I/O panels -->
+  <div class="ds-tool-workbench">
+
+    <!-- INPUT panel -->
+    <div class="ds-tool-pane" id="inputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="inputLabel">Plain Text</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn" id="btnPaste">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+          </button>
+          <button class="ds-tool-pane__btn" id="btnClearInput">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here…" spellcheck="false" autocomplete="off"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat" id="inputStat">0 chars</span>
+      </div>
+    </div>
+
+    <!-- ARROW -->
+    <div class="ds-tool-arrow">
+      <div class="ds-tool-arrow__circle" id="arrowIcon">→</div>
+    </div>
+
+    <!-- OUTPUT panel -->
+    <div class="ds-tool-pane output-panel" id="outputPanel">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label" id="outputLabel">Binary</span>
+        <div class="ds-tool-pane__actions">
+          <button class="ds-tool-pane__btn" id="btnCopyHeader">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+      </div>
+      <textarea class="ds-tool-textarea out-textarea" id="outputText" placeholder="Output will appear here…" readonly spellcheck="false"></textarea>
+      <div class="ds-tool-pane__footer">
+        <span class="ds-tool-stat out-stat" id="outputStat">0 bytes</span>
+        <span class="ds-tool-error out-error" id="errorMsg">Invalid binary input</span>
+      </div>
+    </div>
+
+  </div><!-- /ds-tool-workbench -->
+
+  <!-- Action bar -->
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <span id="runLabel">Encode</span>
+    </button>
+    <button class="ds-tool-secondary" id="btnCopyResult">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Result
+    </button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="ds-tool-secondary" id="btnClearAll">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14H6L5 6M9 6V4h6v2"/></svg>
+      Clear All
+    </button>
+  </div>
+
+  <!-- Note -->
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">💡</span>
+    <div class="ds-tool-note__text info-text">
+      <strong>Binary / Text</strong> represents each character as a sequence of 8-bit groups using
+      <strong>UTF-8</strong> encoding. ASCII characters (A–Z, 0–9, etc.) are <code>1 byte</code> (e.g. <code>A</code> → <code>01000001</code>).
+      Extended Latin characters like <code>é</code> are <code>2 bytes</code>.
+      Chinese / Japanese / Korean characters and most emoji are <code>3–4 bytes</code> each.
+      The delimiter controls how bytes are separated: <strong>Space</strong> (most readable),
+      <strong>None</strong> (compact stream), or <strong>New Line</strong> (one byte per line).
+      All processing uses the browser's built-in <strong>TextEncoder</strong> / <strong>TextDecoder</strong> — nothing leaves your device.
+    </div>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="base64.html" class="ds-related-card">
+        <span class="ds-related-icon">📦</span>
+        <div>
+          <div class="ds-related-name">Base64 Encoder / Decoder</div>
+          <div class="ds-related-desc">Encode and decode Base64 strings</div>
+        </div>
+      </a>
+      <a href="number-base.html" class="ds-related-card">
+        <span class="ds-related-icon">🔢</span>
+        <div>
+          <div class="ds-related-name">Number Base Converter</div>
+          <div class="ds-related-desc">Convert between binary, octal, decimal, hex</div>
+        </div>
+      </a>
+      <a href="hash-generator.html" class="ds-related-card">
+        <span class="ds-related-icon">🔐</span>
+        <div>
+          <div class="ds-related-name">Hash Generator</div>
+          <div class="ds-related-desc">MD5, SHA-1, SHA-256 and more</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /ds-tool-main -->
+
+<script>
+  // ── State ─────────────────────────────────────────────────
+  let mode      = 'encode'; // 'encode' | 'decode'
+  let delimiter = 'space';  // 'space' | 'none' | 'newline'
+  let debounceTimer;
+
+  // ── DOM refs ──────────────────────────────────────────────
+  const btnEncode    = document.getElementById('btnEncode');
+  const btnDecode    = document.getElementById('btnDecode');
+  const delimGroup   = document.getElementById('delimGroup');
+  const btnSwap      = document.getElementById('btnSwap');
+  const inputText    = document.getElementById('inputText');
+  const outputText   = document.getElementById('outputText');
+  const inputStat    = document.getElementById('inputStat');
+  const outputStat   = document.getElementById('outputStat');
+  const inputLabel   = document.getElementById('inputLabel');
+  const outputLabel  = document.getElementById('outputLabel');
+  const runLabel     = document.getElementById('runLabel');
+  const btnRun       = document.getElementById('btnRun');
+  const btnCopyHeader = document.getElementById('btnCopyHeader');
+  const btnCopyResult = document.getElementById('btnCopyResult');
+  const btnPaste     = document.getElementById('btnPaste');
+  const btnClearInput = document.getElementById('btnClearInput');
+  const btnClearAll  = document.getElementById('btnClearAll');
+  const outputPanel  = document.getElementById('outputPanel');
+  const errorMsg     = document.getElementById('errorMsg');
+  const arrowIcon    = document.getElementById('arrowIcon');
+
+  // ── Core logic ────────────────────────────────────────────
+  function textToBinary(text, delim) {
+    const bytes = new TextEncoder().encode(text);
+    const binaries = Array.from(bytes).map(b => b.toString(2).padStart(8, '0'));
+    return binaries.join(delim === 'newline' ? '\n' : delim === 'none' ? '' : ' ');
+  }
+
+  function binaryToText(bin, delim) {
+    let parts;
+    if (delim === 'none') {
+      parts = bin.match(/.{1,8}/g) || [];
+    } else {
+      parts = bin.trim().split(/\s+/);
+    }
+    // Filter empty strings that may appear from leading/trailing whitespace
+    parts = parts.filter(p => p.length > 0);
+    if (parts.length === 0) return '';
+    for (const p of parts) {
+      if (!/^[01]{8}$/.test(p)) {
+        throw new Error('Invalid binary: "' + p + '" — must be 8-bit groups');
+      }
+    }
+    const bytes = parts.map(b => parseInt(b, 2));
+    return new TextDecoder().decode(new Uint8Array(bytes));
+  }
+
+  // ── Run ───────────────────────────────────────────────────
+  function run() {
+    const inp = inputText.value;
+    outputPanel.classList.remove('has-error');
+
+    if (!inp.trim() && inp.length === 0) {
+      outputText.value = '';
+      updateStats();
+      return;
+    }
+
+    try {
+      if (mode === 'encode') {
+        outputText.value = textToBinary(inp, delimiter);
+      } else {
+        outputText.value = binaryToText(inp, delimiter);
+      }
+    } catch (e) {
+      outputPanel.classList.add('has-error');
+      outputText.value = '';
+      errorMsg.textContent = e.message || 'Invalid binary input';
+    }
+    updateStats();
+  }
+
+  function updateStats() {
+    const inp = inputText.value;
+    const out = outputText.value;
+
+    if (mode === 'encode') {
+      const charCount = inp.length;
+      const byteCount = new TextEncoder().encode(inp).length;
+      inputStat.textContent = charCount
+        ? `${charCount.toLocaleString()} char${charCount !== 1 ? 's' : ''} · ${byteCount.toLocaleString()} byte${byteCount !== 1 ? 's' : ''}`
+        : '0 chars';
+      outputStat.textContent = out
+        ? `${out.length.toLocaleString()} chars`
+        : '0 chars';
+    } else {
+      inputStat.textContent = inp.trim() ? `${inp.trim().length.toLocaleString()} chars` : '0 chars';
+      const byteCount = out ? new TextEncoder().encode(out).length : 0;
+      outputStat.textContent = out
+        ? `${out.length.toLocaleString()} char${out.length !== 1 ? 's' : ''} · ${byteCount} byte${byteCount !== 1 ? 's' : ''}`
+        : '0 bytes';
+    }
+  }
+
+  // ── Debounced live update ─────────────────────────────────
+  function scheduleRun() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(run, 300);
+  }
+
+  inputText.addEventListener('input', scheduleRun);
+
+  // ── Mode switch ───────────────────────────────────────────
+  function setMode(m) {
+    mode = m;
+    btnEncode.classList.toggle('active', m === 'encode');
+    btnDecode.classList.toggle('active', m === 'decode');
+
+    if (m === 'encode') {
+      inputLabel.textContent  = 'Plain Text';
+      outputLabel.textContent = 'Binary';
+      runLabel.textContent    = 'Encode';
+      inputText.placeholder   = 'Type or paste text here…';
+      outputText.placeholder  = 'Binary output will appear here…';
+      arrowIcon.textContent   = '→';
+    } else {
+      inputLabel.textContent  = 'Binary String';
+      outputLabel.textContent = 'Plain Text';
+      runLabel.textContent    = 'Decode';
+      inputText.placeholder   = 'Paste binary string here… (e.g. 01001000 01101001)';
+      outputText.placeholder  = 'Decoded text will appear here…';
+      arrowIcon.textContent   = '←';
+    }
+
+    outputPanel.classList.remove('has-error');
+    run();
+  }
+
+  btnEncode.addEventListener('click', () => setMode('encode'));
+  btnDecode.addEventListener('click', () => setMode('decode'));
+
+  // ── Delimiter switch ──────────────────────────────────────
+  delimGroup.addEventListener('click', e => {
+    const btn = e.target.closest('.seg-btn');
+    if (!btn) return;
+    delimGroup.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    delimiter = btn.dataset.delim;
+    run();
+  });
+
+  // ── Swap ──────────────────────────────────────────────────
+  btnSwap.addEventListener('click', () => {
+    const out = outputText.value;
+    if (!out) return;
+    inputText.value = out;
+    setMode(mode === 'encode' ? 'decode' : 'encode');
+  });
+
+  // ── Clipboard helpers ─────────────────────────────────────
+  async function copyToClipboard(text, btn, label) {
+    if (!text) return;
+    const orig = btn.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ${label || 'Copied!'}`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
+  }
+
+  btnCopyHeader.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyHeader, 'Copied'));
+  btnCopyResult.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyResult, 'Copied!'));
+
+  // ── Paste / Clear ─────────────────────────────────────────
+  btnPaste.addEventListener('click', async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      inputText.value = text;
+      run();
+    } catch { /* permission denied */ }
+  });
+
+  function clearAll() {
+    inputText.value  = '';
+    outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    updateStats();
+  }
+
+  btnClearInput.addEventListener('click', () => {
+    inputText.value = '';
+    outputPanel.classList.remove('has-error');
+    outputText.value = '';
+    updateStats();
+  });
+  btnClearAll.addEventListener('click', clearAll);
+
+  // ── Run button + Ctrl/Cmd+Enter ───────────────────────────
+  btnRun.addEventListener('click', run);
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); run(); }
+  });
+
+  // ── Init ──────────────────────────────────────────────────
+  setMode('encode');
+</script>
+</body>
+</html>

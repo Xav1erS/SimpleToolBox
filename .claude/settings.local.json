@@ -60,7 +60,10 @@
       "Bash(sed -i 's/and 13+ more\\\\. No sign-up/and 28+ more. No sign-up/' index.html)",
       "Bash(sed -i 's/21+ free developer tools/35+ free developer tools/' index.html)",
       "Bash(ls /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/sitemap* /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/robots.txt)",
-      "Bash(__NEW_LINE_130f3eb581711a3b__ node -e \":*)"
+      "Bash(__NEW_LINE_130f3eb581711a3b__ node -e \":*)",
+      "Bash(ls public/tools/*.html)",
+      "Bash(echo \"=== sitemap <url> count ===\")",
+      "Bash(grep -rL \"G-8SBCZ6DT1R\" public/*.html public/tools/*.html)"
     ]
   }
 }

@@ -137,6 +137,30 @@ These pages already use shared navigation, hero, page containers, cards, inputs,
   - Cron expression builder with 5-field grid. Shared classes control nav and header.
   - Kept local: expr-bar, fields-grid, field-card, field controls, runs-list, presets.
 
+- `public/tools/webp-converter.html`
+  - Image format converter. Shared classes control nav and header.
+
+- `public/tools/image-compressor.html`
+  - Client-side image compression. Shared classes control nav and header.
+
+### Phase 1 New Tools (49 tools — use design-system.css, SEO structure not yet added)
+
+These tools were built using the design system from scratch but do **not** yet have SEO content structure (`ds-seo-content` / `ds-related-tools` / `ds-seo-more`).
+
+**Text Processing:** `text-case`, `text-cleaner`, `line-tools`, `diff-viewer`, `string-escape`, `binary-text`, `morse-code`, `ascii-table`, `roman-numerals`
+
+**Developer Tools:** `html-formatter`, `css-formatter`, `css-minifier`, `js-formatter`, `js-minifier`, `sql-formatter`, `xml-formatter`, `json-csv`, `xml-json`, `yaml-json`, `toml-json`, `jsonpath-tester`, `number-base`, `number-format`, `chmod-calculator`, `http-status`, `port-reference`, `mime-types`
+
+**Encoding / Crypto:** `base32`, `base58`, `bcrypt`, `hmac`, `aes`
+
+**Date / Time:** `timezone-converter`, `date-calculator`, `countdown`
+
+**Color / Design:** `color-palette`, `gradient-generator`, `color-converter`, `color-blindness`, `color-contrast-aa`, `contrast-checker`
+
+**Network / URL:** `url-builder`, `url-parser`, `user-agent`, `ip-lookup`
+
+**Utility:** `bmi-calculator`, `loan-calculator`, `jwt-builder`, `markdown-to-html`
+
 ## Migration Checklist for New Tool Pages
 
 When creating a new tool page, follow this checklist:
@@ -224,20 +248,34 @@ clickedBtn.classList.add('active');
 
 ## Migration Status
 
-**All 21 tool pages and all 6 site pages are fully migrated.** No further migration work is needed.
+**All 72 tool pages and all 6 site pages use the design system.** No further design-system migration work is needed.
 
-Brand logo classes are unified across all 27 pages: `ds-nav__brand` + `ds-nav__logo-icon` (nav), `ds-footer-logo-icon` (footer). No local override CSS required.
+Brand logo classes are unified: `ds-nav__brand` + `ds-nav__logo-icon` (nav), `ds-footer-logo-icon` (footer). No local override CSS required.
+
+### SEO Content Structure
+
+**23/72 tool pages have complete SEO content structure** (as of 2026-03-18).
+
+Pages with full SEO structure (ds-seo-content + ds-related-tools + ds-seo-more 4 collapses):
+`base64`, `json-formatter`, `qr-code-generator`, `password-generator`, `url-encode`, `hash-generator`, `word-counter`, `timestamp`, `uuid-generator`, `slug-generator`, `lorem-ipsum-generator`, `random-number-generator`, `unit-converter`, `youtube-thumbnail`, `color-picker`, `image-resizer`, `jwt-decoder`, `html-entities`, `markdown-preview`, `regex-tester`, `cron-builder`, `webp-converter`, `image-compressor`
+
+**49 Phase-1 new tools still need SEO structure added.** Each tool page needs:
+
+- Visible `ds-seo-content` block with two `<section class="ds-seo-section">` elements: "What is [Tool]" + "How to Use [Tool]"
+- `ds-related-tools` block with 3+ related tool links
+- `ds-seo-more` progressive disclosure block with 4 `ds-seo-collapse` sections: **Example → [tool-specific middle section] → Why Use This Tool → Frequently Asked Questions**
 
 Future work should focus on:
 
+- Adding SEO content structure to the 49 Phase-1 new tools (batch-scriptable).
+- Building category/hub pages (Priority 3 of SEO roadmap).
 - Extracting repeated local patterns (`.related-tools`, `.card`, etc.) into shared DS components if they appear in 3+ pages.
-- Adding new tool pages using the Migration Checklist above.
 
 ## 300+ Tools Roadmap
 
 ### 目标
 
-将网站做到 300+ 个纯前端工具，全部浏览器端运行，不上传数据。当前已有 21 个工具。
+将网站做到 300+ 个纯前端工具，全部浏览器端运行，不上传数据。当前已有 72 个工具（其中 23 个有完整 SEO 内容结构）。
 
 详细优先级排序见 `# SimpleToolBox — 工具开发优先级排序.md`（仓库根目录）。
 
@@ -263,12 +301,12 @@ Future work should focus on:
 
 ### 分阶段里程碑
 
-| 阶段 | 目标工具数 | 重点方向 |
-| ---- | --------- | ------- |
-| 阶段一 | 50 个 | 文本、开发、编码类高频工具 |
-| 阶段二 | 100 个 | 数学、颜色、时间、网络类 |
-| 阶段三 | 200 个 | 细分场景专业工具 |
-| 阶段四 | 300+ 个 | 长尾需求、小众但有用 |
+| 阶段 | 目标工具数 | 重点方向 | 状态 |
+| ---- | --------- | ------- | ---- |
+| 阶段一 | 100 个 | 文本、开发、编码类高频工具（已有 72 个，补充 SEO 结构） | 进行中 |
+| 阶段二 | 150 个 | 数学、颜色、时间、网络类 | 待开始 |
+| 阶段三 | 200 个 | 细分场景专业工具 | 待开始 |
+| 阶段四 | 300+ 个 | 长尾需求、小众但有用 | 待开始 |
 
 ### all-tools.html 维护规则
 

@@ -379,7 +379,22 @@
     <div class="output-footer" id="outputFooter"></div>
   </div>
 
-  <div class="ds-related-tools">
+    <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is a Random Number Generator?</h2>
+      <p>A random number generator (RNG) produces numbers that cannot be predicted in advance. This tool uses the browser's <code>crypto.getRandomValues()</code> API — a cryptographically secure source of randomness that does not rely on the predictable <code>Math.random()</code> function. The result is genuine statistical randomness suitable for games, giveaways, and sampling.</p>
+      <p>Three modes are available: single number, a list of unique numbers, and a dice/coin simulator for classic randomization.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use the Random Number Generator</h2>
+      <ol>
+        <li><strong>Numbers mode</strong>: set a minimum and maximum, then click <strong>Generate</strong> to get one random number in that range.</li>
+        <li><strong>List mode</strong>: set the range and count, then generate a list of unique random numbers — useful for lottery draws.</li>
+        <li><strong>Dice mode</strong>: choose a die type (d4, d6, d8, d10, d12, d20, d100) or flip a coin; click to roll or flip.</li>
+      </ol>
+    </section>
+  </div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="uuid-generator.html" class="ds-related-card"><span class="ds-related-icon">🆔</span><div><div class="ds-related-name">UUID Generator</div><div class="ds-related-desc">Generate unique identifiers</div></div></a>
@@ -387,6 +402,62 @@
       <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert between units of measurement</div></div></a>
     </div>
   </div>
+  <details class="ds-seo-more">
+    <summary>Understand Random Numbers (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Numbers mode — Min: 1, Max: 100 → Result: <strong>42</strong></p>
+          <p>List mode — Min: 1, Max: 49, Count: 6 → Result: <strong>3, 17, 22, 35, 41, 48</strong> (6 unique lottery numbers)</p>
+          <p>Dice mode — Roll a d20 → Result: <strong>17</strong> (for tabletop RPGs or classroom randomization)</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Common Use Cases</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li>Pick a winner from a list of entries by generating a random index</li>
+            <li>Generate lottery or raffle numbers with no repeats</li>
+            <li>Roll dice for tabletop RPGs (D&amp;D, Pathfinder) without physical dice</li>
+            <li>Create randomized test data ranges for software development</li>
+            <li>Flip a coin to make a quick decision</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Random Number Generator</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Cryptographically secure</strong> — uses <code>crypto.getRandomValues()</code>, not the predictable <code>Math.random()</code>.</li>
+            <li><strong>Three modes</strong> — single number, unique list, and dice/coin simulator in one tool.</li>
+            <li><strong>No repeats in list mode</strong> — guaranteed unique values across the entire generated set.</li>
+            <li><strong>No server</strong> — all randomness is generated client-side; nothing is logged or transmitted.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>Is this truly random or pseudo-random?</h3>
+              <p>This tool uses <code>crypto.getRandomValues()</code>, which is a cryptographically secure pseudo-random number generator (CSPRNG) seeded from OS-level entropy. For all practical purposes it is indistinguishable from true randomness and is suitable for security-sensitive tasks.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I generate the same number twice in list mode?</h3>
+              <p>No. List mode generates a set of unique numbers — each value appears at most once. If you need duplicates allowed, use the single-number mode multiple times.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>What is the maximum range I can use?</h3>
+              <p>The minimum and maximum values can be any integers within JavaScript's safe integer range (±2<sup>53</sup>). For list mode, the count must be less than or equal to the size of the range.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
+
 
 </div><!-- end #modeNumbers -->
 

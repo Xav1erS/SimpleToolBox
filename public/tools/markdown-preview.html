@@ -430,7 +430,24 @@
 
   </div>
 
-  <div class="ds-related-tools">
+    <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is Markdown?</h2>
+      <p>Markdown is a lightweight plain-text formatting language created by John Gruber in 2004. It uses simple punctuation characters — like <code>#</code> for headings, <code>**</code> for bold, and <code>-</code> for lists — to add structure that can be converted to HTML. Markdown is the standard format for README files, documentation sites, GitHub comments, and many note-taking apps.</p>
+      <p>This tool renders a live HTML preview as you type, supporting GitHub Flavored Markdown (GFM) including tables, task lists, and fenced code blocks.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use the Markdown Preview</h2>
+      <ol>
+        <li>Type or paste Markdown into the <strong>left editor pane</strong>.</li>
+        <li>The rendered HTML preview appears in the <strong>right pane</strong> in real time.</li>
+        <li>Use the toolbar shortcuts for common formatting (bold, italic, heading, link, code).</li>
+        <li>Click <strong>Copy HTML</strong> to copy the rendered HTML output to your clipboard.</li>
+        <li>Use <strong>Export HTML</strong> to download a standalone HTML file.</li>
+      </ol>
+    </section>
+  </div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words and characters</div></div></a>
@@ -438,6 +455,67 @@
       <a href="slug-generator.html" class="ds-related-card"><span class="ds-related-icon">🔤</span><div><div class="ds-related-name">Slug Generator</div><div class="ds-related-desc">Create URL-friendly slugs</div></div></a>
     </div>
   </div>
+  <details class="ds-seo-more">
+    <summary>Understand Markdown (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Markdown input:</p>
+          <pre><code># Hello World
+**Bold text** and *italic text*
+
+- Item one
+- Item two
+
+[Link](https://example.com)</code></pre>
+          <p>Rendered HTML output: an <code>&lt;h1&gt;</code> heading, bold/italic text, an unordered list, and a hyperlink — all styled by the preview pane.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Common Use Cases</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li>Write and preview README.md files before pushing to GitHub</li>
+            <li>Draft technical documentation and check formatting before publishing</li>
+            <li>Convert Markdown blog posts to HTML for pasting into a CMS</li>
+            <li>Learn Markdown syntax interactively with live feedback</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Markdown Preview</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Live rendering</strong> — the HTML preview updates with every keystroke; no manual refresh needed.</li>
+            <li><strong>GitHub Flavored Markdown</strong> — supports tables, task lists (<code>- [x]</code>), strikethrough, and fenced code blocks.</li>
+            <li><strong>HTML export</strong> — copy the rendered HTML or download it as a standalone file for use in any CMS or static site.</li>
+            <li><strong>Toolbar shortcuts</strong> — apply common formatting without remembering Markdown syntax.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>What Markdown spec does this tool use?</h3>
+              <p>This tool uses the <strong>marked.js</strong> library configured to render GitHub Flavored Markdown (GFM), which is the most widely used Markdown dialect. GFM extends CommonMark with tables, strikethrough, task lists, and autolinks.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I export the result as HTML?</h3>
+              <p>Yes. Click <strong>Copy HTML</strong> to copy the rendered HTML to your clipboard, or <strong>Export HTML</strong> to download a standalone HTML file that includes basic styling.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is my content saved between sessions?</h3>
+              <p>The editor content is saved to your browser's <code>localStorage</code> and restored automatically when you return to the page. Nothing is sent to a server.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
+
 </div>
 
 <script>

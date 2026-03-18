@@ -323,7 +323,22 @@
 
   </div>
 
-  <div class="ds-related-tools">
+    <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is a Color Picker?</h2>
+      <p>A color picker is a tool for selecting, exploring, and converting colors between different format representations. Web colors can be expressed as hex codes (<code>#FF6B6B</code>), RGB values (<code>rgb(255, 107, 107)</code>), HSL values (<code>hsl(0, 100%, 71%)</code>), and more. Different tools and workflows prefer different formats — a color picker lets you work in any one and instantly see all the others.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use the Color Picker</h2>
+      <ol>
+        <li>Click the color swatch or use the visual picker to select a color.</li>
+        <li>Alternatively, type a hex, RGB, or HSL value directly into the input fields.</li>
+        <li>All equivalent color representations update instantly.</li>
+        <li>Click any format field to copy the value to your clipboard.</li>
+      </ol>
+    </section>
+  </div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images in your browser</div></div></a>
@@ -331,6 +346,66 @@
       <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Base64 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base64</div></div></a>
     </div>
   </div>
+  <details class="ds-seo-more">
+    <summary>Understand Color Formats (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Select the color <code>#3B82F6</code> (a medium blue):</p>
+          <ul>
+            <li>HEX: <code>#3B82F6</code></li>
+            <li>RGB: <code>rgb(59, 130, 246)</code></li>
+            <li>HSL: <code>hsl(217, 91%, 60%)</code></li>
+            <li>HSB/HSV: <code>hsb(217, 76%, 96%)</code></li>
+          </ul>
+          <p>Click any field to copy the value for use in CSS, Figma, or design tokens.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Common Use Cases</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li>Convert a brand hex color to RGB for use in CSS gradients or SVG fills</li>
+            <li>Pick an HSL value to adjust lightness programmatically in a design system</li>
+            <li>Translate a Figma color style to a CSS custom property value</li>
+            <li>Explore analogous or complementary colors by adjusting the hue slider</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Color Picker</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Multi-format output</strong> — see HEX, RGB, HSL, and HSB simultaneously with every selection.</li>
+            <li><strong>Visual and manual input</strong> — pick with sliders or type any known color value directly.</li>
+            <li><strong>Copy any format</strong> — click a field to copy it; no manual selection needed.</li>
+            <li><strong>No account or install</strong> — runs entirely in the browser; nothing is saved or transmitted.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>What is the difference between HSL and HSB/HSV?</h3>
+              <p>HSL (Hue, Saturation, Lightness) and HSB/HSV (Hue, Saturation, Brightness/Value) are both cylindrical color models but differ in how they define the third axis. In HSL, 50% lightness is the "pure" color. In HSB, 100% brightness means the maximum brightness, which is closer to the color artists think of as vivid. CSS uses HSL; Photoshop and Figma use HSB.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I use this to check WCAG color contrast?</h3>
+              <p>This tool shows color values and conversions. For accessibility contrast checking (WCAG AA/AAA ratios) against a background color, use the dedicated <a href="contrast-checker.html">Contrast Checker</a> tool.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>What does the alpha channel control?</h3>
+              <p>Alpha (opacity) ranges from 0 (fully transparent) to 1 (fully opaque). In CSS, a color with alpha is written as <code>rgba()</code> or <code>hsla()</code>, or as an 8-digit hex code (e.g. <code>#3B82F680</code> = 50% opacity).</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
+
 
 </div>
 

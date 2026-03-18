@@ -77,7 +77,9 @@
       "Bash(\"/c/Program Files/nodejs/npm\" run lint)",
       "Bash(\"/c/Program Files/nodejs/node.exe\" node_modules/.bin/eslint public/tools/base64.html public/tools/password-generator.html --no-warn-ignored)",
       "Bash(\"/c/Program Files/nodejs/node.exe\" node_modules/eslint/bin/eslint.js public/tools/base64.html public/tools/password-generator.html)",
-      "Bash(gh run:*)"
+      "Bash(gh run:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)"
     ]
   }
 }

@@ -1782,22 +1782,31 @@
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 16px;
   border-top: 1px solid var(--ds-color-border);
 }
 
+.ds-seo-section {
+  background: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-3);
+}
+
 .ds-seo-section h2 {
-  font-size: 17px;
-  font-weight: 600;
+  font-size: var(--ds-font-size-h4);
+  font-weight: 700;
   color: var(--ds-color-text-primary);
-  margin-bottom: 12px;
   letter-spacing: -0.2px;
 }
 
 .ds-seo-section p {
-  font-size: 14px;
+  font-size: var(--ds-font-size-body);
   color: var(--ds-color-text-secondary);
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 .ds-seo-section ul,
@@ -1805,13 +1814,17 @@
   padding-left: 20px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
 }
 
 .ds-seo-section li {
-  font-size: 14px;
+  font-size: var(--ds-font-size-body);
   color: var(--ds-color-text-secondary);
   line-height: 1.7;
+}
+
+.ds-seo-section li strong {
+  color: var(--ds-color-text-primary);
 }
 
 .ds-faq-list {
@@ -1821,14 +1834,14 @@
 }
 
 .ds-faq-item h3 {
-  font-size: 14px;
+  font-size: var(--ds-font-size-body);
   font-weight: 600;
   color: var(--ds-color-text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .ds-faq-item p {
-  font-size: 14px;
+  font-size: var(--ds-font-size-body);
   color: var(--ds-color-text-secondary);
-  line-height: 1.7;
+  line-height: 1.75;
 }

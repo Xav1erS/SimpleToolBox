@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://simpletoolbox.dev/</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,333 +12,333 @@
   <!-- Tools -->
   <url>
     <loc>https://simpletoolbox.dev/tools/base64.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/json-formatter.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/password-generator.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/timestamp.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/url-encode.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/uuid-generator.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/word-counter.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/random-number-generator.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/unit-converter.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/image-resizer.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/youtube-thumbnail.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/qr-code-generator.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/slug-generator.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/lorem-ipsum-generator.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/color-picker.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/regex-tester.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/markdown-preview.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/cron-builder.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/hash-generator.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/html-entities.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/jwt-decoder.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/yaml-json.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/number-base.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/text-case.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/http-status.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/string-escape.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/css-formatter.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/sql-formatter.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/diff-viewer.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/jsonpath-tester.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/xml-formatter.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/markdown-to-html.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/url-parser.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/bcrypt.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/ip-lookup.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://simpletoolbox.dev/tools/js-formatter.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/line-tools.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/base32.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/hmac.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/timezone-converter.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/html-formatter.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/aes.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/color-palette.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/gradient-generator.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/contrast-checker.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/url-builder.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/user-agent.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/json-csv.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/countdown.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/roman-numerals.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://simpletoolbox.dev/tools/base58.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/chmod-calculator.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/binary-text.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/morse-code.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/color-converter.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -346,121 +346,121 @@
   <!-- Info pages -->
   <url>
     <loc>https://simpletoolbox.dev/all-tools.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/about.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/privacy.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/terms.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/contact.html</loc>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/date-calculator.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/bmi-calculator.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/loan-calculator.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/ascii-table.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/text-cleaner.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/css-minifier.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/js-minifier.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/toml-json.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/jwt-builder.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/color-blindness.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/xml-json.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/number-format.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/port-reference.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/mime-types.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/color-contrast-aa.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -82,7 +82,9 @@
       "Bash(git push:*)",
       "Bash(grep -l \"FAQPage\" c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
       "Bash(do if:*)",
-      "Bash(then basename:*)"
+      "Bash(then basename:*)",
+      "Bash(git checkout:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

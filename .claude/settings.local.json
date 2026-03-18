@@ -66,7 +66,17 @@
       "Bash(grep -rL \"G-8SBCZ6DT1R\" public/*.html public/tools/*.html)",
       "Bash(xargs -I{} basename {} .html)",
       "Bash(python3 -c \":*)",
-      "Bash(echo \"exit:$?\")"
+      "Bash(echo \"exit:$?\")",
+      "Bash(find . -not -path */.* -not -path */node_modules/* -maxdepth 2)",
+      "Bash(ls -1 *.html)",
+      "Bash(ls -lh /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
+      "Bash(wc -l /c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/styles/*.css)",
+      "Bash(npm install:*)",
+      "Bash(where npm:*)",
+      "Bash(\"/c/Program Files/nodejs/npm\" install)",
+      "Bash(\"/c/Program Files/nodejs/npm\" run lint)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" node_modules/.bin/eslint public/tools/base64.html public/tools/password-generator.html --no-warn-ignored)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" node_modules/eslint/bin/eslint.js public/tools/base64.html public/tools/password-generator.html)"
     ]
   }
 }

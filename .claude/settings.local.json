@@ -85,7 +85,8 @@
       "Bash(then basename:*)",
       "Bash(git checkout:*)",
       "Bash(git commit:*)",
-      "Bash(grep -n 'ds-seo-content\\\\|ds-related-tools\\\\|ds-seo-more\\\\|ds-seo-section\\\\|<\\\\/div>\\\\s*$' public/tools/base64.html)"
+      "Bash(grep -n 'ds-seo-content\\\\|ds-related-tools\\\\|ds-seo-more\\\\|ds-seo-section\\\\|<\\\\/div>\\\\s*$' public/tools/base64.html)",
+      "Bash(ls -la /c/Users/Windows11/Documents/GitHub/SimpleToolBox/*.md)"
     ]
   }
 }

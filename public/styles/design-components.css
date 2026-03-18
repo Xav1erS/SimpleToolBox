@@ -1844,3 +1844,45 @@
   color: var(--ds-color-text-secondary);
   line-height: 1.75;
 }
+
+/* ── Inline code within SEO sections ── */
+.ds-seo-section code {
+  font-family: var(--ds-font-mono);
+  font-size: 0.875em;
+  color: var(--ds-color-accent);
+  background: var(--ds-color-surface-tint);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* ── SEO example block (input → output) ── */
+.ds-seo-example {
+  background: var(--ds-color-bg);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-sm);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ds-seo-example__row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.ds-seo-example__label {
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-font-size-small);
+  color: var(--ds-color-text-muted);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.ds-seo-example__value {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-font-size-small);
+  color: var(--ds-color-text-primary);
+  word-break: break-all;
+}

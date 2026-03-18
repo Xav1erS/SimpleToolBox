@@ -1900,29 +1900,33 @@
 }
 
 .ds-seo-more > summary {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
   list-style: none;
-  color: var(--ds-color-text-muted);
-  font-size: var(--ds-font-size-small);
-  font-weight: 500;
-  padding: 7px 14px;
-  border-radius: var(--ds-radius-sm);
+  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-font-size-body);
+  font-weight: 600;
+  padding: 14px 24px;
+  border-radius: var(--ds-radius-md);
   border: 1px solid var(--ds-color-border);
   background: var(--ds-color-surface);
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
   user-select: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .ds-seo-more > summary::-webkit-details-marker { display: none; }
 
 .ds-seo-more > summary::before {
   content: '▸';
-  font-size: 10px;
+  font-size: 11px;
+  color: var(--ds-color-accent);
   transition: transform 0.2s;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .ds-seo-more[open] > summary::before {
@@ -1932,6 +1936,7 @@
 .ds-seo-more > summary:hover {
   color: var(--ds-color-text-primary);
   border-color: var(--ds-color-border-accent);
+  background: var(--ds-color-surface-strong);
 }
 
 .ds-seo-more > .ds-seo-content {

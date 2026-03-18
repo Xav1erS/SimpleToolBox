@@ -237,7 +237,23 @@
   </div>
 
   <!-- Related tools -->
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Base58 Encoder / Decoder?</h2>
+    <p class="ds-seo-section__body">Encodes data using the Base58 alphabet, which removes visually ambiguous characters (0, O, I, l) from Base64. Widely used in Bitcoin addresses, IPFS content identifiers, and other blockchain applications.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Base58 Encoder / Decoder</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter your text or paste a Base58 string.</li>
+      <li>Select <strong>Encode</strong> or <strong>Decode</strong>.</li>
+      <li>See the result instantly.</li>
+      <li>Copy the output.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="base64.html" class="ds-related-card">
@@ -263,6 +279,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Base58 Encoder / Decoder</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Encode: <code>Hello World</code> → Base58: <code>JxF12TrwUP45BMd</code></p><p>Bitcoin address example: <code>1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Base58 Use Cases</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>Bitcoin</strong>: wallet addresses use Base58Check (Base58 + 4-byte checksum)</li><li><strong>IPFS</strong>: legacy CIDv0 content identifiers use Base58</li><li><strong>Short URLs</strong>: compact ID encoding without ambiguous characters</li></ul><p>No 0, O, I, or l in the alphabet — prevents manual transcription errors.</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Decode Bitcoin or IPFS identifiers for inspection</li>
+        <li>Understand wallet address encoding</li>
+        <li>No ambiguous characters — fewer transcription errors than Base64</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is this Bitcoin's Base58Check?</strong><p>No — this is standard Base58 without checksum. Bitcoin's Base58Check adds a 4-byte SHA256d checksum.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why not just use Base64?</strong><p>Base58 omits ambiguous characters (0/O and I/l) that are identical in many fonts, reducing manual copy errors.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 
 </div><!-- /ds-tool-main -->
 

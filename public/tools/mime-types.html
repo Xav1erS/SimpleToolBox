@@ -130,7 +130,22 @@
     <div class="no-result" id="noResult" style="display:none">No MIME types match your search.</div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is MIME Type Reference?</h2>
+    <p class="ds-seo-section__body">A searchable database of MIME types and their associated file extensions. Look up the correct Content-Type header value for any file format — essential for REST APIs and web servers.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use MIME Type Reference</h2>
+    <ol class="ds-seo-section__list">
+      <li>Search by file extension (e.g., <code>.pdf</code>, <code>.mp4</code>) or MIME type string (e.g., <code>application/json</code>).</li>
+      <li>See the full MIME type, common extensions, and usage notes.</li>
+      <li>Copy the MIME type string for use in HTTP headers or server configuration.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="http-status.html" class="ds-related-card"><span class="ds-related-icon">&#128225;</span><div><div class="ds-related-name">HTTP Status Codes</div><div class="ds-related-desc">Complete HTTP status code reference</div></div></a>
@@ -138,6 +153,38 @@
       <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">&#128279;</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Encode and decode URL components</div></div></a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand MIME Type Reference</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p><code>.pdf</code> → <code>application/pdf</code></p><p><code>.json</code> → <code>application/json</code></p><p><code>.mp4</code> → <code>video/mp4</code></p><p><code>.svg</code> → <code>image/svg+xml</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>MIME Type Categories</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>text/</strong>: html, css, javascript, plain, csv</li><li><strong>application/</strong>: json, pdf, zip, xml, wasm, octet-stream</li><li><strong>image/</strong>: jpeg, png, gif, webp, svg+xml, avif</li><li><strong>video/</strong>: mp4, webm, ogg</li><li><strong>audio/</strong>: mpeg, wav, ogg</li><li><strong>multipart/form-data</strong>: file upload forms</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Get correct Content-Type values without Googling each time</li>
+        <li>Avoid browser download prompts caused by wrong MIME types</li>
+        <li>Essential for REST API and web server configuration</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What MIME type should I use for JSON API responses?</strong><p>Use <code>application/json</code> with <code>charset=utf-8</code>.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is <code>application/octet-stream</code> used for?</strong><p>It is the generic binary MIME type — browsers treat it as a download prompt when served as a response.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

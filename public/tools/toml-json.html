@@ -201,7 +201,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is TOML ↔ JSON Converter?</h2>
+    <p class="ds-seo-section__body">Converts TOML configuration files (used by Rust, Python, Hugo, and others) to JSON, and JSON back to TOML. Supports tables, arrays of tables, inline tables, and all TOML v1.0 data types.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use TOML ↔ JSON Converter</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste your TOML or JSON.</li>
+      <li>Select conversion direction.</li>
+      <li>Click <strong>Convert</strong>.</li>
+      <li>Copy the output.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="yaml-json.html" class="ds-related-card">
@@ -227,6 +243,40 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand TOML ↔ JSON Converter</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>TOML input:</p><pre>[package]
+name = "myapp"
+version = "1.0.0"</pre><p>JSON output: <code>{"package":{"name":"myapp","version":"1.0.0"}}</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>TOML Features Supported</summary>
+      <div class="ds-seo-collapse__body"><ul><li>Basic key-value pairs</li><li>Section tables ([table])</li><li>Array of tables ([[array]])</li><li>Inline tables {key = "val"}</li><li>Datetime values (RFC 3339)</li><li>Multi-line strings (triple quotes)</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Convert Cargo.toml or pyproject.toml for API use</li>
+        <li>Debug TOML parsing issues by converting to JSON</li>
+        <li>Migrate from TOML to JSON config format</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What TOML version is supported?</strong><p>TOML v1.0 is fully supported.</p></div>
+        <div class="ds-seo-faq-item"><strong>Are TOML comments preserved in JSON?</strong><p>No — JSON does not support comments; they are dropped during conversion.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

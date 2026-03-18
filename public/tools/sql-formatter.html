@@ -261,7 +261,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is SQL Formatter?</h2>
+    <p class="ds-seo-section__body">Formats SQL queries with consistent indentation, keyword capitalization, and clause alignment. Supports MySQL, PostgreSQL, SQLite, and SQL Server dialects.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use SQL Formatter</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste your SQL query.</li>
+      <li>Select your database dialect (MySQL, PostgreSQL, etc.).</li>
+      <li>Click <strong>Format</strong>.</li>
+      <li>Copy the formatted query.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="json-formatter.html" class="ds-related-card">
@@ -287,6 +303,43 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand SQL Formatter</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input: <code>select id,name from users where id=1 and active=true</code></p><p>Formatted:</p><pre>SELECT
+  id,
+  name
+FROM users
+WHERE id = 1
+  AND active = TRUE</pre></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Formatting Conventions Applied</summary>
+      <div class="ds-seo-collapse__body"><ul><li>Keywords uppercased (SELECT, FROM, WHERE, JOIN, GROUP BY)</li><li>One clause per line with consistent indentation</li><li>Column lists aligned</li><li>Subqueries indented one level</li><li>CTE (WITH clause) formatted correctly</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Makes complex multi-join queries readable for code review</li>
+        <li>Standardizes SQL style across team files</li>
+        <li>Works on single queries or entire scripts</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it work with CTEs and window functions?</strong><p>Yes — modern SQL syntax including CTEs (WITH), window functions (OVER), and JSON operators is supported.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it check for SQL errors?</strong><p>Formatting normalizes whitespace and casing but does not validate query correctness against a database.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

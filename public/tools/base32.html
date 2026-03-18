@@ -201,7 +201,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Base32 Encoder / Decoder?</h2>
+    <p class="ds-seo-section__body">Encodes text or binary data to Base32 format and decodes Base32 strings back to plain text. Base32 uses a 32-character alphabet (A–Z, 2–7) that is case-insensitive and safe for file names and URLs.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Base32 Encoder / Decoder</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter your text or paste a Base32 string.</li>
+      <li>Select <strong>Encode</strong> or <strong>Decode</strong>.</li>
+      <li>See the result instantly.</li>
+      <li>Copy the output.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="base64.html" class="ds-related-card">
@@ -218,6 +234,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Base32 Encoder / Decoder</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Encode: <code>Hello</code> → <code>JBSWY3DP</code></p><p>Decode: <code>JBSWY3DP</code> → <code>Hello</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Base32 vs Base64</summary>
+      <div class="ds-seo-collapse__body"><p>Base32 uses only uppercase letters and digits 2–7. It is case-insensitive and avoids visually ambiguous characters (0, 1, l, O). Output is ~60% larger than input. Base64 is more compact (33% overhead) but case-sensitive. Base32 is used in TOTP/2FA secret keys (RFC 4648).</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Decode TOTP (Google Authenticator) secret keys</li>
+        <li>Safe for case-insensitive file systems and URLs</li>
+        <li>Avoids ambiguous characters that cause manual transcription errors</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is padding (=) included in the output?</strong><p>Yes — standard Base32 padding with "=" characters is applied by default. Unpadded output is also available.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is Base32 the same as Base32Hex?</strong><p>No — Base32Hex uses a different alphabet (0–9, A–V). This tool uses the standard RFC 4648 alphabet.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

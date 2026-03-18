@@ -582,7 +582,23 @@
   </div>
 
   <!-- ── Related Tools ── -->
-  <div class="related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Chmod Permission Calculator?</h2>
+    <p class="ds-seo-section__body">Calculates Unix file permission values interactively. Check boxes for owner/group/others read/write/execute permissions and see the octal value and symbolic notation (rwxr-xr-x) update in real time.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Chmod Permission Calculator</h2>
+    <ol class="ds-seo-section__list">
+      <li>Check permission boxes for Owner, Group, and Others.</li>
+      <li>See the octal value (e.g., 755) and symbolic notation update instantly.</li>
+      <li>Or enter an octal value to see the permission breakdown.</li>
+      <li>Copy the ready-to-use chmod command.</li>
+    </ol>
+  </section>
+</div>
+<div class="related-tools">
     <div class="related-title">Related Tools</div>
     <div class="related-list">
       <a href="hash-generator.html" class="related-link">🔑 Hash Generator</a>
@@ -590,6 +606,38 @@
       <a href="aes.html" class="related-link">🛡️ AES Encrypt / Decrypt</a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Chmod Permission Calculator</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Checked: Owner rwx, Group r-x, Others r-x → <strong>755</strong> (rwxr-xr-x)</p><p>Command: <code>chmod 755 filename</code></p><p>Common values: 644 (rw-r--r--), 600 (rw-------), 400 (r--------)</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Permission Values</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>755</strong> (rwxr-xr-x): standard for executable files and directories</li><li><strong>644</strong> (rw-r--r--): standard for regular files</li><li><strong>600</strong> (rw-------): private keys and secrets</li><li><strong>777</strong> (rwxrwxrwx): world-writable — use with caution</li><li><strong>400</strong> (r--------): read-only by owner</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>No need to memorize octal values</li>
+        <li>Generate chmod commands instantly</li>
+        <li>Understand permission implications visually</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it support special bits (setuid, sticky)?</strong><p>Yes — setuid (4000), setgid (2000), and sticky bit (1000) can be toggled.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does execute permission mean for a directory?</strong><p>Execute on a directory means the ability to cd into it and access its contents.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 
 </div><!-- /ds-tool-main -->
 

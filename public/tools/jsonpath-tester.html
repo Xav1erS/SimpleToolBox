@@ -323,7 +323,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is JSONPath Tester?</h2>
+    <p class="ds-seo-section__body">Tests JSONPath expressions against JSON data in real time. Supports dot notation, bracket notation, filter expressions, recursive descent, and array slicing per the RFC 9535 JSONPath specification.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use JSONPath Tester</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste your JSON in the top panel.</li>
+      <li>Enter a JSONPath expression (e.g., <code>$.store.books[*].title</code>).</li>
+      <li>See matching nodes highlighted and listed instantly.</li>
+      <li>Copy the results.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="json-formatter.html" class="ds-related-card">
@@ -349,6 +365,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand JSONPath Tester</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>JSON: <code>{"users":[{"name":"Alice","age":30},{"name":"Bob","age":17}]}</code></p><p>Path: <code>$.users[?(@.age &gt;= 18)].name</code></p><p>Result: <code>["Alice"]</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>JSONPath Syntax Reference</summary>
+      <div class="ds-seo-collapse__body"><ul><li><code>$</code> root element</li><li><code>.key</code> child key</li><li><code>[*]</code> all array elements</li><li><code>[0]</code> first element, <code>[-1]</code> last element</li><li><code>..key</code> recursive descent</li><li><code>[?(@.age &gt; 18)]</code> filter expression</li><li><code>[1:3]</code> array slice</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Test JSONPath expressions before embedding in code</li>
+        <li>Debug complex nested JSON structures</li>
+        <li>Works with any API response or config file</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is JSONPath the same as jq?</strong><p>No — jq is a separate query language. JSONPath is standardized in RFC 9535 and supported by many libraries.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I use multiple expressions at once?</strong><p>Currently one expression at a time — results show all matching nodes.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

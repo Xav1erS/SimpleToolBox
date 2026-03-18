@@ -240,7 +240,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is XML Formatter?</h2>
+    <p class="ds-seo-section__body">Formats and indents XML documents for readability, and minifies XML to reduce size. Handles namespaces, CDATA sections, processing instructions, and deeply nested structures.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use XML Formatter</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste your XML.</li>
+      <li>Click <strong>Format</strong> to beautify or <strong>Minify</strong> to compress.</li>
+      <li>Adjust indent size.</li>
+      <li>Copy the output.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="json-formatter.html" class="ds-related-card">
@@ -266,6 +282,40 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand XML Formatter</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input: <code>&lt;root&gt;&lt;item id="1"&gt;Hello&lt;/item&gt;&lt;/root&gt;</code></p><p>Formatted:</p><pre>&lt;root&gt;
+  &lt;item id="1"&gt;Hello&lt;/item&gt;
+&lt;/root&gt;</pre></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Format vs Minify XML</summary>
+      <div class="ds-seo-collapse__body"><p><strong>Format</strong>: adds indentation per nesting level for human readability — ideal for API response inspection.</p><p><strong>Minify</strong>: strips whitespace between tags to reduce transfer size.</p><p>Both modes check basic XML well-formedness (proper nesting and closing tags).</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Instant readability for complex SOAP or API XML responses</li>
+        <li>Works on RSS feeds, SVG, Maven/Gradle config, and XHTML</li>
+        <li>No XML editor or IDE needed for quick inspection</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it validate XML schema (XSD)?</strong><p>It checks well-formedness but not schema validation against an XSD or DTD.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it handle XML namespaces?</strong><p>Yes — namespace prefixes and xmlns declarations are preserved.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

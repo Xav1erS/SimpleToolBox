@@ -255,7 +255,22 @@
   </div>
 
   <!-- Related tools -->
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is IP Address Lookup?</h2>
+    <p class="ds-seo-section__body">Looks up geolocation, ISP, organization, and ASN information for any IPv4 or IPv6 address. Shows country, region, city, and approximate coordinates using the public GeoIP database.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use IP Address Lookup</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter an IPv4 or IPv6 address, or click <strong>My IP</strong> to look up your own.</li>
+      <li>See country, region, city, ISP, organization, and timezone.</li>
+      <li>View the approximate location on an embedded map.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="url-encode.html" class="ds-related-card">
@@ -281,6 +296,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand IP Address Lookup</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input: <code>8.8.8.8</code></p><ul><li>Country: United States</li><li>City: Mountain View, CA</li><li>ISP: Google LLC</li><li>ASN: AS15169</li><li>Timezone: America/Los_Angeles</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>GeoIP Accuracy Notes</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>Country-level</strong>: ~99% accurate</li><li><strong>City-level</strong>: 75–85% for most residential IPs</li><li><strong>ISP/ASN</strong>: highly accurate</li><li><strong>VPN/proxy IPs</strong>: show the VPN provider location, not the user's real location</li><li><strong>Mobile IPs</strong>: may show the carrier's gateway city, not the user's city</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Debug geoblocking issues in web applications</li>
+        <li>Identify suspicious IP addresses in server logs</li>
+        <li>Verify CDN edge node or API gateway origin locations</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is GeoIP precise enough to find a home address?</strong><p>No — city-level accuracy means within 25–50 km. GeoIP is never precise enough for individual location tracking.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it work with IPv6?</strong><p>Yes — both IPv4 and IPv6 addresses are supported.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

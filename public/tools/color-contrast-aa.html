@@ -267,7 +267,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is WCAG AA Color Contrast Checker?</h2>
+    <p class="ds-seo-section__body">Checks color contrast ratios against WCAG 2.1 AA and AAA accessibility standards. Enter foreground and background colors to see if they pass for normal text, large text, and UI components.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use WCAG AA Color Contrast Checker</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter the foreground (text) color — hex, RGB, or HSL.</li>
+      <li>Enter the background color.</li>
+      <li>See the contrast ratio and AA/AAA pass/fail status.</li>
+      <li>Adjust colors until you achieve the required ratio.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="color-blindness.html" class="ds-related-card"><span class="ds-related-icon">&#128065;</span><div><div class="ds-related-name">Color Blindness Simulator</div><div class="ds-related-desc">Simulate color vision deficiency</div></div></a>
@@ -275,6 +291,38 @@
       <a href="color-palette.html" class="ds-related-card"><span class="ds-related-icon">&#127912;</span><div><div class="ds-related-name">Color Palette</div><div class="ds-related-desc">Generate accessible color palettes</div></div></a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand WCAG AA Color Contrast Checker</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>White <code>#FFFFFF</code> on Dark Blue <code>#1E3A5F</code>:</p><ul><li>Contrast ratio: 9.3:1</li><li>AA Normal text (4.5:1 min): ✓ Pass</li><li>AAA Normal text (7:1 min): ✓ Pass</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>WCAG Contrast Requirements</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>AA — Normal text</strong>: 4.5:1 minimum</li><li><strong>AA — Large text</strong> (18pt+ or 14pt bold): 3:1 minimum</li><li><strong>AA — UI components/graphics</strong>: 3:1 minimum</li><li><strong>AAA — Normal text</strong>: 7:1 (enhanced)</li><li><strong>AAA — Large text</strong>: 4.5:1 (enhanced)</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Required for WCAG 2.1 Level AA compliance</li>
+        <li>Avoid accessibility violations and legal risk under ADA/Section 508</li>
+        <li>Design inclusive interfaces for low-vision and elderly users</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the difference between AA and AAA?</strong><p>AA is the standard compliance level required by most regulations. AAA is enhanced — not required for all content but improves readability.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does this check non-text contrast?</strong><p>WCAG 1.4.11 requires 3:1 contrast for UI components and graphical elements — this checker covers that requirement.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

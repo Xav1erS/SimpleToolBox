@@ -204,7 +204,23 @@
   <div class="status-grid" id="statusGrid"></div>
   <div class="no-results" id="noResults" style="display:none;">No matching codes found.</div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is HTTP Status Code Reference?</h2>
+    <p class="ds-seo-section__body">A searchable reference for all HTTP status codes with descriptions, usage context, and examples. Covers 1xx–5xx ranges from informational responses to server errors.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use HTTP Status Code Reference</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter a status code number or keyword in the search box.</li>
+      <li>See the code name, full description, and usage notes.</li>
+      <li>Browse by category: 2xx success, 3xx redirect, 4xx client error, 5xx server error.</li>
+      <li>Copy a status code or description for use in your code.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="url-encode.html" class="ds-related-card">
@@ -230,6 +246,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand HTTP Status Code Reference</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p><strong>200 OK</strong>: Request succeeded, response body contains the result.</p><p><strong>404 Not Found</strong>: Server cannot find the requested resource.</p><p><strong>301 Moved Permanently</strong>: URL has changed — all future requests should use the new URL.</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>HTTP Status Code Categories</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>1xx Informational</strong>: 100 Continue, 101 Switching Protocols</li><li><strong>2xx Success</strong>: 200 OK, 201 Created, 204 No Content, 206 Partial Content</li><li><strong>3xx Redirects</strong>: 301, 302, 304 Not Modified, 307, 308</li><li><strong>4xx Client Errors</strong>: 400, 401, 403, 404, 409, 422, 429 Too Many Requests</li><li><strong>5xx Server Errors</strong>: 500, 502, 503, 504</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Quick lookup during API development without leaving the browser</li>
+        <li>Understand the difference between 301 and 302, or 401 and 403</li>
+        <li>Reference for building correct REST API responses</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>When should I use 301 vs 302?</strong><p>Use 301 (Moved Permanently) for permanent URL changes — search engines update their index. Use 302 for temporary redirects.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the difference between 401 and 403?</strong><p>401 Unauthorized means authentication is required. 403 Forbidden means authenticated but not allowed.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

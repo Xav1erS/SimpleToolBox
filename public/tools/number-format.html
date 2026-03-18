@@ -231,7 +231,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Number Formatter?</h2>
+    <p class="ds-seo-section__body">Formats numbers with locale-specific separators, decimal places, and currency symbols. Supports thousands separators, scientific notation, percentage, and custom decimal precision.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Number Formatter</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter a number.</li>
+      <li>Choose format type: decimal, currency, percentage, or scientific.</li>
+      <li>Select locale (US, EU, Indian, etc.).</li>
+      <li>Copy the formatted result.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="number-base.html" class="ds-related-card"><span class="ds-related-icon">&#128290;</span><div><div class="ds-related-name">Number Base Converter</div><div class="ds-related-desc">Convert between binary, octal, decimal, hex</div></div></a>
@@ -239,6 +255,38 @@
       <a href="random-number-generator.html" class="ds-related-card"><span class="ds-related-icon">&#127922;</span><div><div class="ds-related-name">Random Number Generator</div><div class="ds-related-desc">Generate random numbers and dice rolls</div></div></a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Number Formatter</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input: <code>1234567.89</code></p><ul><li>US: <code>$1,234,567.89</code></li><li>European: <code>1.234.567,89</code></li><li>Indian: <code>12,34,567.89</code></li><li>Scientific: <code>1.23e+6</code></li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Locale Formatting Differences</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>US/UK</strong>: 1,234.56 (comma thousands, period decimal)</li><li><strong>Europe</strong>: 1.234,56 (period thousands, comma decimal)</li><li><strong>India</strong>: 12,34,567 (lakh grouping)</li><li><strong>Scientific</strong>: 1.23×10<sup>6</sup></li></ul><p>Implemented using the browser's native <code>Intl.NumberFormat</code> API.</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Generate correctly formatted numbers for reports and invoices</li>
+        <li>Test how numbers display in different locales</li>
+        <li>No locale library needed — uses native browser API</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Can I set custom decimal places?</strong><p>Yes — decimal precision is adjustable from 0 to 20 places.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it support cryptocurrency formatting?</strong><p>You can set custom decimal places for crypto amounts (e.g., 8 decimal places for Bitcoin).</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

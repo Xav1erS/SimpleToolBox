@@ -242,7 +242,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is YAML ↔ JSON Converter?</h2>
+    <p class="ds-seo-section__body">Converts YAML configuration files to JSON and JSON back to YAML. Supports multi-document YAML, anchors, aliases, and all standard YAML data types including dates and binary.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use YAML ↔ JSON Converter</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste YAML or JSON into the input.</li>
+      <li>Select conversion direction or let it auto-detect.</li>
+      <li>Adjust output indentation for YAML.</li>
+      <li>Copy the result.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="json-formatter.html" class="ds-related-card">
@@ -268,6 +284,42 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand YAML ↔ JSON Converter</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>YAML input:</p><pre>name: Alice
+age: 30
+roles:
+  - admin
+  - user</pre><p>JSON output: <code>{"name":"Alice","age":30,"roles":["admin","user"]}</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>YAML vs JSON</summary>
+      <div class="ds-seo-collapse__body"><p>YAML is more human-readable (no braces/brackets, supports comments, allows anchors &amp; for reuse). JSON is more widely supported in APIs and programming languages. Both represent the same data types. Use YAML for config files, JSON for API payloads.</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Convert Kubernetes/Docker config to JSON for API calls</li>
+        <li>Check YAML validity by converting and back</li>
+        <li>Migrate between config formats without manual editing</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it handle YAML anchors and aliases?</strong><p>Yes — anchors (&amp;) and aliases (*) are resolved in the JSON output.</p></div>
+        <div class="ds-seo-faq-item"><strong>Are YAML comments preserved in JSON?</strong><p>No — JSON does not support comments, so they are dropped during conversion.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

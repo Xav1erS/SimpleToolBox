@@ -377,7 +377,22 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is URL Parser?</h2>
+    <p class="ds-seo-section__body">Parses any URL into its components: scheme, host, port, path, query string parameters (as key-value pairs), and fragment. Percent-encoded sequences are decoded for easy reading.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use URL Parser</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste or type any URL.</li>
+      <li>See all components extracted instantly: protocol, hostname, port, pathname, query params, fragment.</li>
+      <li>Copy individual components as needed.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="url-encode.html" class="ds-related-card">
@@ -403,6 +418,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand URL Parser</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input: <code>https://api.example.com:8080/v1/users?page=2&amp;limit=50#results</code></p><ul><li>Protocol: <code>https</code></li><li>Host: <code>api.example.com</code></li><li>Port: <code>8080</code></li><li>Path: <code>/v1/users</code></li><li>Query: <code>page=2, limit=50</code></li><li>Fragment: <code>results</code></li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>URL Structure Reference</summary>
+      <div class="ds-seo-collapse__body"><p>Full URL structure: <code>scheme://userinfo@host:port/path?query#fragment</code></p><ul><li>Scheme: http, https, ftp, file, mailto</li><li>Host: domain name or IPv4/IPv6 address</li><li>Port: defaults to 80 (http) or 443 (https) if omitted</li><li>Query: key=value pairs separated by &amp;</li><li>Fragment: client-side only, never sent to the server</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Debug complex URLs with many query parameters</li>
+        <li>Extract specific URL parts without writing regex</li>
+        <li>Understand URL structure during web development</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Are percent-encoded characters decoded?</strong><p>Yes — %20 → space and all other percent-encoded sequences are decoded in the display.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it support data: URIs?</strong><p>data: URIs are parsed but the data payload is not decoded.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

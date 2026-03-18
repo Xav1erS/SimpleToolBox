@@ -230,7 +230,23 @@
     <strong>Note:</strong> JSON input must be an array of objects (e.g. <code>[{"key":"value"}]</code>). Nested objects are flattened to their string representation. All processing happens in your browser — no data is uploaded.
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is JSON ↔ CSV Converter?</h2>
+    <p class="ds-seo-section__body">Converts JSON arrays to CSV spreadsheet format and CSV data back to JSON. Automatically detects column headers from JSON keys and handles nested objects by flattening them.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use JSON ↔ CSV Converter</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste a JSON array or CSV data.</li>
+      <li>Click <strong>Convert</strong>.</li>
+      <li>Choose delimiter: comma, tab, or semicolon.</li>
+      <li>Copy or download the converted output.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <div class="ds-related-tools__title">Related Tools</div>
     <div class="ds-related-tools__list">
       <a href="./json-formatter.html" class="ds-related-tools__item">JSON Formatter</a>
@@ -238,6 +254,40 @@
       <a href="./base64.html" class="ds-related-tools__item">Base64 Encoder</a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand JSON ↔ CSV Converter</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>JSON input: <code>[{"name":"Alice","age":30},{"name":"Bob","age":25}]</code></p><p>CSV output:</p><pre>name,age
+Alice,30
+Bob,25</pre></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Handling Complex JSON</summary>
+      <div class="ds-seo-collapse__body"><p>Flat arrays convert directly. Nested objects are flattened with dot notation (<code>address.city</code> becomes a column). Arrays within objects are serialized as JSON strings. Null values become empty CSV cells. All column headers are auto-detected from the first record.</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>No Excel macros or Python scripts needed for quick conversion</li>
+        <li>Handles nested JSON automatically</li>
+        <li>Works for API output → spreadsheet workflows</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it handle arrays nested inside objects?</strong><p>Nested arrays are converted to JSON string columns. For complex nesting, consider pre-processing your JSON first.</p></div>
+        <div class="ds-seo-faq-item"><strong>What CSV delimiters are supported?</strong><p>Comma, semicolon, tab, and pipe (|) delimiters are supported.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 
 </main>
 

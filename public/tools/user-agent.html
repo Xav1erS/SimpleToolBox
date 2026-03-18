@@ -236,7 +236,23 @@
     <strong>Note:</strong> UA string parsing is heuristic-based. Spoofed or custom User Agents may not be identified correctly. All processing happens entirely in your browser — no data is sent to any server.
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is User Agent Parser?</h2>
+    <p class="ds-seo-section__body">Parses User-Agent strings to identify browser name and version, operating system, device type (mobile/desktop/tablet), rendering engine, and bot detection flags. Useful for debugging analytics and server logs.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use User Agent Parser</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste a User-Agent string, or click <strong>Use My UA</strong> to auto-detect your own.</li>
+      <li>See browser, OS, device type, and engine broken down.</li>
+      <li>Check the mobile and bot detection flags.</li>
+      <li>Copy results for logging or debugging.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <div class="ds-related-tools__title">Related Tools</div>
     <div class="ds-related-tools__list">
       <a href="./url-encode.html" class="ds-related-tools__item">URL Encode / Decode</a>
@@ -244,6 +260,38 @@
       <a href="./hash-generator.html" class="ds-related-tools__item">Hash Generator</a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand User Agent Parser</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>UA: <code>Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15...</code></p><p>→ Browser: Safari 17, OS: iOS 17, Device: Mobile, Engine: WebKit</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>User Agent String Components</summary>
+      <div class="ds-seo-collapse__body"><p>UA strings follow a legacy format for historical compatibility. Key tokens: browser identifier (Chrome/119.0, Firefox/120.0), OS (Windows NT 10.0, Intel Mac OS X), mobile signals (Mobile, Android, iPhone), engine (WebKit, Gecko, Blink), and bot markers (Googlebot, Bingbot).</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Debug analytics showing unexpected browsers or OS</li>
+        <li>Identify bots and crawlers in server access logs</li>
+        <li>Understand what device a test request came from</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Can User-Agent strings be trusted?</strong><p>No — they can be spoofed by any client. Use UA parsing for analytics and soft detection, not for security decisions.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it detect bots?</strong><p>Yes — common crawler bots (Googlebot, Bingbot, AhrefsBot, etc.) are flagged automatically.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 
 </main>
 

@@ -326,7 +326,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Bcrypt Hash Generator / Verifier?</h2>
+    <p class="ds-seo-section__body">Generates bcrypt password hashes and verifies passwords against existing hashes. Bcrypt is a widely-used adaptive password hashing algorithm with a configurable cost factor for brute-force resistance.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Bcrypt Hash Generator / Verifier</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter a password to hash.</li>
+      <li>Set the cost factor (10–14 recommended for most applications).</li>
+      <li>Click <strong>Hash</strong> to generate the bcrypt string.</li>
+      <li>Or enter a password and existing bcrypt hash and click <strong>Verify</strong>.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="hash-generator.html" class="ds-related-card">
@@ -352,6 +368,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Bcrypt Hash Generator / Verifier</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Password: <code>mySecret123</code> at cost 10</p><p>Hash: <code>$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy</code></p><p>Verify: same password + hash → ✓ Match</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Understanding the Cost Factor</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>Cost 10</strong>: ~100ms per hash — default, safe for most web apps</li><li><strong>Cost 12</strong>: ~400ms — extra security for sensitive accounts</li><li><strong>Cost 14</strong>: ~1.5s — high security, noticeable UX delay</li></ul><p>Higher cost exponentially increases computation for attackers. Choose based on your acceptable authentication latency.</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Test bcrypt hashing without writing server-side code</li>
+        <li>Verify that a known password matches a stored hash</li>
+        <li>Understand cost factor performance tradeoffs before configuring your auth system</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is this safe to use with real passwords?</strong><p>This tool runs entirely in your browser — nothing is transmitted. Still, avoid testing production credentials in any online tool as a precaution.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the $2a$ prefix?</strong><p>It is the bcrypt version identifier. $2a$, $2b$, and $2y$ are all valid bcrypt variants; $2b$ is the current standard.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <style>

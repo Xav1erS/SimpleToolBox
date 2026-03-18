@@ -170,7 +170,23 @@
     <div class="no-result" id="noResult" style="display:none">No ports match your search.</div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Port Number Reference?</h2>
+    <p class="ds-seo-section__body">A searchable reference for well-known TCP/UDP port numbers. Lists services, protocols, and descriptions for all system ports (0–1023) and common registered ports.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Port Number Reference</h2>
+    <ol class="ds-seo-section__list">
+      <li>Search by port number or service name (e.g., "ssh", "mysql", "3306").</li>
+      <li>See port usage, protocol (TCP/UDP), and service description.</li>
+      <li>Filter by TCP, UDP, or both.</li>
+      <li>Copy the port number for firewall rules or config files.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="http-status.html" class="ds-related-card"><span class="ds-related-icon">&#128225;</span><div><div class="ds-related-name">HTTP Status Codes</div><div class="ds-related-desc">Complete HTTP status code reference</div></div></a>
@@ -178,6 +194,38 @@
       <a href="user-agent.html" class="ds-related-card"><span class="ds-related-icon">&#128084;</span><div><div class="ds-related-name">User-Agent Parser</div><div class="ds-related-desc">Parse and decode User-Agent strings</div></div></a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Port Number Reference</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Port <strong>22</strong> → SSH (TCP): Secure Shell remote access</p><p>Port <strong>80</strong> → HTTP (TCP): Web traffic</p><p>Port <strong>443</strong> → HTTPS (TCP): Encrypted web traffic</p><p>Port <strong>3306</strong> → MySQL (TCP): Database connections</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Port Number Ranges</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>0–1023</strong>: Well-known system ports — require root/admin to bind on Unix</li><li><strong>1024–49151</strong>: Registered ports — assigned by IANA for specific services</li><li><strong>49152–65535</strong>: Dynamic/ephemeral ports — assigned by OS for outbound connections</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Quick reference when configuring firewalls or network rules</li>
+        <li>Check if a port is already assigned before using it for a custom service</li>
+        <li>Essential reference for DevOps and security work</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it include Docker and Kubernetes common ports?</strong><p>Yes — popular container and orchestration tool ports (2376, 6443, 10250, etc.) are included.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can two services use the same port number?</strong><p>Only if they use different protocols (one TCP, one UDP). Two TCP services cannot share a port on the same interface.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

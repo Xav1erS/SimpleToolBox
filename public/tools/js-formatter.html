@@ -256,7 +256,23 @@
   </div>
 
   <!-- Related tools -->
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is JavaScript Formatter?</h2>
+    <p class="ds-seo-section__body">Formats and indents JavaScript code using Prettier-compatible rules. Handles ES2020+ syntax including arrow functions, template literals, destructuring, and async/await.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use JavaScript Formatter</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste your JavaScript code.</li>
+      <li>Click <strong>Format</strong>.</li>
+      <li>Select indent size and quote style (single/double).</li>
+      <li>Copy the formatted output.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="css-formatter.html" class="ds-related-card">
@@ -282,6 +298,39 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand JavaScript Formatter</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input: <code>const f=x=&gt;x*2;const arr=[1,2,3].map(f)</code></p><p>Formatted:</p><pre>const f = (x) =&gt; x * 2;
+const arr = [1, 2, 3].map(f);</pre></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Formatting Rules Applied</summary>
+      <div class="ds-seo-collapse__body"><ul><li>Consistent spacing around operators and keywords</li><li>Semicolons added per preference</li><li>Single or double quotes normalized throughout</li><li>Arrow function parentheses standardized</li><li>Trailing commas in ES5+ mode</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Makes minified or obfuscated JS readable</li>
+        <li>Standardizes style before committing to version control</li>
+        <li>No local Prettier installation needed</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it work with TypeScript?</strong><p>It formats JavaScript syntax. TypeScript-specific type annotations are passed through without validation.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it handle JSX?</strong><p>Basic JSX syntax is preserved during formatting.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 
 </div><!-- /main -->
 

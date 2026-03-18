@@ -450,7 +450,23 @@
   </div>
 
   <!-- Related tools -->
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is URL Builder?</h2>
+    <p class="ds-seo-section__body">Constructs URLs from components — scheme, host, path, query parameters, and fragment — with each parameter editable as an individual key-value pair. Assembled URL updates in real time.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use URL Builder</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter a base URL or paste an existing URL to parse it into components.</li>
+      <li>Add, edit, or remove query parameters as individual key-value pairs.</li>
+      <li>See the complete URL assembled in real time with proper encoding.</li>
+      <li>Copy the final URL.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <div class="ds-related-tools__title">Related Tools</div>
     <div class="ds-related-tools__list">
       <a href="./url-encode.html" class="ds-related-tools__item">URL Encode / Decode</a>
@@ -458,6 +474,38 @@
       <a href="./hash-generator.html" class="ds-related-tools__item">Hash Generator</a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand URL Builder</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Base: <code>https://api.example.com/v1/users</code></p><p>+ params: page=2, limit=50, sort=name</p><p>Result: <code>https://api.example.com/v1/users?limit=50&amp;page=2&amp;sort=name</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Query Parameter Encoding</summary>
+      <div class="ds-seo-collapse__body"><p>Special characters in parameter values are percent-encoded automatically: space → <code>%20</code>, &amp; → <code>%26</code>, = → <code>%3D</code>. Multi-value parameters (same key, multiple values) are supported. URL fragments (#hash) can also be set. The builder ensures valid output even when values contain special characters.</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Build API URLs without manually encoding parameters</li>
+        <li>Add/remove params without breaking existing URL structure</li>
+        <li>Debug URL construction issues quickly</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it support URL fragments (#hash)?</strong><p>Yes — set the fragment identifier in the dedicated field.</p></div>
+        <div class="ds-seo-faq-item"><strong>Are spaces encoded as %20 or +?</strong><p>Query string encoding uses %20. Form encoding (application/x-www-form-urlencoded) uses +. The builder uses standard %20 encoding.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 
 </main>
 

@@ -246,7 +246,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is JavaScript Minifier?</h2>
+    <p class="ds-seo-section__body">Removes whitespace, comments, and shortens code in JavaScript to minimize file size. Typically reduces JS by 40–70%, improving browser loading times for web applications.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use JavaScript Minifier</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste your JavaScript code.</li>
+      <li>Click <strong>Minify</strong>.</li>
+      <li>Review the size reduction percentage.</li>
+      <li>Copy the minified code for your production build.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="js-formatter.html" class="ds-related-card">
@@ -272,6 +288,40 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand JavaScript Minifier</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input (42 bytes):</p><pre>function add(a, b) {
+  return a + b;
+}</pre><p>Minified (26 bytes): <code>function add(a,b){return a+b}</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Minification Techniques Used</summary>
+      <div class="ds-seo-collapse__body"><ul><li>Whitespace and newline removal</li><li>Comment stripping (single-line and block)</li><li>Semicolon optimization</li><li>Unnecessary parentheses removal</li><li>Boolean shortening (true → !0, false → !1)</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Reduces JavaScript payload and speeds up page loads</li>
+        <li>No webpack or bundler config needed for quick minification</li>
+        <li>Shows exact size comparison before and after</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Can minified code be reversed?</strong><p>Basic whitespace minification is partially reversible with a formatter. Variable renaming is not reversible.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it do tree shaking or dead code elimination?</strong><p>This is a whitespace/comment minifier — for tree shaking, use a bundler like webpack or Rollup.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

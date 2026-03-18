@@ -305,7 +305,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is HMAC Generator?</h2>
+    <p class="ds-seo-section__body">Generates HMAC (Hash-based Message Authentication Code) signatures using SHA-256, SHA-512, SHA-1, or MD5. Used to verify message integrity and authenticity in APIs, webhooks, and digital signatures.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use HMAC Generator</h2>
+    <ol class="ds-seo-section__list">
+      <li>Enter your message.</li>
+      <li>Enter your secret key.</li>
+      <li>Select the hash algorithm (SHA-256 recommended).</li>
+      <li>Copy the HMAC signature in hex or Base64 format.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="hash-generator.html" class="ds-related-card">
@@ -322,6 +338,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand HMAC Generator</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Message: <code>hello</code> | Key: <code>secret</code> | Algorithm: HMAC-SHA256</p><p>Hex: <code>88aab3ede8d3adf94d26ab90d3bafd4a2083070c3bcce9c014ee04a443847c0b</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>HMAC Use Cases in APIs</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>Webhook verification</strong>: GitHub, Stripe, Shopify all use HMAC-SHA256 to sign webhook payloads</li><li><strong>JWT signing</strong>: HS256 algorithm in JSON Web Tokens</li><li><strong>API request signing</strong>: AWS Signature Version 4</li><li><strong>Cookie/session integrity</strong>: server-side HMAC of session data</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Verify webhook payloads without setting up a server</li>
+        <li>Debug HMAC comparison failures in API integrations</li>
+        <li>Test signature generation for any HMAC-based authentication scheme</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the difference between HMAC-SHA256 and plain SHA-256?</strong><p>SHA-256 hashes data without a key — anyone can reproduce it. HMAC requires a shared secret key, providing authentication in addition to integrity.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is SHA-1 HMAC still secure?</strong><p>HMAC-SHA1 is considered weak for new systems. Use HMAC-SHA256 or HMAC-SHA512 for new implementations.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

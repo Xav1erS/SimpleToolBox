@@ -235,7 +235,23 @@
   </div>
 
   <!-- Related tools -->
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Line Tools?</h2>
+    <p class="ds-seo-section__body">A toolkit for processing lists of text lines: sort alphabetically, remove duplicates, filter by keyword, reverse, shuffle, and trim. Perfect for processing lists, log entries, and CSV rows.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Line Tools</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste your list (one item per line).</li>
+      <li>Select the operation: Sort, Deduplicate, Filter, Reverse, or Shuffle.</li>
+      <li>See results instantly.</li>
+      <li>Copy the processed output.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="word-counter.html" class="ds-related-card">
@@ -261,6 +277,43 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Line Tools</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input:</p><pre>banana
+apple
+banana
+cherry</pre><p>After Deduplicate + Sort A→Z:</p><pre>apple
+banana
+cherry</pre></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Available Operations</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>Sort A→Z / Z→A</strong>: alphabetical ordering</li><li><strong>Deduplicate</strong>: remove repeated lines (case-sensitive)</li><li><strong>Filter</strong>: keep or remove lines matching a keyword</li><li><strong>Reverse</strong>: flip line order</li><li><strong>Shuffle</strong>: randomize order</li><li><strong>Trim</strong>: remove leading/trailing whitespace per line</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Faster than writing one-off scripts for list processing</li>
+        <li>Combine multiple operations in sequence</li>
+        <li>Handles large lists entirely in-browser</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is deduplication case-sensitive?</strong><p>Yes — "Apple" and "apple" are treated as different lines. Use the lowercase conversion first if you want case-insensitive deduplication.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I filter with a regex pattern?</strong><p>Yes — the filter field accepts regular expressions.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 
 </div><!-- /main -->
 

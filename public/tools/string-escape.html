@@ -224,7 +224,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is String Escape / Unescape?</h2>
+    <p class="ds-seo-section__body">Escapes or unescapes special characters in strings for safe use in JSON, JavaScript, HTML, or SQL. Handles backslashes, quotes, newlines, Unicode sequences, and more.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use String Escape / Unescape</h2>
+    <ol class="ds-seo-section__list">
+      <li>Paste your string into the input.</li>
+      <li>Choose the target format: JSON, JavaScript, HTML, or SQL.</li>
+      <li>Click Escape or Unescape.</li>
+      <li>Copy the result.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="json-formatter.html" class="ds-related-card">
@@ -250,6 +266,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand String Escape / Unescape</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Input: <code>He said "hello\nworld"</code></p><p>JSON Escaped: <code>"He said \"hello\\nworld\""</code></p><p>HTML Escaped: <code>He said &amp;quot;hello&amp;#10;world&amp;quot;</code></p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Supported Escape Formats</summary>
+      <div class="ds-seo-collapse__body"><ul><li><strong>JSON</strong>: quotes, backslash, newline (\n), tab (\t), Unicode (\uXXXX)</li><li><strong>JavaScript</strong>: similar to JSON plus template literal escaping</li><li><strong>HTML</strong>: &amp;amp; &amp;lt; &amp;gt; &amp;quot; &amp;#39;</li><li><strong>SQL</strong>: single quote doubling or backslash escaping</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Prevents syntax errors when embedding strings in code</li>
+        <li>Handles all edge cases including Unicode surrogate pairs</li>
+        <li>Essential for safely building dynamic strings</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does escaping prevent SQL injection?</strong><p>String escaping reduces risk but is not a substitute for parameterized queries in production code.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is \uXXXX encoding?</strong><p>Unicode escape sequences represent characters by their code point — e.g. \u0041 = "A".</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

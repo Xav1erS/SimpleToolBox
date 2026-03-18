@@ -425,7 +425,23 @@
     </div>
   </div>
 
-  <div class="ds-related-tools">
+  
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is JWT Builder?</h2>
+    <p class="ds-seo-section__body">Creates and signs JSON Web Tokens (JWTs) with custom headers, payload claims, and signing algorithms (HS256, HS384, HS512, RS256). Useful for testing JWT-protected APIs and debugging authentication flows.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use JWT Builder</h2>
+    <ol class="ds-seo-section__list">
+      <li>Fill in the JWT header (algorithm and type).</li>
+      <li>Enter payload claims as JSON (e.g., sub, exp, iat).</li>
+      <li>Enter your signing secret (HMAC) or private key (RSA).</li>
+      <li>Copy the signed JWT and use it in your API call.</li>
+    </ol>
+  </section>
+</div>
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="jwt-decoder.html" class="ds-related-card">
@@ -451,6 +467,38 @@
       </a>
     </div>
   </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand JWT Builder</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body"><p>Header: <code>{"alg":"HS256","typ":"JWT"}</code></p><p>Payload: <code>{"sub":"user123","exp":1735689600,"role":"admin"}</code></p><p>Secret: <code>mySecret</code></p><p>→ Signed JWT (3-part base64url string)</p></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common JWT Claims</summary>
+      <div class="ds-seo-collapse__body"><ul><li><code>sub</code>: subject — user ID or identifier</li><li><code>iss</code>: issuer — your service name</li><li><code>aud</code>: audience — intended recipient</li><li><code>exp</code>: expiration (Unix timestamp)</li><li><code>iat</code>: issued at (Unix timestamp)</li><li><code>jti</code>: JWT ID — for revocation tracking</li></ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body"><ul>
+        <li>Test JWT-protected APIs without running an auth server</li>
+        <li>Generate test tokens with specific claims or expiry</li>
+        <li>Understand JWT structure before implementing in your service</li>
+      </ul></div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Can I use RS256 (asymmetric) signing?</strong><p>Yes — paste your RSA private key in PEM format for RS256/RS384/RS512 signing.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I decode an existing JWT?</strong><p>Use the JWT Decoder tool to inspect any JWT without a secret.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+
 </div>
 
 <script>

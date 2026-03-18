@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Resize Image for Instagram Online Free – All Format Sizes | Simple ToolBox</title>
+  <meta name="description" content="Resize images to exact Instagram dimensions online for free. Feed square, portrait, landscape, Story, and Reels sizes. No upload — runs entirely in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/resize-for-instagram.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/resize-for-instagram.html" />
+  <meta property="og:title" content="Resize Image for Instagram Online Free – All Format Sizes | Simple ToolBox" />
+  <meta property="og:description" content="Resize images to exact Instagram dimensions online for free. Feed square, portrait, landscape, Story, and Reels sizes. No upload — runs entirely in your browser." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Resize Image for Instagram","applicationCategory":"MultimediaApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Resize images to Instagram-optimal dimensions in your browser. Supports Feed Square, Feed Portrait, Feed Landscape, Story, and Reels formats. No uploads — everything runs client-side.","featureList":["Instagram Feed Square 1080×1080","Feed Portrait 1080×1350","Feed Landscape 1080×566","Story and Reels 1080×1920","Cover Fit and Letterbox modes","100% client-side — no uploads"]}
+  </script>
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=15" />
+  <style>
+    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
+
+    .panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    .panel-section { padding: 18px 20px; border-bottom: 1px solid var(--ds-color-border); }
+    .panel-section:last-child { border-bottom: none; }
+    .panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 14px; }
+
+    .preset-list { display: flex; flex-direction: column; gap: 6px; }
+    .preset-btn { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); cursor: pointer; transition: color 0.15s, background 0.15s, border-color 0.15s; text-align: left; }
+    .preset-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .preset-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.4); }
+    .preset-name { font-size: 13px; font-weight: 600; }
+    .preset-size { font-family: var(--ds-font-mono); font-size: 11px; color: var(--ds-color-text-muted); }
+    .preset-btn.active .preset-size { color: rgba(94,106,210,0.7); }
+
+    .fit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .fit-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); cursor: pointer; font-size: 11px; color: var(--ds-color-text-secondary); text-align: center; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .fit-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .fit-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.4); }
+    .fit-icon { font-size: 18px; }
+
+    .bg-row { display: flex; align-items: center; gap: 10px; }
+    .bg-label { font-size: 12px; color: var(--ds-color-text-secondary); flex: 1; }
+    input[type=color] { -webkit-appearance: none; appearance: none; width: 32px; height: 32px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); cursor: pointer; background: none; padding: 2px; }
+    input[type=color]::-webkit-color-swatch-wrapper { padding: 0; }
+    input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
+    .bg-val { font-family: var(--ds-font-mono); font-size: 12px; color: var(--ds-color-text-muted); min-width: 52px; }
+
+    .btn-download { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--ds-color-accent); color: #fff; font-size: 14px; font-weight: 600; padding: 13px; border-radius: var(--ds-radius-md); transition: background 0.2s, transform 0.15s; }
+    .btn-download:hover { background: var(--ds-color-accent-hover); transform: translateY(-1px); }
+    .btn-download:active { transform: translateY(0); }
+    .btn-download:disabled { background: var(--ds-color-surface-strong); color: var(--ds-color-text-muted); cursor: not-allowed; transform: none; }
+
+    .preview-panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; display: flex; flex-direction: column; min-height: 400px; }
+    .preview-header { padding: 14px 18px; border-bottom: 1px solid var(--ds-color-border); display: flex; align-items: center; justify-content: space-between; }
+    .preview-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .btn-change { font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); transition: color 0.15s, background 0.15s; }
+    .btn-change:hover { color: var(--ds-color-text-primary); background: var(--ds-color-surface-strong); }
+    .drop-zone { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 24px; text-align: center; border: 2px dashed var(--ds-color-border); margin: 16px; border-radius: var(--ds-radius-md); transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 40px; opacity: 0.4; }
+    .drop-title { font-size: 15px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 13px; color: var(--ds-color-text-muted); }
+    .drop-formats { font-family: var(--ds-font-mono); font-size: 11px; color: var(--ds-color-text-muted); }
+    .canvas-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px; background: repeating-conic-gradient(#1a1a1f 0% 25%, #141418 0% 50%) 0 0 / 16px 16px; }
+    #previewCanvas { max-width: 100%; max-height: 360px; object-fit: contain; }
+    .img-meta { padding: 14px 18px; border-top: 1px solid var(--ds-color-border); display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .meta-lbl { font-size: 11px; color: var(--ds-color-text-muted); margin-bottom: 2px; }
+    .meta-val { font-family: var(--ds-font-mono); font-size: 13px; color: var(--ds-color-text-primary); }
+    #fileInput { display: none; }
+
+    @media (max-width: 800px) { .main { grid-template-columns: 1fr; padding: 16px 16px 48px; } }
+    @media (max-width: 480px) {
+      .main { padding: 12px 12px 40px; gap: 14px; }
+      .img-meta { grid-template-columns: repeat(2, 1fr); }
+      .panel-section { padding: 14px 14px; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    Resize for Instagram
+    <span class="ds-tool-badge">image</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally — no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">📸</div>
+      <h1 class="ds-tool-header__title">Resize Image for Instagram</h1>
+    </div>
+    <p class="ds-tool-header__desc">Resize any photo to the exact dimensions Instagram recommends — Feed Square, Portrait, Landscape, Story, and Reels. Choose cover crop or letterbox fit. No upload required.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">Instagram</span>
+      <span class="ds-tag">resize</span>
+      <span class="ds-tag">social media</span>
+      <span class="ds-tag">image</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SETTINGS PANEL -->
+  <div class="panel">
+
+    <div class="panel-section">
+      <div class="panel-label">Instagram Format</div>
+      <div class="preset-list">
+        <button class="preset-btn active" data-w="1080" data-h="1080" data-label="Feed Square">
+          <span class="preset-name">Feed Square</span>
+          <span class="preset-size">1080 × 1080</span>
+        </button>
+        <button class="preset-btn" data-w="1080" data-h="1350" data-label="Feed Portrait">
+          <span class="preset-name">Feed Portrait</span>
+          <span class="preset-size">1080 × 1350</span>
+        </button>
+        <button class="preset-btn" data-w="1080" data-h="566" data-label="Feed Landscape">
+          <span class="preset-name">Feed Landscape</span>
+          <span class="preset-size">1080 × 566</span>
+        </button>
+        <button class="preset-btn" data-w="1080" data-h="1920" data-label="Story / Reels">
+          <span class="preset-name">Story / Reels</span>
+          <span class="preset-size">1080 × 1920</span>
+        </button>
+        <button class="preset-btn" data-w="400" data-h="400" data-label="Profile Photo">
+          <span class="preset-name">Profile Photo</span>
+          <span class="preset-size">400 × 400</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-label">Fit Mode</div>
+      <div class="fit-grid">
+        <button class="fit-btn active" data-fit="cover">
+          <span class="fit-icon">✂️</span>
+          Cover Crop
+        </button>
+        <button class="fit-btn" data-fit="contain">
+          <span class="fit-icon">🔲</span>
+          Letterbox
+        </button>
+      </div>
+    </div>
+
+    <div class="panel-section" id="bgSection" style="display:none">
+      <div class="panel-label">Background Color</div>
+      <div class="bg-row">
+        <span class="bg-label">Letterbox fill color</span>
+        <input type="color" id="bgColor" value="#000000" />
+        <span class="bg-val" id="bgVal">#000000</span>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <button class="btn-download" id="btnDownload" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span id="btnLabel">Download Feed Square</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- PREVIEW PANEL -->
+  <div class="preview-panel">
+    <div class="preview-header">
+      <span class="preview-title">Preview</span>
+      <button class="btn-change" id="btnChange" style="display:none">Change image</button>
+    </div>
+
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">📸</div>
+      <div class="drop-title">Drop your image here</div>
+      <div class="drop-sub">or click to browse</div>
+      <div class="drop-formats">JPEG · PNG · WebP · GIF · BMP</div>
+    </div>
+
+    <div class="canvas-wrap" id="canvasWrap" style="display:none">
+      <canvas id="previewCanvas"></canvas>
+    </div>
+
+    <div class="img-meta" id="imgMeta" style="display:none">
+      <div>
+        <div class="meta-lbl">Output Size</div>
+        <div class="meta-val" id="metaOutput">—</div>
+      </div>
+      <div>
+        <div class="meta-lbl">Original</div>
+        <div class="meta-val" id="metaOriginal">—</div>
+      </div>
+      <div>
+        <div class="meta-lbl">Filename</div>
+        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<input type="file" id="fileInput" accept="image/*" />
+<canvas id="canvas" style="display:none"></canvas>
+
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2>What Instagram Image Sizes Should I Use?</h2>
+    <p>Instagram displays images at specific aspect ratios and crops anything outside those ratios. Using the correct dimensions ensures your photo is displayed exactly as intended without unexpected cropping. The recommended sizes are: <strong>Feed Square: 1080×1080</strong>, <strong>Feed Portrait: 1080×1350</strong> (highest reach), <strong>Feed Landscape: 1080×566</strong>, <strong>Story/Reels: 1080×1920</strong>. This tool resizes your image to any of these dimensions directly in your browser — no upload required.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2>How to Resize an Image for Instagram</h2>
+    <ol>
+      <li>Drop your image onto the preview area, or click to browse and select a file.</li>
+      <li>Select the Instagram format: Feed Square, Portrait, Landscape, Story/Reels, or Profile Photo.</li>
+      <li>Choose a <strong>fit mode</strong>: Cover Crop (fills the frame, crops edges) or Letterbox (fits inside, adds padding).</li>
+      <li>For Letterbox mode, choose a background color for the padding areas.</li>
+      <li>Click <strong>Download</strong> to save the resized image.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images to any custom dimensions</div></div></a>
+    <a href="image-compressor.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">Image Compressor</div><div class="ds-related-desc">Reduce image file size with quality control</div></div></a>
+    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary>Instagram Image Sizes Guide (formats, fit modes &amp; FAQs)</summary>
+  <div class="ds-seo-content">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <p>Resize a landscape travel photo for an Instagram feed post:</p>
+        <ul>
+          <li>Input: JPEG, 5472×3648 px (landscape 3:2 ratio)</li>
+          <li>Select: Feed Portrait (1080×1350)</li>
+          <li>Fit: Cover Crop — Instagram gets the full frame, center of the image is kept</li>
+          <li>Output: JPEG, 1080×1350 px — <strong>maximum feed real estate, portrait format that performs better on mobile</strong></li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Instagram Format Reference</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li><strong>Feed Square (1080×1080)</strong> — Classic format, works for any content. Ratio 1:1.</li>
+          <li><strong>Feed Portrait (1080×1350)</strong> — Takes up the most vertical space in the feed. Highest reach per post. Ratio 4:5.</li>
+          <li><strong>Feed Landscape (1080×566)</strong> — Wider than square. Best for panoramic shots. Ratio ~1.91:1.</li>
+          <li><strong>Story / Reels (1080×1920)</strong> — Full-screen vertical format. Ratio 9:16.</li>
+          <li><strong>Profile Photo (400×400)</strong> — Displayed as a circle; center-focused content works best.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Instagram Resizer</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li><strong>No upload</strong> — your photos never leave your browser; processing is 100% local.</li>
+          <li><strong>Exact Instagram dimensions</strong> — presets match Instagram's official recommended pixel sizes.</li>
+          <li><strong>Cover Crop vs Letterbox</strong> — choose between cropping to fill the frame or adding padding to preserve the full image.</li>
+          <li><strong>Live preview</strong> — see exactly how your image will look in the target format before downloading.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-faq-list">
+          <div class="ds-faq-item">
+            <h3>What is the best Instagram image size for reach?</h3>
+            <p>Portrait (1080×1350) takes up the most vertical space in the Instagram feed, which typically leads to better engagement and reach. If your image is already square or landscape, Feed Square (1080×1080) is fine.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>What is the difference between Cover Crop and Letterbox?</h3>
+            <p>Cover Crop scales the image to fill the entire target frame, cropping any overflow from the edges. The center of the image is preserved. Letterbox scales the image to fit entirely within the target frame, adding colored padding bars on the sides or top/bottom (like a movie letterbox).</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>Will Instagram compress my image after uploading?</h3>
+            <p>Yes. Instagram re-compresses uploaded images. To minimize quality loss, upload JPEG at high quality (85–100%) and at the exact pixel dimensions. Uploading an oversized image forces Instagram to scale it down, which adds another compression step.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>Can I use this tool for other social media platforms?</h3>
+            <p>Yes. The Cover Crop and Letterbox fit modes work for any target dimensions. For custom sizes use the <a href="image-resizer.html">Image Resizer</a> tool instead.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<script>
+  const dropZone      = document.getElementById('dropZone');
+  const canvasWrap    = document.getElementById('canvasWrap');
+  const previewCanvas = document.getElementById('previewCanvas');
+  const pCtx          = previewCanvas.getContext('2d');
+  const canvas        = document.getElementById('canvas');
+  const ctx           = canvas.getContext('2d');
+  const btnChange     = document.getElementById('btnChange');
+  const fileInput     = document.getElementById('fileInput');
+  const btnDownload   = document.getElementById('btnDownload');
+  const btnLabel      = document.getElementById('btnLabel');
+  const imgMeta       = document.getElementById('imgMeta');
+  const metaOutput    = document.getElementById('metaOutput');
+  const metaOriginal  = document.getElementById('metaOriginal');
+  const metaFilename  = document.getElementById('metaFilename');
+  const bgColor       = document.getElementById('bgColor');
+  const bgVal         = document.getElementById('bgVal');
+  const bgSection     = document.getElementById('bgSection');
+
+  let srcImage    = null;
+  let targetW     = 1080;
+  let targetH     = 1080;
+  let fitMode     = 'cover';
+  let presetLabel = 'Feed Square';
+  let fileName    = 'image';
+
+  function drawFit(targetCanvas, targetCtx, w, h) {
+    targetCanvas.width  = w;
+    targetCanvas.height = h;
+    if (!srcImage) return;
+    const sw = srcImage.naturalWidth;
+    const sh = srcImage.naturalHeight;
+    if (fitMode === 'cover') {
+      const scale = Math.max(w / sw, h / sh);
+      const dw = sw * scale;
+      const dh = sh * scale;
+      const dx = (w - dw) / 2;
+      const dy = (h - dh) / 2;
+      targetCtx.drawImage(srcImage, dx, dy, dw, dh);
+    } else {
+      targetCtx.fillStyle = bgColor.value;
+      targetCtx.fillRect(0, 0, w, h);
+      const scale = Math.min(w / sw, h / sh);
+      const dw = sw * scale;
+      const dh = sh * scale;
+      const dx = (w - dw) / 2;
+      const dy = (h - dh) / 2;
+      targetCtx.drawImage(srcImage, dx, dy, dw, dh);
+    }
+  }
+
+  function updatePreview() {
+    if (!srcImage) return;
+    drawFit(previewCanvas, pCtx, targetW, targetH);
+    metaOutput.textContent = `${targetW} × ${targetH}`;
+  }
+
+  function loadFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    fileName = file.name.replace(/\.[^.]+$/, '');
+    metaFilename.textContent = file.name;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        srcImage = img;
+        metaOriginal.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
+        dropZone.style.display   = 'none';
+        canvasWrap.style.display = 'flex';
+        imgMeta.style.display    = 'grid';
+        btnChange.style.display  = 'block';
+        btnDownload.disabled = false;
+        updatePreview();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      targetW = parseInt(btn.dataset.w);
+      targetH = parseInt(btn.dataset.h);
+      presetLabel = btn.dataset.label;
+      btnLabel.textContent = `Download ${presetLabel}`;
+      updatePreview();
+    });
+  });
+
+  document.querySelectorAll('.fit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fit-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      fitMode = btn.dataset.fit;
+      bgSection.style.display = fitMode === 'contain' ? '' : 'none';
+      updatePreview();
+    });
+  });
+
+  bgColor.addEventListener('input', () => {
+    bgVal.textContent = bgColor.value;
+    updatePreview();
+  });
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); loadFile(e.dataTransfer.files[0]); });
+  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+  btnChange.addEventListener('click', () => fileInput.click());
+
+  btnDownload.addEventListener('click', () => {
+    if (!srcImage) return;
+    drawFit(canvas, ctx, targetW, targetH);
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const label = presetLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const a = Object.assign(document.createElement('a'), { href: url, download: `${fileName}-instagram-${label}.jpg` });
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }, 'image/jpeg', 0.92);
+  });
+</script>
+</body>
+</html>

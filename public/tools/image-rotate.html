@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Rotate Image Online Free – Rotate &amp; Flip Photos | Simple ToolBox</title>
+  <meta name="description" content="Rotate and flip images online for free. Rotate 90°, 180°, 270°, flip horizontally or vertically. Download as JPEG or PNG instantly. No upload — runs in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/image-rotate.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/image-rotate.html" />
+  <meta property="og:title" content="Rotate Image Online Free – Rotate &amp; Flip Photos | Simple ToolBox" />
+  <meta property="og:description" content="Rotate and flip images online for free. Rotate 90°, 180°, 270°, flip horizontally or vertically. Download as JPEG or PNG instantly. No upload — runs in your browser." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Rotate & Flip","applicationCategory":"MultimediaApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Rotate images 90°, 180°, 270° and flip horizontally or vertically in your browser. Download as JPEG or PNG. No uploads — everything runs client-side.","featureList":["Rotate 90° CW / CCW / 180°","Flip horizontal and vertical","Download as JPEG or PNG","Live canvas preview","100% client-side — no uploads"]}
+  </script>
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=15" />
+  <style>
+    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
+
+    .panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    .panel-section { padding: 18px 20px; border-bottom: 1px solid var(--ds-color-border); }
+    .panel-section:last-child { border-bottom: none; }
+    .panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 14px; }
+
+    .transform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .transform-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .tfm-btn { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 12px 6px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); cursor: pointer; transition: color 0.15s, background 0.15s, border-color 0.15s; font-size: 11px; color: var(--ds-color-text-secondary); }
+    .tfm-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .tfm-btn-icon { font-size: 20px; line-height: 1; }
+
+    .fmt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .fmt-btn { padding: 10px 6px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); text-align: center; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .fmt-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .fmt-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.4); }
+
+    .btn-download { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--ds-color-accent); color: #fff; font-size: 14px; font-weight: 600; padding: 13px; border-radius: var(--ds-radius-md); transition: background 0.2s, transform 0.15s; }
+    .btn-download:hover { background: var(--ds-color-accent-hover); transform: translateY(-1px); }
+    .btn-download:active { transform: translateY(0); }
+    .btn-download:disabled { background: var(--ds-color-surface-strong); color: var(--ds-color-text-muted); cursor: not-allowed; transform: none; }
+
+    .preview-panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; display: flex; flex-direction: column; min-height: 400px; }
+    .preview-header { padding: 14px 18px; border-bottom: 1px solid var(--ds-color-border); display: flex; align-items: center; justify-content: space-between; }
+    .preview-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .btn-change { font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); transition: color 0.15s, background 0.15s; }
+    .btn-change:hover { color: var(--ds-color-text-primary); background: var(--ds-color-surface-strong); }
+    .drop-zone { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 24px; text-align: center; border: 2px dashed var(--ds-color-border); margin: 16px; border-radius: var(--ds-radius-md); transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 40px; opacity: 0.4; }
+    .drop-title { font-size: 15px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 13px; color: var(--ds-color-text-muted); }
+    .drop-formats { font-family: var(--ds-font-mono); font-size: 11px; color: var(--ds-color-text-muted); }
+    .canvas-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px; background: repeating-conic-gradient(#1a1a1f 0% 25%, #141418 0% 50%) 0 0 / 16px 16px; }
+    #previewCanvas { max-width: 100%; max-height: 360px; object-fit: contain; }
+    .img-meta { padding: 14px 18px; border-top: 1px solid var(--ds-color-border); display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .meta-lbl { font-size: 11px; color: var(--ds-color-text-muted); margin-bottom: 2px; }
+    .meta-val { font-family: var(--ds-font-mono); font-size: 13px; color: var(--ds-color-text-primary); }
+    #fileInput { display: none; }
+
+    @media (max-width: 800px) { .main { grid-template-columns: 1fr; padding: 16px 16px 48px; } }
+    @media (max-width: 480px) {
+      .main { padding: 12px 12px 40px; gap: 14px; }
+      .preview-panel { min-height: 260px; }
+      .img-meta { grid-template-columns: repeat(2, 1fr); }
+      .panel-section { padding: 14px 14px; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    Rotate Image
+    <span class="ds-tool-badge">image</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally — no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🔃</div>
+      <h1 class="ds-tool-header__title">Rotate &amp; Flip Image</h1>
+    </div>
+    <p class="ds-tool-header__desc">Rotate images 90°, 180°, 270° and flip horizontally or vertically. Fix sideways phone photos, mirror selfies, or correct orientation errors — no upload required.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">rotate</span>
+      <span class="ds-tag">flip</span>
+      <span class="ds-tag">orientation</span>
+      <span class="ds-tag">image</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SETTINGS PANEL -->
+  <div class="panel">
+
+    <div class="panel-section">
+      <div class="panel-label">Rotate</div>
+      <div class="transform-grid">
+        <button class="tfm-btn" id="btn90cw">
+          <span class="tfm-btn-icon">↻</span>
+          90° CW
+        </button>
+        <button class="tfm-btn" id="btn90ccw">
+          <span class="tfm-btn-icon">↺</span>
+          90° CCW
+        </button>
+        <button class="tfm-btn" id="btn180">
+          <span class="tfm-btn-icon">🔄</span>
+          180°
+        </button>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-label">Flip</div>
+      <div class="transform-grid-2">
+        <button class="tfm-btn" id="btnFlipH">
+          <span class="tfm-btn-icon">↔️</span>
+          Horizontal
+        </button>
+        <button class="tfm-btn" id="btnFlipV">
+          <span class="tfm-btn-icon">↕️</span>
+          Vertical
+        </button>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-label">Output Format</div>
+      <div class="fmt-grid">
+        <button class="fmt-btn active" data-fmt="image/jpeg" data-ext="jpg">JPEG</button>
+        <button class="fmt-btn" data-fmt="image/png" data-ext="png">PNG</button>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <button class="btn-download" id="btnDownload" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span id="btnLabel">Download JPEG</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- PREVIEW PANEL -->
+  <div class="preview-panel">
+    <div class="preview-header">
+      <span class="preview-title">Preview</span>
+      <button class="btn-change" id="btnChange" style="display:none">Change image</button>
+    </div>
+
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">🔃</div>
+      <div class="drop-title">Drop your image here</div>
+      <div class="drop-sub">or click to browse</div>
+      <div class="drop-formats">JPEG · PNG · WebP · GIF · BMP</div>
+    </div>
+
+    <div class="canvas-wrap" id="canvasWrap" style="display:none">
+      <canvas id="previewCanvas"></canvas>
+    </div>
+
+    <div class="img-meta" id="imgMeta" style="display:none">
+      <div>
+        <div class="meta-lbl">Output Size</div>
+        <div class="meta-val" id="metaDimensions">—</div>
+      </div>
+      <div>
+        <div class="meta-lbl">Transform</div>
+        <div class="meta-val" id="metaTransform">None</div>
+      </div>
+      <div>
+        <div class="meta-lbl">Filename</div>
+        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<input type="file" id="fileInput" accept="image/*" />
+<canvas id="canvas" style="display:none"></canvas>
+
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2>What is an Online Image Rotator?</h2>
+    <p>An online image rotator lets you change the orientation of a photo without installing any software. You can rotate images 90° clockwise, 90° counter-clockwise, or 180°, and flip them horizontally or vertically. This is especially useful for fixing photos taken sideways or upside down on a phone, mirroring selfies, or correcting orientation metadata issues. All processing happens in your browser — your images are never uploaded.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2>How to Rotate or Flip an Image</h2>
+    <ol>
+      <li>Drop your image onto the preview area, or click to browse and select a file.</li>
+      <li>Click <strong>90° CW</strong>, <strong>90° CCW</strong>, or <strong>180°</strong> to rotate the image. Each click applies an additional rotation.</li>
+      <li>Use <strong>Flip Horizontal</strong> or <strong>Flip Vertical</strong> to mirror the image.</li>
+      <li>Choose your output format: JPEG (smaller) or PNG (lossless).</li>
+      <li>Click <strong>Download</strong> to save the result.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images to custom dimensions</div></div></a>
+    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG</div></div></a>
+    <a href="image-compressor.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">Image Compressor</div><div class="ds-related-desc">Reduce image file size with quality control</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary>Understand Image Rotation (transforms, use cases &amp; FAQs)</summary>
+  <div class="ds-seo-content">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <p>Fix a sideways phone photo taken in landscape mode:</p>
+        <ul>
+          <li>Input: JPEG, 4032×3024 px (phone landscape orientation)</li>
+          <li>Click <strong>90° CW</strong> once</li>
+          <li>Output: JPEG, 3024×4032 px — <strong>correctly oriented portrait photo</strong></li>
+        </ul>
+        <p>The canvas preview updates instantly so you can confirm the orientation before downloading.</p>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Fix photos taken sideways or upside down on a phone or camera</li>
+          <li>Mirror a selfie so text in the background reads correctly</li>
+          <li>Rotate scanned documents to the correct reading orientation</li>
+          <li>Flip product images horizontally for consistent e-commerce layouts</li>
+          <li>Correct orientation before uploading to social media or websites</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Image Rotator</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li><strong>No upload</strong> — all rotation and flipping happens in your browser; images are never sent to a server.</li>
+          <li><strong>Cumulative transforms</strong> — click rotate or flip multiple times; each action compounds on the previous result.</li>
+          <li><strong>Live preview</strong> — see the rotated image on canvas immediately before downloading.</li>
+          <li><strong>JPEG or PNG output</strong> — choose the format that fits your use case.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-faq-list">
+          <div class="ds-faq-item">
+            <h3>Why does my photo look sideways even after uploading to websites?</h3>
+            <p>Many cameras and phones store rotation information in EXIF metadata rather than physically rotating the pixels. Some websites ignore EXIF orientation data. This tool physically rotates the pixels, producing a file that displays correctly everywhere regardless of EXIF support.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>Does rotating lose image quality?</h3>
+            <p>For 90° and 180° rotations, the pixel data is rearranged without any resampling — no quality is lost for PNG output. For JPEG output, re-encoding applies JPEG compression, which may introduce minor quality changes. Use PNG output for pixel-perfect lossless rotation.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>Can I undo a rotation?</h3>
+            <p>Yes — clicking 90° CW four times returns to the original orientation. Or click 90° CCW to reverse a clockwise rotation. Reload the page to start fresh.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>What is the difference between flip horizontal and flip vertical?</h3>
+            <p>Flip horizontal mirrors the image left-to-right (like a mirror). Flip vertical mirrors it top-to-bottom (upside down). Both can be combined with rotation for any orientation.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<script>
+  const dropZone       = document.getElementById('dropZone');
+  const canvasWrap     = document.getElementById('canvasWrap');
+  const previewCanvas  = document.getElementById('previewCanvas');
+  const pCtx           = previewCanvas.getContext('2d');
+  const canvas         = document.getElementById('canvas');
+  const ctx            = canvas.getContext('2d');
+  const btnChange      = document.getElementById('btnChange');
+  const fileInput      = document.getElementById('fileInput');
+  const btnDownload    = document.getElementById('btnDownload');
+  const btnLabel       = document.getElementById('btnLabel');
+  const imgMeta        = document.getElementById('imgMeta');
+  const metaDimensions = document.getElementById('metaDimensions');
+  const metaTransform  = document.getElementById('metaTransform');
+  const metaFilename   = document.getElementById('metaFilename');
+
+  let srcImage  = null;
+  let rotation  = 0;   // 0, 90, 180, 270
+  let flipH     = false;
+  let flipV     = false;
+  let outputFmt = 'image/jpeg';
+  let outputExt = 'jpg';
+  let fileName  = 'image';
+
+  function drawTransformed(targetCanvas, targetCtx) {
+    const rad = rotation * Math.PI / 180;
+    const sw = srcImage.naturalWidth;
+    const sh = srcImage.naturalHeight;
+    const rotated = rotation === 90 || rotation === 270;
+    const cw = rotated ? sh : sw;
+    const ch = rotated ? sw : sh;
+    targetCanvas.width  = cw;
+    targetCanvas.height = ch;
+    targetCtx.save();
+    targetCtx.translate(cw / 2, ch / 2);
+    targetCtx.rotate(rad);
+    if (flipH) targetCtx.scale(-1, 1);
+    if (flipV) targetCtx.scale(1, -1);
+    targetCtx.drawImage(srcImage, -sw / 2, -sh / 2);
+    targetCtx.restore();
+  }
+
+  function updatePreview() {
+    if (!srcImage) return;
+    drawTransformed(previewCanvas, pCtx);
+    metaDimensions.textContent = `${previewCanvas.width} × ${previewCanvas.height}`;
+    const parts = [];
+    if (rotation) parts.push(`${rotation}°`);
+    if (flipH) parts.push('Flip H');
+    if (flipV) parts.push('Flip V');
+    metaTransform.textContent = parts.length ? parts.join(' + ') : 'None';
+  }
+
+  function loadFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    fileName = file.name.replace(/\.[^.]+$/, '');
+    metaFilename.textContent = file.name;
+    rotation = 0; flipH = false; flipV = false;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        srcImage = img;
+        dropZone.style.display  = 'none';
+        canvasWrap.style.display = 'flex';
+        imgMeta.style.display   = 'grid';
+        btnChange.style.display = 'block';
+        btnDownload.disabled = false;
+        updatePreview();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  document.getElementById('btn90cw').addEventListener('click', () => { rotation = (rotation + 90) % 360; updatePreview(); });
+  document.getElementById('btn90ccw').addEventListener('click', () => { rotation = (rotation + 270) % 360; updatePreview(); });
+  document.getElementById('btn180').addEventListener('click', () => { rotation = (rotation + 180) % 360; updatePreview(); });
+  document.getElementById('btnFlipH').addEventListener('click', () => { flipH = !flipH; updatePreview(); });
+  document.getElementById('btnFlipV').addEventListener('click', () => { flipV = !flipV; updatePreview(); });
+
+  document.querySelectorAll('.fmt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fmt-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      outputFmt = btn.dataset.fmt;
+      outputExt = btn.dataset.ext;
+      btnLabel.textContent = `Download ${btn.textContent}`;
+    });
+  });
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); loadFile(e.dataTransfer.files[0]); });
+  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+  btnChange.addEventListener('click', () => fileInput.click());
+
+  btnDownload.addEventListener('click', () => {
+    if (!srcImage) return;
+    drawTransformed(canvas, ctx);
+    const isPng = outputFmt === 'image/png';
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = Object.assign(document.createElement('a'), { href: url, download: `${fileName}-rotated.${outputExt}` });
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }, outputFmt, isPng ? undefined : 0.92);
+  });
+</script>
+</body>
+</html>

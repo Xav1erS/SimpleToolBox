@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Compress Image to 100KB Online Free – Target File Size Compressor | Simple ToolBox</title>
+  <meta name="description" content="Compress images to a specific file size (100KB, 50KB, 200KB, or any size) online for free. Auto-adjusts quality to hit your target. No upload — runs entirely in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/compress-to-100kb.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/compress-to-100kb.html" />
+  <meta property="og:title" content="Compress Image to 100KB Online Free – Target File Size Compressor | Simple ToolBox" />
+  <meta property="og:description" content="Compress images to a specific file size (100KB, 50KB, 200KB, or any size) online for free. Auto-adjusts quality to hit your target. No upload — runs entirely in your browser." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Compress Image to 100KB","applicationCategory":"MultimediaApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compress images to a specific target file size in your browser. Automatically finds the optimal quality to match your target. Supports JPEG and WebP. No uploads — everything runs client-side.","featureList":["Target file size compression","Presets: 50KB, 100KB, 200KB, 500KB","Custom target size input","JPEG and WebP output","Binary search quality optimization","100% client-side — no uploads"]}
+  </script>
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=15" />
+  <style>
+    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
+
+    .panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    .panel-section { padding: 18px 20px; border-bottom: 1px solid var(--ds-color-border); }
+    .panel-section:last-child { border-bottom: none; }
+    .panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 14px; }
+
+    .target-presets { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 12px; }
+    .target-preset-btn { padding: 9px 6px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); text-align: center; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .target-preset-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .target-preset-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.4); }
+    .target-custom { display: flex; align-items: center; gap: 8px; }
+    .target-input { flex: 1; background: var(--ds-color-bg); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 8px 10px; font-size: 14px; font-family: var(--ds-font-mono); color: var(--ds-color-text-primary); outline: none; }
+    .target-input:focus { border-color: var(--ds-color-accent); }
+    .target-unit { font-size: 13px; color: var(--ds-color-text-muted); white-space: nowrap; }
+
+    .fmt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .fmt-btn { padding: 10px 6px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); text-align: center; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .fmt-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .fmt-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.4); }
+
+    .result-box { background: var(--ds-color-bg); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 14px 16px; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 13px; }
+    .result-row:not(:last-child) { border-bottom: 1px solid var(--ds-color-border); }
+    .result-label { color: var(--ds-color-text-muted); }
+    .result-val { font-family: var(--ds-font-mono); font-weight: 600; color: var(--ds-color-text-primary); }
+    .result-badge { font-size: 12px; font-weight: 600; }
+    .result-badge.ok { color: #22c55e; }
+    .result-badge.warn { color: #f59e0b; }
+
+    .btn-compress { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--ds-color-surface-strong); border: 1px solid var(--ds-color-border); color: var(--ds-color-text-secondary); font-size: 14px; font-weight: 600; padding: 12px; border-radius: var(--ds-radius-md); transition: color 0.15s, background 0.15s; margin-bottom: 10px; }
+    .btn-compress:hover { color: var(--ds-color-text-primary); background: var(--ds-color-surface-tint); }
+    .btn-compress:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-download { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--ds-color-accent); color: #fff; font-size: 14px; font-weight: 600; padding: 13px; border-radius: var(--ds-radius-md); transition: background 0.2s, transform 0.15s; }
+    .btn-download:hover { background: var(--ds-color-accent-hover); transform: translateY(-1px); }
+    .btn-download:active { transform: translateY(0); }
+    .btn-download:disabled { background: var(--ds-color-surface-strong); color: var(--ds-color-text-muted); cursor: not-allowed; transform: none; }
+
+    .preview-panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; display: flex; flex-direction: column; min-height: 400px; }
+    .preview-header { padding: 14px 18px; border-bottom: 1px solid var(--ds-color-border); display: flex; align-items: center; justify-content: space-between; }
+    .preview-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .btn-change { font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); transition: color 0.15s, background 0.15s; }
+    .btn-change:hover { color: var(--ds-color-text-primary); background: var(--ds-color-surface-strong); }
+    .drop-zone { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 24px; text-align: center; border: 2px dashed var(--ds-color-border); margin: 16px; border-radius: var(--ds-radius-md); transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 40px; opacity: 0.4; }
+    .drop-title { font-size: 15px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 13px; color: var(--ds-color-text-muted); }
+    .drop-formats { font-family: var(--ds-font-mono); font-size: 11px; color: var(--ds-color-text-muted); }
+    .img-wrap { flex: 1; display: flex; flex-direction: column; }
+    .img-preview { width: 100%; max-height: 360px; object-fit: contain; background: repeating-conic-gradient(#1a1a1f 0% 25%, #141418 0% 50%) 0 0 / 16px 16px; }
+    .img-meta { padding: 14px 18px; border-top: 1px solid var(--ds-color-border); display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .meta-lbl { font-size: 11px; color: var(--ds-color-text-muted); margin-bottom: 2px; }
+    .meta-val { font-family: var(--ds-font-mono); font-size: 13px; color: var(--ds-color-text-primary); }
+    #fileInput { display: none; }
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 800px) { .main { grid-template-columns: 1fr; padding: 16px 16px 48px; } }
+    @media (max-width: 480px) {
+      .main { padding: 12px 12px 40px; gap: 14px; }
+      .img-meta { grid-template-columns: repeat(2, 1fr); }
+      .panel-section { padding: 14px 14px; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    Compress to 100KB
+    <span class="ds-tool-badge">image</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally — no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🎯</div>
+      <h1 class="ds-tool-header__title">Compress Image to Target Size</h1>
+    </div>
+    <p class="ds-tool-header__desc">Compress an image to a specific file size — 100KB, 50KB, 200KB, or any custom size. Automatically finds the optimal quality to hit your target. No upload required.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">compress</span>
+      <span class="ds-tag">100KB</span>
+      <span class="ds-tag">target size</span>
+      <span class="ds-tag">image</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SETTINGS PANEL -->
+  <div class="panel">
+
+    <div class="panel-section">
+      <div class="panel-label">Target File Size</div>
+      <div class="target-presets">
+        <button class="target-preset-btn" data-kb="50">50 KB</button>
+        <button class="target-preset-btn active" data-kb="100">100 KB</button>
+        <button class="target-preset-btn" data-kb="200">200 KB</button>
+        <button class="target-preset-btn" data-kb="500">500 KB</button>
+      </div>
+      <div class="target-custom">
+        <input type="number" id="targetInput" class="target-input" value="100" min="1" max="50000" />
+        <span class="target-unit">KB max</span>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-label">Output Format</div>
+      <div class="fmt-grid">
+        <button class="fmt-btn active" data-fmt="image/jpeg" data-ext="jpg">JPEG</button>
+        <button class="fmt-btn" data-fmt="image/webp" data-ext="webp">WebP</button>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-label">Result</div>
+      <div class="result-box">
+        <div class="result-row">
+          <span class="result-label">Original</span>
+          <span class="result-val" id="resultOriginal">—</span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Output</span>
+          <span class="result-val" id="resultOutput">—</span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Quality used</span>
+          <span class="result-val" id="resultQuality">—</span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Status</span>
+          <span class="result-badge" id="resultStatus">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <button class="btn-compress" id="btnCompress" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+        Compress
+      </button>
+      <button class="btn-download" id="btnDownload" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span id="btnLabel">Download</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- PREVIEW PANEL -->
+  <div class="preview-panel">
+    <div class="preview-header">
+      <span class="preview-title">Preview</span>
+      <button class="btn-change" id="btnChange" style="display:none">Change image</button>
+    </div>
+
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">🎯</div>
+      <div class="drop-title">Drop your image here</div>
+      <div class="drop-sub">or click to browse</div>
+      <div class="drop-formats">JPEG · PNG · WebP · GIF · BMP</div>
+    </div>
+
+    <div class="img-wrap" id="imgWrap" style="display:none">
+      <img class="img-preview" id="imgPreview" alt="Preview" />
+      <div class="img-meta">
+        <div>
+          <div class="meta-lbl">Dimensions</div>
+          <div class="meta-val" id="metaDimensions">—</div>
+        </div>
+        <div>
+          <div class="meta-lbl">Source Format</div>
+          <div class="meta-val" id="metaFormat">—</div>
+        </div>
+        <div>
+          <div class="meta-lbl">Filename</div>
+          <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<input type="file" id="fileInput" accept="image/*" />
+<canvas id="canvas" style="display:none"></canvas>
+
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2>What is a Target-Size Image Compressor?</h2>
+    <p>A target-size image compressor automatically adjusts JPEG/WebP quality to produce an output file at or below a specific file size. Unlike a simple quality slider where you manually guess the right setting, this tool uses a binary search algorithm — it tries different quality levels and converges on the highest quality that still fits within your target. This is ideal for forms, applications, and upload systems that impose strict file size limits.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2>How to Compress an Image to 100KB</h2>
+    <ol>
+      <li>Drop your image onto the preview area, or click to browse and select a file.</li>
+      <li>Select a target size preset (50KB, 100KB, 200KB, 500KB) or enter a custom value.</li>
+      <li>Choose the output format: JPEG (universal) or WebP (modern, smaller).</li>
+      <li>Click <strong>Compress</strong> — the tool automatically finds the optimal quality level.</li>
+      <li>Review the result (output size, quality used, status) and click <strong>Download</strong>.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="image-compressor.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">Image Compressor</div><div class="ds-related-desc">Reduce image file size with quality control</div></div></a>
+    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images to custom dimensions</div></div></a>
+    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary>Understand Target-Size Compression (algorithm, use cases &amp; FAQs)</summary>
+  <div class="ds-seo-content">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <p>Compress a 4MB vacation photo to fit within a government form's 100KB limit:</p>
+        <ul>
+          <li>Input: JPEG, 4,096 KB, 4032×3024 px</li>
+          <li>Target: 100 KB, JPEG format</li>
+          <li>Tool runs binary search: tries quality 50%, 25%, 37%, 43%, 40%...</li>
+          <li>Output: JPEG at ~40% quality, <strong>97 KB — within the 100KB limit</strong></li>
+        </ul>
+        <p>The algorithm automatically finds the highest quality that still meets your constraint.</p>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Compress profile photos to fit government portals with 100KB or 200KB limits</li>
+          <li>Reduce image size for job application systems that reject large uploads</li>
+          <li>Prepare photos for email attachments with strict size limits</li>
+          <li>Compress images for web hosting plans with bandwidth constraints</li>
+          <li>Reduce image sizes for bulk upload to cloud storage or CMS systems</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Target-Size Compressor</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li><strong>No upload</strong> — compression happens entirely in your browser; images are never sent to a server.</li>
+          <li><strong>Automatic quality search</strong> — binary search algorithm finds the optimal quality; no manual guessing.</li>
+          <li><strong>Custom target</strong> — enter any KB value, not just the presets.</li>
+          <li><strong>JPEG and WebP</strong> — WebP achieves smaller sizes at equivalent quality; choose based on your needs.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-faq-list">
+          <div class="ds-faq-item">
+            <h3>What if the image can't be compressed to my target size?</h3>
+            <p>If the target is extremely small (e.g., 10KB for a high-resolution photo), the tool will compress to the lowest quality possible and show "Best effort — target not fully met." In that case, try resizing the image dimensions first using the <a href="image-resizer.html">Image Resizer</a>, then compressing.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>How does the binary search algorithm work?</h3>
+            <p>The algorithm starts at quality 50%, checks if the output is above or below the target, then halves the search range: if too large, try lower quality; if small enough, try higher quality. After ~15 iterations it converges to the highest quality that produces a file within your target size.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>Why does the output size sometimes exceed the target by a few KB?</h3>
+            <p>JPEG compression is not perfectly predictable — the actual output size depends on image complexity. The algorithm tries to get as close as possible while staying under the target, but final blob size may vary by 1–3 KB. If strict compliance is required, set your target slightly lower (e.g., 95KB instead of 100KB).</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>Should I use JPEG or WebP to achieve the smallest file?</h3>
+            <p>WebP generally produces smaller files at the same visual quality. Use WebP if the platform you're uploading to supports it. Use JPEG for maximum compatibility with older systems and image editors.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</details>
+
+<script>
+  const dropZone       = document.getElementById('dropZone');
+  const imgWrap        = document.getElementById('imgWrap');
+  const imgPreview     = document.getElementById('imgPreview');
+  const btnChange      = document.getElementById('btnChange');
+  const fileInput      = document.getElementById('fileInput');
+  const canvas         = document.getElementById('canvas');
+  const ctx            = canvas.getContext('2d');
+  const btnCompress    = document.getElementById('btnCompress');
+  const btnDownload    = document.getElementById('btnDownload');
+  const btnLabel       = document.getElementById('btnLabel');
+  const targetInput    = document.getElementById('targetInput');
+  const resultOriginal = document.getElementById('resultOriginal');
+  const resultOutput   = document.getElementById('resultOutput');
+  const resultQuality  = document.getElementById('resultQuality');
+  const resultStatus   = document.getElementById('resultStatus');
+  const metaDimensions = document.getElementById('metaDimensions');
+  const metaFormat     = document.getElementById('metaFormat');
+  const metaFilename   = document.getElementById('metaFilename');
+
+  let srcImage  = null;
+  let origSize  = 0;
+  let outputFmt = 'image/jpeg';
+  let outputExt = 'jpg';
+  let fileName  = 'image';
+  let resultBlob = null;
+
+  function fmtBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+  }
+
+  function mimeToLabel(mime) {
+    if (mime === 'image/jpeg') return 'JPEG';
+    if (mime === 'image/png')  return 'PNG';
+    if (mime === 'image/webp') return 'WebP';
+    return mime.split('/')[1].toUpperCase();
+  }
+
+  function toBlob(quality) {
+    return new Promise(resolve => {
+      canvas.toBlob(blob => resolve(blob), outputFmt, quality);
+    });
+  }
+
+  async function compress() {
+    if (!srcImage) return;
+    const targetBytes = parseInt(targetInput.value) * 1024;
+    if (!targetBytes || targetBytes <= 0) return;
+
+    btnCompress.disabled = true;
+    btnCompress.innerHTML = '<span class="spinner"></span> Searching...';
+    btnDownload.disabled = true;
+    resultBlob = null;
+
+    canvas.width  = srcImage.naturalWidth;
+    canvas.height = srcImage.naturalHeight;
+    ctx.drawImage(srcImage, 0, 0);
+
+    let lo = 0.01, hi = 1.0, bestBlob = null, bestQ = 0.01;
+    for (let i = 0; i < 18; i++) {
+      const mid = (lo + hi) / 2;
+      const blob = await toBlob(mid);
+      if (blob.size <= targetBytes) {
+        bestBlob = blob;
+        bestQ = mid;
+        lo = mid;
+      } else {
+        hi = mid;
+      }
+      if (hi - lo < 0.005) break;
+    }
+
+    // If nothing fit under target, use minimum quality
+    if (!bestBlob) {
+      bestBlob = await toBlob(0.01);
+      bestQ = 0.01;
+    }
+
+    resultBlob = bestBlob;
+    resultOutput.textContent = fmtBytes(bestBlob.size);
+    resultQuality.textContent = Math.round(bestQ * 100) + '%';
+
+    if (bestBlob.size <= targetBytes) {
+      resultStatus.textContent = '✓ Target met';
+      resultStatus.className = 'result-badge ok';
+    } else {
+      resultStatus.textContent = '⚠ Best effort';
+      resultStatus.className = 'result-badge warn';
+    }
+
+    const ext = outputExt;
+    btnLabel.textContent = `Download ${mimeToLabel(outputFmt)}`;
+    btnDownload.disabled = false;
+    btnCompress.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Compress Again';
+    btnCompress.disabled = false;
+  }
+
+  document.querySelectorAll('.target-preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.target-preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      targetInput.value = btn.dataset.kb;
+    });
+  });
+
+  targetInput.addEventListener('input', () => {
+    document.querySelectorAll('.target-preset-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.kb === targetInput.value);
+    });
+  });
+
+  document.querySelectorAll('.fmt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fmt-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      outputFmt = btn.dataset.fmt;
+      outputExt = btn.dataset.ext;
+    });
+  });
+
+  btnCompress.addEventListener('click', compress);
+
+  function loadFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    origSize = file.size;
+    fileName = file.name.replace(/\.[^.]+$/, '');
+    resultOriginal.textContent = fmtBytes(origSize);
+    resultOutput.textContent = '—';
+    resultQuality.textContent = '—';
+    resultStatus.textContent = '—';
+    resultStatus.className = 'result-badge';
+    resultBlob = null;
+    btnDownload.disabled = true;
+    metaFilename.textContent = file.name;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        srcImage = img;
+        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
+        metaFormat.textContent = mimeToLabel(file.type);
+        imgPreview.src = e.target.result;
+        dropZone.style.display = 'none';
+        imgWrap.style.display  = 'flex';
+        btnChange.style.display = 'block';
+        btnCompress.disabled = false;
+        btnCompress.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Compress';
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); loadFile(e.dataTransfer.files[0]); });
+  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+  btnChange.addEventListener('click', () => fileInput.click());
+
+  btnDownload.addEventListener('click', () => {
+    if (!resultBlob) return;
+    const url = URL.createObjectURL(resultBlob);
+    const kb = targetInput.value;
+    const a = Object.assign(document.createElement('a'), { href: url, download: `${fileName}-${kb}kb.${outputExt}` });
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+</script>
+</body>
+</html>

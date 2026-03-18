@@ -243,11 +243,55 @@
     </div>
   </div>
 
+  <section class="ds-seo-content" aria-label="About Unix Timestamp Converter">
+    <div class="ds-seo-section">
+      <h2>What is a Unix Timestamp?</h2>
+      <p>A Unix timestamp (also called <strong>epoch time</strong> or <strong>POSIX time</strong>) is the number of seconds that have elapsed since <strong>January 1, 1970, 00:00:00 UTC</strong> — a moment known as the "Unix epoch." It provides a single, timezone-independent number to represent any point in time, making it the universal standard for storing and transmitting timestamps in software systems.</p>
+      <p>Millisecond timestamps (13 digits) multiply the second value by 1000 and are commonly used in JavaScript (<code>Date.now()</code>) and many APIs that require sub-second precision.</p>
+    </div>
+    <div class="ds-seo-section">
+      <h2>How to Use the Timestamp Converter</h2>
+      <ol>
+        <li>The <strong>live clock</strong> at the top shows the current Unix timestamp updating every second.</li>
+        <li>To convert a timestamp to a human-readable date: paste a Unix timestamp (seconds or milliseconds) into the converter and click <strong>Convert</strong>.</li>
+        <li>To convert a date to a timestamp: enter a date/time value in the input field and convert to get the corresponding Unix timestamp.</li>
+        <li>Results are shown in both UTC and your local timezone.</li>
+      </ol>
+    </div>
+    <div class="ds-seo-section">
+      <h2>Common Use Cases</h2>
+      <ul>
+        <li><strong>Debugging API responses</strong> — convert timestamp fields in JSON responses to readable dates.</li>
+        <li><strong>Database queries</strong> — calculate timestamp ranges for date-filtered queries.</li>
+        <li><strong>Log analysis</strong> — convert epoch timestamps in server logs to local time for incident investigation.</li>
+        <li><strong>JWT expiry</strong> — decode the <code>exp</code> and <code>iat</code> claims in JSON Web Tokens, which are Unix timestamps.</li>
+        <li><strong>Scheduling</strong> — verify that cron jobs or scheduled tasks will run at the correct absolute time.</li>
+      </ul>
+    </div>
+    <div class="ds-seo-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="ds-faq-list">
+        <div class="ds-faq-item">
+          <h3>What is the difference between seconds and milliseconds timestamps?</h3>
+          <p>A 10-digit timestamp is in <strong>seconds</strong> (standard Unix time). A 13-digit timestamp is in <strong>milliseconds</strong> (used by JavaScript's <code>Date.now()</code> and many APIs). To convert: divide milliseconds by 1000 to get seconds, or multiply seconds by 1000 to get milliseconds.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>What is the Year 2038 problem?</h3>
+          <p>32-bit signed integers can only store values up to 2,147,483,647 — which corresponds to January 19, 2038. Systems that store Unix timestamps in 32-bit integers will overflow on that date. Modern 64-bit systems are not affected, as they can represent timestamps billions of years into the future.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>Is a Unix timestamp affected by timezones?</h3>
+          <p>No. A Unix timestamp is always relative to UTC and has no timezone. The same timestamp represents the exact same moment in time everywhere on Earth. The conversion to a local time display is purely a presentation concern — the underlying timestamp value is timezone-agnostic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
-      <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert between units of measurement</div></div></a>
-      <a href="uuid-generator.html" class="ds-related-card"><span class="ds-related-icon">🆔</span><div><div class="ds-related-name">UUID Generator</div><div class="ds-related-desc">Generate time-based unique IDs</div></div></a>
+      <a href="timezone-converter.html" class="ds-related-card"><span class="ds-related-icon">🌍</span><div><div class="ds-related-name">Timezone Converter</div><div class="ds-related-desc">Convert times between timezones</div></div></a>
+      <a href="date-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Date Calculator</div><div class="ds-related-desc">Calculate date differences and add/subtract days</div></div></a>
       <a href="cron-builder.html" class="ds-related-card"><span class="ds-related-icon">⏰</span><div><div class="ds-related-name">Cron Builder</div><div class="ds-related-desc">Build and validate cron expressions</div></div></a>
     </div>
   </div>

@@ -210,11 +210,58 @@
 
   </div>
 
+  <section class="ds-seo-content" aria-label="About UUID Generator">
+    <div class="ds-seo-section">
+      <h2>What is a UUID?</h2>
+      <p>A <strong>UUID (Universally Unique Identifier)</strong> is a 128-bit label used to uniquely identify information in computer systems. UUIDs are standardized by RFC 4122 and formatted as 32 hexadecimal digits displayed in five groups: <code>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>.</p>
+      <p>The most common version is <strong>UUID v4</strong>, which is generated using random or pseudo-random numbers. The probability of generating two identical v4 UUIDs is astronomically small — roughly 1 in 5.3 × 10³⁶ — making them safe to use as unique identifiers without a central registry.</p>
+    </div>
+    <div class="ds-seo-section">
+      <h2>How to Use the UUID Generator</h2>
+      <ol>
+        <li>Choose the UUID <strong>version</strong>: v4 (random) is recommended for most use cases; v1 uses timestamp + MAC address.</li>
+        <li>Set the <strong>count</strong> using the slider to generate up to 100 UUIDs at once.</li>
+        <li>Toggle <strong>Uppercase</strong> if your system requires capital hex characters.</li>
+        <li>Click <strong>Generate</strong>, then copy individual UUIDs or use <strong>Copy All</strong>.</li>
+      </ol>
+    </div>
+    <div class="ds-seo-section">
+      <h2>Common Use Cases</h2>
+      <ul>
+        <li><strong>Database primary keys</strong> — use UUID instead of auto-increment integers for distributed systems.</li>
+        <li><strong>Session and token IDs</strong> — generate unpredictable session identifiers for security.</li>
+        <li><strong>File naming</strong> — avoid collisions when saving user-uploaded files.</li>
+        <li><strong>Microservices</strong> — correlate requests across distributed services using a shared trace ID.</li>
+      </ul>
+    </div>
+    <div class="ds-seo-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="ds-faq-list">
+        <div class="ds-faq-item">
+          <h3>What is the difference between UUID v1 and v4?</h3>
+          <p><strong>v1</strong> is time-based: it encodes the current timestamp and the machine's MAC address, making it sortable by creation time but potentially revealing system information. <strong>v4</strong> is purely random and the recommended default for most applications.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>Can two UUIDs ever be the same?</h3>
+          <p>Theoretically yes, but the probability is negligible. For v4, with 2¹²² possible values, you would need to generate about 2.7 × 10¹⁸ UUIDs before having a 50% chance of a single collision.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>Is UUID the same as GUID?</h3>
+          <p>Yes. A GUID (Globally Unique Identifier) is Microsoft's term for the same RFC 4122 standard. The format and generation rules are identical.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>Should I use UUID or auto-increment ID?</h3>
+          <p>Use UUID when you need IDs generated on the client side, across multiple servers, or when you don't want sequential IDs to be guessable. Use auto-increment when you need simplicity and your database is a single instance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate secure random passwords</div></div></a>
-      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">Base64 Encoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div></a>
+      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-256 and more</div></div></a>
       <a href="timestamp.html" class="ds-related-card"><span class="ds-related-icon">🕐</span><div><div class="ds-related-name">Timestamp Converter</div><div class="ds-related-desc">Convert Unix timestamps to dates</div></div></a>
     </div>
   </div>

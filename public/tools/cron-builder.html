@@ -395,6 +395,54 @@
     </div>
   </div>
 
+  <section class="ds-seo-content" aria-label="About Cron Expression Builder">
+    <div class="ds-seo-section">
+      <h2>What is a Cron Expression?</h2>
+      <p>A <strong>cron expression</strong> is a string of five (or six) fields that defines a schedule for recurring tasks in Unix-like systems. Each field represents a time unit: <strong>Minute</strong> (0–59), <strong>Hour</strong> (0–23), <strong>Day of Month</strong> (1–31), <strong>Month</strong> (1–12), and <strong>Day of Week</strong> (0–6, Sunday = 0).</p>
+      <p>Special characters extend the syntax: <code>*</code> means "every", <code>*/n</code> means "every n units", <code>a-b</code> means a range, and <code>a,b</code> means a list. For example, <code>0 9 * * 1-5</code> runs a task at 09:00 every weekday.</p>
+    </div>
+    <div class="ds-seo-section">
+      <h2>How to Use the Cron Builder</h2>
+      <ol>
+        <li>Use the <strong>five field sliders</strong> to set the schedule, or type the expression directly in the expression bar.</li>
+        <li>Select a <strong>preset</strong> (e.g. "Every hour", "Daily at midnight") to start from a common pattern.</li>
+        <li>The <strong>Next runs</strong> panel shows upcoming execution times so you can verify the schedule is correct.</li>
+        <li>Copy the final expression and paste it into your <code>crontab</code>, GitHub Actions workflow, or cloud scheduler.</li>
+      </ol>
+    </div>
+    <div class="ds-seo-section">
+      <h2>Common Use Cases</h2>
+      <ul>
+        <li><strong>Database backups</strong> — run a backup script every night at 02:00: <code>0 2 * * *</code></li>
+        <li><strong>Scheduled reports</strong> — send a weekly email every Monday at 08:00: <code>0 8 * * 1</code></li>
+        <li><strong>Cache invalidation</strong> — clear cached data every 15 minutes: <code>*/15 * * * *</code></li>
+        <li><strong>CI/CD pipelines</strong> — trigger nightly builds or dependency audits automatically.</li>
+        <li><strong>API polling</strong> — fetch data from an external service on a regular interval.</li>
+      </ul>
+    </div>
+    <div class="ds-seo-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="ds-faq-list">
+        <div class="ds-faq-item">
+          <h3>Does cron support seconds?</h3>
+          <p>Standard Unix cron uses five fields (no seconds). Some systems like Spring Scheduler and Quartz add a sixth field for seconds. This builder uses the standard five-field format compatible with Linux crontab, GitHub Actions, and most cloud schedulers.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>What timezone does cron use?</h3>
+          <p>By default, cron uses the server's local timezone. GitHub Actions schedules use UTC. Always confirm the timezone of the system running your cron job to avoid off-by-one-hour errors.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>What does <code>*/5 * * * *</code> mean?</h3>
+          <p>It means "every 5 minutes". The <code>*/n</code> syntax means "every n units starting from 0". So <code>*/5</code> in the minutes field fires at 0, 5, 10, 15, 20 … 55.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>Can I run a job on the last day of the month?</h3>
+          <p>Standard cron doesn't have an "L" (last) modifier — that's a Quartz extension. For standard cron, a common workaround is to schedule for the 28th–31st and check the date inside your script.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">

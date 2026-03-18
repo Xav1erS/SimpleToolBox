@@ -36,6 +36,14 @@ export default [
         ResizeObserver: "readonly",
         IntersectionObserver: "readonly",
         performance: "readonly",
+        // Base64 built-ins
+        btoa: "readonly",
+        atob: "readonly",
+        // Google Analytics
+        dataLayer: "writable",
+        gtag: "readonly",
+        // Project shared script (tool-persist.js)
+        ToolPersist: "readonly",
         // Libraries loaded via CDN in some tools
         dayjs: "readonly",
         hljs: "readonly",

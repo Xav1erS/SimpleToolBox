@@ -1,6 +1,7 @@
 {
   "name": "simpletoolbox",
   "private": true,
+  "type": "module",
   "scripts": {
     "lint": "eslint public/tools/*.html public/*.html --ext .html"
   },

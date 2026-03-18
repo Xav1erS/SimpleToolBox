@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>JWT Decoder / Inspector — Simple ToolBox</title>
+  <title>JWT Decoder Online – Inspect & Decode JSON Web Tokens | Simple ToolBox</title>
   <meta name="description" content="Free online JWT decoder and inspector. Parse JWT header, payload, and signature. View expiration time, algorithm, and all claims. Runs entirely in your browser." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/jwt-decoder.html" />
   <meta property="og:type" content="website" />
@@ -425,6 +425,11 @@
   makeCopyBtn('copyHeader', () => parsedData.header ? JSON.stringify(parsedData.header, null, 2) : '');
   makeCopyBtn('copyPayload', () => parsedData.payload ? JSON.stringify(parsedData.payload, null, 2) : '');
   makeCopyBtn('copySig', () => parsedData.sig || '');
+
+  // Escape key: clear JWT input when focused
+  document.getElementById('jwtInput').addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); document.getElementById('jwtInput').value = ''; decode(''); }
+  });
 </script>
 </body>
 </html>

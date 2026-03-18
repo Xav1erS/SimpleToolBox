@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>TOML to JSON Converter - Simple ToolBox</title>
+  <title>TOML to JSON Converter Online – Parse & Convert TOML Free | Simple ToolBox</title>
   <meta name="description" content="Convert TOML to JSON and JSON to TOML instantly. Supports tables, arrays, inline tables, dates, and all TOML v1.0 types. Free, browser-based, no data sent." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/toml-json.html" />
   <meta property="og:type" content="website" />
@@ -459,6 +459,11 @@ codegen-units = 1`;
 
   document.getElementById('btnCopyHeader').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyHeader')));
   document.getElementById('btnCopyResult').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyResult')));
+
+  // Escape key: clear input when focused
+  inputText.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); inputText.value = ''; outputText.value = ''; outputPanel.classList.remove('has-error'); updateStats(); }
+  });
 </script>
 </body>
 </html>

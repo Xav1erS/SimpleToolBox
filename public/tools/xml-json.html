@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>XML to JSON Converter - Simple ToolBox</title>
+  <title>XML to JSON Converter Online – Free Browser-Based Tool | Simple ToolBox</title>
   <meta name="description" content="Convert XML to JSON and JSON to XML instantly. Handles attributes, nested elements, arrays, and CDATA. Free, browser-based, no data sent." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/xml-json.html" />
   <meta property="og:type" content="website" />
@@ -339,6 +339,11 @@
   document.getElementById('btnClearAll').addEventListener('click', () => { inputText.value=''; outputText.value=''; outputPanel.classList.remove('has-error'); updateStats(); });
   document.getElementById('btnCopyHeader').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyHeader')));
   document.getElementById('btnCopyResult').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyResult')));
+
+  // Escape key: clear input when focused
+  inputText.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); inputText.value = ''; outputText.value = ''; outputPanel.classList.remove('has-error'); updateStats(); }
+  });
 </script>
 </body>
 </html>

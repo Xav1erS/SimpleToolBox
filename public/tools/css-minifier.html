@@ -444,6 +444,11 @@
   ['optComments','optWhitespace','optSemicolons','optZeros'].forEach(id => {
     document.getElementById(id).addEventListener('change', run);
   });
+
+  // Escape key: clear input textarea when focused
+  inputText.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); inputText.value = ''; run(); }
+  });
 </script>
 </body>
 </html>

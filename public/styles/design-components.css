@@ -1774,3 +1774,61 @@
 .ds-card__body {
   padding: 16px;
 }
+
+/* ── SEO CONTENT SECTION ────────────────────────────────── */
+.ds-seo-content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  border-top: 1px solid var(--ds-color-border);
+}
+
+.ds-seo-section h2 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ds-color-text-primary);
+  margin-bottom: 12px;
+  letter-spacing: -0.2px;
+}
+
+.ds-seo-section p {
+  font-size: 14px;
+  color: var(--ds-color-text-secondary);
+  line-height: 1.75;
+}
+
+.ds-seo-section ul,
+.ds-seo-section ol {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ds-seo-section li {
+  font-size: 14px;
+  color: var(--ds-color-text-secondary);
+  line-height: 1.7;
+}
+
+.ds-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ds-faq-item h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ds-color-text-primary);
+  margin-bottom: 6px;
+}
+
+.ds-faq-item p {
+  font-size: 14px;
+  color: var(--ds-color-text-secondary);
+  line-height: 1.7;
+}

@@ -437,6 +437,11 @@ function generateToken(userId) {
   });
   document.getElementById('btnCopyHeader').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyHeader')));
   document.getElementById('btnCopyResult').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyResult')));
+
+  // Escape key: clear input textarea when focused
+  inputText.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); inputText.value = ''; outputText.value = ''; errorMsg.style.display = 'none'; updateStats('', ''); }
+  });
 </script>
 </body>
 </html>

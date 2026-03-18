@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>URL Encode / Decode - Simple ToolBox</title>
+  <title>URL Encoder / Decoder Online – Percent-Encode URLs Free | Simple ToolBox</title>
   <meta
     name="description"
     content="Free online URL encoder and decoder. Encode special characters for safe URLs, decode percent-encoded strings, encode entire URLs or components. Privacy-first, browser-based."
@@ -423,6 +423,10 @@
 
   btnClearInput.addEventListener('click', clearAll);
   btnClearAll.addEventListener('click', clearAll);
+
+  inputText.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); clearAll(); }
+  });
 
   setMode('encode');
 </script>

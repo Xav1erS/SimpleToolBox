@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>QR Code Generator — Simple ToolBox</title>
+  <title>QR Code Generator Free – Create Custom QR Codes Online | Simple ToolBox</title>
   <meta name="description" content="Generate QR codes for URLs, text, WiFi, vCards, and email. Customize colors, error correction level, size, and embed your logo. Download as PNG or SVG. Free, browser-based." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/qr-code-generator.html" />
   <!-- Open Graph -->
@@ -49,6 +49,7 @@
     .field-input { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px; color: var(--text-primary); font-family: var(--font); font-size: 13px; outline: none; transition: border-color 0.15s; width: 100%; }
     .field-input:focus { border-color: var(--border-hover); }
     textarea.field-input { resize: vertical; min-height: 80px; font-family: var(--font); }
+    .field-stat { font-size: 11px; color: var(--text-muted); text-align: right; margin-top: 3px; transition: color 0.15s; }
 
     /* Segment control */
     .seg-ctrl { display: flex; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
@@ -157,6 +158,7 @@
       <div class="field">
         <label class="field-label">Text or URL</label>
         <textarea class="field-input" id="textInput" placeholder="https://example.com" rows="3"></textarea>
+        <div class="field-stat" id="textInputStat">0 chars</div>
       </div>
     </div>
 
@@ -307,6 +309,54 @@
     </div>
   </div>
 
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is a QR Code?</h2>
+      <p>A QR (Quick Response) code is a two-dimensional barcode that encodes data — such as URLs, contact information, Wi-Fi credentials, or plain text — in a grid of black and white squares. Smartphones can scan QR codes instantly using the camera. This generator creates QR codes entirely in your browser with no uploads or tracking.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use the QR Code Generator</h2>
+      <ol>
+        <li>Choose an input type: <strong>Text / URL</strong>, <strong>WiFi</strong>, <strong>VCard</strong>, or <strong>Email</strong>.</li>
+        <li>Enter your content — the QR code generates automatically as you type.</li>
+        <li>Adjust <strong>Error Correction Level</strong> (L / M / Q / H) — higher levels allow more damage tolerance but produce denser codes. Use H when adding a logo.</li>
+        <li>Optionally upload a <strong>logo image</strong> to embed in the center of the QR code.</li>
+        <li>Customize foreground and background colors, then <strong>Download PNG</strong> or <strong>Download SVG</strong>.</li>
+      </ol>
+    </section>
+    <section class="ds-seo-section">
+      <h2>Common Use Cases</h2>
+      <ul>
+        <li>Share website URLs on printed materials, business cards, or posters</li>
+        <li>Share Wi-Fi credentials without typing passwords (scan to connect)</li>
+        <li>Encode vCard contact information for instant phone import</li>
+        <li>Create QR codes for email links, event check-ins, or product packaging</li>
+        <li>Generate branded QR codes with custom colors and logo overlay</li>
+      </ul>
+    </section>
+    <section class="ds-seo-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="ds-faq-list">
+        <div class="ds-faq-item">
+          <h3>What image format should I download — PNG or SVG?</h3>
+          <p>Use <strong>PNG</strong> for web pages, presentations, and social media. Use <strong>SVG</strong> for print materials such as business cards or posters, since SVG scales to any size without losing quality.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>What is Error Correction Level?</h3>
+          <p>Error correction allows a QR code to be read even if part of it is damaged or obscured. Level L (7%) is most compact; Level H (30%) tolerates the most damage. When you add a logo, the tool automatically switches to Level H.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>How much data can a QR code hold?</h3>
+          <p>The maximum depends on the error correction level. At Level L, a QR code can store up to 2,953 bytes of data. At Level H, the limit is 1,273 bytes. URLs are typically 50–200 characters, well within limits.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>Does the QR code expire?</h3>
+          <p>QR codes generated here are static — they do not expire and contain no tracking. The data is encoded directly in the image. For dynamic QR codes that can be updated, you would need a separate redirect service.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
@@ -434,12 +484,18 @@
   }
   syncColor(colorFg, colorFgHex);
   syncColor(colorBg, colorBgHex);
+  colorFg.addEventListener('input', debouncedGenerate);
+  colorBg.addEventListener('input', debouncedGenerate);
+  colorFgHex.addEventListener('input', () => { if (/^#[0-9a-fA-F]{6}$/.test(colorFgHex.value)) debouncedGenerate(); });
+  colorBgHex.addEventListener('input', () => { if (/^#[0-9a-fA-F]{6}$/.test(colorBgHex.value)) debouncedGenerate(); });
 
   document.querySelectorAll('[data-ecl]').forEach(btn => {
     btn.addEventListener('click', () => {
       currentECL = btn.dataset.ecl;
       btn.closest('.seg-ctrl').querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      updateTextStat();
+      generate();
     });
   });
 
@@ -448,6 +504,7 @@
       currentSize = +btn.dataset.size;
       btn.closest('.seg-ctrl').querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      generate();
     });
   });
 
@@ -482,6 +539,7 @@
         document.querySelectorAll('[data-ecl]').forEach(b => {
           b.classList.toggle('active', b.dataset.ecl === 'H');
         });
+        generate();
       };
       img.onerror = () => alert('Could not load image. Please try a different file.');
       img.src = e.target.result;
@@ -495,6 +553,7 @@
     logoDropzone.style.display = '';
     logoPreviewWrap.classList.remove('visible');
     qrLogoOverlay.style.display = 'none';
+    generate();
   });
 
   // ── DOWNLOAD ───────────────────────────────────────────
@@ -595,6 +654,28 @@
 
   document.getElementById('btnReset').addEventListener('click', resetAll);
   document.getElementById('btnGenerate').addEventListener('click', generate);
+
+  // ── TEXT INPUT STAT ────────────────────────────────────
+  const QR_BYTE_CAP = { L: 2953, M: 2331, Q: 1663, H: 1273 };
+  function updateTextStat() {
+    const val = document.getElementById('textInput').value;
+    const stat = document.getElementById('textInputStat');
+    if (!val) { stat.textContent = '0 chars'; stat.style.color = ''; return; }
+    const bytes = new TextEncoder().encode(val).length;
+    const cap = QR_BYTE_CAP[currentECL] || 2331;
+    const pct = Math.round(bytes / cap * 100);
+    stat.textContent = `${val.length.toLocaleString()} chars · ${bytes.toLocaleString()} bytes · ${pct}% QR capacity`;
+    stat.style.color = pct > 90 ? 'var(--red)' : pct > 70 ? 'var(--yellow)' : '';
+  }
+  document.getElementById('textInput').addEventListener('input', updateTextStat);
+
+  // Auto-generate on all content input changes
+  let genTimer = null;
+  function debouncedGenerate() { clearTimeout(genTimer); genTimer = setTimeout(generate, 500); }
+  ['textInput','wifiSsid','wifiPass','vcardName','vcardPhone','vcardEmail','vcardOrg','vcardUrl','emailTo','emailSubject','emailBody'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', debouncedGenerate);
+  });
 
   // Generate on Enter key (when not in textarea)
   document.addEventListener('keydown', e => {

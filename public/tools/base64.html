@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Base64 Encoder / Decoder — Simple ToolBox</title>
+  <title>Base64 Encoder / Decoder Online – Free Browser-Based | Simple ToolBox</title>
   <meta name="description" content="Free online Base64 encoder and decoder. Encode text or files to Base64, decode Base64 strings, support URL-safe mode. Fast, privacy-first, runs in your browser." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/base64.html" />
   <!-- Open Graph -->
@@ -277,6 +277,54 @@
     </div>
   </div>
 
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is Base64 Encoding?</h2>
+      <p>Base64 is a binary-to-text encoding scheme that represents binary data using 64 printable ASCII characters (A–Z, a–z, 0–9, <code>+</code>, <code>/</code>). It is widely used to embed binary data — such as images, certificates, or file contents — inside text-based formats like HTML, JSON, XML, and email (MIME). This tool encodes and decodes Base64 entirely in your browser with no data ever leaving your device.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use the Base64 Encoder / Decoder</h2>
+      <ol>
+        <li>Select <strong>Encode</strong> or <strong>Decode</strong> mode using the toggle at the top.</li>
+        <li>Type or paste your text into the input area — the output updates automatically.</li>
+        <li>For file encoding, drop a file onto the drop zone or click to browse.</li>
+        <li>Enable <strong>URL-safe</strong> mode to replace <code>+</code> with <code>-</code> and <code>/</code> with <code>_</code> for use in URLs.</li>
+        <li>Use the <strong>Swap</strong> button to instantly decode what you just encoded.</li>
+      </ol>
+    </section>
+    <section class="ds-seo-section">
+      <h2>Common Use Cases</h2>
+      <ul>
+        <li>Embed images as data URIs in HTML or CSS (<code>src="data:image/png;base64,..."</code>)</li>
+        <li>Encode binary files (PDFs, keys, certificates) for storage in JSON or XML</li>
+        <li>Decode Base64 JWTs, API tokens, or SAML assertions for inspection</li>
+        <li>Pass binary data through systems that only support text (email, HTTP headers)</li>
+        <li>Encode credentials for HTTP Basic Authentication headers</li>
+      </ul>
+    </section>
+    <section class="ds-seo-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="ds-faq-list">
+        <div class="ds-faq-item">
+          <h3>Is Base64 encoding the same as encryption?</h3>
+          <p>No. Base64 is an encoding scheme, not encryption. It is fully reversible without any key. Do not use Base64 to secure sensitive data — use proper encryption such as AES instead.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>Why does Base64 output end with = or ==?</h3>
+          <p>Base64 groups input into 3-byte chunks. If the input length is not a multiple of 3, padding characters (<code>=</code>) are appended to make the output a multiple of 4 characters.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>What is URL-safe Base64?</h3>
+          <p>Standard Base64 uses <code>+</code> and <code>/</code> which have special meanings in URLs. URL-safe Base64 (RFC 4648) replaces them with <code>-</code> and <code>_</code>, making the output safe for URL query strings and filenames without percent-encoding.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>How much does Base64 increase file size?</h3>
+          <p>Base64 encoding increases the data size by approximately 33% — every 3 bytes of input becomes 4 characters of output. This overhead is acceptable for small assets and inline data URIs.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
@@ -473,6 +521,10 @@
   }
   btnClearInput.addEventListener('click', clearAll);
   btnClearAll.addEventListener('click', clearAll);
+
+  inputText.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); clearAll(); }
+  });
 
   // ── File drop / pick ─────────────────────────────────────
   dropZone.addEventListener('click', () => fileInput.click());

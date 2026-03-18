@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>JSON Formatter — Simple ToolBox</title>
+  <title>JSON Formatter Online – Format, Validate & Beautify JSON | Simple ToolBox</title>
   <meta name="description" content="Free online JSON formatter, validator, and converter. Prettify or minify JSON, convert JSON to CSV or SQL, validate with error line numbers. Runs entirely in your browser." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/json-formatter.html" />
   <!-- Open Graph -->
@@ -376,6 +376,54 @@
     </div>
   </div><!-- end #modeCsvJson -->
 
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is a JSON Formatter?</h2>
+      <p>A JSON Formatter (also called a JSON Beautifier or JSON Prettifier) takes minified or hard-to-read JSON text and re-formats it with consistent indentation and line breaks. It also validates your JSON against the JSON specification and highlights syntax errors instantly — all without sending any data to a server.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use the JSON Formatter</h2>
+      <ol>
+        <li>Paste your JSON string into the <strong>Input</strong> pane on the left.</li>
+        <li>The formatter automatically validates and prettifies the JSON as you type.</li>
+        <li>Choose an indent size (2 or 4 spaces) from the toolbar.</li>
+        <li>Use <strong>Minify</strong> to compress JSON to a single line, or <strong>Copy</strong> to copy the result.</li>
+        <li>Switch to <strong>JSON → CSV</strong> or <strong>CSV → JSON</strong> mode for spreadsheet conversion.</li>
+      </ol>
+    </section>
+    <section class="ds-seo-section">
+      <h2>Common Use Cases</h2>
+      <ul>
+        <li>Debug API responses from REST or GraphQL endpoints</li>
+        <li>Format configuration files (package.json, tsconfig.json, appsettings.json)</li>
+        <li>Validate JSON before sending it to a server or storing in a database</li>
+        <li>Convert JSON arrays to CSV for spreadsheet analysis</li>
+        <li>Minify JSON to reduce payload size in production</li>
+      </ul>
+    </section>
+    <section class="ds-seo-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="ds-faq-list">
+        <div class="ds-faq-item">
+          <h3>Is this JSON Formatter free?</h3>
+          <p>Yes. The tool is completely free with no sign-up required. Everything runs in your browser — no data is ever sent to a server.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>What's the difference between formatting and validating JSON?</h3>
+          <p>Formatting adds indentation and line breaks for readability. Validation checks that the JSON is syntactically correct — matching brackets, quoted keys, no trailing commas. This tool does both simultaneously.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>Can I format very large JSON files?</h3>
+          <p>Yes. Processing happens entirely in your browser, so there is no server upload limit. Most JSON up to several megabytes formats instantly.</p>
+        </div>
+        <div class="ds-faq-item">
+          <h3>What is JSON minification used for?</h3>
+          <p>Minification removes unnecessary whitespace to reduce file size — useful for API response payloads, embedding JSON in source code, or storing JSON in databases efficiently.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
@@ -682,6 +730,10 @@
   csvJsonInput.addEventListener('input', () => { csvJsonInputStat.textContent = `${csvJsonInput.value.length.toLocaleString()} chars`; });
   document.getElementById('btnClearCsvJsonInput').addEventListener('click', () => { csvJsonInput.value = ''; jsonFromCsvOutput.value = ''; csvJsonInputPanel.classList.remove('has-error'); csvJsonError.textContent = ''; updateCsvJsonStats(); });
   document.getElementById('btnCopyJsonOut').addEventListener('click', () => copyText(jsonFromCsvOutput.value, document.getElementById('btnCopyJsonOut')));
+
+  inputText.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); clearAll(); }
+  });
 
   // ── INIT ───────────────────────────────────────────────
   (function () {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Hash Generator (MD5 / SHA-256 / SHA-512) — Simple ToolBox</title>
+  <title>Hash Generator Online – MD5, SHA-256, SHA-512 & More Free | Simple ToolBox</title>
   <meta name="description" content="Free online hash generator. Compute MD5, SHA-1, SHA-256, SHA-512 hashes from text or file. All algorithms run in parallel. Runs entirely in your browser." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/hash-generator.html" />
   <meta property="og:type" content="website" />
@@ -156,6 +156,7 @@
         </div>
       </div>
       <textarea class="ds-tool-textarea" id="textInput" placeholder="Type or paste text to hash…" spellcheck="false" style="min-height:120px; resize:vertical;"></textarea>
+      <div class="ds-tool-pane__footer"><span id="inputStat" class="ds-tool-stat">0 chars · 0 bytes</span></div>
     </div>
 
     <!-- File tab -->
@@ -384,8 +385,15 @@
   });
 
   // ── Text input ──────────────────────────────────────────────────────────────
+  function updateInputStat(val) {
+    const chars = val.length;
+    const bytes = new TextEncoder().encode(val).length;
+    document.getElementById('inputStat').textContent = `${chars.toLocaleString()} char${chars !== 1 ? 's' : ''} · ${bytes.toLocaleString()} byte${bytes !== 1 ? 's' : ''}`;
+  }
+
   let debounceTimer;
   document.getElementById('textInput').addEventListener('input', e => {
+    updateInputStat(e.target.value);
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => computeFromText(e.target.value), 150);
   });
@@ -394,11 +402,13 @@
   });
   document.getElementById('btnClear').addEventListener('click', () => {
     document.getElementById('textInput').value = '';
+    updateInputStat('');
     computeFromText('');
   });
   document.getElementById('btnSample').addEventListener('click', () => {
     const s = 'The quick brown fox jumps over the lazy dog';
     document.getElementById('textInput').value = s;
+    updateInputStat(s);
     computeFromText(s);
   });
 
@@ -468,6 +478,16 @@
         setTimeout(() => { btn.classList.remove('copied'); btn.textContent = orig; }, 1500);
       });
     });
+  });
+
+  // Escape key: clear text input when focused
+  document.getElementById('textInput').addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      document.getElementById('textInput').value = '';
+      updateInputStat('');
+      computeFromText('');
+    }
   });
 
   document.getElementById('copyAll').addEventListener('click', () => {

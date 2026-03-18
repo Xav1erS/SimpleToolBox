@@ -303,7 +303,23 @@
   <details class="ds-seo-more">
     <summary>Understand URL Encoding (examples, use cases &amp; FAQs)</summary>
     <div class="ds-seo-content">
-      <details class="ds-seo-collapse">
+            <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Encode mode:</p>
+          <ul>
+            <li>Input: <code>hello world &amp; goodbye</code></li>
+            <li>Output: <code>hello%20world%20%26%20goodbye</code></li>
+          </ul>
+          <p>Decode mode:</p>
+          <ul>
+            <li>Input: <code>caf%C3%A9%20au%20lait</code></li>
+            <li>Output: <code>café au lait</code></li>
+          </ul>
+          <p>Switch between <strong>Component</strong> mode (encodes <code>&amp;</code>, <code>=</code>, <code>?</code>) and <strong>Full URL</strong> mode (preserves URL structure characters).</p>
+        </div>
+      </details>
+<details class="ds-seo-collapse">
         <summary>encodeURIComponent vs encodeURI</summary>
         <div class="ds-seo-collapse__body">
             <ul>
@@ -312,7 +328,18 @@
             </ul>
         </div>
       </details>
-      <details class="ds-seo-collapse">
+            <details class="ds-seo-collapse">
+        <summary>Why Use This URL Encoder</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Two modes</strong> — Component encoding for query parameter values, Full URL mode for entire URLs.</li>
+            <li><strong>Bidirectional</strong> — encode or decode with a single toggle; no separate tool needed.</li>
+            <li><strong>Handles Unicode</strong> — correctly encodes multi-byte characters like accents and CJK characters.</li>
+            <li><strong>Instant output</strong> — results appear as you type, with a one-click copy button.</li>
+          </ul>
+        </div>
+      </details>
+<details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
             <div class="ds-faq-list">

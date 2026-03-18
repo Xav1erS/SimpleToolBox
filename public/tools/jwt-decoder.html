@@ -250,7 +250,19 @@
   <details class="ds-seo-more">
     <summary>Understand JWTs (examples, use cases &amp; FAQs)</summary>
     <div class="ds-seo-content">
-      <details class="ds-seo-collapse">
+            <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Paste any JWT — e.g. <code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></p>
+          <p>The tool instantly splits it into three parts:</p>
+          <ul>
+            <li><strong>Header</strong>: <code>{"alg":"HS256","typ":"JWT"}</code></li>
+            <li><strong>Payload</strong>: <code>{"sub":"1234567890","name":"John Doe","iat":1516239022}</code></li>
+            <li><strong>Signature</strong>: displayed separately (client-side decode only, not verified)</li>
+          </ul>
+        </div>
+      </details>
+<details class="ds-seo-collapse">
         <summary>Common Use Cases</summary>
         <div class="ds-seo-collapse__body">
             <ul>
@@ -261,7 +273,18 @@
             </ul>
         </div>
       </details>
-      <details class="ds-seo-collapse">
+            <details class="ds-seo-collapse">
+        <summary>Why Use This JWT Decoder</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>No server required</strong> — decoding runs entirely in your browser; your token is never transmitted anywhere.</li>
+            <li><strong>Instant expiry check</strong> — the <code>exp</code> claim is converted to a human-readable timestamp automatically.</li>
+            <li><strong>Pretty-printed payload</strong> — nested JSON is formatted and syntax-highlighted for readability.</li>
+            <li><strong>Works with any JWT</strong> — HS256, RS256, ES256, and any algorithm (signature decoded, not verified).</li>
+          </ul>
+        </div>
+      </details>
+<details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
             <div class="ds-faq-list">

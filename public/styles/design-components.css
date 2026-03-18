@@ -1802,27 +1802,32 @@
   letter-spacing: -0.2px;
 }
 
-.ds-seo-section p {
+.ds-seo-section p,
+.ds-seo-collapse__body p {
   font-size: var(--ds-font-size-body);
   color: var(--ds-color-text-secondary);
   line-height: 1.8;
 }
 
 .ds-seo-section ul,
-.ds-seo-section ol {
+.ds-seo-section ol,
+.ds-seo-collapse__body ul,
+.ds-seo-collapse__body ol {
   padding-left: 20px;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.ds-seo-section li {
+.ds-seo-section li,
+.ds-seo-collapse__body li {
   font-size: var(--ds-font-size-body);
   color: var(--ds-color-text-secondary);
   line-height: 1.7;
 }
 
-.ds-seo-section li strong {
+.ds-seo-section li strong,
+.ds-seo-collapse__body li strong {
   color: var(--ds-color-text-primary);
 }
 
@@ -1846,7 +1851,8 @@
 }
 
 /* ── Inline code within SEO sections ── */
-.ds-seo-section code {
+.ds-seo-section code,
+.ds-seo-collapse__body code {
   font-family: var(--ds-font-mono);
   font-size: 0.875em;
   color: var(--ds-color-accent);
@@ -1885,4 +1891,101 @@
   font-size: var(--ds-font-size-small);
   color: var(--ds-color-text-primary);
   word-break: break-all;
+}
+
+/* ── "Learn more" progressive disclosure (outer) ── */
+.ds-seo-more {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}
+
+.ds-seo-more > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-font-size-small);
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: var(--ds-radius-sm);
+  border: 1px solid var(--ds-color-border);
+  background: var(--ds-color-surface);
+  transition: color 0.15s, border-color 0.15s;
+  user-select: none;
+}
+
+.ds-seo-more > summary::-webkit-details-marker { display: none; }
+
+.ds-seo-more > summary::before {
+  content: '▸';
+  font-size: 10px;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.ds-seo-more[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.ds-seo-more > summary:hover {
+  color: var(--ds-color-text-primary);
+  border-color: var(--ds-color-border-accent);
+}
+
+.ds-seo-more > .ds-seo-content {
+  border-top: none;
+  padding-top: 20px;
+}
+
+/* ── Inner collapsible SEO sections ── */
+.ds-seo-collapse {
+  background: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  overflow: hidden;
+}
+
+.ds-seo-collapse > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 28px;
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--ds-font-size-h4);
+  font-weight: 700;
+  color: var(--ds-color-text-primary);
+  letter-spacing: -0.2px;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.ds-seo-collapse > summary::-webkit-details-marker { display: none; }
+
+.ds-seo-collapse > summary::after {
+  content: '+';
+  font-size: 18px;
+  color: var(--ds-color-text-muted);
+  font-weight: 300;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.ds-seo-collapse[open] > summary::after {
+  transform: rotate(45deg);
+}
+
+.ds-seo-collapse > summary:hover {
+  background: var(--ds-color-surface-strong);
+}
+
+.ds-seo-collapse__body {
+  padding: 4px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-3);
+  border-top: 1px solid var(--ds-color-border);
 }

@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # ── 检查：sitemap.xml 中的工具页在 public/tools/ 中都存在 ──
+      - name: Verify sitemap URLs exist
+        run: |
+          python - <<'EOF'
+          import re, sys, os
+
+          sitemap = open("public/sitemap.xml", encoding="utf-8").read()
+          urls = re.findall(r'<loc>https://simpletoolbox\.dev/(.*?)</loc>', sitemap)
+          missing = []
+
+          for url in urls:
+              path = os.path.join("public", url)
+              if url.endswith(".html") and not os.path.exists(path):
+                  missing.append(path)
+
+          if missing:
+              print("ERROR: 以下 sitemap 条目对应文件不存在：")
+              for m in missing:
+                  print(f"  {m}")
+              sys.exit(1)
+
+          print(f"OK: sitemap 中 {len(urls)} 个 URL 全部有对应文件")
+          EOF
+
+      # ── 检查：所有 HTML 引用的 CSS 版本号一致 ──
+      - name: Verify CSS version consistency
+        run: |
+          python - <<'EOF'
+          import re, os, sys
+
+          ds = open("public/styles/design-system.css", encoding="utf-8").read()
+          comp_v = re.search(r'design-components\.css\?v=(\d+)', ds).group(1)
+
+          versions = set()
+          for root, _, files in os.walk("public"):
+              for f in files:
+                  if f.endswith(".html"):
+                      content = open(os.path.join(root, f), encoding="utf-8").read()
+                      m = re.search(r'design-system\.css\?v=(\d+)', content)
+                      if m:
+                          versions.add(m.group(1))
+
+          if len(versions) > 1:
+              print(f"ERROR: HTML 文件中存在多个不同的 CSS 版本号: {versions}")
+              sys.exit(1)
+
+          print(f"OK: design-components.css?v={comp_v}, HTML 引用版本一致: {versions}")
+          EOF
+
+      # ── 检查：logo.svg 存在且无旧文件名引用 ──
+      - name: Verify logo references
+        run: |
+          python - <<'EOF'
+          import os, sys
+
+          if not os.path.exists("public/logo.svg"):
+              print("ERROR: public/logo.svg 不存在")
+              sys.exit(1)
+
+          bad = []
+          for root, _, files in os.walk("public"):
+              for f in files:
+                  if f.endswith(".html"):
+                      content = open(os.path.join(root, f), encoding="utf-8").read()
+                      if "logo 1.svg" in content:
+                          bad.append(os.path.join(root, f))
+
+          if bad:
+              print("ERROR: 以下文件仍引用旧文件名 'logo 1.svg':")
+              for b in bad:
+                  print(f"  {b}")
+              sys.exit(1)
+
+          print("OK: logo 引用正常")
+          EOF

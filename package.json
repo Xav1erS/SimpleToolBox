@@ -1,0 +1,11 @@
+{
+  "name": "simpletoolbox",
+  "private": true,
+  "scripts": {
+    "lint": "eslint public/tools/*.html public/*.html --ext .html"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-plugin-html": "^8.0.0"
+  }
+}

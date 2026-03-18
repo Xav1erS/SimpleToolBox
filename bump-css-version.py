@@ -13,6 +13,7 @@ bump-css-version.py
 
 import os
 import re
+import sys
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 DESIGN_SYSTEM = os.path.join(BASE, "public", "styles", "design-system.css")
@@ -21,14 +22,18 @@ PUBLIC_DIR = os.path.join(BASE, "public")
 
 def bump():
     # 读取 design-system.css
-    with open(DESIGN_SYSTEM, "r", encoding="utf-8") as f:
-        ds_content = f.read()
+    try:
+        with open(DESIGN_SYSTEM, "r", encoding="utf-8") as f:
+            ds_content = f.read()
+    except OSError as e:
+        print(f"ERROR: 无法读取 {DESIGN_SYSTEM}: {e}")
+        sys.exit(1)
 
     # 找到 design-components.css 的当前版本号
     comp_match = re.search(r'design-components\.css\?v=(\d+)', ds_content)
     if not comp_match:
         print("ERROR: 未找到 design-components.css 的版本号")
-        return
+        sys.exit(1)
 
     old_comp_v = int(comp_match.group(1))
     new_comp_v = old_comp_v + 1
@@ -39,15 +44,18 @@ def bump():
         f"design-components.css?v={new_comp_v}"
     )
 
-    # 找到 design-system.css 自身被 HTML 引用的版本号（从旧 HTML 中读取）
+    # 找到 design-system.css 自身被 HTML 引用的版本号（从已有 HTML 中读取）
     html_pattern = re.compile(r'design-system\.css\?v=(\d+)')
     old_ds_v = None
     for root, dirs, files in os.walk(PUBLIC_DIR):
         for fname in files:
             if fname.endswith(".html"):
                 path = os.path.join(root, fname)
-                with open(path, "r", encoding="utf-8") as f:
-                    content = f.read()
+                try:
+                    with open(path, "r", encoding="utf-8") as f:
+                        content = f.read()
+                except OSError:
+                    continue
                 m = html_pattern.search(content)
                 if m:
                     old_ds_v = int(m.group(1))
@@ -57,13 +65,18 @@ def bump():
 
     if old_ds_v is None:
         print("ERROR: 未在 HTML 文件中找到 design-system.css 的版本号")
-        return
+        sys.exit(1)
 
     new_ds_v = old_ds_v + 1
 
     # 写入 design-system.css
-    with open(DESIGN_SYSTEM, "w", encoding="utf-8") as f:
-        f.write(ds_new)
+    try:
+        with open(DESIGN_SYSTEM, "w", encoding="utf-8") as f:
+            f.write(ds_new)
+    except OSError as e:
+        print(f"ERROR: 无法写入 {DESIGN_SYSTEM}: {e}")
+        sys.exit(1)
+
     print(f"[design-system.css] design-components.css?v={old_comp_v} → v={new_comp_v}")
 
     # 批量更新所有 HTML 文件
@@ -72,15 +85,18 @@ def bump():
         for fname in files:
             if fname.endswith(".html"):
                 path = os.path.join(root, fname)
-                with open(path, "r", encoding="utf-8") as f:
-                    content = f.read()
-                new_content, n = html_pattern.subn(
-                    f"design-system.css?v={new_ds_v}", content
-                )
-                if n > 0:
-                    with open(path, "w", encoding="utf-8") as f:
-                        f.write(new_content)
-                    html_count += n
+                try:
+                    with open(path, "r", encoding="utf-8") as f:
+                        content = f.read()
+                    new_content, n = html_pattern.subn(
+                        f"design-system.css?v={new_ds_v}", content
+                    )
+                    if n > 0:
+                        with open(path, "w", encoding="utf-8") as f:
+                            f.write(new_content)
+                        html_count += n
+                except OSError as e:
+                    print(f"WARNING: 跳过 {path}: {e}")
 
     print(f"[HTML]             design-system.css?v={old_ds_v} → v={new_ds_v}（{html_count} 个文件）")
     print("Done. 请执行 git add 后提交。")

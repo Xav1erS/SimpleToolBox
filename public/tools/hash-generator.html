@@ -211,12 +211,12 @@
   </div>
 
   <section class="ds-seo-content" aria-label="About Hash Generator">
-    <div class="ds-seo-section">
+<div class="ds-seo-section">
       <h2>What is a Hash Generator?</h2>
       <p>A hash generator converts any text or file into a fixed-length string of hexadecimal characters called a <strong>hash digest</strong> or <strong>checksum</strong>. Hash functions are one-way: given a hash, it is computationally infeasible to recover the original input. Even a single character change produces a completely different hash — a property called the <strong>avalanche effect</strong>.</p>
       <p>This tool computes MD5, SHA-1, SHA-256, and SHA-512 digests simultaneously, entirely in your browser using the Web Crypto API. No data leaves your device.</p>
     </div>
-    <div class="ds-seo-section">
+<div class="ds-seo-section">
       <h2>How to Use the Hash Generator</h2>
       <ol>
         <li>Select the <strong>Text</strong> tab and type or paste your input, or switch to the <strong>File</strong> tab and drop a file.</li>
@@ -226,40 +226,9 @@
         <li>Toggle <strong>UPPERCASE</strong> if the recipient requires uppercase hex output.</li>
       </ol>
     </div>
-    <div class="ds-seo-section">
-      <h2>Common Use Cases</h2>
-      <ul>
-        <li><strong>File integrity verification</strong> — compare the SHA-256 hash of a downloaded file against the checksum published by the vendor.</li>
-        <li><strong>Data deduplication</strong> — use hashes as fingerprints to detect duplicate files without byte-by-byte comparison.</li>
-        <li><strong>Digital signatures</strong> — SHA-256 is the basis of most modern code-signing and certificate workflows.</li>
-        <li><strong>API authentication</strong> — HMAC-SHA-256 is the standard for signing API requests.</li>
-        <li><strong>Learning cryptography</strong> — instantly see how changing one character produces a completely different hash.</li>
-      </ul>
-    </div>
-    <div class="ds-seo-section">
-      <h2>Frequently Asked Questions</h2>
-      <div class="ds-faq-list">
-        <div class="ds-faq-item">
-          <h3>What is the difference between MD5, SHA-1, SHA-256, and SHA-512?</h3>
-          <p>They differ in digest length and security level. MD5 produces 128-bit (32-char) hashes — fast but cryptographically broken. SHA-1 produces 160-bit (40-char) hashes — also deprecated for security use. SHA-256 and SHA-512 are part of the SHA-2 family and remain secure for integrity checking and digital signatures.</p>
-        </div>
-        <div class="ds-faq-item">
-          <h3>Can I reverse a hash to get the original text?</h3>
-          <p>No. Hash functions are one-way by design. However, short or common inputs can be cracked using precomputed <strong>rainbow tables</strong>. For password storage, always use a dedicated algorithm like bcrypt or Argon2 combined with a unique salt.</p>
-        </div>
-        <div class="ds-faq-item">
-          <h3>Is MD5 safe to use?</h3>
-          <p>MD5 is fine for non-security purposes like checksums and deduplication. It should <strong>not</strong> be used for password storage or digital signatures — researchers can generate MD5 collisions in seconds on modern hardware.</p>
-        </div>
-        <div class="ds-faq-item">
-          <h3>How large a file can I hash?</h3>
-          <p>The tool reads files into browser memory, so practical limits depend on your device RAM. Files up to several hundred MB typically work fine. For multi-GB files, use a native tool like <code>sha256sum</code> (Linux/Mac) or <code>certutil -hashfile</code> (Windows).</p>
-        </div>
-      </div>
-    </div>
   </section>
 
-  <div class="ds-related-tools">
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="hmac.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">HMAC Generator</div><div class="ds-related-desc">Keyed hash for API authentication</div></div></a>
@@ -267,6 +236,47 @@
       <a href="regex-tester.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">Regex Tester</div><div class="ds-related-desc">Test and debug regular expressions</div></div></a>
     </div>
   </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand Hash Functions (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Common Use Cases</summary>
+        <div class="ds-seo-collapse__body">
+            <ul>
+              <li><strong>File integrity verification</strong> — compare the SHA-256 hash of a downloaded file against the checksum published by the vendor.</li>
+              <li><strong>Data deduplication</strong> — use hashes as fingerprints to detect duplicate files without byte-by-byte comparison.</li>
+              <li><strong>Digital signatures</strong> — SHA-256 is the basis of most modern code-signing and certificate workflows.</li>
+              <li><strong>API authentication</strong> — HMAC-SHA-256 is the standard for signing API requests.</li>
+              <li><strong>Learning cryptography</strong> — instantly see how changing one character produces a completely different hash.</li>
+            </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+            <div class="ds-faq-list">
+              <div class="ds-faq-item">
+                <h3>What is the difference between MD5, SHA-1, SHA-256, and SHA-512?</h3>
+                <p>They differ in digest length and security level. MD5 produces 128-bit (32-char) hashes — fast but cryptographically broken. SHA-1 produces 160-bit (40-char) hashes — also deprecated for security use. SHA-256 and SHA-512 are part of the SHA-2 family and remain secure for integrity checking and digital signatures.</p>
+              </div>
+              <div class="ds-faq-item">
+                <h3>Can I reverse a hash to get the original text?</h3>
+                <p>No. Hash functions are one-way by design. However, short or common inputs can be cracked using precomputed <strong>rainbow tables</strong>. For password storage, always use a dedicated algorithm like bcrypt or Argon2 combined with a unique salt.</p>
+              </div>
+              <div class="ds-faq-item">
+                <h3>Is MD5 safe to use?</h3>
+                <p>MD5 is fine for non-security purposes like checksums and deduplication. It should <strong>not</strong> be used for password storage or digital signatures — researchers can generate MD5 collisions in seconds on modern hardware.</p>
+              </div>
+              <div class="ds-faq-item">
+                <h3>How large a file can I hash?</h3>
+                <p>The tool reads files into browser memory, so practical limits depend on your device RAM. Files up to several hundred MB typically work fine. For multi-GB files, use a native tool like <code>sha256sum</code> (Linux/Mac) or <code>certutil -hashfile</code> (Windows).</p>
+              </div>
+            </div>
+        </div>
+      </details>
+    </div>
+  </details>
 
 </div>
 

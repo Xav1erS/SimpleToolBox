@@ -221,12 +221,12 @@
   </div>
 
   <section class="ds-seo-content" aria-label="About JWT Decoder">
-    <div class="ds-seo-section">
+<div class="ds-seo-section">
       <h2>What is a JWT?</h2>
       <p>A <strong>JSON Web Token (JWT)</strong> is a compact, URL-safe format for representing claims between two parties. A JWT consists of three Base64URL-encoded parts separated by dots: the <strong>Header</strong> (algorithm and token type), the <strong>Payload</strong> (claims — data like user ID, roles, and expiry), and the <strong>Signature</strong> (used to verify the token hasn't been tampered with).</p>
       <p>JWTs are widely used in modern authentication flows. When you log in, a server issues a signed JWT. Your client sends that token with each API request, and the server validates the signature to confirm authenticity — no session storage required.</p>
     </div>
-    <div class="ds-seo-section">
+<div class="ds-seo-section">
       <h2>How to Use the JWT Decoder</h2>
       <ol>
         <li>Paste your JWT string into the input field at the top.</li>
@@ -236,39 +236,9 @@
       </ol>
       <p>Note: this tool <strong>decodes</strong> the payload — it does not verify the signature. Signature verification requires the secret key or public certificate on the server side.</p>
     </div>
-    <div class="ds-seo-section">
-      <h2>Common Use Cases</h2>
-      <ul>
-        <li><strong>API debugging</strong> — inspect what claims a token carries without a server-side tool.</li>
-        <li><strong>Checking expiry</strong> — read the <code>exp</code> field to see when a token expires.</li>
-        <li><strong>Auth troubleshooting</strong> — confirm that the correct user ID, roles, and scopes are in the payload.</li>
-        <li><strong>Learning OAuth 2.0 / OIDC</strong> — understand what fields like <code>aud</code>, <code>azp</code>, and <code>nonce</code> mean.</li>
-      </ul>
-    </div>
-    <div class="ds-seo-section">
-      <h2>Frequently Asked Questions</h2>
-      <div class="ds-faq-list">
-        <div class="ds-faq-item">
-          <h3>Is it safe to paste my JWT here?</h3>
-          <p>Yes. Decoding runs entirely in your browser — the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you're certain it's client-side only.</p>
-        </div>
-        <div class="ds-faq-item">
-          <h3>Can this tool verify the signature?</h3>
-          <p>No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload — verification must happen on your server.</p>
-        </div>
-        <div class="ds-faq-item">
-          <h3>What does "token expired" mean?</h3>
-          <p>The <code>exp</code> claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you'll need to re-authenticate.</p>
-        </div>
-        <div class="ds-faq-item">
-          <h3>What is the difference between JWT and session cookies?</h3>
-          <p>Session cookies store a session ID on the server and look it up on each request. JWTs are <strong>self-contained</strong> — all claims are in the token itself, so no server-side session storage is needed. This makes JWTs ideal for stateless, distributed systems.</p>
-        </div>
-      </div>
-    </div>
   </section>
 
-  <div class="ds-related-tools">
+<div class="ds-related-tools">
     <h2 class="ds-related-title">Related Tools</h2>
     <div class="ds-related-grid">
       <a href="jwt-builder.html" class="ds-related-card"><span class="ds-related-icon">🔏</span><div><div class="ds-related-name">JWT Builder</div><div class="ds-related-desc">Build and sign JWT tokens</div></div></a>
@@ -276,6 +246,46 @@
       <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256 hashes</div></div></a>
     </div>
   </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand JWTs (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Common Use Cases</summary>
+        <div class="ds-seo-collapse__body">
+            <ul>
+              <li><strong>API debugging</strong> — inspect what claims a token carries without a server-side tool.</li>
+              <li><strong>Checking expiry</strong> — read the <code>exp</code> field to see when a token expires.</li>
+              <li><strong>Auth troubleshooting</strong> — confirm that the correct user ID, roles, and scopes are in the payload.</li>
+              <li><strong>Learning OAuth 2.0 / OIDC</strong> — understand what fields like <code>aud</code>, <code>azp</code>, and <code>nonce</code> mean.</li>
+            </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+            <div class="ds-faq-list">
+              <div class="ds-faq-item">
+                <h3>Is it safe to paste my JWT here?</h3>
+                <p>Yes. Decoding runs entirely in your browser — the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you're certain it's client-side only.</p>
+              </div>
+              <div class="ds-faq-item">
+                <h3>Can this tool verify the signature?</h3>
+                <p>No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload — verification must happen on your server.</p>
+              </div>
+              <div class="ds-faq-item">
+                <h3>What does "token expired" mean?</h3>
+                <p>The <code>exp</code> claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you'll need to re-authenticate.</p>
+              </div>
+              <div class="ds-faq-item">
+                <h3>What is the difference between JWT and session cookies?</h3>
+                <p>Session cookies store a session ID on the server and look it up on each request. JWTs are <strong>self-contained</strong> — all claims are in the token itself, so no server-side session storage is needed. This makes JWTs ideal for stateless, distributed systems.</p>
+              </div>
+            </div>
+        </div>
+      </details>
+    </div>
+  </details>
 
 </div>
 

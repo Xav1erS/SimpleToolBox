@@ -220,11 +220,11 @@
 <canvas id="canvas" style="display:none"></canvas>
 
 <div class="ds-seo-content">
-  <section class="ds-seo-section">
+<section class="ds-seo-section">
     <h2>What is Image Compression?</h2>
     <p>Image compression reduces the file size of an image by discarding redundant or less-important pixel data. Lossy formats like JPEG and WebP achieve high compression by slightly reducing visual quality, while PNG uses lossless compression to preserve every pixel. This tool uses your browser's Canvas API to re-encode images at your chosen quality level — nothing is uploaded to any server.</p>
   </section>
-  <section class="ds-seo-section">
+<section class="ds-seo-section">
     <h2>How to Compress an Image</h2>
     <ol>
       <li>Drop an image onto the preview area, or click to browse and select a file.</li>
@@ -233,35 +233,6 @@
       <li>Watch the <strong>File Size</strong> panel update in real time to see the savings.</li>
       <li>Click <strong>Download Compressed</strong> to save the result.</li>
     </ol>
-  </section>
-  <section class="ds-seo-section">
-    <h2>JPEG vs WebP vs PNG — Which to Choose?</h2>
-    <ul>
-      <li><strong>JPEG</strong> — Best for photographs. Widely supported by all browsers, email clients, and social media. Good compression at 70–85% quality.</li>
-      <li><strong>WebP</strong> — Google's modern format. Typically 25–35% smaller than JPEG at equivalent quality. Supported by all modern browsers.</li>
-      <li><strong>PNG</strong> — Lossless. Best for logos, screenshots, and graphics with transparency. File size is larger than JPEG/WebP for photos.</li>
-    </ul>
-  </section>
-  <section class="ds-seo-section">
-    <h2>Frequently Asked Questions</h2>
-    <div class="ds-faq-list">
-      <div class="ds-faq-item">
-        <h3>Is the image uploaded to a server?</h3>
-        <p>No. All compression happens entirely in your browser using the HTML5 Canvas API. Your images never leave your device.</p>
-      </div>
-      <div class="ds-faq-item">
-        <h3>What quality setting should I use?</h3>
-        <p>For most web images, 75–85% quality strikes the best balance between file size and visual fidelity. For thumbnails or previews, 60–70% is acceptable. Below 50% visible artifacts may appear in photographs.</p>
-      </div>
-      <div class="ds-faq-item">
-        <h3>Why does PNG output have no quality effect?</h3>
-        <p>PNG is a lossless format — quality does not apply. For significant size reduction, switch to JPEG or WebP, which are lossy formats.</p>
-      </div>
-      <div class="ds-faq-item">
-        <h3>Can I compress multiple images at once?</h3>
-        <p>This tool processes one image at a time. For batch compression you would need a desktop application such as ImageOptim or Squoosh CLI.</p>
-      </div>
-    </div>
   </section>
 </div>
 
@@ -273,6 +244,45 @@
     <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">Base64 Encoder</div><div class="ds-related-desc">Encode images as Base64 data URIs</div></div></a>
   </div>
 </div>
+
+<details class="ds-seo-more">
+  <summary>Understand Image Compression (formats, use cases &amp; FAQs)</summary>
+  <div class="ds-seo-content">
+    <details class="ds-seo-collapse">
+      <summary>JPEG vs WebP vs PNG — Which to Choose?</summary>
+      <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>JPEG</strong> — Best for photographs. Widely supported by all browsers, email clients, and social media. Good compression at 70–85% quality.</li>
+            <li><strong>WebP</strong> — Google's modern format. Typically 25–35% smaller than JPEG at equivalent quality. Supported by all modern browsers.</li>
+            <li><strong>PNG</strong> — Lossless. Best for logos, screenshots, and graphics with transparency. File size is larger than JPEG/WebP for photos.</li>
+          </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>Is the image uploaded to a server?</h3>
+              <p>No. All compression happens entirely in your browser using the HTML5 Canvas API. Your images never leave your device.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>What quality setting should I use?</h3>
+              <p>For most web images, 75–85% quality strikes the best balance between file size and visual fidelity. For thumbnails or previews, 60–70% is acceptable. Below 50% visible artifacts may appear in photographs.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Why does PNG output have no quality effect?</h3>
+              <p>PNG is a lossless format — quality does not apply. For significant size reduction, switch to JPEG or WebP, which are lossy formats.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I compress multiple images at once?</h3>
+              <p>This tool processes one image at a time. For batch compression you would need a desktop application such as ImageOptim or Squoosh CLI.</p>
+            </div>
+          </div>
+      </div>
+    </details>
+  </div>
+</details>
 
 <script>
   const qualitySlider   = document.getElementById('qualitySlider');

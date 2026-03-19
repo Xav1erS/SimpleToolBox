@@ -97,7 +97,12 @@
       "Bash(__NEW_LINE_4a9390541b9bb394__ grep:*)",
       "Bash(__NEW_LINE_4a9390541b9bb394__ done:*)",
       "Bash(git -C \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox\" diff --stat HEAD public/all-tools.html)",
-      "Bash(git -C \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox\" status --short)"
+      "Bash(git -C \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox\" status --short)",
+      "Bash(echo -n \"$f: \")",
+      "Bash(__NEW_LINE_ac18df9724d9ad3f__ grep:*)",
+      "Bash(__NEW_LINE_ac18df9724d9ad3f__ done:*)",
+      "Bash(__NEW_LINE_a83f4562dcb3fd48__ grep:*)",
+      "Bash(__NEW_LINE_a83f4562dcb3fd48__ done:*)"
     ]
   }
 }

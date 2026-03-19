@@ -236,81 +236,6 @@
     </div>
   </div>
 
-  
-<div class="ds-seo-content">
-  <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is CSS Minifier?</h2>
-    <p class="ds-seo-section__body">Removes whitespace, comments, and redundant characters from CSS to minimize file size. Typically reduces CSS by 30–60%, directly improving page load speed.</p>
-  </section>
-  <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use CSS Minifier</h2>
-    <ol class="ds-seo-section__list">
-      <li>Paste your CSS code.</li>
-      <li>Click <strong>Minify</strong>.</li>
-      <li>See original vs minified file size and percentage saved.</li>
-      <li>Copy the minified output for use in production.</li>
-    </ol>
-  </section>
-</div>
-<div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="css-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">&#127912;</span>
-        <div>
-          <div class="ds-related-name">CSS Formatter</div>
-          <div class="ds-related-desc">Beautify and format CSS code</div>
-        </div>
-      </a>
-      <a href="js-minifier.html" class="ds-related-card">
-        <span class="ds-related-icon">&#9889;</span>
-        <div>
-          <div class="ds-related-name">JS Minifier</div>
-          <div class="ds-related-desc">Compress JavaScript for production</div>
-        </div>
-      </a>
-      <a href="html-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">&#128196;</span>
-        <div>
-          <div class="ds-related-name">HTML Formatter</div>
-          <div class="ds-related-desc">Beautify and format HTML markup</div>
-        </div>
-      </a>
-    </div>
-  </div>
-<details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle">
-    <span>Understand CSS Minifier</span>
-    <span class="ds-seo-more__arrow">&#9662;</span>
-  </summary>
-  <div class="ds-seo-more__body">
-    <details class="ds-seo-collapse">
-      <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Input (48 bytes):</p><pre>.btn {
-  color: red; /* primary */
-}</pre><p>Minified (16 bytes): <code>.btn{color:red}</code></p></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>What Gets Removed</summary>
-      <div class="ds-seo-collapse__body"><ul><li>Whitespace and newlines</li><li>Comments (single-line and block)</li><li>Trailing semicolons in blocks</li><li>Unnecessary quotes around font names</li><li>Redundant units on zero values (0px → 0)</li></ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Directly reduces CSS payload and page load time</li>
-        <li>No build tool or webpack config needed for quick minification</li>
-        <li>Shows exact byte savings before copying</li>
-      </ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Frequently Asked Questions</summary>
-      <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>Is minified CSS safe to use in production?</strong><p>Yes — minification only removes formatting characters. It does not change CSS behavior.</p></div>
-        <div class="ds-seo-faq-item"><strong>Does it remove vendor prefixes?</strong><p>No — all vendor-prefixed properties (-webkit-, -moz-) are preserved.</p></div>
-      </div>
-    </details>
-  </div>
-</details>
 
 </div>
 
@@ -500,5 +425,99 @@
     if (e.key === 'Escape') { e.preventDefault(); inputText.value = ''; run(); }
   });
 </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is CSS Minifier?</h2>
+      <p>CSS Minifier is a free browser-based tool that minifies CSS by removing whitespace, comments, and redundant code to reduce file size for production. Smaller CSS files load faster and improve page performance. All processing happens entirely in your browser — no data is uploaded to any server.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Paste your CSS code into the input panel.</li>
+        <li>The minified output appears automatically in the right panel.</li>
+        <li>Copy the minified CSS and use it in your production build.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="css-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">CSS Formatter</div><div class="ds-related-desc">Beautify and indent CSS code</div></div></a>
+      <a href="js-minifier.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">JS Minifier</div><div class="ds-related-desc">Compress JavaScript for production</div></div></a>
+      <a href="html-formatter.html" class="ds-related-card"><span class="ds-related-icon">📄</span><div><div class="ds-related-name">HTML Formatter</div><div class="ds-related-desc">Format and indent HTML markup</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand CSS Minifier (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>A formatted stylesheet with a comment is reduced to a single compact line:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Input</span>
+              <span class="ds-seo-example__value">/* Main button */\n.btn {\n  color: red;\n  padding: 8px 16px;\n}</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Output</span>
+              <span class="ds-seo-example__value">.btn{color:red;padding:8px 16px}</span>
+            </div>
+          </div>
+          <p>The comment and all unnecessary whitespace are stripped, reducing file size while keeping the rule fully functional.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>What CSS Minification Removes</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li>Single-line and multi-line comments (/* … */).</li>
+            <li>Whitespace between selectors, properties, and values.</li>
+            <li>Unnecessary semicolons before closing braces.</li>
+            <li>Leading zeros in decimal values (0.5 → .5).</li>
+            <li>Redundant units on zero values (0px → 0).</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Faster page loads</strong> — smaller CSS files are downloaded and parsed more quickly.</li>
+            <li><strong>Better Lighthouse scores</strong> — reduced render-blocking resource size improves performance metrics.</li>
+            <li><strong>No build tool required</strong> — minify a single file instantly without setting up Webpack or PostCSS.</li>
+            <li><strong>Size savings visible</strong> — the tool shows original vs. minified byte count so you know exactly how much was saved.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>Will minifying CSS break my styles?</h3>
+              <p>No. The minifier only removes characters that have no effect on CSS parsing — whitespace and comments. The minified output is functionally identical to the original.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Should I keep the original formatted CSS?</h3>
+              <p>Yes. Always keep the human-readable source file in your repository and only deploy the minified version. Use a source map if you need to debug minified CSS in browser DevTools.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>How much file size reduction can I expect?</h3>
+              <p>Typical savings range from 20% to 50% depending on how much whitespace and comments the original file contains. Additional savings come from gzip compression at the server level.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Does the minifier support CSS custom properties (variables)?</h3>
+              <p>Yes. CSS custom properties (--my-var: value) are preserved exactly as written during minification.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
 </body>
 </html>

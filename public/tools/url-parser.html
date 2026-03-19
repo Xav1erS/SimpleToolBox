@@ -778,5 +778,101 @@
   addParamRow();
   setMode('parse');
 </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is URL Parser?</h2>
+      <p>URL Parser is a free browser-based tool that breaks down any URL into its individual components — protocol, hostname, port, path, query parameters, and fragment — for easy inspection and debugging. Paste a URL and instantly see every part labelled and decoded. No data is uploaded; everything runs entirely in your browser.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Paste any full URL into the input field and click <strong>Parse URL</strong> (or press Ctrl+Enter).</li>
+        <li>Each component — protocol, host, port, path, query params, and fragment — is displayed in its own labeled row.</li>
+        <li>Switch to the <strong>Build</strong> tab to reassemble or modify a URL from its parts.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="url-builder.html" class="ds-related-card"><span class="ds-related-icon">🔧</span><div><div class="ds-related-name">URL Builder</div><div class="ds-related-desc">Assemble URLs from individual parts</div></div></a>
+      <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Percent-encode or decode URL strings</div></div></a>
+      <a href="user-agent.html" class="ds-related-card"><span class="ds-related-icon">🌐</span><div><div class="ds-related-name">User Agent Parser</div><div class="ds-related-desc">Decode browser and OS from UA string</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand URL Parser (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Parsing a URL with a port, path, query string, and fragment:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Input</span>
+              <span class="ds-seo-example__value">https://example.com:8080/path?key=val#section</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Output</span>
+              <span class="ds-seo-example__value">protocol: https | host: example.com | port: 8080 | path: /path | query: key=val | fragment: section</span>
+            </div>
+          </div>
+          <p>Every component is extracted and displayed individually, making it easy to inspect or copy just the part you need.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>URL Component Reference</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Protocol</strong> — identifies the communication scheme, e.g. <code>https:</code>.</li>
+            <li><strong>Hostname</strong> — the domain or IP address without port, e.g. <code>example.com</code>.</li>
+            <li><strong>Port</strong> — explicit port number; absent if using the default for the scheme.</li>
+            <li><strong>Pathname</strong> — the path component starting with <code>/</code>.</li>
+            <li><strong>Search / Query</strong> — the <code>?key=value</code> portion, decoded for readability.</li>
+            <li><strong>Hash / Fragment</strong> — the <code>#section</code> anchor, used for client-side navigation.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Instant breakdown</strong> — all URL components displayed at a glance, no manual string splitting.</li>
+            <li><strong>Query param table</strong> — each key-value pair listed separately and URL-decoded.</li>
+            <li><strong>Two modes</strong> — switch between parse and build in the same tool.</li>
+            <li><strong>Debugging aid</strong> — quickly check whether a URL is correctly formed or find encoding issues.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>What is the difference between hostname and host?</h3>
+              <p><code>hostname</code> is the domain without the port (e.g. <code>example.com</code>), while <code>host</code> includes the port if present (e.g. <code>example.com:8080</code>).</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Are percent-encoded values automatically decoded?</h3>
+              <p>Yes. Query parameter values are URL-decoded so you see the readable text rather than <code>%20</code> or similar escape sequences.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I parse non-HTTP URLs?</h3>
+              <p>The tool uses the browser's built-in <code>URL</code> API, which supports any valid URL including <code>ftp://</code>, <code>ws://</code>, and custom schemes.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is any data sent to a server?</h3>
+              <p>No. All parsing happens locally in JavaScript. The URL you paste never leaves your browser.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
+
 </body>
 </html>

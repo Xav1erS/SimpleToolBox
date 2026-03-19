@@ -201,70 +201,6 @@
     </div>
   </div>
 
-  
-<div class="ds-seo-content">
-  <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is Base32 Encoder / Decoder?</h2>
-    <p class="ds-seo-section__body">Encodes text or binary data to Base32 format and decodes Base32 strings back to plain text. Base32 uses a 32-character alphabet (A–Z, 2–7) that is case-insensitive and safe for file names and URLs.</p>
-  </section>
-  <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use Base32 Encoder / Decoder</h2>
-    <ol class="ds-seo-section__list">
-      <li>Enter your text or paste a Base32 string.</li>
-      <li>Select <strong>Encode</strong> or <strong>Decode</strong>.</li>
-      <li>See the result instantly.</li>
-      <li>Copy the output.</li>
-    </ol>
-  </section>
-</div>
-<div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="base64.html" class="ds-related-card">
-        <span class="ds-related-icon">📦</span>
-        <div><div class="ds-related-name">Base64 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div>
-      </a>
-      <a href="url-encode.html" class="ds-related-card">
-        <span class="ds-related-icon">🔗</span>
-        <div><div class="ds-related-name">URL Encoder / Decoder</div><div class="ds-related-desc">Encode and decode URL components</div></div>
-      </a>
-      <a href="hash-generator.html" class="ds-related-card">
-        <span class="ds-related-icon">#️⃣</span>
-        <div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">MD5, SHA-256, SHA-512 hashes</div></div>
-      </a>
-    </div>
-  </div>
-<details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle">
-    <span>Understand Base32 Encoder / Decoder</span>
-    <span class="ds-seo-more__arrow">&#9662;</span>
-  </summary>
-  <div class="ds-seo-more__body">
-    <details class="ds-seo-collapse">
-      <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Encode: <code>Hello</code> → <code>JBSWY3DP</code></p><p>Decode: <code>JBSWY3DP</code> → <code>Hello</code></p></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Base32 vs Base64</summary>
-      <div class="ds-seo-collapse__body"><p>Base32 uses only uppercase letters and digits 2–7. It is case-insensitive and avoids visually ambiguous characters (0, 1, l, O). Output is ~60% larger than input. Base64 is more compact (33% overhead) but case-sensitive. Base32 is used in TOTP/2FA secret keys (RFC 4648).</p></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Decode TOTP (Google Authenticator) secret keys</li>
-        <li>Safe for case-insensitive file systems and URLs</li>
-        <li>Avoids ambiguous characters that cause manual transcription errors</li>
-      </ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Frequently Asked Questions</summary>
-      <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>Is padding (=) included in the output?</strong><p>Yes — standard Base32 padding with "=" characters is applied by default. Unpadded output is also available.</p></div>
-        <div class="ds-seo-faq-item"><strong>Is Base32 the same as Base32Hex?</strong><p>No — Base32Hex uses a different alphabet (0–9, A–V). This tool uses the standard RFC 4648 alphabet.</p></div>
-      </div>
-    </details>
-  </div>
-</details>
 
 </div>
 
@@ -420,5 +356,99 @@
 
   setMode('encode');
 </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is a Base32 Encoder / Decoder?</h2>
+      <p>A Base32 Encoder / Decoder encodes text or binary data using Base32, a case-insensitive encoding that uses only 32 printable characters — the letters A–Z and digits 2–7. Defined in RFC 4648, Base32 produces output that is safe for filenames, DNS labels, and case-insensitive systems. This tool runs entirely in your browser — no data is uploaded to any server.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Select <strong>Encode</strong> or <strong>Decode</strong> mode.</li>
+        <li>Type or paste your input into the left panel.</li>
+        <li>The result appears instantly in the right panel — click Copy to use it.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Base64 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div></a>
+      <a href="base58.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Base58 Encoder / Decoder</div><div class="ds-related-desc">Bitcoin and IPFS compatible Base58 encoding</div></div></a>
+      <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Percent-encode and decode URL strings</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand Base32 Encoder / Decoder (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Encoding the word "Hello" using Base32:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Input</span>
+              <span class="ds-seo-example__value">Hello</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Output</span>
+              <span class="ds-seo-example__value">JBSWY3DP</span>
+            </div>
+          </div>
+          <p>Base32 encodes every 5 bytes into 8 characters and pads the output to a multiple of 8 with "=" padding characters. The result contains only letters and digits — safe for URLs, DNS, and filenames.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>When to Use Base32 vs Base64</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Case-insensitive systems:</strong> Base32 uses only uppercase A–Z and 2–7, making it safe when the receiver might lowercase the string (e.g. DNS, some filesystems).</li>
+            <li><strong>Human readability:</strong> Base32 avoids visually confusing characters (0, 1, 8, 9) compared to Base64's mix of letters, digits, and symbols.</li>
+            <li><strong>Efficiency:</strong> Base64 is ~33% larger than source; Base32 is ~60% larger. Prefer Base64 when file size or bandwidth matters.</li>
+            <li><strong>TOTP / 2FA secrets:</strong> Google Authenticator and TOTP libraries use Base32 to encode secret keys for two-factor authentication.</li>
+            <li><strong>Onion addresses:</strong> Tor v3 hidden service addresses are Base32-encoded SHA-3 hashes of the public key.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>RFC 4648 compliant</strong> — follows the standard alphabet and padding rules used by most libraries.</li>
+            <li><strong>Instant conversion</strong> — results update as you type, no button press needed.</li>
+            <li><strong>Bidirectional</strong> — encode and decode in one place.</li>
+            <li><strong>Error feedback</strong> — invalid Base32 input is flagged with a clear error message.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>Why does the output end with "=" characters?</h3>
+              <p>Base32 encodes data in 5-byte blocks. When the input length is not a multiple of 5, "=" padding characters are added to the output to make the total length a multiple of 8. Padding is part of the RFC 4648 standard and required by most decoders.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is Base32 the same as Base32Hex?</h3>
+              <p>No. RFC 4648 defines two Base32 variants: standard Base32 (A–Z, 2–7) and Base32Hex (0–9, A–V). They encode the same data but use different alphabets. This tool uses the standard Base32 alphabet by default.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I decode a TOTP secret key with this tool?</h3>
+              <p>Yes. TOTP secret keys are Base32-encoded strings. You can paste them here to see the raw bytes, but note that this tool outputs decoded text — binary secrets may not display correctly as text.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is my data stored or sent anywhere?</h3>
+              <p>No. All encoding and decoding happens locally in your browser using JavaScript. Nothing is sent to a server.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
 </body>
 </html>

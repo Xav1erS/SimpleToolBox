@@ -338,39 +338,71 @@
       <a href="color-palette.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Palette Generator</div><div class="ds-related-desc">Create and extract color palettes</div></div></a>
   </div>
 </div>
-      <div class="ds-related-tools__list">
-        <a href="./color-picker.html" class="ds-related-tools__item">Color Picker</a>
-        <a href="./gradient-generator.html" class="ds-related-tools__item">Gradient Generator</a>
-        <a href="./color-palette.html" class="ds-related-tools__item">Color Palette</a>
-      </div>
-    </div>
 <details class="ds-seo-more">
-  <summary >
-    Understand Color Contrast Checker
-    
-  </summary>
+  <summary>Understand WCAG Contrast Checker (examples, use cases &amp; FAQs)</summary>
   <div class="ds-seo-content">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Grey <code>#767676</code> on White <code>#FFFFFF</code>:</p><p>Contrast ratio: <strong>4.54:1</strong> → AA Normal text ✓ (barely passes)</p></div>
+      <div class="ds-seo-collapse__body">
+        <p>Checking medium grey text on a white background:</p>
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Foreground</span>
+            <span class="ds-seo-example__value">#767676 (medium grey)</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Background</span>
+            <span class="ds-seo-example__value">#FFFFFF (white) → Ratio: 4.48:1</span>
+          </div>
+        </div>
+        <p>Result: passes AA for large text (≥ 3:1), but fails AA for normal text (requires 4.5:1). Darken the grey slightly to pass all AA levels.</p>
+      </div>
     </details>
     <details class="ds-seo-collapse">
-      <summary>Why Contrast Ratio Matters</summary>
-      <div class="ds-seo-collapse__body"><p>Low contrast text is hard to read for users with low vision, color blindness, or in bright environments. WCAG 2.1 defines minimum contrast ratios to ensure text is readable by the widest possible audience. Failures can result in legal liability under ADA (US), EN 301 549 (EU), and similar regulations globally.</p></div>
+      <summary>Why Contrast Matters</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li><strong>Low-vision users</strong> — approximately 1 in 12 people have some degree of low vision; sufficient contrast makes text legible for them.</li>
+          <li><strong>Outdoor / bright environments</strong> — glare and reflections reduce perceived contrast on screens by up to 50%.</li>
+          <li><strong>Color blindness</strong> — about 8% of males have color vision deficiency; high luminance contrast ensures readability regardless of hue.</li>
+          <li><strong>Legal compliance</strong> — WCAG AA is mandated under ADA (US), EN 301 549 (EU), and similar laws globally.</li>
+          <li><strong>Better UX for everyone</strong> — high-contrast text reduces eye strain and improves reading speed for all users.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Instantly check if color choices meet accessibility standards</li>
-        <li>Fix contrast issues before shipping to users</li>
-        <li>Required check for WCAG 2.1 AA compliance audits</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li><strong>Instant calculation</strong> — contrast ratio updates as you type or pick a color.</li>
+          <li><strong>Full WCAG table</strong> — AA and AAA results for normal text, large text, and UI components in one view.</li>
+          <li><strong>Live text preview</strong> — see exactly how your text will look before committing to a color pair.</li>
+          <li><strong>Swap button</strong> — quickly test both foreground-on-background and background-on-foreground.</li>
+          <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>Does this check non-text contrast (borders, icons)?</strong><p>Yes — WCAG 1.4.11 requires 3:1 contrast for UI components and graphical elements, which this checker evaluates.</p></div>
-        <div class="ds-seo-faq-item"><strong>My colors pass AA but fail AAA — do I need to fix them?</strong><p>AAA is an enhanced level and not required for all content. AA compliance is the standard requirement for most legal frameworks.</p></div>
+        <div class="ds-faq-list">
+          <div class="ds-faq-item">
+            <h3>What is the difference between AA and AAA contrast levels?</h3>
+            <p>WCAG AA requires a 4.5:1 ratio for normal text and 3:1 for large text — the standard legal requirement. AAA requires 7:1 for normal text and 4.5:1 for large text, providing enhanced accessibility for users with severe low vision.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>Does this check non-text contrast (icons, borders)?</h3>
+            <p>Yes — WCAG 1.4.11 (Non-text Contrast) requires 3:1 for UI components and graphical elements. The AA UI Components result in the table covers this requirement.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>My colors pass AA but fail AAA — do I need to fix them?</h3>
+            <p>AAA compliance is not required for all content. WCAG AA is the standard legal requirement in most jurisdictions. Aim for AAA where possible, but AA is sufficient for legal compliance.</p>
+          </div>
+          <div class="ds-faq-item">
+            <h3>What counts as large text?</h3>
+            <p>WCAG defines large text as 18pt (24px) or larger for regular weight, or 14pt (approximately 18.67px) or larger for bold text. Large text has a lower contrast requirement (3:1 for AA) because it is inherently easier to read.</p>
+          </div>
+        </div>
       </div>
     </details>
   </div>

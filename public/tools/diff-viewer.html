@@ -590,5 +590,103 @@
     copyText(lastDiffText || diffOutput.innerText, btn);
   });
 </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is Diff Viewer?</h2>
+      <p>Diff Viewer highlights additions, deletions, and unchanged lines between two blocks of text side by side, making it easy to spot what changed. It is useful for comparing code snippets, document revisions, configuration files, and any plain-text content. All comparison runs locally in your browser — no text is ever uploaded to a server.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Paste the original text into the left panel (Text A).</li>
+        <li>Paste the modified text into the right panel (Text B).</li>
+        <li>The diff output updates automatically — green lines are additions, red lines are deletions.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="line-tools.html" class="ds-related-card"><span class="ds-related-icon">📋</span><div><div class="ds-related-name">Line Tools</div><div class="ds-related-desc">Sort, deduplicate, and filter lines</div></div></a>
+      <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove whitespace, blanks, and duplicates</div></div></a>
+      <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">✨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Format, validate, and minify JSON</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand Diff Viewer (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Comparing two versions of a greeting string:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Text A</span>
+              <span class="ds-seo-example__value">Hello World</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Text B</span>
+              <span class="ds-seo-example__value">Hello Claude</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Diff</span>
+              <span class="ds-seo-example__value">- World&#10;+ Claude</span>
+            </div>
+          </div>
+          <p>"World" is highlighted as a deletion (red) and "Claude" as an addition (green), while "Hello" is shown as unchanged.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Common Use Cases</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li>Reviewing code changes before committing to version control.</li>
+            <li>Comparing two versions of a configuration file to find what changed.</li>
+            <li>Proofreading document edits to confirm only intended changes were made.</li>
+            <li>Checking API response differences during debugging.</li>
+            <li>Verifying that a text transformation (e.g. replace, clean) produced the expected output.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Colour-coded output</strong> — additions in green, deletions in red, unchanged lines in neutral — instantly readable.</li>
+            <li><strong>Line-level granularity</strong> — each changed line is shown individually for precise review.</li>
+            <li><strong>No install required</strong> — works entirely in the browser without any software setup.</li>
+            <li><strong>Copy diff output</strong> — export the diff as plain text for sharing or documentation.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>Does it compare character-by-character or line-by-line?</h3>
+              <p>The diff is computed line-by-line, matching the standard unified diff format used by tools like git diff. Each line is shown as added, removed, or unchanged.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I ignore whitespace differences?</h3>
+              <p>Yes. Enable the "Ignore whitespace" option to treat lines that differ only in spacing or indentation as equal.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>How large can the input texts be?</h3>
+              <p>The tool handles large texts (thousands of lines) because diffing runs in the browser's JavaScript engine with no server round-trip. Performance depends on the browser and device.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is my text stored or shared anywhere?</h3>
+              <p>No. All processing happens locally in your browser. No data is sent to any server.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
 </body>
 </html>

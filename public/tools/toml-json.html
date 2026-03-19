@@ -201,81 +201,6 @@
     </div>
   </div>
 
-  
-<div class="ds-seo-content">
-  <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is TOML ↔ JSON Converter?</h2>
-    <p class="ds-seo-section__body">Converts TOML configuration files (used by Rust, Python, Hugo, and others) to JSON, and JSON back to TOML. Supports tables, arrays of tables, inline tables, and all TOML v1.0 data types.</p>
-  </section>
-  <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use TOML ↔ JSON Converter</h2>
-    <ol class="ds-seo-section__list">
-      <li>Paste your TOML or JSON.</li>
-      <li>Select conversion direction.</li>
-      <li>Click <strong>Convert</strong>.</li>
-      <li>Copy the output.</li>
-    </ol>
-  </section>
-</div>
-<div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="yaml-json.html" class="ds-related-card">
-        <span class="ds-related-icon">&#128260;</span>
-        <div>
-          <div class="ds-related-name">YAML ↔ JSON</div>
-          <div class="ds-related-desc">Convert between YAML and JSON</div>
-        </div>
-      </a>
-      <a href="json-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">&#10003;</span>
-        <div>
-          <div class="ds-related-name">JSON Formatter</div>
-          <div class="ds-related-desc">Format and validate JSON data</div>
-        </div>
-      </a>
-      <a href="json-csv.html" class="ds-related-card">
-        <span class="ds-related-icon">&#128202;</span>
-        <div>
-          <div class="ds-related-name">JSON ↔ CSV</div>
-          <div class="ds-related-desc">Convert between JSON and CSV</div>
-        </div>
-      </a>
-    </div>
-  </div>
-<details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle">
-    <span>Understand TOML ↔ JSON Converter</span>
-    <span class="ds-seo-more__arrow">&#9662;</span>
-  </summary>
-  <div class="ds-seo-more__body">
-    <details class="ds-seo-collapse">
-      <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>TOML input:</p><pre>[package]
-name = "myapp"
-version = "1.0.0"</pre><p>JSON output: <code>{"package":{"name":"myapp","version":"1.0.0"}}</code></p></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>TOML Features Supported</summary>
-      <div class="ds-seo-collapse__body"><ul><li>Basic key-value pairs</li><li>Section tables ([table])</li><li>Array of tables ([[array]])</li><li>Inline tables {key = "val"}</li><li>Datetime values (RFC 3339)</li><li>Multi-line strings (triple quotes)</li></ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Convert Cargo.toml or pyproject.toml for API use</li>
-        <li>Debug TOML parsing issues by converting to JSON</li>
-        <li>Migrate from TOML to JSON config format</li>
-      </ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Frequently Asked Questions</summary>
-      <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>What TOML version is supported?</strong><p>TOML v1.0 is fully supported.</p></div>
-        <div class="ds-seo-faq-item"><strong>Are TOML comments preserved in JSON?</strong><p>No — JSON does not support comments; they are dropped during conversion.</p></div>
-      </div>
-    </details>
-  </div>
-</details>
 
 </div>
 
@@ -515,5 +440,99 @@ codegen-units = 1`;
     if (e.key === 'Escape') { e.preventDefault(); inputText.value = ''; outputText.value = ''; outputPanel.classList.remove('has-error'); updateStats(); }
   });
 </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is TOML to JSON Converter?</h2>
+      <p>TOML to JSON Converter is a free browser-based tool that converts TOML configuration files to JSON and back, making it easy to work with Rust, Go, and other TOML-based config systems. All conversion runs locally in your browser — no data is ever uploaded.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Select the conversion direction: TOML → JSON or JSON → TOML.</li>
+        <li>Paste your TOML or JSON into the left panel.</li>
+        <li>The converted output appears instantly in the right panel — click Copy to use it.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="yaml-json.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">YAML ↔ JSON</div><div class="ds-related-desc">Convert between YAML and JSON</div></div></a>
+      <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">✨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify and validate JSON</div></div></a>
+      <a href="xml-json.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">XML ↔ JSON</div><div class="ds-related-desc">Convert between XML and JSON</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand TOML to JSON Converter (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Converting a TOML database config section to JSON:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Input (TOML)</span>
+              <span class="ds-seo-example__value">[database]<br>host = "localhost"<br>port = 5432</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Output (JSON)</span>
+              <span class="ds-seo-example__value">{"database":{"host":"localhost","port":5432}}</span>
+            </div>
+          </div>
+          <p>TOML's section headers map to nested JSON objects, and values preserve their native types.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>TOML vs JSON vs YAML</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>TOML</strong> — designed for config files; minimal syntax, strongly typed, easy to read by humans. Common in Rust (Cargo.toml) and Go projects.</li>
+            <li><strong>YAML</strong> — human-readable, supports comments and complex structures, widely used in DevOps (Docker, Kubernetes).</li>
+            <li><strong>JSON</strong> — the universal data interchange format; no comments, strict syntax, supported everywhere.</li>
+            <li><strong>When to use TOML</strong> — best for application configuration files where clarity and type safety matter.</li>
+            <li><strong>When to use JSON</strong> — best for APIs, data storage, and any context where broad language support is needed.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Instant conversion</strong> — output updates as you type, no button to click.</li>
+            <li><strong>Bidirectional</strong> — convert TOML to JSON or JSON to TOML in one click.</li>
+            <li><strong>Type-safe</strong> — integers, floats, booleans, and datetime types are preserved correctly.</li>
+            <li><strong>Error feedback</strong> — syntax errors are reported immediately with a clear message.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>Are TOML comments preserved when converting to JSON?</h3>
+              <p>No. JSON does not support comments, so TOML comments are dropped during conversion to JSON.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Does the tool support TOML arrays of tables?</h3>
+              <p>Yes. TOML arrays of tables (double-bracket sections like <code>[[products]]</code>) are converted to JSON arrays of objects.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>What TOML version is supported?</h3>
+              <p>The tool supports TOML v1.0, which covers all standard features including dotted keys, inline tables, and multi-line strings.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is my configuration data safe?</h3>
+              <p>Yes. All processing happens entirely in your browser using JavaScript. No data is ever sent to a server.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
 </body>
 </html>

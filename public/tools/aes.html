@@ -173,67 +173,6 @@
       <strong>Note:</strong> Uses AES-256-GCM with PBKDF2 key derivation (100,000 iterations, SHA-256). A random salt (16 bytes) and IV (12 bytes) are generated for each encryption. The output is a single Base64 string containing salt + IV + ciphertext. Your passphrase is never uploaded — all processing happens in your browser. To decrypt, you must use the same passphrase that was used to encrypt.
     </div>
 
-    
-<div class="ds-seo-content">
-  <section class="ds-seo-section">
-    <h2>What is AES Encryption / Decryption?</h2>
-    <p>Encrypts and decrypts text using AES-256-GCM with PBKDF2 key derivation (100,000 iterations, SHA-256). All processing happens client-side — your data and passphrase are never sent to any server.</p>
-  </section>
-  <section class="ds-seo-section">
-    <h2>How to Use AES Encryption / Decryption</h2>
-    <ol>
-      <li>Enter your plaintext message.</li>
-      <li>Enter a passphrase (the stronger the better).</li>
-      <li>Click <strong>Encrypt</strong> to get a Base64 ciphertext string.</li>
-      <li>To decrypt: paste the ciphertext, enter the same passphrase, click <strong>Decrypt</strong>.</li>
-    </ol>
-  </section>
-</div>
-<div class="ds-related-tools">
-  <h2 class="ds-related-title">Related Tools</h2>
-  <div class="ds-related-grid">
-      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">MD5, SHA-1, SHA-256, SHA-512 hashing</div></div></a>
-      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encoder</div><div class="ds-related-desc">Encode and decode Base64 data</div></div></a>
-      <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate secure random passwords</div></div></a>
-  </div>
-</div>
-      <div class="ds-related-tools__list">
-        <a href="./hash-generator.html" class="ds-related-tools__item">Hash Generator</a>
-        <a href="./base64.html" class="ds-related-tools__item">Base64 Encoder</a>
-        <a href="./password-generator.html" class="ds-related-tools__item">Password Generator</a>
-      </div>
-    </div>
-<details class="ds-seo-more">
-  <summary >
-    Understand AES Encryption / Decryption
-    
-  </summary>
-  <div class="ds-seo-content">
-    <details class="ds-seo-collapse">
-      <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Plaintext: <code>Secret message</code></p><p>Passphrase: <code>myStrongPassphrase123!</code></p><p>Ciphertext (Base64): <code>abc123...=</code> (contains salt + IV + ciphertext)</p><p>Decrypt with same passphrase → original message</p></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Security Details</summary>
-      <div class="ds-seo-collapse__body"><ul><li>AES-256-GCM: authenticated encryption (confidentiality + integrity)</li><li>PBKDF2 with 100,000 iterations: key derivation from passphrase</li><li>Random 16-byte salt + 12-byte IV generated per encryption</li><li>Output is a single Base64 string containing salt + IV + ciphertext</li></ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Encrypt sensitive notes or config values without installing software</li>
-        <li>All processing is local — nothing leaves your browser</li>
-        <li>Test AES key derivation and GCM authenticated encryption behavior</li>
-      </ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Frequently Asked Questions</summary>
-      <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>Is this secure enough for sensitive data?</strong><p>AES-256-GCM is industry-standard. Security depends entirely on passphrase strength — use a long random passphrase.</p></div>
-        <div class="ds-seo-faq-item"><strong>Can I decrypt on another system?</strong><p>Yes — any system using the same PBKDF2+AES-256-GCM algorithm with the same passphrase can decrypt the output.</p></div>
-      </div>
-    </details>
-  </div>
-</details>
 
   </main>
 
@@ -414,5 +353,99 @@
       });
     });
   </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is AES Encrypt / Decrypt?</h2>
+      <p>AES Encrypt / Decrypt encrypts and decrypts text using AES (Advanced Encryption Standard) with CBC or GCM mode, entirely in your browser — no data is ever sent to a server. AES is the most widely used symmetric encryption algorithm in the world, protecting everything from HTTPS traffic to encrypted file storage. Your plaintext and keys never leave your device.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Enter the text you want to encrypt in the input field and provide a secret key.</li>
+        <li>Select an AES mode (CBC or GCM) and key size (128, 192, or 256-bit).</li>
+        <li>Click <strong>Encrypt</strong> to get the Base64-encoded ciphertext, or paste ciphertext and click <strong>Decrypt</strong> to recover the original text.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="hmac.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">HMAC Generator</div><div class="ds-related-desc">Generate message authentication codes</div></div></a>
+      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">MD5, SHA-1, SHA-256 and more</div></div></a>
+      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Base64 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand AES Encrypt / Decrypt (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Here is a typical AES-GCM encryption operation:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Input</span>
+              <span class="ds-seo-example__value">Plaintext: "Secret message" · Key: "mykey" · Mode: AES-GCM-256</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Output</span>
+              <span class="ds-seo-example__value">Base64-encoded ciphertext (includes IV + auth tag)</span>
+            </div>
+          </div>
+          <p>The output changes every time due to a random IV (initialization vector), even when encrypting the same message with the same key — this is a security feature, not a bug.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>AES Modes Explained</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>AES-CBC (Cipher Block Chaining)</strong> — classic mode; requires padding; widely supported but lacks built-in authentication.</li>
+            <li><strong>AES-GCM (Galois/Counter Mode)</strong> — authenticated encryption; detects tampering automatically; preferred for modern applications.</li>
+            <li><strong>Key sizes</strong> — 128-bit (fast), 192-bit (medium), 256-bit (maximum security); all are secure for practical purposes.</li>
+            <li><strong>IV / Nonce</strong> — a random value included in the output; ensures identical plaintexts produce different ciphertexts.</li>
+            <li><strong>Base64 output</strong> — ciphertext is Base64-encoded for safe transport in JSON, URLs, or text fields.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Industry-standard cipher</strong> — AES is used by governments, banks, and cloud providers worldwide.</li>
+            <li><strong>Both encrypt &amp; decrypt</strong> — test your encryption round-trip without writing any code.</li>
+            <li><strong>Multiple modes &amp; key sizes</strong> — match the exact configuration your application uses.</li>
+            <li><strong>Developer utility</strong> — quickly verify encrypted payloads or debug AES integration issues.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>What is the difference between AES-CBC and AES-GCM?</h3>
+              <p>AES-CBC provides confidentiality only and requires a separate MAC for integrity verification. AES-GCM provides both confidentiality and built-in authentication, making it the preferred choice for new systems.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Why does the ciphertext change every time I encrypt the same message?</h3>
+              <p>A random IV (initialization vector) is generated for each encryption operation. This ensures that identical plaintexts produce different ciphertexts, preventing pattern analysis. The IV is stored alongside the ciphertext and used automatically during decryption.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>How strong is AES-256?</h3>
+              <p>AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide — it is the gold standard for symmetric encryption.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I use this tool to encrypt files?</h3>
+              <p>This tool is designed for text encryption. For file encryption, consider dedicated tools. However, you can encrypt Base64-encoded file content if needed.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
 </body>
 </html>

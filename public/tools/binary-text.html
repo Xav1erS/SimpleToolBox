@@ -536,5 +536,99 @@
   // ── Init ──────────────────────────────────────────────────
   setMode('encode');
 </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is a Binary Text Converter?</h2>
+      <p>A Binary Text Converter translates plain text into binary representation (0s and 1s) and converts binary strings back to readable text using ASCII/UTF-8 encoding. It is useful for understanding how computers store and transmit characters at the bit level. Everything runs entirely in your browser — no data is uploaded to any server.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Select <strong>Text → Binary</strong> or <strong>Binary → Text</strong> mode.</li>
+        <li>Type or paste your input into the left panel.</li>
+        <li>The converted result appears instantly in the right panel — click Copy to use it.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Base64 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div></a>
+      <a href="base32.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Base32 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base32 strings</div></div></a>
+      <a href="text-case.html" class="ds-related-card"><span class="ds-related-icon">🔤</span><div><div class="ds-related-name">Text Case Converter</div><div class="ds-related-desc">Convert text between case styles</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand Binary Text Converter (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Converting the text "Hi" into its binary representation:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Input</span>
+              <span class="ds-seo-example__value">Hi</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Output</span>
+              <span class="ds-seo-example__value">01001000 01101001</span>
+            </div>
+          </div>
+          <p>Each 8-bit group represents one character: 01001000 is the ASCII code for "H" (72) and 01101001 is "i" (105).</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Common Use Cases</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li>Understanding how text is stored in computer memory at the bit level.</li>
+            <li>Debugging binary data streams in network protocols or file formats.</li>
+            <li>Learning exercises for computer science, encoding, and data representation courses.</li>
+            <li>Creating puzzles or ciphers that encode messages in binary.</li>
+            <li>Verifying ASCII/UTF-8 character codes during low-level programming tasks.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Instant conversion</strong> — results update as you type, no button press needed.</li>
+            <li><strong>Bidirectional</strong> — converts both text-to-binary and binary-to-text in one place.</li>
+            <li><strong>UTF-8 aware</strong> — correctly handles multi-byte characters beyond basic ASCII.</li>
+            <li><strong>Clean output</strong> — bytes are space-separated for easy reading and debugging.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>What encoding does this tool use?</h3>
+              <p>The tool uses UTF-8 encoding, which is backward-compatible with ASCII for the standard 128 characters and extends to cover all Unicode characters.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Why are spaces included between bytes?</h3>
+              <p>Spaces are added between each 8-bit group (byte) to make the output easier to read. Each group corresponds to one character in the ASCII range.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I convert binary back to text?</h3>
+              <p>Yes. Switch to Binary → Text mode, paste your binary string (with or without spaces), and the tool will decode it back to the original text.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is my input data stored or sent anywhere?</h3>
+              <p>No. All conversion happens locally in your browser using JavaScript. Nothing is sent to a server.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
 </body>
 </html>

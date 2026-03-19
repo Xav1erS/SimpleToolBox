@@ -242,83 +242,6 @@
     </div>
   </div>
 
-  
-<div class="ds-seo-content">
-  <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is YAML ↔ JSON Converter?</h2>
-    <p class="ds-seo-section__body">Converts YAML configuration files to JSON and JSON back to YAML. Supports multi-document YAML, anchors, aliases, and all standard YAML data types including dates and binary.</p>
-  </section>
-  <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use YAML ↔ JSON Converter</h2>
-    <ol class="ds-seo-section__list">
-      <li>Paste YAML or JSON into the input.</li>
-      <li>Select conversion direction or let it auto-detect.</li>
-      <li>Adjust output indentation for YAML.</li>
-      <li>Copy the result.</li>
-    </ol>
-  </section>
-</div>
-<div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="json-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">🎨</span>
-        <div>
-          <div class="ds-related-name">JSON Formatter</div>
-          <div class="ds-related-desc">Prettify, minify, and validate JSON</div>
-        </div>
-      </a>
-      <a href="url-encode.html" class="ds-related-card">
-        <span class="ds-related-icon">🔗</span>
-        <div>
-          <div class="ds-related-name">URL Encode / Decode</div>
-          <div class="ds-related-desc">Percent-encode strings for safe URL use</div>
-        </div>
-      </a>
-      <a href="base64.html" class="ds-related-card">
-        <span class="ds-related-icon">📦</span>
-        <div>
-          <div class="ds-related-name">Base64 Encode / Decode</div>
-          <div class="ds-related-desc">Encode and decode Base64 strings</div>
-        </div>
-      </a>
-    </div>
-  </div>
-<details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle">
-    <span>Understand YAML ↔ JSON Converter</span>
-    <span class="ds-seo-more__arrow">&#9662;</span>
-  </summary>
-  <div class="ds-seo-more__body">
-    <details class="ds-seo-collapse">
-      <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>YAML input:</p><pre>name: Alice
-age: 30
-roles:
-  - admin
-  - user</pre><p>JSON output: <code>{"name":"Alice","age":30,"roles":["admin","user"]}</code></p></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>YAML vs JSON</summary>
-      <div class="ds-seo-collapse__body"><p>YAML is more human-readable (no braces/brackets, supports comments, allows anchors &amp; for reuse). JSON is more widely supported in APIs and programming languages. Both represent the same data types. Use YAML for config files, JSON for API payloads.</p></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Convert Kubernetes/Docker config to JSON for API calls</li>
-        <li>Check YAML validity by converting and back</li>
-        <li>Migrate between config formats without manual editing</li>
-      </ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Frequently Asked Questions</summary>
-      <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>Does it handle YAML anchors and aliases?</strong><p>Yes — anchors (&amp;) and aliases (*) are resolved in the JSON output.</p></div>
-        <div class="ds-seo-faq-item"><strong>Are YAML comments preserved in JSON?</strong><p>No — JSON does not support comments, so they are dropped during conversion.</p></div>
-      </div>
-    </details>
-  </div>
-</details>
 
 </div>
 
@@ -464,5 +387,99 @@ roles:
 
   setMode('yaml2json');
 </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is YAML to JSON Converter?</h2>
+      <p>YAML to JSON Converter is a free browser-based tool that converts YAML to JSON and JSON to YAML, supporting all standard data types including nested objects, arrays, and multiline strings. No data is uploaded — all conversion happens locally in your browser.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Select the conversion direction: YAML → JSON or JSON → YAML.</li>
+        <li>Paste or type your input into the left panel.</li>
+        <li>The converted output appears instantly in the right panel — click Copy to use it.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">✨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify and validate JSON</div></div></a>
+      <a href="toml-json.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">TOML ↔ JSON</div><div class="ds-related-desc">Convert TOML config files to JSON</div></div></a>
+      <a href="xml-json.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">XML ↔ JSON</div><div class="ds-related-desc">Convert between XML and JSON</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand YAML to JSON Converter (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Converting a simple YAML object to JSON:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Input (YAML)</span>
+              <span class="ds-seo-example__value">name: Alice<br>age: 30</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Output (JSON)</span>
+              <span class="ds-seo-example__value">{"name":"Alice","age":30}</span>
+            </div>
+          </div>
+          <p>YAML's indentation-based syntax maps directly to JSON's brace-based object notation.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>YAML vs JSON</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Readability</strong> — YAML uses indentation and minimal punctuation, making it more human-readable for config files.</li>
+            <li><strong>Verbosity</strong> — JSON uses explicit braces and quotes, making it more explicit and machine-friendly.</li>
+            <li><strong>Comments</strong> — YAML supports comments with <code>#</code>; JSON does not support comments natively.</li>
+            <li><strong>Data types</strong> — YAML infers types (e.g. bare <code>true</code>, <code>42</code>); JSON requires explicit string quoting.</li>
+            <li><strong>Usage</strong> — YAML is common in config files (Docker, Kubernetes, CI/CD); JSON is standard for APIs and data exchange.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Instant conversion</strong> — output updates as you type, no button to click.</li>
+            <li><strong>Bidirectional</strong> — convert YAML to JSON or JSON to YAML with one click.</li>
+            <li><strong>Error feedback</strong> — invalid syntax is reported immediately with a clear error message.</li>
+            <li><strong>Formatted output</strong> — JSON output is pretty-printed and easy to read.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>Does this tool support nested objects and arrays?</h3>
+              <p>Yes. The converter handles arbitrarily nested YAML structures including objects, arrays, strings, numbers, booleans, and null values.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Are YAML comments preserved in the JSON output?</h3>
+              <p>No. JSON does not support comments, so any YAML comments are dropped during conversion.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can I convert multi-document YAML files?</h3>
+              <p>The tool converts a single YAML document at a time. Multi-document YAML (separated by <code>---</code>) is not currently supported.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is my data safe?</h3>
+              <p>Yes. All processing happens entirely in your browser using JavaScript. No data is ever sent to a server.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
 </body>
 </html>

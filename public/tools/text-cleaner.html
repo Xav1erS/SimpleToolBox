@@ -191,14 +191,6 @@
     </ol>
   </section>
 </div>
-<div class="related" style="margin-top:24px">
-  <div class="related-title">Related Tools</div>
-  <div class="related-grid">
-    <a href="word-counter.html" class="related-card">📝 Word Counter</a>
-    <a href="line-tools.html" class="related-card">📋 Line Tools</a>
-    <a href="text-case.html" class="related-card">🔡 Text Case Converter</a>
-  </div>
-</div>
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
     <span>Understand Text Cleaner</span>
@@ -342,5 +334,99 @@
     setTimeout(() => { this.textContent = 'Copy'; this.classList.remove('copied'); }, 1500);
   });
 </script>
+
+  <div class="ds-seo-content">
+    <section class="ds-seo-section">
+      <h2>What is Text Cleaner?</h2>
+      <p>Text Cleaner is a browser-based tool that removes extra whitespace, blank lines, duplicate lines, and unwanted characters from pasted text. It is ideal for cleaning up content copied from PDFs, emails, or web pages before use in documents or code. No text is ever uploaded — all processing happens locally in your browser.</p>
+    </section>
+    <section class="ds-seo-section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Paste your messy text into the input box.</li>
+        <li>Select the cleaning options you need (e.g. trim whitespace, remove blank lines, deduplicate).</li>
+        <li>Click Clean and copy the result.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="ds-related-tools">
+    <h2 class="ds-related-title">Related Tools</h2>
+    <div class="ds-related-grid">
+      <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and sentences</div></div></a>
+      <a href="line-tools.html" class="ds-related-card"><span class="ds-related-icon">📋</span><div><div class="ds-related-name">Line Tools</div><div class="ds-related-desc">Sort, deduplicate, and filter lines</div></div></a>
+      <a href="text-case.html" class="ds-related-card"><span class="ds-related-icon">🔤</span><div><div class="ds-related-name">Text Case Converter</div><div class="ds-related-desc">Convert text to camelCase, snake_case, and more</div></div></a>
+    </div>
+  </div>
+
+  <details class="ds-seo-more">
+    <summary>Understand Text Cleaner (examples, use cases &amp; FAQs)</summary>
+    <div class="ds-seo-content">
+      <details class="ds-seo-collapse">
+        <summary>Example</summary>
+        <div class="ds-seo-collapse__body">
+          <p>Cleaning up text with extra spaces and blank lines:</p>
+          <div class="ds-seo-example">
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Input</span>
+              <span class="ds-seo-example__value">Hello   World&#10;&#10;&#10;Foo</span>
+            </div>
+            <div class="ds-seo-example__row">
+              <span class="ds-seo-example__label">Output</span>
+              <span class="ds-seo-example__value">Hello World&#10;Foo</span>
+            </div>
+          </div>
+          <p>Multiple spaces are collapsed to one and consecutive blank lines are removed, leaving clean readable text.</p>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>What Can Be Cleaned</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li>Multiple consecutive spaces collapsed into a single space.</li>
+            <li>Leading and trailing whitespace stripped from each line.</li>
+            <li>Blank and empty lines removed.</li>
+            <li>Duplicate lines deduplicated (keep first or last occurrence).</li>
+            <li>Non-printable or special Unicode characters removed.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Why Use This Tool</summary>
+        <div class="ds-seo-collapse__body">
+          <ul>
+            <li><strong>Multiple clean operations</strong> — apply several cleaning rules at once rather than using separate tools.</li>
+            <li><strong>Preserves structure</strong> — only removes noise; meaningful line breaks and content are kept.</li>
+            <li><strong>Handles PDF artefacts</strong> — removes extra spaces and line breaks introduced by PDF-to-text conversion.</li>
+            <li><strong>Instant results</strong> — see cleaned output immediately with no page reload.</li>
+            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ds-seo-collapse">
+        <summary>Frequently Asked Questions</summary>
+        <div class="ds-seo-collapse__body">
+          <div class="ds-faq-list">
+            <div class="ds-faq-item">
+              <h3>Will it remove intentional blank lines?</h3>
+              <p>Only if you enable the "Remove blank lines" option. Each cleaning rule is independently toggled, so you stay in control of what gets removed.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Can it remove duplicate lines from a large list?</h3>
+              <p>Yes. Enable the "Remove duplicate lines" option and the tool will keep only the first occurrence of each repeated line, regardless of list length.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Does it support Unicode text?</h3>
+              <p>Yes. The tool works with any Unicode text including CJK characters, emoji, and accented letters. Only non-printable control characters are removed when that option is selected.</p>
+            </div>
+            <div class="ds-faq-item">
+              <h3>Is my text stored or shared anywhere?</h3>
+              <p>No. All processing happens locally in your browser. No data is sent to any server.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
 </body>
 </html>

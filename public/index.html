@@ -197,11 +197,23 @@
       transition: all 0.2s;
       font-weight: 500;
     }
-    .hero-tag:hover, .hero-tag.active {
+    .hero-tag:hover {
       background: var(--ds-color-surface-tint);
       border-color: rgba(94,106,210,0.4);
       color: #9B8DEB;
+      text-decoration: none;
     }
+    .hero-cta { margin: 20px 0 0; }
+    .hero-cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      background: var(--accent); color: #fff;
+      border-radius: var(--radius-sm, 8px);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .hero-cta-btn:hover { opacity: 0.85; }
 
     /* ── STATS ── */
     .stats {
@@ -607,14 +619,15 @@
     <div class="search-dropdown" id="heroSearchDropdown"></div>
   </div>
 
+  <div class="hero-cta">
+    <a href="all-tools.html" class="hero-cta-btn">Browse All Tools →</a>
+  </div>
+
   <div class="hero-tags">
-    <button class="hero-tag active" data-filter="all">🔥 All</button>
-    <button class="hero-tag" data-filter="encode">🔐 Encode</button>
-    <button class="hero-tag" data-filter="format">✨ Format</button>
-    <button class="hero-tag" data-filter="convert">🔄 Convert</button>
-    <button class="hero-tag" data-filter="generate">⚙️ Generate</button>
-    <button class="hero-tag" data-filter="text">📝 Text</button>
-    <button class="hero-tag" data-filter="image">🖼️ Image</button>
+    <a href="image-tools.html" class="hero-tag">🖼️ Image Tools</a>
+    <a href="developer-tools.html" class="hero-tag">🛠️ Developer Tools</a>
+    <a href="text-tools.html" class="hero-tag">✍️ Text Tools</a>
+    <a href="all-tools.html" class="hero-tag">📚 All Tools</a>
   </div>
 </section>
 
@@ -683,7 +696,7 @@
         <span class="category-count">15 tools</span>
       </div>
     </div>
-    <div class="category-card" style="--card-color:rgba(168,85,247,0.08)" data-name="text string markdown diff word count" data-filter="text" data-hub="text-tools.html">
+    <div class="category-card" style="--card-color:rgba(168,85,247,0.08)" data-name="text string markdown diff word count" data-filter="text">
       <div class="category-icon">📝</div>
       <div class="category-body">
         <div class="category-name">Text Tools</div>
@@ -715,7 +728,7 @@
         <span class="category-count">7 tools</span>
       </div>
     </div>
-    <div class="category-card" style="--card-color:rgba(234,179,8,0.08)" data-name="image compress resize crop convert" data-filter="image" data-hub="image-tools.html">
+    <div class="category-card" style="--card-color:rgba(234,179,8,0.08)" data-name="image compress resize crop convert" data-filter="image">
       <div class="category-icon">🖼️</div>
       <div class="category-body">
         <div class="category-name">Image Tools</div>
@@ -1041,10 +1054,6 @@
     toolCards.forEach(card => {
       card.style.display = (tag === 'all' || card.dataset.tags === tag) ? '' : 'none';
     });
-    // sync hero tag active state
-    document.querySelectorAll('.hero-tag').forEach(t => {
-      t.classList.toggle('active', t.dataset.filter === tag);
-    });
     // show/hide clear button
     clearFilterBtn.style.display = tag === 'all' ? 'none' : 'flex';
   }
@@ -1053,15 +1062,6 @@
     document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
   }
 
-  // Hero tag pills
-  document.querySelectorAll('.hero-tag').forEach(tag => {
-    tag.addEventListener('click', () => {
-      clearCategoryActive();
-      clearSearch();
-      filterTools(tag.dataset.filter);
-    });
-  });
-
   // Clear filter button
   clearFilterBtn.addEventListener('click', () => {
     clearCategoryActive();
@@ -1069,11 +1069,10 @@
     filterTools('all');
   });
 
-  // Category card clicks — navigate to hub page or all-tools.html with filter param
+  // Category card clicks — navigate to all-tools.html with filter param
   document.querySelectorAll('.category-card[data-filter]').forEach(card => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', () => {
-      if (card.dataset.hub) { window.location.href = card.dataset.hub; return; }
       const filter = card.dataset.filter;
       window.location.href = 'all-tools.html' + (filter && filter !== 'all' ? '?cat=' + filter : '');
     });
@@ -1140,19 +1139,13 @@
     const query = e.target.value;
     buildDropdown(heroDropdown, query);
     filterBySearch(query, false);
-    if (!query.trim()) {
-      clearCategoryActive();
-      document.querySelectorAll('.hero-tag').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));
-    }
+    if (!query.trim()) clearCategoryActive();
   });
   document.getElementById('navSearch').addEventListener('input', e => {
     const query = e.target.value;
     buildDropdown(navDropdown, query);
     filterBySearch(query, false);
-    if (!query.trim()) {
-      clearCategoryActive();
-      document.querySelectorAll('.hero-tag').forEach(t => t.classList.toggle('active', t.dataset.filter === 'all'));
-    }
+    if (!query.trim()) clearCategoryActive();
   });
 
   // Close dropdowns on outside click

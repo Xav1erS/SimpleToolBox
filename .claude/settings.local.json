@@ -88,7 +88,16 @@
       "Bash(grep -n 'ds-seo-content\\\\|ds-related-tools\\\\|ds-seo-more\\\\|ds-seo-section\\\\|<\\\\/div>\\\\s*$' public/tools/base64.html)",
       "Bash(ls -la /c/Users/Windows11/Documents/GitHub/SimpleToolBox/*.md)",
       "Bash(grep -l \"ds-seo-content\" c:/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
-      "Bash(xargs -I{} grep -L class=main {})"
+      "Bash(xargs -I{} grep -L class=main {})",
+      "Bash(for tool:*)",
+      "Read(//c/Users/Windows11/Documents/GitHub/SimpleToolBox/public/tools/**)",
+      "Bash(head -10 grep -n \"ds-related-tools__item\\\\|href.*html.*class=\"\"ds-related\" \"public/tools/gradient-generator.html\")",
+      "Bash(head -10 grep -n \"ds-related-tools__item\\\\|href.*html.*class=\"\"ds-related\" \"public/tools/json-csv.html\")",
+      "Bash(head -10 grep -n \"ds-related-tools__item\\\\|href.*html.*class=\"\"ds-related\" \"public/tools/user-agent.html\")",
+      "Bash(__NEW_LINE_4a9390541b9bb394__ grep:*)",
+      "Bash(__NEW_LINE_4a9390541b9bb394__ done:*)",
+      "Bash(git -C \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox\" diff --stat HEAD public/all-tools.html)",
+      "Bash(git -C \"c:/Users/Windows11/Documents/GitHub/SimpleToolBox\" status --short)"
     ]
   }
 }

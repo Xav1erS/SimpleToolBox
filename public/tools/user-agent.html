@@ -185,14 +185,16 @@
 <nav class="ds-tool-nav">
   <a href="/" class="ds-nav__brand">
     <div class="ds-nav__logo-icon">
-      <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      <img src="../logo.svg" alt="SimpleToolBox" class="logo-img" />
     </div>
     SimpleToolBox
   </a>
-  <div class="ds-tool-nav__links">
-    <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
-    <a href="/about.html" class="ds-tool-nav__link">About</a>
-  </div>
+    <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">User Agent Parser<span class="ds-tool-badge">network</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &#8212; no data sent</div>
 </nav>
 
 <div class="ds-tool-header">
@@ -239,12 +241,12 @@
   
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is User Agent Parser?</h2>
-    <p class="ds-seo-section__body">Parses User-Agent strings to identify browser name and version, operating system, device type (mobile/desktop/tablet), rendering engine, and bot detection flags. Useful for debugging analytics and server logs.</p>
+    <h2>What is User Agent Parser?</h2>
+    <p>Parses User-Agent strings to identify browser name and version, operating system, device type (mobile/desktop/tablet), rendering engine, and bot detection flags. Useful for debugging analytics and server logs.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use User Agent Parser</h2>
-    <ol class="ds-seo-section__list">
+    <h2>How to Use User Agent Parser</h2>
+    <ol>
       <li>Paste a User-Agent string, or click <strong>Use My UA</strong> to auto-detect your own.</li>
       <li>See browser, OS, device type, and engine broken down.</li>
       <li>Check the mobile and bot detection flags.</li>
@@ -253,7 +255,13 @@
   </section>
 </div>
 <div class="ds-related-tools">
-    <div class="ds-related-tools__title">Related Tools</div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+      <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encoder</div><div class="ds-related-desc">Encode and decode URL components</div></div></a>
+      <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">{}</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Format and validate JSON data</div></div></a>
+      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">MD5, SHA-1, SHA-256, SHA-512 hashing</div></div></a>
+  </div>
+</div>
     <div class="ds-related-tools__list">
       <a href="./url-encode.html" class="ds-related-tools__item">URL Encode / Decode</a>
       <a href="./json-formatter.html" class="ds-related-tools__item">JSON Formatter</a>
@@ -261,11 +269,11 @@
     </div>
   </div>
 <details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle">
-    <span>Understand User Agent Parser</span>
-    <span class="ds-seo-more__arrow">&#9662;</span>
+  <summary >
+    Understand User Agent Parser
+    
   </summary>
-  <div class="ds-seo-more__body">
+  <div class="ds-seo-content">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
       <div class="ds-seo-collapse__body"><p>UA: <code>Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15...</code></p><p>→ Browser: Safari 17, OS: iOS 17, Device: Mobile, Engine: WebKit</p></div>
@@ -299,7 +307,7 @@
   <div class="ds-footer__inner">
     <a href="/" class="ds-nav__brand">
       <div class="ds-footer-logo-icon">
-        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+        <img src="../logo.svg" alt="SimpleToolBox" class="logo-img" />
       </div>
       SimpleToolBox
     </a>

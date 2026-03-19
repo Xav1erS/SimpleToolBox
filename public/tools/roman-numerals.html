@@ -186,14 +186,16 @@
 <nav class="ds-tool-nav">
   <a href="/" class="ds-nav__brand">
     <div class="ds-nav__logo-icon">
-      <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+      <img src="../logo.svg" alt="SimpleToolBox" class="logo-img" />
     </div>
     SimpleToolBox
   </a>
-  <div class="ds-tool-nav__links">
-    <a href="/all-tools.html" class="ds-tool-nav__link">All Tools</a>
-    <a href="/about.html" class="ds-tool-nav__link">About</a>
-  </div>
+    <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Roman Numeral Converter<span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &#8212; no data sent</div>
 </nav>
 
 <!-- HEADER -->
@@ -209,7 +211,6 @@
 
 <!-- MAIN -->
 <main class="ds-tool-main ds-tool-stack">
-<div class="main">
 
   <!-- CONVERTER CARD -->
   <div class="card">
@@ -284,12 +285,12 @@
   
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is Roman Numeral Converter?</h2>
-    <p class="ds-seo-section__body">Converts between Arabic numbers (1–3999) and Roman numerals. Supports standard Roman numeral rules including subtractive notation (IV=4, IX=9, XL=40, CD=400, CM=900).</p>
+    <h2>What is Roman Numeral Converter?</h2>
+    <p>Converts between Arabic numbers (1–3999) and Roman numerals. Supports standard Roman numeral rules including subtractive notation (IV=4, IX=9, XL=40, CD=400, CM=900).</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use Roman Numeral Converter</h2>
-    <ol class="ds-seo-section__list">
+    <h2>How to Use Roman Numeral Converter</h2>
+    <ol>
       <li>Enter an Arabic number (1–3999) or a Roman numeral.</li>
       <li>The converter auto-detects the input type.</li>
       <li>See the conversion instantly.</li>
@@ -298,18 +299,18 @@
   </section>
 </div>
 <div class="ds-related-tools">
-    <div class="ds-related-tools__title">Related Tools</div>
-    <div class="ds-related-tools__list">
-      <a href="./unit-converter.html" class="ds-related-tools__item">Unit Converter</a>
-      <a href="./timestamp.html" class="ds-related-tools__item">Timestamp Converter</a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+      <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert between units of measurement</div></div></a>
+      <a href="timestamp.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Timestamp Converter</div><div class="ds-related-desc">Convert Unix timestamps to dates</div></div></a>
   </div>
+</div>
 <details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle">
-    <span>Understand Roman Numeral Converter</span>
-    <span class="ds-seo-more__arrow">&#9662;</span>
+  <summary >
+    Understand Roman Numeral Converter
+    
   </summary>
-  <div class="ds-seo-more__body">
+  <div class="ds-seo-content">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
       <div class="ds-seo-collapse__body"><p>Arabic → Roman: <code>2024</code> → <code>MMXXIV</code></p><p>Roman → Arabic: <code>XIV</code> → <code>14</code>, <code>MCMXCIX</code> → <code>1999</code></p></div>
@@ -336,8 +337,6 @@
   </div>
 </details>
 
-
-</div>
 </main>
 
 <!-- FOOTER -->
@@ -345,7 +344,7 @@
   <div class="ds-footer__inner">
     <a href="/" class="ds-nav__brand">
       <div class="ds-footer-logo-icon">
-        <img src="../assets/logo.svg" alt="SimpleToolBox" class="logo-img" />
+        <img src="../logo.svg" alt="SimpleToolBox" class="logo-img" />
       </div>
       SimpleToolBox
     </a>

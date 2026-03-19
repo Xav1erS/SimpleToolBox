@@ -290,8 +290,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand HTML Formatter (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand HTML Formatter (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
       <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -336,24 +336,22 @@
       <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Does HTML Formatter validate my HTML?</h3>
               <p>The formatter focuses on indentation and readability. It will process malformed HTML as best it can, but it is not a strict validator. Use a dedicated validator if you need spec-compliance checking.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Will formatting change the rendered output of my page?</h3>
               <p>No. Adding whitespace between block elements does not change visual rendering. Be cautious with inline elements like &lt;span&gt; inside text where whitespace can matter — the formatter preserves inline content.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Can I format a full HTML document with &lt;!DOCTYPE&gt; and &lt;head&gt;?</h3>
               <p>Yes. The formatter handles complete documents including doctype declarations, head sections, scripts, and styles without stripping any content.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Is there a file size limit?</h3>
               <p>There is no server-side limit because everything runs in your browser. Very large files (hundreds of KB) may take a moment to process depending on your device.</p>
             </div>
-          </div>
         </div>
       </details>
     </div>

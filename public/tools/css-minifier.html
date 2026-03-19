@@ -451,8 +451,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand CSS Minifier (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand CSS Minifier (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
       <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -497,24 +497,22 @@
       <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Will minifying CSS break my styles?</h3>
               <p>No. The minifier only removes characters that have no effect on CSS parsing — whitespace and comments. The minified output is functionally identical to the original.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Should I keep the original formatted CSS?</h3>
               <p>Yes. Always keep the human-readable source file in your repository and only deploy the minified version. Use a source map if you need to debug minified CSS in browser DevTools.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>How much file size reduction can I expect?</h3>
               <p>Typical savings range from 20% to 50% depending on how much whitespace and comments the original file contains. Additional savings come from gzip compression at the server level.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Does the minifier support CSS custom properties (variables)?</h3>
               <p>Yes. CSS custom properties (--my-var: value) are preserved exactly as written during minification.</p>
             </div>
-          </div>
         </div>
       </details>
     </div>

@@ -236,8 +236,8 @@
 </div>
 
 <details class="ds-seo-more">
-  <summary>Understand EXIF Removal (privacy, use cases &amp; FAQs)</summary>
-  <div class="ds-seo-content">
+  <summary class="ds-seo-more__toggle"><span>Understand EXIF Removal (privacy, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+  <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
       <div class="ds-seo-collapse__body">
@@ -275,24 +275,22 @@
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-faq-list">
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>Does removing EXIF data affect image quality?</h3>
             <p>No. The pixel data is preserved exactly. Only the metadata (hidden information appended to the file) is removed. The image will look identical to the original.</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>How does this tool remove EXIF data?</h3>
             <p>The image is drawn onto an HTML5 Canvas element and then exported as a new image file using the Canvas API. Canvas output does not carry over any metadata from the source file — only raw pixel data is written to the output.</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>Does this remove watermarks or visible text?</h3>
             <p>No. EXIF removal only strips hidden metadata — invisible data embedded in the file. Visible watermarks and text in the image pixels are part of the image content and are not affected.</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>Do social media platforms also remove EXIF data?</h3>
             <p>Most platforms (Instagram, Twitter, Facebook) strip EXIF metadata when you upload. However, removing it before upload is safer — it ensures no metadata is retained in transit, and you can safely share the file directly (e.g. via email or messaging apps) without relying on the platform.</p>
           </div>
-        </div>
       </div>
     </details>
   </div>

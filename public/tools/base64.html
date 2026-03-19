@@ -305,8 +305,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand Base64 (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand Base64 (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
       <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -351,32 +351,30 @@
       <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Is Base64 encoding the same as encryption?</h3>
               <p>No. Base64 is an encoding scheme, not encryption. It is fully reversible without any key. Do not use Base64 to secure sensitive data — use proper encryption such as AES instead.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Why does Base64 output end with = or ==?</h3>
               <p>Base64 groups input into 3-byte chunks. If the input length is not a multiple of 3, padding characters (<code>=</code>) are appended to make the output a multiple of 4 characters.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>What is URL-safe Base64?</h3>
               <p>Standard Base64 uses <code>+</code> and <code>/</code> which have special meanings in URLs. URL-safe Base64 (RFC 4648) replaces them with <code>-</code> and <code>_</code>, making the output safe for URL query strings and filenames without percent-encoding.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>How much does Base64 increase file size?</h3>
               <p>Base64 encoding increases the data size by approximately 33% — every 3 bytes of input becomes 4 characters of output. This overhead is acceptable for small assets and inline data URIs.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>How do I decode a Base64 string online?</h3>
               <p>Switch to <strong>Decode</strong> mode, paste your Base64 string into the input field, and the decoded text appears instantly. If the result looks garbled, the original data was likely binary rather than plain text — try the file download option instead.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Can I encode files to Base64?</h3>
               <p>Yes. In <strong>Encode</strong> mode, drop any file onto the drop zone or click to select one. The tool outputs the complete Base64 string, which you can copy or download as a <code>.txt</code> file. This works for images, PDFs, certificates, and other binary formats.</p>
             </div>
-          </div>
         </div>
       </details>
     </div>

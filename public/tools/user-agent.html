@@ -256,9 +256,9 @@
     Understand User Agent Parser
     
   </summary>
-  <div class="ds-seo-content">
+  <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
-      <summary>Example</summary>
+      <summary class="ds-seo-more__toggle"><span>Example</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
       <div class="ds-seo-collapse__body"><p>UA: <code>Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15...</code></p><p>→ Browser: Safari 17, OS: iOS 17, Device: Mobile, Engine: WebKit</p></div>
     </details>
     <details class="ds-seo-collapse">
@@ -496,75 +496,6 @@
     </div>
   </div>
 
-  <details class="ds-seo-more">
-    <summary>Understand User Agent Parser (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
-      <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Parsing a typical desktop Chrome UA string:</p>
-          <div class="ds-seo-example">
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Input</span>
-              <span class="ds-seo-example__value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</span>
-            </div>
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Output</span>
-              <span class="ds-seo-example__value">Browser: Chrome 120 | OS: Windows 10 | Device: Desktop | Engine: Blink</span>
-            </div>
-          </div>
-          <p>The parser extracts the meaningful identifiers and ignores the legacy <code>Mozilla/5.0</code> prefix that most browsers include for compatibility reasons.</p>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>What User Agent Strings Contain</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Browser name and version</strong> — e.g. Chrome 120, Firefox 121, Safari 17.</li>
-            <li><strong>Operating system</strong> — Windows NT version, macOS version, Linux distro, Android, or iOS.</li>
-            <li><strong>Device type</strong> — Desktop, Mobile, or Tablet derived from OS and form-factor tokens.</li>
-            <li><strong>Rendering engine</strong> — Blink (Chrome/Edge), Gecko (Firefox), or WebKit (Safari).</li>
-            <li><strong>Architecture</strong> — 64-bit tokens like <code>Win64; x64</code> or <code>arm64</code> on Apple Silicon.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Why Use This Tool</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Auto-detection</strong> — your current UA is loaded instantly without any input.</li>
-            <li><strong>Test any UA</strong> — paste collected UA strings from logs or QA tools to inspect them.</li>
-            <li><strong>Human-readable output</strong> — raw UA tokens translated into plain browser and OS names.</li>
-            <li><strong>Debugging aid</strong> — quickly verify whether server-side UA parsing is identifying devices correctly.</li>
-            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
-              <h3>Why do all UA strings start with "Mozilla/5.0"?</h3>
-              <p>This is a legacy compatibility token dating back to the browser wars. All modern browsers include it even though none of them are Netscape/Mozilla, because early servers served richer content only to user agents that identified as Mozilla.</p>
-            </div>
-            <div class="ds-faq-item">
-              <h3>Can I use this to check a mobile device's UA?</h3>
-              <p>Yes — copy the UA string from the device or from browser developer tools and paste it into the input field. The parser will identify the mobile OS and device type.</p>
-            </div>
-            <div class="ds-faq-item">
-              <h3>Are UA strings reliable for device detection?</h3>
-              <p>They are a good starting point but can be spoofed. For production use, consider combining UA detection with feature detection APIs for more accurate results.</p>
-            </div>
-            <div class="ds-faq-item">
-              <h3>Is any data sent to a server?</h3>
-              <p>No. All parsing is performed locally in JavaScript. Your UA string never leaves your browser.</p>
-            </div>
-          </div>
-        </div>
-      </details>
-    </div>
-  </details>
-
+  
 </body>
 </html>

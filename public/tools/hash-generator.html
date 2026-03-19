@@ -238,8 +238,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand Hash Functions (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand Hash Functions (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
             <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -278,24 +278,22 @@
 <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-            <div class="ds-faq-list">
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>What is the difference between MD5, SHA-1, SHA-256, and SHA-512?</h3>
                 <p>They differ in digest length and security level. MD5 produces 128-bit (32-char) hashes — fast but cryptographically broken. SHA-1 produces 160-bit (40-char) hashes — also deprecated for security use. SHA-256 and SHA-512 are part of the SHA-2 family and remain secure for integrity checking and digital signatures.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>Can I reverse a hash to get the original text?</h3>
                 <p>No. Hash functions are one-way by design. However, short or common inputs can be cracked using precomputed <strong>rainbow tables</strong>. For password storage, always use a dedicated algorithm like bcrypt or Argon2 combined with a unique salt.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>Is MD5 safe to use?</h3>
                 <p>MD5 is fine for non-security purposes like checksums and deduplication. It should <strong>not</strong> be used for password storage or digital signatures — researchers can generate MD5 collisions in seconds on modern hardware.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>How large a file can I hash?</h3>
                 <p>The tool reads files into browser memory, so practical limits depend on your device RAM. Files up to several hundred MB typically work fine. For multi-GB files, use a native tool like <code>sha256sum</code> (Linux/Mac) or <code>certutil -hashfile</code> (Windows).</p>
               </div>
-            </div>
         </div>
       </details>
     </div>

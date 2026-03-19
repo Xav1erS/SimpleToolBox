@@ -270,8 +270,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand Unix Timestamps (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand Unix Timestamps (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
             <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -310,20 +310,18 @@
 <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-            <div class="ds-faq-list">
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>What is the difference between seconds and milliseconds timestamps?</h3>
                 <p>A 10-digit timestamp is in <strong>seconds</strong> (standard Unix time). A 13-digit timestamp is in <strong>milliseconds</strong> (used by JavaScript's <code>Date.now()</code> and many APIs). To convert: divide milliseconds by 1000 to get seconds, or multiply seconds by 1000 to get milliseconds.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>What is the Year 2038 problem?</h3>
                 <p>32-bit signed integers can only store values up to 2,147,483,647 — which corresponds to January 19, 2038. Systems that store Unix timestamps in 32-bit integers will overflow on that date. Modern 64-bit systems are not affected, as they can represent timestamps billions of years into the future.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>Is a Unix timestamp affected by timezones?</h3>
                 <p>No. A Unix timestamp is always relative to UTC and has no timezone. The same timestamp represents the exact same moment in time everywhere on Earth. The conversion to a local time display is purely a presentation concern — the underlying timestamp value is timezone-agnostic.</p>
               </div>
-            </div>
         </div>
       </details>
     </div>

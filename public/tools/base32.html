@@ -382,8 +382,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand Base32 Encoder / Decoder (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand Base32 Encoder / Decoder (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
       <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -428,24 +428,22 @@
       <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Why does the output end with "=" characters?</h3>
               <p>Base32 encodes data in 5-byte blocks. When the input length is not a multiple of 5, "=" padding characters are added to the output to make the total length a multiple of 8. Padding is part of the RFC 4648 standard and required by most decoders.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Is Base32 the same as Base32Hex?</h3>
               <p>No. RFC 4648 defines two Base32 variants: standard Base32 (A–Z, 2–7) and Base32Hex (0–9, A–V). They encode the same data but use different alphabets. This tool uses the standard Base32 alphabet by default.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Can I decode a TOTP secret key with this tool?</h3>
               <p>Yes. TOTP secret keys are Base32-encoded strings. You can paste them here to see the raw bytes, but note that this tool outputs decoded text — binary secrets may not display correctly as text.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Is my data stored or sent anywhere?</h3>
               <p>No. All encoding and decoding happens locally in your browser using JavaScript. Nothing is sent to a server.</p>
             </div>
-          </div>
         </div>
       </details>
     </div>

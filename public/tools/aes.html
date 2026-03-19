@@ -379,8 +379,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand AES Encrypt / Decrypt (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand AES Encrypt / Decrypt (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
       <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -425,24 +425,22 @@
       <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>What is the difference between AES-CBC and AES-GCM?</h3>
               <p>AES-CBC provides confidentiality only and requires a separate MAC for integrity verification. AES-GCM provides both confidentiality and built-in authentication, making it the preferred choice for new systems.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Why does the ciphertext change every time I encrypt the same message?</h3>
               <p>A random IV (initialization vector) is generated for each encryption operation. This ensures that identical plaintexts produce different ciphertexts, preventing pattern analysis. The IV is stored alongside the ciphertext and used automatically during decryption.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>How strong is AES-256?</h3>
               <p>AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide — it is the gold standard for symmetric encryption.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Can I use this tool to encrypt files?</h3>
               <p>This tool is designed for text encryption. For file encryption, consider dedicated tools. However, you can encrypt Base64-encoded file content if needed.</p>
             </div>
-          </div>
         </div>
       </details>
     </div>

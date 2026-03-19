@@ -301,8 +301,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand URL Encoding (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand URL Encoding (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
             <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -342,20 +342,18 @@
 <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-            <div class="ds-faq-list">
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>Why does a space sometimes appear as + and sometimes as %20?</h3>
                 <p><code>+</code> represents a space only in the <strong>application/x-www-form-urlencoded</strong> format used by HTML forms. In standard RFC 3986 percent-encoding, a space must be <code>%20</code>. Using <code>+</code> outside of form data can cause bugs — this tool always outputs <code>%20</code> for safety.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>Should I encode the entire URL or just query parameters?</h3>
                 <p>Encode individual query parameter <strong>values</strong> using Component mode, then assemble the URL. Encoding the full URL with Component mode will also encode the <code>://</code> and <code>/</code> characters, breaking the URL structure. Use Full URL mode only if you need to safely embed a complete URL as a single value.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>Are URL encoding and Base64 encoding the same?</h3>
                 <p>No. URL encoding preserves the original bytes and makes them URL-safe using <code>%XX</code> notation. Base64 encoding converts binary data into a text representation using 64 printable ASCII characters, which increases size by ~33%. They serve different purposes — use URL encoding for URL parameters, Base64 for embedding binary data in text formats.</p>
               </div>
-            </div>
         </div>
       </details>
     </div>

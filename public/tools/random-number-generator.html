@@ -403,8 +403,8 @@
     </div>
   </div>
   <details class="ds-seo-more">
-    <summary>Understand Random Numbers (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand Random Numbers (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
       <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -439,20 +439,18 @@
       <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Is this truly random or pseudo-random?</h3>
               <p>This tool uses <code>crypto.getRandomValues()</code>, which is a cryptographically secure pseudo-random number generator (CSPRNG) seeded from OS-level entropy. For all practical purposes it is indistinguishable from true randomness and is suitable for security-sensitive tasks.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Can I generate the same number twice in list mode?</h3>
               <p>No. List mode generates a set of unique numbers — each value appears at most once. If you need duplicates allowed, use the single-number mode multiple times.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>What is the maximum range I can use?</h3>
               <p>The minimum and maximum values can be any integers within JavaScript's safe integer range (±2<sup>53</sup>). For list mode, the count must be less than or equal to the size of the range.</p>
             </div>
-          </div>
         </div>
       </details>
     </div>

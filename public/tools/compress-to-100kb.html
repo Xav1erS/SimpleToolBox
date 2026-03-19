@@ -255,8 +255,8 @@
 </div>
 
 <details class="ds-seo-more">
-  <summary>Understand Target-Size Compression (algorithm, use cases &amp; FAQs)</summary>
-  <div class="ds-seo-content">
+  <summary class="ds-seo-more__toggle"><span>Understand Target-Size Compression (algorithm, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+  <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
       <div class="ds-seo-collapse__body">
@@ -296,24 +296,22 @@
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-faq-list">
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>What if the image can't be compressed to my target size?</h3>
             <p>If the target is extremely small (e.g., 10KB for a high-resolution photo), the tool will compress to the lowest quality possible and show "Best effort — target not fully met." In that case, try resizing the image dimensions first using the <a href="image-resizer.html">Image Resizer</a>, then compressing.</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>How does the binary search algorithm work?</h3>
             <p>The algorithm starts at quality 50%, checks if the output is above or below the target, then halves the search range: if too large, try lower quality; if small enough, try higher quality. After ~15 iterations it converges to the highest quality that produces a file within your target size.</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>Why does the output size sometimes exceed the target by a few KB?</h3>
             <p>JPEG compression is not perfectly predictable — the actual output size depends on image complexity. The algorithm tries to get as close as possible while staying under the target, but final blob size may vary by 1–3 KB. If strict compliance is required, set your target slightly lower (e.g., 95KB instead of 100KB).</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>Should I use JPEG or WebP to achieve the smallest file?</h3>
             <p>WebP generally produces smaller files at the same visual quality. Use WebP if the platform you're uploading to supports it. Use JPEG for maximum compatibility with older systems and image editors.</p>
           </div>
-        </div>
       </div>
     </details>
   </div>

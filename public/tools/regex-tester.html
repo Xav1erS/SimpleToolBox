@@ -363,8 +363,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand Regular Expressions (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand Regular Expressions (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
             <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -400,24 +400,22 @@
 <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-            <div class="ds-faq-list">
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>What regex flavor does this tester use?</h3>
                 <p>This tool uses the JavaScript <code>RegExp</code> engine built into your browser. JavaScript regex supports most standard features — character classes, quantifiers, groups, lookaheads, lookbehinds — but differs from other flavors (PCRE, Python, Java) in some edge cases like named backreferences and certain Unicode properties.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>What do the flags mean?</h3>
                 <p><strong>g</strong> (global) finds all matches instead of stopping at the first. <strong>i</strong> makes matching case-insensitive. <strong>m</strong> makes <code>^</code> and <code>$</code> match the start/end of each line rather than the whole string. <strong>s</strong> (dotAll) makes <code>.</code> match newline characters too.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>How do I match a literal dot or parenthesis?</h3>
                 <p>Escape it with a backslash: <code>\.</code> matches a literal dot, <code>\(</code> matches a literal opening parenthesis. Without the backslash, <code>.</code> matches any character and <code>(</code> starts a capture group.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>What is a capture group?</h3>
                 <p>A capture group is a part of the pattern wrapped in parentheses <code>(...)</code>. Whatever it matches is extracted separately and accessible as <code>$1</code>, <code>$2</code>, etc. in replace operations, or as array elements in code. Use <code>(?:...)</code> for a non-capturing group when you want grouping without extraction.</p>
               </div>
-            </div>
         </div>
       </details>
     </div>

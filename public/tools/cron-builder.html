@@ -425,8 +425,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand Cron Expressions (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand Cron Expressions (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
             <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -464,24 +464,22 @@
 <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-            <div class="ds-faq-list">
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>Does cron support seconds?</h3>
                 <p>Standard Unix cron uses five fields (no seconds). Some systems like Spring Scheduler and Quartz add a sixth field for seconds. This builder uses the standard five-field format compatible with Linux crontab, GitHub Actions, and most cloud schedulers.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>What timezone does cron use?</h3>
                 <p>By default, cron uses the server's local timezone. GitHub Actions schedules use UTC. Always confirm the timezone of the system running your cron job to avoid off-by-one-hour errors.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>What does <code>*/5 * * * *</code> mean?</h3>
                 <p>It means "every 5 minutes". The <code>*/n</code> syntax means "every n units starting from 0". So <code>*/5</code> in the minutes field fires at 0, 5, 10, 15, 20 … 55.</p>
               </div>
-              <div class="ds-faq-item">
+              <div class="ds-seo-faq-item">
                 <h3>Can I run a job on the last day of the month?</h3>
                 <p>Standard cron doesn't have an "L" (last) modifier — that's a Quartz extension. For standard cron, a common workaround is to schedule for the 28th–31st and check the date inside your script.</p>
               </div>
-            </div>
         </div>
       </details>
     </div>

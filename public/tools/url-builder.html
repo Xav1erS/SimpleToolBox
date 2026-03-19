@@ -481,9 +481,9 @@
     Understand URL Builder
     
   </summary>
-  <div class="ds-seo-content">
+  <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
-      <summary>Example</summary>
+      <summary class="ds-seo-more__toggle"><span>Example</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
       <div class="ds-seo-collapse__body"><p>Base: <code>https://api.example.com/v1/users</code></p><p>+ params: page=2, limit=50, sort=name</p><p>Result: <code>https://api.example.com/v1/users?limit=50&amp;page=2&amp;sort=name</code></p></div>
     </details>
     <details class="ds-seo-collapse">
@@ -729,76 +729,6 @@
     </div>
   </div>
 
-  <details class="ds-seo-more">
-    <summary>Understand URL Builder (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
-      <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Building a search URL from scratch using individual fields:</p>
-          <div class="ds-seo-example">
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Input</span>
-              <span class="ds-seo-example__value">scheme: https | host: example.com | path: /search | param: q=hello world</span>
-            </div>
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Output</span>
-              <span class="ds-seo-example__value">https://example.com/search?q=hello%20world</span>
-            </div>
-          </div>
-          <p>The tool automatically percent-encodes the space in the query value, producing a valid URL safe to use anywhere.</p>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>URL Component Reference</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Scheme</strong> — the protocol, e.g. <code>https</code> or <code>http</code>.</li>
-            <li><strong>Host</strong> — the domain name or IP address, e.g. <code>example.com</code>.</li>
-            <li><strong>Port</strong> — optional port number; omitted when using the default (80/443).</li>
-            <li><strong>Path</strong> — the resource path on the server, e.g. <code>/products/123</code>.</li>
-            <li><strong>Query parameters</strong> — key=value pairs after the <code>?</code>, separated by <code>&amp;</code>.</li>
-            <li><strong>Fragment</strong> — the anchor after <code>#</code>, used for in-page navigation.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Why Use This Tool</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Correct encoding</strong> — special characters in query values are automatically percent-encoded.</li>
-            <li><strong>Two modes</strong> — build a URL from parts or parse an existing URL in the same interface.</li>
-            <li><strong>Dynamic parameters</strong> — add or remove query parameters without editing raw text.</li>
-            <li><strong>Instant copy</strong> — one-click copy of the finished URL to your clipboard.</li>
-            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
-              <h3>What characters need to be percent-encoded in a URL?</h3>
-              <p>Spaces, non-ASCII characters, and reserved characters such as <code>&amp;</code>, <code>=</code>, <code>+</code>, and <code>#</code> must be encoded when they appear inside a query value. The tool handles this automatically.</p>
-            </div>
-            <div class="ds-faq-item">
-              <h3>Can I add multiple query parameters?</h3>
-              <p>Yes — click the <strong>Add Parameter</strong> button as many times as needed. Each key-value pair is encoded and joined with <code>&amp;</code> in the final URL.</p>
-            </div>
-            <div class="ds-faq-item">
-              <h3>Does it support non-HTTP schemes?</h3>
-              <p>You can type any scheme into the field, such as <code>ftp</code>, <code>mailto</code>, or a custom scheme. The tool assembles the URL exactly as entered.</p>
-            </div>
-            <div class="ds-faq-item">
-              <h3>Is my data sent to any server?</h3>
-              <p>No. The entire URL assembly runs in JavaScript inside your browser. Nothing is transmitted to any external server.</p>
-            </div>
-          </div>
-        </div>
-      </details>
-    </div>
-  </details>
-
+  
 </body>
 </html>

@@ -240,8 +240,8 @@
   </div>
 
   <details class="ds-seo-more">
-    <summary>Understand HTML Entities (examples, use cases &amp; FAQs)</summary>
-    <div class="ds-seo-content">
+    <summary class="ds-seo-more__toggle"><span>Understand HTML Entities (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+    <div class="ds-seo-more__body">
       <details class="ds-seo-collapse">
         <summary>Example</summary>
         <div class="ds-seo-collapse__body">
@@ -275,20 +275,18 @@
       <details class="ds-seo-collapse">
         <summary>Frequently Asked Questions</summary>
         <div class="ds-seo-collapse__body">
-          <div class="ds-faq-list">
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>What is the difference between HTML entities and URL encoding?</h3>
               <p>HTML entities encode special characters for safe rendering inside HTML documents (<code>&amp;lt;</code> for <code>&lt;</code>). URL encoding converts characters for safe transmission in URLs (<code>%3C</code> for <code>&lt;</code>). Use HTML entities for HTML content, URL encoding for query parameters and URL components.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>Do I need to encode all non-ASCII characters?</h3>
               <p>Not necessarily. Modern HTML documents declare UTF-8 encoding (<code>&lt;meta charset="UTF-8"&gt;</code>), which allows most Unicode characters to appear as-is. Entities are most important for the five characters with special HTML meaning: <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>"</code>, and <code>'</code>.</p>
             </div>
-            <div class="ds-faq-item">
+            <div class="ds-seo-faq-item">
               <h3>What is the difference between named and numeric entities?</h3>
               <p>Named entities use a defined name: <code>&amp;amp;</code>, <code>&amp;copy;</code>. Numeric entities use a decimal (<code>&amp;#38;</code>) or hex (<code>&amp;#x26;</code>) code point. All three forms produce the same character; named entities are more readable while numeric entities work for any Unicode character.</p>
             </div>
-          </div>
         </div>
       </details>
     </div>

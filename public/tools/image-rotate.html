@@ -231,8 +231,8 @@
 </div>
 
 <details class="ds-seo-more">
-  <summary>Understand Image Rotation (transforms, use cases &amp; FAQs)</summary>
-  <div class="ds-seo-content">
+  <summary class="ds-seo-more__toggle"><span>Understand Image Rotation (transforms, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+  <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
       <div class="ds-seo-collapse__body">
@@ -271,24 +271,22 @@
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-faq-list">
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>Why does my photo look sideways even after uploading to websites?</h3>
             <p>Many cameras and phones store rotation information in EXIF metadata rather than physically rotating the pixels. Some websites ignore EXIF orientation data. This tool physically rotates the pixels, producing a file that displays correctly everywhere regardless of EXIF support.</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>Does rotating lose image quality?</h3>
             <p>For 90° and 180° rotations, the pixel data is rearranged without any resampling — no quality is lost for PNG output. For JPEG output, re-encoding applies JPEG compression, which may introduce minor quality changes. Use PNG output for pixel-perfect lossless rotation.</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>Can I undo a rotation?</h3>
             <p>Yes — clicking 90° CW four times returns to the original orientation. Or click 90° CCW to reverse a clockwise rotation. Reload the page to start fresh.</p>
           </div>
-          <div class="ds-faq-item">
+          <div class="ds-seo-faq-item">
             <h3>What is the difference between flip horizontal and flip vertical?</h3>
             <p>Flip horizontal mirrors the image left-to-right (like a mirror). Flip vertical mirrors it top-to-bottom (upside down). Both can be combined with rotation for any orientation.</p>
           </div>
-        </div>
       </div>
     </details>
   </div>

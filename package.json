@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "eslint public/tools/*.html public/*.html --ext .html"
+    "lint": "eslint public/tools/*.html public/*.html --ext .html",
+    "gen-sitemap": "node scripts/gen-sitemap.js"
   },
   "devDependencies": {
     "eslint": "^9.0.0",

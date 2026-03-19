@@ -322,6 +322,8 @@ Future work should focus on:
 - [ ] `all-tools.html` 已更新，分类正确
 - [ ] Related Tools 区域指向相关工具（至少 2 个）
 - [ ] 页面在移动端布局正常（≤480px）
+- [ ] `canonical` 使用 `https://simpletoolbox.dev/tools/[slug]`（无 `.html` 后缀）
+- [ ] `public/sitemap.xml` 已更新：运行 `npm run gen-sitemap` 自动重新生成（会扫描 `public/tools/` 下所有 `.html` 文件，自动更新 `lastmod` 为当天日期）
 
 ## Files To Read First
 

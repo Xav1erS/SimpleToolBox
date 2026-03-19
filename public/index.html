@@ -683,12 +683,12 @@
         <span class="category-count">15 tools</span>
       </div>
     </div>
-    <div class="category-card" style="--card-color:rgba(168,85,247,0.08)" data-name="text string markdown diff word count" data-filter="text">
+    <div class="category-card" style="--card-color:rgba(168,85,247,0.08)" data-name="text string markdown diff word count" data-filter="text" data-hub="text-tools.html">
       <div class="category-icon">📝</div>
       <div class="category-body">
         <div class="category-name">Text Tools</div>
         <div class="category-desc">Word count, diff viewer, regex tester, text cleaner and more</div>
-        <span class="category-count">10 tools</span>
+        <span class="category-count">11 tools</span>
       </div>
     </div>
     <div class="category-card" style="--card-color:rgba(236,72,153,0.08)" data-name="generator uuid password hash random" data-filter="generate">
@@ -715,12 +715,12 @@
         <span class="category-count">7 tools</span>
       </div>
     </div>
-    <div class="category-card" style="--card-color:rgba(234,179,8,0.08)" data-name="image compress resize crop convert" data-filter="image">
+    <div class="category-card" style="--card-color:rgba(234,179,8,0.08)" data-name="image compress resize crop convert" data-filter="image" data-hub="image-tools.html">
       <div class="category-icon">🖼️</div>
       <div class="category-body">
         <div class="category-name">Image Tools</div>
-        <div class="category-desc">Resize images, download YouTube thumbnails</div>
-        <span class="category-count">2 tools</span>
+        <div class="category-desc">Resize, compress, convert, blur, crop and edit images</div>
+        <span class="category-count">13 tools</span>
       </div>
     </div>
     <div class="category-card" style="--card-color:rgba(6,182,212,0.08)" data-name="calculator bmi loan date mortgage" data-filter="calculator">
@@ -1069,10 +1069,11 @@
     filterTools('all');
   });
 
-  // Category card clicks — navigate to all-tools.html with filter param
+  // Category card clicks — navigate to hub page or all-tools.html with filter param
   document.querySelectorAll('.category-card[data-filter]').forEach(card => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', () => {
+      if (card.dataset.hub) { window.location.href = card.dataset.hub; return; }
       const filter = card.dataset.filter;
       window.location.href = 'all-tools.html' + (filter && filter !== 'all' ? '?cat=' + filter : '');
     });

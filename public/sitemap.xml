@@ -15,6 +15,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://simpletoolbox.dev/image-tools</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/developer-tools</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/text-tools</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://simpletoolbox.dev/about</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>

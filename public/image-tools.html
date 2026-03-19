@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Free Online Image Tools — Resize, Compress, Convert &amp; Edit Images</title>
+  <meta name="description" content="13 free browser-based image tools — resize, compress, convert WebP/PNG/JPG, remove EXIF data, blur, grayscale, rotate, and more. No upload, no sign-up." />
+  <link rel="canonical" href="https://simpletoolbox.dev/image-tools" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/image-tools" />
+  <meta property="og:title" content="Free Online Image Tools — Simple ToolBox" />
+  <meta property="og:description" content="13 free browser-based image tools — resize, compress, convert, remove EXIF, blur, grayscale, and more. No upload required." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/design-system.css?v=16" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Free Online Image Tools",
+    "description": "13 free browser-based image tools — resize, compress, convert WebP/PNG/JPG, remove EXIF data, blur, grayscale, rotate, and more.",
+    "url": "https://simpletoolbox.dev/image-tools",
+    "isPartOf": { "@type": "WebSite", "name": "Simple ToolBox", "url": "https://simpletoolbox.dev" }
+  }
+  </script>
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+
+    /* Hero */
+    .hub-hero { max-width: 1100px; margin: 0 auto; padding: 56px 24px 40px; }
+    .hub-breadcrumb { font-size: 12px; color: var(--ds-color-text-muted); margin-bottom: 16px; }
+    .hub-breadcrumb a { color: var(--ds-color-text-muted); }
+    .hub-breadcrumb a:hover { color: var(--ds-color-text-secondary); }
+    .hub-title { font-size: var(--ds-font-size-h1); font-weight: 700; line-height: 1.1; letter-spacing: -0.045em; margin-bottom: 12px; }
+    .hub-desc { font-size: var(--ds-font-size-body-lg); color: var(--ds-color-text-secondary); line-height: 1.7; max-width: 640px; margin-bottom: 8px; }
+    .hub-count { font-size: 13px; color: var(--ds-color-text-muted); }
+
+    /* Tool grid */
+    .tool-grid { max-width: 1100px; margin: 0 auto; padding: 0 24px 64px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .tool-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: var(--ds-space-5); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: var(--ds-space-3); transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast), transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast); }
+    .tool-card:hover { border-color: var(--ds-color-border-accent); background: var(--ds-color-surface-strong); transform: translateY(-1px); box-shadow: var(--ds-shadow-card); }
+    .tool-card-top { display: flex; align-items: center; gap: 12px; }
+    .tool-icon { font-size: 22px; width: 40px; height: 40px; background: var(--ds-color-surface-tint); border-radius: var(--ds-radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tool-name { font-size: var(--ds-font-size-h4); font-weight: 600; color: var(--ds-color-text-primary); line-height: 1.25; }
+    .tool-desc { font-size: var(--ds-font-size-body-sm); color: var(--ds-color-text-secondary); line-height: 1.6; flex: 1; }
+    .tool-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .tool-tag { display: inline-flex; align-items: center; min-height: 20px; padding: 0 8px; border-radius: var(--ds-radius-xs); background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.22); color: var(--ds-color-accent-soft); font-family: var(--ds-font-mono); font-size: var(--ds-font-size-micro); font-weight: 500; }
+    .tool-arrow { font-size: 16px; color: var(--ds-color-text-muted); transition: color 0.15s, transform 0.15s; }
+    .tool-card:hover .tool-arrow { color: var(--ds-color-accent); transform: translateX(3px); }
+
+    /* Category section header */
+    .section-label { max-width: 1100px; margin: 0 auto; padding: 0 24px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--ds-color-text-muted); text-transform: uppercase; }
+
+    /* More categories */
+    .more-cats { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+    .more-cats h2 { font-size: var(--ds-font-size-h3); font-weight: 700; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .cat-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 18px 20px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; transition: border-color 0.15s, background 0.15s; }
+    .cat-card:hover { border-color: var(--ds-color-border-accent); background: var(--ds-color-surface-strong); }
+    .cat-icon { font-size: 22px; }
+    .cat-info { display: flex; flex-direction: column; gap: 2px; }
+    .cat-name { font-size: 14px; font-weight: 600; }
+    .cat-n { font-size: 12px; color: var(--ds-color-text-muted); }
+
+    /* SEO prose */
+    .hub-prose { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hub-prose-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 24px 28px; }
+    .hub-prose-card h2 { font-size: var(--ds-font-size-h4); font-weight: 700; margin-bottom: 12px; }
+    .hub-prose-card p { font-size: var(--ds-font-size-body-sm); color: var(--ds-color-text-secondary); line-height: 1.8; margin-bottom: 10px; }
+    .hub-prose-card p:last-child { margin-bottom: 0; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
+    footer a { color: var(--ds-color-text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--ds-color-text-primary); }
+
+    @media (max-width: 768px) { .nav-search { display: none; } .hub-prose { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .nav-actions .nav-link { display: none; }
+      .hub-hero { padding: 36px 16px 28px; }
+      .tool-grid { padding: 0 16px 48px; grid-template-columns: 1fr; }
+      .more-cats, .hub-prose, .section-label { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+
+<nav class="ds-nav" id="nav">
+  <a href="index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="nav-search">
+    <div class="nav-search-wrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="navSearch" placeholder="Search tools… (⌘K)" autocomplete="off" />
+    </div>
+    <div class="nav-search-dropdown" id="navSearchDropdown"></div>
+  </div>
+  <div class="nav-actions">
+    <a href="https://github.com/Xav1erS/SimpleToolBox" target="_blank" rel="noopener" class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
+  </div>
+</nav>
+
+<div class="hub-hero">
+  <div class="hub-breadcrumb"><a href="index.html">Home</a> › Image Tools</div>
+  <h1 class="hub-title">🖼️ Free Online Image Tools</h1>
+  <p class="hub-desc">Resize, compress, convert, and edit images entirely in your browser. No uploads, no account, no limits — your files never leave your device.</p>
+  <div class="hub-count">13 tools · all free · privacy-first</div>
+</div>
+
+<p class="section-label">Format Conversion</p>
+<div class="tool-grid">
+  <a href="tools/webp-converter.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🔄</div><div class="tool-name">WebP Converter</div></div>
+    <div class="tool-desc">Convert any image to WebP, PNG, or JPEG. Compare file sizes and download instantly.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/jpg-to-png.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🖼️</div><div class="tool-name">JPG to PNG</div></div>
+    <div class="tool-desc">Convert JPEG images to lossless PNG format instantly in your browser.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/png-to-jpg.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🔄</div><div class="tool-name">PNG to JPG</div></div>
+    <div class="tool-desc">Convert PNG images to JPEG with adjustable quality and background fill.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/webp-to-jpg.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🔄</div><div class="tool-name">WebP to JPG</div></div>
+    <div class="tool-desc">Convert WebP images to JPEG or PNG for universal compatibility.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+</div>
+
+<p class="section-label">Resize &amp; Compress</p>
+<div class="tool-grid">
+  <a href="tools/image-resizer.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🖼️</div><div class="tool-name">Image Resizer</div></div>
+    <div class="tool-desc">Resize images to any dimensions, change format and quality — no upload needed.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/image-compressor.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🗜️</div><div class="tool-name">Image Compressor</div></div>
+    <div class="tool-desc">Reduce image file size by adjusting quality. JPEG, PNG, WebP output — no upload needed.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/compress-to-100kb.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🎯</div><div class="tool-name">Compress to Target Size</div></div>
+    <div class="tool-desc">Compress images to a specific file size (100KB, 50KB, 200KB, or custom).</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/resize-for-instagram.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">📸</div><div class="tool-name">Resize for Instagram</div></div>
+    <div class="tool-desc">Resize images to exact Instagram dimensions — Feed, Story, Reels, and more.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+</div>
+
+<p class="section-label">Edit &amp; Enhance</p>
+<div class="tool-grid">
+  <a href="tools/image-rotate.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🔃</div><div class="tool-name">Rotate &amp; Flip Image</div></div>
+    <div class="tool-desc">Rotate images 90°, 180°, 270° and flip horizontally or vertically.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/grayscale-image.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">⬛</div><div class="tool-name">Grayscale Image</div></div>
+    <div class="tool-desc">Convert color images to grayscale or pure black and white.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/blur-image.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🌫️</div><div class="tool-name">Blur Image</div></div>
+    <div class="tool-desc">Apply Gaussian blur to images for privacy, artistic, or soft-focus effects.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/remove-exif.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">🛡️</div><div class="tool-name">Remove EXIF Data</div></div>
+    <div class="tool-desc">Strip GPS location, camera info, and all EXIF metadata from photos.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+  <a href="tools/youtube-thumbnail.html" class="tool-card">
+    <div class="tool-card-top"><div class="tool-icon">📺</div><div class="tool-name">YouTube Thumbnail Downloader</div></div>
+    <div class="tool-desc">Download YouTube thumbnails in all resolutions from any video URL.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">→</span></div>
+  </a>
+</div>
+
+<div class="hub-prose">
+  <div class="hub-prose-card">
+    <h2>Why use browser-based image tools?</h2>
+    <p>Traditional image editors require installation and often charge for basic features. Browser-based tools run entirely client-side — images are processed by JavaScript on your device and never transmitted to a server.</p>
+    <p>This means faster processing (no upload/download latency), zero privacy risk for sensitive photos, and no file size limits imposed by a server.</p>
+  </div>
+  <div class="hub-prose-card">
+    <h2>Which format should I use?</h2>
+    <p><strong>WebP</strong> — best compression for web, supported by all modern browsers. Use for website images.</p>
+    <p><strong>JPEG</strong> — universal compatibility, great for photos. Use when sharing with people who may not have modern apps.</p>
+    <p><strong>PNG</strong> — lossless with transparency. Use for logos, icons, screenshots, and graphics with text.</p>
+  </div>
+</div>
+
+<div class="more-cats">
+  <h2>More Tool Categories</h2>
+  <div class="cat-grid">
+    <a href="developer-tools.html" class="cat-card">
+      <span class="cat-icon">🛠️</span>
+      <div class="cat-info"><span class="cat-name">Developer Tools</span><span class="cat-n">40+ tools</span></div>
+    </a>
+    <a href="text-tools.html" class="cat-card">
+      <span class="cat-icon">✍️</span>
+      <div class="cat-info"><span class="cat-name">Text Tools</span><span class="cat-n">11 tools</span></div>
+    </a>
+    <a href="all-tools.html" class="cat-card">
+      <span class="cat-icon">🔧</span>
+      <div class="cat-info"><span class="cat-name">All Tools</span><span class="cat-n">72 tools</span></div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="about.html">About</a>
+</footer>
+
+<script>
+  const NAV_TOOLS = [
+    { name: 'Image Resizer',               href: 'tools/image-resizer.html',          icon: '🖼️', desc: 'Resize images client-side with preset dimensions' },
+    { name: 'Image Compressor',            href: 'tools/image-compressor.html',       icon: '🗜️', desc: 'Reduce image file size with quality control' },
+    { name: 'WebP Converter',              href: 'tools/webp-converter.html',         icon: '🔄', desc: 'Convert images to WebP, PNG, or JPEG format' },
+    { name: 'JSON Formatter',              href: 'tools/json-formatter.html',         icon: '🎨', desc: 'Prettify, minify, validate JSON' },
+    { name: 'Base64 Encode / Decode',      href: 'tools/base64.html',                 icon: '📦', desc: 'Encode or decode text and files to Base64' },
+    { name: 'Password Generator',          href: 'tools/password-generator.html',     icon: '🔑', desc: 'Generate strong random passwords locally' },
+    { name: 'Hash Generator',              href: 'tools/hash-generator.html',         icon: '#️⃣', desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 hashes' },
+    { name: 'QR Code Generator',           href: 'tools/qr-code-generator.html',      icon: '📷', desc: 'Create QR codes for URLs, WiFi, contacts, email' },
+    { name: 'Regex Tester',                href: 'tools/regex-tester.html',           icon: '🔍', desc: 'Test regular expressions with live match highlighting' },
+    { name: 'Word Counter',                href: 'tools/word-counter.html',           icon: '📝', desc: 'Count words, characters, and estimate reading time' },
+  ];
+  function navHighlightMatch(text, q) {
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return text;
+    return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+  }
+  function buildNavDropdown(dropdownEl, query) {
+    const q = query.trim().toLowerCase();
+    if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
+    const results = NAV_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)).slice(0, 6);
+    if (!results.length) { dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>'; }
+    else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
+    dropdownEl.classList.add('open');
+  }
+  const navDropdown = document.getElementById('navSearchDropdown');
+  document.getElementById('navSearch').addEventListener('input', e => buildNavDropdown(navDropdown, e.target.value));
+  document.addEventListener('click', e => { if (!e.target.closest('.nav-search')) navDropdown.classList.remove('open'); });
+  window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+</script>
+</body>
+</html>

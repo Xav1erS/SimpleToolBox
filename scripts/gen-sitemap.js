@@ -19,12 +19,15 @@ const TODAY = new Date().toISOString().slice(0, 10);
 
 // Site pages (non-tool), in priority order
 const SITE_PAGES = [
-  { path: '/',           priority: '1.0', changefreq: 'weekly' },
-  { path: '/all-tools',  priority: '0.7', changefreq: 'weekly' },
-  { path: '/about',      priority: '0.4', changefreq: 'monthly' },
-  { path: '/contact',    priority: '0.3', changefreq: 'yearly' },
-  { path: '/privacy',    priority: '0.3', changefreq: 'yearly' },
-  { path: '/terms',      priority: '0.3', changefreq: 'yearly' },
+  { path: '/',                  priority: '1.0', changefreq: 'weekly' },
+  { path: '/all-tools',         priority: '0.7', changefreq: 'weekly' },
+  { path: '/image-tools',       priority: '0.7', changefreq: 'weekly' },
+  { path: '/developer-tools',   priority: '0.7', changefreq: 'weekly' },
+  { path: '/text-tools',        priority: '0.7', changefreq: 'weekly' },
+  { path: '/about',             priority: '0.4', changefreq: 'monthly' },
+  { path: '/contact',           priority: '0.3', changefreq: 'yearly' },
+  { path: '/privacy',           priority: '0.3', changefreq: 'yearly' },
+  { path: '/terms',             priority: '0.3', changefreq: 'yearly' },
 ];
 
 function urlEntry(loc, changefreq, priority) {

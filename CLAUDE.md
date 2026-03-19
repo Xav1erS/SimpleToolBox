@@ -10,9 +10,11 @@
 
 ## Current Main Task
 
-The current main task is to migrate site pages and tool pages onto a maintainable design system.
+**Design-system migration is complete. All 81 tool pages and 6 site pages are migrated.**
 
-The goal is not to redesign the product. The goal is to preserve the current visual language and move repeated page-level CSS into shared CSS and reusable component classes.
+The current main task is to **expand the tool count toward 500**. New tools must be built using the design system from the start and include complete SEO content structure.
+
+A QA system is in place (`QA.md`). Run the appropriate checks after every change (see Change Risk Tiers in `QA.md`).
 
 ## Design System Entry Points
 
@@ -143,9 +145,9 @@ These pages already use shared navigation, hero, page containers, cards, inputs,
 - `public/tools/image-compressor.html`
   - Client-side image compression. Shared classes control nav and header.
 
-### Phase 1 New Tools (49 tools — use design-system.css, SEO structure not yet added)
+### Phase 1 New Tools (49 tools — SEO structure complete as of 2026-03-19)
 
-These tools were built using the design system from scratch but do **not** yet have SEO content structure (`ds-seo-content` / `ds-related-tools` / `ds-seo-more`).
+These tools were built using the design system from scratch. **All 49 now have complete SEO content structure** (`ds-seo-content` / `ds-related-tools` / `ds-seo-more` / `footer`).
 
 **Text Processing:** `text-case`, `text-cleaner`, `line-tools`, `diff-viewer`, `string-escape`, `binary-text`, `morse-code`, `ascii-table`, `roman-numerals`
 
@@ -248,26 +250,27 @@ clickedBtn.classList.add('active');
 
 ## Migration Status
 
-**All 72 tool pages and all 6 site pages use the design system.** No further design-system migration work is needed.
+**All 81 tool pages and all 6 site pages use the design system.** No further design-system migration work is needed.
 
 Brand logo classes are unified: `ds-nav__brand` + `ds-nav__logo-icon` (nav), `ds-footer-logo-icon` (footer). No local override CSS required.
 
 ### SEO Content Structure
 
-**72/72 tool pages have complete SEO content structure** (as of 2026-03-19).
+**81/81 tool pages have complete SEO content structure** (as of 2026-03-19).
 
 All tool pages have: `ds-seo-content` block (two `<section class="ds-seo-section">` elements: "What is [Tool]" + "How to Use [Tool]") + `ds-related-tools` block (3+ links) + `ds-seo-more` progressive disclosure block (4 `ds-seo-collapse` sections: **Example → [tool-specific middle section] → Why Use This Tool → Frequently Asked Questions**).
 
 Future work should focus on:
 
+- Expanding tool count (target 500, currently at 81).
 - Building category/hub pages (Priority 3 of SEO roadmap).
-- Extracting repeated local patterns (`.related-tools`, `.card`, etc.) into shared DS components if they appear in 3+ pages.
+- Expanding `public/tools-meta.js` rich metadata (currently covers 10 tools, 71 tools remain).
 
 ## 300+ Tools Roadmap
 
 ### 目标
 
-将网站做到 500 个纯前端工具，全部浏览器端运行，不上传数据。当前已有 72 个工具（其中 23 个有完整 SEO 内容结构）。
+将网站做到 500 个纯前端工具，全部浏览器端运行，不上传数据。当前已有 81 个工具（全部有完整 SEO 内容结构）。
 
 ### 六大类目标规模
 
@@ -280,7 +283,7 @@ Future work should focus on:
 | 🧮 Calculators | 65 | 3 | 日常/工作/健康/金融 |
 | ⚙️ Generators / Utility | 60 | 8 | 生成类/实用类 |
 
-**总目标：500 个工具**（当前 72 个）
+**总目标：500 个工具**（当前 81 个）
 
 ### 开发效率原则
 
@@ -294,7 +297,7 @@ Future work should focus on:
 
 | 阶段 | 目标工具数 | 重点方向 | 状态 |
 | ---- | --------- | ------- | ---- |
-| 阶段一 | 100 个 | 补全 SEO 结构，开发者/文本核心工具（已有 72 个） | 进行中 |
+| 阶段一 | 100 个 | 补全 SEO 结构，开发者/文本核心工具（已有 81 个，SEO 结构 81/81 完成） | 进行中（新增工具至 100） |
 | 阶段二 | 150 个 | **Image Tools 骨架**（30 个）+ **PDF Tools 骨架**（20 个）+ Text/Calculator 补充 | 待开始 |
 | 阶段三 | 300 个 | 长尾场景词（for instagram / for email / for api）大规模覆盖 | 待开始 |
 | 阶段四 | 500 个 | 放大已有流量：Hub 页 + 场景页 + 工具链 | 待开始 |
@@ -338,3 +341,4 @@ If Claude Code takes over, read these first:
 2. `CLAUDE.md`
 3. `DESIGN_SYSTEM.md`
 4. `MEMORY.md`
+5. `QA.md`

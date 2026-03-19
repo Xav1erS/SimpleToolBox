@@ -13,7 +13,7 @@
   <meta property="og:description" content="13 free browser-based image tools — resize, compress, convert, remove EXIF, blur, grayscale, and more. No upload required." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles/design-system.css?v=16" />
+  <link rel="stylesheet" href="styles/design-system.css?v=17" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -238,19 +238,9 @@
   <a href="about.html">About</a>
 </footer>
 
+<script src="tools-data.js"></script>
 <script>
-  const NAV_TOOLS = [
-    { name: 'Image Resizer',               href: 'tools/image-resizer.html',          icon: '🖼️', desc: 'Resize images client-side with preset dimensions' },
-    { name: 'Image Compressor',            href: 'tools/image-compressor.html',       icon: '🗜️', desc: 'Reduce image file size with quality control' },
-    { name: 'WebP Converter',              href: 'tools/webp-converter.html',         icon: '🔄', desc: 'Convert images to WebP, PNG, or JPEG format' },
-    { name: 'JSON Formatter',              href: 'tools/json-formatter.html',         icon: '🎨', desc: 'Prettify, minify, validate JSON' },
-    { name: 'Base64 Encode / Decode',      href: 'tools/base64.html',                 icon: '📦', desc: 'Encode or decode text and files to Base64' },
-    { name: 'Password Generator',          href: 'tools/password-generator.html',     icon: '🔑', desc: 'Generate strong random passwords locally' },
-    { name: 'Hash Generator',              href: 'tools/hash-generator.html',         icon: '#️⃣', desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 hashes' },
-    { name: 'QR Code Generator',           href: 'tools/qr-code-generator.html',      icon: '📷', desc: 'Create QR codes for URLs, WiFi, contacts, email' },
-    { name: 'Regex Tester',                href: 'tools/regex-tester.html',           icon: '🔍', desc: 'Test regular expressions with live match highlighting' },
-    { name: 'Word Counter',                href: 'tools/word-counter.html',           icon: '📝', desc: 'Count words, characters, and estimate reading time' },
-  ];
+  const NAV_TOOLS = SITE_TOOLS;
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());
     if (idx === -1) return text;

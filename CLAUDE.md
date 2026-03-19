@@ -305,6 +305,19 @@ Future work should focus on:
 - 每次新增工具后立即更新 `all-tools.html` 工具列表，分类须正确。
 - 每个工具条目需包含：工具名、描述、所属分类、页面链接。
 
+### tools-data.js 维护规则
+
+`public/tools-data.js` 是全站搜索的唯一数据源，被 `index.html` 和三个 hub 页共享。
+
+- 每次新增工具后，在 `tools-data.js` 末尾追加一条记录，格式：
+
+  ```js
+  { name: '工具名', href: 'tools/slug.html', tag: 'xxx', icon: '🔣', desc: '一句话描述' },
+  ```
+
+- `tag` 值对应 `all-tools.html` 中的分类标识（`image` / `text` / `encode` / `format` / `convert` / `generate` / `calculator` / `design` / `reference`）。
+- 不要在各 hub 页面内维护独立的工具列表；hub 页已统一引用 `SITE_TOOLS`。
+
 ### 新工具上线前检查
 
 除 Migration Checklist 和 Interaction Quality Checklist 外，还需确认：

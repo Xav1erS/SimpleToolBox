@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Simple ToolBox — Free Online Developer Tools" />
   <meta name="twitter:description" content="50+ free developer tools. AES encrypt, color palette, WCAG checker, JSON formatter, regex tester and more. Privacy-first, no sign-up." />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles/design-system.css?v=16" />
+  <link rel="stylesheet" href="styles/design-system.css?v=17" />
   <style>
     body {
       background: var(--ds-color-bg);
@@ -634,7 +634,7 @@
 <!-- STATS -->
 <div class="stats">
   <div class="stat-item">
-    <div class="stat-number"><span id="statToolCount">60</span>+</div>
+    <div class="stat-number"><span id="statToolCount">81</span>+</div>
     <div class="stat-label">Online Tools</div>
   </div>
   <div class="stat-item">
@@ -997,6 +997,7 @@
   </div>
 </div>
 
+<script src="tools-data.js"></script>
 <script>
   // Nav scroll shadow
   const nav = document.getElementById('nav');
@@ -1005,46 +1006,7 @@
   }, { passive: true });
 
   // ── TOOL DATA ──────────────────────────────────────────
-  const TOOLS = [
-    { name: 'Base64 Encode / Decode',       href: 'tools/base64.html',                 tag: 'encode',   icon: '📦', desc: 'Encode or decode text and files to Base64' },
-    { name: 'JSON Formatter',               href: 'tools/json-formatter.html',          tag: 'format',   icon: '🎨', desc: 'Prettify, minify, validate JSON; convert to CSV or SQL' },
-    { name: 'Password Generator',           href: 'tools/password-generator.html',      tag: 'generate', icon: '🔑', desc: 'Generate strong random passwords locally' },
-    { name: 'Timestamp Converter',          href: 'tools/timestamp.html',               tag: 'convert',  icon: '⏱️', desc: 'Convert Unix timestamps to readable dates' },
-    { name: 'URL Encode / Decode',          href: 'tools/url-encode.html',              tag: 'encode',   icon: '🔗', desc: 'Encode or decode URL parameters and components' },
-    { name: 'UUID Generator',               href: 'tools/uuid-generator.html',          tag: 'generate', icon: '🆔', desc: 'Generate UUID v1/v4 identifiers in bulk' },
-    { name: 'Word Counter',                 href: 'tools/word-counter.html',             tag: 'text',     icon: '📝', desc: 'Count words, characters, and estimate reading time' },
-    { name: 'Random Number Generator',      href: 'tools/random-number-generator.html', tag: 'generate', icon: '🎲', desc: 'Generate random numbers, shuffle lists, roll dice' },
-    { name: 'Unit Converter',               href: 'tools/unit-converter.html',           tag: 'convert',  icon: '📐', desc: 'Convert length, weight, temperature, speed and more' },
-    { name: 'Image Resizer',                href: 'tools/image-resizer.html',            tag: 'image',    icon: '🖼️', desc: 'Resize images client-side with preset dimensions' },
-    { name: 'Image Compressor',             href: 'tools/image-compressor.html',         tag: 'image',    icon: '🗜️', desc: 'Reduce image file size with quality control' },
-    { name: 'WebP Converter',               href: 'tools/webp-converter.html',           tag: 'image',    icon: '🔄', desc: 'Convert images to WebP, PNG, or JPEG format' },
-    { name: 'YouTube Thumbnail Downloader', href: 'tools/youtube-thumbnail.html',        tag: 'image',    icon: '📺', desc: 'Download YouTube video thumbnails in all resolutions' },
-    { name: 'QR Code Generator',            href: 'tools/qr-code-generator.html',        tag: 'generate', icon: '📷', desc: 'Create QR codes for URLs, WiFi, contacts, email' },
-    { name: 'URL Slug Generator',           href: 'tools/slug-generator.html',           tag: 'text',     icon: '🔗', desc: 'Convert titles to clean SEO-friendly URL slugs' },
-    { name: 'Lorem Ipsum Generator',        href: 'tools/lorem-ipsum-generator.html',    tag: 'text',     icon: '📄', desc: 'Generate placeholder text in multiple themes' },
-    { name: 'Color Picker',                 href: 'tools/color-picker.html',             tag: 'convert',  icon: '🎨', desc: 'Convert colors between HEX, RGB, HSL, and CMYK' },
-    { name: 'Regex Tester',                 href: 'tools/regex-tester.html',             tag: 'text',     icon: '🔍', desc: 'Test regular expressions with live match highlighting' },
-    { name: 'Markdown Preview',             href: 'tools/markdown-preview.html',         tag: 'text',     icon: '📝', desc: 'Write Markdown and see a live rendered preview' },
-    { name: 'Cron Expression Builder',      href: 'tools/cron-builder.html',             tag: 'generate', icon: '⏰', desc: 'Build cron expressions visually with descriptions' },
-    { name: 'JWT Decoder / Inspector',      href: 'tools/jwt-decoder.html',              tag: 'encode',   icon: '🔐', desc: 'Decode JWT header, payload, signature and inspect claims' },
-    { name: 'HTML Entity Encode / Decode',  href: 'tools/html-entities.html',            tag: 'encode',   icon: '🏷️', desc: 'Encode or decode HTML entities — named and numeric formats' },
-    { name: 'Hash Generator',               href: 'tools/hash-generator.html',           tag: 'generate',    icon: '#️⃣', desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 from text or file' },
-    { name: 'Date Calculator',              href: 'tools/date-calculator.html',          tag: 'calculator',  icon: '📅', desc: 'Calculate date differences, business days, and exact age' },
-    { name: 'BMI Calculator',               href: 'tools/bmi-calculator.html',           tag: 'calculator',  icon: '⚖️', desc: 'Calculate Body Mass Index with Metric or Imperial units' },
-    { name: 'Loan Calculator',              href: 'tools/loan-calculator.html',          tag: 'calculator',  icon: '🏦', desc: 'Calculate monthly loan payments and amortization schedule' },
-    { name: 'CSS Minifier',                 href: 'tools/css-minifier.html',             tag: 'format',      icon: '⚡', desc: 'Compress CSS by removing comments and whitespace' },
-    { name: 'JS Minifier',                  href: 'tools/js-minifier.html',              tag: 'format',      icon: '⚡', desc: 'Compress JavaScript using Terser — mangle and minify' },
-    { name: 'TOML ↔ JSON Converter',        href: 'tools/toml-json.html',                tag: 'convert',     icon: '🔄', desc: 'Convert between TOML and JSON format instantly' },
-    { name: 'JWT Builder / Generator',      href: 'tools/jwt-builder.html',              tag: 'encode',      icon: '🔑', desc: 'Build and sign JWT tokens with HMAC (HS256/HS384/HS512)' },
-    { name: 'Color Blindness Simulator',    href: 'tools/color-blindness.html',          tag: 'design',      icon: '👁️', desc: 'Simulate protanopia, deuteranopia, tritanopia on any image' },
-    { name: 'ASCII Table',                  href: 'tools/ascii-table.html',              tag: 'reference',   icon: '🔣', desc: 'Full ASCII 0-127 reference with Dec, Hex, Oct, Binary values' },
-    { name: 'Text Cleaner',                 href: 'tools/text-cleaner.html',             tag: 'text',        icon: '🧹', desc: 'Remove extra spaces, blank lines, HTML tags and more' },
-    { name: 'XML ↔ JSON Converter',         href: 'tools/xml-json.html',                 tag: 'format',      icon: '🔄', desc: 'Convert between XML and JSON format instantly' },
-    { name: 'Number Formatter',             href: 'tools/number-format.html',            tag: 'convert',     icon: '🔢', desc: 'Format numbers with separators, currency, and scientific notation' },
-    { name: 'Port Reference',               href: 'tools/port-reference.html',           tag: 'reference',   icon: '🔌', desc: 'Search common TCP/UDP port numbers by port or service name' },
-    { name: 'MIME Types Reference',         href: 'tools/mime-types.html',               tag: 'reference',   icon: '📋', desc: 'Find the correct Content-Type header for any file extension' },
-    { name: 'Contrast Checker (WCAG)',      href: 'tools/color-contrast-aa.html',        tag: 'design',      icon: '⚖️', desc: 'Test color pairs against WCAG AA/AAA accessibility standards' },
-  ];
+  const TOOLS = SITE_TOOLS;
 
   // ── Tool filtering ─────────────────────────────────────
   const toolCards = document.querySelectorAll('.tool-grid .tool-card');

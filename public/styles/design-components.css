@@ -145,7 +145,8 @@
   text-decoration: none;
 }
 
-.search-dropdown {
+.search-dropdown,
+.nav-search-dropdown {
   display: none;
   position: absolute;
   top: calc(100% + 8px);
@@ -159,7 +160,8 @@
   z-index: 300;
 }
 
-.search-dropdown.open {
+.search-dropdown.open,
+.nav-search-dropdown.open {
   display: block;
 }
 

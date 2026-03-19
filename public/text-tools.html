@@ -13,7 +13,7 @@
   <meta property="og:description" content="11 free browser-based text tools — word counter, case converter, diff viewer, text cleaner, regex tester, markdown preview, and more." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles/design-system.css?v=16" />
+  <link rel="stylesheet" href="styles/design-system.css?v=17" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -216,19 +216,9 @@
   <a href="about.html">About</a>
 </footer>
 
+<script src="tools-data.js"></script>
 <script>
-  const NAV_TOOLS = [
-    { name: 'Word Counter',                href: 'tools/word-counter.html',           icon: '📝', desc: 'Count words, characters, and estimate reading time' },
-    { name: 'Text Case Converter',         href: 'tools/text-case.html',              icon: 'Aa', desc: 'Convert text to camelCase, snake_case, PascalCase and more' },
-    { name: 'Text Cleaner',                href: 'tools/text-cleaner.html',           icon: '🧹', desc: 'Remove extra spaces, blank lines, HTML tags, and more' },
-    { name: 'Diff Viewer',                 href: 'tools/diff-viewer.html',            icon: '📊', desc: 'Compare two texts and see line differences' },
-    { name: 'Regex Tester',                href: 'tools/regex-tester.html',           icon: '🔍', desc: 'Test regular expressions with live match highlighting' },
-    { name: 'Markdown Preview',            href: 'tools/markdown-preview.html',       icon: '📝', desc: 'Write Markdown and see a live rendered preview' },
-    { name: 'URL Slug Generator',          href: 'tools/slug-generator.html',         icon: '🔗', desc: 'Convert titles to clean SEO-friendly URL slugs' },
-    { name: 'Line Tools',                  href: 'tools/line-tools.html',             icon: '☰',  desc: 'Sort, deduplicate, reverse, and trim lines of text' },
-    { name: 'JSON Formatter',              href: 'tools/json-formatter.html',         icon: '🎨', desc: 'Prettify, minify, validate JSON' },
-    { name: 'Password Generator',          href: 'tools/password-generator.html',     icon: '🔑', desc: 'Generate strong random passwords locally' },
-  ];
+  const NAV_TOOLS = SITE_TOOLS;
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());
     if (idx === -1) return text;

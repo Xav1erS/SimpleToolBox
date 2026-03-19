@@ -13,7 +13,7 @@
   <meta property="og:description" content="40+ free browser-based developer tools — JSON formatter, Base64, hash generator, regex tester, JWT, CSS/JS/SQL formatters, and more." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles/design-system.css?v=16" />
+  <link rel="stylesheet" href="styles/design-system.css?v=17" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -406,19 +406,9 @@
   <a href="about.html">About</a>
 </footer>
 
+<script src="tools-data.js"></script>
 <script>
-  const NAV_TOOLS = [
-    { name: 'JSON Formatter',              href: 'tools/json-formatter.html',         icon: '🎨', desc: 'Prettify, minify, validate JSON' },
-    { name: 'Base64 Encode / Decode',      href: 'tools/base64.html',                 icon: '📦', desc: 'Encode or decode text and files to Base64' },
-    { name: 'Password Generator',          href: 'tools/password-generator.html',     icon: '🔑', desc: 'Generate strong random passwords locally' },
-    { name: 'Hash Generator',              href: 'tools/hash-generator.html',         icon: '#️⃣', desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 hashes' },
-    { name: 'Regex Tester',                href: 'tools/regex-tester.html',           icon: '🔍', desc: 'Test regular expressions with live match highlighting' },
-    { name: 'JWT Decoder / Inspector',     href: 'tools/jwt-decoder.html',            icon: '🔑', desc: 'Decode JWT tokens and inspect claims' },
-    { name: 'AES Encrypt / Decrypt',       href: 'tools/aes.html',                   icon: '🔐', desc: 'Encrypt and decrypt text with AES-256-GCM' },
-    { name: 'QR Code Generator',           href: 'tools/qr-code-generator.html',      icon: '📷', desc: 'Create QR codes for URLs, WiFi, contacts, email' },
-    { name: 'UUID Generator',              href: 'tools/uuid-generator.html',         icon: '🆔', desc: 'Generate UUID v4 identifiers in bulk' },
-    { name: 'Cron Expression Builder',     href: 'tools/cron-builder.html',           icon: '⏰', desc: 'Build cron expressions visually with descriptions' },
-  ];
+  const NAV_TOOLS = SITE_TOOLS;
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());
     if (idx === -1) return text;

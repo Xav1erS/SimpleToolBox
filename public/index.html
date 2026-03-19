@@ -621,7 +621,7 @@
 <!-- STATS -->
 <div class="stats">
   <div class="stat-item">
-    <div class="stat-number"><span>60</span>+</div>
+    <div class="stat-number"><span id="statToolCount">60</span>+</div>
     <div class="stat-label">Online Tools</div>
   </div>
   <div class="stat-item">
@@ -1199,6 +1199,35 @@
       input.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
+
+  // Auto-update tool count stats from all-tools.html
+  fetch('all-tools.html')
+    .then(r => r.text())
+    .then(html => {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const allCards = doc.querySelectorAll('.tool-card');
+      const total = allCards.length;
+
+      // Update stats number
+      const statEl = document.getElementById('statToolCount');
+      if (statEl) statEl.textContent = total;
+
+      // Count per category tag
+      const catCounts = {};
+      allCards.forEach(card => {
+        const tag = card.dataset.tags;
+        if (tag) catCounts[tag] = (catCounts[tag] || 0) + 1;
+      });
+
+      // Update each category card's count badge
+      document.querySelectorAll('.category-card[data-filter]').forEach(catCard => {
+        const filter = catCard.dataset.filter;
+        const count = catCounts[filter] || 0;
+        const badge = catCard.querySelector('.category-count');
+        if (badge && count > 0) badge.textContent = count + ' tool' + (count !== 1 ? 's' : '');
+      });
+    })
+    .catch(() => {}); // silently fail if fetch not available (e.g. file://)
 
   // Fade-in on scroll
   const observer = new IntersectionObserver(

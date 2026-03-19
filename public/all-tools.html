@@ -922,9 +922,11 @@
       document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeTag = catParam;
-      applyFilters();
     }
   }
+
+  // Always run on init to set accurate count from DOM
+  applyFilters();
 </script>
 </body>
 </html>

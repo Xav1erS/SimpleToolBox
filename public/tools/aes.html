@@ -14,18 +14,64 @@
   <link rel="canonical" href="https://simpletoolbox.dev/tools/aes" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "AES Encrypt / Decrypt",
-    "description": "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser — no data is sent to any server.",
-    "url": "https://simpletoolbox.com/tools/aes.html",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  }
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AES Encrypt / Decrypt",
+  "description": "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser ? no data is sent to any server.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/aes"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between AES-CBC and AES-GCM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AES-CBC provides confidentiality only and requires a separate MAC for integrity verification. AES-GCM provides both confidentiality and built-in authentication, making it the preferred choice for new systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the ciphertext change every time I encrypt the same message?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A random IV (initialization vector) is generated for each encryption operation. This ensures that identical plaintexts produce different ciphertexts, preventing pattern analysis. The IV is stored alongside the ciphertext and used automatically during decryption."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How strong is AES-256?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide ? it is the gold standard for symmetric encryption."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this tool to encrypt files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool is designed for text encryption. For file encryption, consider dedicated tools. However, you can encrypt Base64-encoded file content if needed."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <style>
     .key-row {
       display: flex;
@@ -354,97 +400,87 @@
     });
   </script>
 
-  <div class="ds-seo-content">
-    <section class="ds-seo-section">
-      <h2 class="ds-seo-section__title">What is AES Encrypt / Decrypt?</h2>
-      <p>AES Encrypt / Decrypt encrypts and decrypts text using AES (Advanced Encryption Standard) with CBC or GCM mode, entirely in your browser — no data is ever sent to a server. AES is the most widely used symmetric encryption algorithm in the world, protecting everything from HTTPS traffic to encrypted file storage. Your plaintext and keys never leave your device.</p>
-    </section>
-    <section class="ds-seo-section">
-      <h2 class="ds-seo-section__title">How to Use</h2>
-      <ol>
-        <li>Enter the text you want to encrypt in the input field and provide a secret key.</li>
-        <li>Select an AES mode (CBC or GCM) and key size (128, 192, or 256-bit).</li>
-        <li>Click <strong>Encrypt</strong> to get the Base64-encoded ciphertext, or paste ciphertext and click <strong>Decrypt</strong> to recover the original text.</li>
-      </ol>
-    </section>
-  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is AES Encrypt / Decrypt?</h2>
+    <p>AES Encrypt / Decrypt uses browser-side AES to protect plaintext with a passphrase and decrypt it again when you need the original content. It is useful for testing encryption flows, understanding IV and authentication tag behavior, and handling short secrets locally without sending them to a server.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use AES Encrypt / Decrypt</h2>
+    <ol>
+      <li>Choose whether you want to encrypt plaintext or decrypt ciphertext.</li>
+      <li>Enter the text and the passphrase you want to use.</li>
+      <li>Run the conversion and inspect the generated ciphertext or recovered plaintext.</li>
+      <li>Copy the result for testing, demos, or local workflows.</li>
+    </ol>
+  </section>
+</div>
 
-  <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="hmac.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">HMAC Generator</div><div class="ds-related-desc">Generate message authentication codes</div></div></a>
-      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">MD5, SHA-1, SHA-256 and more</div></div></a>
-      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Base64 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div></a>
-    </div>
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="hmac.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">HMAC Generator</div><div class="ds-related-desc">Generate HMAC signatures with SHA-256, SHA-512 and more</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
   </div>
+</div>
 
-  <details class="ds-seo-more">
-    <summary class="ds-seo-more__toggle"><span>Understand AES Encrypt / Decrypt (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
-    <div class="ds-seo-more__body">
-      <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Here is a typical AES-GCM encryption operation:</p>
-          <div class="ds-seo-example">
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Input</span>
-              <span class="ds-seo-example__value">Plaintext: "Secret message" · Key: "mykey" · Mode: AES-GCM-256</span>
-            </div>
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Output</span>
-              <span class="ds-seo-example__value">Base64-encoded ciphertext (includes IV + auth tag)</span>
-            </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand AES Encrypt / Decrypt</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Plaintext: &quot;Secret message&quot; ? Key: &quot;mykey&quot; ? Mode: AES-GCM-256</span>
           </div>
-          <p>The output changes every time due to a random IV (initialization vector), even when encrypting the same message with the same key — this is a security feature, not a bug.</p>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Base64-encoded ciphertext (includes IV + auth tag)</span>
+          </div>
         </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>AES Modes Explained</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>AES-CBC (Cipher Block Chaining)</strong> — classic mode; requires padding; widely supported but lacks built-in authentication.</li>
-            <li><strong>AES-GCM (Galois/Counter Mode)</strong> — authenticated encryption; detects tampering automatically; preferred for modern applications.</li>
-            <li><strong>Key sizes</strong> — 128-bit (fast), 192-bit (medium), 256-bit (maximum security); all are secure for practical purposes.</li>
-            <li><strong>IV / Nonce</strong> — a random value included in the output; ensures identical plaintexts produce different ciphertexts.</li>
-            <li><strong>Base64 output</strong> — ciphertext is Base64-encoded for safe transport in JSON, URLs, or text fields.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Why Use This Tool</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Industry-standard cipher</strong> — AES is used by governments, banks, and cloud providers worldwide.</li>
-            <li><strong>Both encrypt &amp; decrypt</strong> — test your encryption round-trip without writing any code.</li>
-            <li><strong>Multiple modes &amp; key sizes</strong> — match the exact configuration your application uses.</li>
-            <li><strong>Developer utility</strong> — quickly verify encrypted payloads or debug AES integration issues.</li>
-            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-            <div class="ds-seo-faq-item">
-              <h3>What is the difference between AES-CBC and AES-GCM?</h3>
-              <p>AES-CBC provides confidentiality only and requires a separate MAC for integrity verification. AES-GCM provides both confidentiality and built-in authentication, making it the preferred choice for new systems.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>Why does the ciphertext change every time I encrypt the same message?</h3>
-              <p>A random IV (initialization vector) is generated for each encryption operation. This ensures that identical plaintexts produce different ciphertexts, preventing pattern analysis. The IV is stored alongside the ciphertext and used automatically during decryption.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>How strong is AES-256?</h3>
-              <p>AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide — it is the gold standard for symmetric encryption.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>Can I use this tool to encrypt files?</h3>
-              <p>This tool is designed for text encryption. For file encryption, consider dedicated tools. However, you can encrypt Base64-encoded file content if needed.</p>
-            </div>
-        </div>
-      </details>
-    </div>
-  </details>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Encrypt notes, tokens, or payloads locally before sharing them</li>
+          <li>Test AES-GCM output formats during app or API development</li>
+          <li>Verify decryption behavior with known ciphertext and passphrase pairs</li>
+          <li>Demonstrate browser-side symmetric encryption without server calls</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for validating AES-GCM behavior without setting up backend code.</li>
+          <li>Helps explain IVs, auth tags, and passphrase-based encryption flows.</li>
+          <li>Keeps plaintext and keys inside the browser for quick local testing.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the difference between AES-CBC and AES-GCM?</strong><p>AES-CBC provides confidentiality only and requires a separate MAC for integrity verification. AES-GCM provides both confidentiality and built-in authentication, making it the preferred choice for new systems.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why does the ciphertext change every time I encrypt the same message?</strong><p>A random IV (initialization vector) is generated for each encryption operation. This ensures that identical plaintexts produce different ciphertexts, preventing pattern analysis. The IV is stored alongside the ciphertext and used automatically during decryption.</p></div>
+        <div class="ds-seo-faq-item"><strong>How strong is AES-256?</strong><p>AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide ? it is the gold standard for symmetric encryption.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I use this tool to encrypt files?</strong><p>This tool is designed for text encryption. For file encryption, consider dedicated tools. However, you can encrypt Base64-encoded file content if needed.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

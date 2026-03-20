@@ -13,9 +13,64 @@
   <meta property="og:title" content="Base64 Encode &amp; Decode Online – Free, Instant, Browser-Based | Simple ToolBox" />
   <meta property="og:description" content="Free online Base64 encoder and decoder. Encode text or files to Base64, decode Base64 strings, support URL-safe mode. Fast, privacy-first, runs in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base64 Encoder / Decoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode text or files to Base64 and decode Base64 strings instantly. Supports URL-safe Base64 and binary file encoding. Runs entirely in your browser.","featureList":["Text to Base64 encoding","Base64 to text decoding","URL-safe Base64 mode","File to Base64 encoding","100% client-side processing"]}
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Base64 Encoder / Decoder",
+  "description": "Encode text or files to Base64 and decode Base64 strings instantly. Supports URL-safe Base64 and binary file encoding. Runs entirely in your browser.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/base64"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Base64 the same as encryption?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Base64 is encoding, not encryption. Anyone can decode it without a key. Use AES or similar for actual security."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is URL-safe Base64?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "URL-safe Base64 replaces + with - and / with _ so the encoded string can be used in URLs without percent-encoding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool support file encoding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Switch to the File tab to encode binary files like images, PDFs, or executables to Base64."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All encoding and decoding runs entirely in your browser using JavaScript. Nothing is uploaded."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Base64 encoding the same as encryption?","acceptedAnswer":{"@type":"Answer","text":"No. Base64 is an encoding scheme, not encryption. It is fully reversible without any key. Do not use Base64 to secure sensitive data — use proper encryption such as AES instead."}},{"@type":"Question","name":"Why does Base64 output end with = or ==?","acceptedAnswer":{"@type":"Answer","text":"Base64 groups input into 3-byte chunks. If the input length is not a multiple of 3, padding characters (=) are appended to make the output a multiple of 4 characters."}},{"@type":"Question","name":"What is URL-safe Base64?","acceptedAnswer":{"@type":"Answer","text":"Standard Base64 uses + and / which have special meanings in URLs. URL-safe Base64 (RFC 4648) replaces them with - and _, making the output safe for URL query strings and filenames without percent-encoding."}},{"@type":"Question","name":"How much does Base64 increase file size?","acceptedAnswer":{"@type":"Answer","text":"Base64 encoding increases the data size by approximately 33% — every 3 bytes of input becomes 4 characters of output."}},{"@type":"Question","name":"How do I decode a Base64 string online?","acceptedAnswer":{"@type":"Answer","text":"Switch to Decode mode, paste your Base64 string into the input field, and the decoded text appears instantly. If the result looks garbled, the original data was likely binary rather than plain text."}},{"@type":"Question","name":"Can I encode files to Base64?","acceptedAnswer":{"@type":"Answer","text":"Yes. In Encode mode, drop any file onto the drop zone or click to select one. The tool outputs the complete Base64 string, which you can copy or download as a .txt file."}}]}
   </script>
@@ -280,109 +335,87 @@
     </div>
   </div>
 
-  <div class="ds-seo-content">
-    <section class="ds-seo-section">
-      <h2 class="ds-seo-section__title">What is Base64 Encoding?</h2>
-      <p>Base64 represents binary data using 64 printable ASCII characters, letting you safely embed images, files, and certificates inside text formats like HTML, JSON, XML, and email. This tool encodes and decodes Base64 entirely in your browser — no data ever leaves your device.</p>
-    </section>
-    <section class="ds-seo-section">
-      <h2 class="ds-seo-section__title">How to Use</h2>
-      <ol>
-        <li>Select <strong>Encode</strong> or <strong>Decode</strong> mode and paste your text — output updates instantly.</li>
-        <li>Enable <strong>URL-safe</strong> mode to replace <code>+</code>/<code>/</code> with <code>-</code>/<code>_</code> for use in URLs or filenames.</li>
-        <li>Drop any file onto the drop zone to encode it, then click <strong>Copy</strong> or <strong>Download</strong> to save the result.</li>
-      </ol>
-    </section>
-  </div>
-
-  <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encoder / Decoder</div><div class="ds-related-desc">Encode and decode URL components</div></div></a>
-      <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">✨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Format and validate JSON data</div></div></a>
-      <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate secure random passwords</div></div></a>
-    </div>
-  </div>
-
-  <details class="ds-seo-more">
-    <summary class="ds-seo-more__toggle"><span>Understand Base64 (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
-    <div class="ds-seo-more__body">
-      <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Encoding the plain-text string <code>Hello, World!</code> with standard Base64 produces:</p>
-          <div class="ds-seo-example">
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Input</span>
-              <span class="ds-seo-example__value">Hello, World!</span>
-            </div>
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Base64</span>
-              <span class="ds-seo-example__value">SGVsbG8sIFdvcmxkIQ==</span>
-            </div>
-          </div>
-          <p>Each character is converted to its UTF-8 byte value, then groups of 3 bytes are encoded as 4 Base64 characters. The trailing <code>==</code> is padding to complete the final group.</p>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Common Use Cases</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li>Embed images as data URIs in HTML or CSS (<code>src="data:image/png;base64,..."</code>)</li>
-            <li>Encode binary files (PDFs, keys, certificates) for storage in JSON or XML</li>
-            <li>Decode Base64 JWTs, API tokens, or SAML assertions for inspection</li>
-            <li>Pass binary data through systems that only support text (email, HTTP headers)</li>
-            <li>Encode credentials for HTTP Basic Authentication headers</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Why Use This Base64 Tool</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>100% browser-based</strong> — your data never leaves your device. No server upload, no account required.</li>
-            <li><strong>Real-time output</strong> — results update instantly as you type, with no button press needed.</li>
-            <li><strong>File encoding</strong> — drag and drop any file to get its Base64 representation in seconds.</li>
-            <li><strong>URL-safe mode</strong> — one click switches between standard and URL-safe Base64 (<code>-</code> / <code>_</code> variants).</li>
-            <li><strong>Free forever</strong> — no limits, no paywalls, no tracking of your input data.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-            <div class="ds-seo-faq-item">
-              <h3>Is Base64 encoding the same as encryption?</h3>
-              <p>No. Base64 is an encoding scheme, not encryption. It is fully reversible without any key. Do not use Base64 to secure sensitive data — use proper encryption such as AES instead.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>Why does Base64 output end with = or ==?</h3>
-              <p>Base64 groups input into 3-byte chunks. If the input length is not a multiple of 3, padding characters (<code>=</code>) are appended to make the output a multiple of 4 characters.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>What is URL-safe Base64?</h3>
-              <p>Standard Base64 uses <code>+</code> and <code>/</code> which have special meanings in URLs. URL-safe Base64 (RFC 4648) replaces them with <code>-</code> and <code>_</code>, making the output safe for URL query strings and filenames without percent-encoding.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>How much does Base64 increase file size?</h3>
-              <p>Base64 encoding increases the data size by approximately 33% — every 3 bytes of input becomes 4 characters of output. This overhead is acceptable for small assets and inline data URIs.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>How do I decode a Base64 string online?</h3>
-              <p>Switch to <strong>Decode</strong> mode, paste your Base64 string into the input field, and the decoded text appears instantly. If the result looks garbled, the original data was likely binary rather than plain text — try the file download option instead.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>Can I encode files to Base64?</h3>
-              <p>Yes. In <strong>Encode</strong> mode, drop any file onto the drop zone or click to select one. The tool outputs the complete Base64 string, which you can copy or download as a <code>.txt</code> file. This works for images, PDFs, certificates, and other binary formats.</p>
-            </div>
-        </div>
-      </details>
-    </div>
-  </details>
-
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Base64?</h2>
+    <p>Base64 is a text encoding scheme that turns binary or plain text data into ASCII characters. It is often used for email payloads, data URLs, API tokens, and transporting binary content through text-only systems.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Base64 Encoder / Decoder</h2>
+    <ol>
+      <li>Paste text into the input area or switch to the file mode.</li>
+      <li>Choose encode or decode depending on your task.</li>
+      <li>Use URL-safe mode when the result must work inside URLs or JWT-like payloads.</li>
+      <li>Copy the output when the conversion looks correct.</li>
+    </ol>
+  </section>
 </div>
 
-<script src="../scripts/tool-persist.js"></script>
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Encode or decode URL parameters and components</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
+    <a href="aes.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">AES Encrypt / Decrypt</div><div class="ds-related-desc">Encrypt and decrypt text with AES-256-GCM — runs entirely in browser</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Base64</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Hello, World!</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">SGVsbG8sIFdvcmxkIQ==</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Embed images in HTML/CSS as data URIs</li>
+          <li>Encode binary data for JSON or email transmission</li>
+          <li>Decode Base64-encoded API responses</li>
+          <li>Encode configuration files for environment variables</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for data URLs, API payloads, binary transport, and quick decoding checks.</li>
+          <li>Supports both plain text and file-based encoding workflows.</li>
+          <li>Runs fully in the browser with no uploads or server processing.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is Base64 the same as encryption?</strong><p>No. Base64 is encoding, not encryption. Anyone can decode it without a key. Use AES or similar for actual security.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is URL-safe Base64?</strong><p>URL-safe Base64 replaces + with - and / with _ so the encoded string can be used in URLs without percent-encoding.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does this tool support file encoding?</strong><p>Yes. Switch to the File tab to encode binary files like images, PDFs, or executables to Base64.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is my data sent to a server?</strong><p>No. All encoding and decoding runs entirely in your browser using JavaScript. Nothing is uploaded.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+
 <script>
   // ── State ────────────────────────────────────────────────
   let mode    = 'encode';

@@ -45,7 +45,28 @@ const TOOLS_META = [
           q: "Is my data sent to a server?",
           a: "No. All encoding and decoding runs entirely in your browser using JavaScript. Nothing is uploaded."
         }
-      ]
+      ],
+      shortTitle: "Base64 Encoder / Decoder",
+      seoContent: {
+        whatIsTitle: "What is Base64?",
+        whatIsBody: "Base64 is a text encoding scheme that turns binary or plain text data into ASCII characters. It is often used for email payloads, data URLs, API tokens, and transporting binary content through text-only systems.",
+        howToTitle: "How to Use Base64 Encoder / Decoder",
+        howToSteps: [
+          "Paste text into the input area or switch to the file mode.",
+          "Choose encode or decode depending on your task.",
+          "Use URL-safe mode when the result must work inside URLs or JWT-like payloads.",
+          "Copy the output when the conversion looks correct."
+        ]
+      },
+      learnMore: {
+        title: "Understand Base64",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for data URLs, API payloads, binary transport, and quick decoding checks.",
+          "Supports both plain text and file-based encoding workflows.",
+          "Runs fully in the browser with no uploads or server processing."
+        ]
+      }
     },
   {
       slug: "json-formatter",
@@ -129,10 +150,11 @@ const TOOLS_META = [
       title: "Timestamp Converter",
       description: "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds. Shows current timestamp live.",
       category: "convert",
+      shortTitle: "Timestamp Converter",
       relatedTools: [
-        "date-calculator",
         "timezone-converter",
-        "countdown"
+        "date-calculator",
+        "cron-builder"
       ],
       useCases: [
         "Convert API timestamps to readable dates",
@@ -157,10 +179,31 @@ const TOOLS_META = [
           a: "Yes. The tool shows both local time and UTC time for each converted timestamp."
         },
         {
-          q: "seconds",
+          q: "How do I tell seconds and milliseconds apart?",
           a: "A 10-digit timestamp is in seconds (standard Unix time). A 13-digit timestamp is in milliseconds (used by JavaScript's Date.now() and many APIs). To convert: divide milliseconds by 1000 to get seconds, or multiply seconds by 1000 to get milliseconds."
         }
-      ]
+      ],
+      seoContent: {
+        whatIsTitle: "What is a Unix Timestamp?",
+        whatIsBody: "A Unix timestamp is the number of seconds or milliseconds since January 1, 1970 00:00:00 UTC. It gives software systems a single timezone-independent way to store and compare moments in time.",
+        howToTitle: "How to Use the Timestamp Converter",
+        howToSteps: [
+          "Paste a Unix timestamp to convert it into readable UTC and local dates.",
+          "Enter a date and time to convert it back into a timestamp.",
+          "Use the live clock section when you need the current timestamp immediately.",
+          "Copy the exact format you need for logs, APIs, or databases."
+        ]
+      },
+      learnMore: {
+        title: "Understand Unix Timestamps (examples, use cases & FAQs)",
+        whyUseTitle: "Why Use This Timestamp Converter",
+        whyUseItems: [
+          "Converts in both directions between timestamps and human-readable dates.",
+          "Shows UTC and local-time output side by side for fewer timezone mistakes.",
+          "Helps with API debugging, log review, cron checks, and JWT expiry checks.",
+          "Includes a live current timestamp so you always have a quick reference."
+        ]
+      }
     },
   {
       slug: "url-encode",
@@ -184,21 +227,42 @@ const TOOLS_META = [
       faq: [
         {
           q: "What is the difference between encodeURI and encodeURIComponent?",
-          a: "encodeURI encodes a complete URL, \"leaving\":, /, ?, # intact. encodeURIComponent encodes everything except letters, digits, and - _ . ! ~ * ' ( )."
+          a: "encodeURI is for whole URLs and leaves separators like :, /, ?, and # intact. encodeURIComponent is for individual parts such as query values and encodes far more characters."
         },
         {
           q: "Why is a space encoded as %20 or +?",
-          a: "%20 is the standard percent-encoding. + is used in application/x-www-form-urlencoded (HTML form POST). This tool uses %20 by default."
+          a: "%20 is standard percent-encoding. + is mainly used by application/x-www-form-urlencoded form submissions. This tool outputs %20 by default."
         },
         {
           q: "Can I decode a full URL at once?",
-          a: "Yes. Paste the full URL and click Decode to decode all percent-encoded sequences at once."
+          a: "Yes. Paste the full URL and decode it to inspect all percent-encoded parts at once."
         },
         {
-          q: "application/x-www-form-urlencoded",
-          a: "+ represents a space only in the application/x-www-form-urlencoded format used by HTML forms. In standard RFC 3986 percent-encoding, a space must be %20 . Using + outside of form data can cause bugs — this tool always outputs %20 for safety."
+          q: "What is application/x-www-form-urlencoded?",
+          a: "It is the encoding format used by HTML form submissions, where spaces may be represented as +. For general URL components, %20 is the safer standard form."
         }
-      ]
+      ],
+      shortTitle: "URL Encoder / Decoder",
+      seoContent: {
+        whatIsTitle: "What is URL Encoding?",
+        whatIsBody: "URL encoding converts reserved or unsafe characters into percent-encoded sequences so they can be transmitted safely inside URLs. It is commonly used for query strings, path segments, redirects, and parameters that include spaces or special characters.",
+        howToTitle: "How to Use URL Encoder / Decoder",
+        howToSteps: [
+          "Paste the URL string or parameter you want to transform.",
+          "Choose encode when preparing a string for use in a URL, or decode when inspecting percent-encoded text.",
+          "Use the result in query strings, redirects, API requests, or debugging work.",
+          "Copy the transformed value into your target app or request."
+        ]
+      },
+      learnMore: {
+        title: "Understand URL Encoder / Decoder",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Prevents broken URLs caused by spaces and reserved characters.",
+          "Useful for debugging redirects, query strings, and encoded API payloads.",
+          "Lets you quickly compare raw and encoded values in the browser."
+        ]
+      }
     },
   {
       slug: "uuid-generator",
@@ -243,10 +307,11 @@ const TOOLS_META = [
       title: "Word Counter",
       description: "Count words, characters, sentences, and paragraphs. Get reading time estimates and keyword density. Works entirely in your browser.",
       category: "text",
+      shortTitle: "Word Counter",
       relatedTools: [
-        "text-case",
-        "text-cleaner",
-        "diff-viewer"
+        "lorem-ipsum-generator",
+        "markdown-preview",
+        "text-cleaner"
       ],
       useCases: [
         "Check word count for blog posts or essays",
@@ -267,14 +332,34 @@ const TOOLS_META = [
           a: "If you paste raw HTML, the tags will be counted as words. Paste plain text only for accurate counts."
         },
         {
-          q: "200 words per minute",
-          a: "Reading time is estimated by dividing the total word count by 200 words per minute — the widely cited average adult reading speed for on-screen text. The result is rounded up to the nearest half-minute. Dense or technical content may take longer; casual prose may be read faster."
+          q: "Why does it use 200 words per minute?",
+          a: "Reading time is estimated by dividing the total word count by 200 words per minute ? the widely cited average adult reading speed for on-screen text. The result is rounded up to the nearest half-minute. Dense or technical content may take longer; casual prose may be read faster."
         },
         {
           q: "How are words counted?",
-          a: "Words are counted by splitting the text on whitespace and filtering out empty segments. Hyphenated words like \"well-known\" are counted as one word. Numbers and punctuation attached to words (e.g., \"don't\", \"2024\") are each counted as one word."
+          a: "Words are counted by splitting the text on whitespace and filtering out empty segments. Hyphenated words like \"well-known\" are counted as one word. Numbers and punctuation attached to words are counted as part of the word token."
         }
-      ]
+      ],
+      seoContent: {
+        whatIsTitle: "What is a Word Counter?",
+        whatIsBody: "A word counter measures text length and related writing stats such as words, characters, sentences, paragraphs, and reading time. It helps writers, editors, students, and marketers stay within content limits and understand text density quickly.",
+        howToTitle: "How to Use the Word Counter",
+        howToSteps: [
+          "Paste or type text into the editor.",
+          "Review the live word, character, sentence, and paragraph metrics.",
+          "Check reading time and platform-specific length indicators if needed.",
+          "Edit your copy until it matches the target length."
+        ]
+      },
+      learnMore: {
+        title: "Understand Word & Character Counting (examples, use cases & FAQs)",
+        whyUseTitle: "Why Use This Word Counter",
+        whyUseItems: [
+          "Updates live as you type, with no manual recalculate step.",
+          "Useful for essays, blogs, product copy, and social media limits.",
+          "Shows multiple writing metrics in one place instead of separate tools."
+        ]
+      }
     },
   {
       slug: "random-number-generator",
@@ -297,7 +382,7 @@ const TOOLS_META = [
       faq: [
         {
           q: "Is this truly random or pseudo-random?",
-          a: "This tool uses crypto.getRandomValues() , which is a cryptographically secure pseudo-random number generator (CSPRNG) seeded from OS-level entropy. For all practical purposes it is indistinguishable from true randomness and is suitable for security-sensitive tasks."
+          a: "This tool uses crypto.getRandomValues() , which is a cryptographically secure pseudo-random number generator (CSPRNG) seeded from OS-level entropy. For all practical purposes it is indistinguishable from True randomness and is suitable for security-sensitive tasks."
         },
         {
           q: "Can I generate the same number twice in list mode?",
@@ -343,6 +428,7 @@ const TOOLS_META = [
       title: "Unit Converter Online – Length, Weight, Temperature & More",
       description: "Free online unit converter for length, weight, temperature, area, volume, speed, and more. Fast, accurate conversions with no sign-up required. Runs entirely in your browser.",
       category: "convert",
+      shortTitle: "Unit Converter",
       relatedTools: [
         "timestamp",
         "random-number-generator",
@@ -376,6 +462,27 @@ const TOOLS_META = [
       example: {
         input: "Temperature: 100°F → 37.78°C / 310.93 K",
         output: "Length: 5 miles → 8.047 km / 26,400 feet"
+      },
+      seoContent: {
+        whatIsTitle: "What is a Unit Converter?",
+        whatIsBody: "A unit converter turns a measurement in one unit into equivalent values in other units from the same category. It is useful for everyday conversions across metric, imperial, temperature, speed, area, volume, and data storage systems.",
+        howToTitle: "How to Use the Unit Converter",
+        howToSteps: [
+          "Pick a category such as length, temperature, speed, or data storage.",
+          "Type a value into any one of the available unit fields.",
+          "Read the converted values in the rest of the fields instantly.",
+          "Copy the number you need for travel, reports, recipes, or engineering work."
+        ]
+      },
+      learnMore: {
+        title: "Understand Unit Conversion (examples, use cases & FAQs)",
+        whyUseTitle: "Why Use This Unit Converter",
+        whyUseItems: [
+          "Handles multiple categories in one place instead of switching tools.",
+          "Updates every related unit at once, which makes comparisons faster.",
+          "Useful for metric-versus-imperial work, travel, HVAC, cooking, and storage planning.",
+          "Runs locally in the browser with no uploads or server calls."
+        ]
       }
     },
   {
@@ -610,6 +717,27 @@ const TOOLS_META = [
       example: {
         input: "Input title: Hello World! Top 10 Tips & Tricks (2024)",
         output: "Generated slug: hello-world-top-10-tips-tricks-2024"
+      },
+      shortTitle: "Slug Generator",
+      seoContent: {
+        whatIsTitle: "What is a URL Slug?",
+        whatIsBody: "A URL slug is the readable part of a page address that usually appears after the domain name. Good slugs are short, descriptive, lowercase, and easy to share, which makes them useful for SEO and cleaner URLs.",
+        howToTitle: "How to Use the Slug Generator",
+        howToSteps: [
+          "Paste the source title or phrase into the input field.",
+          "Choose separator and casing rules.",
+          "Optionally set a length limit or base URL preview.",
+          "Copy the final slug or full URL for publishing."
+        ]
+      },
+      learnMore: {
+        title: "Understand URL Slugs (examples, use cases & FAQs)",
+        whyUseTitle: "Why Use This Slug Generator",
+        whyUseItems: [
+          "Produces cleaner, shareable slugs for articles, products, and categories.",
+          "Supports custom separators and transliteration-friendly cleanup.",
+          "Useful before publishing content into a CMS, blog, or ecommerce platform."
+        ]
       }
     },
   {
@@ -649,6 +777,27 @@ const TOOLS_META = [
       example: {
         input: "Type: Paragraphs | Count: 2 | Start with \"Lorem ipsum…\": on",
         output: "Output begins: \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua…\""
+      },
+      shortTitle: "Lorem Ipsum Generator",
+      seoContent: {
+        whatIsTitle: "What is Lorem Ipsum?",
+        whatIsBody: "Lorem ipsum is placeholder text used when real copy is not ready yet. It helps designers and developers judge spacing, typography, and layout without being distracted by meaningful content.",
+        howToTitle: "How to Use the Lorem Ipsum Generator",
+        howToSteps: [
+          "Choose whether you want paragraphs, sentences, or words.",
+          "Set how many units to generate.",
+          "Toggle the classic opening phrase if needed.",
+          "Generate and copy the placeholder text into your mockup or editor."
+        ]
+      },
+      learnMore: {
+        title: "Understand Lorem Ipsum (examples, use cases & FAQs)",
+        whyUseTitle: "Why Use This Lorem Ipsum Generator",
+        whyUseItems: [
+          "Useful for mockups, wireframes, prototypes, and seeded content.",
+          "Lets you quickly generate different text lengths for layout testing.",
+          "Works well for design reviews before final copy is available."
+        ]
       }
     },
   {
@@ -876,6 +1025,27 @@ const TOOLS_META = [
       example: {
         input: "Input: <script>alert('XSS')</script>",
         output: "Encoded output: &lt;script&gt;alert('XSS')&lt;/script&gt;"
+      },
+      shortTitle: "HTML Entity Encoder / Decoder",
+      seoContent: {
+        whatIsTitle: "What are HTML Entities?",
+        whatIsBody: "HTML entities are encoded forms of characters that would otherwise be interpreted specially in HTML, such as <, >, &, and quotes. They are useful when you need to display markup literally or safely insert text into HTML contexts.",
+        howToTitle: "How to Use HTML Entity Encoder / Decoder",
+        howToSteps: [
+          "Paste the source text or encoded entity string into the input.",
+          "Choose encode when you need HTML-safe output, or decode to get readable text back.",
+          "Review named or numeric entity output depending on your use case.",
+          "Copy the converted result into your page, template, or payload."
+        ]
+      },
+      learnMore: {
+        title: "Understand HTML Entities",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for escaping code samples and preventing unintended HTML rendering.",
+          "Helps decode entity-heavy content from scrapers, APIs, and legacy systems.",
+          "Makes it easy to compare named and numeric entity output quickly."
+        ]
       }
     },
   {
@@ -883,6 +1053,7 @@ const TOOLS_META = [
       title: "Hash Generator",
       description: "Generate MD5, SHA-1, SHA-256, and SHA-512 cryptographic hashes from text or file. All algorithms run simultaneously in your browser via Web Crypto API.",
       category: "generate",
+      shortTitle: "Hash Generator",
       relatedTools: [
         "bcrypt",
         "hmac",
@@ -890,8 +1061,9 @@ const TOOLS_META = [
       ],
       useCases: [
         "Verify file integrity by comparing checksums",
-        "Hash passwords before storing (use bcrypt for production)",
-        "Generate a fingerprint for deduplication"
+        "Compare MD5, SHA-1, SHA-256, and SHA-512 output for the same input",
+        "Generate fingerprints for deduplication, caching, or asset tracking",
+        "Check hash values locally before publishing or sharing files"
       ],
       example: {
         input: "Hello",
@@ -912,9 +1084,29 @@ const TOOLS_META = [
         },
         {
           q: "What is the difference between MD5, SHA-1, SHA-256, and SHA-512?",
-          a: "They differ in digest length and security level. MD5 produces 128-bit (32-char) hashes — fast but cryptographically broken. SHA-1 produces 160-bit (40-char) hashes — also deprecated for security use. SHA-256 and SHA-512 are part of the SHA-2 family and remain secure for integrity checking and digital signatures."
+          a: "They differ in digest length and security level. MD5 produces 128-bit (32-char) hashes ? fast but cryptographically broken. SHA-1 produces 160-bit (40-char) hashes ? also deprecated for security use. SHA-256 and SHA-512 are part of the SHA-2 family and remain secure for integrity checking and digital signatures."
         }
-      ]
+      ],
+      seoContent: {
+        whatIsTitle: "What is Hash Generator?",
+        whatIsBody: "Hash Generator converts text or files into fixed-length digest values such as MD5, SHA-1, SHA-256, and SHA-512. It is useful for checksum comparison, file verification, and quickly understanding how different hash algorithms produce different outputs for the same input.",
+        howToTitle: "How to Use Hash Generator",
+        howToSteps: [
+          "Enter text or switch to file mode and choose a file.",
+          "Let the tool calculate the available hash algorithms in parallel.",
+          "Review the digest values you need for checksum comparison or record keeping.",
+          "Copy the required hash for verification, scripting, or documentation."
+        ]
+      },
+      learnMore: {
+        title: "Understand Hash Functions",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for checksum verification, release artifacts, and integrity checks.",
+          "Shows several common algorithms at once for quick comparison.",
+          "Processes text and files locally in the browser without uploading them."
+        ]
+      }
     },
   {
       slug: "date-calculator",
@@ -1132,7 +1324,7 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "/* Main button */\\n.btn {\\n color: red;\\n padding: 8px 16px;\\n}",
+        input: "\\n.btn {\\n color: red;\\n padding: 8px 16px;\\n}",
         output: ".btn{color:red;padding:8px 16px}"
       }
     },
@@ -1328,8 +1520,10 @@ const TOOLS_META = [
         "text-case"
       ],
       useCases: [
-        "Quickly complete common text cleaner – remove extra spaces, blank lines & html tags tasks in the browser",
-        "Verify text cleaner – remove extra spaces, blank lines & html tags results without installing desktop software"
+        "Clean text pasted from PDFs, websites, or chat transcripts",
+        "Remove blank lines and repeated whitespace before publishing",
+        "Strip HTML tags from copied rich text",
+        "Normalize messy content before importing into spreadsheets or CMS tools"
       ],
       faq: [
         {
@@ -1352,6 +1546,29 @@ const TOOLS_META = [
       example: {
         input: "Input: Hello world foo",
         output: "After collapse whitespace + trim: Hello world foo"
+      },
+      shortTitle: "Text Cleaner",
+      seoContent: {
+        whatIsTitle: "What is Text Cleaner?",
+        whatIsBody: "Text Cleaner removes formatting noise such as duplicate spaces, blank lines, HTML tags, smart punctuation artifacts, and other copy-paste leftovers. It helps turn messy text into plain, reusable content.",
+        howToTitle: "How to Use Text Cleaner",
+        howToSteps: [
+          "Paste your raw text into the input area.",
+          "Enable the cleanup operations you want to apply.",
+          "Review the cleaned output instantly.",
+          "Copy the final result back into your editor, CMS, or spreadsheet."
+        ]
+      },
+      learnMore: {
+        title: "Understand Text Cleaner",
+        extraTitle: "Common Cleaning Operations",
+        extraHtml: "<ul><li>Collapse repeated spaces</li><li>Remove blank lines</li><li>Trim leading and trailing whitespace</li><li>Strip HTML tags</li><li>Normalize line endings</li></ul>",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Saves manual find-and-replace work after messy copy-paste operations.",
+          "Useful for text imported from PDFs, web pages, emails, and docs.",
+          "Lets you combine multiple cleaning passes in one browser-only step."
+        ]
       }
     },
   {
@@ -1396,15 +1613,22 @@ const TOOLS_META = [
       title: "Number Formatter - Format Numbers, Currency & Scientific Notation",
       description: "Format numbers with thousand separators, currency symbols, decimal places, and scientific notation. Supports locale-aware formatting. Free, browser-based, no data sent.",
       category: "convert",
+      shortTitle: "Number Formatter",
       relatedTools: [
         "number-base",
         "unit-converter",
         "random-number-generator"
       ],
       useCases: [
-        "Quickly complete common number formatter - format numbers, currency & scientific notation tasks in the browser",
-        "Verify number formatter - format numbers, currency & scientific notation results without installing desktop software"
+        "Format currency values for invoices, dashboards, or reports",
+        "Preview locale differences before shipping international UI",
+        "Convert large values into scientific notation for technical work",
+        "Normalize decimal precision for exports and spreadsheets"
       ],
+      example: {
+        input: "1234567.89",
+        output: "$1,234,567.89 · 1.234.567,89 · 1.23e+6"
+      },
       faq: [
         {
           q: "Can I set custom decimal places?",
@@ -1422,7 +1646,29 @@ const TOOLS_META = [
           q: "Is Number Formatter - Format Numbers, Currency & Scientific Notation free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
-      ]
+      ],
+      seoContent: {
+        whatIsTitle: "What is Number Formatter?",
+        whatIsBody: "Number Formatter applies consistent separators, decimal precision, currency styling, percentages, and scientific notation to raw numeric input. It is useful when you need readable numbers for reports, finance, or localized interfaces.",
+        howToTitle: "How to Use Number Formatter",
+        howToSteps: [
+          "Enter the raw number you want to format.",
+          "Choose decimal, currency, percentage, or scientific output.",
+          "Set locale and decimal precision options.",
+          "Copy the formatted result for your app, document, or spreadsheet."
+        ]
+      },
+      learnMore: {
+        title: "Understand Number Formatter",
+        extraTitle: "Locale Formatting Differences",
+        extraHtml: "<ul><li><strong>US/UK</strong>: 1,234.56</li><li><strong>Europe</strong>: 1.234,56</li><li><strong>India</strong>: 12,34,567.89</li><li><strong>Scientific</strong>: 1.23e+6</li></ul><p>The formatter uses the browser's native Intl.NumberFormat API.</p>",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Preview locale-specific output without writing formatting code first.",
+          "Useful for finance, analytics dashboards, exports, and documentation.",
+          "Supports scientific notation and custom decimal precision in one place."
+        ]
+      }
     },
   {
       slug: "port-reference",
@@ -1533,17 +1779,20 @@ const TOOLS_META = [
     },
   {
       slug: "aes",
-      title: "AES Encrypt & Decrypt Online – Browser-Based AES Tool",
-      description: "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser — no data is sent to any server.",
+      title: "AES Encrypt & Decrypt Online ? Browser-Based AES Tool",
+      description: "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser ? no data is sent to any server.",
       category: "encode",
+      shortTitle: "AES Encrypt / Decrypt",
       relatedTools: [
         "hmac",
         "hash-generator",
         "base64"
       ],
       useCases: [
-        "Quickly complete common aes encrypt & decrypt online – browser-based aes tool tasks in the browser",
-        "Verify aes encrypt & decrypt online – browser-based aes tool results without installing desktop software"
+        "Encrypt notes, tokens, or payloads locally before sharing them",
+        "Test AES-GCM output formats during app or API development",
+        "Verify decryption behavior with known ciphertext and passphrase pairs",
+        "Demonstrate browser-side symmetric encryption without server calls"
       ],
       faq: [
         {
@@ -1556,7 +1805,7 @@ const TOOLS_META = [
         },
         {
           q: "How strong is AES-256?",
-          a: "AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide — it is the gold standard for symmetric encryption."
+          a: "AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide ? it is the gold standard for symmetric encryption."
         },
         {
           q: "Can I use this tool to encrypt files?",
@@ -1564,8 +1813,28 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Plaintext: \"Secret message\" · Key: \"mykey\" · Mode: AES-GCM-256",
+        input: "Plaintext: \"Secret message\" ? Key: \"mykey\" ? Mode: AES-GCM-256",
         output: "Base64-encoded ciphertext (includes IV + auth tag)"
+      },
+      seoContent: {
+        whatIsTitle: "What is AES Encrypt / Decrypt?",
+        whatIsBody: "AES Encrypt / Decrypt uses browser-side AES to protect plaintext with a passphrase and decrypt it again when you need the original content. It is useful for testing encryption flows, understanding IV and authentication tag behavior, and handling short secrets locally without sending them to a server.",
+        howToTitle: "How to Use AES Encrypt / Decrypt",
+        howToSteps: [
+          "Choose whether you want to encrypt plaintext or decrypt ciphertext.",
+          "Enter the text and the passphrase you want to use.",
+          "Run the conversion and inspect the generated ciphertext or recovered plaintext.",
+          "Copy the result for testing, demos, or local workflows."
+        ]
+      },
+      learnMore: {
+        title: "Understand AES Encrypt / Decrypt",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for validating AES-GCM behavior without setting up backend code.",
+          "Helps explain IVs, auth tags, and passphrase-based encryption flows.",
+          "Keeps plaintext and keys inside the browser for quick local testing."
+        ]
       }
     },
   {
@@ -1579,8 +1848,10 @@ const TOOLS_META = [
         "url-encode"
       ],
       useCases: [
-        "Quickly complete common base32 encoder / decoder online – rfc 4648 base32 free tasks in the browser",
-        "Verify base32 encoder / decoder online – rfc 4648 base32 free results without installing desktop software"
+        "Decode TOTP secret strings during MFA setup checks",
+        "Encode text for systems that prefer Base32 over Base64",
+        "Inspect RFC 4648 Base32 payloads from provisioning flows",
+        "Verify whether padding and alphabet variants are handled correctly"
       ],
       faq: [
         {
@@ -1603,6 +1874,27 @@ const TOOLS_META = [
       example: {
         input: "Hello",
         output: "JBSWY3DP"
+      },
+      shortTitle: "Base32 Encoder / Decoder",
+      seoContent: {
+        whatIsTitle: "What is Base32?",
+        whatIsBody: "Base32 is an encoding format that maps binary data into a restricted alphabet made of letters and digits. It is commonly used in OTP secrets, provisioning strings, and environments where case-insensitive or human-readable encodings are helpful.",
+        howToTitle: "How to Use Base32 Encoder / Decoder",
+        howToSteps: [
+          "Paste the text or Base32 string you want to convert.",
+          "Choose whether to encode or decode.",
+          "Check whether padding or alphabet rules match your target system.",
+          "Copy the converted result for use in your app or workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand Base32",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Helpful for TOTP secrets, provisioning codes, and RFC 4648 compatibility checks.",
+          "Makes it easy to inspect padding and Base32 alphabet behavior.",
+          "Runs locally in the browser without sending encoded content anywhere."
+        ]
       }
     },
   {
@@ -1616,8 +1908,10 @@ const TOOLS_META = [
         "hash-generator"
       ],
       useCases: [
-        "Quickly complete common base58 encoder / decoder online – bitcoin & ipfs format tasks in the browser",
-        "Verify base58 encoder / decoder online – bitcoin & ipfs format results without installing desktop software"
+        "Inspect Base58 strings used in crypto and content-addressed systems",
+        "Encode values without visually ambiguous characters like 0/O/I/l",
+        "Check whether a payload is plain Base58 or Base58Check",
+        "Decode identifiers from Bitcoin-style or IPFS-style workflows"
       ],
       faq: [
         {
@@ -1640,43 +1934,87 @@ const TOOLS_META = [
       example: {
         input: "Encode: Hello World → Base58: JxF12TrwUP45BMd",
         output: "Bitcoin address example: 1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf"
+      },
+      shortTitle: "Base58 Encoder / Decoder",
+      seoContent: {
+        whatIsTitle: "What is Base58?",
+        whatIsBody: "Base58 is a compact text encoding that removes confusing characters such as 0, O, I, and l. It is often used in cryptocurrency addresses, content identifiers, and systems where humans may need to read or retype the encoded value.",
+        howToTitle: "How to Use Base58 Encoder / Decoder",
+        howToSteps: [
+          "Paste the text or Base58 string into the input area.",
+          "Choose encode or decode.",
+          "Confirm which alphabet or ecosystem the string belongs to if needed.",
+          "Copy the converted result for further processing."
+        ]
+      },
+      learnMore: {
+        title: "Understand Base58",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for crypto-related strings and human-readable identifiers.",
+          "Reduces confusion caused by visually similar characters.",
+          "Helps confirm whether a string is plain Base58 or needs checksum handling."
+        ]
       }
     },
   {
       slug: "bcrypt",
-      title: "Bcrypt Hash Generator &amp; Verifier Online – Secure Password Hashing Free",
+      title: "Bcrypt Hash Generator &amp; Verifier Online ? Secure Password Hashing Free",
       description: "Generate and verify bcrypt password hashes in browser",
       category: "encode",
+      shortTitle: "Bcrypt Hash Generator / Verifier",
       relatedTools: [
         "hash-generator",
         "password-generator",
         "base64"
       ],
       useCases: [
-        "Quickly complete common bcrypt hash generator &amp; verifier online – secure password hashing free tasks in the browser",
-        "Verify bcrypt hash generator &amp; verifier online – secure password hashing free results without installing desktop software"
+        "Generate bcrypt hashes for authentication demos and test fixtures",
+        "Verify whether a plaintext password matches an existing bcrypt hash",
+        "Compare the effect of different cost factors on browser-side hashing speed",
+        "Teach the difference between password hashing and general-purpose hashing"
       ],
       faq: [
         {
           q: "Is this safe to use with real passwords?",
-          a: "This tool runs entirely in your browser — nothing is transmitted. Still, avoid testing production credentials in any online tool as a precaution."
+          a: "This tool runs entirely in your browser ? nothing is transmitted. Still, avoid testing production credentials in any online tool as a precaution."
         },
         {
           q: "What is the $2a$ prefix?",
           a: "It is the bcrypt version identifier. $2a$, $2b$, and $2y$ are all valid bcrypt variants; $2b$ is the current standard."
         },
         {
-          q: "What does Bcrypt Hash Generator &amp; Verifier Online – Secure Password Hashing Free do?",
-          a: "Bcrypt Hash Generator &amp; Verifier Online – Secure Password Hashing Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does Bcrypt Hash Generator &amp; Verifier Online ? Secure Password Hashing Free do?",
+          a: "Bcrypt Hash Generator &amp; Verifier Online ? Secure Password Hashing Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is Bcrypt Hash Generator &amp; Verifier Online – Secure Password Hashing Free free to use?",
+          q: "Is Bcrypt Hash Generator &amp; Verifier Online ? Secure Password Hashing Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
       example: {
         input: "Password: mySecret123 at cost 10",
         output: "Hash: $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy"
+      },
+      seoContent: {
+        whatIsTitle: "What is Bcrypt Hash Generator / Verifier?",
+        whatIsBody: "This tool creates bcrypt password hashes and checks whether a plaintext input matches an existing bcrypt string. It is useful for login flow testing, password migration checks, and explaining why bcrypt is better suited to passwords than fast hash algorithms like MD5 or SHA-256.",
+        howToTitle: "How to Use Bcrypt Hash Generator / Verifier",
+        howToSteps: [
+          "Enter the password you want to hash or verify.",
+          "Choose the cost factor if you are generating a new bcrypt hash.",
+          "Generate the hash or paste an existing bcrypt string to verify against it.",
+          "Copy the resulting hash or review the match result."
+        ]
+      },
+      learnMore: {
+        title: "Understand Bcrypt Hash Generator / Verifier",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Good for authentication demos, fixtures, and password migration checks.",
+          "Makes bcrypt cost factors and verification behavior easier to understand.",
+          "Runs locally so plaintext passwords are not uploaded during testing."
+        ]
       }
     },
   {
@@ -1690,8 +2028,10 @@ const TOOLS_META = [
         "hash-generator"
       ],
       useCases: [
-        "Quickly complete common binary to text converter online – ascii binary free tasks in the browser",
-        "Verify binary to text converter online – ascii binary free results without installing desktop software"
+        "Translate ASCII text into binary for teaching or debugging",
+        "Decode binary byte groups copied from documentation or packet dumps",
+        "Understand how characters map to bits and bytes",
+        "Verify delimiter handling for binary strings with or without spaces"
       ],
       faq: [
         {
@@ -1714,6 +2054,27 @@ const TOOLS_META = [
       example: {
         input: "Text → Binary:",
         output: "Hi → 01001000 01101001"
+      },
+      shortTitle: "Binary to Text Converter",
+      seoContent: {
+        whatIsTitle: "What is Binary to Text Converter?",
+        whatIsBody: "This tool converts plain text into binary byte sequences and converts binary input back into text. It is useful for learning character encoding basics, debugging byte-level data, and checking ASCII-oriented binary strings.",
+        howToTitle: "How to Use Binary to Text Converter",
+        howToSteps: [
+          "Paste text when you want to see its binary byte representation.",
+          "Paste binary when you want to decode it back to text.",
+          "Choose spacing or delimiter preferences if the tool provides them.",
+          "Copy the converted result for teaching, debugging, or documentation."
+        ]
+      },
+      learnMore: {
+        title: "Understand Binary to Text Converter",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Good for teaching bytes, bits, ASCII, and simple encoding concepts.",
+          "Useful when inspecting binary snippets in docs, logs, or tutorials.",
+          "Lets you switch between text and binary without leaving the browser."
+        ]
       }
     },
   {
@@ -1761,14 +2122,17 @@ const TOOLS_META = [
       title: "chmod Calculator Online – Linux File Permission Generator",
       description: "Free online chmod calculator. Select Unix file permissions visually, get octal and symbolic notation instantly. Supports owner, group, and others read/write/execute.",
       category: "reference",
+      shortTitle: "chmod Calculator",
       relatedTools: [
         "hash-generator",
         "password-generator",
         "aes"
       ],
       useCases: [
-        "Quickly complete common chmod calculator online – linux file permission generator tasks in the browser",
-        "Verify chmod calculator online – linux file permission generator results without installing desktop software"
+        "Translate symbolic permissions into octal chmod values",
+        "Check common file and directory permission presets like 644 and 755",
+        "Teach Linux permissions visually to teammates or students",
+        "Generate ready-to-run chmod commands for deployment tasks"
       ],
       faq: [
         {
@@ -1791,6 +2155,27 @@ const TOOLS_META = [
       example: {
         input: "Checked: Owner rwx, Group r-x, Others r-x → 755 (rwxr-xr-x)",
         output: "Command: chmod 755 filename"
+      },
+      seoContent: {
+        whatIsTitle: "What is Chmod Permission Calculator?",
+        whatIsBody: "This tool converts Linux and Unix file permission selections into octal values and symbolic notation. It helps you understand what permission sets like 644, 755, and 600 actually mean before you run chmod.",
+        howToTitle: "How to Use Chmod Permission Calculator",
+        howToSteps: [
+          "Toggle read, write, and execute permissions for owner, group, and others.",
+          "Watch the octal value and symbolic string update in real time.",
+          "Optionally type an octal value to reverse-calculate the permission layout.",
+          "Copy the generated chmod command when you are ready to use it."
+        ]
+      },
+      learnMore: {
+        title: "Understand Chmod Permission Calculator",
+        useCasesTitle: "Common Permission Values",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Helps you avoid memorizing octal permission math.",
+          "Makes directory and file permissions easier to explain visually.",
+          "Useful for server setup, SSH keys, deploy scripts, and Linux onboarding."
+        ]
       }
     },
   {
@@ -1945,6 +2330,7 @@ const TOOLS_META = [
       title: "Countdown Timer Online – Free Customizable Countdown",
       description: "Create countdown timers to any future date and time. Share or bookmark your countdown. Free, runs entirely in your browser.",
       category: "convert",
+      shortTitle: "Countdown Timer",
       relatedTools: [
         "date-calculator",
         "timestamp",
@@ -1978,6 +2364,26 @@ const TOOLS_META = [
       example: {
         input: "Target: 2025-01-01 00:00:00",
         output: "120 days · 5 hours · 30 minutes · 12 seconds (live)"
+      },
+      seoContent: {
+        whatIsTitle: "What is Countdown Timer?",
+        whatIsBody: "Countdown Timer tracks the exact time remaining until a future event. It updates live in the browser so you can count down to launches, holidays, deadlines, and milestones without refreshing the page.",
+        howToTitle: "How to Use Countdown Timer",
+        howToSteps: [
+          "Enter an event name if you want a custom label.",
+          "Choose the future date and time you are counting down to.",
+          "Start the timer and watch days, hours, minutes, and seconds update live.",
+          "Keep the page open or return later to see the remaining time."
+        ]
+      },
+      learnMore: {
+        title: "Understand Countdown Timer (examples, use cases & FAQs)",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Shows a live breakdown by days, hours, minutes, and seconds.",
+          "Useful for launches, exams, events, deadlines, and holiday timers.",
+          "Runs locally in the browser with no account or server dependency."
+        ]
       }
     },
   {
@@ -2132,39 +2538,62 @@ const TOOLS_META = [
     },
   {
       slug: "hmac",
-      title: "HMAC Generator Online – SHA-256 & SHA-512 Authentication",
+      title: "HMAC Generator Online ? SHA-256 & SHA-512 Authentication",
       description: "Generate HMAC signatures with SHA-256, SHA-1, SHA-384, or SHA-512. Enter a message and secret key. Output as HEX or Base64. 100% browser-based.",
       category: "encode",
+      shortTitle: "HMAC Generator",
       relatedTools: [
         "hash-generator",
         "base64",
         "jwt-decoder"
       ],
       useCases: [
-        "Quickly complete common hmac generator online – sha-256 & sha-512 authentication tasks in the browser",
-        "Verify hmac generator online – sha-256 & sha-512 authentication results without installing desktop software"
+        "Create request signatures for API, webhook, or callback testing",
+        "Compare HMAC output across SHA-256, SHA-384, and SHA-512 variants",
+        "Verify whether two systems agree on message signing inputs and secrets",
+        "Generate HEX or Base64 signatures during development without backend setup"
       ],
       faq: [
         {
           q: "What is the difference between HMAC-SHA256 and plain SHA-256?",
-          a: "SHA-256 hashes data without a key — anyone can reproduce it. HMAC requires a shared secret key, providing authentication in addition to integrity."
+          a: "SHA-256 hashes data without a key ? anyone can reproduce it. HMAC requires a shared secret key, providing authentication in addition to integrity."
         },
         {
           q: "Is SHA-1 HMAC still secure?",
           a: "HMAC-SHA1 is considered weak for new systems. Use HMAC-SHA256 or HMAC-SHA512 for new implementations."
         },
         {
-          q: "What does HMAC Generator Online – SHA-256 & SHA-512 Authentication do?",
-          a: "HMAC Generator Online – SHA-256 & SHA-512 Authentication runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does HMAC Generator Online ? SHA-256 & SHA-512 Authentication do?",
+          a: "HMAC Generator Online ? SHA-256 & SHA-512 Authentication runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is HMAC Generator Online – SHA-256 & SHA-512 Authentication free to use?",
+          q: "Is HMAC Generator Online ? SHA-256 & SHA-512 Authentication free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
       example: {
         input: "Message: hello | Key: secret | Algorithm: HMAC-SHA256",
         output: "Hex: 88aab3ede8d3adf94d26ab90d3bafd4a2083070c3bcce9c014ee04a443847c0b"
+      },
+      seoContent: {
+        whatIsTitle: "What is HMAC Generator?",
+        whatIsBody: "HMAC Generator creates keyed signatures from a message and secret using algorithms such as SHA-256 or SHA-512. It is commonly used for webhook verification, signed API requests, and any workflow where the receiver needs to confirm both integrity and shared-secret authentication.",
+        howToTitle: "How to Use HMAC Generator",
+        howToSteps: [
+          "Paste the message or payload you want to sign.",
+          "Enter the shared secret key used by your system.",
+          "Choose the HMAC algorithm and output format.",
+          "Generate the signature and compare it with the value from your API or webhook flow."
+        ]
+      },
+      learnMore: {
+        title: "Understand HMAC Generator",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for debugging webhook signatures and signed API headers.",
+          "Lets you compare multiple HMAC algorithms and output encodings quickly.",
+          "Avoids backend setup when you only need a local signature check."
+        ]
       }
     },
   {
@@ -2479,8 +2908,10 @@ const TOOLS_META = [
         "diff-viewer"
       ],
       useCases: [
-        "Quickly complete common line tools online – sort, deduplicate &amp; reverse lines free tasks in the browser",
-        "Verify line tools online – sort, deduplicate &amp; reverse lines free results without installing desktop software"
+        "Deduplicate email lists, tags, or keyword sets",
+        "Sort values before comparing or importing them elsewhere",
+        "Clean logs or line-based exports from command-line tools",
+        "Reverse, shuffle, or filter one-item-per-line lists"
       ],
       faq: [
         {
@@ -2503,6 +2934,29 @@ const TOOLS_META = [
       example: {
         input: "Input:",
         output: "After Deduplicate + Sort A→Z:"
+      },
+      shortTitle: "Line Tools",
+      seoContent: {
+        whatIsTitle: "What is Line Tools?",
+        whatIsBody: "Line Tools processes one-item-per-line text lists. It can sort, deduplicate, reverse, shuffle, filter, and trim lines, which makes it useful for keyword sets, exports, logs, and bulk text cleanup.",
+        howToTitle: "How to Use Line Tools",
+        howToSteps: [
+          "Paste a list with one item per line.",
+          "Choose the line operation you want to apply.",
+          "Review the transformed result instantly.",
+          "Copy the processed list when it looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Line Tools",
+        extraTitle: "Available Operations",
+        extraHtml: "<ul><li>Sort A?Z / Z?A</li><li>Deduplicate repeated lines</li><li>Filter matching lines</li><li>Reverse order</li><li>Shuffle items</li><li>Trim whitespace per line</li></ul>",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Faster than writing one-off scripts for simple list transformations.",
+          "Useful for keyword lists, exports, logs, and line-based datasets.",
+          "Lets you chain several line operations in one pass."
+        ]
       }
     },
   {
@@ -2758,14 +3212,17 @@ const TOOLS_META = [
       title: "Roman Numeral Converter Online – Numbers to Roman & Back",
       description: "Convert between Arabic numbers and Roman numerals instantly. Supports numbers from 1 to 3999. Free, runs entirely in your browser.",
       category: "convert",
+      shortTitle: "Roman Numeral Converter",
       relatedTools: [
         "number-base",
         "number-format",
         "timestamp"
       ],
       useCases: [
-        "Quickly complete common roman numeral converter online – numbers to roman & back tasks in the browser",
-        "Verify roman numeral converter online – numbers to roman & back results without installing desktop software"
+        "Convert chapter, outline, and section numbers into Roman numerals",
+        "Interpret dates or clocks that use Roman numeral notation",
+        "Verify subtractive forms like IV, IX, XL, and CM",
+        "Teach Roman numeral rules with instant two-way conversion"
       ],
       faq: [
         {
@@ -2788,6 +3245,28 @@ const TOOLS_META = [
       example: {
         input: "Arabic → Roman: 2024 → MMXXIV",
         output: "Roman → Arabic: XIV → 14 , MCMXCIX → 1999"
+      },
+      seoContent: {
+        whatIsTitle: "What is a Roman Numeral Converter?",
+        whatIsBody: "Roman Numeral Converter turns Arabic numbers such as 42 or 2024 into Roman numerals like XLII and MMXXIV, and it also works in reverse. It is useful for documents, clocks, chapter headings, and historical references.",
+        howToTitle: "How to Use Roman Numeral Converter",
+        howToSteps: [
+          "Choose whether you want number-to-Roman or Roman-to-number conversion.",
+          "Enter the value into the input field.",
+          "Read the converted output instantly.",
+          "Copy the result when you need it in a document, design, or worksheet."
+        ]
+      },
+      learnMore: {
+        title: "Understand Roman Numeral Converter",
+        extraTitle: "Roman Numeral Rules",
+        extraHtml: "<p>Symbols: I=1, V=5, X=10, L=50, C=100, D=500, M=1000.</p><p>Subtractive notation is used for IV, IX, XL, XC, CD, and CM. Standard modern usage typically covers values from 1 to 3999.</p>",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Handles subtractive notation correctly without manual lookup.",
+          "Useful for publishing, education, history references, and decorative numbering.",
+          "Supports both directions so you can verify unfamiliar numerals quickly."
+        ]
       }
     },
   {
@@ -2823,7 +3302,7 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Input: select id,name from users where id=1 and active=true",
+        input: "Input: select id,name from users where id=1 and active=True",
         output: "Formatted:"
       }
     },
@@ -2875,8 +3354,10 @@ const TOOLS_META = [
         "url-encode"
       ],
       useCases: [
-        "Quickly complete common text case converter online – camelcase, snake_case &amp; more tasks in the browser",
-        "Verify text case converter online – camelcase, snake_case &amp; more results without installing desktop software"
+        "Rename variables or API fields between naming conventions",
+        "Convert titles into headline, sentence, lowercase, or uppercase styles",
+        "Prepare keys for CSS variables, database columns, and config files",
+        "Normalize mixed input copied from docs or spreadsheets"
       ],
       faq: [
         {
@@ -2895,7 +3376,34 @@ const TOOLS_META = [
           q: "Is Text Case Converter Online – camelCase, snake_case &amp; More free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
-      ]
+      ],
+      shortTitle: "Text Case Converter",
+      example: {
+        input: "hello world",
+        output: "camelCase helloWorld ? snake_case hello_world ? kebab-case hello-world"
+      },
+      seoContent: {
+        whatIsTitle: "What is Text Case Converter?",
+        whatIsBody: "Text Case Converter transforms the same text into common naming styles such as camelCase, PascalCase, snake_case, kebab-case, Title Case, and lowercase. It is useful for software, content editing, and consistent naming.",
+        howToTitle: "How to Use Text Case Converter",
+        howToSteps: [
+          "Paste your source text into the input field.",
+          "Review the generated case variants instantly.",
+          "Choose the naming style you need.",
+          "Copy the output for code, URLs, docs, or UI text."
+        ]
+      },
+      learnMore: {
+        title: "Understand Text Case Converter",
+        extraTitle: "Supported Case Formats",
+        extraHtml: "<p>Common outputs include camelCase, PascalCase, snake_case, kebab-case, SCREAMING_SNAKE_CASE, Title Case, lowercase, uppercase, sentence case, dot.case, and path/case.</p>",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Quickly switch between coding and editorial naming conventions.",
+          "Handles mixed input and camelCase boundaries automatically.",
+          "Useful for APIs, CSS variables, database schemas, and content cleanup."
+        ]
+      }
     },
   {
       slug: "timezone-converter",
@@ -3160,7 +3668,7 @@ const TOOLS_META = [
       faq: [
         {
           q: "Does this tool support nested objects and arrays?",
-          a: "Yes. The converter handles arbitrarily nested YAML structures including objects, arrays, strings, numbers, booleans, and null values."
+          a: "Yes. The converter handles arbitrarily nested YAML structures including objects, arrays, strings, numbers, booleans, and None values."
         },
         {
           q: "Are YAML comments preserved in the JSON output?",

@@ -18,9 +18,64 @@
     content="Free online URL encoder and decoder. Encode special characters for safe URLs, decode percent-encoded strings, encode entire URLs or components. Privacy-first, browser-based."
   />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL Encoder / Decoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode and decode URLs and query strings instantly. Supports percent encoding, component encoding, and full URL encoding. Free and browser-based.","featureList":["URL percent encoding","URL decoding","Query string encoding","Component-level encoding","Real-time conversion"]}
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "URL Encoder / Decoder",
+  "description": "Encode or decode URL parameters and components online. Supports percent-encoding, full URL encoding, and component encoding. Works with Unicode and Chinese characters.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/url-encode"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between encodeURI and encodeURIComponent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "encodeURI is for whole URLs and leaves separators like :, /, ?, and # intact. encodeURIComponent is for individual parts such as query values and encodes far more characters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is a space encoded as %20 or +?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "%20 is standard percent-encoding. + is mainly used by application/x-www-form-urlencoded form submissions. This tool outputs %20 by default."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I decode a full URL at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Paste the full URL and decode it to inspect all percent-encoded parts at once."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is application/x-www-form-urlencoded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the encoding format used by HTML form submissions, where spaces may be represented as +. For general URL components, %20 is the safer standard form."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
   <style>
@@ -256,109 +311,85 @@
     </div>
   </div>
 
-  <section class="ds-seo-content" aria-label="About URL Encoder">
-<div class="ds-seo-section">
-      <h2 class="ds-seo-section__title">What is URL Encoding?</h2>
-      <p>URL encoding (also called <strong>percent-encoding</strong>) converts characters that are not allowed in a URL into a safe format. Each unsafe character is replaced by a <code>%</code> followed by its two-digit hexadecimal ASCII code — for example, a space becomes <code>%20</code> and an ampersand becomes <code>%26</code>.</p>
-      <p>The standard is defined in <strong>RFC 3986</strong>. Only letters (A–Z, a–z), digits (0–9), and the characters <code>- _ . ~</code> are considered "unreserved" and safe to use as-is in any part of a URL. Everything else must be percent-encoded when used in query strings, path segments, or fragment identifiers.</p>
-    </div>
-<div class="ds-seo-section">
-      <h2 class="ds-seo-section__title">How to Use the URL Encoder / Decoder</h2>
-      <ol>
-        <li>Paste or type your text in the input area.</li>
-        <li>Choose <strong>Encode</strong> or <strong>Decode</strong> mode using the tab at the top.</li>
-        <li>Select the encoding mode: <strong>Component</strong> encodes everything except unreserved characters (use for query parameter values); <strong>Full URL</strong> preserves structural characters like <code>/ ? # &amp; =</code> (use for encoding a full URL).</li>
-        <li>The result updates instantly — click <strong>Copy</strong> to copy to clipboard.</li>
-      </ol>
-    </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is URL Encoding?</h2>
+    <p>URL encoding converts reserved or unsafe characters into percent-encoded sequences so they can be transmitted safely inside URLs. It is commonly used for query strings, path segments, redirects, and parameters that include spaces or special characters.</p>
   </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use URL Encoder / Decoder</h2>
+    <ol>
+      <li>Paste the URL string or parameter you want to transform.</li>
+      <li>Choose encode when preparing a string for use in a URL, or decode when inspecting percent-encoded text.</li>
+      <li>Use the result in query strings, redirects, API requests, or debugging work.</li>
+      <li>Copy the transformed value into your target app or request.</li>
+    </ol>
+  </section>
+</div>
 
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="base64.html" class="ds-related-card">
-        <span class="ds-related-icon">&#128760;</span>
-        <div>
-          <div class="ds-related-name">Base64 Encoder</div>
-          <div class="ds-related-desc">Encode and decode Base64 strings</div>
-        </div>
-      </a>
-      <a href="json-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">&#10003;</span>
-        <div>
-          <div class="ds-related-name">JSON Formatter</div>
-          <div class="ds-related-desc">Format and validate JSON</div>
-        </div>
-      </a>
-      <a href="slug-generator.html" class="ds-related-card">
-        <span class="ds-related-icon">&#128279;</span>
-        <div>
-          <div class="ds-related-name">Slug Generator</div>
-          <div class="ds-related-desc">Convert text to URL-friendly slugs</div>
-        </div>
-      </a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="url-builder.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Builder</div><div class="ds-related-desc">Build URLs by composing scheme, host, path and query parameters</div></div></a>
+    <a href="url-parser.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">URL Parser</div><div class="ds-related-desc">Parse URLs into protocol, host, path, query and hash components</div></div></a>
   </div>
-
-  <details class="ds-seo-more">
-    <summary class="ds-seo-more__toggle"><span>Understand URL Encoding (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
-    <div class="ds-seo-more__body">
-            <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Encode mode:</p>
-          <ul>
-            <li>Input: <code>hello world &amp; goodbye</code></li>
-            <li>Output: <code>hello%20world%20%26%20goodbye</code></li>
-          </ul>
-          <p>Decode mode:</p>
-          <ul>
-            <li>Input: <code>caf%C3%A9%20au%20lait</code></li>
-            <li>Output: <code>café au lait</code></li>
-          </ul>
-          <p>Switch between <strong>Component</strong> mode (encodes <code>&amp;</code>, <code>=</code>, <code>?</code>) and <strong>Full URL</strong> mode (preserves URL structure characters).</p>
-        </div>
-      </details>
-<details class="ds-seo-collapse">
-        <summary>encodeURIComponent vs encodeURI</summary>
-        <div class="ds-seo-collapse__body">
-            <ul>
-              <li><strong>encodeURIComponent</strong> (Component mode) — encodes everything except <code>A-Z a-z 0-9 - _ . ! ~ * ' ( )</code>. Use this for individual query parameter keys and values.</li>
-              <li><strong>encodeURI</strong> (Full URL mode) — additionally preserves URL structural characters (<code>; , / ? : @ &amp; = + $ #</code>). Use this when you want to encode a complete URL without breaking its structure.</li>
-            </ul>
-        </div>
-      </details>
-            <details class="ds-seo-collapse">
-        <summary>Why Use This URL Encoder</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Two modes</strong> — Component encoding for query parameter values, Full URL mode for entire URLs.</li>
-            <li><strong>Bidirectional</strong> — encode or decode with a single toggle; no separate tool needed.</li>
-            <li><strong>Handles Unicode</strong> — correctly encodes multi-byte characters like accents and CJK characters.</li>
-            <li><strong>Instant output</strong> — results appear as you type, with a one-click copy button.</li>
-          </ul>
-        </div>
-      </details>
-<details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-              <div class="ds-seo-faq-item">
-                <h3>Why does a space sometimes appear as + and sometimes as %20?</h3>
-                <p><code>+</code> represents a space only in the <strong>application/x-www-form-urlencoded</strong> format used by HTML forms. In standard RFC 3986 percent-encoding, a space must be <code>%20</code>. Using <code>+</code> outside of form data can cause bugs — this tool always outputs <code>%20</code> for safety.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>Should I encode the entire URL or just query parameters?</h3>
-                <p>Encode individual query parameter <strong>values</strong> using Component mode, then assemble the URL. Encoding the full URL with Component mode will also encode the <code>://</code> and <code>/</code> characters, breaking the URL structure. Use Full URL mode only if you need to safely embed a complete URL as a single value.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>Are URL encoding and Base64 encoding the same?</h3>
-                <p>No. URL encoding preserves the original bytes and makes them URL-safe using <code>%XX</code> notation. Base64 encoding converts binary data into a text representation using 64 printable ASCII characters, which increases size by ~33%. They serve different purposes — use URL encoding for URL parameters, Base64 for embedding binary data in text formats.</p>
-              </div>
-        </div>
-      </details>
-    </div>
-  </details>
 </div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand URL Encoder / Decoder</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">hello world &amp; more=yes</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">hello%20world%20%26%20more%3Dyes</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Encode query string parameters before appending to a URL</li>
+          <li>Decode percent-encoded URLs from log files</li>
+          <li>Fix double-encoded URLs</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Prevents broken URLs caused by spaces and reserved characters.</li>
+          <li>Useful for debugging redirects, query strings, and encoded API payloads.</li>
+          <li>Lets you quickly compare raw and encoded values in the browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the difference between encodeURI and encodeURIComponent?</strong><p>encodeURI is for whole URLs and leaves separators like :, /, ?, and # intact. encodeURIComponent is for individual parts such as query values and encodes far more characters.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why is a space encoded as %20 or +?</strong><p>%20 is standard percent-encoding. + is mainly used by application/x-www-form-urlencoded form submissions. This tool outputs %20 by default.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I decode a full URL at once?</strong><p>Yes. Paste the full URL and decode it to inspect all percent-encoded parts at once.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is application/x-www-form-urlencoded?</strong><p>It is the encoding format used by HTML form submissions, where spaces may be represented as +. For general URL components, %20 is the safer standard form.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
   let mode = 'encode';

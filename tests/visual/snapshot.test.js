@@ -42,7 +42,7 @@ for (const slug of SNAPSHOT_TOOLS) {
   test.describe(`Visual: ${slug}`, () => {
     test('desktop layout', async ({ page }) => {
       await page.setViewportSize({ width: 1280, height: 900 });
-      await page.goto(toolUrl(slug));
+      await page.goto(toolUrl(slug), { waitUntil: 'domcontentloaded' });
       // Wait for fonts and images to settle
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(300);
@@ -54,7 +54,7 @@ for (const slug of SNAPSHOT_TOOLS) {
 
     test('mobile layout', async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
-      await page.goto(toolUrl(slug));
+      await page.goto(toolUrl(slug), { waitUntil: 'domcontentloaded' });
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(300);
       await expect(page).toHaveScreenshot(`${slug}-mobile.png`, {

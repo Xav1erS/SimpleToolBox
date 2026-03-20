@@ -97,9 +97,64 @@
     gtag('js', new Date());
     gtag('config', 'G-8SBCZ6DT1R');
   </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML Entity Encoder / Decoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online HTML entity encoder and decoder. Convert special characters to named entities (&amp;) or numeric entities (&#38;). Includes quick-reference table.","featureList":["HTML entity encoding","HTML entity decoding","Named entities","Numeric entities","Quick-reference table"]}
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HTML Entity Encoder / Decoder",
+  "description": "Free online HTML entity encoder and decoder. Convert special characters to named entities (&amp;amp;) or numeric entities (&#38;). Includes quick-reference table.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/html-entities"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between HTML entities and URL encoding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HTML entities encode special characters for safe rendering inside HTML documents ( &lt; for < ). URL encoding converts characters for safe transmission in URLs ( %3C for < ). Use HTML entities for HTML content, URL encoding for query parameters and URL components."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to encode all non-ASCII characters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. Modern HTML documents declare UTF-8 encoding ( <meta charset=\"UTF-8\"> ), which allows most Unicode characters to appear as-is. Entities are most important for the five characters with special HTML meaning: < , > , & , \" , and ' ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between named and numeric entities?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Named entities use a defined name: &amp; , &copy; . Numeric entities use a decimal ( &#38; ) or hex ( &#x26; ) code point. All three forms produce the same character; named entities are more readable while numeric entities work for any Unicode character."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does HTML Entity Encoder / Decoder Online – Escape HTML Free do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HTML Entity Encoder / Decoder Online – Escape HTML Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
 </head>
 <body>
 
@@ -217,84 +272,86 @@
     <div id="refTable"></div>
   </div>
 
-  <div class="ds-seo-content">
-    <section class="ds-seo-section">
-      <h2 class="ds-seo-section__title">What are HTML Entities?</h2>
-      <p>HTML entities are special text sequences that represent characters that would otherwise be interpreted as HTML markup or are not easily typeable. They begin with <code>&amp;</code> and end with <code>;</code>. For example, <code>&amp;lt;</code> represents <code>&lt;</code>, <code>&amp;amp;</code> represents <code>&amp;</code>, and <code>&amp;copy;</code> represents ©.</p>
-      <p>Using entities prevents browsers from misreading special characters as HTML tags, and allows authors to include characters not available on a standard keyboard.</p>
-    </section>
-    <section class="ds-seo-section">
-      <h2 class="ds-seo-section__title">How to Use the HTML Entity Encoder</h2>
-      <ol>
-        <li>Paste text containing special characters into the <strong>Input</strong> pane.</li>
-        <li>Choose <strong>Encode</strong> to convert characters to their entity equivalents, or <strong>Decode</strong> to convert entities back to characters.</li>
-        <li>Copy the result from the <strong>Output</strong> pane.</li>
-        <li>Use the <strong>Reference Table</strong> below to look up specific entity codes.</li>
-      </ol>
-    </section>
-  </div>
-  <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encoder / Decoder</div><div class="ds-related-desc">Encode and decode URL components</div></div></a>
-      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Base64 Encoder / Decoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div></a>
-      <a href="markdown-preview.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Markdown Preview</div><div class="ds-related-desc">Render Markdown as HTML</div></div></a>
-    </div>
-  </div>
-
-  <details class="ds-seo-more">
-    <summary class="ds-seo-more__toggle"><span>Understand HTML Entities (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
-    <div class="ds-seo-more__body">
-      <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Input: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code></p>
-          <p>Encoded output: <code>&amp;lt;script&amp;gt;alert('XSS')&amp;lt;/script&amp;gt;</code></p>
-          <p>When rendered in HTML, the browser displays the literal text rather than executing the script tag — essential for safely displaying user-submitted code snippets.</p>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Common Use Cases</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li>Escape user-generated content before inserting it into HTML to prevent XSS attacks</li>
-            <li>Display code samples in HTML without the browser interpreting the tags</li>
-            <li>Include special characters (©, ™, →, €) in HTML without relying on keyboard input</li>
-            <li>Decode HTML entities from an API or scraping result back to readable text</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Why Use This HTML Entity Tool</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Instant encode and decode</strong> — switch directions with a single toggle; results appear as you type.</li>
-            <li><strong>Built-in reference table</strong> — look up entity codes for hundreds of characters without leaving the page.</li>
-            <li><strong>Handles Unicode</strong> — converts non-ASCII characters to their numeric entity equivalents (<code>&amp;#x1F600;</code> etc.).</li>
-            <li><strong>100% private</strong> — all processing runs in your browser; no text is sent to any server.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-            <div class="ds-seo-faq-item">
-              <h3>What is the difference between HTML entities and URL encoding?</h3>
-              <p>HTML entities encode special characters for safe rendering inside HTML documents (<code>&amp;lt;</code> for <code>&lt;</code>). URL encoding converts characters for safe transmission in URLs (<code>%3C</code> for <code>&lt;</code>). Use HTML entities for HTML content, URL encoding for query parameters and URL components.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>Do I need to encode all non-ASCII characters?</h3>
-              <p>Not necessarily. Modern HTML documents declare UTF-8 encoding (<code>&lt;meta charset="UTF-8"&gt;</code>), which allows most Unicode characters to appear as-is. Entities are most important for the five characters with special HTML meaning: <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>"</code>, and <code>'</code>.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>What is the difference between named and numeric entities?</h3>
-              <p>Named entities use a defined name: <code>&amp;amp;</code>, <code>&amp;copy;</code>. Numeric entities use a decimal (<code>&amp;#38;</code>) or hex (<code>&amp;#x26;</code>) code point. All three forms produce the same character; named entities are more readable while numeric entities work for any Unicode character.</p>
-            </div>
-        </div>
-      </details>
-    </div>
-  </details>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What are HTML Entities?</h2>
+    <p>HTML entities are encoded forms of characters that would otherwise be interpreted specially in HTML, such as &lt;, &gt;, &amp;, and quotes. They are useful when you need to display markup literally or safely insert text into HTML contexts.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use HTML Entity Encoder / Decoder</h2>
+    <ol>
+      <li>Paste the source text or encoded entity string into the input.</li>
+      <li>Choose encode when you need HTML-safe output, or decode to get readable text back.</li>
+      <li>Review named or numeric entity output depending on your use case.</li>
+      <li>Copy the converted result into your page, template, or payload.</li>
+    </ol>
+  </section>
 </div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Encode or decode URL parameters and components</div></div></a>
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="markdown-preview.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Markdown Preview</div><div class="ds-related-desc">Write Markdown and see a live rendered preview</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand HTML Entities</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Input: &lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Encoded output: &amp;lt;script&amp;gt;alert(&#x27;XSS&#x27;)&amp;lt;/script&amp;gt;</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Escape user-generated content before inserting it into HTML to prevent XSS attacks</li>
+          <li>Display code samples in HTML without the browser interpreting the tags</li>
+          <li>Include special characters (©, ™, →, €) in HTML without relying on keyboard input</li>
+          <li>Decode HTML entities from an API or scraping result back to readable text</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for escaping code samples and preventing unintended HTML rendering.</li>
+          <li>Helps decode entity-heavy content from scrapers, APIs, and legacy systems.</li>
+          <li>Makes it easy to compare named and numeric entity output quickly.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the difference between HTML entities and URL encoding?</strong><p>HTML entities encode special characters for safe rendering inside HTML documents ( &amp;lt; for &lt; ). URL encoding converts characters for safe transmission in URLs ( %3C for &lt; ). Use HTML entities for HTML content, URL encoding for query parameters and URL components.</p></div>
+        <div class="ds-seo-faq-item"><strong>Do I need to encode all non-ASCII characters?</strong><p>Not necessarily. Modern HTML documents declare UTF-8 encoding ( &lt;meta charset=&quot;UTF-8&quot;&gt; ), which allows most Unicode characters to appear as-is. Entities are most important for the five characters with special HTML meaning: &lt; , &gt; , &amp; , &quot; , and &#x27; .</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the difference between named and numeric entities?</strong><p>Named entities use a defined name: &amp;amp; , &amp;copy; . Numeric entities use a decimal ( &amp;#38; ) or hex ( &amp;#x26; ) code point. All three forms produce the same character; named entities are more readable while numeric entities work for any Unicode character.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does HTML Entity Encoder / Decoder Online – Escape HTML Free do?</strong><p>HTML Entity Encoder / Decoder Online – Escape HTML Free runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
   const NAMED_MAP = {

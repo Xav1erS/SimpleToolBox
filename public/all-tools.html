@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>All Tools — Simple ToolBox</title>
-  <meta name="description" content="Browse all 72 free online developer tools — JSON formatter, regex tester, CSS minifier, color contrast checker, MIME types, and more. Filter by category." />
+  <meta name="description" content="Browse all 81 free browser-based tools on Simple ToolBox. Search, filter by category, and jump between text, image, developer, design, calculator, and reference tools." />
   <link rel="canonical" href="https://simpletoolbox.dev/all-tools" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/all-tools.html" />
   <meta property="og:title" content="All Tools — Simple ToolBox" />
-  <meta property="og:description" content="Browse all 72 free online developer tools. Filter by category: encode, format, convert, generate, text, image, reference." />
+  <meta property="og:description" content="Browse all 81 free browser-based tools. Search and filter by encode, format, convert, generate, text, image, design, reference, and calculator." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles/design-system.css?v=20" />
@@ -102,7 +102,7 @@
 
 <div class="page-header">
   <h1 class="page-title">All Tools</h1>
-  <p class="page-sub">60 free, privacy-first tools. All processing happens in your browser — no sign-up required.</p>
+  <p class="page-sub">Search across all browser-based tools, jump by category, and find the right utility fast. Everything runs locally on your device.</p>
 </div>
 
 <div class="filter-bar">
@@ -118,10 +118,11 @@
     <button class="filter-tag ds-pill" data-filter="generate">⚙️ Generate</button>
     <button class="filter-tag ds-pill" data-filter="text">📝 Text</button>
     <button class="filter-tag ds-pill" data-filter="image">🖼️ Image</button>
+    <button class="filter-tag ds-pill" data-filter="design">🎨 Design</button>
     <button class="filter-tag ds-pill" data-filter="reference">📚 Reference</button>
     <button class="filter-tag ds-pill" data-filter="calculator">🧮 Calculator</button>
   </div>
-  <span class="count-badge" id="countBadge">72 tools</span>
+  <span class="count-badge" id="countBadge">81 tools</span>
 </div>
 
 <div class="tool-grid" id="toolGrid">
@@ -767,90 +768,34 @@
   <a href="about.html">About</a>
 </footer>
 
+<script src="tools-data.js"></script>
 <script>
-  const NAV_TOOLS = [
-    { name: 'Base64 Encode / Decode',       href: 'tools/base64.html',                 tag: 'encode',   icon: '📦', desc: 'Encode or decode text and files to Base64' },
-    { name: 'Base58 Encode / Decode',       href: 'tools/base58.html',                 tag: 'encode',   icon: '🔢', desc: 'Encode text to Base58 or decode Base58 strings. Bitcoin, Flickr, Ripple alphabets.' },
-    { name: 'JSON Formatter',               href: 'tools/json-formatter.html',          tag: 'format',   icon: '🎨', desc: 'Prettify, minify, validate JSON; convert to CSV or SQL' },
-    { name: 'Password Generator',           href: 'tools/password-generator.html',      tag: 'generate', icon: '🔑', desc: 'Generate strong random passwords locally' },
-    { name: 'Timestamp Converter',          href: 'tools/timestamp.html',               tag: 'convert',  icon: '⏱️', desc: 'Convert Unix timestamps to readable dates' },
-    { name: 'URL Encode / Decode',          href: 'tools/url-encode.html',              tag: 'encode',   icon: '🔗', desc: 'Encode or decode URL parameters and components' },
-    { name: 'UUID Generator',               href: 'tools/uuid-generator.html',          tag: 'generate', icon: '🆔', desc: 'Generate UUID v1/v4 identifiers in bulk' },
-    { name: 'Word Counter',                 href: 'tools/word-counter.html',            tag: 'text',     icon: '📝', desc: 'Count words, characters, and estimate reading time' },
-    { name: 'Random Number Generator',      href: 'tools/random-number-generator.html', tag: 'generate', icon: '🎲', desc: 'Generate random numbers, shuffle lists, roll dice' },
-    { name: 'Unit Converter',               href: 'tools/unit-converter.html',          tag: 'convert',  icon: '📐', desc: 'Convert length, weight, temperature, speed and more' },
-    { name: 'Image Resizer',                href: 'tools/image-resizer.html',           tag: 'image',    icon: '🖼️', desc: 'Resize images client-side with preset dimensions' },
-    { name: 'Image Compressor',             href: 'tools/image-compressor.html',        tag: 'image',    icon: '🗜️', desc: 'Reduce image file size with quality control' },
-    { name: 'WebP Converter',               href: 'tools/webp-converter.html',          tag: 'image',    icon: '🔄', desc: 'Convert images to WebP, PNG, or JPEG format' },
-    { name: 'YouTube Thumbnail Downloader', href: 'tools/youtube-thumbnail.html',       tag: 'image',    icon: '📺', desc: 'Download YouTube video thumbnails in all resolutions' },
-    { name: 'JPG to PNG',                   href: 'tools/jpg-to-png.html',              tag: 'image',    icon: '🖼️', desc: 'Convert JPEG images to lossless PNG format' },
-    { name: 'PNG to JPG',                   href: 'tools/png-to-jpg.html',              tag: 'image',    icon: '🔄', desc: 'Convert PNG images to JPEG with quality control' },
-    { name: 'WebP to JPG',                  href: 'tools/webp-to-jpg.html',             tag: 'image',    icon: '🔄', desc: 'Convert WebP images to JPEG or PNG format' },
-    { name: 'Rotate & Flip Image',          href: 'tools/image-rotate.html',            tag: 'image',    icon: '🔃', desc: 'Rotate images 90°/180° and flip horizontally or vertically' },
-    { name: 'Grayscale Image',              href: 'tools/grayscale-image.html',         tag: 'image',    icon: '⬛', desc: 'Convert color images to grayscale or black and white' },
-    { name: 'Blur Image',                   href: 'tools/blur-image.html',              tag: 'image',    icon: '🌫️', desc: 'Apply Gaussian blur for privacy or artistic effects' },
-    { name: 'Remove EXIF Data',             href: 'tools/remove-exif.html',             tag: 'image',    icon: '🛡️', desc: 'Strip GPS location and all metadata from photos' },
-    { name: 'Resize for Instagram',         href: 'tools/resize-for-instagram.html',    tag: 'image',    icon: '📸', desc: 'Resize images to exact Instagram Feed, Story, and Reels sizes' },
-    { name: 'Compress to Target Size',      href: 'tools/compress-to-100kb.html',       tag: 'image',    icon: '🎯', desc: 'Compress images to a specific file size like 100KB or 200KB' },
-    { name: 'QR Code Generator',            href: 'tools/qr-code-generator.html',       tag: 'generate', icon: '📷', desc: 'Create QR codes for URLs, WiFi, contacts, email' },
-    { name: 'URL Slug Generator',           href: 'tools/slug-generator.html',          tag: 'text',     icon: '🔗', desc: 'Convert titles to clean SEO-friendly URL slugs' },
-    { name: 'Lorem Ipsum Generator',        href: 'tools/lorem-ipsum-generator.html',   tag: 'text',     icon: '📄', desc: 'Generate placeholder text in multiple themes' },
-    { name: 'Color Picker',                 href: 'tools/color-picker.html',            tag: 'convert',  icon: '🎨', desc: 'Convert colors between HEX, RGB, HSL, and CMYK' },
-    { name: 'Regex Tester',                 href: 'tools/regex-tester.html',            tag: 'text',     icon: '🔍', desc: 'Test regular expressions with live match highlighting' },
-    { name: 'Markdown Preview',             href: 'tools/markdown-preview.html',        tag: 'text',     icon: '📝', desc: 'Write Markdown and see a live rendered preview' },
-    { name: 'Cron Expression Builder',      href: 'tools/cron-builder.html',            tag: 'generate', icon: '⏰', desc: 'Build cron expressions visually with descriptions' },
-    { name: 'JWT Decoder / Inspector',      href: 'tools/jwt-decoder.html',             tag: 'encode',   icon: '🔐', desc: 'Decode JWT header, payload, signature and inspect claims' },
-    { name: 'HTML Entity Encode / Decode',  href: 'tools/html-entities.html',           tag: 'encode',   icon: '🏷️', desc: 'Encode or decode HTML entities — named and numeric formats' },
-    { name: 'Hash Generator',               href: 'tools/hash-generator.html',          tag: 'generate', icon: '#️⃣', desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 from text or file' },
-    { name: 'YAML ↔ JSON Converter',        href: 'tools/yaml-json.html',               tag: 'convert',  icon: '⇄',  desc: 'Convert between YAML and JSON instantly' },
-    { name: 'Number Base Converter',        href: 'tools/number-base.html',             tag: 'convert',  icon: '🔢', desc: 'Convert numbers between binary, octal, decimal, and hex' },
-    { name: 'Text Case Converter',          href: 'tools/text-case.html',               tag: 'text',     icon: 'Aa', desc: 'Convert text to camelCase, snake_case, PascalCase and more' },
-    { name: 'HTTP Status Codes',            href: 'tools/http-status.html',             tag: 'reference', icon: '📡', desc: 'Complete HTTP status code reference — search by code or name' },
-    { name: 'String Escape / Unescape',     href: 'tools/string-escape.html',           tag: 'encode',   icon: '✏️', desc: 'Escape and unescape strings for JSON, JS, HTML, and SQL' },
-    { name: 'CSS Formatter & Minifier',     href: 'tools/css-formatter.html',           tag: 'format',   icon: '🎨', desc: 'Beautify or minify CSS code with configurable indent' },
-    { name: 'SQL Formatter',               href: 'tools/sql-formatter.html',            tag: 'format',   icon: '🗄️', desc: 'Format SQL for MySQL, PostgreSQL, SQLite and more' },
-    { name: 'Diff Viewer',                 href: 'tools/diff-viewer.html',              tag: 'text',     icon: '📊', desc: 'Compare two texts and see line, word, or char differences' },
-    { name: 'JSONPath Tester',             href: 'tools/jsonpath-tester.html',          tag: 'text',     icon: '🔎', desc: 'Query JSON data with JSONPath expressions in real time' },
-    { name: 'XML Formatter',               href: 'tools/xml-formatter.html',          tag: 'format',    icon: '🗒️', desc: 'Beautify or minify XML with validation and indent options' },
-    { name: 'Markdown to HTML',             href: 'tools/markdown-to-html.html',       tag: 'convert',   icon: '📄', desc: 'Convert Markdown to HTML or preview with GFM support' },
-    { name: 'URL Parser / Builder',         href: 'tools/url-parser.html',             tag: 'encode',    icon: '🔗', desc: 'Parse URLs into components or build URLs from scratch' },
-    { name: 'Bcrypt Hash / Verify',         href: 'tools/bcrypt.html',                 tag: 'encode',    icon: '🔒', desc: 'Generate and verify bcrypt password hashes locally' },
-    { name: 'IP Address Lookup',            href: 'tools/ip-lookup.html',              tag: 'reference', icon: '🌐', desc: 'Look up geolocation and ASN for any IP address' },
-    { name: 'JS Formatter & Minifier',      href: 'tools/js-formatter.html',           tag: 'format',    icon: '⚙️', desc: 'Beautify or minify JavaScript code with configurable indent' },
-    { name: 'Line Tools',                   href: 'tools/line-tools.html',             tag: 'text',      icon: '☰',  desc: 'Sort, deduplicate, reverse, and trim lines of text' },
-    { name: 'Base32 Encode / Decode',       href: 'tools/base32.html',                 tag: 'encode',    icon: '🔡', desc: 'Encode or decode Base32 strings — RFC 4648 and Extended Hex' },
-    { name: 'HMAC Generator',               href: 'tools/hmac.html',                   tag: 'encode',    icon: '🔐', desc: 'Generate HMAC-SHA-256/512 signatures with a secret key' },
-    { name: 'Timezone Converter',           href: 'tools/timezone-converter.html',     tag: 'convert',   icon: '🌐', desc: 'Convert date and time between 80+ global timezones' },
-    { name: 'HTML Formatter & Minifier',    href: 'tools/html-formatter.html',         tag: 'format',    icon: '🌐', desc: 'Format and minify HTML code with customizable indentation' },
-    { name: 'AES Encrypt / Decrypt',        href: 'tools/aes.html',                    tag: 'encode',    icon: '🔐', desc: 'Encrypt and decrypt text using AES-256-GCM with a passphrase' },
-    { name: 'Color Palette Generator',      href: 'tools/color-palette.html',          tag: 'convert',   icon: '🎨', desc: 'Generate complementary, analogous, triadic, and monochromatic palettes' },
-    { name: 'CSS Gradient Generator',       href: 'tools/gradient-generator.html',     tag: 'convert',   icon: '🌈', desc: 'Create and preview CSS linear and radial gradients' },
-    { name: 'WCAG Contrast Checker',        href: 'tools/contrast-checker.html',       tag: 'convert',   icon: '♿', desc: 'Check color contrast ratio for WCAG AA and AAA compliance' },
-    { name: 'URL Builder',                  href: 'tools/url-builder.html',            tag: 'encode',    icon: '🔗', desc: 'Build and parse URLs with scheme, host, path, and query parameters' },
-    { name: 'User Agent Parser',            href: 'tools/user-agent.html',             tag: 'reference', icon: '🌐', desc: 'Parse User Agent strings to identify browser, OS, and device' },
-    { name: 'JSON ↔ CSV Converter',         href: 'tools/json-csv.html',               tag: 'convert',   icon: '🔄', desc: 'Convert between JSON arrays and CSV with custom delimiter support' },
-    { name: 'Countdown Timer',              href: 'tools/countdown.html',              tag: 'generate',  icon: '⏱️', desc: 'Create countdown timers to any future date and time' },
-    { name: 'Roman Numeral Converter',      href: 'tools/roman-numerals.html',         tag: 'convert',   icon: '🏛️', desc: 'Convert between Arabic numbers and Roman numerals (1–3999)' },
-    { name: 'Morse Code Encoder / Decoder', href: 'tools/morse-code.html',             tag: 'encode',    icon: '📡', desc: 'Encode text to Morse code or decode Morse code to text' },
-    { name: 'chmod Calculator',             href: 'tools/chmod-calculator.html',       tag: 'reference', icon: '🔐', desc: 'Calculate Unix file permissions visually. Get octal and symbolic notation.' },
-    { name: 'Binary / Text Converter',      href: 'tools/binary-text.html',            tag: 'encode',    icon: '💾', desc: 'Convert text to binary (0s and 1s) and binary back to text.' },
-    { name: 'Color Format Converter',       href: 'tools/color-converter.html',        tag: 'convert',   icon: '🎨', desc: 'Convert colors between HEX, RGB, HSL, and CMYK formats.' },
-    { name: 'Date Calculator',              href: 'tools/date-calculator.html',        tag: 'calculator', icon: '📅', desc: 'Calculate date differences, business days, and exact age.' },
-    { name: 'BMI Calculator',               href: 'tools/bmi-calculator.html',         tag: 'calculator', icon: '⚖️', desc: 'Calculate Body Mass Index with Metric or Imperial units.' },
-    { name: 'Loan Calculator',              href: 'tools/loan-calculator.html',        tag: 'calculator', icon: '🏦', desc: 'Calculate monthly loan payments and amortization schedule.' },
-    { name: 'ASCII Table',                  href: 'tools/ascii-table.html',            tag: 'reference', icon: '🔣', desc: 'Full ASCII 0–127 reference with Dec, Hex, Oct, Bin values.' },
-    { name: 'Text Cleaner',                 href: 'tools/text-cleaner.html',           tag: 'text',      icon: '🧹', desc: 'Remove extra spaces, blank lines, HTML tags, and more.' },
-    { name: 'CSS Minifier',                 href: 'tools/css-minifier.html',           tag: 'format',    icon: '⚡', desc: 'Compress CSS by removing comments and whitespace.' },
-    { name: 'JS Minifier',                  href: 'tools/js-minifier.html',            tag: 'format',    icon: '⚡', desc: 'Compress JavaScript using Terser — mangle, compress, minify.' },
-    { name: 'TOML ↔ JSON Converter',        href: 'tools/toml-json.html',              tag: 'convert',   icon: '🔄', desc: 'Convert between TOML and JSON format instantly.' },
-    { name: 'JWT Builder / Generator',      href: 'tools/jwt-builder.html',            tag: 'encode',    icon: '🔑', desc: 'Build and sign JWT tokens with HMAC (HS256/HS384/HS512).' },
-    { name: 'Color Blindness Simulator',    href: 'tools/color-blindness.html',        tag: 'design',    icon: '👁️', desc: 'Simulate protanopia, deuteranopia, tritanopia on any image.' },
-    { name: 'XML ↔ JSON Converter',         href: 'tools/xml-json.html',               tag: 'format',    icon: '🔄', desc: 'Convert between XML and JSON, handles attributes and nested elements.' },
-    { name: 'Number Formatter',             href: 'tools/number-format.html',          tag: 'convert',   icon: '🔢', desc: 'Format numbers with separators, currency, and scientific notation.' },
-    { name: 'Port Reference',               href: 'tools/port-reference.html',         tag: 'reference', icon: '🔌', desc: 'Search common TCP/UDP port numbers by port or service name.' },
-    { name: 'MIME Types Reference',         href: 'tools/mime-types.html',             tag: 'reference', icon: '📋', desc: 'Find the correct Content-Type header for any file extension.' },
-    { name: 'Contrast Checker (WCAG)',      href: 'tools/color-contrast-aa.html',      tag: 'design',    icon: '⚖️', desc: 'Test color pairs against WCAG AA/AAA accessibility standards.' },
-  ];
+  const NAV_TOOLS = SITE_TOOLS;
+  const ALL_TOOLS = SITE_TOOLS;
+  const toolGrid = document.getElementById('toolGrid');
+  const countBadge = document.getElementById('countBadge');
+  const pageSub = document.querySelector('.page-sub');
+
+  function renderToolCard(tool) {
+    const searchName = `${tool.name} ${tool.tag} ${tool.desc}`.replace(/"/g, '&quot;');
+    return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}" data-name="${searchName}">
+      <div class="tool-card-top">
+        <div class="tool-icon">${tool.icon}</div>
+        <div class="tool-name">${tool.name}</div>
+      </div>
+      <div class="tool-desc">${tool.desc}</div>
+      <div class="tool-footer"><span class="tool-tag">${tool.tag}</span><span class="tool-arrow">→</span></div>
+    </a>`;
+  }
+
+  function renderAllTools() {
+    toolGrid.innerHTML = `${ALL_TOOLS.map(renderToolCard).join('')}<div class="no-result" id="noResult">No tools match your search.</div>`;
+    countBadge.textContent = `${ALL_TOOLS.length} tools`;
+    pageSub.textContent = `${ALL_TOOLS.length} browser-based tools across text, developer, image, design, calculator, and reference workflows.`;
+  }
+
+  renderAllTools();
+
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());
     if (idx === -1) return text;
@@ -859,7 +804,7 @@
   function buildNavDropdown(dropdownEl, query) {
     const q = query.trim().toLowerCase();
     if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
-    const results = NAV_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)).slice(0, 6);
+    const results = ALL_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)).slice(0, 6);
     if (!results.length) { dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>'; }
     else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
     dropdownEl.classList.add('open');
@@ -878,12 +823,11 @@
   document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('navSearch').focus(); } });
   window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 
-  const cards = Array.from(document.querySelectorAll('.tool-card'));
-  const countBadge = document.getElementById('countBadge');
   let activeTag = 'all';
   let searchQuery = '';
 
   function applyFilters() {
+    const cards = Array.from(document.querySelectorAll('.tool-card'));
     const q = searchQuery.toLowerCase();
     let visible = 0;
     cards.forEach(card => {

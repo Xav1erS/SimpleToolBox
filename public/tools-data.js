@@ -84,6 +84,36 @@ const SITE_TOOLS = [
   { name: 'YAML to JSON Converter',       href: 'tools/yaml-json.html',                tag: 'convert',     icon: '🔄', desc: 'Convert between YAML and JSON format instantly' },
 ];
 
+const HUB_PAGE_CONFIG = {
+  image: {
+    sections: [
+      ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg'],
+      ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
+      ['image-rotate', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail']
+    ]
+  },
+  developer: {
+    sections: [
+      ['json-formatter', 'css-formatter', 'css-minifier', 'js-formatter', 'js-minifier', 'sql-formatter', 'html-formatter', 'xml-formatter'],
+      ['base64', 'base32', 'base58', 'hash-generator', 'hmac', 'aes', 'bcrypt', 'jwt-decoder', 'jwt-builder', 'html-entities', 'string-escape', 'morse-code', 'binary-text'],
+      ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'number-base', 'markdown-to-html', 'url-encode', 'url-parser'],
+      ['password-generator', 'uuid-generator', 'qr-code-generator', 'cron-builder', 'random-number-generator', 'lorem-ipsum-generator'],
+      ['regex-tester', 'jsonpath-tester', 'http-status', 'chmod-calculator', 'port-reference', 'mime-types', 'ip-lookup', 'user-agent', 'ascii-table', 'timestamp']
+    ]
+  },
+  text: {
+    sections: [
+      ['word-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape']
+    ]
+  }
+};
+
+function hubToolCount(key) {
+  const config = HUB_PAGE_CONFIG[key];
+  if (!config) return 0;
+  return [...new Set(config.sections.flat())].length;
+}
+
 // Returns tools matching a given tag, with matching tools listed first.
 // Usage: siteToolsByTag('image') — for hub pages to surface relevant tools first.
 function siteToolsByTag(tag) {

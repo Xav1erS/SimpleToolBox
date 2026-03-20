@@ -607,8 +607,8 @@
     <span class="hero-badge-dot"></span>
     Actively maintained · v1.0
   </div>
-  <h1 class="hero-title">The <span>Developer Toolbox</span></h1>
-  <p class="hero-sub">No sign-up required. Use it and go. All tools run locally in your browser — your data never leaves your device.</p>
+  <h1 class="hero-title">Find the <span>Right Tool Fast</span></h1>
+  <p class="hero-sub">Search across text, image, developer, design, calculator, and reference tools. Everything runs locally in your browser — nothing leaves your device.</p>
 
   <div class="hero-search">
     <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -620,7 +620,7 @@
   </div>
 
   <div class="hero-cta">
-    <a href="all-tools.html" class="hero-cta-btn">Browse All Tools →</a>
+    <a href="all-tools.html" class="hero-cta-btn" id="heroBrowseCta">Browse All Tools →</a>
   </div>
 
   <div class="hero-tags">
@@ -736,6 +736,14 @@
         <span class="category-count">13 tools</span>
       </div>
     </div>
+    <div class="category-card" style="--card-color:rgba(244,114,182,0.08)" data-name="design color palette gradient contrast accessibility" data-filter="design">
+      <div class="category-icon">🎨</div>
+      <div class="category-body">
+        <div class="category-name">Design Tools</div>
+        <div class="category-desc">Color conversion, palettes, gradients, contrast checks and accessibility</div>
+        <span class="category-count">7 tools</span>
+      </div>
+    </div>
     <div class="category-card" style="--card-color:rgba(6,182,212,0.08)" data-name="calculator bmi loan date mortgage" data-filter="calculator">
       <div class="category-icon">🧮</div>
       <div class="category-body">
@@ -756,7 +764,7 @@
     <button id="clearFilter">✕ Clear filter</button>
     <a href="all-tools.html" class="section-more">All tools →</a>
   </div>
-  <div class="tool-grid">
+  <div class="tool-grid" id="popularToolGrid">
     <a href="tools/base64.html" class="tool-card" data-tags="encode">
       <div class="tool-card-top">
         <div class="tool-icon">📦</div>
@@ -1007,12 +1015,77 @@
 
   // ── TOOL DATA ──────────────────────────────────────────
   const TOOLS = SITE_TOOLS;
+  const POPULAR_TOOL_SLUGS = [
+    'base64',
+    'json-formatter',
+    'password-generator',
+    'word-counter',
+    'regex-tester',
+    'image-resizer',
+    'image-compressor',
+    'webp-converter',
+    'http-status',
+    'hash-generator',
+    'date-calculator'
+  ];
+  const popularToolGrid = document.getElementById('popularToolGrid');
+  const heroBrowseCta = document.getElementById('heroBrowseCta');
+
+  function slugFromHref(href) {
+    return href.replace(/^tools\//, '').replace(/\.html$/, '');
+  }
+
+  function getToolBySlug(slug) {
+    return TOOLS.find(tool => slugFromHref(tool.href) === slug) || null;
+  }
+
+  function renderToolCard(tool) {
+    return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}">
+      <div class="tool-card-top">
+        <div class="tool-icon">${tool.icon}</div>
+        <div class="tool-name">${tool.name}</div>
+      </div>
+      <div class="tool-desc">${tool.desc}</div>
+      <div class="tool-footer">
+        <span class="tool-tag">${tool.tag}</span>
+        <span class="tool-arrow">→</span>
+      </div>
+    </a>`;
+  }
+
+  function renderPopularTools() {
+    if (!popularToolGrid) return;
+    const tools = POPULAR_TOOL_SLUGS.map(getToolBySlug).filter(Boolean);
+    popularToolGrid.innerHTML = tools.map(renderToolCard).join('');
+  }
+
+  function syncHomepageCounts() {
+    const total = TOOLS.length;
+    const statEl = document.getElementById('statToolCount');
+    if (statEl) statEl.textContent = total;
+    if (heroBrowseCta) heroBrowseCta.textContent = `Browse ${total} Tools →`;
+
+    const catCounts = {};
+    TOOLS.forEach(tool => {
+      catCounts[tool.tag] = (catCounts[tool.tag] || 0) + 1;
+    });
+
+    document.querySelectorAll('.category-card[data-filter]').forEach(catCard => {
+      const filter = catCard.dataset.filter;
+      const count = catCounts[filter] || 0;
+      const badge = catCard.querySelector('.category-count');
+      if (badge) badge.textContent = `${count} tool${count !== 1 ? 's' : ''}`;
+    });
+  }
+
+  renderPopularTools();
+  syncHomepageCounts();
 
   // ── Tool filtering ─────────────────────────────────────
-  const toolCards = document.querySelectorAll('.tool-grid .tool-card');
   const clearFilterBtn = document.getElementById('clearFilter');
 
   function filterTools(tag) {
+    const toolCards = document.querySelectorAll('#popularToolGrid .tool-card');
     toolCards.forEach(card => {
       card.style.display = (tag === 'all' || card.dataset.tags === tag) ? '' : 'none';
     });
@@ -1155,35 +1228,6 @@
       input.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
-
-  // Auto-update tool count stats from all-tools.html
-  fetch('all-tools.html')
-    .then(r => r.text())
-    .then(html => {
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      const allCards = doc.querySelectorAll('.tool-card');
-      const total = allCards.length;
-
-      // Update stats number
-      const statEl = document.getElementById('statToolCount');
-      if (statEl) statEl.textContent = total;
-
-      // Count per category tag
-      const catCounts = {};
-      allCards.forEach(card => {
-        const tag = card.dataset.tags;
-        if (tag) catCounts[tag] = (catCounts[tag] || 0) + 1;
-      });
-
-      // Update each category card's count badge
-      document.querySelectorAll('.category-card[data-filter]').forEach(catCard => {
-        const filter = catCard.dataset.filter;
-        const count = catCounts[filter] || 0;
-        const badge = catCard.querySelector('.category-count');
-        if (badge && count > 0) badge.textContent = count + ' tool' + (count !== 1 ? 's' : '');
-      });
-    })
-    .catch(() => {}); // silently fail if fetch not available (e.g. file://)
 
   // Fade-in on scroll
   const observer = new IntersectionObserver(

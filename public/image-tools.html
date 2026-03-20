@@ -241,6 +241,49 @@
 <script src="tools-data.js"></script>
 <script>
   const NAV_TOOLS = SITE_TOOLS;
+  const IMAGE_TOOL_SECTIONS = HUB_PAGE_CONFIG.image.sections;
+
+  function slugFromHref(href) {
+    return href.replace(/^tools\//, '').replace(/\.html$/, '');
+  }
+
+  function getToolBySlug(slug) {
+    return SITE_TOOLS.find(tool => slugFromHref(tool.href) === slug) || null;
+  }
+
+  function renderToolCard(tool) {
+    return `<a href="${tool.href}" class="tool-card">
+      <div class="tool-card-top"><div class="tool-icon">${tool.icon}</div><div class="tool-name">${tool.name}</div></div>
+      <div class="tool-desc">${tool.desc}</div>
+      <div class="tool-footer"><span class="tool-tag">${tool.tag}</span><span class="tool-arrow">→</span></div>
+    </a>`;
+  }
+
+  function renderHubSections() {
+    const grids = document.querySelectorAll('.tool-grid');
+    IMAGE_TOOL_SECTIONS.forEach((slugs, index) => {
+      const tools = slugs.map(getToolBySlug).filter(Boolean);
+      if (grids[index]) {
+        grids[index].innerHTML = tools.map(renderToolCard).join('');
+      }
+    });
+  }
+
+  function renderHubCounts() {
+    const hubCount = hubToolCount('image');
+    const catCounts = document.querySelectorAll('.cat-n');
+    const hubCountEl = document.querySelector('.hub-count');
+    if (hubCountEl) {
+      hubCountEl.textContent = `${hubCount} tools · all free · privacy-first`;
+    }
+    if (catCounts[0]) catCounts[0].textContent = `${hubToolCount('developer')} tools`;
+    if (catCounts[1]) catCounts[1].textContent = `${hubToolCount('text')} tools`;
+    if (catCounts[2]) catCounts[2].textContent = `${SITE_TOOLS.length} tools`;
+  }
+
+  renderHubSections();
+  renderHubCounts();
+
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());
     if (idx === -1) return text;

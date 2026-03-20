@@ -219,6 +219,46 @@
 <script src="tools-data.js"></script>
 <script>
   const NAV_TOOLS = SITE_TOOLS;
+  const TEXT_TOOL_SLUGS = HUB_PAGE_CONFIG.text.sections[0];
+
+  function slugFromHref(href) {
+    return href.replace(/^tools\//, '').replace(/\.html$/, '');
+  }
+
+  function getToolBySlug(slug) {
+    return SITE_TOOLS.find(tool => slugFromHref(tool.href) === slug) || null;
+  }
+
+  function renderToolCard(tool) {
+    return `<a href="${tool.href}" class="tool-card">
+      <div class="tool-card-top"><div class="tool-icon">${tool.icon}</div><div class="tool-name">${tool.name}</div></div>
+      <div class="tool-desc">${tool.desc}</div>
+      <div class="tool-footer"><span class="tool-tag">${tool.tag}</span><span class="tool-arrow">→</span></div>
+    </a>`;
+  }
+
+  function renderHubSections() {
+    const grid = document.querySelector('.tool-grid');
+    const tools = TEXT_TOOL_SLUGS.map(getToolBySlug).filter(Boolean);
+    if (grid) {
+      grid.innerHTML = tools.map(renderToolCard).join('');
+    }
+  }
+
+  function renderHubCounts() {
+    const catCounts = document.querySelectorAll('.cat-n');
+    const hubCountEl = document.querySelector('.hub-count');
+    if (hubCountEl) {
+      hubCountEl.textContent = `${hubToolCount('text')} tools · all free · privacy-first`;
+    }
+    if (catCounts[0]) catCounts[0].textContent = `${hubToolCount('developer')} tools`;
+    if (catCounts[1]) catCounts[1].textContent = `${hubToolCount('image')} tools`;
+    if (catCounts[2]) catCounts[2].textContent = `${SITE_TOOLS.length} tools`;
+  }
+
+  renderHubSections();
+  renderHubCounts();
+
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());
     if (idx === -1) return text;

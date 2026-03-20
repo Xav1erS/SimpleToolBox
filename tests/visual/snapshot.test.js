@@ -41,6 +41,7 @@ const SCREENSHOT_OPTS = {
   animations: 'disabled',
   // Clip to above-the-fold to keep snapshots stable and fast
   clip: { x: 0, y: 0, width: 1280, height: 900 },
+  timeout: 10000,
 };
 
 for (const slug of SNAPSHOT_TOOLS) {
@@ -63,6 +64,7 @@ for (const slug of SNAPSHOT_TOOLS) {
         animations: 'disabled',
         clip: { x: 0, y: 0, width: 390, height: 844 },
         maxDiffPixelRatio: 0.02,
+        timeout: 10000,
       });
     });
   });

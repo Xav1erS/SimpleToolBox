@@ -29,10 +29,12 @@
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
 
-    .body-wrap { max-width: 680px; margin: 0 auto; padding: 32px 24px 80px; display: flex; flex-direction: column; gap: 20px; }
+    .body-wrap { max-width: 760px; }
 
-    .card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 24px; }
-    .card-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 20px; }
+    .card { overflow: hidden; }
+    .card-header { padding: 20px 24px 0; }
+    .card-body { padding: 20px 24px 24px; }
+    .card-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
 
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .field-group { display: flex; flex-direction: column; gap: 6px; }
@@ -60,18 +62,13 @@
     .result-sub { font-size: 13px; color: var(--ds-color-text-secondary); line-height: 1.7; }
     .result-sub span { color: var(--ds-color-text-primary); font-weight: 500; }
 
-    .related { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
-    .related-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-    .related-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 14px 16px; text-decoration: none; color: var(--ds-color-text-secondary); font-size: 13px; transition: border-color 0.15s, color 0.15s; }
-    .related-card:hover { border-color: var(--ds-color-border-accent); color: var(--ds-color-text-primary); }
-
     footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
     footer a { color: var(--ds-color-text-secondary); text-decoration: none; }
     footer a:hover { color: var(--ds-color-text-primary); }
 
     @media (max-width: 480px) {
-      .body-wrap { padding: 20px 16px 60px; }
+      .card-header { padding: 18px 18px 0; }
+      .card-body { padding: 18px; }
       .field-row { grid-template-columns: 1fr; }
     }
   </style>
@@ -111,89 +108,105 @@
   </div>
 </div>
 
-<div class="body-wrap">
+<main class="body-wrap ds-tool-main ds-tool-stack">
 
   <!-- Card 1: Date Difference -->
-  <div class="card">
-    <div class="card-title">Date Difference</div>
-    <div class="field-row">
-      <div class="field-group">
-        <label>Start Date</label>
-        <input type="date" id="diffStart" />
+  <section class="card ds-card">
+    <div class="card-header ds-card__header">
+      <div class="card-title">Date Difference</div>
+    </div>
+    <div class="card-body ds-card__body">
+      <div class="field-row">
+        <div class="field-group">
+          <label>Start Date</label>
+          <input type="date" id="diffStart" />
+        </div>
+        <div class="field-group">
+          <label>End Date</label>
+          <input type="date" id="diffEnd" />
+        </div>
       </div>
-      <div class="field-group">
-        <label>End Date</label>
-        <input type="date" id="diffEnd" />
+      <div class="result-box" id="diffResult">
+        <div class="result-main" id="diffDays"></div>
+        <div class="result-sub" id="diffSub"></div>
       </div>
     </div>
-    <div class="result-box" id="diffResult">
-      <div class="result-main" id="diffDays"></div>
-      <div class="result-sub" id="diffSub"></div>
-    </div>
-  </div>
+  </section>
 
   <!-- Card 2: Add / Subtract Days -->
-  <div class="card">
-    <div class="card-title">Add / Subtract Days</div>
-    <div class="op-toggle">
-      <button class="op-btn active" id="btnAdd">+ Add</button>
-      <button class="op-btn" id="btnSub">− Subtract</button>
+  <section class="card ds-card">
+    <div class="card-header ds-card__header">
+      <div class="card-title">Add / Subtract Days</div>
     </div>
-    <div class="field-row">
-      <div class="field-group">
-        <label>Start Date</label>
-        <input type="date" id="addStart" />
+    <div class="card-body ds-card__body">
+      <div class="op-toggle">
+        <button class="op-btn active" id="btnAdd">+ Add</button>
+        <button class="op-btn" id="btnSub">− Subtract</button>
       </div>
-      <div class="field-group">
-        <label>Number of Days</label>
-        <input type="number" id="addDays" placeholder="30" min="0" />
+      <div class="field-row">
+        <div class="field-group">
+          <label>Start Date</label>
+          <input type="date" id="addStart" />
+        </div>
+        <div class="field-group">
+          <label>Number of Days</label>
+          <input type="number" id="addDays" placeholder="30" min="0" />
+        </div>
+      </div>
+      <div class="result-box" id="addResult">
+        <div class="result-main" id="addResultDate"></div>
+        <div class="result-sub" id="addResultSub"></div>
       </div>
     </div>
-    <div class="result-box" id="addResult">
-      <div class="result-main" id="addResultDate"></div>
-      <div class="result-sub" id="addResultSub"></div>
-    </div>
-  </div>
+  </section>
 
   <!-- Card 3: Business Days -->
-  <div class="card">
-    <div class="card-title">Business Days Between Dates</div>
-    <div class="field-row">
-      <div class="field-group">
-        <label>Start Date</label>
-        <input type="date" id="bizStart" />
+  <section class="card ds-card">
+    <div class="card-header ds-card__header">
+      <div class="card-title">Business Days Between Dates</div>
+    </div>
+    <div class="card-body ds-card__body">
+      <div class="field-row">
+        <div class="field-group">
+          <label>Start Date</label>
+          <input type="date" id="bizStart" />
+        </div>
+        <div class="field-group">
+          <label>End Date</label>
+          <input type="date" id="bizEnd" />
+        </div>
       </div>
-      <div class="field-group">
-        <label>End Date</label>
-        <input type="date" id="bizEnd" />
+      <div class="result-box" id="bizResult">
+        <div class="result-main" id="bizDays"></div>
+        <div class="result-sub" id="bizSub"></div>
       </div>
     </div>
-    <div class="result-box" id="bizResult">
-      <div class="result-main" id="bizDays"></div>
-      <div class="result-sub" id="bizSub"></div>
-    </div>
-  </div>
+  </section>
 
   <!-- Card 4: Age Calculator -->
-  <div class="card">
-    <div class="card-title">Age Calculator</div>
-    <div class="field-row">
-      <div class="field-group">
-        <label>Date of Birth</label>
-        <input type="date" id="ageDob" />
+  <section class="card ds-card">
+    <div class="card-header ds-card__header">
+      <div class="card-title">Age Calculator</div>
+    </div>
+    <div class="card-body ds-card__body">
+      <div class="field-row">
+        <div class="field-group">
+          <label>Date of Birth</label>
+          <input type="date" id="ageDob" />
+        </div>
+        <div class="field-group">
+          <label>As of Date</label>
+          <input type="date" id="ageAsOf" />
+        </div>
       </div>
-      <div class="field-group">
-        <label>As of Date</label>
-        <input type="date" id="ageAsOf" />
+      <div class="result-box" id="ageResult">
+        <div class="result-main" id="ageYears"></div>
+        <div class="result-sub" id="ageSub"></div>
       </div>
     </div>
-    <div class="result-box" id="ageResult">
-      <div class="result-main" id="ageYears"></div>
-      <div class="result-sub" id="ageSub"></div>
-    </div>
-  </div>
+  </section>
 
-</div>
+</main>
 
 
 <div class="ds-seo-content">

@@ -12,153 +12,66 @@
   <meta property="og:title" content="Text Diff Viewer Online – Compare Two Texts Side by Side | Simple ToolBox" />
   <meta property="og:description" content="Compare two texts and see differences highlighted. Line, word, and character-level diff. Great for comparing configs, code, or documents. Free, browser-based." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Diff Viewer","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compare two texts and see differences highlighted. Line, word, and character-level diff. Great for comparing configs, code, or documents. Free, browser-based.","featureList":["Line diff","Word diff","Character diff","Ignore whitespace option","Context lines","Copy diff output"]}
-  </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
-  <script src="https://cdn.jsdelivr.net/npm/diff@7/dist/diff.min.js"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--ds-font-sans);
-      background: var(--ds-color-bg);
-      color: var(--ds-color-text-primary);
-      font-size: 14px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-
-    .seg-ctrl {
-      display: flex;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-sm);
-      overflow: hidden;
-    }
-    .seg-btn {
-      padding: 5px 12px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ds-color-text-secondary);
-      transition: color 0.15s, background 0.15s;
-    }
-    .seg-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
-    .seg-btn:not(.active):hover { background: rgba(255,255,255,0.04); color: var(--ds-color-text-primary); }
-    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
-    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
-    .io-textarea:focus { background: rgba(94,106,210,0.025); }
-    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
-    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
-    .info-text code {
-      font-family: var(--ds-font-mono);
-      font-size: 11px;
-      background: rgba(255,255,255,0.06);
-      padding: 1px 4px;
-      border-radius: 3px;
-    }
-
-    /* Diff output panel */
-    .diff-result-panel {
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-md);
-      overflow: hidden;
-    }
-    .diff-result-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--ds-color-border);
-      background: rgba(255,255,255,0.02);
-    }
-    .diff-result-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--ds-color-text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      flex: 1;
-    }
-    .diff-summary {
-      font-size: 12px;
-      color: var(--ds-color-text-muted);
-    }
-    .diff-summary .diff-added-count { color: #22c55e; font-weight: 600; }
-    .diff-summary .diff-removed-count { color: #ef4444; font-weight: 600; }
-    .diff-output-wrap {
-      overflow-y: auto;
-      max-height: 480px;
-      min-height: 160px;
-    }
-    .diff-output {
-      font-family: var(--ds-font-mono);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .diff-line {
-      padding: 1px 12px;
-      white-space: pre-wrap;
-      word-break: break-all;
-    }
-    .diff-added   { background: rgba(34,197,94,0.12);  color: #22c55e; }
-    .diff-removed { background: rgba(239,68,68,0.12);  color: #ef4444; }
-    .diff-context { color: var(--ds-color-text-secondary); }
-    .diff-sep     { color: var(--ds-color-text-muted); font-style: italic; padding: 4px 12px; font-family: var(--ds-font-mono); font-size: 12px; }
-    .diff-prefix  { user-select: none; margin-right: 8px; opacity: 0.6; }
-    .diff-empty {
-      padding: 40px 20px;
-      text-align: center;
-      color: var(--ds-color-text-muted);
-      font-size: 13px;
-    }
-
-    /* Ignore whitespace checkbox */
-    .opt-check-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .opt-check-row input[type="checkbox"] {
-      accent-color: var(--ds-color-accent);
-      width: 14px;
-      height: 14px;
-      cursor: pointer;
-    }
-    .opt-check-row label {
-      font-size: 12px;
-      color: var(--ds-color-text-secondary);
-      cursor: pointer;
-    }
-
-    @media (max-width: 720px) {
-      .panels-arrow {
-        height: 36px;
-        border-left: none;
-        border-right: none;
-        border-top: 1px solid var(--ds-color-border);
-        border-bottom: 1px solid var(--ds-color-border);
+    <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Text Diff Viewer",
+  "description": "Compare two texts and see differences highlighted. Line, word, and character-level diff. Great for comparing configs, code, or documents. Free, browser-based.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/diff-viewer"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I ignore whitespace differences?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — enable the \"Ignore whitespace\" toggle to ignore leading/trailing spaces and line-ending differences."
       }
-      .arrow-circle { transform: rotate(90deg); }
-      .ds-related-grid { grid-template-columns: 1fr; }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a size limit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The viewer handles files up to several thousand lines comfortably in-browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Text Diff Viewer Online – Compare Two Texts Side by Side do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Text Diff Viewer Online – Compare Two Texts Side by Side runs entirely in your browser and helps you complete this task without uploading data to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Text Diff Viewer Online – Compare Two Texts Side by Side free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tool is free to use and does not require sign-up."
+      }
     }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8SBCZ6DT1R');
-  </script>
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
 </head>
 <body class="ds-page">
 <noscript>
@@ -311,47 +224,32 @@
   </div>
 
   
+  <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is Text Diff Viewer?</h2>
-    <p class="ds-seo-section__body">Highlights differences between two blocks of text at the line, word, or character level. Ideal for comparing code versions, document edits, or API responses side by side.</p>
+    <p>Text Diff Viewer compares two text inputs and highlights what changed so you can inspect additions, deletions, and edits quickly. It is useful for config changes, generated output checks, review workflows, and debugging before-and-after states.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use Text Diff Viewer</h2>
-    <ol class="ds-seo-section__list">
-      <li>Paste the original text in the left panel.</li>
-      <li>Paste the revised text in the right panel.</li>
-      <li>Choose diff mode: Lines, Words, or Characters.</li>
-      <li>Review highlighted additions (green) and removals (red).</li>
+    <ol>
+      <li>Paste the original text into one side and the revised text into the other.</li>
+      <li>Run the comparison and review highlighted differences.</li>
+      <li>Optionally ignore whitespace or line-ending differences if the tool supports it.</li>
+      <li>Use the result in debugging, review, or documentation work.</li>
     </ol>
   </section>
 </div>
+
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="regex-tester.html" class="ds-related-card">
-        <span class="ds-related-icon">&#128269;</span>
-        <div>
-          <div class="ds-related-name">Regex Tester</div>
-          <div class="ds-related-desc">Test regular expressions live</div>
-        </div>
-      </a>
-      <a href="markdown-preview.html" class="ds-related-card">
-        <span class="ds-related-icon">&#128221;</span>
-        <div>
-          <div class="ds-related-name">Markdown Preview</div>
-          <div class="ds-related-desc">Preview Markdown as HTML</div>
-        </div>
-      </a>
-      <a href="json-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">&#10003;</span>
-        <div>
-          <div class="ds-related-name">JSON Formatter</div>
-          <div class="ds-related-desc">Format and validate JSON data</div>
-        </div>
-      </a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="regex-tester.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">Regex Tester</div><div class="ds-related-desc">Test regular expressions with live match highlighting</div></div></a>
+    <a href="markdown-preview.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Markdown Preview</div><div class="ds-related-desc">Write Markdown and see a live rendered preview</div></div></a>
+    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
   </div>
+</div>
+
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
     <span>Understand Text Diff Viewer</span>
@@ -360,237 +258,52 @@
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Original: <code>Hello world</code></p><p>Revised: <code>Hello there</code></p><p>Word diff: <del>world</del> → <ins>there</ins> (1 word changed)</p></div>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Original: Hello world</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Revised: Hello there</span>
+          </div>
+        </div>
+      </div>
     </details>
     <details class="ds-seo-collapse">
-      <summary>Diff Modes Explained</summary>
-      <div class="ds-seo-collapse__body"><ul><li><strong>Line diff</strong>: shows which lines were added or removed — best for code.</li><li><strong>Word diff</strong>: highlights word-level changes within lines — best for prose.</li><li><strong>Character diff</strong>: pinpoints exact character substitutions — best for catching typos.</li></ul><p>An "Ignore whitespace" toggle is available for cleaner diffs.</p></div>
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Compare two text blocks during config, code, or document review</li>
+          <li>Inspect line and word-level differences before applying changes</li>
+          <li>Check generated output against an expected result in debugging flows</li>
+          <li>Share clear before-and-after comparisons in tickets or docs</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Compare text without needing git or a code editor</li>
-        <li>Visual red/green highlighting makes changes immediately obvious</li>
-        <li>Works on plain text, JSON, HTML, YAML, or any text format</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for config review, docs edits, and generated output comparisons.</li>
+          <li>Makes additions, deletions, and replacements easier to spot than plain text.</li>
+          <li>Runs locally so compared text stays in the browser.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>Can I ignore whitespace differences?</strong><p>Yes — enable the "Ignore whitespace" toggle to ignore leading/trailing spaces and line-ending differences.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I ignore whitespace differences?</strong><p>Yes — enable the &quot;Ignore whitespace&quot; toggle to ignore leading/trailing spaces and line-ending differences.</p></div>
         <div class="ds-seo-faq-item"><strong>Is there a size limit?</strong><p>The viewer handles files up to several thousand lines comfortably in-browser.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does Text Diff Viewer Online – Compare Two Texts Side by Side do?</strong><p>Text Diff Viewer Online – Compare Two Texts Side by Side runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is Text Diff Viewer Online – Compare Two Texts Side by Side free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-</div>
-
-<script>
-  const CONTEXT_LINES = 3;
-  let diffMode = 'lines';
-  let diffTimer = null;
-  let lastDiffText = '';
-
-  const textA = document.getElementById('textA');
-  const textB = document.getElementById('textB');
-  const statA = document.getElementById('statA');
-  const statB = document.getElementById('statB');
-  const diffOutput = document.getElementById('diffOutput');
-  const diffSummary = document.getElementById('diffSummary');
-  const ignoreWS = document.getElementById('ignoreWhitespace');
-
-  function lineCount(text) {
-    if (!text) return 0;
-    return text.split('\n').length;
-  }
-
-  function updateStats() {
-    statA.textContent = `${lineCount(textA.value)} lines`;
-    statB.textContent = `${lineCount(textB.value)} lines`;
-  }
-
-  function compare() {
-    const a = textA.value;
-    const b = textB.value;
-
-    if (!a && !b) {
-      diffOutput.innerHTML = '<div class="diff-empty">Paste text in both panels above to compare</div>';
-      diffSummary.innerHTML = '';
-      lastDiffText = '';
-      return;
-    }
-
-    const DiffLib = window.Diff;
-    if (!DiffLib) {
-      diffOutput.innerHTML = '<div class="diff-empty" style="color:#ef4444">diff library not loaded</div>';
-      return;
-    }
-
-    let parts;
-    const opts = { ignoreWhitespace: ignoreWS.checked };
-
-    try {
-      if (diffMode === 'lines') {
-        parts = DiffLib.diffLines(a, b, opts);
-      } else if (diffMode === 'words') {
-        parts = DiffLib.diffWords(a, b, opts);
-      } else {
-        parts = DiffLib.diffChars(a, b, opts);
-      }
-    } catch (e) {
-      diffOutput.innerHTML = `<div class="diff-empty" style="color:#ef4444">Error: ${e.message}</div>`;
-      return;
-    }
-
-    let addedCount = 0;
-    let removedCount = 0;
-
-    if (diffMode === 'lines') {
-      // For line diff: render with context collapsing
-      const lines = [];
-      for (const part of parts) {
-        const partLines = part.value.split('\n');
-        // Remove trailing empty string from split
-        if (partLines[partLines.length - 1] === '') partLines.pop();
-        for (const line of partLines) {
-          if (part.added) { lines.push({ type: 'added', text: line }); addedCount++; }
-          else if (part.removed) { lines.push({ type: 'removed', text: line }); removedCount++; }
-          else { lines.push({ type: 'context', text: line }); }
-        }
-      }
-
-      // Determine which context lines to show
-      const changedIndexes = new Set();
-      lines.forEach((l, i) => { if (l.type !== 'context') changedIndexes.add(i); });
-
-      const visible = new Set();
-      changedIndexes.forEach(i => {
-        for (let j = Math.max(0, i - CONTEXT_LINES); j <= Math.min(lines.length - 1, i + CONTEXT_LINES); j++) {
-          visible.add(j);
-        }
-      });
-
-      const html = [];
-      let prevVisible = true;
-      for (let i = 0; i < lines.length; i++) {
-        if (!visible.has(i)) {
-          if (prevVisible) {
-            html.push('<div class="diff-sep">...</div>');
-            prevVisible = false;
-          }
-          continue;
-        }
-        prevVisible = true;
-        const line = lines[i];
-        const cls = line.type === 'added' ? 'diff-line diff-added'
-                  : line.type === 'removed' ? 'diff-line diff-removed'
-                  : 'diff-line diff-context';
-        const prefix = line.type === 'added' ? '+' : line.type === 'removed' ? '-' : ' ';
-        const escaped = escapeHtml(line.text);
-        html.push(`<div class="${cls}"><span class="diff-prefix">${prefix}</span>${escaped}</div>`);
-      }
-
-      diffOutput.innerHTML = html.length ? html.join('') : '<div class="diff-empty" style="color:#22c55e">No differences found</div>';
-    } else {
-      // Word/char diff: inline highlighting
-      const html = [];
-      for (const part of parts) {
-        if (part.added) {
-          addedCount += part.value.length;
-          html.push(`<span style="background:rgba(34,197,94,0.18);color:#22c55e">${escapeHtml(part.value)}</span>`);
-        } else if (part.removed) {
-          removedCount += part.value.length;
-          html.push(`<span style="background:rgba(239,68,68,0.18);color:#ef4444;text-decoration:line-through">${escapeHtml(part.value)}</span>`);
-        } else {
-          html.push(`<span style="color:var(--ds-color-text-secondary)">${escapeHtml(part.value)}</span>`);
-        }
-      }
-      const label = diffMode === 'words' ? 'words' : 'chars';
-      diffOutput.innerHTML = `<div class="diff-line diff-context" style="white-space:pre-wrap;word-break:break-all">${html.join('')}</div>`;
-    }
-
-    // Summary
-    const addedLabel = diffMode === 'lines' ? 'lines added' : diffMode === 'words' ? 'words added' : 'chars added';
-    const removedLabel = diffMode === 'lines' ? 'lines removed' : diffMode === 'words' ? 'words removed' : 'chars removed';
-    diffSummary.innerHTML = addedCount || removedCount
-      ? `<span class="diff-added-count">+${addedCount}</span> ${addedLabel}, <span class="diff-removed-count">-${removedCount}</span> ${removedLabel}`
-      : '<span style="color:#22c55e">Identical</span>';
-
-    // Store plain-text diff for copy
-    lastDiffText = Array.from(diffOutput.querySelectorAll('.diff-line, .diff-sep'))
-      .map(el => el.textContent).join('\n');
-  }
-
-  function escapeHtml(str) {
-    return str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-  }
-
-  function scheduleDiff() {
-    clearTimeout(diffTimer);
-    diffTimer = setTimeout(compare, 300);
-    updateStats();
-  }
-
-  textA.addEventListener('input', scheduleDiff);
-  textB.addEventListener('input', scheduleDiff);
-  ignoreWS.addEventListener('change', compare);
-  document.getElementById('btnCompare').addEventListener('click', compare);
-
-  document.querySelectorAll('[data-diffmode]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      diffMode = btn.dataset.diffmode;
-      document.querySelectorAll('[data-diffmode]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      compare();
-    });
-  });
-
-  document.getElementById('btnPasteA').addEventListener('click', async () => {
-    try { textA.value = await navigator.clipboard.readText(); scheduleDiff(); } catch {}
-  });
-  document.getElementById('btnPasteB').addEventListener('click', async () => {
-    try { textB.value = await navigator.clipboard.readText(); scheduleDiff(); } catch {}
-  });
-  document.getElementById('btnClearA').addEventListener('click', () => { textA.value = ''; scheduleDiff(); });
-  document.getElementById('btnClearB').addEventListener('click', () => { textB.value = ''; scheduleDiff(); });
-
-  document.getElementById('btnClearAll').addEventListener('click', () => {
-    textA.value = '';
-    textB.value = '';
-    diffOutput.innerHTML = '<div class="diff-empty">Paste text in both panels above to compare</div>';
-    diffSummary.innerHTML = '';
-    lastDiffText = '';
-    updateStats();
-  });
-
-  async function copyText(text, button) {
-    if (!text) return;
-    const originalHtml = button.innerHTML;
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      const ta = Object.assign(document.createElement('textarea'), { value: text });
-      ta.style.cssText = 'position:fixed;opacity:0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    }
-    button.classList.add('copied');
-    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
-    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = originalHtml; }, 1500);
-  }
-
-  document.getElementById('btnCopyDiff').addEventListener('click', () => {
-    const btn = document.getElementById('btnCopyDiff');
-    copyText(lastDiffText || diffOutput.innerText, btn);
-  });
-</script>
-
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

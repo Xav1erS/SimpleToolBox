@@ -12,95 +12,66 @@
   <meta property="og:title" content="JavaScript Formatter &amp; Minifier Online – Beautify &amp; Compress JS Free | Simple ToolBox" />
   <meta property="og:description" content="Format and beautify JavaScript code for readability or minify for production. Configurable indent. Free, browser-based." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JavaScript Formatter & Minifier","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Format and beautify JavaScript code for readability or minify for production. Configurable indent. Free, browser-based.","featureList":["JS beautify","JS minify","Configurable indent","Real-time formatting","No data sent"]}
-  </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
-  <script src="https://cdn.jsdelivr.net/npm/js-beautify@1/js/lib/beautifier.min.js"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--ds-font-sans);
-      background: var(--ds-color-bg);
-      color: var(--ds-color-text-primary);
-      font-size: 14px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-
-    .mode-btn.active { background: var(--ds-color-accent); color: #fff; }
-
-    .seg-ctrl {
-      display: flex;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-sm);
-      overflow: hidden;
-    }
-    .seg-btn {
-      padding: 5px 12px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ds-color-text-secondary);
-      transition: color 0.15s, background 0.15s;
-    }
-    .seg-btn.active {
-      background: var(--ds-color-surface-tint);
-      color: var(--ds-color-accent);
-      border-color: rgba(94,106,210,0.3);
-    }
-    .seg-btn:not(.active):hover {
-      background: rgba(255,255,255,0.04);
-      color: var(--ds-color-text-primary);
-    }
-
-    .io-btn.copied  { color: #22c55e; border-color: rgba(34,197,94,0.3); }
-    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
-
-    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
-    .io-textarea:focus        { background: rgba(94,106,210,0.025); }
-
-    .io-panel.has-error .io-textarea { color: #ef4444; }
-    .io-panel.has-error .io-error    { display: block; }
-    .io-panel.has-error .io-stat     { display: none; }
-
-    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
-    .info-text code {
-      font-family: var(--ds-font-mono);
-      font-size: 11px;
-      background: rgba(255,255,255,0.06);
-      padding: 1px 4px;
-      border-radius: 3px;
-    }
-
-    @media (max-width: 720px) {
-      .panels-arrow {
-        height: 36px;
-        border-left: none;
-        border-right: none;
-        border-top: 1px solid var(--ds-color-border);
-        border-bottom: 1px solid var(--ds-color-border);
+    <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JavaScript Formatter & Minifier",
+  "description": "Format and beautify JavaScript code for readability or minify for production. Configurable indent. Free, browser-based.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/js-formatter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it work with TypeScript?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It formats JavaScript syntax. TypeScript-specific type annotations are passed through without validation."
       }
-      .arrow-circle { transform: rotate(90deg); }
-      .ds-related-grid { grid-template-columns: 1fr; }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it handle JSX?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basic JSX syntax is preserved during formatting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tool is free to use and does not require sign-up."
+      }
     }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8SBCZ6DT1R');
-  </script>
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
 </head>
 <body class="ds-page">
 <noscript>
@@ -257,287 +228,87 @@
 
   <!-- Related tools -->
   
+  <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is JavaScript Formatter?</h2>
-    <p class="ds-seo-section__body">Formats and indents JavaScript code using Prettier-compatible rules. Handles ES2020+ syntax including arrow functions, template literals, destructuring, and async/await.</p>
+    <h2 class="ds-seo-section__title">What is JavaScript Formatter &amp; Minifier?</h2>
+    <p>JavaScript Formatter &amp; Minifier helps you switch between readable JS source and compact output for production. It is useful for reviewing code snippets, debugging generated scripts, and shrinking small files after you finish editing them.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use JavaScript Formatter</h2>
-    <ol class="ds-seo-section__list">
-      <li>Paste your JavaScript code.</li>
-      <li>Click <strong>Format</strong>.</li>
-      <li>Select indent size and quote style (single/double).</li>
-      <li>Copy the formatted output.</li>
+    <h2 class="ds-seo-section__title">How to Use JavaScript Formatter &amp; Minifier</h2>
+    <ol>
+      <li>Paste JavaScript into the input panel.</li>
+      <li>Choose beautify or minify mode.</li>
+      <li>Adjust indentation if you want more readable output.</li>
+      <li>Copy the final code into your app, docs, or deployment workflow.</li>
     </ol>
   </section>
 </div>
+
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="css-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">&#127912;</span>
-        <div>
-          <div class="ds-related-name">CSS Formatter</div>
-          <div class="ds-related-desc">Format and minify CSS code</div>
-        </div>
-      </a>
-      <a href="json-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">&#10003;</span>
-        <div>
-          <div class="ds-related-name">JSON Formatter</div>
-          <div class="ds-related-desc">Format and validate JSON data</div>
-        </div>
-      </a>
-      <a href="html-entities.html" class="ds-related-card">
-        <span class="ds-related-icon">&#128196;</span>
-        <div>
-          <div class="ds-related-name">HTML Entities</div>
-          <div class="ds-related-desc">Encode and decode HTML entities</div>
-        </div>
-      </a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="css-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">CSS Formatter</div><div class="ds-related-desc">Beautify or minify CSS code with customizable formatting</div></div></a>
+    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
+    <a href="html-formatter.html" class="ds-related-card"><span class="ds-related-icon">🏷️</span><div><div class="ds-related-name">HTML Formatter</div><div class="ds-related-desc">Beautify or minify HTML with customizable indentation</div></div></a>
   </div>
+</div>
+
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
-    <span>Understand JavaScript Formatter</span>
+    <span>Understand JavaScript Formatter &amp; Minifier</span>
     <span class="ds-seo-more__arrow">&#9662;</span>
   </summary>
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Input: <code>const f=x=&gt;x*2;const arr=[1,2,3].map(f)</code></p><p>Formatted:</p><pre>const f = (x) =&gt; x * 2;
-const arr = [1, 2, 3].map(f);</pre></div>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">const f=x=&gt;x*2;const arr=[1,2,3].map(f)</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">const f = x =&gt; x * 2;
+const arr = [1, 2, 3].map(f);</span>
+          </div>
+        </div>
+      </div>
     </details>
     <details class="ds-seo-collapse">
-      <summary>Formatting Rules Applied</summary>
-      <div class="ds-seo-collapse__body"><ul><li>Consistent spacing around operators and keywords</li><li>Semicolons added per preference</li><li>Single or double quotes normalized throughout</li><li>Arrow function parentheses standardized</li><li>Trailing commas in ES5+ mode</li></ul></div>
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Beautify compressed JavaScript before debugging or review</li>
+          <li>Inspect generated bundle snippets and utility functions more clearly</li>
+          <li>Minify small scripts after editing them in the browser</li>
+          <li>Compare formatting changes when preparing code samples or docs</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Makes minified or obfuscated JS readable</li>
-        <li>Standardizes style before committing to version control</li>
-        <li>No local Prettier installation needed</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for debugging minified snippets and generated code quickly.</li>
+          <li>Lets you move between readable and compact JS without extra tooling.</li>
+          <li>Runs locally so scripts stay in the browser while you format them.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Does it work with TypeScript?</strong><p>It formats JavaScript syntax. TypeScript-specific type annotations are passed through without validation.</p></div>
         <div class="ds-seo-faq-item"><strong>Does it handle JSX?</strong><p>Basic JSX syntax is preserved during formatting.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does JavaScript Formatter &amp;amp; Minifier Online ??Beautify &amp;amp; Compress JS Free do?</strong><p>JavaScript Formatter &amp;amp; Minifier Online ??Beautify &amp;amp; Compress JS Free runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is JavaScript Formatter &amp;amp; Minifier Online ??Beautify &amp;amp; Compress JS Free free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-
-</div><!-- /main -->
-
-<script>
-  'use strict';
-
-  let currentMode = 'beautify';
-  let indentSize  = 2;
-
-  const btnBeautify   = document.getElementById('btnBeautify');
-  const btnMinify     = document.getElementById('btnMinify');
-  const optionsBar    = document.getElementById('optionsBar');
-  const inputText     = document.getElementById('inputText');
-  const outputText    = document.getElementById('outputText');
-  const inputStat     = document.getElementById('inputStat');
-  const outputStat    = document.getElementById('outputStat');
-  const outputLabel   = document.getElementById('outputLabel');
-  const runLabel      = document.getElementById('runLabel');
-  const outputPanel   = document.getElementById('outputPanel');
-  const errorMsg      = document.getElementById('errorMsg');
-  const btnRun        = document.getElementById('btnRun');
-  const btnCopyHeader = document.getElementById('btnCopyHeader');
-  const btnCopyResult = document.getElementById('btnCopyResult');
-  const btnPaste      = document.getElementById('btnPaste');
-  const btnClearInput = document.getElementById('btnClearInput');
-  const btnClearAll   = document.getElementById('btnClearAll');
-
-  function minifyJS(src) {
-    const tokens = [];
-    let i = 0;
-
-    while (i < src.length) {
-      const ch = src[i];
-
-      if (ch === '`') {
-        let j = i + 1;
-        while (j < src.length) {
-          if (src[j] === '\\') { j += 2; continue; }
-          if (src[j] === '`')  { j++; break; }
-          j++;
-        }
-        tokens.push({ type: 'str', val: src.slice(i, j) });
-        i = j; continue;
-      }
-
-      if (ch === "'") {
-        let j = i + 1;
-        while (j < src.length) {
-          if (src[j] === '\\') { j += 2; continue; }
-          if (src[j] === "'")  { j++; break; }
-          j++;
-        }
-        tokens.push({ type: 'str', val: src.slice(i, j) });
-        i = j; continue;
-      }
-
-      if (ch === '"') {
-        let j = i + 1;
-        while (j < src.length) {
-          if (src[j] === '\\') { j += 2; continue; }
-          if (src[j] === '"')  { j++; break; }
-          j++;
-        }
-        tokens.push({ type: 'str', val: src.slice(i, j) });
-        i = j; continue;
-      }
-
-      if (ch === '/' && src[i + 1] === '*') {
-        let j = i + 2;
-        while (j < src.length - 1 && !(src[j] === '*' && src[j + 1] === '/')) j++;
-        j += 2;
-        tokens.push({ type: 'comment' });
-        i = j; continue;
-      }
-
-      if (ch === '/' && src[i + 1] === '/') {
-        let j = i + 2;
-        while (j < src.length && src[j] !== '\n') j++;
-        tokens.push({ type: 'comment' });
-        i = j; continue;
-      }
-
-      if (/\s/.test(ch)) {
-        tokens.push({ type: 'ws' });
-        while (i < src.length && /\s/.test(src[i])) i++;
-        continue;
-      }
-
-      tokens.push({ type: 'code', val: ch });
-      i++;
-    }
-
-    let out = '';
-    for (let k = 0; k < tokens.length; k++) {
-      const t = tokens[k];
-      if (t.type === 'comment') continue;
-      if (t.type === 'ws') {
-        const prev = out[out.length - 1] || '';
-        const nextTok = tokens.slice(k + 1).find(x => x.type !== 'ws' && x.type !== 'comment');
-        const next = (nextTok && nextTok.val) ? nextTok.val[0] : '';
-        if (/\w/.test(prev) && /\w/.test(next)) out += ' ';
-        continue;
-      }
-      out += t.val;
-    }
-    return out.trim();
-  }
-
-  function run() {
-    const input = inputText.value;
-    outputPanel.classList.remove('has-error');
-
-    if (!input.trim()) {
-      outputText.value = '';
-      updateStats();
-      return;
-    }
-
-    try {
-      if (currentMode === 'beautify') {
-        const fn = window.js_beautify || window.beautify;
-        if (typeof fn !== 'function') throw new Error('Beautify library not loaded yet — try again in a moment');
-        outputText.value = fn(input, {
-          indent_size: indentSize,
-          space_in_empty_paren: true
-        });
-      } else {
-        outputText.value = minifyJS(input);
-      }
-    } catch (e) {
-      outputPanel.classList.add('has-error');
-      outputText.value = '';
-      errorMsg.textContent = e.message || 'Processing failed';
-    }
-
-    updateStats();
-  }
-
-  function updateStats() {
-    const ic = inputText.value.length;
-    const oc = outputText.value.length;
-    inputStat.textContent  = ic ? `${ic.toLocaleString()} chars` : '0 chars';
-    outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
-  }
-
-  function setMode(mode) {
-    currentMode = mode;
-    btnBeautify.classList.toggle('active', mode === 'beautify');
-    btnMinify.classList.toggle('active',   mode === 'minify');
-    optionsBar.style.display = mode === 'beautify' ? '' : 'none';
-    outputLabel.textContent  = mode === 'beautify' ? 'Formatted JS' : 'Minified JS';
-    runLabel.textContent     = mode === 'beautify' ? 'Beautify'     : 'Minify';
-    run();
-  }
-
-  btnBeautify.addEventListener('click', () => setMode('beautify'));
-  btnMinify.addEventListener('click',   () => setMode('minify'));
-
-  document.querySelectorAll('[data-indent]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-indent]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      indentSize = parseInt(btn.dataset.indent, 10);
-      run();
-    });
-  });
-
-  inputText.addEventListener('input', run);
-  btnRun.addEventListener('click', run);
-
-  async function copyText(text, button) {
-    if (!text) return;
-    const originalHtml = button.innerHTML;
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      const ta = Object.assign(document.createElement('textarea'), { value: text });
-      ta.style.cssText = 'position:fixed;opacity:0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    }
-    button.classList.add('copied');
-    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
-    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = originalHtml; }, 1500);
-  }
-
-  btnCopyHeader.addEventListener('click', () => copyText(outputText.value, btnCopyHeader));
-  btnCopyResult.addEventListener('click', () => copyText(outputText.value, btnCopyResult));
-
-  btnPaste.addEventListener('click', async () => {
-    try { inputText.value = await navigator.clipboard.readText(); run(); } catch { /* denied */ }
-  });
-
-  function clearAll() {
-    inputText.value  = '';
-    outputText.value = '';
-    outputPanel.classList.remove('has-error');
-    updateStats();
-  }
-
-  btnClearInput.addEventListener('click', clearAll);
-  btnClearAll.addEventListener('click',   clearAll);
-
-  setMode('beautify');
-</script>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

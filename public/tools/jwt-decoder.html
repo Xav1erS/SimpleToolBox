@@ -12,13 +12,65 @@
   <meta property="og:title" content="JWT Decoder Online – Inspect &amp; Decode JSON Web Tokens | Simple ToolBox" />
   <meta property="og:description" content="Free online JWT decoder and inspector. Parse JWT header, payload, and signature. Runs entirely in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JWT Decoder / Inspector","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Decode and inspect JSON Web Tokens. View header, payload, expiration, and algorithm. 100% client-side processing."}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it safe to paste my JWT here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Decoding runs entirely in your browser — the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you are certain it is client-side only."}},{"@type":"Question","name":"Can this tool verify the signature?","acceptedAnswer":{"@type":"Answer","text":"No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload — verification must happen on your server."}},{"@type":"Question","name":"What does token expired mean?","acceptedAnswer":{"@type":"Answer","text":"The exp claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you will need to re-authenticate."}},{"@type":"Question","name":"What is the difference between JWT and session cookies?","acceptedAnswer":{"@type":"Answer","text":"Session cookies store a session ID on the server and look it up on each request. JWTs are self-contained — all claims are in the token itself, so no server-side session storage is needed. This makes JWTs ideal for stateless, distributed systems."}}]}
-  </script>
-  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+    <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JWT Decoder / Inspector",
+  "description": "Free online JWT decoder and inspector. Parse JWT header, payload, and signature. View expiration time, algorithm, and all claims. Runs entirely in your browser.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/jwt-decoder"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it safe to paste my JWT here?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Decoding runs entirely in your browser ??the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you are certain it is client-side only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool verify the signature?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload ??verification must happen on your server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does token expired mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The exp claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you will need to re-authenticate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between JWT and session cookies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Session cookies store a session ID on the server and look it up on each request. JWTs are self-contained ??all claims are in the token itself, so no server-side session storage is needed. This makes JWTs useful in stateless, distributed systems."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+<link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
   <style>
     :root {
@@ -220,309 +272,86 @@
     </div>
   </div>
 
-  <section class="ds-seo-content" aria-label="About JWT Decoder">
-<div class="ds-seo-section">
-      <h2 class="ds-seo-section__title">What is a JWT?</h2>
-      <p>A <strong>JSON Web Token (JWT)</strong> is a compact, URL-safe format for representing claims between two parties. A JWT consists of three Base64URL-encoded parts separated by dots: the <strong>Header</strong> (algorithm and token type), the <strong>Payload</strong> (claims — data like user ID, roles, and expiry), and the <strong>Signature</strong> (used to verify the token hasn't been tampered with).</p>
-      <p>JWTs are widely used in modern authentication flows. When you log in, a server issues a signed JWT. Your client sends that token with each API request, and the server validates the signature to confirm authenticity — no session storage required.</p>
-    </div>
-<div class="ds-seo-section">
-      <h2 class="ds-seo-section__title">How to Use the JWT Decoder</h2>
-      <ol>
-        <li>Paste your JWT string into the input field at the top.</li>
-        <li>The decoder instantly splits the token into <strong>Header</strong>, <strong>Payload</strong>, and <strong>Signature</strong> sections.</li>
-        <li>Inspect standard claims: <code>sub</code> (subject), <code>iat</code> (issued at), <code>exp</code> (expiry), <code>iss</code> (issuer), and any custom claims.</li>
-        <li>Check whether the token is expired using the <strong>exp</strong> timestamp display.</li>
-      </ol>
-      <p>Note: this tool <strong>decodes</strong> the payload — it does not verify the signature. Signature verification requires the secret key or public certificate on the server side.</p>
-    </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is JWT Decoder?</h2>
+    <p>JWT Decoder parses JSON Web Tokens into their three parts so you can inspect the header, payload claims, algorithm, and signature segment. It is useful for authentication debugging, expiry checks, and understanding what a token actually contains without sending it to a server.</p>
   </section>
-
-<div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="jwt-builder.html" class="ds-related-card"><span class="ds-related-icon">🔏</span><div><div class="ds-related-name">JWT Builder</div><div class="ds-related-desc">Build and sign JWT tokens</div></div></a>
-      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">🔡</span><div><div class="ds-related-name">Base64 Encoder</div><div class="ds-related-desc">Encode and decode Base64 strings</div></div></a>
-      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256 hashes</div></div></a>
-    </div>
-  </div>
-
-  <details class="ds-seo-more">
-    <summary class="ds-seo-more__toggle"><span>Understand JWTs (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
-    <div class="ds-seo-more__body">
-            <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Paste any JWT — e.g. <code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></p>
-          <p>The tool instantly splits it into three parts:</p>
-          <ul>
-            <li><strong>Header</strong>: <code>{"alg":"HS256","typ":"JWT"}</code></li>
-            <li><strong>Payload</strong>: <code>{"sub":"1234567890","name":"John Doe","iat":1516239022}</code></li>
-            <li><strong>Signature</strong>: displayed separately (client-side decode only, not verified)</li>
-          </ul>
-        </div>
-      </details>
-<details class="ds-seo-collapse">
-        <summary>Common Use Cases</summary>
-        <div class="ds-seo-collapse__body">
-            <ul>
-              <li><strong>API debugging</strong> — inspect what claims a token carries without a server-side tool.</li>
-              <li><strong>Checking expiry</strong> — read the <code>exp</code> field to see when a token expires.</li>
-              <li><strong>Auth troubleshooting</strong> — confirm that the correct user ID, roles, and scopes are in the payload.</li>
-              <li><strong>Learning OAuth 2.0 / OIDC</strong> — understand what fields like <code>aud</code>, <code>azp</code>, and <code>nonce</code> mean.</li>
-            </ul>
-        </div>
-      </details>
-            <details class="ds-seo-collapse">
-        <summary>Why Use This JWT Decoder</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>No server required</strong> — decoding runs entirely in your browser; your token is never transmitted anywhere.</li>
-            <li><strong>Instant expiry check</strong> — the <code>exp</code> claim is converted to a human-readable timestamp automatically.</li>
-            <li><strong>Pretty-printed payload</strong> — nested JSON is formatted and syntax-highlighted for readability.</li>
-            <li><strong>Works with any JWT</strong> — HS256, RS256, ES256, and any algorithm (signature decoded, not verified).</li>
-          </ul>
-        </div>
-      </details>
-<details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-              <div class="ds-seo-faq-item">
-                <h3>Is it safe to paste my JWT here?</h3>
-                <p>Yes. Decoding runs entirely in your browser — the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you're certain it's client-side only.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>Can this tool verify the signature?</h3>
-                <p>No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload — verification must happen on your server.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>What does "token expired" mean?</h3>
-                <p>The <code>exp</code> claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you'll need to re-authenticate.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>What is the difference between JWT and session cookies?</h3>
-                <p>Session cookies store a session ID on the server and look it up on each request. JWTs are <strong>self-contained</strong> — all claims are in the token itself, so no server-side session storage is needed. This makes JWTs ideal for stateless, distributed systems.</p>
-              </div>
-        </div>
-      </details>
-    </div>
-  </details>
-
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use JWT Decoder</h2>
+    <ol>
+      <li>Paste the JWT into the input area.</li>
+      <li>Review the decoded header and payload sections.</li>
+      <li>Inspect claims such as exp, iss, aud, sub, and custom fields.</li>
+      <li>Copy the decoded values or compare them with your auth flow expectations.</li>
+    </ol>
+  </section>
 </div>
 
-<script>
-  const SAMPLE_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE2MjM5MDIyLCJleHAiOjk5OTk5OTk5OTl9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="jwt-builder.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">JWT Builder / Generator</div><div class="ds-related-desc">Build and sign JWT tokens with HMAC (HS256/HS384/HS512)</div></div></a>
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
+  </div>
+</div>
 
-  const CLAIM_NAMES = {
-    iss: 'Issuer', sub: 'Subject', aud: 'Audience',
-    exp: 'Expiration', nbf: 'Not Before', iat: 'Issued At',
-    jti: 'JWT ID', name: 'Full Name', email: 'Email',
-    role: 'Role', roles: 'Roles', scope: 'Scope',
-    azp: 'Authorized Party', nonce: 'Nonce',
-  };
-
-  function b64urlDecode(str) {
-    str = str.replace(/-/g, '+').replace(/_/g, '/');
-    while (str.length % 4) str += '=';
-    try {
-      return decodeURIComponent(Array.from(atob(str)).map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-    } catch { return atob(str); }
-  }
-
-  function syntaxHighlight(json) {
-    const escaped = json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    return escaped.replace(/("(\\u[\dA-Fa-f]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, match => {
-      let cls = 'json-number';
-      if (/^"/.test(match)) {
-        cls = /:$/.test(match) ? 'json-key' : 'json-string';
-        if (cls === 'json-key') match = match.replace(/:$/, '');
-        else return `<span class="${cls}">${match}</span>`;
-        return `<span class="${cls}">${match}</span><span class="json-bracket">:</span>`;
-      } else if (/true|false/.test(match)) cls = 'json-bool';
-      else if (/null/.test(match)) cls = 'json-null';
-      return `<span class="${cls}">${match}</span>`;
-    });
-  }
-
-  function formatTime(ts) {
-    try {
-      return new Date(ts * 1000).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
-    } catch { return String(ts); }
-  }
-
-  function getExpStatus(payload) {
-    if (payload.exp == null) return null;
-    const now = Math.floor(Date.now() / 1000);
-    const diff = payload.exp - now;
-    if (diff < 0) return { cls: 'expired', label: `Expired ${Math.abs(Math.round(diff/60))} min ago` };
-    if (diff < 300) return { cls: 'warn', label: `Expires in ${Math.round(diff/60)} min` };
-    if (diff < 3600) return { cls: 'warn', label: `Expires in ${Math.round(diff/60)} min` };
-    return { cls: 'valid', label: `Valid · expires ${formatTime(payload.exp)}` };
-  }
-
-  function renderClaimValue(key, val) {
-    if ((key === 'exp' || key === 'iat' || key === 'nbf') && typeof val === 'number') {
-      const date = formatTime(val);
-      let expCls = '';
-      if (key === 'exp') {
-        const status = getExpStatus({ exp: val });
-        expCls = status ? ` exp-${status.cls}` : '';
-      }
-      return `<span class="${expCls}">${val}</span> <span style="color:var(--text-muted);font-size:11px;">(${date})</span>`;
-    }
-    if (typeof val === 'object') return `<code style="font-size:11px;color:var(--text-secondary)">${JSON.stringify(val)}</code>`;
-    return `${val}`;
-  }
-
-  let parsedData = { header: null, payload: null, sig: '' };
-
-  function decode(token) {
-    token = token.trim();
-    const errorBanner = document.getElementById('errorBanner');
-    const statusDot = document.getElementById('statusDot');
-    const statusText = document.getElementById('statusText');
-    const decodedArea = document.getElementById('decodedArea');
-    const copyRow = document.getElementById('copyRow');
-
-    if (!token) {
-      errorBanner.classList.remove('show');
-      statusDot.className = 'status-dot none';
-      statusText.className = 'status-text';
-      statusText.textContent = 'Awaiting token…';
-      decodedArea.innerHTML = `<div class="empty-state"><div class="empty-icon">🔐</div><div class="empty-title">Paste a JWT to decode</div><div class="empty-sub">Supports HS256, RS256, ES256 and all standard JWT algorithms</div></div>`;
-      copyRow.style.display = 'none';
-      parsedData = { header: null, payload: null, sig: '' };
-      return;
-    }
-
-    const parts = token.split('.');
-    if (parts.length !== 3) {
-      errorBanner.textContent = 'Invalid JWT: expected 3 dot-separated segments (header.payload.signature).';
-      errorBanner.classList.add('show');
-      decodedArea.innerHTML = '';
-      copyRow.style.display = 'none';
-      return;
-    }
-
-    let header, payload;
-    try { header = JSON.parse(b64urlDecode(parts[0])); } catch {
-      errorBanner.textContent = 'Failed to decode header: invalid Base64url or JSON.';
-      errorBanner.classList.add('show'); return;
-    }
-    try { payload = JSON.parse(b64urlDecode(parts[1])); } catch {
-      errorBanner.textContent = 'Failed to decode payload: invalid Base64url or JSON.';
-      errorBanner.classList.add('show'); return;
-    }
-
-    errorBanner.classList.remove('show');
-    parsedData = { header, payload, sig: parts[2] };
-
-    // Status bar
-    const alg = header.alg || 'unknown';
-    const expStatus = getExpStatus(payload);
-    statusDot.className = `status-dot ${expStatus ? expStatus.cls : 'valid'}`;
-    statusText.className = `status-text ${expStatus ? expStatus.cls : 'valid'}`;
-    statusText.textContent = expStatus ? expStatus.label : 'No expiration set';
-
-    const statusBar = document.getElementById('statusBar');
-    statusBar.innerHTML = `
-      <div class="status-item">
-        <span class="status-dot ${expStatus ? expStatus.cls : 'valid'}"></span>
-        <span class="status-text ${expStatus ? expStatus.cls : 'valid'}">${expStatus ? expStatus.label : 'No expiration set'}</span>
-      </div>
-      <span class="alg-badge">${alg}</span>
-      ${payload.iss ? `<span style="font-size:12px;color:var(--text-muted)">iss: <span style="color:var(--text-secondary)">${payload.iss}</span></span>` : ''}
-      ${payload.sub ? `<span style="font-size:12px;color:var(--text-muted)">sub: <span style="color:var(--text-secondary)">${payload.sub}</span></span>` : ''}
-    `;
-
-    // Sections
-    const headerJson = JSON.stringify(header, null, 2);
-    const payloadJson = JSON.stringify(payload, null, 2);
-
-    const claimRows = Object.entries(payload).map(([k, v]) => {
-      const name = CLAIM_NAMES[k] || '';
-      return `<div class="claim-row"><span class="claim-key">${k}</span><span class="claim-val">${renderClaimValue(k, v)}</span>${name ? `<span class="claim-note">${name}</span>` : ''}</div>`;
-    }).join('');
-
-    decodedArea.innerHTML = `
-      <div class="sections-grid">
-        <div class="section-card">
-          <div class="section-header">
-            <span class="section-title"><span class="section-dot dot-header"></span>Header</span>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand JWTs</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Paste a JWT such as eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</span>
           </div>
-          <div class="section-body">
-            <div class="json-view">${syntaxHighlight(headerJson)}</div>
-          </div>
-        </div>
-        <div class="section-card">
-          <div class="section-header">
-            <span class="section-title"><span class="section-dot dot-payload"></span>Payload</span>
-          </div>
-          <div class="section-body">
-            ${claimRows}
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">The tool splits the token into header, payload, and signature, then decodes the readable claims.</span>
           </div>
         </div>
       </div>
-      <div class="section-card" style="margin-top:12px">
-        <div class="section-header">
-          <span class="section-title"><span class="section-dot dot-sig"></span>Signature</span>
-        </div>
-        <div class="section-body">
-          <div class="sig-display">${parts[2]}</div>
-          <div class="sig-note">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-            Signature cannot be verified client-side without the secret key.
-          </div>
-        </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Inspect token claims during API and auth debugging</li>
+          <li>Check expiry, issuer, audience, and subject values without backend tooling</li>
+          <li>Confirm which signing algorithm and token structure a system is using</li>
+          <li>Teach how JWT header, payload, and signature segments fit together</li>
+        </ul>
       </div>
-    `;
-
-    copyRow.style.display = 'flex';
-  }
-
-  document.getElementById('jwtInput').addEventListener('input', e => decode(e.target.value));
-
-  document.getElementById('btnPaste').addEventListener('click', async () => {
-    try {
-      const text = await navigator.clipboard.readText();
-      document.getElementById('jwtInput').value = text;
-      decode(text);
-    } catch { alert('Clipboard access denied'); }
-  });
-
-  document.getElementById('btnClear').addEventListener('click', () => {
-    document.getElementById('jwtInput').value = '';
-    decode('');
-  });
-
-  document.getElementById('btnSample').addEventListener('click', () => {
-    document.getElementById('jwtInput').value = SAMPLE_JWT;
-    decode(SAMPLE_JWT);
-  });
-
-  function makeCopyBtn(btnId, getter) {
-    document.getElementById(btnId).addEventListener('click', () => {
-      const text = getter();
-      if (!text) return;
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById(btnId);
-        btn.classList.add('copied');
-        const orig = btn.innerHTML;
-        btn.innerHTML = btn.innerHTML.replace(/Copy \w+( \w+)?/, '✓ Copied!');
-        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
-      });
-    });
-  }
-
-  makeCopyBtn('copyHeader', () => parsedData.header ? JSON.stringify(parsedData.header, null, 2) : '');
-  makeCopyBtn('copyPayload', () => parsedData.payload ? JSON.stringify(parsedData.payload, null, 2) : '');
-  makeCopyBtn('copySig', () => parsedData.sig || '');
-
-  // Escape key: clear JWT input when focused
-  document.getElementById('jwtInput').addEventListener('keydown', e => {
-    if (e.key === 'Escape') { e.preventDefault(); document.getElementById('jwtInput').value = ''; decode(''); }
-  });
-</script>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Helps debug login flows, API authorization, and token expiry issues.</li>
+          <li>Makes JWT structure easier to explain to teammates and stakeholders.</li>
+          <li>Runs locally so pasted tokens are not uploaded during inspection.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is it safe to paste my JWT here?</strong><p>Yes. Decoding runs entirely in your browser ??the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you are certain it is client-side only.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can this tool verify the signature?</strong><p>No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload ??verification must happen on your server.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does token expired mean?</strong><p>The exp claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you will need to re-authenticate.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the difference between JWT and session cookies?</strong><p>Session cookies store a session ID on the server and look it up on each request. JWTs are self-contained ??all claims are in the token itself, so no server-side session storage is needed. This makes JWTs useful in stateless, distributed systems.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

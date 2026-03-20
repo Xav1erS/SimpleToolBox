@@ -12,129 +12,66 @@
   <meta property="og:title" content="JSON to CSV Converter Online – Convert JSON Arrays Free | Simple ToolBox" />
   <meta property="og:description" content="Free online JSON to CSV and CSV to JSON converter. Supports custom delimiters and header row options. Runs entirely in your browser." />
   <meta property="og:site_name" content="SimpleToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON ↔ CSV Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert between JSON arrays and CSV format. Supports custom delimiters and header row options. 100% client-side processing.","featureList":["JSON to CSV conversion","CSV to JSON conversion","Custom delimiter support","Header row options","Real-time conversion"]}
-  </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--ds-font-sans);
-      background: var(--ds-color-bg);
-      color: var(--ds-color-text-primary);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+    <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JSON to CSV Converter",
+  "description": "Free online JSON to CSV and CSV to JSON converter. Supports custom delimiters (comma, tab, semicolon, pipe) and header row options. Runs entirely in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/json-csv"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it handle arrays nested inside objects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nested arrays are converted to JSON string columns. For complex nesting, consider pre-processing your JSON first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What CSV delimiters are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Comma, semicolon, tab, and pipe (|) delimiters are supported."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does JSON to CSV Converter Online ??Convert JSON Arrays Free do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JSON to CSV Converter Online ??Convert JSON Arrays Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is JSON to CSV Converter Online ??Convert JSON Arrays Free free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tool is free to use and does not require sign-up."
+      }
     }
-    main { flex: 1; }
-
-    /* Options bar */
-    .options-bar {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding: 12px 16px;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-md);
-    }
-    .options-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .options-label {
-      font-size: 12px;
-      color: var(--ds-color-text-muted);
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    /* Segment control */
-    .seg-ctrl {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-sm);
-      overflow: hidden;
-    }
-    .seg-btn {
-      padding: 5px 12px;
-      font-size: 12px;
-      font-family: var(--ds-font-sans);
-      background: var(--ds-color-surface);
-      color: var(--ds-color-text-secondary);
-      border: none;
-      border-right: 1px solid var(--ds-color-border);
-      cursor: pointer;
-      transition: background 0.12s, color 0.12s;
-      white-space: nowrap;
-    }
-    .seg-btn:last-child { border-right: none; }
-    .seg-btn:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
-    .seg-btn.active { background: var(--ds-color-accent); color: #fff; }
-
-    /* Checkbox */
-    .chk-label {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      cursor: pointer;
-      font-size: 13px;
-      color: var(--ds-color-text-secondary);
-      user-select: none;
-    }
-    .chk-label input[type="checkbox"] {
-      width: 15px;
-      height: 15px;
-      accent-color: var(--ds-color-accent);
-      cursor: pointer;
-    }
-
-    /* Workbench tweaks: make textareas taller */
-    .ds-tool-textarea { min-height: 260px; }
-
-    /* Related tools */
-    .ds-related-tools { margin-top: 8px; }
-    .ds-related-tools__title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ds-color-text-muted);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .ds-related-tools__list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .ds-related-tools__item {
-      padding: 6px 14px;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-sm);
-      font-size: 13px;
-      color: var(--ds-color-text-secondary);
-      text-decoration: none;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-    }
-    .ds-related-tools__item:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); }
-
-    @media (max-width: 600px) {
-      .options-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .ds-tool-workbench { flex-direction: column; }
-      .ds-tool-arrow { transform: rotate(90deg); }
-    }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8SBCZ6DT1R');
-  </script>
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
 </head>
 <body>
 
@@ -233,298 +170,88 @@
   </div>
 
   
+  <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is JSON ↔ CSV Converter?</h2>
-    <p>Converts JSON arrays to CSV spreadsheet format and CSV data back to JSON. Automatically detects column headers from JSON keys and handles nested objects by flattening them.</p>
+    <h2 class="ds-seo-section__title">What is JSON to CSV Converter?</h2>
+    <p>JSON to CSV Converter helps you move tabular data between JSON arrays and CSV text so it can be used in spreadsheets, scripts, and import/export flows. It is useful for API responses, reports, and any workflow where one tool expects rows while another expects objects.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use JSON ↔ CSV Converter</h2>
+    <h2 class="ds-seo-section__title">How to Use JSON to CSV Converter</h2>
     <ol>
-      <li>Paste a JSON array or CSV data.</li>
-      <li>Click <strong>Convert</strong>.</li>
-      <li>Choose delimiter: comma, tab, or semicolon.</li>
-      <li>Copy or download the converted output.</li>
+      <li>Paste JSON or CSV into the input panel.</li>
+      <li>Choose the conversion direction and delimiter options you need.</li>
+      <li>Review the converted result and confirm header row behavior.</li>
+      <li>Copy the output into your spreadsheet, script, or import workflow.</li>
     </ol>
   </section>
 </div>
+
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-      <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">{}</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Format and validate JSON data</div></div></a>
-      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">MD5, SHA-1, SHA-256, SHA-512 hashing</div></div></a>
-      <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encoder</div><div class="ds-related-desc">Encode and decode Base64 data</div></div></a>
+    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
+    <a href="yaml-json.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">YAML to JSON Converter</div><div class="ds-related-desc">Convert between YAML and JSON format instantly</div></div></a>
+    <a href="xml-json.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">XML ↔ JSON Converter</div><div class="ds-related-desc">Convert between XML and JSON format instantly</div></div></a>
   </div>
 </div>
+
 <details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle"><span>Understand JSON ↔ CSV Converter</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+  <summary class="ds-seo-more__toggle">
+    <span>Understand JSON to CSV Converter</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>JSON input: <code>[{"name":"Alice","age":30},{"name":"Bob","age":25}]</code></p><p>CSV output:</p><pre>name,age
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">[{&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:30},{&quot;name&quot;:&quot;Bob&quot;,&quot;age&quot;:25}]</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">name,age
 Alice,30
-Bob,25</pre></div>
+Bob,25</span>
+          </div>
+        </div>
+      </div>
     </details>
     <details class="ds-seo-collapse">
-      <summary>Handling Complex JSON</summary>
-      <div class="ds-seo-collapse__body"><p>Flat arrays convert directly. Nested objects are flattened with dot notation (<code>address.city</code> becomes a column). Arrays within objects are serialized as JSON strings. Null values become empty CSV cells. All column headers are auto-detected from the first record.</p></div>
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Convert API arrays and tabular exports between JSON and CSV</li>
+          <li>Prepare spreadsheet-friendly CSV from structured JSON data</li>
+          <li>Turn CSV rows back into JSON objects for scripts and apps</li>
+          <li>Check delimiter and header handling before importing into another system</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>No Excel macros or Python scripts needed for quick conversion</li>
-        <li>Handles nested JSON automatically</li>
-        <li>Works for API output → spreadsheet workflows</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for exports, spreadsheets, APIs, and reporting flows.</li>
+          <li>Makes row-oriented and object-oriented data easier to switch between.</li>
+          <li>Runs locally so pasted datasets are not uploaded during conversion.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Does it handle arrays nested inside objects?</strong><p>Nested arrays are converted to JSON string columns. For complex nesting, consider pre-processing your JSON first.</p></div>
         <div class="ds-seo-faq-item"><strong>What CSV delimiters are supported?</strong><p>Comma, semicolon, tab, and pipe (|) delimiters are supported.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does JSON to CSV Converter Online ??Convert JSON Arrays Free do?</strong><p>JSON to CSV Converter Online ??Convert JSON Arrays Free runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is JSON to CSV Converter Online ??Convert JSON Arrays Free free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-
-</main>
-
-<script>
-(function () {
-  const inputArea  = document.getElementById('inputArea');
-  const outputArea = document.getElementById('outputArea');
-  const inputLabel = document.getElementById('inputLabel');
-  const outputLabel= document.getElementById('outputLabel');
-  const inputStat  = document.getElementById('inputStat');
-  const outputStat = document.getElementById('outputStat');
-  const errorBox   = document.getElementById('errorBox');
-  const btnConvert = document.getElementById('btnConvert');
-  const btnPaste   = document.getElementById('btnPaste');
-  const btnClear   = document.getElementById('btnClear');
-  const btnCopy    = document.getElementById('btnCopy');
-  const headerRow  = document.getElementById('headerRow');
-  const arrowEl    = document.getElementById('arrowEl');
-
-  let currentMode = 'json2csv';
-  let currentDelim = ',';
-  let debounceTimer = null;
-
-  // ---- Mode buttons ----
-  document.querySelectorAll('.ds-tool-modebtn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.ds-tool-modebtn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentMode = btn.dataset.mode;
-      updateLabels();
-      clearOutput();
-      debounceConvert();
-    });
-  });
-
-  // ---- Delimiter buttons ----
-  document.querySelectorAll('#delimCtrl .seg-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#delimCtrl .seg-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentDelim = btn.dataset.delim;
-      debounceConvert();
-    });
-  });
-
-  headerRow.addEventListener('change', debounceConvert);
-
-  function updateLabels() {
-    if (currentMode === 'json2csv') {
-      inputLabel.textContent  = 'JSON Input';
-      outputLabel.textContent = 'CSV Output';
-      inputArea.placeholder   = '[{"name":"Alice","age":30},{"name":"Bob","age":25}]';
-      arrowEl.textContent = '→';
-    } else {
-      inputLabel.textContent  = 'CSV Input';
-      outputLabel.textContent = 'JSON Output';
-      inputArea.placeholder   = 'name,age\nAlice,30\nBob,25';
-      arrowEl.textContent = '→';
-    }
-  }
-
-  function clearOutput() {
-    outputArea.value = '';
-    outputStat.textContent = '0 chars';
-    hideError();
-  }
-
-  function showError(msg) {
-    errorBox.textContent = '⚠ ' + msg;
-    errorBox.style.display = 'block';
-  }
-
-  function hideError() {
-    errorBox.style.display = 'none';
-  }
-
-  // ---- JSON → CSV ----
-  function jsonToCSV(jsonStr, delimiter, hasHeader) {
-    const data = JSON.parse(jsonStr);
-    if (!Array.isArray(data) || data.length === 0) {
-      throw new Error('Input must be a non-empty JSON array of objects.');
-    }
-    if (typeof data[0] !== 'object' || data[0] === null || Array.isArray(data[0])) {
-      throw new Error('Each element in the JSON array must be an object.');
-    }
-    const keys = Object.keys(data[0]);
-    const escape = (v) => {
-      const s = String(v ?? '');
-      if (s.includes(delimiter) || s.includes('"') || s.includes('\n') || s.includes('\r')) {
-        return '"' + s.replace(/"/g, '""') + '"';
-      }
-      return s;
-    };
-    const rows = data.map(row => keys.map(k => escape(row[k])).join(delimiter));
-    if (hasHeader) {
-      return [keys.map(escape).join(delimiter), ...rows].join('\n');
-    }
-    return rows.join('\n');
-  }
-
-  // ---- CSV → JSON ----
-  function parseCsvLine(line, delimiter) {
-    const vals = [];
-    let i = 0;
-    const len = line.length;
-    const delimLen = delimiter.length;
-    while (i <= len) {
-      if (i === len) {
-        vals.push('');
-        break;
-      }
-      if (line[i] === '"') {
-        // quoted field
-        let end = i + 1;
-        let field = '';
-        while (end < len) {
-          if (line[end] === '"') {
-            if (line[end + 1] === '"') {
-              field += '"';
-              end += 2;
-            } else {
-              end++;
-              break;
-            }
-          } else {
-            field += line[end];
-            end++;
-          }
-        }
-        vals.push(field);
-        // skip delimiter after closing quote
-        if (line.slice(end, end + delimLen) === delimiter) {
-          i = end + delimLen;
-        } else {
-          i = end + 1;
-        }
-      } else {
-        const next = line.indexOf(delimiter, i);
-        if (next === -1) {
-          vals.push(line.slice(i));
-          break;
-        } else {
-          vals.push(line.slice(i, next));
-          i = next + delimLen;
-        }
-      }
-    }
-    return vals;
-  }
-
-  function csvToJSON(csvStr, delimiter, hasHeader) {
-    const lines = csvStr.trim().split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-    if (lines.length === 0) throw new Error('Empty input.');
-    if (hasHeader) {
-      if (lines.length < 2) throw new Error('CSV must have at least a header row and one data row.');
-      const headers = parseCsvLine(lines[0], delimiter);
-      return lines.slice(1).map(line => {
-        const vals = parseCsvLine(line, delimiter);
-        const obj = {};
-        headers.forEach((h, idx) => { obj[h] = vals[idx] !== undefined ? vals[idx] : ''; });
-        return obj;
-      });
-    } else {
-      return lines.map(line => parseCsvLine(line, delimiter));
-    }
-  }
-
-  // ---- Main convert ----
-  function convert() {
-    hideError();
-    const input = inputArea.value;
-    if (!input.trim()) {
-      clearOutput();
-      return;
-    }
-    try {
-      let result;
-      if (currentMode === 'json2csv') {
-        result = jsonToCSV(input, currentDelim, headerRow.checked);
-      } else {
-        const arr = csvToJSON(input, currentDelim, headerRow.checked);
-        result = JSON.stringify(arr, null, 2);
-      }
-      outputArea.value = result;
-      outputStat.textContent = result.length.toLocaleString() + ' chars';
-    } catch (err) {
-      outputArea.value = '';
-      outputStat.textContent = '0 chars';
-      showError(err.message);
-    }
-  }
-
-  function debounceConvert() {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(convert, 300);
-  }
-
-  // ---- Input stat update ----
-  inputArea.addEventListener('input', () => {
-    inputStat.textContent = inputArea.value.length.toLocaleString() + ' chars';
-    debounceConvert();
-  });
-
-  // ---- Buttons ----
-  btnConvert.addEventListener('click', convert);
-
-  btnPaste.addEventListener('click', async () => {
-    try {
-      const text = await navigator.clipboard.readText();
-      inputArea.value = text;
-      inputStat.textContent = text.length.toLocaleString() + ' chars';
-      debounceConvert();
-    } catch {
-      inputArea.focus();
-    }
-  });
-
-  btnClear.addEventListener('click', () => {
-    inputArea.value = '';
-    inputStat.textContent = '0 chars';
-    clearOutput();
-  });
-
-  btnCopy.addEventListener('click', () => {
-    const text = outputArea.value;
-    if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      btnCopy.innerHTML = '✓ Copied';
-      btnCopy.style.color = '#22c55e';
-      setTimeout(() => {
-        btnCopy.innerHTML = 'Copy';
-        btnCopy.style.color = '';
-      }, 1500);
-    });
-  });
-
-})();
-</script>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

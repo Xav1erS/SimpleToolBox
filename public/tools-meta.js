@@ -79,10 +79,10 @@ const TOOLS_META = [
         "toml-json"
       ],
       useCases: [
-        "Prettify minified API responses for debugging",
-        "Validate JSON before committing to a config file",
-        "Convert a JSON array to SQL INSERT statements",
-        "Transform JSON data to CSV for spreadsheet import"
+        "Prettify minified API responses while debugging",
+        "Validate JSON before saving config or request bodies",
+        "Convert JSON into CSV or SQL-ready structures",
+        "Clean sample payloads for documentation and demos"
       ],
       example: {
         input: "{\"name\":\"Alice\",\"age\":30}",
@@ -105,7 +105,15 @@ const TOOLS_META = [
           q: "Is this JSON Formatter free?",
           a: "Yes. The tool is completely free with no sign-up required. Everything runs in your browser — no data is ever sent to a server."
         }
-      ]
+      ],
+      shortTitle: "JSON Formatter",
+      seoContent: {
+        title: "What is JSON Formatter?",
+        body: "JSON Formatter prettifies, validates, and restructures JSON so you can inspect payloads, debug API responses, and copy clean output faster. It is useful for front-end development, back-end debugging, integrations, and documentation work."
+      },
+      learnMore: {
+        title: "Understand JSON Formatting"
+      }
     },
   {
       slug: "password-generator",
@@ -118,9 +126,10 @@ const TOOLS_META = [
         "bcrypt"
       ],
       useCases: [
-        "Create a strong master password for a password manager",
-        "Generate temporary passwords for new user accounts",
-        "Produce random API keys or secrets"
+        "Generate strong passwords for new accounts",
+        "Create one-off credentials for staging or admin tools",
+        "Produce random passwords without using external websites",
+        "Adjust length and character rules for site requirements"
       ],
       example: {
         input: "16 chars, uppercase + lowercase + digits + symbols",
@@ -143,7 +152,15 @@ const TOOLS_META = [
           q: "Is this password generator secure?",
           a: "Yes. Passwords are generated using crypto.getRandomValues() — the W3C-standard cryptographically secure pseudorandom number generator (CSPRNG) built into every modern browser. This is the same source of randomness used by password managers and security applications."
         }
-      ]
+      ],
+      shortTitle: "Password Generator",
+      seoContent: {
+        title: "What is Password Generator?",
+        body: "Password Generator creates strong random passwords locally in the browser so you can avoid weak, reused credentials. It is useful for account setup, admin handoff, test environments, and any workflow that needs quick secure strings."
+      },
+      learnMore: {
+        title: "Understand Strong Passwords"
+      }
     },
   {
       slug: "timestamp",
@@ -275,9 +292,10 @@ const TOOLS_META = [
         "base58"
       ],
       useCases: [
-        "Generate primary keys for database records",
-        "Create correlation IDs for distributed system logging",
-        "Generate unique identifiers for test data"
+        "Generate sample IDs for databases and APIs",
+        "Create unique keys for test fixtures and demos",
+        "Seed mock data locally without a server dependency",
+        "Copy batches of UUIDs for scripts or spreadsheets"
       ],
       example: {
         input: "v4, \"qty\": 1",
@@ -300,7 +318,15 @@ const TOOLS_META = [
           q: "v1",
           a: "v1 is time-based: it encodes the current timestamp and the machine's MAC address, making it sortable by creation time but potentially revealing system information. v4 is purely random and the recommended default for most applications."
         }
-      ]
+      ],
+      shortTitle: "UUID Generator",
+      seoContent: {
+        title: "What is UUID Generator?",
+        body: "UUID Generator creates random unique identifiers in the browser so you can seed records, create test data, and generate IDs without relying on a back-end service. It is useful for development, QA, and local content workflows."
+      },
+      learnMore: {
+        title: "Understand UUIDs"
+      }
     },
   {
       slug: "word-counter",
@@ -496,10 +522,10 @@ const TOOLS_META = [
         "unit-converter"
       ],
       useCases: [
-        "Downscale high-resolution photos for use on websites and blogs",
-        "Resize images to meet social media platform dimension requirements",
-        "Reduce file size of email attachments without changing format",
-        "Create thumbnail versions of product photos for e-commerce listings"
+        "Resize hero images and screenshots for websites",
+        "Prepare exact dimensions for social or marketplace uploads",
+        "Create smaller exports for docs and slide decks",
+        "Convert image size and format in one browser-only step"
       ],
       faq: [
         {
@@ -522,6 +548,14 @@ const TOOLS_META = [
       example: {
         input: "Upload a 4000×3000 DSLR photo and resize for web publishing:",
         output: "For social media, use platform-specific presets: Twitter/X header (1500×500), LinkedIn post (1200×627), Instagram square (1080×1080)."
+      },
+      shortTitle: "Image Resizer",
+      seoContent: {
+        title: "What is Image Resizer?",
+        body: "Image Resizer changes image dimensions directly in the browser so you can prepare files for websites, social media, documents, and app uploads. It is useful when you need exact width and height targets without sending images to a server."
+      },
+      learnMore: {
+        title: "Understand Image Resizing"
       }
     },
   {
@@ -535,8 +569,10 @@ const TOOLS_META = [
         "base64"
       ],
       useCases: [
-        "Quickly complete common image compressor online free – reduce image file size tasks in the browser",
-        "Verify image compressor online free – reduce image file size results without installing desktop software"
+        "Shrink hero images before uploading to a website",
+        "Reduce attachment size for email or chat sharing",
+        "Meet CMS upload limits without opening desktop apps",
+        "Compare JPEG, PNG, and WebP output sizes quickly"
       ],
       faq: [
         {
@@ -559,6 +595,14 @@ const TOOLS_META = [
       example: {
         input: "Upload a PNG screenshot (3 MB) and compress to JPEG at 85% quality:",
         output: "Drag the quality slider to find the sweet spot between file size and visual clarity. The preview updates instantly."
+      },
+      shortTitle: "Image Compressor",
+      seoContent: {
+        title: "What is Image Compressor?",
+        body: "Image Compressor reduces image file size in the browser so you can shrink uploads without sending files to a server. It is useful for website performance, email attachments, CMS uploads, and social posts with strict size limits."
+      },
+      learnMore: {
+        title: "Understand Image Compression"
       }
     },
   {
@@ -572,11 +616,10 @@ const TOOLS_META = [
         "base64"
       ],
       useCases: [
-        "Convert JPEG photos and PNG graphics to WebP for faster web pages",
-        "Convert WebP images to JPEG or PNG for compatibility with older software",
-        "Convert GIF or BMP images to a modern web-friendly format",
-        "Reduce image payload for better Core Web Vitals (LCP) scores",
-        "Prepare images for upload to platforms that require specific formats"
+        "Convert site assets to WebP for faster page loads",
+        "Prepare blog and ecommerce images for modern browsers",
+        "Compare output size before replacing PNG or JPEG files",
+        "Create optimized screenshots for product pages"
       ],
       faq: [
         {
@@ -599,6 +642,14 @@ const TOOLS_META = [
       example: {
         input: "Upload a JPEG photo (2 MB) and convert to WebP at 80% quality:",
         output: "The side-by-side preview lets you compare visual quality before downloading."
+      },
+      shortTitle: "WebP Converter",
+      seoContent: {
+        title: "What is WebP Converter?",
+        body: "WebP Converter turns images into WebP so you can reduce file size while keeping web-friendly quality. It is useful when preparing site assets, blog images, app screenshots, and storefront visuals for faster loading."
+      },
+      learnMore: {
+        title: "Understand WebP Images"
       }
     },
   {
@@ -612,10 +663,10 @@ const TOOLS_META = [
         "qr-code-generator"
       ],
       useCases: [
-        "Embed a video preview image in a blog post or article",
-        "Use a thumbnail as a social media preview image for a shared link",
-        "Research competitor thumbnail design styles for your own YouTube channel",
-        "Archive thumbnails of videos you reference in documentation or research"
+        "Grab thumbnails for competitive channel research",
+        "Review visual trends across campaign ideas",
+        "Reuse a reference thumbnail in design presentations",
+        "Check which thumbnail resolution a video exposes"
       ],
       faq: [
         {
@@ -638,6 +689,14 @@ const TOOLS_META = [
       example: {
         input: "Video URL: https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         output: "Available thumbnails fetched:"
+      },
+      shortTitle: "YouTube Thumbnail Downloader",
+      seoContent: {
+        title: "What is YouTube Thumbnail Downloader?",
+        body: "YouTube Thumbnail Downloader fetches the available preview images for a YouTube video so you can inspect or save them quickly. It is useful for competitive research, campaign planning, content audits, and presentation mockups."
+      },
+      learnMore: {
+        title: "Understand YouTube Thumbnails"
       }
     },
   {
@@ -651,11 +710,10 @@ const TOOLS_META = [
         "password-generator"
       ],
       useCases: [
-        "Share website URLs on printed materials, business cards, or posters",
-        "Share Wi-Fi credentials without typing passwords (scan to connect)",
-        "Encode vCard contact information for instant phone import",
-        "Create QR codes for email links, event check-ins, or product packaging",
-        "Generate branded QR codes with custom colors and logo overlay"
+        "Create QR codes for landing pages and printed flyers",
+        "Generate Wi-Fi or contact QR codes for offices and events",
+        "Build scannable links for packaging or menus",
+        "Test payload types before exporting a final code"
       ],
       faq: [
         {
@@ -678,6 +736,14 @@ const TOOLS_META = [
       example: {
         input: "Enter a URL such as https://example.com and click Generate — a scannable QR code appears instantly.",
         output: "You can also encode:"
+      },
+      shortTitle: "QR Code Generator",
+      seoContent: {
+        title: "What is QR Code Generator?",
+        body: "QR Code Generator creates scannable codes for links, text, Wi-Fi credentials, email, and contact details directly in the browser. It is useful for print materials, menus, event signage, onboarding flows, and quick device handoffs."
+      },
+      learnMore: {
+        title: "Understand QR Codes"
       }
     },
   {
@@ -811,9 +877,10 @@ const TOOLS_META = [
         "contrast-checker"
       ],
       useCases: [
-        "Pick a brand color and get its HEX code for CSS",
-        "Convert a design HEX color to RGB for JavaScript",
-        "Find HSL values for color manipulation in code"
+        "Pick exact UI colors for CSS or design tokens",
+        "Copy HEX, RGB, or HSL values into front-end code",
+        "Inspect and compare colors during design QA",
+        "Build small palettes from a single selected color"
       ],
       example: {
         input: "#FF5733",
@@ -836,7 +903,15 @@ const TOOLS_META = [
           q: "Can I use this to check WCAG color contrast?",
           a: "This tool shows color values and conversions. For accessibility contrast checking (WCAG AA/AAA ratios) against a background color, use the dedicated Contrast Checker tool."
         }
-      ]
+      ],
+      shortTitle: "Color Picker",
+      seoContent: {
+        title: "What is Color Picker?",
+        body: "Color Picker helps you inspect and copy color values such as HEX, RGB, and HSL directly in the browser. It is useful for UI work, design handoff, CSS authoring, and quick palette exploration without opening a full graphics app."
+      },
+      learnMore: {
+        title: "Understand Color Picking"
+      }
     },
   {
       slug: "regex-tester",
@@ -849,8 +924,10 @@ const TOOLS_META = [
         "hash-generator"
       ],
       useCases: [
-        "Quickly complete common regex tester online – test & debug regular expressions tasks in the browser",
-        "Verify regex tester online – test & debug regular expressions results without installing desktop software"
+        "Debug JavaScript regular expressions against real sample text",
+        "Inspect capture groups and replacement output before writing code",
+        "Test validation patterns for forms, logs, or parsing tasks",
+        "Share clear regex examples during documentation or onboarding"
       ],
       faq: [
         {
@@ -873,6 +950,27 @@ const TOOLS_META = [
       example: {
         input: "Pattern: \\b[A-Z][a-z]+\\b — matches capitalized words",
         output: "Test string: Hello World foo Bar"
+      },
+      shortTitle: "Regex Tester",
+      seoContent: {
+        whatIsTitle: "What is Regex Tester?",
+        whatIsBody: "Regex Tester helps you run regular expressions against sample text so you can inspect matches, capture groups, flags, and replacements in real time. It is useful for validation, parsing, search, data cleaning, and debugging patterns before they go into code.",
+        howToTitle: "How to Use Regex Tester",
+        howToSteps: [
+          "Enter the regular expression pattern you want to test.",
+          "Paste the sample text the pattern should run against.",
+          "Toggle flags such as global, multiline, or case-insensitive as needed.",
+          "Review matches, groups, and replacement output before using the pattern."
+        ]
+      },
+      learnMore: {
+        title: "Understand Regular Expressions",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for validation rules, parsing, and search patterns.",
+          "Lets you test flags, groups, and replace mode without opening DevTools.",
+          "Runs locally so logs and sample text stay in the browser."
+        ]
       }
     },
   {
@@ -886,9 +984,10 @@ const TOOLS_META = [
         "diff-viewer"
       ],
       useCases: [
-        "Preview README files before committing to GitHub",
-        "Write and preview blog posts in Markdown",
-        "Check table rendering in documentation"
+        "Preview README changes before committing",
+        "Check Markdown formatting for docs and blog posts",
+        "Inspect code fences and tables in technical content",
+        "Copy clean HTML output from Markdown source"
       ],
       example: {
         input: "# Hello\n\n**Bold** and _italic_ text.",
@@ -911,7 +1010,15 @@ const TOOLS_META = [
           q: "Copy HTML",
           a: "Yes. Click Copy HTML to copy the rendered HTML to your clipboard, or Export HTML to download a standalone HTML file that includes basic styling."
         }
-      ]
+      ],
+      shortTitle: "Markdown Preview",
+      seoContent: {
+        title: "What is Markdown Preview?",
+        body: "Markdown Preview renders Markdown into formatted output in real time so you can check headings, lists, links, tables, and code blocks before publishing. It is useful for docs, READMEs, notes, CMS content, and developer tutorials."
+      },
+      learnMore: {
+        title: "Understand Markdown Rendering"
+      }
     },
   {
       slug: "cron-builder",
@@ -924,11 +1031,10 @@ const TOOLS_META = [
         "json-formatter"
       ],
       useCases: [
-        "Database backups — run a backup script every night at 02:00: 0 2 * * *",
-        "Scheduled reports — send a weekly email every Monday at 08:00: 0 8 * * 1",
-        "Cache invalidation — clear cached data every 15 minutes: */15 * * * *",
-        "CI/CD pipelines — trigger nightly builds or dependency audits automatically.",
-        "API polling — fetch data from an external service on a regular interval."
+        "Build cron schedules without memorizing syntax",
+        "Check recurring job timing before deploying automation",
+        "Generate readable schedules for ops documentation",
+        "Validate cron rules used in CI, servers, or hosted schedulers"
       ],
       faq: [
         {
@@ -947,45 +1053,74 @@ const TOOLS_META = [
           q: "Can I run a job on the last day of the month?",
           a: "Standard cron doesn't have an \"L\" (last) modifier — that's a Quartz extension. For standard cron, a common workaround is to schedule for the 28th–31st and check the date inside your script."
         }
-      ]
+      ],
+      shortTitle: "Cron Builder",
+      seoContent: {
+        title: "What is Cron Builder?",
+        body: "Cron Builder helps you create cron expressions from readable schedule choices instead of memorizing field syntax. It is useful for scheduled jobs, deployment tasks, maintenance scripts, and dashboards that rely on cron rules."
+      },
+      learnMore: {
+        title: "Understand Cron Expressions"
+      }
     },
   {
       slug: "jwt-decoder",
-      title: "JWT Decoder Online – Inspect & Decode JSON Web Tokens",
+      title: "JWT Decoder Online ??Inspect & Decode JSON Web Tokens",
       description: "Free online JWT decoder and inspector. Parse JWT header, payload, and signature. View expiration time, algorithm, and all claims. Runs entirely in your browser.",
       category: "encode",
+      shortTitle: "JWT Decoder / Inspector",
       relatedTools: [
         "jwt-builder",
         "base64",
         "hash-generator"
       ],
       useCases: [
-        "API debugging — inspect what claims a token carries without a server-side tool.",
-        "Checking expiry — read the exp field to see when a token expires.",
-        "Auth troubleshooting — confirm that the correct user ID, roles, and scopes are in the payload.",
-        "Learning OAuth 2.0 / OIDC — understand what fields like aud , azp , and nonce mean."
+        "Inspect token claims during API and auth debugging",
+        "Check expiry, issuer, audience, and subject values without backend tooling",
+        "Confirm which signing algorithm and token structure a system is using",
+        "Teach how JWT header, payload, and signature segments fit together"
       ],
       faq: [
         {
           q: "Is it safe to paste my JWT here?",
-          a: "Yes. Decoding runs entirely in your browser — the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you're certain it's client-side only."
+          a: "Yes. Decoding runs entirely in your browser ??the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you are certain it is client-side only."
         },
         {
           q: "Can this tool verify the signature?",
-          a: "No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload — verification must happen on your server."
+          a: "No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload ??verification must happen on your server."
         },
         {
-          q: "What does \"token expired\" mean?",
-          a: "The exp claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you'll need to re-authenticate."
+          q: "What does token expired mean?",
+          a: "The exp claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you will need to re-authenticate."
         },
         {
-          q: "self-contained",
-          a: "Session cookies store a session ID on the server and look it up on each request. JWTs are self-contained — all claims are in the token itself, so no server-side session storage is needed. This makes JWTs ideal for stateless, distributed systems."
+          q: "What is the difference between JWT and session cookies?",
+          a: "Session cookies store a session ID on the server and look it up on each request. JWTs are self-contained ??all claims are in the token itself, so no server-side session storage is needed. This makes JWTs useful in stateless, distributed systems."
         }
       ],
       example: {
-        input: "Paste any JWT — e.g. eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-        output: "The tool instantly splits it into three parts:"
+        input: "Paste a JWT such as eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        output: "The tool splits the token into header, payload, and signature, then decodes the readable claims."
+      },
+      seoContent: {
+        whatIsTitle: "What is JWT Decoder?",
+        whatIsBody: "JWT Decoder parses JSON Web Tokens into their three parts so you can inspect the header, payload claims, algorithm, and signature segment. It is useful for authentication debugging, expiry checks, and understanding what a token actually contains without sending it to a server.",
+        howToTitle: "How to Use JWT Decoder",
+        howToSteps: [
+          "Paste the JWT into the input area.",
+          "Review the decoded header and payload sections.",
+          "Inspect claims such as exp, iss, aud, sub, and custom fields.",
+          "Copy the decoded values or compare them with your auth flow expectations."
+        ]
+      },
+      learnMore: {
+        title: "Understand JWTs",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Helps debug login flows, API authorization, and token expiry issues.",
+          "Makes JWT structure easier to explain to teammates and stakeholders.",
+          "Runs locally so pasted tokens are not uploaded during inspection."
+        ]
       }
     },
   {
@@ -1302,8 +1437,10 @@ const TOOLS_META = [
         "html-formatter"
       ],
       useCases: [
-        "Quickly complete common css minifier - compress css online tasks in the browser",
-        "Verify css minifier - compress css online results without installing desktop software"
+        "Reduce stylesheet size before deployment",
+        "Compact CSS for embeds or snippets",
+        "Compare formatted and minified output while debugging",
+        "Prepare smaller style payloads for static sites or emails"
       ],
       faq: [
         {
@@ -1326,6 +1463,14 @@ const TOOLS_META = [
       example: {
         input: "\\n.btn {\\n color: red;\\n padding: 8px 16px;\\n}",
         output: ".btn{color:red;padding:8px 16px}"
+      },
+      shortTitle: "CSS Minifier",
+      seoContent: {
+        title: "What is CSS Minifier?",
+        body: "CSS Minifier compresses CSS by removing extra whitespace and nonessential characters so you can reduce payload size quickly. It is useful for front-end optimization, static site publishing, demos, and copying compact styles into constrained environments."
+      },
+      learnMore: {
+        title: "Understand CSS Minification"
       }
     },
   {
@@ -1339,8 +1484,10 @@ const TOOLS_META = [
         "json-formatter"
       ],
       useCases: [
-        "Quickly complete common javascript minifier online – compress &amp; minify js free tasks in the browser",
-        "Verify javascript minifier online – compress &amp; minify js free results without installing desktop software"
+        "Minify script snippets before deployment",
+        "Generate compact JavaScript for demos or embeds",
+        "Check whether whitespace-only compression is enough for a use case",
+        "Compare readable and minified output during front-end work"
       ],
       faq: [
         {
@@ -1363,21 +1510,32 @@ const TOOLS_META = [
       example: {
         input: "Input (42 bytes):",
         output: "Minified (26 bytes): function add(a,b){return a+b}"
+      },
+      shortTitle: "JS Minifier",
+      seoContent: {
+        title: "What is JS Minifier?",
+        body: "JS Minifier compresses JavaScript into a smaller output that is easier to ship in lightweight demos or static deployments. It is useful for reducing file size, testing minified behavior, and generating compact script snippets in the browser."
+      },
+      learnMore: {
+        title: "Understand JavaScript Minification"
       }
     },
   {
       slug: "toml-json",
-      title: "TOML to JSON Converter Online – Parse & Convert TOML Free",
+      title: "TOML to JSON Converter Online ??Parse & Convert TOML Free",
       description: "Convert TOML to JSON and JSON to TOML instantly. Supports tables, arrays, inline tables, dates, and all TOML v1.0 types. Free, browser-based, no data sent.",
       category: "convert",
+      shortTitle: "TOML to JSON Converter",
       relatedTools: [
         "yaml-json",
         "json-formatter",
         "xml-json"
       ],
       useCases: [
-        "Quickly complete common toml to json converter online – parse & convert toml free tasks in the browser",
-        "Verify toml to json converter online – parse & convert toml free results without installing desktop software"
+        "Convert app, Rust, or Python config files between TOML and JSON",
+        "Inspect nested TOML tables in explicit JSON object form",
+        "Prepare data for tools that accept JSON but not TOML",
+        "Check arrays of tables, inline tables, and typed values during config debugging"
       ],
       faq: [
         {
@@ -1386,7 +1544,7 @@ const TOOLS_META = [
         },
         {
           q: "Does the tool support TOML arrays of tables?",
-          a: "Yes. TOML arrays of tables (double-bracket sections like [[products]] ) are converted to JSON arrays of objects."
+          a: "Yes. TOML arrays of tables (double-bracket sections like [[products]]) are converted to JSON arrays of objects."
         },
         {
           q: "What TOML version is supported?",
@@ -1398,8 +1556,28 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Converting a TOML database config section to JSON:",
-        output: "TOML's section headers map to nested JSON objects, and values preserve their native types."
+        input: "[database]\nserver = \"db.example.com\"\nports = [5432, 5433]",
+        output: "{\n  \"database\": {\n    \"server\": \"db.example.com\",\n    \"ports\": [5432, 5433]\n  }\n}"
+      },
+      seoContent: {
+        whatIsTitle: "What is TOML to JSON Converter?",
+        whatIsBody: "TOML to JSON Converter helps you move structured configuration data between TOML and JSON formats. It is useful for developer tooling, app settings, package metadata, and any workflow where one system prefers TOML while another expects JSON.",
+        howToTitle: "How to Use TOML to JSON Converter",
+        howToSteps: [
+          "Paste TOML or JSON into the input panel.",
+          "Choose the conversion direction you need.",
+          "Review the converted result and fix syntax issues if the parser reports an error.",
+          "Copy the output into your config file, script, or build workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand TOML to JSON Converter",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for config-heavy projects and language ecosystems that rely on TOML.",
+          "Makes TOML tables and typed values easier to inspect in JSON form.",
+          "Runs locally so project configuration stays on your machine."
+        ]
       }
     },
   {
@@ -1407,19 +1585,22 @@ const TOOLS_META = [
       title: "JWT Builder / Generator - Create JSON Web Tokens",
       description: "Build and sign JSON Web Tokens (JWT) with HMAC (HS256/HS384/HS512). Set header, payload claims, and secret key. Free, browser-based, no data sent.",
       category: "encode",
+      shortTitle: "JWT Builder / Generator",
       relatedTools: [
         "jwt-decoder",
         "hmac",
         "base64"
       ],
       useCases: [
-        "Quickly complete common jwt builder / generator - create json web tokens tasks in the browser",
-        "Verify jwt builder / generator - create json web tokens results without installing desktop software"
+        "Generate test JWTs for local auth and API development",
+        "Experiment with header and payload claims before wiring backend issuance",
+        "Create short-lived tokens to verify expiry and role-based logic",
+        "Produce HMAC-signed JWT samples for documentation or demos"
       ],
       faq: [
         {
           q: "Can I use RS256 (asymmetric) signing?",
-          a: "Yes — paste your RSA private key in PEM format for RS256/RS384/RS512 signing."
+          a: "No. This builder is focused on HMAC signing modes such as HS256, HS384, and HS512. Use a dedicated JWT tool or backend library for RSA and EC key-based signing."
         },
         {
           q: "How do I decode an existing JWT?",
@@ -1437,6 +1618,26 @@ const TOOLS_META = [
       example: {
         input: "Header: {\"alg\":\"HS256\",\"typ\":\"JWT\"}",
         output: "Payload: {\"sub\":\"user123\",\"exp\":1735689600,\"role\":\"admin\"}"
+      },
+      seoContent: {
+        whatIsTitle: "What is JWT Builder?",
+        whatIsBody: "JWT Builder creates signed JSON Web Tokens in the browser using HMAC algorithms such as HS256, HS384, and HS512. It is useful for generating sample tokens, testing claim sets, and validating how your application handles roles, expiry, and custom payload fields.",
+        howToTitle: "How to Use JWT Builder",
+        howToSteps: [
+          "Choose the HMAC algorithm you want to use.",
+          "Enter or edit the payload claims you need in the token.",
+          "Provide the signing secret and build the token.",
+          "Copy the generated JWT and test it in your local app or API flow."
+        ]
+      },
+      learnMore: {
+        title: "Understand JWT Builder",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for local auth testing without wiring a full token service.",
+          "Helps you experiment with claims, expiry, and HMAC algorithms quickly.",
+          "Runs client-side so secrets stay in the browser during token generation."
+        ]
       }
     },
   {
@@ -1450,8 +1651,10 @@ const TOOLS_META = [
         "color-palette"
       ],
       useCases: [
-        "Quickly complete common color blindness simulator online – test ui accessibility free tasks in the browser",
-        "Verify color blindness simulator online – test ui accessibility free results without installing desktop software"
+        "Review charts that rely on red-versus-green status colors",
+        "Test whether UI states stay distinguishable without color labels",
+        "Spot risky palettes before publishing infographics",
+        "Check accessibility of screenshots and marketing assets"
       ],
       faq: [
         {
@@ -1470,7 +1673,19 @@ const TOOLS_META = [
           q: "Is Color Blindness Simulator Online – Test UI Accessibility Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
-      ]
+      ],
+      shortTitle: "Color Blindness Simulator",
+      seoContent: {
+        title: "What is Color Blindness Simulator?",
+        body: "Color Blindness Simulator previews how artwork or interfaces may appear under different color-vision deficiencies. It is useful for evaluating charts, status colors, UI states, and image-heavy layouts that depend too much on hue alone."
+      },
+      learnMore: {
+        title: "Understand Color Blindness Modes"
+      },
+      example: {
+        input: "Upload a chart that uses red and green series colors",
+        output: "Preview protanopia, deuteranopia, and tritanopia variants to check whether the series stay distinguishable"
+      }
     },
   {
       slug: "ascii-table",
@@ -1483,8 +1698,10 @@ const TOOLS_META = [
         "number-base"
       ],
       useCases: [
-        "Quickly complete common ascii table – full character code reference (dec, hex, oct, bin) tasks in the browser",
-        "Verify ascii table – full character code reference (dec, hex, oct, bin) results without installing desktop software"
+        "Look up decimal, hex, octal, or binary values for ASCII characters",
+        "Teach control characters and printable ASCII in programming classes",
+        "Check escape-code mappings while debugging byte-oriented text data",
+        "Confirm how letters, digits, and punctuation are encoded in basic ASCII"
       ],
       faq: [
         {
@@ -1507,6 +1724,27 @@ const TOOLS_META = [
       example: {
         input: "Search 65 → Row: Dec 65, Hex 41, Binary 01000001, Char A , Name: LATIN CAPITAL LETTER A",
         output: "Search newline → Dec 10, Hex 0A, Control character LF"
+      },
+      shortTitle: "ASCII Table Reference",
+      seoContent: {
+        whatIsTitle: "What is ASCII Table Reference?",
+        whatIsBody: "ASCII Table Reference lists standard 7-bit ASCII characters along with their decimal, hexadecimal, octal, and binary codes. It is useful for low-level debugging, teaching text encoding basics, and checking character values in logs, code, and protocols.",
+        howToTitle: "How to Use ASCII Table Reference",
+        howToSteps: [
+          "Search by character, code value, or description.",
+          "Review the matching row across decimal, hex, octal, and binary columns.",
+          "Use the result to compare values in code, docs, or logs.",
+          "Copy the relevant code or character for your workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand ASCII Table",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for teaching, debugging, and byte-level text inspection.",
+          "Shows multiple numeric representations for each ASCII code point.",
+          "Runs locally and works instantly as a quick reference page."
+        ]
       }
     },
   {
@@ -1573,17 +1811,20 @@ const TOOLS_META = [
     },
   {
       slug: "xml-json",
-      title: "XML to JSON Converter Online – Free Browser-Based Tool",
+      title: "XML to JSON Converter Online ??Free Browser-Based Tool",
       description: "Convert XML to JSON and JSON to XML instantly. Handles attributes, nested elements, arrays, and CDATA. Free, browser-based, no data sent.",
       category: "format",
+      shortTitle: "XML to JSON Converter",
       relatedTools: [
         "json-formatter",
         "yaml-json",
         "toml-json"
       ],
       useCases: [
-        "Quickly complete common xml to json converter online – free browser-based tool tasks in the browser",
-        "Verify xml to json converter online – free browser-based tool results without installing desktop software"
+        "Convert API responses, feed data, or SOAP payloads between XML and JSON",
+        "Inspect XML attributes and nested elements in a more familiar JSON structure",
+        "Generate XML from JSON when integrating with legacy systems",
+        "Debug schema mismatches during data migration or middleware work"
       ],
       faq: [
         {
@@ -1592,20 +1833,40 @@ const TOOLS_META = [
         },
         {
           q: "Can it convert complex SOAP envelopes?",
-          a: "Yes — SOAP XML converts correctly, producing a nested JSON representation of the envelope."
+          a: "Yes ??SOAP XML converts correctly, producing a nested JSON representation of the envelope."
         },
         {
-          q: "What does XML to JSON Converter Online – Free Browser-Based Tool do?",
-          a: "XML to JSON Converter Online – Free Browser-Based Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does XML to JSON Converter Online ??Free Browser-Based Tool do?",
+          a: "XML to JSON Converter Online ??Free Browser-Based Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is XML to JSON Converter Online – Free Browser-Based Tool free to use?",
+          q: "Is XML to JSON Converter Online ??Free Browser-Based Tool free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
       example: {
-        input: "XML input: <user id=\"1\"><name>Alice</name></user>",
-        output: "JSON output: {\"user\":{\"@id\":\"1\",\"name\":\"Alice\"}}"
+        input: "<user id=\"1\"><name>Alice</name></user>",
+        output: "{\"user\":{\"@id\":\"1\",\"name\":\"Alice\"}}"
+      },
+      seoContent: {
+        whatIsTitle: "What is XML to JSON Converter?",
+        whatIsBody: "XML to JSON Converter switches data between XML and JSON while preserving nested structure, attributes, and text content. It is useful when modern APIs or scripts expect JSON but legacy systems, feeds, and enterprise tools still exchange XML.",
+        howToTitle: "How to Use XML to JSON Converter",
+        howToSteps: [
+          "Paste XML when you want JSON output, or switch modes to convert JSON back into XML.",
+          "Review the converted structure and check how attributes and text nodes are represented.",
+          "Fix any syntax or parsing issues reported by the tool.",
+          "Copy the result into your integration, script, or migration workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand XML to JSON Converter",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for legacy integrations, feeds, SOAP payloads, and migration work.",
+          "Helps developers inspect attribute-heavy XML as JSON objects.",
+          "Runs in the browser so documents stay local during conversion."
+        ]
       }
     },
   {
@@ -1681,8 +1942,10 @@ const TOOLS_META = [
         "user-agent"
       ],
       useCases: [
-        "Quickly complete common tcp/udp port reference – common port numbers list tasks in the browser",
-        "Verify tcp/udp port reference – common port numbers list results without installing desktop software"
+        "Look up common service ports during networking or firewall debugging",
+        "Check whether a port is typically used by HTTP, SSH, databases, or DNS",
+        "Review well-known ports when configuring infrastructure and security groups",
+        "Use as a quick reference while reading logs or packet captures"
       ],
       faq: [
         {
@@ -1705,6 +1968,27 @@ const TOOLS_META = [
       example: {
         input: "Port 22 → SSH (TCP): Secure Shell remote access",
         output: "Port 80 → HTTP (TCP): Web traffic"
+      },
+      shortTitle: "TCP/UDP Port Reference",
+      seoContent: {
+        whatIsTitle: "What is TCP/UDP Port Reference?",
+        whatIsBody: "TCP/UDP Port Reference lists common network ports and the services usually associated with them. It is useful for server setup, firewall rules, troubleshooting connectivity, and understanding what traffic a port number often represents.",
+        howToTitle: "How to Use TCP/UDP Port Reference",
+        howToSteps: [
+          "Search for a port number or service name.",
+          "Review the protocol and service mapping shown in the result.",
+          "Compare nearby or related ports if you are debugging a connection issue.",
+          "Use the reference while configuring firewalls, proxies, or monitoring alerts."
+        ]
+      },
+      learnMore: {
+        title: "Understand Port Number Reference",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for networking, firewall, proxy, and container debugging.",
+          "Helps map ports to common services quickly during ops work.",
+          "Runs locally as a fast reference without opening external docs."
+        ]
       }
     },
   {
@@ -1718,8 +2002,10 @@ const TOOLS_META = [
         "url-encode"
       ],
       useCases: [
-        "Quickly complete common mime types reference – file extension to content-type guide tasks in the browser",
-        "Verify mime types reference – file extension to content-type guide results without installing desktop software"
+        "Look up correct Content-Type headers for files and API responses",
+        "Check MIME mappings for extensions used in uploads and downloads",
+        "Verify browser-serving behavior when debugging static assets",
+        "Use as a quick reference while configuring servers, CDNs, or APIs"
       ],
       faq: [
         {
@@ -1742,6 +2028,27 @@ const TOOLS_META = [
       example: {
         input: ".pdf → application/pdf",
         output: ".json → application/json"
+      },
+      shortTitle: "MIME Types Reference",
+      seoContent: {
+        whatIsTitle: "What is MIME Types Reference?",
+        whatIsBody: "MIME Types Reference maps file extensions and media types so you can find the correct Content-Type header for web responses, uploads, and assets. It is useful for API work, static file serving, storage rules, and browser compatibility debugging.",
+        howToTitle: "How to Use MIME Types Reference",
+        howToSteps: [
+          "Search by file extension or MIME type string.",
+          "Review the matching content type and any common usage notes.",
+          "Use the mapping in server config, API headers, or upload validation.",
+          "Double-check edge cases such as fonts, JSON, media, or binary files."
+        ]
+      },
+      learnMore: {
+        title: "Understand MIME Types Reference",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for APIs, static assets, uploads, and server configuration.",
+          "Helps prevent wrong Content-Type headers and browser handling bugs.",
+          "Works as a quick in-browser reference while you build or debug."
+        ]
       }
     },
   {
@@ -1755,8 +2062,10 @@ const TOOLS_META = [
         "color-palette"
       ],
       useCases: [
-        "Quickly complete common wcag color contrast checker - batch aa/aaa test tasks in the browser",
-        "Verify wcag color contrast checker - batch aa/aaa test results without installing desktop software"
+        "Check text colors against WCAG AA before launch",
+        "Review accessibility regressions in design-system tokens",
+        "Verify heading and body text contrast separately",
+        "Hand off compliant color pairs to product teams"
       ],
       faq: [
         {
@@ -1775,7 +2084,19 @@ const TOOLS_META = [
           q: "Is WCAG Color Contrast Checker - Batch AA/AAA Test free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
-      ]
+      ],
+      shortTitle: "WCAG AA Contrast Checker",
+      seoContent: {
+        title: "What is WCAG AA Contrast Checker?",
+        body: "WCAG AA Contrast Checker focuses on accessibility thresholds for normal and large text so you can quickly verify whether a color pair passes common compliance targets. It is useful during UI QA, accessibility audits, and design-system reviews."
+      },
+      learnMore: {
+        title: "Understand WCAG AA Contrast"
+      },
+      example: {
+        input: "Foreground #1F2937 on background #FFFFFF",
+        output: "Passes WCAG AA for normal text and large text"
+      }
     },
   {
       slug: "aes",
@@ -2088,11 +2409,10 @@ const TOOLS_META = [
         "remove-exif"
       ],
       useCases: [
-        "Blur entire photos before sharing to protect privacy of people in the background",
-        "Create a softly blurred background image for website or app hero sections",
-        "Apply a dreamy, romantic blur effect to portrait photos",
-        "Blur screenshot thumbnails to tease content without revealing details",
-        "Soften overly sharp or noisy photos from low-light conditions"
+        "Blur sensitive details in screenshots before sharing",
+        "Create soft-focus backgrounds for social graphics",
+        "Test blur strength on product shots or mockups",
+        "Redact temporary content without uploading files"
       ],
       faq: [
         {
@@ -2113,8 +2433,16 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Blur a group photo to protect the identity of people in the background:",
-        output: "For precise face blurring (only blur part of the image), use the Medium preset (8px) to soften the whole image, or use image editing software for selective blur."
+        input: "Upload a screenshot and increase the blur radius over a notification panel",
+        output: "The selected image becomes softly blurred and ready to export locally"
+      },
+      shortTitle: "Blur Image Tool",
+      seoContent: {
+        title: "What is Blur Image Tool?",
+        body: "Blur Image Tool applies a blur effect in the browser so you can soften screenshots, obscure sensitive areas, or create depth effects without opening a desktop editor. It is useful for UI mockups, privacy redaction, and quick social assets."
+      },
+      learnMore: {
+        title: "Understand Image Blur"
       }
     },
   {
@@ -2189,8 +2517,10 @@ const TOOLS_META = [
         "contrast-checker"
       ],
       useCases: [
-        "Quickly complete common color format converter online – hex, rgb, hsl & oklch tasks in the browser",
-        "Verify color format converter online – hex, rgb, hsl & oklch results without installing desktop software"
+        "Convert design mockup colors into CSS-ready values",
+        "Translate RGB or HSL colors into HEX for front-end code",
+        "Compare print-oriented CMYK values with digital color formats",
+        "Normalize color specs before handing off design files"
       ],
       faq: [
         {
@@ -2209,7 +2539,19 @@ const TOOLS_META = [
           q: "Is Color Format Converter Online – HEX, RGB, HSL & OKLCH free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
-      ]
+      ],
+      shortTitle: "Color Converter",
+      seoContent: {
+        title: "What is Color Converter?",
+        body: "Color Converter helps you switch between HEX, RGB, HSL, HSV, CMYK, and named CSS colors without recalculating values by hand. It is useful when moving colors between design tools, front-end code, brand docs, and print workflows."
+      },
+      learnMore: {
+        title: "Understand Color Formats"
+      },
+      example: {
+        input: "#FF5733",
+        output: "RGB(255, 87, 51), HSL(11, 100%, 60%), CMYK(0, 66, 80, 0)"
+      }
     },
   {
       slug: "color-palette",
@@ -2222,8 +2564,10 @@ const TOOLS_META = [
         "contrast-checker"
       ],
       useCases: [
-        "Quickly complete common color palette generator online – create & extract palettes tasks in the browser",
-        "Verify color palette generator online – create & extract palettes results without installing desktop software"
+        "Build UI color systems from a base brand color",
+        "Generate supporting accent colors for charts or illustrations",
+        "Explore palette directions before handing off to design",
+        "Create quick color sets for social posts or slides"
       ],
       faq: [
         {
@@ -2246,6 +2590,14 @@ const TOOLS_META = [
       example: {
         input: "Generating a complementary palette from a base blue color:",
         output: "The complementary color sits directly opposite on the color wheel, creating a high-contrast, vibrant pairing."
+      },
+      shortTitle: "Color Palette Generator",
+      seoContent: {
+        title: "What is Color Palette Generator?",
+        body: "Color Palette Generator creates coordinated color sets from a starting hue so you can explore complementary, analogous, monochrome, and accent combinations faster. It is useful for UI themes, brand explorations, dashboards, and presentation graphics."
+      },
+      learnMore: {
+        title: "Understand Color Palettes"
       }
     },
   {
@@ -2259,11 +2611,10 @@ const TOOLS_META = [
         "webp-converter"
       ],
       useCases: [
-        "Compress profile photos to fit government portals with 100KB or 200KB limits",
-        "Reduce image size for job application systems that reject large uploads",
-        "Prepare photos for email attachments with strict size limits",
-        "Compress images for web hosting plans with bandwidth constraints",
-        "Reduce image sizes for bulk upload to cloud storage or CMS systems"
+        "Meet government or school upload limits",
+        "Reduce profile photos for forms with strict file caps",
+        "Shrink scanned documents before submitting online",
+        "Avoid repeated trial-and-error in desktop editors"
       ],
       faq: [
         {
@@ -2284,8 +2635,16 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Compress a 4MB vacation photo to fit within a government form's 100KB limit:",
-        output: "The algorithm automatically finds the highest quality that still meets your constraint."
+        input: "Upload a 1.8 MB passport photo and set the target to 100 KB",
+        output: "The tool iterates compression settings until the exported image is close to the target size"
+      },
+      shortTitle: "Compress to 100KB",
+      seoContent: {
+        title: "What is Compress to 100KB?",
+        body: "Compress to 100KB helps you reduce an image until it fits a common file-size target used by forms, portals, and job applications. It is useful when a site rejects larger uploads and you need a fast browser-only workaround."
+      },
+      learnMore: {
+        title: "Understand Targeted Image Compression"
       }
     },
   {
@@ -2299,8 +2658,10 @@ const TOOLS_META = [
         "color-palette"
       ],
       useCases: [
-        "Quickly complete common wcag contrast checker online – aa &amp; aaa accessibility test tasks in the browser",
-        "Verify wcag contrast checker online – aa &amp; aaa accessibility test results without installing desktop software"
+        "Check button and link contrast before shipping UI updates",
+        "Validate text colors in brand systems and style guides",
+        "Review marketing graphics for readability",
+        "Test dark-on-light and light-on-dark combinations quickly"
       ],
       faq: [
         {
@@ -2323,6 +2684,14 @@ const TOOLS_META = [
       example: {
         input: "Checking medium grey text on a white background:",
         output: "Result: passes AA for large text (≥ 3:1), but fails AA for normal text (requires 4.5:1). Darken the grey slightly to pass all AA levels."
+      },
+      shortTitle: "Contrast Checker",
+      seoContent: {
+        title: "What is Contrast Checker?",
+        body: "Contrast Checker compares foreground and background colors to show whether text contrast is readable and accessible. It is useful for UI design reviews, brand color validation, component libraries, and fixing low-contrast text before release."
+      },
+      learnMore: {
+        title: "Understand Color Contrast"
       }
     },
   {
@@ -2388,20 +2757,20 @@ const TOOLS_META = [
     },
   {
       slug: "css-formatter",
-      title: "CSS Formatter &amp; Minifier Online – Beautify or Compress CSS Free",
+      title: "CSS Formatter &amp; Minifier Online ??Beautify or Compress CSS Free",
       description: "Format and minify CSS code instantly. Beautify compressed CSS for readability or minify for production. Free, browser-based, no data sent.",
       category: "format",
+      shortTitle: "CSS Formatter & Minifier",
       relatedTools: [
         "css-minifier",
         "js-formatter",
         "html-formatter"
       ],
       useCases: [
-        "Unminifying a third-party stylesheet to understand its structure and selectors.",
-        "Cleaning up CSS generated by a design tool or CSS-in-JS framework.",
-        "Preparing code for a code review where readability matters.",
-        "Debugging layout issues by inspecting expanded property values.",
-        "Learning CSS by reading well-formatted example stylesheets."
+        "Beautify minified stylesheets before debugging layout issues",
+        "Review generated CSS from design tools or build output",
+        "Minify CSS again after edits for production deployment",
+        "Inspect selectors and declarations more clearly during code review"
       ],
       faq: [
         {
@@ -2418,12 +2787,32 @@ const TOOLS_META = [
         },
         {
           q: "Should I format CSS before using it in production?",
-          a: "No — in production you should minify CSS to reduce file size. Use the CSS Formatter during development and code review, then minify before deploying."
+          a: "No ??in production you should minify CSS to reduce file size. Use the CSS Formatter during development and code review, then minify before deploying."
         }
       ],
       example: {
         input: ".card{display:flex;padding:16px;background:#fff;border-radius:8px}",
-        output: ".card {\\n display: flex;\\n padding: 16px;\\n background: #fff;\\n border-radius: 8px;\\n}"
+        output: ".card {\n  display: flex;\n  padding: 16px;\n  background: #fff;\n  border-radius: 8px;\n}"
+      },
+      seoContent: {
+        whatIsTitle: "What is CSS Formatter & Minifier?",
+        whatIsBody: "CSS Formatter & Minifier helps you switch between readable stylesheet code and compact production-ready output. It is useful for debugging compiled CSS, reviewing selectors and declarations, and compressing styles again before shipping them.",
+        howToTitle: "How to Use CSS Formatter & Minifier",
+        howToSteps: [
+          "Paste the CSS you want to beautify or compress.",
+          "Choose format or minify mode and adjust indentation if needed.",
+          "Review the output for readability or file size reduction.",
+          "Copy the result back into your stylesheet or build pipeline."
+        ]
+      },
+      learnMore: {
+        title: "Understand CSS Formatter & Minifier",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for debugging large or minified stylesheets.",
+          "Lets you move quickly between readable and compact CSS output.",
+          "Runs locally so source styles never leave the browser."
+        ]
       }
     },
   {
@@ -2437,8 +2826,10 @@ const TOOLS_META = [
         "json-formatter"
       ],
       useCases: [
-        "Quickly complete common text diff viewer online – compare two texts side by side tasks in the browser",
-        "Verify text diff viewer online – compare two texts side by side results without installing desktop software"
+        "Compare two text blocks during config, code, or document review",
+        "Inspect line and word-level differences before applying changes",
+        "Check generated output against an expected result in debugging flows",
+        "Share clear before-and-after comparisons in tickets or docs"
       ],
       faq: [
         {
@@ -2461,6 +2852,27 @@ const TOOLS_META = [
       example: {
         input: "Original: Hello world",
         output: "Revised: Hello there"
+      },
+      shortTitle: "Text Diff Viewer",
+      seoContent: {
+        whatIsTitle: "What is Text Diff Viewer?",
+        whatIsBody: "Text Diff Viewer compares two text inputs and highlights what changed so you can inspect additions, deletions, and edits quickly. It is useful for config changes, generated output checks, review workflows, and debugging before-and-after states.",
+        howToTitle: "How to Use Text Diff Viewer",
+        howToSteps: [
+          "Paste the original text into one side and the revised text into the other.",
+          "Run the comparison and review highlighted differences.",
+          "Optionally ignore whitespace or line-ending differences if the tool supports it.",
+          "Use the result in debugging, review, or documentation work."
+        ]
+      },
+      learnMore: {
+        title: "Understand Text Diff Viewer",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for config review, docs edits, and generated output comparisons.",
+          "Makes additions, deletions, and replacements easier to spot than plain text.",
+          "Runs locally so compared text stays in the browser."
+        ]
       }
     },
   {
@@ -2474,8 +2886,10 @@ const TOOLS_META = [
         "contrast-checker"
       ],
       useCases: [
-        "Quickly complete common css gradient generator online – linear, radial & conic tasks in the browser",
-        "Verify css gradient generator online – linear, radial & conic results without installing desktop software"
+        "Create hero background gradients for marketing pages",
+        "Test angle and stop adjustments before editing CSS files",
+        "Generate polished button or card backgrounds",
+        "Share exact gradient CSS with developers without manual conversion"
       ],
       faq: [
         {
@@ -2498,6 +2912,14 @@ const TOOLS_META = [
       example: {
         input: "Linear, 90°, stops: #6366F1 → #8B5CF6",
         output: "background: linear-gradient(90deg, #6366F1, #8B5CF6);"
+      },
+      shortTitle: "CSS Gradient Generator",
+      seoContent: {
+        title: "What is Gradient Generator?",
+        body: "Gradient Generator lets you build linear and radial gradients visually, then copy production-ready CSS. It is useful for landing pages, hero sections, buttons, cards, and background experiments where raw CSS syntax is tedious to write by hand."
+      },
+      learnMore: {
+        title: "Understand CSS Gradients"
       }
     },
   {
@@ -2511,11 +2933,10 @@ const TOOLS_META = [
         "image-compressor"
       ],
       useCases: [
-        "Create black-and-white artistic photos for social media or portfolios",
-        "Prepare grayscale images for printing on black-and-white printers",
-        "Convert scanned documents to high-contrast black and white for OCR",
-        "Reduce color noise in photos taken in low light",
-        "Apply a partial grayscale effect (adjust intensity < 100%) for a muted color look"
+        "Preview how an image looks without color information",
+        "Prepare monochrome assets for print or editorial layouts",
+        "Check whether contrast still works in grayscale",
+        "Create alternative visual treatments for posts and slides"
       ],
       faq: [
         {
@@ -2534,7 +2955,15 @@ const TOOLS_META = [
           q: "Which output format should I use?",
           a: "JPEG is recommended for photos — it produces smaller files. PNG is better when you need lossless output (e.g., for logos or documents where sharp edges matter)."
         }
-      ]
+      ],
+      shortTitle: "Grayscale Image Tool",
+      seoContent: {
+        title: "What is Grayscale Image Tool?",
+        body: "Grayscale Image Tool converts color images into monochrome versions directly in the browser. It is useful for design explorations, print previews, accessibility checks, and preparing image variants without sending files anywhere."
+      },
+      learnMore: {
+        title: "Understand Grayscale Images"
+      }
     },
   {
       slug: "hmac",
@@ -2598,20 +3027,20 @@ const TOOLS_META = [
     },
   {
       slug: "html-formatter",
-      title: "HTML Formatter & Minifier Online – Beautify or Compress HTML",
+      title: "HTML Formatter & Minifier Online ??Beautify or Compress HTML",
       description: "Format and minify HTML code online with customizable indentation. Free browser-based HTML beautifier and minifier.",
       category: "format",
+      shortTitle: "HTML Formatter / Minifier",
       relatedTools: [
         "css-formatter",
         "js-formatter",
         "html-entities"
       ],
       useCases: [
-        "Debugging minified HTML received from a CDN or build pipeline.",
-        "Reading and understanding third-party HTML templates before integrating them.",
-        "Cleaning up HTML generated by a WYSIWYG editor or CMS export.",
-        "Code reviews — formatted HTML makes structural issues immediately visible.",
-        "Learning HTML structure by inspecting well-indented examples."
+        "Beautify minified HTML copied from build output or production pages",
+        "Review nested markup structure before editing templates or components",
+        "Clean CMS or WYSIWYG-generated HTML before publishing",
+        "Minify HTML snippets again after debugging or manual edits"
       ],
       faq: [
         {
@@ -2620,7 +3049,7 @@ const TOOLS_META = [
         },
         {
           q: "Will formatting change the rendered output of my page?",
-          a: "No. Adding whitespace between block elements does not change visual rendering. Be cautious with inline elements like <span> inside text where whitespace can matter — the formatter preserves inline content."
+          a: "No. Adding whitespace between block elements does not change visual rendering. Be cautious with inline elements like <span> inside text where whitespace can matter ??the formatter preserves inline content."
         },
         {
           q: "Can I format a full HTML document with <!DOCTYPE> and <head>?",
@@ -2633,7 +3062,27 @@ const TOOLS_META = [
       ],
       example: {
         input: "<div><p>Hello</p><ul><li>Item</li></ul></div>",
-        output: "<div>\\n <p>Hello</p>\\n <ul>\\n <li>Item</li>\\n </ul>\\n</div>"
+        output: "<div>\n  <p>Hello</p>\n  <ul>\n    <li>Item</li>\n  </ul>\n</div>"
+      },
+      seoContent: {
+        whatIsTitle: "What is HTML Formatter?",
+        whatIsBody: "HTML Formatter turns compressed or inconsistent markup into readable, properly indented HTML. It is useful for debugging page structure, reviewing templates, and preparing snippets for documentation or code review without sending code to a server.",
+        howToTitle: "How to Use HTML Formatter / Minifier",
+        howToSteps: [
+          "Paste your HTML into the input panel.",
+          "Choose whether you want to format or minify the markup.",
+          "Adjust indentation options if needed.",
+          "Copy the cleaned output for editing, review, or deployment."
+        ]
+      },
+      learnMore: {
+        title: "Understand HTML Formatter",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Makes nested HTML structure much easier to scan and debug.",
+          "Useful for both beautifying markup and shrinking it again after edits.",
+          "Runs locally so templates and snippets are not uploaded anywhere."
+        ]
       }
     },
   {
@@ -2647,8 +3096,10 @@ const TOOLS_META = [
         "jwt-decoder"
       ],
       useCases: [
-        "Quickly complete common http status codes reference – complete list with descriptions tasks in the browser",
-        "Verify http status codes reference – complete list with descriptions results without installing desktop software"
+        "Look up HTTP response codes while debugging APIs and web apps",
+        "Explain redirect, auth, and server error semantics to teammates",
+        "Check which status code best matches an API or backend behavior",
+        "Use as a quick reference during docs writing or incident response"
       ],
       faq: [
         {
@@ -2671,6 +3122,27 @@ const TOOLS_META = [
       example: {
         input: "200 OK : Request succeeded, response body contains the result.",
         output: "404 Not Found : Server cannot find the requested resource."
+      },
+      shortTitle: "HTTP Status Codes Reference",
+      seoContent: {
+        whatIsTitle: "What is HTTP Status Codes Reference?",
+        whatIsBody: "HTTP Status Codes Reference explains standard response codes such as 200, 301, 404, and 500 so you can quickly understand what a server response means. It is useful for API debugging, backend development, QA, docs, and support workflows.",
+        howToTitle: "How to Use HTTP Status Codes Reference",
+        howToSteps: [
+          "Search for the numeric code or status phrase you need.",
+          "Read the description and category of the response code.",
+          "Compare similar codes such as 401 vs 403 or 301 vs 302.",
+          "Use the result in debugging, implementation, or documentation work."
+        ]
+      },
+      learnMore: {
+        title: "Understand HTTP Status Codes Reference",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for APIs, browser debugging, backend work, and docs.",
+          "Helps distinguish similar success, redirect, client-error, and server-error codes.",
+          "Works as a fast browser-side reference without extra tooling."
+        ]
       }
     },
   {
@@ -2684,11 +3156,10 @@ const TOOLS_META = [
         "image-compressor"
       ],
       useCases: [
-        "Fix photos taken sideways or upside down on a phone or camera",
-        "Mirror a selfie so text in the background reads correctly",
-        "Rotate scanned documents to the correct reading orientation",
-        "Flip product images horizontally for consistent e-commerce layouts",
-        "Correct orientation before uploading to social media or websites"
+        "Fix sideways phone photos before uploading",
+        "Rotate scanned documents into the correct reading direction",
+        "Adjust screenshots for presentations or docs",
+        "Export a corrected image without opening desktop software"
       ],
       faq: [
         {
@@ -2711,6 +3182,14 @@ const TOOLS_META = [
       example: {
         input: "Fix a sideways phone photo taken in landscape mode:",
         output: "The canvas preview updates instantly so you can confirm the orientation before downloading."
+      },
+      shortTitle: "Image Rotate Tool",
+      seoContent: {
+        title: "What is Image Rotate Tool?",
+        body: "Image Rotate Tool rotates photos and screenshots by fixed angles so you can correct orientation problems quickly. It is useful for phone photos, scanned documents, product shots, and any asset that needs a fast turn before export."
+      },
+      learnMore: {
+        title: "Understand Image Rotation"
       }
     },
   {
@@ -2724,8 +3203,10 @@ const TOOLS_META = [
         "json-formatter"
       ],
       useCases: [
-        "Quickly complete common ip address lookup &amp; geolocation online – free ip info tool tasks in the browser",
-        "Verify ip address lookup &amp; geolocation online – free ip info tool results without installing desktop software"
+        "Inspect IP addresses during ops or support work",
+        "Check basic context around traffic sources",
+        "Review IP details while triaging suspicious requests",
+        "Use as a quick networking reference during debugging"
       ],
       faq: [
         {
@@ -2744,7 +3225,15 @@ const TOOLS_META = [
           q: "Is IP Address Lookup &amp; Geolocation Online – Free IP Info Tool free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
-      ]
+      ],
+      shortTitle: "IP Lookup",
+      seoContent: {
+        title: "What is IP Lookup?",
+        body: "IP Lookup helps you inspect an IP address and understand basic details around it for troubleshooting and reference. It is useful for networking checks, security triage, geolocation context, and understanding traffic sources during debugging."
+      },
+      learnMore: {
+        title: "Understand IP Addresses"
+      }
     },
   {
       slug: "jpg-to-png",
@@ -2757,11 +3246,10 @@ const TOOLS_META = [
         "image-compressor"
       ],
       useCases: [
-        "Convert JPEG screenshots or photos to PNG for lossless editing",
-        "Get a transparent background version (after removing background in another tool)",
-        "Prepare images for web projects that require PNG format",
-        "Convert JPEG logos to PNG to enable transparency later",
-        "Create a lossless archive copy of JPEG photos before editing"
+        "Convert photos into PNG for editing workflows",
+        "Prepare screenshots or images for tools that expect PNG input",
+        "Standardize exported assets before handoff",
+        "Create a lossless derivative without external software"
       ],
       faq: [
         {
@@ -2784,21 +3272,32 @@ const TOOLS_META = [
       example: {
         input: "Convert a JPEG product photo (320 KB) to PNG:",
         output: "No detail is lost in the conversion. The PNG can now be re-edited and re-saved without any generation loss."
+      },
+      shortTitle: "JPG to PNG Converter",
+      seoContent: {
+        title: "What is JPG to PNG Converter?",
+        body: "JPG to PNG Converter changes JPEG images into PNG format in the browser. It is useful when you need a lossless output format for editing pipelines, documentation, or workflows that expect PNG files."
+      },
+      learnMore: {
+        title: "Understand JPG and PNG"
       }
     },
   {
       slug: "js-formatter",
-      title: "JavaScript Formatter &amp; Minifier Online – Beautify &amp; Compress JS Free",
+      title: "JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free",
       description: "Format and beautify JavaScript code for readability or minify for production. Configurable indent. Free, browser-based.",
       category: "format",
+      shortTitle: "JavaScript Formatter & Minifier",
       relatedTools: [
         "css-formatter",
         "json-formatter",
-        "html-entities"
+        "html-formatter"
       ],
       useCases: [
-        "Quickly complete common javascript formatter &amp; minifier online – beautify &amp; compress js free tasks in the browser",
-        "Verify javascript formatter &amp; minifier online – beautify &amp; compress js free results without installing desktop software"
+        "Beautify compressed JavaScript before debugging or review",
+        "Inspect generated bundle snippets and utility functions more clearly",
+        "Minify small scripts after editing them in the browser",
+        "Compare formatting changes when preparing code samples or docs"
       ],
       faq: [
         {
@@ -2810,32 +3309,55 @@ const TOOLS_META = [
           a: "Basic JSX syntax is preserved during formatting."
         },
         {
-          q: "What does JavaScript Formatter &amp; Minifier Online – Beautify &amp; Compress JS Free do?",
-          a: "JavaScript Formatter &amp; Minifier Online – Beautify &amp; Compress JS Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free do?",
+          a: "JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is JavaScript Formatter &amp; Minifier Online – Beautify &amp; Compress JS Free free to use?",
+          q: "Is JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
       example: {
-        input: "Input: const f=x=>x*2;const arr=[1,2,3].map(f)",
-        output: "Formatted:"
+        input: "const f=x=>x*2;const arr=[1,2,3].map(f)",
+        output: "const f = x => x * 2;\nconst arr = [1, 2, 3].map(f);"
+      },
+      seoContent: {
+        whatIsTitle: "What is JavaScript Formatter & Minifier?",
+        whatIsBody: "JavaScript Formatter & Minifier helps you switch between readable JS source and compact output for production. It is useful for reviewing code snippets, debugging generated scripts, and shrinking small files after you finish editing them.",
+        howToTitle: "How to Use JavaScript Formatter & Minifier",
+        howToSteps: [
+          "Paste JavaScript into the input panel.",
+          "Choose beautify or minify mode.",
+          "Adjust indentation if you want more readable output.",
+          "Copy the final code into your app, docs, or deployment workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand JavaScript Formatter & Minifier",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for debugging minified snippets and generated code quickly.",
+          "Lets you move between readable and compact JS without extra tooling.",
+          "Runs locally so scripts stay in the browser while you format them."
+        ]
       }
     },
   {
       slug: "json-csv",
-      title: "JSON to CSV Converter Online – Convert JSON Arrays Free",
+      title: "JSON to CSV Converter Online ??Convert JSON Arrays Free",
       description: "Free online JSON to CSV and CSV to JSON converter. Supports custom delimiters (comma, tab, semicolon, pipe) and header row options. Runs entirely in your browser.",
       category: "convert",
+      shortTitle: "JSON to CSV Converter",
       relatedTools: [
         "json-formatter",
-        "hash-generator",
-        "base64"
+        "yaml-json",
+        "xml-json"
       ],
       useCases: [
-        "Quickly complete common json to csv converter online – convert json arrays free tasks in the browser",
-        "Verify json to csv converter online – convert json arrays free results without installing desktop software"
+        "Convert API arrays and tabular exports between JSON and CSV",
+        "Prepare spreadsheet-friendly CSV from structured JSON data",
+        "Turn CSV rows back into JSON objects for scripts and apps",
+        "Check delimiter and header handling before importing into another system"
       ],
       faq: [
         {
@@ -2847,17 +3369,37 @@ const TOOLS_META = [
           a: "Comma, semicolon, tab, and pipe (|) delimiters are supported."
         },
         {
-          q: "What does JSON to CSV Converter Online – Convert JSON Arrays Free do?",
-          a: "JSON to CSV Converter Online – Convert JSON Arrays Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does JSON to CSV Converter Online ??Convert JSON Arrays Free do?",
+          a: "JSON to CSV Converter Online ??Convert JSON Arrays Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is JSON to CSV Converter Online – Convert JSON Arrays Free free to use?",
+          q: "Is JSON to CSV Converter Online ??Convert JSON Arrays Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
       example: {
-        input: "JSON input: [{\"name\":\"Alice\",\"age\":30},{\"name\":\"Bob\",\"age\":25}]",
-        output: "CSV output:"
+        input: "[{\"name\":\"Alice\",\"age\":30},{\"name\":\"Bob\",\"age\":25}]",
+        output: "name,age\nAlice,30\nBob,25"
+      },
+      seoContent: {
+        whatIsTitle: "What is JSON to CSV Converter?",
+        whatIsBody: "JSON to CSV Converter helps you move tabular data between JSON arrays and CSV text so it can be used in spreadsheets, scripts, and import/export flows. It is useful for API responses, reports, and any workflow where one tool expects rows while another expects objects.",
+        howToTitle: "How to Use JSON to CSV Converter",
+        howToSteps: [
+          "Paste JSON or CSV into the input panel.",
+          "Choose the conversion direction and delimiter options you need.",
+          "Review the converted result and confirm header row behavior.",
+          "Copy the output into your spreadsheet, script, or import workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand JSON to CSV Converter",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for exports, spreadsheets, APIs, and reporting flows.",
+          "Makes row-oriented and object-oriented data easier to switch between.",
+          "Runs locally so pasted datasets are not uploaded during conversion."
+        ]
       }
     },
   {
@@ -2871,8 +3413,10 @@ const TOOLS_META = [
         "base64"
       ],
       useCases: [
-        "Quickly complete common jsonpath tester online – query &amp; test jsonpath expressions free tasks in the browser",
-        "Verify jsonpath tester online – query &amp; test jsonpath expressions free results without installing desktop software"
+        "Test JSONPath expressions against API responses and fixtures",
+        "Confirm filters and array selectors before using them in code",
+        "Debug nested JSON structures by querying only the fields you need",
+        "Teach teammates how JSONPath selects nodes from complex payloads"
       ],
       faq: [
         {
@@ -2895,6 +3439,27 @@ const TOOLS_META = [
       example: {
         input: "JSON: {\"users\":[{\"name\":\"Alice\",\"age\":30},{\"name\":\"Bob\",\"age\":17}]}",
         output: "Path: $.users[?(@.age >= 18)].name"
+      },
+      shortTitle: "JSONPath Tester",
+      seoContent: {
+        whatIsTitle: "What is JSONPath Tester?",
+        whatIsBody: "JSONPath Tester lets you run JSONPath expressions against JSON data and inspect the matched results immediately. It is useful for API debugging, test fixtures, ETL rules, and any workflow where you need to target specific nodes inside nested JSON.",
+        howToTitle: "How to Use JSONPath Tester",
+        howToSteps: [
+          "Paste the JSON document into the input area.",
+          "Enter the JSONPath expression you want to test.",
+          "Review the returned matches and adjust filters or selectors.",
+          "Copy the working path into your app, test, or automation step."
+        ]
+      },
+      learnMore: {
+        title: "Understand JSONPath Tester",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Helpful for APIs, automation rules, and fixture debugging.",
+          "Makes nested arrays and objects easier to query interactively.",
+          "Runs in the browser so JSON samples stay local during testing."
+        ]
       }
     },
   {
@@ -2970,8 +3535,10 @@ const TOOLS_META = [
         "string-escape"
       ],
       useCases: [
-        "Quickly complete common markdown to html converter online – free browser-based tasks in the browser",
-        "Verify markdown to html converter online – free browser-based results without installing desktop software"
+        "Convert Markdown docs into HTML snippets for CMS or email workflows",
+        "Check how headings, lists, tables, and code blocks render as HTML",
+        "Prepare static HTML from notes or README-style content",
+        "Inspect generated markup before applying your own CSS layer"
       ],
       faq: [
         {
@@ -2994,6 +3561,27 @@ const TOOLS_META = [
       example: {
         input: "Input Markdown:",
         output: "HTML output:"
+      },
+      shortTitle: "Markdown to HTML Converter",
+      seoContent: {
+        whatIsTitle: "What is Markdown to HTML Converter?",
+        whatIsBody: "Markdown to HTML Converter turns Markdown syntax into clean HTML markup so you can publish it in websites, emails, CMS editors, and static pages. It is useful when you write in Markdown but need portable HTML output for another system.",
+        howToTitle: "How to Use Markdown to HTML Converter",
+        howToSteps: [
+          "Paste the Markdown text into the input panel.",
+          "Review the generated HTML output.",
+          "Check that tables, code blocks, and lists render the way you expect.",
+          "Copy the HTML into your site, template, or publishing workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand Markdown to HTML Converter",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for CMS publishing, docs, static pages, and email content.",
+          "Lets you inspect semantic HTML before styling it yourself.",
+          "Runs locally so drafts stay on your machine during conversion."
+        ]
       }
     },
   {
@@ -3007,8 +3595,10 @@ const TOOLS_META = [
         "string-escape"
       ],
       useCases: [
-        "Quickly complete common morse code translator online – encode & decode morse free tasks in the browser",
-        "Verify morse code translator online – encode & decode morse free results without installing desktop software"
+        "Translate words into Morse code for practice",
+        "Decode Morse strings into readable text",
+        "Create quick examples for lessons or presentations",
+        "Explore letter and number mappings without a reference chart"
       ],
       faq: [
         {
@@ -3031,6 +3621,14 @@ const TOOLS_META = [
       example: {
         input: "Encode: SOS → ... --- ...",
         output: "Decode: .... .. --. ... → HIGS"
+      },
+      shortTitle: "Morse Code Translator",
+      seoContent: {
+        title: "What is Morse Code Translator?",
+        body: "Morse Code Translator converts between plain text and Morse code so you can encode messages, decode practice strings, and explore the alphabet quickly. It is useful for education, hobbies, demos, and lightweight text transformations."
+      },
+      learnMore: {
+        title: "Understand Morse Code"
       }
     },
   {
@@ -3105,11 +3703,10 @@ const TOOLS_META = [
         "image-compressor"
       ],
       useCases: [
-        "Reduce PNG screenshot file sizes for faster sharing via email or chat",
-        "Convert PNG photos to JPEG for uploading to social media or websites",
-        "Prepare images for services that require JPEG format",
-        "Reduce PNG file size before attaching to government forms or job applications",
-        "Convert PNG exports from design tools to JPEG for web use"
+        "Reduce PNG file sizes before web upload",
+        "Convert screenshots for email or CMS use",
+        "Create JPEG derivatives when transparency is unnecessary",
+        "Standardize image formats for content workflows"
       ],
       faq: [
         {
@@ -3132,6 +3729,14 @@ const TOOLS_META = [
       example: {
         input: "Convert a PNG screenshot (1.4 MB) to JPEG at 85% quality:",
         output: "Visual quality is preserved at 85% — the reduction is almost entirely invisible to the eye."
+      },
+      shortTitle: "PNG to JPG Converter",
+      seoContent: {
+        title: "What is PNG to JPG Converter?",
+        body: "PNG to JPG Converter turns PNG files into JPEG so you can cut file size and create photo-friendly outputs. It is useful for web uploads, email attachments, blog images, and general cases where transparency is not required."
+      },
+      learnMore: {
+        title: "Understand PNG and JPG"
       }
     },
   {
@@ -3145,11 +3750,10 @@ const TOOLS_META = [
         "jpg-to-png"
       ],
       useCases: [
-        "Remove GPS location before posting photos on social media or forums",
-        "Strip personal device info before sending images to clients or employers",
-        "Clean metadata from photos before publishing on a blog or website",
-        "Reduce file size slightly by removing embedded EXIF thumbnail previews",
-        "Prepare images for stock photography submission (many platforms strip metadata anyway)"
+        "Remove location metadata before posting photos publicly",
+        "Clean image files for client delivery or press use",
+        "Strip hidden camera details from product listings",
+        "Share screenshots and photos with fewer privacy risks"
       ],
       faq: [
         {
@@ -3170,8 +3774,16 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "A smartphone photo taken at home (3.8 MB JPEG) contains hidden GPS coordinates and device info:",
-        output: "The resulting image is safe to share publicly without revealing your home location."
+        input: "Upload a phone photo that includes camera model and GPS metadata",
+        output: "The exported image keeps the pixels but removes embedded EXIF metadata fields"
+      },
+      shortTitle: "EXIF Remover",
+      seoContent: {
+        title: "What is EXIF Remover?",
+        body: "EXIF Remover strips image metadata such as camera details, timestamps, and GPS coordinates before you share a file. It is useful for privacy, public uploads, listings, press kits, and any workflow where hidden metadata should not leave your device."
+      },
+      learnMore: {
+        title: "Understand EXIF Metadata"
       }
     },
   {
@@ -3185,8 +3797,10 @@ const TOOLS_META = [
         "webp-converter"
       ],
       useCases: [
-        "Quickly complete common resize image for instagram online free – all format sizes tasks in the browser",
-        "Verify resize image for instagram online free – all format sizes results without installing desktop software"
+        "Resize feed images to square or portrait Instagram formats",
+        "Prepare story graphics at the correct aspect ratio",
+        "Create social-ready exports from raw screenshots or photos",
+        "Avoid last-minute cropping surprises in the Instagram app"
       ],
       faq: [
         {
@@ -3205,7 +3819,15 @@ const TOOLS_META = [
           q: "Can I use this tool for other social media platforms?",
           a: "Yes. The Cover Crop and Letterbox fit modes work for any target dimensions. For custom sizes use the Image Resizer tool instead."
         }
-      ]
+      ],
+      shortTitle: "Resize for Instagram",
+      seoContent: {
+        title: "What is Resize for Instagram?",
+        body: "Resize for Instagram prepares images for common Instagram feed, story, reel, and profile dimensions. It is useful when you need fast export sizes for social posting without opening a full design tool."
+      },
+      learnMore: {
+        title: "Understand Instagram Image Sizes"
+      }
     },
   {
       slug: "roman-numerals",
@@ -3280,8 +3902,10 @@ const TOOLS_META = [
         "regex-tester"
       ],
       useCases: [
-        "Quickly complete common sql formatter online – beautify mysql, postgresql &amp; sqlite tasks in the browser",
-        "Verify sql formatter online – beautify mysql, postgresql &amp; sqlite results without installing desktop software"
+        "Beautify long SQL queries before code review or debugging",
+        "Normalize keyword casing and indentation across shared query snippets",
+        "Make JOINs, CTEs, and subqueries easier to scan in logs or tickets",
+        "Prepare readable SQL examples for docs, notebooks, or internal guides"
       ],
       faq: [
         {
@@ -3304,6 +3928,27 @@ const TOOLS_META = [
       example: {
         input: "Input: select id,name from users where id=1 and active=True",
         output: "Formatted:"
+      },
+      shortTitle: "SQL Formatter",
+      seoContent: {
+        whatIsTitle: "What is SQL Formatter?",
+        whatIsBody: "SQL Formatter rewrites raw SQL into a clean, readable layout so clauses, joins, filters, and nested queries are easier to understand. It is useful for database debugging, code review, incident response, and sharing queries with teammates.",
+        howToTitle: "How to Use SQL Formatter",
+        howToSteps: [
+          "Paste the SQL query you want to beautify.",
+          "Choose casing or indentation options if the tool provides them.",
+          "Format the query and review the structured output.",
+          "Copy the result into your editor, ticket, or documentation."
+        ]
+      },
+      learnMore: {
+        title: "Understand SQL Formatter",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Makes large queries with joins and subqueries easier to inspect.",
+          "Useful when debugging generated SQL from ORMs or BI tools.",
+          "Runs locally so queries stay in the browser while you format them."
+        ]
       }
     },
   {
@@ -3317,8 +3962,10 @@ const TOOLS_META = [
         "html-entities"
       ],
       useCases: [
-        "Quickly complete common string escape / unescape online – json, js & html escaping tasks in the browser",
-        "Verify string escape / unescape online – json, js & html escaping results without installing desktop software"
+        "Escape quotes and line breaks for JSON or JS literals",
+        "Unescape copied strings from logs or network payloads",
+        "Prepare HTML-safe strings for templates or demos",
+        "Clean test fixture content before embedding it in code"
       ],
       faq: [
         {
@@ -3341,6 +3988,14 @@ const TOOLS_META = [
       example: {
         input: "Input: He said \"hello\\nworld\"",
         output: "JSON Escaped: \"He said \\\"hello\\\\nworld\\\"\""
+      },
+      shortTitle: "String Escape Tool",
+      seoContent: {
+        title: "What is String Escape Tool?",
+        body: "String Escape Tool converts raw text into escaped strings for JavaScript, JSON, HTML, and related formats, and can reverse that process when needed. It is useful for debugging payloads, building fixtures, and preparing content for embedding in code."
+      },
+      learnMore: {
+        title: "Understand String Escaping"
       }
     },
   {
@@ -3478,8 +4133,10 @@ const TOOLS_META = [
         "user-agent"
       ],
       useCases: [
-        "Quickly complete common url builder online – construct urls with query parameters tasks in the browser",
-        "Verify url builder online – construct urls with query parameters results without installing desktop software"
+        "Build marketing links with query parameters",
+        "Assemble API endpoints for testing and docs",
+        "Avoid mistakes when adding fragments and encoded params",
+        "Share complex URLs after previewing the final output"
       ],
       faq: [
         {
@@ -3502,6 +4159,14 @@ const TOOLS_META = [
       example: {
         input: "Base: https://api.example.com/v1/users",
         output: "+ params: page=2, limit=50, sort=name"
+      },
+      shortTitle: "URL Builder",
+      seoContent: {
+        title: "What is URL Builder?",
+        body: "URL Builder helps you assemble URLs from a base address, path, query parameters, and fragments without hand-editing separators. It is useful for tracking links, API requests, QA scenarios, and sharing long URLs with fewer mistakes."
+      },
+      learnMore: {
+        title: "Understand URL Building"
       }
     },
   {
@@ -3515,8 +4180,10 @@ const TOOLS_META = [
         "string-escape"
       ],
       useCases: [
-        "Quickly complete common url parser &amp; builder online – parse &amp; construct urls free tasks in the browser",
-        "Verify url parser &amp; builder online – parse &amp; construct urls free results without installing desktop software"
+        "Inspect query parameters in tracking links",
+        "Debug malformed URLs before sharing or deploying them",
+        "Check redirect targets and fragments during QA",
+        "Break down API endpoint URLs for documentation"
       ],
       faq: [
         {
@@ -3535,7 +4202,15 @@ const TOOLS_META = [
           q: "Is URL Parser &amp; Builder Online – Parse &amp; Construct URLs Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
-      ]
+      ],
+      shortTitle: "URL Parser",
+      seoContent: {
+        title: "What is URL Parser?",
+        body: "URL Parser breaks a URL into protocol, host, path, query parameters, and fragments so you can inspect how a link is structured. It is useful for QA, debugging redirects, analytics links, and API request analysis."
+      },
+      learnMore: {
+        title: "Understand URL Parts"
+      }
     },
   {
       slug: "user-agent",
@@ -3548,8 +4223,10 @@ const TOOLS_META = [
         "http-status"
       ],
       useCases: [
-        "Quickly complete common user agent parser online – detect browser, os & device tasks in the browser",
-        "Verify user agent parser online – detect browser, os & device results without installing desktop software"
+        "Identify browser, OS, and device details from copied UA strings",
+        "Inspect crawler and bot user agents during analytics or SEO debugging",
+        "Compare how different devices are reported in server logs",
+        "Check whether a support ticket contains a spoofed or unexpected UA string"
       ],
       faq: [
         {
@@ -3572,6 +4249,27 @@ const TOOLS_META = [
       example: {
         input: "UA: Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15...",
         output: "→ Browser: Safari 17, OS: iOS 17, Device: Mobile, Engine: WebKit"
+      },
+      shortTitle: "User Agent Parser",
+      seoContent: {
+        whatIsTitle: "What is User Agent Parser?",
+        whatIsBody: "User Agent Parser reads browser user-agent strings and extracts details such as browser family, rendering engine, operating system, device type, and bot signals. It is useful for support, analytics review, log inspection, and quick browser environment checks.",
+        howToTitle: "How to Use User Agent Parser",
+        howToSteps: [
+          "Paste the user-agent string into the input area.",
+          "Review the detected browser, OS, engine, and device fields.",
+          "Check whether the parser flags the string as a bot or crawler.",
+          "Copy the results into your debugging notes, ticket, or report."
+        ]
+      },
+      learnMore: {
+        title: "Understand User Agent Parser",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for support tickets, analytics checks, and log review.",
+          "Helps distinguish browsers, engines, devices, and crawler traffic quickly.",
+          "Runs locally so pasted UA strings are not uploaded anywhere."
+        ]
       }
     },
   {
@@ -3585,11 +4283,10 @@ const TOOLS_META = [
         "image-compressor"
       ],
       useCases: [
-        "Open WebP images downloaded from websites in Photoshop, GIMP, or Paint",
-        "Use WebP images in Microsoft Office or Google Docs (which prefer JPEG/PNG)",
-        "Share WebP photos via email to recipients without WebP support",
-        "Convert WebP to PNG to preserve transparency for design work",
-        "Prepare WebP images for upload to platforms that require JPEG or PNG"
+        "Convert WebP files for software that only accepts JPG",
+        "Prepare website assets for document or slide use",
+        "Share browser-downloaded images with teams using older tools",
+        "Standardize mixed image libraries into a more compatible format"
       ],
       faq: [
         {
@@ -3612,21 +4309,32 @@ const TOOLS_META = [
       example: {
         input: "Downloaded a WebP image from a website (240 KB) and need a JPEG for editing:",
         output: "The converted JPEG can now be opened in Photoshop, emailed, or used in Microsoft Office documents."
+      },
+      shortTitle: "WebP to JPG Converter",
+      seoContent: {
+        title: "What is WebP to JPG Converter?",
+        body: "WebP to JPG Converter changes WebP images into JPEG for broader compatibility with older tools, CMS platforms, and document workflows. It is useful when a browser-exported WebP file cannot be used directly elsewhere."
+      },
+      learnMore: {
+        title: "Understand WebP to JPG Conversion"
       }
     },
   {
       slug: "xml-formatter",
-      title: "XML Formatter &amp; Validator Online – Beautify &amp; Validate XML",
-      description: "Beautify and validate XML with syntax highlighting",
+      title: "XML Formatter &amp; Validator Online ??Beautify &amp; Validate XML",
+      description: "Format, beautify, and validate XML online. Minify XML to reduce file size. Supports well-formedness validation. Free, browser-based, no data sent.",
       category: "format",
+      shortTitle: "XML Formatter & Validator",
       relatedTools: [
         "json-formatter",
-        "yaml-json",
-        "css-formatter"
+        "xml-json",
+        "html-formatter"
       ],
       useCases: [
-        "Quickly complete common xml formatter &amp; validator online – beautify &amp; validate xml tasks in the browser",
-        "Verify xml formatter &amp; validator online – beautify &amp; validate xml results without installing desktop software"
+        "Beautify compact XML payloads before debugging or review",
+        "Check whether copied XML is well formed before sending it downstream",
+        "Minify XML again after editing or validation",
+        "Inspect namespaces, attributes, and nesting in SOAP or feed documents"
       ],
       faq: [
         {
@@ -3635,35 +4343,58 @@ const TOOLS_META = [
         },
         {
           q: "Does it handle XML namespaces?",
-          a: "Yes — namespace prefixes and xmlns declarations are preserved."
+          a: "Yes ??namespace prefixes and xmlns declarations are preserved."
         },
         {
-          q: "What does XML Formatter &amp; Validator Online – Beautify &amp; Validate XML do?",
-          a: "XML Formatter &amp; Validator Online – Beautify &amp; Validate XML runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does XML Formatter &amp; Validator Online ??Beautify &amp; Validate XML do?",
+          a: "XML Formatter &amp; Validator Online ??Beautify &amp; Validate XML runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is XML Formatter &amp; Validator Online – Beautify &amp; Validate XML free to use?",
+          q: "Is XML Formatter &amp; Validator Online ??Beautify &amp; Validate XML free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
       example: {
-        input: "Input: <root><item id=\"1\">Hello</item></root>",
-        output: "Formatted:"
+        input: "<root><item id=\"1\">Hello</item></root>",
+        output: "<root>\n  <item id=\"1\">Hello</item>\n</root>"
+      },
+      seoContent: {
+        whatIsTitle: "What is XML Formatter & Validator?",
+        whatIsBody: "XML Formatter & Validator makes XML easier to read, check, and clean up by formatting indentation and confirming whether the document is well formed. It is useful for API payloads, config files, SOAP envelopes, feeds, and any XML you need to inspect before use.",
+        howToTitle: "How to Use XML Formatter & Validator",
+        howToSteps: [
+          "Paste XML into the input area.",
+          "Choose whether you want to format, minify, or validate the document.",
+          "Review the output or validation message for syntax issues.",
+          "Copy the cleaned XML back into your app, request, or config file."
+        ]
+      },
+      learnMore: {
+        title: "Understand XML Formatter & Validator",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for SOAP payloads, feeds, exports, and integration debugging.",
+          "Helps you spot malformed tags and nesting errors before deployment.",
+          "Runs locally so XML documents stay in the browser while you inspect them."
+        ]
       }
     },
   {
       slug: "yaml-json",
-      title: "YAML to JSON Converter Online – Parse & Convert YAML Free",
-      description: "Convert between YAML and JSON format instantly",
+      title: "YAML to JSON Converter Online ??Parse & Convert YAML Free",
+      description: "Convert YAML to JSON and JSON to YAML instantly. Supports nested objects, arrays, comments, and multi-line strings. Free, browser-based, no data sent.",
       category: "convert",
+      shortTitle: "YAML to JSON Converter",
       relatedTools: [
         "json-formatter",
         "toml-json",
         "xml-json"
       ],
       useCases: [
-        "Quickly complete common yaml to json converter online – parse & convert yaml free tasks in the browser",
-        "Verify yaml to json converter online – parse & convert yaml free results without installing desktop software"
+        "Convert configuration files between YAML and JSON during development",
+        "Inspect API payloads and deployment configs in the format your team prefers",
+        "Debug indentation-sensitive YAML by converting it into structured JSON",
+        "Prepare Kubernetes, CI, or app config snippets for different tooling"
       ],
       faq: [
         {
@@ -3676,7 +4407,7 @@ const TOOLS_META = [
         },
         {
           q: "Can I convert multi-document YAML files?",
-          a: "The tool converts a single YAML document at a time. Multi-document YAML (separated by --- ) is not currently supported."
+          a: "The tool converts a single YAML document at a time. Multi-document YAML (separated by ---) is not currently supported."
         },
         {
           q: "Is my data safe?",
@@ -3684,8 +4415,28 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Converting a simple YAML object to JSON:",
-        output: "YAML's indentation-based syntax maps directly to JSON's brace-based object notation."
+        input: "name: app\nenv:\n  stage: prod\n  region: us-east-1",
+        output: "{\n  \"name\": \"app\",\n  \"env\": {\n    \"stage\": \"prod\",\n    \"region\": \"us-east-1\"\n  }\n}"
+      },
+      seoContent: {
+        whatIsTitle: "What is YAML to JSON Converter?",
+        whatIsBody: "YAML to JSON Converter switches structured data between YAML and JSON so you can work in whichever format your toolchain expects. It is useful for config files, API payloads, CI pipelines, and debugging indentation-heavy YAML documents.",
+        howToTitle: "How to Use YAML to JSON Converter",
+        howToSteps: [
+          "Paste YAML when you want JSON output, or switch modes for the reverse conversion.",
+          "Review the parsed result and check for syntax errors if conversion fails.",
+          "Adjust JSON indentation if you want compact or readable output.",
+          "Copy the converted data into your app, config file, or deployment workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand YAML to JSON Converter",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for configs, payloads, CI files, and Kubernetes manifests.",
+          "Helps reveal YAML structure issues by converting into explicit JSON objects.",
+          "Runs in the browser so config content stays local during conversion."
+        ]
       }
     }
 ];

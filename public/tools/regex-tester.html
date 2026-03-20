@@ -13,9 +13,64 @@
   <meta property="og:title" content="Regex Tester Online – Test &amp; Debug Regular Expressions | Simple ToolBox" />
   <meta property="og:description" content="Test and debug regular expressions in real time. Highlights all matches, shows capture groups, supports global/case-insensitive/multiline flags, and includes replace mode. Free, browser-based." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Regex Tester","url":"https://simpletoolbox.dev/tools/regex-tester.html","description":"Test and debug regular expressions in real time with match highlighting, group capture display, and a quick-reference cheat sheet.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Simple ToolBox","url":"https://simpletoolbox.dev"}}
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Regex Tester",
+  "description": "Test and debug regular expressions in real time. Highlights all matches, shows capture groups, supports global/case-insensitive/multiline flags, and includes replace mode. Free, browser-based.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/regex-tester"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What regex flavor does this tester use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool uses the JavaScript RegExp engine built into your browser. JavaScript regex supports most standard features — character classes, quantifiers, groups, lookaheads, lookbehinds — but differs from other flavors (PCRE, Python, Java) in some edge cases like named backreferences and certain Unicode properties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "g",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "g (global) finds all matches instead of stopping at the first. i makes matching case-insensitive. m makes ^ and $ match the start/end of each line rather than the whole string. s (dotAll) makes . match newline characters too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I match a literal dot or parenthesis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Escape it with a backslash: \. matches a literal dot, \( matches a literal opening parenthesis. Without the backslash, . matches any character and ( starts a capture group."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a capture group?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A capture group is a part of the pattern wrapped in parentheses (...) . Whatever it matches is extracted separately and accessible as $1 , $2 , etc. in replace operations, or as array elements in code. Use (?:...) for a non-capturing group when you want grouping without extraction."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
   <style>
@@ -335,93 +390,86 @@
     </div>
   </div>
 
-  <section class="ds-seo-content" aria-label="About Regex Tester">
-<div class="ds-seo-section">
-      <h2 class="ds-seo-section__title">What is a Regex Tester?</h2>
-      <p>A regex tester (regular expression tester) lets you write, test, and debug regular expression patterns against sample text in real time. Regular expressions are a formal language for describing text patterns — they are used in virtually every programming language for tasks like input validation, text search, data extraction, and string transformation.</p>
-      <p>This tool highlights all matches as you type, shows detailed match groups and capture results, and includes a quick-reference panel for common patterns and character classes. Everything runs in your browser using the native JavaScript <code>RegExp</code> engine.</p>
-    </div>
-<div class="ds-seo-section">
-      <h2 class="ds-seo-section__title">How to Use the Regex Tester</h2>
-      <ol>
-        <li>Enter your regular expression pattern in the <strong>Pattern</strong> field at the top.</li>
-        <li>Select flags: <strong>g</strong> (global — find all matches), <strong>i</strong> (case-insensitive), <strong>m</strong> (multiline), or <strong>s</strong> (dotAll).</li>
-        <li>Type or paste your test text in the input area — matches are highlighted instantly.</li>
-        <li>View the <strong>match list</strong> below to see each match, its position, and any captured groups.</li>
-        <li>Use the <strong>Quick Reference</strong> panel to insert common patterns like email, URL, or phone number formats.</li>
-      </ol>
-    </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Regex Tester?</h2>
+    <p>Regex Tester helps you run regular expressions against sample text so you can inspect matches, capture groups, flags, and replacements in real time. It is useful for validation, parsing, search, data cleaning, and debugging patterns before they go into code.</p>
   </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Regex Tester</h2>
+    <ol>
+      <li>Enter the regular expression pattern you want to test.</li>
+      <li>Paste the sample text the pattern should run against.</li>
+      <li>Toggle flags such as global, multiline, or case-insensitive as needed.</li>
+      <li>Review matches, groups, and replacement output before using the pattern.</li>
+    </ol>
+  </section>
+</div>
 
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">📋</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Format and validate JSON</div></div></a>
-      <a href="string-escape.html" class="ds-related-card"><span class="ds-related-icon">✏️</span><div><div class="ds-related-name">String Escape</div><div class="ds-related-desc">Escape and unescape strings</div></div></a>
-      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">MD5, SHA-256, SHA-512 checksums</div></div></a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
+    <a href="string-escape.html" class="ds-related-card"><span class="ds-related-icon">🔤</span><div><div class="ds-related-name">String Escape / Unescape</div><div class="ds-related-desc">Escape or unescape strings for JSON, JavaScript and HTML</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
   </div>
-
-  <details class="ds-seo-more">
-    <summary class="ds-seo-more__toggle"><span>Understand Regular Expressions (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
-    <div class="ds-seo-more__body">
-            <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Pattern: <code>\b[A-Z][a-z]+\b</code> — matches capitalized words</p>
-          <p>Test string: <code>Hello World foo Bar</code></p>
-          <p>Matches highlighted: <strong>Hello</strong>, <strong>World</strong>, <strong>Bar</strong></p>
-          <p>Toggle the <strong>g</strong> flag to find all matches; toggle <strong>i</strong> for case-insensitive matching.</p>
-        </div>
-      </details>
-<details class="ds-seo-collapse">
-        <summary>Common Regular Expression Use Cases</summary>
-        <div class="ds-seo-collapse__body">
-            <ul>
-              <li><strong>Form validation</strong> — validate email addresses, phone numbers, ZIP codes, and credit card numbers.</li>
-              <li><strong>Log parsing</strong> — extract timestamps, IP addresses, and error codes from server or application logs.</li>
-              <li><strong>Code search &amp; replace</strong> — find and transform patterns across source files in editors like VS Code.</li>
-              <li><strong>Data extraction</strong> — pull structured data (dates, prices, URLs) out of unstructured text.</li>
-              <li><strong>URL routing</strong> — match and capture URL path segments in web frameworks.</li>
-            </ul>
-        </div>
-      </details>
-            <details class="ds-seo-collapse">
-        <summary>Why Use This Regex Tester</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Real-time highlighting</strong> — matches are highlighted in the test string as you type the pattern.</li>
-            <li><strong>Flag controls</strong> — toggle g, i, m, s flags with one click without editing the pattern.</li>
-            <li><strong>Match details</strong> — see each match's index, length, and capture groups listed below the test area.</li>
-            <li><strong>Quick-reference panel</strong> — common regex tokens and anchors are documented inline for quick lookup.</li>
-          </ul>
-        </div>
-      </details>
-<details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-              <div class="ds-seo-faq-item">
-                <h3>What regex flavor does this tester use?</h3>
-                <p>This tool uses the JavaScript <code>RegExp</code> engine built into your browser. JavaScript regex supports most standard features — character classes, quantifiers, groups, lookaheads, lookbehinds — but differs from other flavors (PCRE, Python, Java) in some edge cases like named backreferences and certain Unicode properties.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>What do the flags mean?</h3>
-                <p><strong>g</strong> (global) finds all matches instead of stopping at the first. <strong>i</strong> makes matching case-insensitive. <strong>m</strong> makes <code>^</code> and <code>$</code> match the start/end of each line rather than the whole string. <strong>s</strong> (dotAll) makes <code>.</code> match newline characters too.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>How do I match a literal dot or parenthesis?</h3>
-                <p>Escape it with a backslash: <code>\.</code> matches a literal dot, <code>\(</code> matches a literal opening parenthesis. Without the backslash, <code>.</code> matches any character and <code>(</code> starts a capture group.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>What is a capture group?</h3>
-                <p>A capture group is a part of the pattern wrapped in parentheses <code>(...)</code>. Whatever it matches is extracted separately and accessible as <code>$1</code>, <code>$2</code>, etc. in replace operations, or as array elements in code. Use <code>(?:...)</code> for a non-capturing group when you want grouping without extraction.</p>
-              </div>
-        </div>
-      </details>
-    </div>
-  </details>
-
 </div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Regular Expressions</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Pattern: [A-Z][a-z]+ — matches capitalized words</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Test string: Hello World foo Bar</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Debug JavaScript regular expressions against real sample text</li>
+          <li>Inspect capture groups and replacement output before writing code</li>
+          <li>Test validation patterns for forms, logs, or parsing tasks</li>
+          <li>Share clear regex examples during documentation or onboarding</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for validation rules, parsing, and search patterns.</li>
+          <li>Lets you test flags, groups, and replace mode without opening DevTools.</li>
+          <li>Runs locally so logs and sample text stay in the browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What regex flavor does this tester use?</strong><p>This tool uses the JavaScript RegExp engine built into your browser. JavaScript regex supports most standard features — character classes, quantifiers, groups, lookaheads, lookbehinds — but differs from other flavors (PCRE, Python, Java) in some edge cases like named backreferences and certain Unicode properties.</p></div>
+        <div class="ds-seo-faq-item"><strong>g</strong><p>g (global) finds all matches instead of stopping at the first. i makes matching case-insensitive. m makes ^ and $ match the start/end of each line rather than the whole string. s (dotAll) makes . match newline characters too.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I match a literal dot or parenthesis?</strong><p>Escape it with a backslash: \. matches a literal dot, \( matches a literal opening parenthesis. Without the backslash, . matches any character and ( starts a capture group.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is a capture group?</strong><p>A capture group is a part of the pattern wrapped in parentheses (...) . Whatever it matches is extracted separately and accessible as $1 , $2 , etc. in replace operations, or as array elements in code. Use (?:...) for a non-capturing group when you want grouping without extraction.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
   // ── DOM refs ──────────────────────────────────────────────

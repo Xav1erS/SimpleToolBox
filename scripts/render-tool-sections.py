@@ -20,7 +20,7 @@ def replace_between(content: str, start: str, end: str, replacement: str) -> str
     block = f"{start}\n{replacement}\n{end}"
     if not pattern.search(content):
         raise ValueError(f"Marker pair not found: {start} .. {end}")
-    return pattern.sub(block, content, count=1)
+    return pattern.sub(lambda _: block, content, count=1)
 
 
 def main() -> None:

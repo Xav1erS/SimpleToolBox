@@ -13,9 +13,64 @@
   <meta property="og:title" content="UUID Generator Online – Generate v1, v4 &amp; v5 UUIDs Free | Simple ToolBox" />
   <meta property="og:description" content="Generate UUID v4 universally unique identifiers instantly. Bulk generation, multiple format options (with or without dashes, uppercase). Free, no sign-up, runs in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"UUID Generator","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Generate random UUID v4 identifiers instantly. Create single or batch UUIDs in multiple formats. Cryptographically random, runs entirely in your browser.","featureList":["UUID v4 generation","Batch UUID generation","Multiple format options","Cryptographically random","Copy to clipboard"]}
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "UUID Generator",
+  "description": "Generate UUID v1 (time-based) and v4 (random) identifiers in bulk. Copy individually or all at once. Runs entirely in your browser.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/uuid-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between UUID v1 and v4?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "v1 is time-based and includes the MAC address of the generating machine. v4 is completely random. v4 is preferred for privacy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are generated UUIDs unique?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UUID v4 has 122 bits of randomness, making collisions statistically negligible for all practical purposes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I generate UUIDs in bulk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the quantity slider to generate up to 100 UUIDs at once, then copy all with one click."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "v1",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "v1 is time-based: it encodes the current timestamp and the machine's MAC address, making it sortable by creation time but potentially revealing system information. v4 is purely random and the recommended default for most applications."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between UUID v1 and v4?","acceptedAnswer":{"@type":"Answer","text":"v1 is time-based: it encodes the current timestamp and the machine's MAC address, making it sortable by creation time but potentially revealing system information. v4 is purely random and the recommended default for most applications."}},{"@type":"Question","name":"Can two UUIDs ever be the same?","acceptedAnswer":{"@type":"Answer","text":"Theoretically yes, but the probability is negligible. For v4, with 2^122 possible values, you would need to generate about 2.7 x 10^18 UUIDs before having a 50% chance of a single collision."}},{"@type":"Question","name":"Is UUID the same as GUID?","acceptedAnswer":{"@type":"Answer","text":"Yes. A GUID (Globally Unique Identifier) is Microsoft's term for the same RFC 4122 standard. The format and generation rules are identical."}},{"@type":"Question","name":"Should I use UUID or auto-increment ID?","acceptedAnswer":{"@type":"Answer","text":"Use UUID when you need IDs generated on the client side, across multiple servers, or when you don't want sequential IDs to be guessable. Use auto-increment when you need simplicity and your database is a single instance."}}]}
   </script>
@@ -213,90 +268,72 @@
 
   </div>
 
-  <section class="ds-seo-content" aria-label="About UUID Generator">
-<div class="ds-seo-section">
-      <h2 class="ds-seo-section__title">What is a UUID?</h2>
-      <p>A <strong>UUID (Universally Unique Identifier)</strong> is a 128-bit label used to uniquely identify information in computer systems. UUIDs are standardized by RFC 4122 and formatted as 32 hexadecimal digits displayed in five groups: <code>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>.</p>
-      <p>The most common version is <strong>UUID v4</strong>, which is generated using random or pseudo-random numbers. The probability of generating two identical v4 UUIDs is astronomically small — roughly 1 in 5.3 × 10³⁶ — making them safe to use as unique identifiers without a central registry.</p>
-    </div>
-<div class="ds-seo-section">
-      <h2 class="ds-seo-section__title">How to Use the UUID Generator</h2>
-      <ol>
-        <li>Choose the UUID <strong>version</strong>: v4 (random) is recommended for most use cases; v1 uses timestamp + MAC address.</li>
-        <li>Set the <strong>count</strong> using the slider to generate up to 100 UUIDs at once.</li>
-        <li>Toggle <strong>Uppercase</strong> if your system requires capital hex characters.</li>
-        <li>Click <strong>Generate</strong>, then copy individual UUIDs or use <strong>Copy All</strong>.</li>
-      </ol>
-    </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is UUID Generator?</h2>
+    <p>Generate UUID v1 (time-based) and v4 (random) identifiers in bulk. Copy individually or all at once. Runs entirely in your browser.</p>
   </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use UUID Generator</h2>
+    <ol>
+    </ol>
+  </section>
+</div>
 
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate secure random passwords</div></div></a>
-      <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-256 and more</div></div></a>
-      <a href="timestamp.html" class="ds-related-card"><span class="ds-related-icon">🕐</span><div><div class="ds-related-name">Timestamp Converter</div><div class="ds-related-desc">Convert Unix timestamps to dates</div></div></a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate strong random passwords locally</div></div></a>
+    <a href="random-number-generator.html" class="ds-related-card"><span class="ds-related-icon">🎲</span><div><div class="ds-related-name">Random Number Generator</div><div class="ds-related-desc">Generate random numbers, shuffle lists, roll dice</div></div></a>
+    <a href="base58.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base58 Encoder / Decoder</div><div class="ds-related-desc">Encode or decode Base58 strings for Bitcoin, IPFS and more</div></div></a>
   </div>
-
-  <details class="ds-seo-more">
-    <summary class="ds-seo-more__toggle"><span>Understand UUIDs (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
-    <div class="ds-seo-more__body">
-            <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>Generated UUID v4: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
-          <p>Bulk generation: set count to 10 to get 10 unique UUIDs ready to copy in one click.</p>
-          <p>You can also generate a <strong>nil UUID</strong> (<code>00000000-0000-0000-0000-000000000000</code>) for use as a placeholder or default value.</p>
-        </div>
-      </details>
-<details class="ds-seo-collapse">
-        <summary>Common Use Cases</summary>
-        <div class="ds-seo-collapse__body">
-            <ul>
-              <li><strong>Database primary keys</strong> — use UUID instead of auto-increment integers for distributed systems.</li>
-              <li><strong>Session and token IDs</strong> — generate unpredictable session identifiers for security.</li>
-              <li><strong>File naming</strong> — avoid collisions when saving user-uploaded files.</li>
-              <li><strong>Microservices</strong> — correlate requests across distributed services using a shared trace ID.</li>
-            </ul>
-        </div>
-      </details>
-            <details class="ds-seo-collapse">
-        <summary>Why Use This UUID Generator</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Cryptographically random</strong> — uses the Web Crypto API to ensure true randomness, not <code>Math.random()</code>.</li>
-            <li><strong>Bulk generation</strong> — generate up to 100 UUIDs at once and copy them all with one click.</li>
-            <li><strong>Multiple formats</strong> — standard hyphenated, uppercase, no-hyphens, and nil UUID.</li>
-            <li><strong>Zero network requests</strong> — everything runs client-side; your UUIDs are never seen by a server.</li>
-          </ul>
-        </div>
-      </details>
-<details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-              <div class="ds-seo-faq-item">
-                <h3>What is the difference between UUID v1 and v4?</h3>
-                <p><strong>v1</strong> is time-based: it encodes the current timestamp and the machine's MAC address, making it sortable by creation time but potentially revealing system information. <strong>v4</strong> is purely random and the recommended default for most applications.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>Can two UUIDs ever be the same?</h3>
-                <p>Theoretically yes, but the probability is negligible. For v4, with 2¹²² possible values, you would need to generate about 2.7 × 10¹⁸ UUIDs before having a 50% chance of a single collision.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>Is UUID the same as GUID?</h3>
-                <p>Yes. A GUID (Globally Unique Identifier) is Microsoft's term for the same RFC 4122 standard. The format and generation rules are identical.</p>
-              </div>
-              <div class="ds-seo-faq-item">
-                <h3>Should I use UUID or auto-increment ID?</h3>
-                <p>Use UUID when you need IDs generated on the client side, across multiple servers, or when you don't want sequential IDs to be guessable. Use auto-increment when you need simplicity and your database is a single instance.</p>
-              </div>
-        </div>
-      </details>
-    </div>
-  </details>
-
 </div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand UUIDs</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">v4, &quot;qty&quot;: 1</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">f47ac10b-58cc-4372-a567-0e02b2c3d479</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Generate sample IDs for databases and APIs</li>
+          <li>Create unique keys for test fixtures and demos</li>
+          <li>Seed mock data locally without a server dependency</li>
+          <li>Copy batches of UUIDs for scripts or spreadsheets</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the difference between UUID v1 and v4?</strong><p>v1 is time-based and includes the MAC address of the generating machine. v4 is completely random. v4 is preferred for privacy.</p></div>
+        <div class="ds-seo-faq-item"><strong>Are generated UUIDs unique?</strong><p>UUID v4 has 122 bits of randomness, making collisions statistically negligible for all practical purposes.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I generate UUIDs in bulk?</strong><p>Yes. Use the quantity slider to generate up to 100 UUIDs at once, then copy all with one click.</p></div>
+        <div class="ds-seo-faq-item"><strong>v1</strong><p>v1 is time-based: it encodes the current timestamp and the machine&#x27;s MAC address, making it sortable by creation time but potentially revealing system information. v4 is purely random and the recommended default for most applications.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
   const state = { count: 10, uppercase: false, hyphens: true, braces: false };

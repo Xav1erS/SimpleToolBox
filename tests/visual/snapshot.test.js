@@ -11,6 +11,11 @@
 import { test, expect } from '@playwright/test';
 import { toolUrl } from '../utils/helpers.js';
 
+async function waitForVisualReady(page) {
+  await page.waitForLoadState('networkidle', { timeout: 3000 }).catch(() => {});
+  await page.waitForTimeout(300);
+}
+
 // Tools to capture — start with the highest-traffic / most-changed pages
 const SNAPSHOT_TOOLS = [
   'base64',
@@ -43,9 +48,7 @@ for (const slug of SNAPSHOT_TOOLS) {
     test('desktop layout', async ({ page }) => {
       await page.setViewportSize({ width: 1280, height: 900 });
       await page.goto(toolUrl(slug), { waitUntil: 'domcontentloaded' });
-      // Wait for fonts and images to settle
-      await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(300);
+      await waitForVisualReady(page);
       await expect(page).toHaveScreenshot(`${slug}-desktop.png`, {
         ...SCREENSHOT_OPTS,
         maxDiffPixelRatio: 0.02, // allow 2% pixel diff before flagging
@@ -55,8 +58,7 @@ for (const slug of SNAPSHOT_TOOLS) {
     test('mobile layout', async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(toolUrl(slug), { waitUntil: 'domcontentloaded' });
-      await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(300);
+      await waitForVisualReady(page);
       await expect(page).toHaveScreenshot(`${slug}-mobile.png`, {
         animations: 'disabled',
         clip: { x: 0, y: 0, width: 390, height: 844 },

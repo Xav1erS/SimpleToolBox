@@ -12,83 +12,66 @@
   <meta property="og:title" content="CSS Formatter &amp; Minifier Online – Beautify or Compress CSS Free | Simple ToolBox" />
   <meta property="og:description" content="Format and minify CSS code instantly. Beautify compressed CSS for readability or minify for production. Free, browser-based, no data sent." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSS Formatter & Minifier","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Format and minify CSS code instantly. Beautify compressed CSS for readability or minify for production. Free, browser-based, no data sent.","featureList":["CSS beautify","CSS minify","Configurable indent","Real-time formatting","No data sent"]}
-  </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
-  <script src="https://cdn.jsdelivr.net/npm/js-beautify@1/js/lib/beautify-css.min.js"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--ds-font-sans);
-      background: var(--ds-color-bg);
-      color: var(--ds-color-text-primary);
-      font-size: 14px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-
-    .mode-btn.active { background: var(--ds-color-accent); color: #fff; }
-    .seg-ctrl {
-      display: flex;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-sm);
-      overflow: hidden;
-    }
-    .seg-btn {
-      padding: 5px 12px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ds-color-text-secondary);
-      transition: color 0.15s, background 0.15s;
-    }
-    .seg-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); }
-    .seg-btn:not(.active):hover { background: rgba(255,255,255,0.04); color: var(--ds-color-text-primary); }
-    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
-    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
-    .io-textarea:focus { background: rgba(94,106,210,0.025); }
-    .io-panel.has-error .io-textarea { color: #ef4444; }
-    .io-panel.has-error .io-error { display: block; }
-    .io-panel.has-error .io-stat { display: none; }
-    .btn-ghost.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
-    .info-text strong { color: var(--ds-color-text-primary); font-weight: 600; }
-    .info-text code {
-      font-family: var(--ds-font-mono);
-      font-size: 11px;
-      background: rgba(255,255,255,0.06);
-      padding: 1px 4px;
-      border-radius: 3px;
-    }
-
-    @media (max-width: 720px) {
-      .panels-arrow {
-        height: 36px;
-        border-left: none;
-        border-right: none;
-        border-top: 1px solid var(--ds-color-border);
-        border-bottom: 1px solid var(--ds-color-border);
+    <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CSS Formatter & Minifier",
+  "description": "Format and minify CSS code instantly. Beautify compressed CSS for readability or minify for production. Free, browser-based, no data sent.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/css-formatter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does formatting change the behavior of my CSS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Adding whitespace and line breaks to CSS has no effect on how browsers parse and apply the styles. The formatted output is functionally identical to the original."
       }
-      .arrow-circle { transform: rotate(90deg); }
-      .ds-related-grid { grid-template-columns: 1fr; }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I format CSS that includes vendor prefixes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Vendor-prefixed properties like -webkit-transform or -moz-appearance are treated as standard properties and formatted normally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it handle SCSS or Less syntax?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The formatter is optimized for standard CSS. SCSS/Less-specific syntax like nesting or variables may not format correctly; use a dedicated SCSS/Less formatter for those files."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I format CSS before using it in production?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No ??in production you should minify CSS to reduce file size. Use the CSS Formatter during development and code review, then minify before deploying."
+      }
     }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8SBCZ6DT1R');
-  </script>
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
 </head>
 <body class="ds-page">
 <noscript>
@@ -362,97 +345,91 @@
   setMode('beautify');
 </script>
 
-  <div class="ds-seo-content">
-    <section class="ds-seo-section">
-      <h2 class="ds-seo-section__title">What is CSS Formatter?</h2>
-      <p>CSS Formatter is a free browser-based tool that formats and beautifies minified CSS into readable, properly indented code. It adds consistent spacing, line breaks, and indentation so you can review or edit stylesheets more easily. No data is sent to any server — all processing happens in your browser.</p>
-    </section>
-    <section class="ds-seo-section">
-      <h2 class="ds-seo-section__title">How to Use</h2>
-      <ol>
-        <li>Paste your minified or unformatted CSS into the input panel.</li>
-        <li>Click <strong>Format</strong> to beautify the code with proper indentation.</li>
-        <li>Copy the formatted CSS from the output panel.</li>
-      </ol>
-    </section>
-  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is CSS Formatter &amp; Minifier?</h2>
+    <p>CSS Formatter &amp; Minifier helps you switch between readable stylesheet code and compact production-ready output. It is useful for debugging compiled CSS, reviewing selectors and declarations, and compressing styles again before shipping them.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use CSS Formatter &amp; Minifier</h2>
+    <ol>
+      <li>Paste the CSS you want to beautify or compress.</li>
+      <li>Choose format or minify mode and adjust indentation if needed.</li>
+      <li>Review the output for readability or file size reduction.</li>
+      <li>Copy the result back into your stylesheet or build pipeline.</li>
+    </ol>
+  </section>
+</div>
 
-  <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="css-minifier.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">CSS Minifier</div><div class="ds-related-desc">Compress CSS for production</div></div></a>
-      <a href="js-formatter.html" class="ds-related-card"><span class="ds-related-icon">⚡</span><div><div class="ds-related-name">JS Formatter</div><div class="ds-related-desc">Beautify JavaScript code</div></div></a>
-      <a href="html-formatter.html" class="ds-related-card"><span class="ds-related-icon">📄</span><div><div class="ds-related-name">HTML Formatter</div><div class="ds-related-desc">Format and indent HTML markup</div></div></a>
-    </div>
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="css-minifier.html" class="ds-related-card"><span class="ds-related-icon">⚡</span><div><div class="ds-related-name">CSS Minifier</div><div class="ds-related-desc">Compress CSS by removing comments and whitespace</div></div></a>
+    <a href="js-formatter.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">JS Formatter</div><div class="ds-related-desc">Beautify or minify JavaScript code with Prettier-style formatting</div></div></a>
+    <a href="html-formatter.html" class="ds-related-card"><span class="ds-related-icon">🏷️</span><div><div class="ds-related-name">HTML Formatter</div><div class="ds-related-desc">Beautify or minify HTML with customizable indentation</div></div></a>
   </div>
+</div>
 
-  <details class="ds-seo-more">
-    <summary class="ds-seo-more__toggle"><span>Understand CSS Formatter (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
-    <div class="ds-seo-more__body">
-      <details class="ds-seo-collapse">
-        <summary>Example</summary>
-        <div class="ds-seo-collapse__body">
-          <p>A minified CSS rule becomes fully readable after formatting:</p>
-          <div class="ds-seo-example">
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Input</span>
-              <span class="ds-seo-example__value">.card{display:flex;padding:16px;background:#fff;border-radius:8px}</span>
-            </div>
-            <div class="ds-seo-example__row">
-              <span class="ds-seo-example__label">Output</span>
-              <span class="ds-seo-example__value">.card {\n  display: flex;\n  padding: 16px;\n  background: #fff;\n  border-radius: 8px;\n}</span>
-            </div>
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand CSS Formatter &amp; Minifier</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">.card{display:flex;padding:16px;background:#fff;border-radius:8px}</span>
           </div>
-          <p>Each property is placed on its own line with consistent two-space indentation, making the rule easy to scan and edit.</p>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">.card {
+  display: flex;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+}</span>
+          </div>
         </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Common Use Cases</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li>Unminifying a third-party stylesheet to understand its structure and selectors.</li>
-            <li>Cleaning up CSS generated by a design tool or CSS-in-JS framework.</li>
-            <li>Preparing code for a code review where readability matters.</li>
-            <li>Debugging layout issues by inspecting expanded property values.</li>
-            <li>Learning CSS by reading well-formatted example stylesheets.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Why Use This Tool</summary>
-        <div class="ds-seo-collapse__body">
-          <ul>
-            <li><strong>Consistent style</strong> — uniform indentation and spacing across all rules.</li>
-            <li><strong>Preserves selectors</strong> — no rules, properties, or values are removed or altered.</li>
-            <li><strong>Handles at-rules</strong> — correctly formats @media, @keyframes, and @supports blocks.</li>
-            <li><strong>Fast</strong> — instant formatting with no page reload or server round-trip.</li>
-            <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="ds-seo-collapse">
-        <summary>Frequently Asked Questions</summary>
-        <div class="ds-seo-collapse__body">
-            <div class="ds-seo-faq-item">
-              <h3>Does formatting change the behavior of my CSS?</h3>
-              <p>No. Adding whitespace and line breaks to CSS has no effect on how browsers parse and apply the styles. The formatted output is functionally identical to the original.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>Can I format CSS that includes vendor prefixes?</h3>
-              <p>Yes. Vendor-prefixed properties like -webkit-transform or -moz-appearance are treated as standard properties and formatted normally.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>Does it handle SCSS or Less syntax?</h3>
-              <p>The formatter is optimized for standard CSS. SCSS/Less-specific syntax like nesting or variables may not format correctly; use a dedicated SCSS/Less formatter for those files.</p>
-            </div>
-            <div class="ds-seo-faq-item">
-              <h3>Should I format CSS before using it in production?</h3>
-              <p>No — in production you should minify CSS to reduce file size. Use the CSS Formatter during development and code review, then minify before deploying.</p>
-            </div>
-        </div>
-      </details>
-    </div>
-  </details>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Beautify minified stylesheets before debugging layout issues</li>
+          <li>Review generated CSS from design tools or build output</li>
+          <li>Minify CSS again after edits for production deployment</li>
+          <li>Inspect selectors and declarations more clearly during code review</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for debugging large or minified stylesheets.</li>
+          <li>Lets you move quickly between readable and compact CSS output.</li>
+          <li>Runs locally so source styles never leave the browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does formatting change the behavior of my CSS?</strong><p>No. Adding whitespace and line breaks to CSS has no effect on how browsers parse and apply the styles. The formatted output is functionally identical to the original.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I format CSS that includes vendor prefixes?</strong><p>Yes. Vendor-prefixed properties like -webkit-transform or -moz-appearance are treated as standard properties and formatted normally.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it handle SCSS or Less syntax?</strong><p>The formatter is optimized for standard CSS. SCSS/Less-specific syntax like nesting or variables may not format correctly; use a dedicated SCSS/Less formatter for those files.</p></div>
+        <div class="ds-seo-faq-item"><strong>Should I format CSS before using it in production?</strong><p>No ??in production you should minify CSS to reduce file size. Use the CSS Formatter during development and code review, then minify before deploying.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

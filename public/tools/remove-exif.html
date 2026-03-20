@@ -12,9 +12,64 @@
   <meta property="og:title" content="Remove EXIF Data Online Free – Strip Image Metadata | Simple ToolBox" />
   <meta property="og:description" content="Remove EXIF metadata from photos online for free. Strips GPS location, camera model, date, and all other metadata. Download a clean image instantly. No upload — runs in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Remove EXIF Data","applicationCategory":"MultimediaApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Strip EXIF metadata from images in your browser. Removes GPS location, camera model, date/time, and all other embedded metadata. No uploads — everything runs client-side.","featureList":["Remove all EXIF metadata","Strip GPS location data","Remove camera model and settings","File size comparison","100% client-side — no uploads"]}
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "EXIF Remover",
+  "description": "Remove EXIF metadata from photos online for free. Strips GPS location, camera model, date, and all other metadata. Download a clean image instantly. No upload — runs in your browser.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/remove-exif"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does removing EXIF data affect image quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The pixel data is preserved exactly. Only the metadata (hidden information appended to the file) is removed. The image will look identical to the original."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does this tool remove EXIF data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The image is drawn onto an HTML5 Canvas element and then exported as a new image file using the Canvas API. Canvas output does not carry over any metadata from the source file — only raw pixel data is written to the output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this remove watermarks or visible text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. EXIF removal only strips hidden metadata — invisible data embedded in the file. Visible watermarks and text in the image pixels are part of the image content and are not affected."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do social media platforms also remove EXIF data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most platforms (Instagram, Twitter, Facebook) strip EXIF metadata when you upload. However, removing it before upload is safer — it ensures no metadata is retained in transit, and you can safely share the file directly (e.g. via email or messaging apps) without relying on the platform."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
   <style>
@@ -209,19 +264,15 @@
 <input type="file" id="fileInput" accept="image/*" />
 <canvas id="canvas" style="display:none"></canvas>
 
+<!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is EXIF Data and Why Remove It?</h2>
-    <p>EXIF (Exchangeable Image File Format) is metadata embedded in photos by cameras and smartphones. It records GPS coordinates, camera model, lens settings, date and time, and more. While useful for personal archives, EXIF data can be a <strong>privacy risk</strong> — posting a photo with GPS data reveals exactly where it was taken. This tool re-renders the image through an HTML5 Canvas, which strips all embedded metadata. The pixel data is preserved; only the hidden metadata is removed.</p>
+    <h2 class="ds-seo-section__title">What is EXIF Remover?</h2>
+    <p>Remove EXIF metadata from photos online for free. Strips GPS location, camera model, date, and all other metadata. Download a clean image instantly. No upload — runs in your browser.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Remove EXIF Data from a Photo</h2>
+    <h2 class="ds-seo-section__title">How to Use EXIF Remover</h2>
     <ol>
-      <li>Drop your photo onto the preview area, or click to browse and select a file.</li>
-      <li>The image is instantly re-rendered on a canvas, stripping all metadata.</li>
-      <li>Compare the before/after file sizes in the left panel.</li>
-      <li>Choose your output format: JPEG (smaller) or PNG (lossless).</li>
-      <li>Click <strong>Download</strong> to save the clean image with no metadata.</li>
     </ol>
   </section>
 </div>
@@ -230,199 +281,55 @@
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
     <a href="image-compressor.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">Image Compressor</div><div class="ds-related-desc">Reduce image file size with quality control</div></div></a>
-    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG</div></div></a>
-    <a href="jpg-to-png.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">JPG to PNG</div><div class="ds-related-desc">Convert JPEG images to lossless PNG</div></div></a>
+    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG format</div></div></a>
+    <a href="jpg-to-png.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">JPG to PNG Converter</div><div class="ds-related-desc">Convert JPG/JPEG images to PNG format instantly</div></div></a>
   </div>
 </div>
 
 <details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle"><span>Understand EXIF Removal (privacy, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+  <summary class="ds-seo-more__toggle">
+    <span>Understand EXIF Metadata</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
       <div class="ds-seo-collapse__body">
-        <p>A smartphone photo taken at home (3.8 MB JPEG) contains hidden GPS coordinates and device info:</p>
-        <ul>
-          <li>Input: JPEG, 3.8 MB — includes latitude/longitude, iPhone model, iOS version, date/time</li>
-          <li>Output: JPEG, 3.6 MB — <strong>pixel-identical image with zero metadata</strong></li>
-        </ul>
-        <p>The resulting image is safe to share publicly without revealing your home location.</p>
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Upload a phone photo that includes camera model and GPS metadata</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">The exported image keeps the pixels but removes embedded EXIF metadata fields</span>
+          </div>
+        </div>
       </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Common Use Cases</summary>
       <div class="ds-seo-collapse__body">
         <ul>
-          <li>Remove GPS location before posting photos on social media or forums</li>
-          <li>Strip personal device info before sending images to clients or employers</li>
-          <li>Clean metadata from photos before publishing on a blog or website</li>
-          <li>Reduce file size slightly by removing embedded EXIF thumbnail previews</li>
-          <li>Prepare images for stock photography submission (many platforms strip metadata anyway)</li>
-        </ul>
-      </div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This EXIF Remover</summary>
-      <div class="ds-seo-collapse__body">
-        <ul>
-          <li><strong>No upload</strong> — your image is never sent to any server; it stays in your browser's memory.</li>
-          <li><strong>Complete metadata strip</strong> — the canvas re-render removes all EXIF, IPTC, and XMP metadata.</li>
-          <li><strong>Pixel-perfect output</strong> — the image content is unchanged; only the hidden metadata is removed.</li>
-          <li><strong>Privacy-first design</strong> — ideal for sensitive photos where location data must not leak.</li>
+          <li>Remove location metadata before posting photos publicly</li>
+          <li>Clean image files for client delivery or press use</li>
+          <li>Strip hidden camera details from product listings</li>
+          <li>Share screenshots and photos with fewer privacy risks</li>
         </ul>
       </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-          <div class="ds-seo-faq-item">
-            <h3>Does removing EXIF data affect image quality?</h3>
-            <p>No. The pixel data is preserved exactly. Only the metadata (hidden information appended to the file) is removed. The image will look identical to the original.</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>How does this tool remove EXIF data?</h3>
-            <p>The image is drawn onto an HTML5 Canvas element and then exported as a new image file using the Canvas API. Canvas output does not carry over any metadata from the source file — only raw pixel data is written to the output.</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>Does this remove watermarks or visible text?</h3>
-            <p>No. EXIF removal only strips hidden metadata — invisible data embedded in the file. Visible watermarks and text in the image pixels are part of the image content and are not affected.</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>Do social media platforms also remove EXIF data?</h3>
-            <p>Most platforms (Instagram, Twitter, Facebook) strip EXIF metadata when you upload. However, removing it before upload is safer — it ensures no metadata is retained in transit, and you can safely share the file directly (e.g. via email or messaging apps) without relying on the platform.</p>
-          </div>
+        <div class="ds-seo-faq-item"><strong>Does removing EXIF data affect image quality?</strong><p>No. The pixel data is preserved exactly. Only the metadata (hidden information appended to the file) is removed. The image will look identical to the original.</p></div>
+        <div class="ds-seo-faq-item"><strong>How does this tool remove EXIF data?</strong><p>The image is drawn onto an HTML5 Canvas element and then exported as a new image file using the Canvas API. Canvas output does not carry over any metadata from the source file — only raw pixel data is written to the output.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does this remove watermarks or visible text?</strong><p>No. EXIF removal only strips hidden metadata — invisible data embedded in the file. Visible watermarks and text in the image pixels are part of the image content and are not affected.</p></div>
+        <div class="ds-seo-faq-item"><strong>Do social media platforms also remove EXIF data?</strong><p>Most platforms (Instagram, Twitter, Facebook) strip EXIF metadata when you upload. However, removing it before upload is safer — it ensures no metadata is retained in transit, and you can safely share the file directly (e.g. via email or messaging apps) without relying on the platform.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-<script>
-  const btnDownload    = document.getElementById('btnDownload');
-  const btnLabel       = document.getElementById('btnLabel');
-  const dropZone       = document.getElementById('dropZone');
-  const imgWrap        = document.getElementById('imgWrap');
-  const imgPreview     = document.getElementById('imgPreview');
-  const btnChange      = document.getElementById('btnChange');
-  const fileInput      = document.getElementById('fileInput');
-  const canvas         = document.getElementById('canvas');
-  const ctx            = canvas.getContext('2d');
-  const sizeOriginal   = document.getElementById('sizeOriginal');
-  const sizeOutput     = document.getElementById('sizeOutput');
-  const fmtOriginal    = document.getElementById('fmtOriginal');
-  const fmtOutput      = document.getElementById('fmtOutput');
-  const savingBadge    = document.getElementById('savingBadge');
-  const metaDimensions = document.getElementById('metaDimensions');
-  const metaFormat     = document.getElementById('metaFormat');
-  const metaFilename   = document.getElementById('metaFilename');
-
-  let srcImage  = null;
-  let origSize  = 0;
-  let outputFmt = 'image/jpeg';
-  let outputExt = 'jpg';
-  let fileName  = 'image';
-
-  function fmtBytes(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
-  }
-
-  function mimeToLabel(mime) {
-    if (mime === 'image/jpeg') return 'JPEG';
-    if (mime === 'image/png')  return 'PNG';
-    if (mime === 'image/webp') return 'WebP';
-    return mime.split('/')[1].toUpperCase();
-  }
-
-  function updateOutputSize() {
-    if (!srcImage) return;
-    canvas.width  = srcImage.naturalWidth;
-    canvas.height = srcImage.naturalHeight;
-    ctx.drawImage(srcImage, 0, 0);
-    const isPng = outputFmt === 'image/png';
-    canvas.toBlob(blob => {
-      if (!blob) return;
-      sizeOutput.textContent = fmtBytes(blob.size);
-      if (origSize > 0) {
-        const diff = origSize - blob.size;
-        const pct = ((Math.abs(diff) / origSize) * 100).toFixed(1);
-        if (diff > 0) {
-          savingBadge.textContent = `↓ ${fmtBytes(diff)} smaller (${pct}%)`;
-          savingBadge.style.color = '#22c55e';
-        } else if (diff < 0) {
-          savingBadge.textContent = `↑ ${fmtBytes(-diff)} larger (+${pct}%)`;
-          savingBadge.style.color = 'var(--ds-color-text-muted)';
-        } else {
-          savingBadge.textContent = 'Same size';
-          savingBadge.style.color = 'var(--ds-color-text-muted)';
-        }
-        savingBadge.classList.add('visible');
-      }
-    }, outputFmt, isPng ? undefined : 0.92);
-  }
-
-  document.querySelectorAll('.fmt-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.fmt-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      outputFmt = btn.dataset.fmt;
-      outputExt = btn.dataset.ext;
-      fmtOutput.textContent = btn.textContent;
-      btnLabel.textContent = `Download Clean ${btn.textContent}`;
-      updateOutputSize();
-    });
-  });
-
-  function loadFile(file) {
-    if (!file || !file.type.startsWith('image/')) return;
-    origSize = file.size;
-    fileName = file.name.replace(/\.[^.]+$/, '');
-    sizeOriginal.textContent = fmtBytes(origSize);
-    fmtOriginal.textContent  = mimeToLabel(file.type) || file.name.split('.').pop().toUpperCase();
-    metaFilename.textContent = file.name;
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        srcImage = img;
-        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
-        metaFormat.textContent = mimeToLabel(file.type);
-        imgPreview.src = e.target.result;
-        dropZone.style.display = 'none';
-        imgWrap.style.display  = 'flex';
-        btnChange.style.display = 'block';
-        btnDownload.disabled = false;
-        updateOutputSize();
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  dropZone.addEventListener('click', () => fileInput.click());
-  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); loadFile(e.dataTransfer.files[0]); });
-  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
-  btnChange.addEventListener('click', () => fileInput.click());
-
-  btnDownload.addEventListener('click', () => {
-    if (!srcImage) return;
-    canvas.width  = srcImage.naturalWidth;
-    canvas.height = srcImage.naturalHeight;
-    ctx.drawImage(srcImage, 0, 0);
-    const isPng = outputFmt === 'image/png';
-    canvas.toBlob(blob => {
-      const url = URL.createObjectURL(blob);
-      const a = Object.assign(document.createElement('a'), { href: url, download: `${fileName}-clean.${outputExt}` });
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    }, outputFmt, isPng ? undefined : 0.92);
-  });
-</script>
-</div>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

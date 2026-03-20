@@ -18,133 +18,66 @@
     content="Complete HTTP status code reference with descriptions and usage notes. Search by code or keyword."
   />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTTP Status Codes Reference","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Complete HTTP status code reference covering 1xx, 2xx, 3xx, 4xx, and 5xx codes with descriptions and usage notes. Search by code number or keyword.","featureList":["All HTTP status codes","Search by code or keyword","Category filtering","RFC reference notes"]}
-  </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
-  <style>
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--ds-font-sans);
-      background: var(--ds-color-bg);
-      color: var(--ds-color-text-primary);
-      font-size: 14px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
+    <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HTTP Status Codes Reference",
+  "description": "Complete reference of HTTP status codes with descriptions",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/http-status"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When should I use 301 vs 302?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use 301 (Moved Permanently) for permanent URL changes — search engines update their index. Use 302 for temporary redirects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between 401 and 403?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "401 Unauthorized means authentication is required. 403 Forbidden means authenticated but not allowed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does HTTP Status Codes Reference – Complete List with Descriptions do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HTTP Status Codes Reference – Complete List with Descriptions runs entirely in your browser and helps you complete this task without uploading data to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is HTTP Status Codes Reference – Complete List with Descriptions free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tool is free to use and does not require sign-up."
+      }
     }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-
-    .main { max-width: 820px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 20px; }
-
-    /* ── search + filter bar ─────────────────── */
-    .search-bar {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .search-input {
-      flex: 1;
-      min-width: 200px;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-md);
-      padding: 9px 14px;
-      font-size: 14px;
-      color: var(--ds-color-text-primary);
-      font-family: var(--ds-font-sans);
-      outline: none;
-      transition: border-color 0.15s;
-    }
-    .search-input:focus { border-color: var(--ds-color-accent); }
-    .search-input::placeholder { color: var(--ds-color-text-muted); }
-
-    .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-    .filter-btn {
-      padding: 6px 14px;
-      font-size: 12px;
-      font-weight: 600;
-      border-radius: var(--ds-radius-sm);
-      border: 1px solid var(--ds-color-border);
-      color: var(--ds-color-text-secondary);
-      background: none;
-      cursor: pointer;
-      transition: color 0.15s, background 0.15s, border-color 0.15s;
-    }
-    .filter-btn:hover { color: var(--ds-color-text-primary); border-color: var(--ds-color-border-accent); }
-    .filter-btn.active { background: var(--ds-color-surface-tint); color: var(--ds-color-accent); border-color: rgba(94,106,210,0.4); }
-    .filter-btn[data-cat="1xx"].active { color: #a78bfa; background: rgba(167,139,250,0.12); border-color: rgba(167,139,250,0.35); }
-    .filter-btn[data-cat="2xx"].active { color: #22c55e; background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.35); }
-    .filter-btn[data-cat="3xx"].active { color: #f59e0b; background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.35); }
-    .filter-btn[data-cat="4xx"].active { color: #ef4444; background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.35); }
-    .filter-btn[data-cat="5xx"].active { color: #f97316; background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.35); }
-
-    /* ── status cards ────────────────────────── */
-    .status-grid { display: flex; flex-direction: column; gap: 6px; }
-    .status-row {
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-md);
-      padding: 12px 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      transition: border-color 0.15s;
-    }
-    .status-row:hover { border-color: var(--ds-color-border-accent); }
-    .status-code {
-      font-family: var(--ds-font-mono);
-      font-size: 18px;
-      font-weight: 700;
-      min-width: 52px;
-      flex-shrink: 0;
-      line-height: 1.2;
-    }
-    .status-code.c1 { color: #a78bfa; }
-    .status-code.c2 { color: #22c55e; }
-    .status-code.c3 { color: #f59e0b; }
-    .status-code.c4 { color: #ef4444; }
-    .status-code.c5 { color: #f97316; }
-    .status-info { flex: 1; }
-    .status-name { font-weight: 600; font-size: 14px; color: var(--ds-color-text-primary); }
-    .status-desc { font-size: 13px; color: var(--ds-color-text-secondary); margin-top: 2px; }
-    .status-copy {
-      flex-shrink: 0;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--ds-color-text-muted);
-      background: none;
-      border: 1px solid transparent;
-      border-radius: var(--ds-radius-sm);
-      padding: 3px 9px;
-      cursor: pointer;
-      align-self: center;
-      transition: color 0.15s, background 0.15s, border-color 0.15s;
-    }
-    .status-copy:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
-    .status-copy.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
-
-    .no-results { text-align: center; color: var(--ds-color-text-muted); padding: 40px 0; font-size: 13px; }
-
-    @media (max-width: 560px) {
-      .search-bar { flex-direction: column; align-items: stretch; }
-      .ds-related-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8SBCZ6DT1R');
-  </script>
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
 </head>
 <body class="ds-page">
 
@@ -205,221 +138,86 @@
   <div class="no-results" id="noResults" style="display:none;">No matching codes found.</div>
 
   
+  <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is HTTP Status Code Reference?</h2>
-    <p class="ds-seo-section__body">A searchable reference for all HTTP status codes with descriptions, usage context, and examples. Covers 1xx–5xx ranges from informational responses to server errors.</p>
+    <h2 class="ds-seo-section__title">What is HTTP Status Codes Reference?</h2>
+    <p>HTTP Status Codes Reference explains standard response codes such as 200, 301, 404, and 500 so you can quickly understand what a server response means. It is useful for API debugging, backend development, QA, docs, and support workflows.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use HTTP Status Code Reference</h2>
-    <ol class="ds-seo-section__list">
-      <li>Enter a status code number or keyword in the search box.</li>
-      <li>See the code name, full description, and usage notes.</li>
-      <li>Browse by category: 2xx success, 3xx redirect, 4xx client error, 5xx server error.</li>
-      <li>Copy a status code or description for use in your code.</li>
+    <h2 class="ds-seo-section__title">How to Use HTTP Status Codes Reference</h2>
+    <ol>
+      <li>Search for the numeric code or status phrase you need.</li>
+      <li>Read the description and category of the response code.</li>
+      <li>Compare similar codes such as 401 vs 403 or 301 vs 302.</li>
+      <li>Use the result in debugging, implementation, or documentation work.</li>
     </ol>
   </section>
 </div>
+
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="url-encode.html" class="ds-related-card">
-        <span class="ds-related-icon">🔗</span>
-        <div>
-          <div class="ds-related-name">URL Encode / Decode</div>
-          <div class="ds-related-desc">Percent-encode strings for safe URL use</div>
-        </div>
-      </a>
-      <a href="json-formatter.html" class="ds-related-card">
-        <span class="ds-related-icon">🎨</span>
-        <div>
-          <div class="ds-related-name">JSON Formatter</div>
-          <div class="ds-related-desc">Prettify and validate JSON API responses</div>
-        </div>
-      </a>
-      <a href="jwt-decoder.html" class="ds-related-card">
-        <span class="ds-related-icon">🔑</span>
-        <div>
-          <div class="ds-related-name">JWT Decoder</div>
-          <div class="ds-related-desc">Inspect JWT tokens from API auth headers</div>
-        </div>
-      </a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Encode or decode URL parameters and components</div></div></a>
+    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
+    <a href="jwt-decoder.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">JWT Decoder / Inspector</div><div class="ds-related-desc">Decode JWT header, payload, signature and inspect claims</div></div></a>
   </div>
+</div>
+
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
-    <span>Understand HTTP Status Code Reference</span>
+    <span>Understand HTTP Status Codes Reference</span>
     <span class="ds-seo-more__arrow">&#9662;</span>
   </summary>
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p><strong>200 OK</strong>: Request succeeded, response body contains the result.</p><p><strong>404 Not Found</strong>: Server cannot find the requested resource.</p><p><strong>301 Moved Permanently</strong>: URL has changed — all future requests should use the new URL.</p></div>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">200 OK : Request succeeded, response body contains the result.</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">404 Not Found : Server cannot find the requested resource.</span>
+          </div>
+        </div>
+      </div>
     </details>
     <details class="ds-seo-collapse">
-      <summary>HTTP Status Code Categories</summary>
-      <div class="ds-seo-collapse__body"><ul><li><strong>1xx Informational</strong>: 100 Continue, 101 Switching Protocols</li><li><strong>2xx Success</strong>: 200 OK, 201 Created, 204 No Content, 206 Partial Content</li><li><strong>3xx Redirects</strong>: 301, 302, 304 Not Modified, 307, 308</li><li><strong>4xx Client Errors</strong>: 400, 401, 403, 404, 409, 422, 429 Too Many Requests</li><li><strong>5xx Server Errors</strong>: 500, 502, 503, 504</li></ul></div>
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Look up HTTP response codes while debugging APIs and web apps</li>
+          <li>Explain redirect, auth, and server error semantics to teammates</li>
+          <li>Check which status code best matches an API or backend behavior</li>
+          <li>Use as a quick reference during docs writing or incident response</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Quick lookup during API development without leaving the browser</li>
-        <li>Understand the difference between 301 and 302, or 401 and 403</li>
-        <li>Reference for building correct REST API responses</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for APIs, browser debugging, backend work, and docs.</li>
+          <li>Helps distinguish similar success, redirect, client-error, and server-error codes.</li>
+          <li>Works as a fast browser-side reference without extra tooling.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>When should I use 301 vs 302?</strong><p>Use 301 (Moved Permanently) for permanent URL changes — search engines update their index. Use 302 for temporary redirects.</p></div>
         <div class="ds-seo-faq-item"><strong>What is the difference between 401 and 403?</strong><p>401 Unauthorized means authentication is required. 403 Forbidden means authenticated but not allowed.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does HTTP Status Codes Reference – Complete List with Descriptions do?</strong><p>HTTP Status Codes Reference – Complete List with Descriptions runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is HTTP Status Codes Reference – Complete List with Descriptions free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-</div>
-
-<script>
-  const CODES = [
-    // 1xx
-    { code: 100, name: 'Continue', desc: 'Server received the request headers; client should proceed to send the body.' },
-    { code: 101, name: 'Switching Protocols', desc: 'Server agrees to switch protocols as requested by the client (e.g. WebSocket upgrade).' },
-    { code: 102, name: 'Processing', desc: 'Server has received and is processing the request, but no response is available yet (WebDAV).' },
-    { code: 103, name: 'Early Hints', desc: 'Preload hints sent before the final response, used with Link headers to improve page load.' },
-    // 2xx
-    { code: 200, name: 'OK', desc: 'Standard success response. The request was successful and the response body contains the result.' },
-    { code: 201, name: 'Created', desc: 'Request succeeded and a new resource was created. Used after POST/PUT.' },
-    { code: 202, name: 'Accepted', desc: 'Request accepted for processing, but processing is not complete (async operations).' },
-    { code: 203, name: 'Non-Authoritative Information', desc: 'Returned metadata is from a local or third-party copy, not from the origin server.' },
-    { code: 204, name: 'No Content', desc: 'Request succeeded but there is no content to return. Common for DELETE and PUT.' },
-    { code: 205, name: 'Reset Content', desc: 'Server requires the client to reset the document view (clear a form, for example).' },
-    { code: 206, name: 'Partial Content', desc: 'Server is delivering only part of the resource due to a Range header in the request.' },
-    { code: 207, name: 'Multi-Status', desc: 'Multiple status codes might apply (WebDAV). Body is an XML message.' },
-    { code: 208, name: 'Already Reported', desc: 'Members of a DAV binding have already been enumerated (WebDAV, RFC 5842).' },
-    { code: 226, name: 'IM Used', desc: 'Server fulfilled a GET request and the response is one or more instance-manipulations.' },
-    // 3xx
-    { code: 300, name: 'Multiple Choices', desc: 'Request has more than one possible response. User or user agent should choose one.' },
-    { code: 301, name: 'Moved Permanently', desc: 'URL has permanently changed. Future requests should use the new URL in Location header.' },
-    { code: 302, name: 'Found', desc: 'Resource temporarily at a different URI. Client should continue to use the original URI.' },
-    { code: 303, name: 'See Other', desc: 'Response to the request can be found at another URI using GET (after a POST).' },
-    { code: 304, name: 'Not Modified', desc: 'Cached version is still valid. Client should use its cached copy.' },
-    { code: 307, name: 'Temporary Redirect', desc: 'Like 302 but the method must not change. POST stays POST, GET stays GET.' },
-    { code: 308, name: 'Permanent Redirect', desc: 'Like 301 but the method must not change (POST stays POST).' },
-    // 4xx
-    { code: 400, name: 'Bad Request', desc: 'Server cannot process the request due to client error (malformed syntax, invalid parameters).' },
-    { code: 401, name: 'Unauthorized', desc: 'Authentication is required. Client must authenticate itself to get the requested response.' },
-    { code: 402, name: 'Payment Required', desc: 'Reserved for future use. Sometimes used by APIs for quota/subscription limits.' },
-    { code: 403, name: 'Forbidden', desc: 'Client does not have access rights. Unlike 401, the server knows who the client is.' },
-    { code: 404, name: 'Not Found', desc: 'Server cannot find the requested resource. The URL is not recognized.' },
-    { code: 405, name: 'Method Not Allowed', desc: 'HTTP method is not allowed for this endpoint (e.g. DELETE on a read-only resource).' },
-    { code: 406, name: 'Not Acceptable', desc: 'Server cannot produce a response matching the Accept headers sent by the client.' },
-    { code: 407, name: 'Proxy Authentication Required', desc: 'Authentication must be done by a proxy before the server can respond.' },
-    { code: 408, name: 'Request Timeout', desc: 'Server timed out waiting for the request. Client may re-submit the request.' },
-    { code: 409, name: 'Conflict', desc: 'Request conflicts with the current state of the server (e.g. version conflict, duplicate).' },
-    { code: 410, name: 'Gone', desc: 'Resource is permanently deleted and will not be available again (unlike 404).' },
-    { code: 411, name: 'Length Required', desc: 'Request did not specify the length of its content, which is required.' },
-    { code: 412, name: 'Precondition Failed', desc: 'Server does not meet one of the conditions set in the request headers.' },
-    { code: 413, name: 'Content Too Large', desc: 'Request body is larger than limits defined by the server.' },
-    { code: 414, name: 'URI Too Long', desc: 'URI requested by the client is longer than the server is willing to interpret.' },
-    { code: 415, name: 'Unsupported Media Type', desc: 'Media format of the request data is not supported (check Content-Type header).' },
-    { code: 416, name: 'Range Not Satisfiable', desc: 'Range specified in Range header cannot be fulfilled.' },
-    { code: 417, name: 'Expectation Failed', desc: 'Expectation indicated in the Expect header cannot be met by the server.' },
-    { code: 418, name: "I'm a Teapot", desc: 'April Fools joke from RFC 2324. Any server refusing to brew coffee because it is a teapot.' },
-    { code: 421, name: 'Misdirected Request', desc: 'Request was directed at a server that is not able to produce a response.' },
-    { code: 422, name: 'Unprocessable Content', desc: 'Request was well-formed but contains semantic errors (common in REST APIs for validation).' },
-    { code: 423, name: 'Locked', desc: 'Resource being accessed is locked (WebDAV).' },
-    { code: 424, name: 'Failed Dependency', desc: 'Request failed because it depends on another request that failed (WebDAV).' },
-    { code: 425, name: 'Too Early', desc: 'Server is unwilling to risk processing a request that might be replayed.' },
-    { code: 426, name: 'Upgrade Required', desc: 'Client should switch to a different protocol (specified in Upgrade header).' },
-    { code: 428, name: 'Precondition Required', desc: 'Origin server requires the request to be conditional (to prevent lost update problems).' },
-    { code: 429, name: 'Too Many Requests', desc: 'Client has sent too many requests in a given time window — rate limiting.' },
-    { code: 431, name: 'Request Header Fields Too Large', desc: 'Server is unwilling to process the request because headers are too large.' },
-    { code: 451, name: 'Unavailable For Legal Reasons', desc: 'Resource has been blocked for legal reasons (e.g. government censorship).' },
-    // 5xx
-    { code: 500, name: 'Internal Server Error', desc: 'Generic server error. Catch-all for unexpected server-side failures.' },
-    { code: 501, name: 'Not Implemented', desc: 'Server does not support the functionality required to fulfill the request.' },
-    { code: 502, name: 'Bad Gateway', desc: 'Server acting as a gateway received an invalid response from an upstream server.' },
-    { code: 503, name: 'Service Unavailable', desc: 'Server is not ready to handle the request — overloaded or down for maintenance.' },
-    { code: 504, name: 'Gateway Timeout', desc: 'Server acting as a gateway did not get a response from the upstream server in time.' },
-    { code: 505, name: 'HTTP Version Not Supported', desc: 'HTTP version used in the request is not supported by the server.' },
-    { code: 506, name: 'Variant Also Negotiates', desc: 'Server configuration error in transparent content negotiation.' },
-    { code: 507, name: 'Insufficient Storage', desc: 'Server unable to store the representation to complete the request (WebDAV).' },
-    { code: 508, name: 'Loop Detected', desc: 'Server detected an infinite loop while processing the request (WebDAV).' },
-    { code: 510, name: 'Not Extended', desc: 'Further extensions to the request are required for the server to fulfill it.' },
-    { code: 511, name: 'Network Authentication Required', desc: 'Client needs to authenticate to gain network access (captive portals).' },
-  ];
-
-  function codeClass(code) {
-    if (code < 200) return 'c1';
-    if (code < 300) return 'c2';
-    if (code < 400) return 'c3';
-    if (code < 500) return 'c4';
-    return 'c5';
-  }
-
-  function codeCat(code) {
-    return `${Math.floor(code / 100)}xx`;
-  }
-
-  const grid     = document.getElementById('statusGrid');
-  const noResult = document.getElementById('noResults');
-  const search   = document.getElementById('searchInput');
-  const filterBtns = document.querySelectorAll('.filter-btn');
-
-  let activeCat = 'all';
-
-  // build rows
-  CODES.forEach(c => {
-    const row = document.createElement('div');
-    row.className = 'status-row';
-    row.dataset.code = c.code;
-    row.dataset.cat  = codeCat(c.code);
-    row.innerHTML = `
-      <span class="status-code ${codeClass(c.code)}">${c.code}</span>
-      <div class="status-info">
-        <div class="status-name">${c.name}</div>
-        <div class="status-desc">${c.desc}</div>
-      </div>
-      <button class="status-copy">Copy</button>
-    `;
-    row.querySelector('.status-copy').addEventListener('click', (e) => {
-      const btn = e.currentTarget;
-      navigator.clipboard.writeText(`${c.code} ${c.name}`).catch(() => {});
-      btn.textContent = '✓ Copied';
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
-    });
-    grid.appendChild(row);
-  });
-
-  function applyFilter() {
-    const q = search.value.toLowerCase().trim();
-    let visible = 0;
-    grid.querySelectorAll('.status-row').forEach(row => {
-      const code = row.dataset.code;
-      const cat  = row.dataset.cat;
-      const text = row.textContent.toLowerCase();
-      const catMatch = activeCat === 'all' || cat === activeCat;
-      const qMatch   = !q || code.includes(q) || text.includes(q);
-      const show = catMatch && qMatch;
-      row.style.display = show ? '' : 'none';
-      if (show) visible++;
-    });
-    noResult.style.display = visible === 0 ? '' : 'none';
-  }
-
-  search.addEventListener('input', applyFilter);
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeCat = btn.dataset.cat;
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyFilter();
-    });
-  });
-</script>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

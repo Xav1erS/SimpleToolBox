@@ -12,93 +12,66 @@
   <meta property="og:title" content="TCP/UDP Port Reference – Common Port Numbers List | Simple ToolBox" />
   <meta property="og:description" content="Search 100+ common TCP/UDP port numbers by port or service name. Free, browser-based." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"TCP/UDP Port Reference","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Complete reference of common TCP and UDP port numbers. Search by port number or service name.","featureList":["100+ common ports","Search by port or name","TCP/UDP filter","Category filter","No data sent"]}
-  </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
-    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-
-    .search-bar {
-      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "TCP/UDP Port Reference",
+  "description": "Complete reference of common TCP and UDP port numbers. Search by port number or service name. Includes HTTP, HTTPS, SSH, FTP, DNS, databases, and 100+ services.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/port-reference"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it include Docker and Kubernetes common ports?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — popular container and orchestration tool ports (2376, 6443, 10250, etc.) are included."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can two services use the same port number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only if they use different protocols (one TCP, one UDP). Two TCP services cannot share a port on the same interface."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does TCP/UDP Port Reference – Common Port Numbers List do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TCP/UDP Port Reference – Common Port Numbers List runs entirely in your browser and helps you complete this task without uploading data to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is TCP/UDP Port Reference – Common Port Numbers List free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tool is free to use and does not require sign-up."
+      }
     }
-    .search-input {
-      flex: 1; min-width: 200px;
-      padding: 9px 14px;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-md);
-      color: var(--ds-color-text-primary);
-      font-family: var(--ds-font-mono);
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.15s;
-    }
-    .search-input:focus { border-color: rgba(94,106,210,0.5); }
-    .search-input::placeholder { color: var(--ds-color-text-muted); font-family: var(--ds-font-sans); }
-
-    .filter-row { display: flex; gap: 6px; flex-wrap: wrap; }
-    .pill {
-      padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;
-      border: 1px solid var(--ds-color-border);
-      color: var(--ds-color-text-secondary);
-      background: var(--ds-color-surface);
-      transition: all 0.15s; cursor: pointer;
-    }
-    .pill:hover { border-color: rgba(94,106,210,0.4); color: var(--ds-color-accent); }
-    .pill.active { background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.5); color: var(--ds-color-accent); }
-
-    .port-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-md);
-      overflow: hidden;
-    }
-    .port-table thead th {
-      padding: 10px 14px;
-      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em;
-      color: var(--ds-color-text-muted);
-      background: var(--ds-color-surface);
-      border-bottom: 1px solid var(--ds-color-border);
-      text-align: left;
-    }
-    .port-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.1s; }
-    .port-table tbody tr:last-child { border-bottom: none; }
-    .port-table tbody tr:hover { background: rgba(255,255,255,0.03); }
-    .port-table td { padding: 9px 14px; font-size: 13px; vertical-align: middle; }
-    .port-num { font-family: var(--ds-font-mono); font-size: 13px; font-weight: 600; color: var(--ds-color-accent); min-width: 60px; }
-    .proto-badge {
-      display: inline-block; padding: 1px 7px; border-radius: 10px;
-      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-    }
-    .proto-tcp { background: rgba(94,106,210,0.15); color: #9B8DEB; border: 1px solid rgba(94,106,210,0.25); }
-    .proto-udp { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.25); }
-    .proto-both { background: rgba(34,197,94,0.1); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
-    .cat-badge {
-      display: inline-block; padding: 1px 7px; border-radius: 10px;
-      font-size: 10px; font-weight: 500;
-      background: rgba(255,255,255,0.05); color: var(--ds-color-text-muted);
-      border: 1px solid var(--ds-color-border);
-    }
-    .port-desc { color: var(--ds-color-text-secondary); font-size: 12px; }
-
-    .stat-line { font-size: 12px; color: var(--ds-color-text-muted); }
-    .no-result { text-align: center; padding: 40px; color: var(--ds-color-text-muted); font-size: 13px; }
-
-    @media (max-width: 600px) {
-      .port-table th:nth-child(4), .port-table td:nth-child(4) { display: none; }
-    }
-  </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
 </head>
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
@@ -171,29 +144,32 @@
   </div>
 
   
+  <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is Port Number Reference?</h2>
-    <p class="ds-seo-section__body">A searchable reference for well-known TCP/UDP port numbers. Lists services, protocols, and descriptions for all system ports (0–1023) and common registered ports.</p>
+    <h2 class="ds-seo-section__title">What is TCP/UDP Port Reference?</h2>
+    <p>TCP/UDP Port Reference lists common network ports and the services usually associated with them. It is useful for server setup, firewall rules, troubleshooting connectivity, and understanding what traffic a port number often represents.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use Port Number Reference</h2>
-    <ol class="ds-seo-section__list">
-      <li>Search by port number or service name (e.g., "ssh", "mysql", "3306").</li>
-      <li>See port usage, protocol (TCP/UDP), and service description.</li>
-      <li>Filter by TCP, UDP, or both.</li>
-      <li>Copy the port number for firewall rules or config files.</li>
+    <h2 class="ds-seo-section__title">How to Use TCP/UDP Port Reference</h2>
+    <ol>
+      <li>Search for a port number or service name.</li>
+      <li>Review the protocol and service mapping shown in the result.</li>
+      <li>Compare nearby or related ports if you are debugging a connection issue.</li>
+      <li>Use the reference while configuring firewalls, proxies, or monitoring alerts.</li>
     </ol>
   </section>
 </div>
+
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="http-status.html" class="ds-related-card"><span class="ds-related-icon">&#128225;</span><div><div class="ds-related-name">HTTP Status Codes</div><div class="ds-related-desc">Complete HTTP status code reference</div></div></a>
-      <a href="ip-lookup.html" class="ds-related-card"><span class="ds-related-icon">&#127758;</span><div><div class="ds-related-name">IP Address Lookup</div><div class="ds-related-desc">Geolocation and ASN for any IP</div></div></a>
-      <a href="user-agent.html" class="ds-related-card"><span class="ds-related-icon">&#128084;</span><div><div class="ds-related-name">User-Agent Parser</div><div class="ds-related-desc">Parse and decode User-Agent strings</div></div></a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="http-status.html" class="ds-related-card"><span class="ds-related-icon">📡</span><div><div class="ds-related-name">HTTP Status Codes Reference</div><div class="ds-related-desc">Complete reference of HTTP status codes with descriptions</div></div></a>
+    <a href="ip-lookup.html" class="ds-related-card"><span class="ds-related-icon">🌐</span><div><div class="ds-related-name">IP Address Lookup</div><div class="ds-related-desc">Look up IP address geolocation and network information</div></div></a>
+    <a href="user-agent.html" class="ds-related-card"><span class="ds-related-icon">🌐</span><div><div class="ds-related-name">User Agent Parser</div><div class="ds-related-desc">Parse User Agent strings to identify browser, OS and device</div></div></a>
   </div>
+</div>
+
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
     <span>Understand Port Number Reference</span>
@@ -202,182 +178,52 @@
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Port <strong>22</strong> → SSH (TCP): Secure Shell remote access</p><p>Port <strong>80</strong> → HTTP (TCP): Web traffic</p><p>Port <strong>443</strong> → HTTPS (TCP): Encrypted web traffic</p><p>Port <strong>3306</strong> → MySQL (TCP): Database connections</p></div>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Port 22 → SSH (TCP): Secure Shell remote access</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Port 80 → HTTP (TCP): Web traffic</span>
+          </div>
+        </div>
+      </div>
     </details>
     <details class="ds-seo-collapse">
-      <summary>Port Number Ranges</summary>
-      <div class="ds-seo-collapse__body"><ul><li><strong>0–1023</strong>: Well-known system ports — require root/admin to bind on Unix</li><li><strong>1024–49151</strong>: Registered ports — assigned by IANA for specific services</li><li><strong>49152–65535</strong>: Dynamic/ephemeral ports — assigned by OS for outbound connections</li></ul></div>
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Look up common service ports during networking or firewall debugging</li>
+          <li>Check whether a port is typically used by HTTP, SSH, databases, or DNS</li>
+          <li>Review well-known ports when configuring infrastructure and security groups</li>
+          <li>Use as a quick reference while reading logs or packet captures</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Quick reference when configuring firewalls or network rules</li>
-        <li>Check if a port is already assigned before using it for a custom service</li>
-        <li>Essential reference for DevOps and security work</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for networking, firewall, proxy, and container debugging.</li>
+          <li>Helps map ports to common services quickly during ops work.</li>
+          <li>Runs locally as a fast reference without opening external docs.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Does it include Docker and Kubernetes common ports?</strong><p>Yes — popular container and orchestration tool ports (2376, 6443, 10250, etc.) are included.</p></div>
         <div class="ds-seo-faq-item"><strong>Can two services use the same port number?</strong><p>Only if they use different protocols (one TCP, one UDP). Two TCP services cannot share a port on the same interface.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does TCP/UDP Port Reference – Common Port Numbers List do?</strong><p>TCP/UDP Port Reference – Common Port Numbers List runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is TCP/UDP Port Reference – Common Port Numbers List free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-</div>
-
-<script>
-const PORTS = [
-  // Web
-  {port:80,   proto:'TCP',     name:'HTTP',      cat:'Web',         desc:'Hypertext Transfer Protocol — unencrypted web traffic'},
-  {port:443,  proto:'TCP',     name:'HTTPS',     cat:'Web',         desc:'HTTP Secure — TLS/SSL encrypted web traffic'},
-  {port:8080, proto:'TCP',     name:'HTTP-Alt',  cat:'Web',         desc:'Alternative HTTP port, common for dev servers and proxies'},
-  {port:8443, proto:'TCP',     name:'HTTPS-Alt', cat:'Web',         desc:'Alternative HTTPS port'},
-  {port:3000, proto:'TCP',     name:'Dev Server',cat:'Web',         desc:'Common Node.js / React development server port'},
-  {port:5173, proto:'TCP',     name:'Vite',      cat:'Web',         desc:'Vite dev server default port'},
-  {port:4200, proto:'TCP',     name:'Angular',   cat:'Web',         desc:'Angular CLI dev server default port'},
-  {port:8000, proto:'TCP',     name:'HTTP-Alt',  cat:'Web',         desc:'Django / Python dev server default port'},
-  // Email
-  {port:25,   proto:'TCP',     name:'SMTP',      cat:'Email',       desc:'Simple Mail Transfer Protocol — sending email (server-to-server)'},
-  {port:465,  proto:'TCP',     name:'SMTPS',     cat:'Email',       desc:'SMTP over SSL — legacy secure mail submission'},
-  {port:587,  proto:'TCP',     name:'SMTP Sub',  cat:'Email',       desc:'SMTP submission — client-to-server authenticated email sending'},
-  {port:110,  proto:'TCP',     name:'POP3',      cat:'Email',       desc:'Post Office Protocol v3 — receiving email (downloads and deletes)'},
-  {port:995,  proto:'TCP',     name:'POP3S',     cat:'Email',       desc:'POP3 over SSL/TLS'},
-  {port:143,  proto:'TCP',     name:'IMAP',      cat:'Email',       desc:'Internet Message Access Protocol — receiving email (sync)'},
-  {port:993,  proto:'TCP',     name:'IMAPS',     cat:'Email',       desc:'IMAP over SSL/TLS'},
-  // File Transfer
-  {port:20,   proto:'TCP',     name:'FTP Data',  cat:'File Transfer',desc:'FTP data transfer channel'},
-  {port:21,   proto:'TCP',     name:'FTP',       cat:'File Transfer',desc:'File Transfer Protocol — control channel'},
-  {port:22,   proto:'TCP',     name:'SSH/SFTP',  cat:'File Transfer',desc:'Secure Shell — also used for SFTP and SCP file transfer'},
-  {port:69,   proto:'UDP',     name:'TFTP',      cat:'File Transfer',desc:'Trivial File Transfer Protocol — used for booting and firmware'},
-  {port:445,  proto:'TCP',     name:'SMB',       cat:'File Transfer',desc:'Server Message Block — Windows file sharing'},
-  {port:548,  proto:'TCP',     name:'AFP',       cat:'File Transfer',desc:'Apple Filing Protocol — macOS file sharing'},
-  {port:2049, proto:'TCP/UDP', name:'NFS',       cat:'File Transfer',desc:'Network File System'},
-  // Security / Remote
-  {port:22,   proto:'TCP',     name:'SSH',       cat:'Security',    desc:'Secure Shell — encrypted remote terminal access'},
-  {port:23,   proto:'TCP',     name:'Telnet',    cat:'Security',    desc:'Unencrypted remote terminal — deprecated, use SSH instead'},
-  {port:3389, proto:'TCP',     name:'RDP',       cat:'Security',    desc:'Remote Desktop Protocol — Windows remote desktop'},
-  {port:5900, proto:'TCP',     name:'VNC',       cat:'Security',    desc:'Virtual Network Computing — remote desktop'},
-  {port:1194, proto:'TCP/UDP', name:'OpenVPN',   cat:'Security',    desc:'OpenVPN — popular open-source VPN protocol'},
-  {port:51820,proto:'UDP',     name:'WireGuard', cat:'Security',    desc:'WireGuard VPN — modern, fast VPN protocol'},
-  {port:500,  proto:'UDP',     name:'IKE',       cat:'Security',    desc:'Internet Key Exchange — IPsec VPN negotiation'},
-  // DNS
-  {port:53,   proto:'TCP/UDP', name:'DNS',       cat:'Monitoring',  desc:'Domain Name System — hostname resolution'},
-  {port:853,  proto:'TCP',     name:'DNS-TLS',   cat:'Monitoring',  desc:'DNS over TLS (DoT) — encrypted DNS'},
-  // Database
-  {port:3306, proto:'TCP',     name:'MySQL',     cat:'Database',    desc:'MySQL / MariaDB relational database'},
-  {port:5432, proto:'TCP',     name:'PostgreSQL',cat:'Database',    desc:'PostgreSQL relational database'},
-  {port:1433, proto:'TCP',     name:'MSSQL',     cat:'Database',    desc:'Microsoft SQL Server'},
-  {port:1521, proto:'TCP',     name:'Oracle DB', cat:'Database',    desc:'Oracle Database'},
-  {port:27017,proto:'TCP',     name:'MongoDB',   cat:'Database',    desc:'MongoDB NoSQL database'},
-  {port:6379, proto:'TCP',     name:'Redis',     cat:'Database',    desc:'Redis in-memory data store / cache'},
-  {port:5672, proto:'TCP',     name:'AMQP',      cat:'Messaging',   desc:'RabbitMQ / AMQP message broker'},
-  {port:9092, proto:'TCP',     name:'Kafka',     cat:'Messaging',   desc:'Apache Kafka distributed event streaming'},
-  {port:2181, proto:'TCP',     name:'ZooKeeper', cat:'Database',    desc:'Apache ZooKeeper — distributed coordination'},
-  {port:9200, proto:'TCP',     name:'Elasticsearch',cat:'Database', desc:'Elasticsearch REST API'},
-  {port:9300, proto:'TCP',     name:'ES Cluster',cat:'Database',    desc:'Elasticsearch cluster communication'},
-  {port:8086, proto:'TCP',     name:'InfluxDB',  cat:'Database',    desc:'InfluxDB time-series database'},
-  {port:5984, proto:'TCP',     name:'CouchDB',   cat:'Database',    desc:'Apache CouchDB document database'},
-  {port:7474, proto:'TCP',     name:'Neo4j',     cat:'Database',    desc:'Neo4j graph database HTTP API'},
-  {port:11211,proto:'TCP/UDP', name:'Memcached', cat:'Database',    desc:'Memcached distributed memory cache'},
-  // Messaging / Chat
-  {port:1883, proto:'TCP',     name:'MQTT',      cat:'Messaging',   desc:'MQTT — lightweight IoT messaging protocol'},
-  {port:8883, proto:'TCP',     name:'MQTT TLS',  cat:'Messaging',   desc:'MQTT over TLS'},
-  {port:5222, proto:'TCP',     name:'XMPP',      cat:'Messaging',   desc:'XMPP / Jabber chat protocol (client)'},
-  {port:5269, proto:'TCP',     name:'XMPP S2S',  cat:'Messaging',   desc:'XMPP server-to-server communication'},
-  {port:6667, proto:'TCP',     name:'IRC',       cat:'Messaging',   desc:'Internet Relay Chat'},
-  // Monitoring / DevOps
-  {port:9090, proto:'TCP',     name:'Prometheus',cat:'Monitoring',  desc:'Prometheus metrics server'},
-  {port:3100, proto:'TCP',     name:'Loki',      cat:'Monitoring',  desc:'Grafana Loki log aggregation'},
-  {port:3000, proto:'TCP',     name:'Grafana',   cat:'Monitoring',  desc:'Grafana dashboard server'},
-  {port:4317, proto:'TCP',     name:'OTLP gRPC', cat:'Monitoring',  desc:'OpenTelemetry collector — gRPC'},
-  {port:4318, proto:'TCP',     name:'OTLP HTTP', cat:'Monitoring',  desc:'OpenTelemetry collector — HTTP'},
-  {port:8125, proto:'UDP',     name:'StatsD',    cat:'Monitoring',  desc:'StatsD metrics aggregation'},
-  {port:161,  proto:'UDP',     name:'SNMP',      cat:'Monitoring',  desc:'Simple Network Management Protocol'},
-  {port:162,  proto:'UDP',     name:'SNMP Trap', cat:'Monitoring',  desc:'SNMP Trap notifications'},
-  {port:514,  proto:'UDP',     name:'Syslog',    cat:'Monitoring',  desc:'Syslog — system log messages'},
-  {port:2003, proto:'TCP',     name:'Graphite',  cat:'Monitoring',  desc:'Graphite metrics ingestion (Carbon)'},
-  // Container / Cloud
-  {port:2375, proto:'TCP',     name:'Docker',    cat:'Monitoring',  desc:'Docker daemon — unencrypted (localhost only)'},
-  {port:2376, proto:'TCP',     name:'Docker TLS',cat:'Monitoring',  desc:'Docker daemon — TLS encrypted'},
-  {port:6443, proto:'TCP',     name:'K8s API',   cat:'Monitoring',  desc:'Kubernetes API server'},
-  {port:10250,proto:'TCP',     name:'Kubelet',   cat:'Monitoring',  desc:'Kubernetes kubelet API'},
-  {port:2379, proto:'TCP',     name:'etcd',      cat:'Database',    desc:'etcd key-value store (Kubernetes)'},
-  {port:2380, proto:'TCP',     name:'etcd peer', cat:'Database',    desc:'etcd peer communication'},
-  // Other common
-  {port:67,   proto:'UDP',     name:'DHCP Srv',  cat:'Monitoring',  desc:'DHCP server — IP address assignment'},
-  {port:68,   proto:'UDP',     name:'DHCP Cli',  cat:'Monitoring',  desc:'DHCP client'},
-  {port:123,  proto:'UDP',     name:'NTP',       cat:'Monitoring',  desc:'Network Time Protocol — clock synchronization'},
-  {port:179,  proto:'TCP',     name:'BGP',       cat:'Monitoring',  desc:'Border Gateway Protocol — internet routing'},
-  {port:389,  proto:'TCP/UDP', name:'LDAP',      cat:'Security',    desc:'Lightweight Directory Access Protocol'},
-  {port:636,  proto:'TCP',     name:'LDAPS',     cat:'Security',    desc:'LDAP over SSL'},
-  {port:88,   proto:'TCP/UDP', name:'Kerberos',  cat:'Security',    desc:'Kerberos authentication protocol'},
-  {port:5060, proto:'TCP/UDP', name:'SIP',       cat:'Messaging',   desc:'Session Initiation Protocol — VoIP signaling'},
-  {port:5061, proto:'TCP',     name:'SIP TLS',   cat:'Messaging',   desc:'SIP over TLS'},
-  {port:3478, proto:'TCP/UDP', name:'STUN/TURN', cat:'Messaging',   desc:'STUN/TURN — WebRTC NAT traversal'},
-];
-
-  let activeProto = 'all';
-  let activeCat = null;
-  let query = '';
-
-  function protoClass(p) {
-    if (p === 'TCP') return 'proto-tcp';
-    if (p === 'UDP') return 'proto-udp';
-    return 'proto-both';
-  }
-
-  function render() {
-    const q = query.toLowerCase();
-    const filtered = PORTS.filter(p => {
-      const matchProto = activeProto === 'all' || p.proto === activeProto;
-      const matchCat = !activeCat || p.cat === activeCat;
-      const matchQ = !q || String(p.port).includes(q) || p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q);
-      return matchProto && matchCat && matchQ;
-    });
-
-    const tbody = document.getElementById('portBody');
-    tbody.innerHTML = filtered.map(p => `
-      <tr>
-        <td class="port-num">${p.port}</td>
-        <td><span class="proto-badge ${protoClass(p.proto)}">${p.proto}</span></td>
-        <td style="font-weight:500">${p.name}</td>
-        <td><span class="cat-badge">${p.cat}</span></td>
-        <td class="port-desc">${p.desc}</td>
-      </tr>`).join('');
-
-    document.getElementById('noResult').style.display = filtered.length ? 'none' : 'block';
-    document.getElementById('statLine').textContent = `Showing ${filtered.length} of ${PORTS.length} ports`;
-  }
-
-  document.getElementById('searchInput').addEventListener('input', e => { query = e.target.value; render(); });
-
-  document.querySelectorAll('[data-proto]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeProto = btn.dataset.proto;
-      activeCat = null;
-      document.querySelectorAll('[data-proto],[data-cat]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      render();
-    });
-  });
-
-  document.querySelectorAll('[data-cat]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const same = activeCat === btn.dataset.cat;
-      activeCat = same ? null : btn.dataset.cat;
-      activeProto = 'all';
-      document.querySelectorAll('[data-proto],[data-cat]').forEach(b => b.classList.remove('active'));
-      if (!same) btn.classList.add('active');
-      else document.querySelector('[data-proto="all"]').classList.add('active');
-      render();
-    });
-  });
-
-  render();
-</script>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

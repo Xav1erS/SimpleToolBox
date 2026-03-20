@@ -18,9 +18,64 @@
     content="Parse any URL into its components (protocol, host, path, query params, hash) or build a URL from parts. Free, browser-based, no data sent."
   />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL Parser & Builder","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Parse any URL into its components or build a URL from individual fields. Uses the browser's native URL API. Privacy-first, no data sent.","featureList":["URL component parsing","Query parameter extraction","URL builder from components","Automatic percent-encoding","One-click copy per field"]}
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "URL Parser",
+  "description": "Parse URLs into protocol, host, path, query and hash components",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/url-parser"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are percent-encoded characters decoded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — %20 → space and all other percent-encoded sequences are decoded in the display."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it support data: URIs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "data: URIs are parsed but the data payload is not decoded."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does URL Parser &amp; Builder Online – Parse &amp; Construct URLs Free do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "URL Parser &amp; Builder Online – Parse &amp; Construct URLs Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is URL Parser &amp; Builder Online – Parse &amp; Construct URLs Free free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tool is free to use and does not require sign-up."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
   <style>
@@ -378,407 +433,57 @@
   </div>
 
   
+<!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is URL Parser?</h2>
-    <p class="ds-seo-section__body">Parses any URL into its components: scheme, host, port, path, query string parameters (as key-value pairs), and fragment. Percent-encoded sequences are decoded for easy reading.</p>
+    <p>Parse URLs into protocol, host, path, query and hash components</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use URL Parser</h2>
-    <ol class="ds-seo-section__list">
-      <li>Paste or type any URL.</li>
-      <li>See all components extracted instantly: protocol, hostname, port, pathname, query params, fragment.</li>
-      <li>Copy individual components as needed.</li>
+    <ol>
     </ol>
   </section>
 </div>
+
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="url-encode.html" class="ds-related-card">
-        <span class="ds-related-icon">🔒</span>
-        <div>
-          <div class="ds-related-name">URL Encode / Decode</div>
-          <div class="ds-related-desc">Percent-encode strings for safe URL use</div>
-        </div>
-      </a>
-      <a href="http-status.html" class="ds-related-card">
-        <span class="ds-related-icon">📡</span>
-        <div>
-          <div class="ds-related-name">HTTP Status Codes</div>
-          <div class="ds-related-desc">Reference for all HTTP response status codes</div>
-        </div>
-      </a>
-      <a href="string-escape.html" class="ds-related-card">
-        <span class="ds-related-icon">✏️</span>
-        <div>
-          <div class="ds-related-name">String Escape</div>
-          <div class="ds-related-desc">Escape and unescape special characters in strings</div>
-        </div>
-      </a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Encode or decode URL parameters and components</div></div></a>
+    <a href="http-status.html" class="ds-related-card"><span class="ds-related-icon">📡</span><div><div class="ds-related-name">HTTP Status Codes Reference</div><div class="ds-related-desc">Complete reference of HTTP status codes with descriptions</div></div></a>
+    <a href="string-escape.html" class="ds-related-card"><span class="ds-related-icon">🔤</span><div><div class="ds-related-name">String Escape / Unescape</div><div class="ds-related-desc">Escape or unescape strings for JSON, JavaScript and HTML</div></div></a>
   </div>
+</div>
+
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
-    <span>Understand URL Parser</span>
+    <span>Understand URL Parts</span>
     <span class="ds-seo-more__arrow">&#9662;</span>
   </summary>
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
-      <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Input: <code>https://api.example.com:8080/v1/users?page=2&amp;limit=50#results</code></p><ul><li>Protocol: <code>https</code></li><li>Host: <code>api.example.com</code></li><li>Port: <code>8080</code></li><li>Path: <code>/v1/users</code></li><li>Query: <code>page=2, limit=50</code></li><li>Fragment: <code>results</code></li></ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>URL Structure Reference</summary>
-      <div class="ds-seo-collapse__body"><p>Full URL structure: <code>scheme://userinfo@host:port/path?query#fragment</code></p><ul><li>Scheme: http, https, ftp, file, mailto</li><li>Host: domain name or IPv4/IPv6 address</li><li>Port: defaults to 80 (http) or 443 (https) if omitted</li><li>Query: key=value pairs separated by &amp;</li><li>Fragment: client-side only, never sent to the server</li></ul></div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Debug complex URLs with many query parameters</li>
-        <li>Extract specific URL parts without writing regex</li>
-        <li>Understand URL structure during web development</li>
-      </ul></div>
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Inspect query parameters in tracking links</li>
+          <li>Debug malformed URLs before sharing or deploying them</li>
+          <li>Check redirect targets and fragments during QA</li>
+          <li>Break down API endpoint URLs for documentation</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Are percent-encoded characters decoded?</strong><p>Yes — %20 → space and all other percent-encoded sequences are decoded in the display.</p></div>
         <div class="ds-seo-faq-item"><strong>Does it support data: URIs?</strong><p>data: URIs are parsed but the data payload is not decoded.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does URL Parser &amp;amp; Builder Online – Parse &amp;amp; Construct URLs Free do?</strong><p>URL Parser &amp;amp; Builder Online – Parse &amp;amp; Construct URLs Free runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is URL Parser &amp;amp; Builder Online – Parse &amp;amp; Construct URLs Free free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-</div>
-
-<script>
-  let currentMode = 'parse'; // 'parse' | 'build'
-
-  // ── Element refs ───────────────────────────────────────────
-  const btnParseModeBtn  = document.getElementById('btnParse');
-  const btnBuildModeBtn  = document.getElementById('btnBuild');
-  const parseMode        = document.getElementById('parseMode');
-  const buildMode        = document.getElementById('buildMode');
-
-  // Parse mode
-  const parseInput       = document.getElementById('parseInput');
-  const parseInputStat   = document.getElementById('parseInputStat');
-  const parseOutputStat  = document.getElementById('parseOutputStat');
-  const parseError       = document.getElementById('parseError');
-  const parseInputPanel  = document.getElementById('parseInputPanel');
-  const urlBreakdown     = document.getElementById('urlBreakdown');
-  const btnPasteUrl      = document.getElementById('btnPasteUrl');
-  const btnClearParseInput = document.getElementById('btnClearParseInput');
-  const btnCopyAll       = document.getElementById('btnCopyAll');
-
-  // Build mode
-  const buildProtocol    = document.getElementById('buildProtocol');
-  const buildUsername    = document.getElementById('buildUsername');
-  const buildPassword    = document.getElementById('buildPassword');
-  const buildHostname    = document.getElementById('buildHostname');
-  const buildPort        = document.getElementById('buildPort');
-  const buildPathname    = document.getElementById('buildPathname');
-  const buildHash        = document.getElementById('buildHash');
-  const paramBuilderList = document.getElementById('paramBuilderList');
-  const btnAddParam      = document.getElementById('btnAddParam');
-  const buildOutput      = document.getElementById('buildOutput');
-  const buildOutputStat  = document.getElementById('buildOutputStat');
-  const buildError       = document.getElementById('buildError');
-  const btnClearBuild    = document.getElementById('btnClearBuild');
-  const btnCopyBuildHeader = document.getElementById('btnCopyBuildHeader');
-
-  // Shared
-  const btnRun           = document.getElementById('btnRun');
-  const runLabel         = document.getElementById('runLabel');
-  const btnCopyResult    = document.getElementById('btnCopyResult');
-  const btnClearAll      = document.getElementById('btnClearAll');
-
-  // ── URL component rows definition ──────────────────────────
-  const URL_FIELDS = [
-    { key: 'Protocol',  prop: 'protocol' },
-    { key: 'Username',  prop: 'username' },
-    { key: 'Password',  prop: 'password' },
-    { key: 'Host',      prop: 'host' },
-    { key: 'Hostname',  prop: 'hostname' },
-    { key: 'Port',      prop: 'port' },
-    { key: 'Pathname',  prop: 'pathname' },
-    { key: 'Search',    prop: 'search' },
-    { key: 'Hash',      prop: 'hash' },
-    { key: 'Origin',    prop: 'origin' },
-  ];
-
-  // ── Parse logic ────────────────────────────────────────────
-  function runParse() {
-    const raw = parseInput.value.trim();
-    parseInputStat.textContent = parseInput.value.length
-      ? `${parseInput.value.length.toLocaleString()} chars`
-      : '0 chars';
-
-    parseError.style.display = 'none';
-    parseInputPanel.classList.remove('has-error');
-
-    if (!raw) {
-      urlBreakdown.innerHTML = `<div style="color: var(--ds-color-text-muted); font-size: 13px; padding: 20px 0; text-align: center;">Enter a URL on the left to see its components.</div>`;
-      parseOutputStat.textContent = '—';
-      return;
-    }
-
-    let parsed;
-    try {
-      parsed = new URL(raw);
-    } catch (e) {
-      parseError.textContent = 'Invalid URL';
-      parseError.style.display = '';
-      parseInputPanel.classList.add('has-error');
-      urlBreakdown.innerHTML = `<div style="color: #ef4444; font-size: 13px; padding: 20px 0; text-align: center;">Could not parse URL: ${escapeHtml(e.message)}</div>`;
-      parseOutputStat.textContent = '—';
-      return;
-    }
-
-    // Build breakdown HTML
-    let html = '';
-    for (const field of URL_FIELDS) {
-      const val = parsed[field.prop] || '';
-      const isEmpty = !val;
-      html += `
-        <div class="url-row">
-          <span class="url-key">${field.key}</span>
-          <span class="url-val${isEmpty ? ' empty' : ''}">${isEmpty ? '(empty)' : escapeHtml(val)}</span>
-          ${!isEmpty ? `<button class="url-copy-btn" data-val="${escapeAttr(val)}">Copy</button>` : '<span></span>'}
-        </div>`;
-    }
-
-    // Query params section
-    const params = Array.from(parsed.searchParams.entries());
-    if (params.length > 0) {
-      html += `<div class="param-section"><div class="param-title">Query Parameters (${params.length})</div>`;
-      for (const [k, v] of params) {
-        html += `
-          <div class="param-row">
-            <span class="param-key">${escapeHtml(k)}</span>
-            <span class="param-eq">=</span>
-            <span class="param-value">${escapeHtml(v)}</span>
-          </div>`;
-      }
-      html += `</div>`;
-    }
-
-    urlBreakdown.innerHTML = html;
-    parseOutputStat.textContent = `${URL_FIELDS.length} fields · ${params.length} params`;
-
-    // Attach copy buttons
-    urlBreakdown.querySelectorAll('.url-copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const val = btn.dataset.val;
-        copyTextFn(val, btn, 'Copy', 'Copied!');
-      });
-    });
-  }
-
-  // ── Build logic ────────────────────────────────────────────
-  function addParamRow(key = '', val = '') {
-    const row = document.createElement('div');
-    row.className = 'param-builder-row';
-    row.innerHTML = `
-      <input class="form-input param-key-input" type="text" placeholder="key" value="${escapeAttr(key)}" spellcheck="false" autocomplete="off" />
-      <input class="form-input param-val-input" type="text" placeholder="value" value="${escapeAttr(val)}" spellcheck="false" autocomplete="off" />
-      <button class="param-del" title="Remove">✕</button>`;
-    row.querySelector('.param-del').addEventListener('click', () => {
-      row.remove();
-      runBuild();
-    });
-    row.querySelectorAll('input').forEach(inp => inp.addEventListener('input', runBuild));
-    paramBuilderList.appendChild(row);
-  }
-
-  function runBuild() {
-    buildError.style.display = 'none';
-
-    const protocol = (buildProtocol.value.trim() || 'https').replace(/:$/, '');
-    const hostname = buildHostname.value.trim();
-
-    if (!hostname) {
-      buildOutput.value = '';
-      buildOutputStat.textContent = '0 chars';
-      return;
-    }
-
-    let urlStr = `${protocol}://${hostname}`;
-    const port = buildPort.value.trim();
-    if (port) urlStr += `:${port}`;
-
-    let pathname = buildPathname.value.trim();
-    if (pathname && !pathname.startsWith('/')) pathname = '/' + pathname;
-    if (pathname) urlStr += pathname;
-
-    let parsed;
-    try {
-      parsed = new URL(urlStr);
-    } catch (e) {
-      buildError.textContent = 'Invalid URL';
-      buildError.style.display = '';
-      buildOutput.value = '';
-      buildOutputStat.textContent = '0 chars';
-      return;
-    }
-
-    // credentials
-    const username = buildUsername.value.trim();
-    const password = buildPassword.value.trim();
-    if (username) parsed.username = username;
-    if (password) parsed.password = password;
-
-    // query params
-    parsed.search = '';
-    paramBuilderList.querySelectorAll('.param-builder-row').forEach(row => {
-      const k = row.querySelector('.param-key-input').value.trim();
-      const v = row.querySelector('.param-val-input').value;
-      if (k) parsed.searchParams.append(k, v);
-    });
-
-    // hash
-    const hash = buildHash.value.trim();
-    if (hash) parsed.hash = hash.startsWith('#') ? hash : '#' + hash;
-
-    buildOutput.value = parsed.href;
-    buildOutputStat.textContent = `${parsed.href.length.toLocaleString()} chars`;
-  }
-
-  // ── Mode switching ─────────────────────────────────────────
-  function setMode(mode) {
-    currentMode = mode;
-    const isParse = mode === 'parse';
-    btnParseModeBtn.classList.toggle('active', isParse);
-    btnBuildModeBtn.classList.toggle('active', !isParse);
-    parseMode.style.display = isParse ? '' : 'none';
-    buildMode.style.display = isParse ? 'none' : '';
-    runLabel.textContent = isParse ? 'Parse' : 'Build URL';
-    if (isParse) runParse(); else runBuild();
-  }
-
-  btnParseModeBtn.addEventListener('click', () => setMode('parse'));
-  btnBuildModeBtn.addEventListener('click', () => setMode('build'));
-
-  // ── Copy helper ────────────────────────────────────────────
-  async function copyTextFn(text, button, defaultLabel, doneLabel) {
-    if (!text) return;
-    const originalHtml = button.innerHTML;
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      const ta = Object.assign(document.createElement('textarea'), { value: text });
-      ta.style.cssText = 'position:fixed;opacity:0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    }
-    button.classList.add('copied');
-    button.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ${doneLabel}`;
-    setTimeout(() => {
-      button.classList.remove('copied');
-      button.innerHTML = originalHtml;
-    }, 1500);
-  }
-
-  // ── Escape helpers ─────────────────────────────────────────
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-  function escapeAttr(str) {
-    return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  // ── Event bindings ─────────────────────────────────────────
-  parseInput.addEventListener('input', runParse);
-  btnRun.addEventListener('click', () => {
-    if (currentMode === 'parse') runParse(); else runBuild();
-  });
-
-  btnPasteUrl.addEventListener('click', async () => {
-    try { parseInput.value = await navigator.clipboard.readText(); runParse(); } catch {}
-  });
-  btnClearParseInput.addEventListener('click', () => {
-    parseInput.value = '';
-    runParse();
-  });
-
-  btnCopyAll.addEventListener('click', () => {
-    // Copy a plain text summary of all fields
-    const raw = parseInput.value.trim();
-    if (!raw) return;
-    let parsed;
-    try { parsed = new URL(raw); } catch { return; }
-    const lines = URL_FIELDS.map(f => `${f.key.padEnd(12)}: ${parsed[f.prop] || '(empty)'}`);
-    const params = Array.from(parsed.searchParams.entries());
-    if (params.length) {
-      lines.push('');
-      lines.push('Query Parameters:');
-      params.forEach(([k, v]) => lines.push(`  ${k} = ${v}`));
-    }
-    copyTextFn(lines.join('\n'), btnCopyAll, 'Copy All', 'Copied!');
-  });
-
-  btnCopyBuildHeader.addEventListener('click', () => copyTextFn(buildOutput.value, btnCopyBuildHeader, 'Copy', 'Copied!'));
-
-  btnCopyResult.addEventListener('click', () => {
-    if (currentMode === 'parse') {
-      const raw = parseInput.value.trim();
-      if (!raw) return;
-      let parsed; try { parsed = new URL(raw); } catch { return; }
-      const lines = URL_FIELDS.map(f => `${f.key.padEnd(12)}: ${parsed[f.prop] || '(empty)'}`);
-      copyTextFn(lines.join('\n'), btnCopyResult, 'Copy Result', 'Copied!');
-    } else {
-      copyTextFn(buildOutput.value, btnCopyResult, 'Copy Result', 'Copied!');
-    }
-  });
-
-  btnClearAll.addEventListener('click', () => {
-    parseInput.value = '';
-    buildProtocol.value = '';
-    buildUsername.value = '';
-    buildPassword.value = '';
-    buildHostname.value = '';
-    buildPort.value = '';
-    buildPathname.value = '';
-    buildHash.value = '';
-    paramBuilderList.innerHTML = '';
-    addParamRow();
-    runParse();
-    runBuild();
-  });
-
-  btnClearBuild.addEventListener('click', () => {
-    buildProtocol.value = '';
-    buildUsername.value = '';
-    buildPassword.value = '';
-    buildHostname.value = '';
-    buildPort.value = '';
-    buildPathname.value = '';
-    buildHash.value = '';
-    paramBuilderList.innerHTML = '';
-    addParamRow();
-    runBuild();
-  });
-
-  btnAddParam.addEventListener('click', () => {
-    addParamRow();
-  });
-
-  // Build fields live update
-  [buildProtocol, buildUsername, buildPassword, buildHostname, buildPort, buildPathname, buildHash]
-    .forEach(el => el.addEventListener('input', runBuild));
-
-  // ── Init ───────────────────────────────────────────────────
-  addParamRow();
-  setMode('parse');
-</script>
-
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

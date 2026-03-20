@@ -12,61 +12,66 @@
   <meta property="og:title" content="MIME Types Reference – File Extension to Content-Type Guide | Simple ToolBox" />
   <meta property="og:description" content="Look up MIME types by file extension or content-type. Find the correct Content-Type header for 150+ file types." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"MIME Types Reference","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Look up MIME types by file extension or content-type string. 150+ file types across web, image, video, audio, font, and document categories.","featureList":["150+ MIME types","Search by extension or content-type","Category filter","One-click copy","No data sent"]}
-  </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
-    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-
-    .search-input {
-      width: 100%;
-      padding: 10px 14px;
-      background: var(--ds-color-surface);
-      border: 1px solid var(--ds-color-border);
-      border-radius: var(--ds-radius-md);
-      color: var(--ds-color-text-primary);
-      font-family: var(--ds-font-mono);
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.15s;
+    <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MIME Types Reference",
+  "description": "Look up MIME types by file extension or content-type string. Find the correct Content-Type header for HTML, CSS, JS, images, video, audio, fonts, and more.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/mime-types"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What MIME type should I use for JSON API responses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use application/json with charset=utf-8 ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is application/octet-stream used for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the generic binary MIME type — browsers treat it as a download prompt when served as a response."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does MIME Types Reference – File Extension to Content-Type Guide do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MIME Types Reference – File Extension to Content-Type Guide runs entirely in your browser and helps you complete this task without uploading data to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is MIME Types Reference – File Extension to Content-Type Guide free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tool is free to use and does not require sign-up."
+      }
     }
-    .search-input:focus { border-color: rgba(94,106,210,0.5); }
-    .search-input::placeholder { color: var(--ds-color-text-muted); font-family: var(--ds-font-sans); }
-
-    .filter-row { display: flex; gap: 6px; flex-wrap: wrap; }
-    .pill { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 1px solid var(--ds-color-border); color: var(--ds-color-text-secondary); background: var(--ds-color-surface); transition: all 0.15s; cursor: pointer; }
-    .pill:hover { border-color: rgba(94,106,210,0.4); color: var(--ds-color-accent); }
-    .pill.active { background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.5); color: var(--ds-color-accent); }
-
-    .mime-table { width: 100%; border-collapse: collapse; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
-    .mime-table thead th { padding: 10px 14px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ds-color-text-muted); background: var(--ds-color-surface); border-bottom: 1px solid var(--ds-color-border); text-align: left; }
-    .mime-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.1s; }
-    .mime-table tbody tr:last-child { border-bottom: none; }
-    .mime-table tbody tr:hover { background: rgba(255,255,255,0.03); }
-    .mime-table td { padding: 9px 14px; font-size: 13px; vertical-align: middle; }
-
-    .ext-cell { font-family: var(--ds-font-mono); font-weight: 600; color: var(--ds-color-accent); }
-    .ext-badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 11px; background: rgba(94,106,210,0.1); border: 1px solid rgba(94,106,210,0.2); margin-right: 3px; }
-    .mime-cell { font-family: var(--ds-font-mono); font-size: 12px; color: var(--ds-color-text-secondary); }
-    .cat-badge { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 500; background: rgba(255,255,255,0.05); color: var(--ds-color-text-muted); border: 1px solid var(--ds-color-border); }
-    .copy-btn { opacity: 0; display: flex; align-items: center; gap: 3px; padding: 3px 7px; border-radius: var(--ds-radius-sm); font-size: 11px; color: var(--ds-color-text-muted); background: rgba(255,255,255,0.04); border: 1px solid var(--ds-color-border); transition: opacity 0.15s, color 0.15s; }
-    .mime-table tbody tr:hover .copy-btn { opacity: 1; }
-    .copy-btn:hover { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); }
-    .copy-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); opacity: 1; }
-
-    .stat-line { font-size: 12px; color: var(--ds-color-text-muted); }
-    .no-result { text-align: center; padding: 40px; color: var(--ds-color-text-muted); font-size: 13px; }
-    @media (max-width: 600px) { .mime-table th:nth-child(3), .mime-table td:nth-child(3) { display: none; } }
-  </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
 </head>
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
@@ -131,206 +136,86 @@
   </div>
 
   
+  <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is MIME Type Reference?</h2>
-    <p class="ds-seo-section__body">A searchable database of MIME types and their associated file extensions. Look up the correct Content-Type header value for any file format — essential for REST APIs and web servers.</p>
+    <h2 class="ds-seo-section__title">What is MIME Types Reference?</h2>
+    <p>MIME Types Reference maps file extensions and media types so you can find the correct Content-Type header for web responses, uploads, and assets. It is useful for API work, static file serving, storage rules, and browser compatibility debugging.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Use MIME Type Reference</h2>
-    <ol class="ds-seo-section__list">
-      <li>Search by file extension (e.g., <code>.pdf</code>, <code>.mp4</code>) or MIME type string (e.g., <code>application/json</code>).</li>
-      <li>See the full MIME type, common extensions, and usage notes.</li>
-      <li>Copy the MIME type string for use in HTTP headers or server configuration.</li>
+    <h2 class="ds-seo-section__title">How to Use MIME Types Reference</h2>
+    <ol>
+      <li>Search by file extension or MIME type string.</li>
+      <li>Review the matching content type and any common usage notes.</li>
+      <li>Use the mapping in server config, API headers, or upload validation.</li>
+      <li>Double-check edge cases such as fonts, JSON, media, or binary files.</li>
     </ol>
   </section>
 </div>
+
 <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="http-status.html" class="ds-related-card"><span class="ds-related-icon">&#128225;</span><div><div class="ds-related-name">HTTP Status Codes</div><div class="ds-related-desc">Complete HTTP status code reference</div></div></a>
-      <a href="port-reference.html" class="ds-related-card"><span class="ds-related-icon">&#128268;</span><div><div class="ds-related-name">Port Reference</div><div class="ds-related-desc">Common TCP/UDP port numbers</div></div></a>
-      <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">&#128279;</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Encode and decode URL components</div></div></a>
-    </div>
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="http-status.html" class="ds-related-card"><span class="ds-related-icon">📡</span><div><div class="ds-related-name">HTTP Status Codes Reference</div><div class="ds-related-desc">Complete reference of HTTP status codes with descriptions</div></div></a>
+    <a href="port-reference.html" class="ds-related-card"><span class="ds-related-icon">🔌</span><div><div class="ds-related-name">Port Reference</div><div class="ds-related-desc">Search common TCP/UDP port numbers by port or service name</div></div></a>
+    <a href="url-encode.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Encode / Decode</div><div class="ds-related-desc">Encode or decode URL parameters and components</div></div></a>
   </div>
+</div>
+
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
-    <span>Understand MIME Type Reference</span>
+    <span>Understand MIME Types Reference</span>
     <span class="ds-seo-more__arrow">&#9662;</span>
   </summary>
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p><code>.pdf</code> → <code>application/pdf</code></p><p><code>.json</code> → <code>application/json</code></p><p><code>.mp4</code> → <code>video/mp4</code></p><p><code>.svg</code> → <code>image/svg+xml</code></p></div>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">.pdf → application/pdf</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">.json → application/json</span>
+          </div>
+        </div>
+      </div>
     </details>
     <details class="ds-seo-collapse">
-      <summary>MIME Type Categories</summary>
-      <div class="ds-seo-collapse__body"><ul><li><strong>text/</strong>: html, css, javascript, plain, csv</li><li><strong>application/</strong>: json, pdf, zip, xml, wasm, octet-stream</li><li><strong>image/</strong>: jpeg, png, gif, webp, svg+xml, avif</li><li><strong>video/</strong>: mp4, webm, ogg</li><li><strong>audio/</strong>: mpeg, wav, ogg</li><li><strong>multipart/form-data</strong>: file upload forms</li></ul></div>
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Look up correct Content-Type headers for files and API responses</li>
+          <li>Check MIME mappings for extensions used in uploads and downloads</li>
+          <li>Verify browser-serving behavior when debugging static assets</li>
+          <li>Use as a quick reference while configuring servers, CDNs, or APIs</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Get correct Content-Type values without Googling each time</li>
-        <li>Avoid browser download prompts caused by wrong MIME types</li>
-        <li>Essential for REST API and web server configuration</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for APIs, static assets, uploads, and server configuration.</li>
+          <li>Helps prevent wrong Content-Type headers and browser handling bugs.</li>
+          <li>Works as a quick in-browser reference while you build or debug.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>What MIME type should I use for JSON API responses?</strong><p>Use <code>application/json</code> with <code>charset=utf-8</code>.</p></div>
-        <div class="ds-seo-faq-item"><strong>What is <code>application/octet-stream</code> used for?</strong><p>It is the generic binary MIME type — browsers treat it as a download prompt when served as a response.</p></div>
+        <div class="ds-seo-faq-item"><strong>What MIME type should I use for JSON API responses?</strong><p>Use application/json with charset=utf-8 .</p></div>
+        <div class="ds-seo-faq-item"><strong>What is application/octet-stream used for?</strong><p>It is the generic binary MIME type — browsers treat it as a download prompt when served as a response.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does MIME Types Reference – File Extension to Content-Type Guide do?</strong><p>MIME Types Reference – File Extension to Content-Type Guide runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is MIME Types Reference – File Extension to Content-Type Guide free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-</div>
-
-<script>
-const MIME_DATA = [
-  // Web
-  {exts:['.html','.htm'], mime:'text/html; charset=utf-8',       cat:'Web',      desc:'HTML document'},
-  {exts:['.css'],         mime:'text/css',                        cat:'Web',      desc:'Cascading Style Sheet'},
-  {exts:['.js','.mjs'],  mime:'text/javascript',                  cat:'Web',      desc:'JavaScript module or script'},
-  {exts:['.ts'],          mime:'text/typescript',                  cat:'Web',      desc:'TypeScript source'},
-  {exts:['.jsx'],         mime:'text/jsx',                         cat:'Web',      desc:'JSX (React) source'},
-  {exts:['.tsx'],         mime:'text/tsx',                         cat:'Web',      desc:'TSX (React + TypeScript)'},
-  {exts:['.wasm'],        mime:'application/wasm',                 cat:'Web',      desc:'WebAssembly binary'},
-  {exts:['.map'],         mime:'application/json',                 cat:'Web',      desc:'Source map file'},
-  // Data
-  {exts:['.json'],        mime:'application/json',                 cat:'Data',     desc:'JSON data'},
-  {exts:['.jsonl'],       mime:'application/x-ndjson',             cat:'Data',     desc:'Newline-delimited JSON'},
-  {exts:['.xml'],         mime:'application/xml',                  cat:'Data',     desc:'XML document'},
-  {exts:['.yaml','.yml'], mime:'application/yaml',                 cat:'Data',     desc:'YAML data'},
-  {exts:['.toml'],        mime:'application/toml',                 cat:'Data',     desc:'TOML configuration'},
-  {exts:['.csv'],         mime:'text/csv',                         cat:'Data',     desc:'Comma-separated values'},
-  {exts:['.tsv'],         mime:'text/tab-separated-values',        cat:'Data',     desc:'Tab-separated values'},
-  {exts:['.sql'],         mime:'application/sql',                  cat:'Data',     desc:'SQL script'},
-  {exts:['.graphql'],     mime:'application/graphql',              cat:'Data',     desc:'GraphQL query'},
-  {exts:['.ndjson'],      mime:'application/x-ndjson',             cat:'Data',     desc:'Newline-delimited JSON'},
-  {exts:['.protobuf'],    mime:'application/protobuf',             cat:'Data',     desc:'Protocol Buffers'},
-  // Image
-  {exts:['.png'],         mime:'image/png',                        cat:'Image',    desc:'PNG image'},
-  {exts:['.jpg','.jpeg'], mime:'image/jpeg',                       cat:'Image',    desc:'JPEG image'},
-  {exts:['.gif'],         mime:'image/gif',                        cat:'Image',    desc:'GIF image'},
-  {exts:['.webp'],        mime:'image/webp',                       cat:'Image',    desc:'WebP image'},
-  {exts:['.avif'],        mime:'image/avif',                       cat:'Image',    desc:'AVIF image (AV1)'},
-  {exts:['.svg'],         mime:'image/svg+xml',                    cat:'Image',    desc:'SVG vector image'},
-  {exts:['.ico'],         mime:'image/x-icon',                     cat:'Image',    desc:'Favicon / icon'},
-  {exts:['.bmp'],         mime:'image/bmp',                        cat:'Image',    desc:'Bitmap image'},
-  {exts:['.tiff','.tif'], mime:'image/tiff',                       cat:'Image',    desc:'TIFF image'},
-  {exts:['.heic'],        mime:'image/heic',                       cat:'Image',    desc:'HEIC image (Apple)'},
-  {exts:['.heif'],        mime:'image/heif',                       cat:'Image',    desc:'HEIF image'},
-  {exts:['.jxl'],         mime:'image/jxl',                        cat:'Image',    desc:'JPEG XL image'},
-  // Video
-  {exts:['.mp4'],         mime:'video/mp4',                        cat:'Video',    desc:'MPEG-4 video'},
-  {exts:['.webm'],        mime:'video/webm',                       cat:'Video',    desc:'WebM video'},
-  {exts:['.ogg','.ogv'],  mime:'video/ogg',                        cat:'Video',    desc:'Ogg video'},
-  {exts:['.mov'],         mime:'video/quicktime',                  cat:'Video',    desc:'QuickTime video'},
-  {exts:['.avi'],         mime:'video/x-msvideo',                  cat:'Video',    desc:'AVI video'},
-  {exts:['.mkv'],         mime:'video/x-matroska',                 cat:'Video',    desc:'Matroska video'},
-  {exts:['.ts'],          mime:'video/mp2t',                       cat:'Video',    desc:'MPEG-2 Transport Stream'},
-  {exts:['.m3u8'],        mime:'application/x-mpegURL',            cat:'Video',    desc:'HLS playlist'},
-  // Audio
-  {exts:['.mp3'],         mime:'audio/mpeg',                       cat:'Audio',    desc:'MP3 audio'},
-  {exts:['.ogg','.oga'],  mime:'audio/ogg',                        cat:'Audio',    desc:'Ogg Vorbis audio'},
-  {exts:['.wav'],         mime:'audio/wav',                        cat:'Audio',    desc:'WAV audio'},
-  {exts:['.aac'],         mime:'audio/aac',                        cat:'Audio',    desc:'AAC audio'},
-  {exts:['.flac'],        mime:'audio/flac',                       cat:'Audio',    desc:'FLAC lossless audio'},
-  {exts:['.m4a'],         mime:'audio/mp4',                        cat:'Audio',    desc:'M4A audio (AAC in MP4)'},
-  {exts:['.opus'],        mime:'audio/opus',                       cat:'Audio',    desc:'Opus audio'},
-  {exts:['.webm'],        mime:'audio/webm',                       cat:'Audio',    desc:'WebM audio'},
-  // Font
-  {exts:['.woff'],        mime:'font/woff',                        cat:'Font',     desc:'Web Open Font Format 1'},
-  {exts:['.woff2'],       mime:'font/woff2',                       cat:'Font',     desc:'Web Open Font Format 2'},
-  {exts:['.ttf'],         mime:'font/ttf',                         cat:'Font',     desc:'TrueType font'},
-  {exts:['.otf'],         mime:'font/otf',                         cat:'Font',     desc:'OpenType font'},
-  {exts:['.eot'],         mime:'application/vnd.ms-fontobject',    cat:'Font',     desc:'Embedded OpenType (IE legacy)'},
-  // Document
-  {exts:['.pdf'],         mime:'application/pdf',                  cat:'Document', desc:'PDF document'},
-  {exts:['.txt'],         mime:'text/plain',                       cat:'Document', desc:'Plain text'},
-  {exts:['.md'],          mime:'text/markdown',                    cat:'Document', desc:'Markdown document'},
-  {exts:['.rtf'],         mime:'application/rtf',                  cat:'Document', desc:'Rich Text Format'},
-  {exts:['.doc'],         mime:'application/msword',               cat:'Document', desc:'Microsoft Word (legacy)'},
-  {exts:['.docx'],        mime:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', cat:'Document', desc:'Microsoft Word (OOXML)'},
-  {exts:['.xls'],         mime:'application/vnd.ms-excel',         cat:'Document', desc:'Microsoft Excel (legacy)'},
-  {exts:['.xlsx'],        mime:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', cat:'Document', desc:'Microsoft Excel (OOXML)'},
-  {exts:['.ppt'],         mime:'application/vnd.ms-powerpoint',    cat:'Document', desc:'Microsoft PowerPoint (legacy)'},
-  {exts:['.pptx'],        mime:'application/vnd.openxmlformats-officedocument.presentationml.presentation', cat:'Document', desc:'Microsoft PowerPoint (OOXML)'},
-  {exts:['.odt'],         mime:'application/vnd.oasis.opendocument.text', cat:'Document', desc:'OpenDocument Text'},
-  {exts:['.ods'],         mime:'application/vnd.oasis.opendocument.spreadsheet', cat:'Document', desc:'OpenDocument Spreadsheet'},
-  {exts:['.epub'],        mime:'application/epub+zip',             cat:'Document', desc:'ePub ebook'},
-  // Archive
-  {exts:['.zip'],         mime:'application/zip',                  cat:'Archive',  desc:'ZIP archive'},
-  {exts:['.tar'],         mime:'application/x-tar',                cat:'Archive',  desc:'TAR archive'},
-  {exts:['.gz','.tar.gz'],mime:'application/gzip',                 cat:'Archive',  desc:'Gzip compressed'},
-  {exts:['.bz2'],         mime:'application/x-bzip2',              cat:'Archive',  desc:'Bzip2 compressed'},
-  {exts:['.xz'],          mime:'application/x-xz',                 cat:'Archive',  desc:'XZ compressed'},
-  {exts:['.7z'],          mime:'application/x-7z-compressed',      cat:'Archive',  desc:'7-Zip archive'},
-  {exts:['.rar'],         mime:'application/x-rar-compressed',     cat:'Archive',  desc:'RAR archive'},
-  {exts:['.jar'],         mime:'application/java-archive',         cat:'Archive',  desc:'Java archive'},
-  {exts:['.whl'],         mime:'application/zip',                  cat:'Archive',  desc:'Python wheel package'},
-  // Binary / App
-  {exts:['.bin'],         mime:'application/octet-stream',         cat:'Data',     desc:'Generic binary data'},
-  {exts:['.exe'],         mime:'application/octet-stream',         cat:'Data',     desc:'Windows executable'},
-  {exts:['.dmg'],         mime:'application/octet-stream',         cat:'Data',     desc:'macOS disk image'},
-  {exts:['.apk'],         mime:'application/vnd.android.package-archive', cat:'Data', desc:'Android package'},
-  {exts:['.ipa'],         mime:'application/octet-stream',         cat:'Data',     desc:'iOS app package'},
-];
-
-  let activeCat = 'all';
-  let query = '';
-
-  function render() {
-    const q = query.toLowerCase().replace(/^\./,'');
-    const filtered = MIME_DATA.filter(m => {
-      const matchCat = activeCat === 'all' || m.cat === activeCat;
-      const matchQ = !q || m.exts.some(e => e.toLowerCase().includes(q)) || m.mime.toLowerCase().includes(q) || m.desc.toLowerCase().includes(q);
-      return matchCat && matchQ;
-    });
-
-    const tbody = document.getElementById('mimeBody');
-    tbody.innerHTML = filtered.map((m, i) => `
-      <tr>
-        <td class="ext-cell">${m.exts.map(e => `<span class="ext-badge">${e}</span>`).join('')}</td>
-        <td class="mime-cell">${m.mime}</td>
-        <td><span class="cat-badge">${m.cat}</span></td>
-        <td><button class="copy-btn" data-i="${i}" title="Copy MIME type">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy
-        </button></td>
-      </tr>`).join('');
-
-    document.getElementById('noResult').style.display = filtered.length ? 'none' : 'block';
-    document.getElementById('statLine').textContent = `Showing ${filtered.length} of ${MIME_DATA.length} MIME types`;
-
-    // Store filtered for copy
-    tbody.querySelectorAll('.copy-btn').forEach(btn => {
-      const idx = parseInt(btn.dataset.i);
-      btn.addEventListener('click', async () => {
-        const mime = filtered[idx].mime;
-        try { await navigator.clipboard.writeText(mime); } catch {}
-        btn.classList.add('copied');
-        btn.innerHTML = '&#10003; Copied';
-        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy'; }, 1500);
-      });
-    });
-  }
-
-  document.getElementById('searchInput').addEventListener('input', e => { query = e.target.value; render(); });
-
-  document.querySelectorAll('[data-cat]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeCat = btn.dataset.cat;
-      document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      render();
-    });
-  });
-
-  render();
-</script>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

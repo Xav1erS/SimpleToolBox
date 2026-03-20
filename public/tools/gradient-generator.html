@@ -14,18 +14,64 @@
   <link rel="canonical" href="https://simpletoolbox.dev/tools/gradient-generator" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "CSS Gradient Generator",
-    "description": "Create and preview CSS linear and radial gradients. Add color stops, choose direction, and copy ready-to-use CSS code instantly.",
-    "url": "https://simpletoolbox.com/tools/gradient-generator.html",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  }
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CSS Gradient Generator",
+  "description": "Create and preview CSS linear and radial gradients. Add color stops, choose direction, and copy ready-to-use CSS code instantly.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/gradient-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need vendor prefixes like -webkit-linear-gradient?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — all modern browsers (Chrome, Firefox, Safari, Edge) support unprefixed CSS gradients. Vendor prefixes are only needed for very old browsers (IE 9 and below)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use transparent color stops?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — use rgba() or hsla() colors with an alpha value of 0 to create fades to transparent. For example: rgba(99, 102, 241, 0) fades the indigo to invisible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this gradient on text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — copy the gradient value and use it with CSS properties: background: linear-gradient(...); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the maximum number of color stops?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool supports up to 6 color stops. CSS itself has no hard limit — browsers support gradients with dozens of stops, though performance may vary."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <style>
     /* Segment controls */
     .seg-group {
@@ -341,36 +387,37 @@
   </main>
 
   
+<!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is CSS Gradient Generator?</h2>
-    <p>Visually creates CSS linear, radial, and conic gradients with a live preview. Generates ready-to-copy CSS <code>background</code> property code with color stops, positions, and angles.</p>
+    <p>Create and preview CSS linear and radial gradients. Add color stops, choose direction, and copy ready-to-use CSS code instantly.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use CSS Gradient Generator</h2>
     <ol>
-      <li>Choose gradient type: linear, radial, or conic.</li>
-      <li>Add color stops and adjust their positions.</li>
-      <li>Set angle (for linear) or position (for radial).</li>
-      <li>Copy the CSS code snippet.</li>
     </ol>
   </section>
 </div>
+
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-      <a href="color-palette.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Palette Generator</div><div class="ds-related-desc">Create and extract color palettes</div></div></a>
-      <a href="color-picker.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Picker</div><div class="ds-related-desc">Pick and convert colors</div></div></a>
-      <a href="contrast-checker.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">Contrast Checker</div><div class="ds-related-desc">Check WCAG color contrast ratios</div></div></a>
+    <a href="color-palette.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Palette Generator</div><div class="ds-related-desc">Generate complementary, analogous and triadic color palettes</div></div></a>
+    <a href="color-picker.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Picker</div><div class="ds-related-desc">Convert colors between HEX, RGB, HSL, and CMYK</div></div></a>
+    <a href="contrast-checker.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">WCAG Contrast Checker</div><div class="ds-related-desc">Check WCAG AA and AAA color contrast ratios for accessibility</div></div></a>
   </div>
 </div>
+
 <details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle"><span>Understand CSS Gradient Generator (examples, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+  <summary class="ds-seo-more__toggle">
+    <span>Understand CSS Gradients</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
       <div class="ds-seo-collapse__body">
-        <p>Creating a purple linear gradient at 90 degrees:</p>
         <div class="ds-seo-example">
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Input</span>
@@ -381,203 +428,31 @@
             <span class="ds-seo-example__value">background: linear-gradient(90deg, #6366F1, #8B5CF6);</span>
           </div>
         </div>
-        <p>Paste the output directly into any CSS file or inline style attribute.</p>
       </div>
     </details>
     <details class="ds-seo-collapse">
-      <summary>Gradient Types Explained</summary>
+      <summary>Common Use Cases</summary>
       <div class="ds-seo-collapse__body">
         <ul>
-          <li><strong>Linear</strong> — colors flow in a straight line at any angle (0–360°); most common for backgrounds and buttons.</li>
-          <li><strong>Radial</strong> — colors radiate outward from a center point in a circle or ellipse; great for spotlight effects.</li>
-          <li><strong>Conic</strong> — colors sweep around a center point like a pie chart; useful for progress rings and color wheels.</li>
-          <li><strong>Multiple stops</strong> — add up to 6 color stops at any position (0%–100%) for complex blends.</li>
-          <li><strong>Direction presets</strong> — click the arrow grid to set direction instantly without typing angles.</li>
-        </ul>
-      </div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body">
-        <ul>
-          <li><strong>Visual editing</strong> — faster than hand-writing gradient CSS; see the result in real time.</li>
-          <li><strong>Ready-to-paste code</strong> — output is a complete CSS background property, no editing needed.</li>
-          <li><strong>Multiple color stops</strong> — add up to 6 stops with custom positions for complex effects.</li>
-          <li><strong>Direction grid</strong> — click arrows to set direction without typing degree values.</li>
-          <li><strong>Free &amp; private</strong> — no data is uploaded; everything runs in your browser.</li>
+          <li>Create hero background gradients for marketing pages</li>
+          <li>Test angle and stop adjustments before editing CSS files</li>
+          <li>Generate polished button or card backgrounds</li>
+          <li>Share exact gradient CSS with developers without manual conversion</li>
         </ul>
       </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-          <div class="ds-seo-faq-item">
-            <h3>Do I need vendor prefixes like -webkit-linear-gradient?</h3>
-            <p>No — all modern browsers (Chrome, Firefox, Safari, Edge) support unprefixed CSS gradients. Vendor prefixes are only needed for very old browsers (IE 9 and below).</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>Can I use transparent color stops?</h3>
-            <p>Yes — use rgba() or hsla() colors with an alpha value of 0 to create fades to transparent. For example: rgba(99, 102, 241, 0) fades the indigo to invisible.</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>Can I use this gradient on text?</h3>
-            <p>Yes — copy the gradient value and use it with CSS properties: background: linear-gradient(...); -webkit-background-clip: text; -webkit-text-fill-color: transparent;</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>What is the maximum number of color stops?</h3>
-            <p>This tool supports up to 6 color stops. CSS itself has no hard limit — browsers support gradients with dozens of stops, though performance may vary.</p>
-          </div>
+        <div class="ds-seo-faq-item"><strong>Do I need vendor prefixes like -webkit-linear-gradient?</strong><p>No — all modern browsers (Chrome, Firefox, Safari, Edge) support unprefixed CSS gradients. Vendor prefixes are only needed for very old browsers (IE 9 and below).</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I use transparent color stops?</strong><p>Yes — use rgba() or hsla() colors with an alpha value of 0 to create fades to transparent. For example: rgba(99, 102, 241, 0) fades the indigo to invisible.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I use this gradient on text?</strong><p>Yes — copy the gradient value and use it with CSS properties: background: linear-gradient(...); -webkit-background-clip: text; -webkit-text-fill-color: transparent;</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the maximum number of color stops?</strong><p>This tool supports up to 6 color stops. CSS itself has no hard limit — browsers support gradients with dozens of stops, though performance may vary.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-  <script>
-    // ── State ────────────────────────────────────────────────────────────────
-    let gradientType = 'linear';
-    let angle = 90;
-    const MAX_STOPS = 6;
-
-    // Initial stops
-    let stops = [
-      { color: '#5E6AD2', pos: 0 },
-      { color: '#9B59B6', pos: 100 }
-    ];
-
-    // ── DOM refs ─────────────────────────────────────────────────────────────
-    const typeGroup   = document.getElementById('typeGroup');
-    const dirSection  = document.getElementById('dirSection');
-    const dirGrid     = document.getElementById('dirGrid');
-    const stopsList   = document.getElementById('stopsList');
-    const btnAddStop  = document.getElementById('btnAddStop');
-    const btnCopyCss  = document.getElementById('btnCopyCss');
-    const btnCopySmall= document.getElementById('btnCopySmall');
-    const previewRect = document.getElementById('previewRect');
-    const cssOutput   = document.getElementById('cssOutput');
-
-    // ── Build gradient CSS ────────────────────────────────────────────────────
-    function buildGradient() {
-      const sorted = [...stops].sort((a, b) => a.pos - b.pos);
-      const stopStr = sorted.map(s => `${s.color} ${s.pos}%`).join(', ');
-      if (gradientType === 'linear') {
-        return `linear-gradient(${angle}deg, ${stopStr})`;
-      } else {
-        return `radial-gradient(circle, ${stopStr})`;
-      }
-    }
-
-    // ── Update preview ────────────────────────────────────────────────────────
-    function updatePreview() {
-      const grad = buildGradient();
-      previewRect.style.background = grad;
-      cssOutput.textContent = `background: ${grad};`;
-    }
-
-    // ── Render stops list ─────────────────────────────────────────────────────
-    function renderStops() {
-      stopsList.innerHTML = '';
-      stops.forEach((stop, idx) => {
-        const row = document.createElement('div');
-        row.className = 'stop-row';
-        row.innerHTML = `
-          <input type="color" class="stop-color-input" value="${stop.color}" data-idx="${idx}" />
-          <input type="range" class="stop-pos-slider" min="0" max="100" value="${stop.pos}" data-idx="${idx}" />
-          <span class="stop-pos-val">${stop.pos}%</span>
-          <button class="stop-del-btn" data-idx="${idx}" ${stops.length <= 2 ? 'disabled' : ''}>✕</button>
-        `;
-
-        // Color change
-        row.querySelector('.stop-color-input').addEventListener('input', e => {
-          stops[+e.target.dataset.idx].color = e.target.value;
-          updatePreview();
-        });
-
-        // Position change
-        const slider = row.querySelector('.stop-pos-slider');
-        const posVal = row.querySelector('.stop-pos-val');
-        slider.addEventListener('input', e => {
-          const i = +e.target.dataset.idx;
-          stops[i].pos = +e.target.value;
-          posVal.textContent = e.target.value + '%';
-          updatePreview();
-        });
-
-        // Delete stop
-        row.querySelector('.stop-del-btn').addEventListener('click', e => {
-          const i = +e.target.dataset.idx;
-          if (stops.length > 2) {
-            stops.splice(i, 1);
-            renderStops();
-            updatePreview();
-          }
-        });
-
-        stopsList.appendChild(row);
-      });
-
-      btnAddStop.disabled = stops.length >= MAX_STOPS;
-    }
-
-    // ── Event: gradient type ──────────────────────────────────────────────────
-    typeGroup.addEventListener('click', e => {
-      const btn = e.target.closest('.seg-btn');
-      if (!btn) return;
-      typeGroup.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      gradientType = btn.dataset.type;
-      dirSection.classList.toggle('hidden', gradientType === 'radial');
-      updatePreview();
-    });
-
-    // ── Event: direction grid ─────────────────────────────────────────────────
-    dirGrid.addEventListener('click', e => {
-      const btn = e.target.closest('.dir-btn[data-angle]');
-      if (!btn) return;
-      dirGrid.querySelectorAll('.dir-btn[data-angle]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      angle = +btn.dataset.angle;
-      updatePreview();
-    });
-
-    // ── Event: add stop ───────────────────────────────────────────────────────
-    btnAddStop.addEventListener('click', () => {
-      if (stops.length >= MAX_STOPS) return;
-      // Insert a stop at the midpoint of the first gap
-      const sorted = [...stops].sort((a, b) => a.pos - b.pos);
-      let bestPos = 50;
-      let bestGap = -1;
-      for (let i = 0; i < sorted.length - 1; i++) {
-        const gap = sorted[i + 1].pos - sorted[i].pos;
-        if (gap > bestGap) {
-          bestGap = gap;
-          bestPos = Math.round((sorted[i].pos + sorted[i + 1].pos) / 2);
-        }
-      }
-      stops.push({ color: '#ffffff', pos: bestPos });
-      renderStops();
-      updatePreview();
-    });
-
-    // ── Copy helpers ──────────────────────────────────────────────────────────
-    function doCopy(btn, text, originalLabel) {
-      navigator.clipboard.writeText(text).catch(() => {});
-      btn.innerHTML = '✓ Copied';
-      btn.style.color = '#22c55e';
-      setTimeout(() => { btn.innerHTML = originalLabel; btn.style.color = ''; }, 1500);
-    }
-
-    btnCopyCss.addEventListener('click', () => {
-      doCopy(btnCopyCss, `background: ${buildGradient()};`, 'Copy CSS');
-    });
-
-    btnCopySmall.addEventListener('click', () => {
-      doCopy(btnCopySmall, `background: ${buildGradient()};`, 'Copy');
-    });
-
-    // ── Init ──────────────────────────────────────────────────────────────────
-    renderStops();
-    updatePreview();
-  </script>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

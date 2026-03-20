@@ -12,9 +12,64 @@
   <meta property="og:title" content="Compress Image to 100KB Online Free – Target File Size Compressor | Simple ToolBox" />
   <meta property="og:description" content="Compress images to a specific file size (100KB, 50KB, 200KB, or any size) online for free. Auto-adjusts quality to hit your target. No upload — runs entirely in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Compress Image to 100KB","applicationCategory":"MultimediaApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compress images to a specific target file size in your browser. Automatically finds the optimal quality to match your target. Supports JPEG and WebP. No uploads — everything runs client-side.","featureList":["Target file size compression","Presets: 50KB, 100KB, 200KB, 500KB","Custom target size input","JPEG and WebP output","Binary search quality optimization","100% client-side — no uploads"]}
-  </script>
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Compress to 100KB",
+  "description": "Compress images to a specific file size (100KB, 50KB, 200KB, or any size) online for free. Auto-adjusts quality to hit your target. No upload — runs entirely in your browser.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/compress-to-100kb"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What if the image can't be compressed to my target size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If the target is extremely small (e.g., 10KB for a high-resolution photo), the tool will compress to the lowest quality possible and show \"Best effort — target not fully met.\" In that case, try resizing the image dimensions first using the Image Resizer , then compressing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the binary search algorithm work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The algorithm starts at quality 50%, checks if the output is above or below the target, then halves the search range: if too large, try lower quality; if small enough, try higher quality. After ~15 iterations it converges to the highest quality that produces a file within your target size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the output size sometimes exceed the target by a few KB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPEG compression is not perfectly predictable — the actual output size depends on image complexity. The algorithm tries to get as close as possible while staying under the target, but final blob size may vary by 1–3 KB. If strict compliance is required, set your target slightly lower (e.g., 95KB instead of 100KB)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use JPEG or WebP to achieve the smallest file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebP generally produces smaller files at the same visual quality. Use WebP if the platform you're uploading to supports it. Use JPEG for maximum compatibility with older systems and image editors."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
   <style>
@@ -228,19 +283,15 @@
 <input type="file" id="fileInput" accept="image/*" />
 <canvas id="canvas" style="display:none"></canvas>
 
+<!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">What is a Target-Size Image Compressor?</h2>
-    <p>A target-size image compressor automatically adjusts JPEG/WebP quality to produce an output file at or below a specific file size. Unlike a simple quality slider where you manually guess the right setting, this tool uses a binary search algorithm — it tries different quality levels and converges on the highest quality that still fits within your target. This is ideal for forms, applications, and upload systems that impose strict file size limits.</p>
+    <h2 class="ds-seo-section__title">What is Compress to 100KB?</h2>
+    <p>Compress images to a specific file size (100KB, 50KB, 200KB, or any size) online for free. Auto-adjusts quality to hit your target. No upload — runs entirely in your browser.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Compress an Image to 100KB</h2>
+    <h2 class="ds-seo-section__title">How to Use Compress to 100KB</h2>
     <ol>
-      <li>Drop your image onto the preview area, or click to browse and select a file.</li>
-      <li>Select a target size preset (50KB, 100KB, 200KB, 500KB) or enter a custom value.</li>
-      <li>Choose the output format: JPEG (universal) or WebP (modern, smaller).</li>
-      <li>Click <strong>Compress</strong> — the tool automatically finds the optimal quality level.</li>
-      <li>Review the result (output size, quality used, status) and click <strong>Download</strong>.</li>
     </ol>
   </section>
 </div>
@@ -249,248 +300,55 @@
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
     <a href="image-compressor.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">Image Compressor</div><div class="ds-related-desc">Reduce image file size with quality control</div></div></a>
-    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images to custom dimensions</div></div></a>
-    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG</div></div></a>
+    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images client-side with preset dimensions</div></div></a>
+    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG format</div></div></a>
   </div>
 </div>
 
 <details class="ds-seo-more">
-  <summary class="ds-seo-more__toggle"><span>Understand Target-Size Compression (algorithm, use cases &amp; FAQs)</span><span class="ds-seo-more__arrow">&#9662;</span></summary>
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Targeted Image Compression</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
       <div class="ds-seo-collapse__body">
-        <p>Compress a 4MB vacation photo to fit within a government form's 100KB limit:</p>
-        <ul>
-          <li>Input: JPEG, 4,096 KB, 4032×3024 px</li>
-          <li>Target: 100 KB, JPEG format</li>
-          <li>Tool runs binary search: tries quality 50%, 25%, 37%, 43%, 40%...</li>
-          <li>Output: JPEG at ~40% quality, <strong>97 KB — within the 100KB limit</strong></li>
-        </ul>
-        <p>The algorithm automatically finds the highest quality that still meets your constraint.</p>
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Upload a 1.8 MB passport photo and set the target to 100 KB</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">The tool iterates compression settings until the exported image is close to the target size</span>
+          </div>
+        </div>
       </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Common Use Cases</summary>
       <div class="ds-seo-collapse__body">
         <ul>
-          <li>Compress profile photos to fit government portals with 100KB or 200KB limits</li>
-          <li>Reduce image size for job application systems that reject large uploads</li>
-          <li>Prepare photos for email attachments with strict size limits</li>
-          <li>Compress images for web hosting plans with bandwidth constraints</li>
-          <li>Reduce image sizes for bulk upload to cloud storage or CMS systems</li>
-        </ul>
-      </div>
-    </details>
-    <details class="ds-seo-collapse">
-      <summary>Why Use This Target-Size Compressor</summary>
-      <div class="ds-seo-collapse__body">
-        <ul>
-          <li><strong>No upload</strong> — compression happens entirely in your browser; images are never sent to a server.</li>
-          <li><strong>Automatic quality search</strong> — binary search algorithm finds the optimal quality; no manual guessing.</li>
-          <li><strong>Custom target</strong> — enter any KB value, not just the presets.</li>
-          <li><strong>JPEG and WebP</strong> — WebP achieves smaller sizes at equivalent quality; choose based on your needs.</li>
+          <li>Meet government or school upload limits</li>
+          <li>Reduce profile photos for forms with strict file caps</li>
+          <li>Shrink scanned documents before submitting online</li>
+          <li>Avoid repeated trial-and-error in desktop editors</li>
         </ul>
       </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-          <div class="ds-seo-faq-item">
-            <h3>What if the image can't be compressed to my target size?</h3>
-            <p>If the target is extremely small (e.g., 10KB for a high-resolution photo), the tool will compress to the lowest quality possible and show "Best effort — target not fully met." In that case, try resizing the image dimensions first using the <a href="image-resizer.html">Image Resizer</a>, then compressing.</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>How does the binary search algorithm work?</h3>
-            <p>The algorithm starts at quality 50%, checks if the output is above or below the target, then halves the search range: if too large, try lower quality; if small enough, try higher quality. After ~15 iterations it converges to the highest quality that produces a file within your target size.</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>Why does the output size sometimes exceed the target by a few KB?</h3>
-            <p>JPEG compression is not perfectly predictable — the actual output size depends on image complexity. The algorithm tries to get as close as possible while staying under the target, but final blob size may vary by 1–3 KB. If strict compliance is required, set your target slightly lower (e.g., 95KB instead of 100KB).</p>
-          </div>
-          <div class="ds-seo-faq-item">
-            <h3>Should I use JPEG or WebP to achieve the smallest file?</h3>
-            <p>WebP generally produces smaller files at the same visual quality. Use WebP if the platform you're uploading to supports it. Use JPEG for maximum compatibility with older systems and image editors.</p>
-          </div>
+        <div class="ds-seo-faq-item"><strong>What if the image can&#x27;t be compressed to my target size?</strong><p>If the target is extremely small (e.g., 10KB for a high-resolution photo), the tool will compress to the lowest quality possible and show &quot;Best effort — target not fully met.&quot; In that case, try resizing the image dimensions first using the Image Resizer , then compressing.</p></div>
+        <div class="ds-seo-faq-item"><strong>How does the binary search algorithm work?</strong><p>The algorithm starts at quality 50%, checks if the output is above or below the target, then halves the search range: if too large, try lower quality; if small enough, try higher quality. After ~15 iterations it converges to the highest quality that produces a file within your target size.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why does the output size sometimes exceed the target by a few KB?</strong><p>JPEG compression is not perfectly predictable — the actual output size depends on image complexity. The algorithm tries to get as close as possible while staying under the target, but final blob size may vary by 1–3 KB. If strict compliance is required, set your target slightly lower (e.g., 95KB instead of 100KB).</p></div>
+        <div class="ds-seo-faq-item"><strong>Should I use JPEG or WebP to achieve the smallest file?</strong><p>WebP generally produces smaller files at the same visual quality. Use WebP if the platform you&#x27;re uploading to supports it. Use JPEG for maximum compatibility with older systems and image editors.</p></div>
       </div>
     </details>
   </div>
 </details>
-
-<script>
-  const dropZone       = document.getElementById('dropZone');
-  const imgWrap        = document.getElementById('imgWrap');
-  const imgPreview     = document.getElementById('imgPreview');
-  const btnChange      = document.getElementById('btnChange');
-  const fileInput      = document.getElementById('fileInput');
-  const canvas         = document.getElementById('canvas');
-  const ctx            = canvas.getContext('2d');
-  const btnCompress    = document.getElementById('btnCompress');
-  const btnDownload    = document.getElementById('btnDownload');
-  const btnLabel       = document.getElementById('btnLabel');
-  const targetInput    = document.getElementById('targetInput');
-  const resultOriginal = document.getElementById('resultOriginal');
-  const resultOutput   = document.getElementById('resultOutput');
-  const resultQuality  = document.getElementById('resultQuality');
-  const resultStatus   = document.getElementById('resultStatus');
-  const metaDimensions = document.getElementById('metaDimensions');
-  const metaFormat     = document.getElementById('metaFormat');
-  const metaFilename   = document.getElementById('metaFilename');
-
-  let srcImage  = null;
-  let origSize  = 0;
-  let outputFmt = 'image/jpeg';
-  let outputExt = 'jpg';
-  let fileName  = 'image';
-  let resultBlob = null;
-
-  function fmtBytes(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
-  }
-
-  function mimeToLabel(mime) {
-    if (mime === 'image/jpeg') return 'JPEG';
-    if (mime === 'image/png')  return 'PNG';
-    if (mime === 'image/webp') return 'WebP';
-    return mime.split('/')[1].toUpperCase();
-  }
-
-  function toBlob(quality) {
-    return new Promise(resolve => {
-      canvas.toBlob(blob => resolve(blob), outputFmt, quality);
-    });
-  }
-
-  async function compress() {
-    if (!srcImage) return;
-    const targetBytes = parseInt(targetInput.value) * 1024;
-    if (!targetBytes || targetBytes <= 0) return;
-
-    btnCompress.disabled = true;
-    btnCompress.innerHTML = '<span class="spinner"></span> Searching...';
-    btnDownload.disabled = true;
-    resultBlob = null;
-
-    canvas.width  = srcImage.naturalWidth;
-    canvas.height = srcImage.naturalHeight;
-    ctx.drawImage(srcImage, 0, 0);
-
-    let lo = 0.01, hi = 1.0, bestBlob = null, bestQ = 0.01;
-    for (let i = 0; i < 18; i++) {
-      const mid = (lo + hi) / 2;
-      const blob = await toBlob(mid);
-      if (blob.size <= targetBytes) {
-        bestBlob = blob;
-        bestQ = mid;
-        lo = mid;
-      } else {
-        hi = mid;
-      }
-      if (hi - lo < 0.005) break;
-    }
-
-    // If nothing fit under target, use minimum quality
-    if (!bestBlob) {
-      bestBlob = await toBlob(0.01);
-      bestQ = 0.01;
-    }
-
-    resultBlob = bestBlob;
-    resultOutput.textContent = fmtBytes(bestBlob.size);
-    resultQuality.textContent = Math.round(bestQ * 100) + '%';
-
-    if (bestBlob.size <= targetBytes) {
-      resultStatus.textContent = '✓ Target met';
-      resultStatus.className = 'result-badge ok';
-    } else {
-      resultStatus.textContent = '⚠ Best effort';
-      resultStatus.className = 'result-badge warn';
-    }
-
-    const ext = outputExt;
-    btnLabel.textContent = `Download ${mimeToLabel(outputFmt)}`;
-    btnDownload.disabled = false;
-    btnCompress.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Compress Again';
-    btnCompress.disabled = false;
-  }
-
-  document.querySelectorAll('.target-preset-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.target-preset-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      targetInput.value = btn.dataset.kb;
-    });
-  });
-
-  targetInput.addEventListener('input', () => {
-    document.querySelectorAll('.target-preset-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.kb === targetInput.value);
-    });
-  });
-
-  document.querySelectorAll('.fmt-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.fmt-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      outputFmt = btn.dataset.fmt;
-      outputExt = btn.dataset.ext;
-    });
-  });
-
-  btnCompress.addEventListener('click', compress);
-
-  function loadFile(file) {
-    if (!file || !file.type.startsWith('image/')) return;
-    origSize = file.size;
-    fileName = file.name.replace(/\.[^.]+$/, '');
-    resultOriginal.textContent = fmtBytes(origSize);
-    resultOutput.textContent = '—';
-    resultQuality.textContent = '—';
-    resultStatus.textContent = '—';
-    resultStatus.className = 'result-badge';
-    resultBlob = null;
-    btnDownload.disabled = true;
-    metaFilename.textContent = file.name;
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        srcImage = img;
-        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
-        metaFormat.textContent = mimeToLabel(file.type);
-        imgPreview.src = e.target.result;
-        dropZone.style.display = 'none';
-        imgWrap.style.display  = 'flex';
-        btnChange.style.display = 'block';
-        btnCompress.disabled = false;
-        btnCompress.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Compress';
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  dropZone.addEventListener('click', () => fileInput.click());
-  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); loadFile(e.dataTransfer.files[0]); });
-  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
-  btnChange.addEventListener('click', () => fileInput.click());
-
-  btnDownload.addEventListener('click', () => {
-    if (!resultBlob) return;
-    const url = URL.createObjectURL(resultBlob);
-    const kb = targetInput.value;
-    const a = Object.assign(document.createElement('a'), { href: url, download: `${fileName}-${kb}kb.${outputExt}` });
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  });
-</script>
-</div>
+<!-- AUTO-SEO-SECTIONS:END -->
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

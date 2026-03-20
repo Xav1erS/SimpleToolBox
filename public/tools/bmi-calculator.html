@@ -13,19 +13,65 @@
   <meta property="og:description" content="Calculate your Body Mass Index (BMI) with Metric or Imperial units. Visual scale and healthy weight range included." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=19" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "BMI Calculator",
-    "description": "Calculate Body Mass Index with Metric or Imperial units. Shows BMI category, visual scale, and healthy weight range.",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "url": "https://simpletoolbox.dev/tools/bmi-calculator.html"
-  }
-  </script>
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "BMI Calculator",
+  "description": "Calculate your Body Mass Index (BMI) instantly. Supports Metric and Imperial units. Shows BMI category, visual scale, and healthy weight range for your height.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/bmi-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is BMI accurate for athletes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — highly muscular people may be classified as overweight by BMI despite low body fat. BMI is a population-level screening tool, not an individual diagnostic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use metric or imperial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both give identical results — choose whichever units you are most comfortable with."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can BMI diagnose health conditions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. BMI is a screening metric, not a diagnosis. It is useful for spotting broad weight categories, but it does not replace medical advice or a full health assessment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this BMI calculator store my measurements?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Height, weight, and unit selections stay in your browser and are not uploaded to a server."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
 
@@ -112,12 +158,12 @@
     <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox
   </a>
-  <div class="ds-tool-nav-center">
-    <span class="ds-tool-nav-title">BMI Calculator</span>
-  </div>
-  <div class="ds-tool-nav-actions">
-    <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
-  </div>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">BMI Calculator<span class="ds-tool-badge">calculator</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
 </nav>
 
 <div class="ds-tool-header">
@@ -217,14 +263,15 @@
 </div>
 
 
+<!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is BMI Calculator?</h2>
-    <p class="ds-seo-section__body">Calculates Body Mass Index (BMI) from height and weight in metric or imperial units. Displays your BMI value, weight category, and the healthy weight range for your height.</p>
+    <p>BMI Calculator calculates Body Mass Index (BMI) from height and weight in metric or imperial units. It shows your BMI value, weight category, and the healthy weight range for your height.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use BMI Calculator</h2>
-    <ol class="ds-seo-section__list">
+    <ol>
       <li>Enter your height and weight.</li>
       <li>Select metric (cm/kg) or imperial (feet/inches, pounds).</li>
       <li>See your BMI and weight category instantly.</li>
@@ -232,14 +279,16 @@
     </ol>
   </section>
 </div>
-  <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="loan-calculator.html" class="ds-related-card"><span class="ds-related-icon">💰</span><div><div class="ds-related-name">Loan Calculator</div><div class="ds-related-desc">Calculate monthly payments and total interest</div></div></a>
-      <a href="date-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Date Calculator</div><div class="ds-related-desc">Calculate days between dates</div></div></a>
-      <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert between common units of measurement</div></div></a>
-    </div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="loan-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏦</span><div><div class="ds-related-name">Loan Calculator</div><div class="ds-related-desc">Calculate monthly loan payments and amortization schedule</div></div></a>
+    <a href="date-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Date Calculator</div><div class="ds-related-desc">Calculate date differences, business days, and exact age</div></div></a>
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
   </div>
+</div>
+
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
     <span>Understand BMI Calculator</span>
@@ -248,29 +297,63 @@
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Height: 175 cm, Weight: 70 kg</p><p>BMI: <strong>22.9</strong> — Normal weight (18.5–24.9)</p><p>Healthy range for 175 cm: 56.7–76.4 kg</p></div>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Height: 175 cm, Weight: 70 kg</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">BMI: 22.9 — Normal weight (18.5–24.9)</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Check whether your current weight falls within the standard BMI ranges.</li>
+          <li>Compare BMI quickly after switching between metric and imperial measurements.</li>
+          <li>Estimate a healthy target weight range for your height before planning diet or fitness goals.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>BMI Categories and Limitations</summary>
-      <div class="ds-seo-collapse__body"><ul><li>Underweight: &lt;18.5</li><li>Normal weight: 18.5–24.9</li><li>Overweight: 25–29.9</li><li>Obese Class I: 30–34.9</li></ul><p><strong>Limitations:</strong> BMI does not account for muscle mass, age, sex, or ethnic background. Athletes may have high BMI with low body fat. Consult a healthcare professional for a full assessment.</p></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Underweight: &lt;18.5</li>
+          <li>Normal weight: 18.5–24.9</li>
+          <li>Overweight: 25–29.9</li>
+          <li>Obese Class I: 30–34.9</li>
+        </ul>
+        <p><strong>Limitations:</strong> BMI does not account for muscle mass, age, sex, or ethnic background. Athletes may have high BMI with low body fat. Consult a healthcare professional for a full assessment.</p>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Quick initial health screening using a widely-used metric</li>
-        <li>Track changes over time with a consistent measurement</li>
-        <li>Understand healthy weight range for your height</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Quick initial health screening using a widely-used metric.</li>
+          <li>Track changes over time with a consistent measurement.</li>
+          <li>Understand healthy weight range for your height.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Is BMI accurate for athletes?</strong><p>No — highly muscular people may be classified as overweight by BMI despite low body fat. BMI is a population-level screening tool, not an individual diagnostic.</p></div>
         <div class="ds-seo-faq-item"><strong>Should I use metric or imperial?</strong><p>Both give identical results — choose whichever units you are most comfortable with.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can BMI diagnose health conditions?</strong><p>No. BMI is a screening metric, not a diagnosis. It is useful for spotting broad weight categories, but it does not replace medical advice or a full health assessment.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does this BMI calculator store my measurements?</strong><p>No. Height, weight, and unit selections stay in your browser and are not uploaded to a server.</p></div>
       </div>
     </details>
   </div>
 </details>
+<!-- AUTO-SEO-SECTIONS:END -->
 
 
 <script>

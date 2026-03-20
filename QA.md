@@ -12,6 +12,9 @@ All scripts require only Python 3 and Node.js (Playwright). No build tools neede
 ```
 scripts/
   validate-tools.py     # Static HTML structure validation (Python)
+  check-tools-meta.py   # Metadata schema / cross-file validation
+  page-audit.py         # Tool page audit over local HTTP server
+  generate-report.py    # Preflight summary report
   gen-sitemap.js        # Sitemap generator (Node)
 
 tests/
@@ -34,6 +37,10 @@ tests/
 
 reports/
   validation-report.json   # Latest validate-tools.py output
+  tools-meta-report.json   # Latest metadata validation output
+  page-audit-report.json   # Latest page audit output
+  preflight-report.json    # Combined preflight machine-readable report
+  preflight-report.md      # Combined preflight human-readable report
   playwright-report.json   # Latest Playwright test output
 
 public/
@@ -103,6 +110,67 @@ Diffs appear in `test-results/` when a test fails.
 
 ---
 
+### 4. Metadata Validation
+
+```bash
+python scripts/check-tools-meta.py
+```
+
+Checks:
+- `tools-meta.js` slug uniqueness
+- required metadata fields
+- category validity
+- related tool references
+- FAQ minimum count
+- useCases / example structure
+- tools-meta.js and tools-data.js cross-file consistency
+
+Writes `reports/tools-meta-report.json`.
+
+---
+
+### 5. Page Audit
+
+```bash
+python scripts/page-audit.py
+```
+
+Checks each tool page over a local Python HTTP server for:
+- page opens successfully
+- title / H1 / meta description / canonical exist
+- Learn More exists
+- Related Tools exists
+- FAQ block exists when metadata includes FAQ
+
+Writes `reports/page-audit-report.json`.
+
+Notes:
+- console / hydration checks are currently reported as skipped in the Python audit
+- if browser tooling is available later, extend this script or add a Playwright audit tier
+
+---
+
+### 6. Preflight Report
+
+```bash
+python scripts/generate-report.py
+```
+
+Runs:
+- `validate-tools.py`
+- `check-tools-meta.py`
+- `page-audit.py`
+- smoke tests when `npx` is available
+- visual regression when `npx` is available
+
+Outputs:
+- `reports/preflight-report.json`
+- `reports/preflight-report.md`
+
+This is the recommended release gate entry point.
+
+---
+
 ## Change Risk Tiers
 
 Use the tier matrix below to decide which checks to run after a change.
@@ -110,8 +178,8 @@ Use the tier matrix below to decide which checks to run after a change.
 | Change Type | Examples | Required Checks |
 |---|---|---|
 | **Low risk** | Single tool logic fix, single tool copy edit, single tool FAQ update | Validate that tool only: `python scripts/validate-tools.py <slug>` + its smoke test |
-| **Medium risk** | Shared SEO component edit, ds-seo-more structure change, tools-data.js update, new tool page | Full static validation + all smoke tests + visual compare for affected pages |
-| **High risk** | design-system.css change, global layout change, theme/token change, sitemap script change | Full static validation + all smoke tests + full visual regression + review report |
+| **Medium risk** | Shared SEO component edit, ds-seo-more structure change, tools-data.js update, new tool page | Full static validation + metadata validation + page audit + all smoke tests + visual compare for affected pages |
+| **High risk** | design-system.css change, global layout change, theme/token change, sitemap script change | Full static validation + metadata validation + page audit + all smoke tests + full visual regression + preflight report |
 
 ### Low Risk (single tool)
 ```bash
@@ -122,6 +190,8 @@ npx playwright test tests/smoke/<slug>.test.js --project="Desktop Chrome"
 ### Medium Risk
 ```bash
 python scripts/validate-tools.py
+python scripts/check-tools-meta.py
+python scripts/page-audit.py
 npx playwright test tests/smoke/ --project="Desktop Chrome"
 npx playwright test tests/visual/snapshot.test.js --project="Desktop Chrome"
 ```
@@ -129,8 +199,11 @@ npx playwright test tests/visual/snapshot.test.js --project="Desktop Chrome"
 ### High Risk (global change)
 ```bash
 python scripts/validate-tools.py
+python scripts/check-tools-meta.py
+python scripts/page-audit.py
 npx playwright test tests/smoke/ tests/visual/snapshot.test.js --project="Desktop Chrome"
-# Review reports/validation-report.json and reports/playwright-report.json
+python scripts/generate-report.py
+# Review reports/*.json and reports/preflight-report.md
 ```
 
 ---

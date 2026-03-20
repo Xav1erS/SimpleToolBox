@@ -13,19 +13,65 @@
   <meta property="og:description" content="Calculate monthly payments, total interest, and amortization schedule for any fixed-rate loan." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=19" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Loan Calculator",
-    "description": "Calculate monthly loan payments, total interest, and amortization schedule for fixed-rate loans.",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "url": "https://simpletoolbox.dev/tools/loan-calculator.html"
-  }
-  </script>
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Loan Calculator",
+  "description": "Calculate monthly loan payments, total interest, and view a full amortization schedule. Supports any fixed-rate loan — mortgage, car, personal loan.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/loan-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it include taxes, insurance, and PMI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator computes principal and interest (P&I) only. Add your own estimates for property taxes and insurance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I calculate a 15-year vs 30-year mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — change the term to any number of years to compare options side by side."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for car loans, mortgages, and personal loans?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The calculator works for any fixed-rate installment loan as long as you know the principal, annual interest rate, and repayment term."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the amortization schedule update automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. As soon as you change the loan amount, rate, or term, the monthly payment and amortization breakdown refresh instantly in your browser."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
 
@@ -114,12 +160,12 @@
     <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox
   </a>
-  <div class="ds-tool-nav-center">
-    <span class="ds-tool-nav-title">Loan Calculator</span>
-  </div>
-  <div class="ds-tool-nav-actions">
-    <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
-  </div>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Loan Calculator<span class="ds-tool-badge">calculator</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
 </nav>
 
 <div class="ds-tool-header">
@@ -218,14 +264,15 @@
 </div>
 
 
+<!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is Loan / Mortgage Calculator?</h2>
-    <p class="ds-seo-section__body">Calculates monthly payment, total interest paid, and total cost for any loan or mortgage. Enter principal, annual interest rate, and term to see full results plus an amortization schedule.</p>
+    <p>Loan Calculator computes monthly payment, total interest paid, and total cost for a fixed-rate loan or mortgage. Enter principal, annual interest rate, and term to see full results plus an amortization schedule.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use Loan / Mortgage Calculator</h2>
-    <ol class="ds-seo-section__list">
+    <ol>
       <li>Enter the loan amount (principal).</li>
       <li>Enter the annual interest rate (%).</li>
       <li>Enter the loan term in years.</li>
@@ -233,14 +280,16 @@
     </ol>
   </section>
 </div>
-  <div class="ds-related-tools">
-    <h2 class="ds-related-title">Related Tools</h2>
-    <div class="ds-related-grid">
-      <a href="bmi-calculator.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">BMI Calculator</div><div class="ds-related-desc">Calculate Body Mass Index from height and weight</div></div></a>
-      <a href="date-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Date Calculator</div><div class="ds-related-desc">Calculate days between dates</div></div></a>
-      <a href="number-format.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Number Formatter</div><div class="ds-related-desc">Format numbers with commas and decimal places</div></div></a>
-    </div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="bmi-calculator.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">BMI Calculator</div><div class="ds-related-desc">Calculate Body Mass Index with Metric or Imperial units</div></div></a>
+    <a href="date-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Date Calculator</div><div class="ds-related-desc">Calculate date differences, business days, and exact age</div></div></a>
+    <a href="number-format.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Number Formatter</div><div class="ds-related-desc">Format numbers with separators, currency, and scientific notation</div></div></a>
   </div>
+</div>
+
 <details class="ds-seo-more">
   <summary class="ds-seo-more__toggle">
     <span>Understand Loan / Mortgage Calculator</span>
@@ -249,29 +298,57 @@
   <div class="ds-seo-more__body">
     <details class="ds-seo-collapse">
       <summary>Example</summary>
-      <div class="ds-seo-collapse__body"><p>Loan: $200,000 at 6.5% for 30 years</p><ul><li>Monthly payment: <strong>$1,264</strong></li><li>Total interest paid: <strong>$255,088</strong></li><li>Total cost: <strong>$455,088</strong></li></ul></div>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Loan: $200,000 at 6.5% for 30 years</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Monthly payment: $1,264 · Total interest: $255,088 · Total cost: $455,088</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Compare monthly payments for different loan amounts, rates, and repayment terms.</li>
+          <li>Estimate the real total cost of a mortgage, auto loan, or personal loan before signing.</li>
+          <li>Understand how amortization shifts each payment from interest-heavy to principal-heavy over time.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Understanding Amortization</summary>
-      <div class="ds-seo-collapse__body"><p>Early payments are mostly interest; later payments are mostly principal. Formula: M = P[r(1+r)^n]/[(1+r)^n−1]. Paying extra principal in early months saves significant total interest. Refinancing at a lower rate reduces both monthly payment and total cost.</p></div>
+      <div class="ds-seo-collapse__body">
+        <p>Early payments are mostly interest; later payments are mostly principal. Formula: M = P[r(1+r)^n]/[(1+r)^n−1]. Paying extra principal in early months saves significant total interest. Refinancing at a lower rate reduces both monthly payment and total cost.</p>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Why Use This Tool</summary>
-      <div class="ds-seo-collapse__body"><ul>
-        <li>Quickly compare loan options without a spreadsheet</li>
-        <li>Understand total cost of a loan before signing</li>
-        <li>See how extra payments reduce total interest over time</li>
-      </ul></div>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Quickly compare loan options without a spreadsheet.</li>
+          <li>Understand total cost of a loan before signing.</li>
+          <li>See how extra payments reduce total interest over time.</li>
+        </ul>
+      </div>
     </details>
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Does it include taxes, insurance, and PMI?</strong><p>This calculator computes principal and interest (P&amp;I) only. Add your own estimates for property taxes and insurance.</p></div>
         <div class="ds-seo-faq-item"><strong>Can I calculate a 15-year vs 30-year mortgage?</strong><p>Yes — change the term to any number of years to compare options side by side.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I use this for car loans, mortgages, and personal loans?</strong><p>Yes. The calculator works for any fixed-rate installment loan as long as you know the principal, annual interest rate, and repayment term.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does the amortization schedule update automatically?</strong><p>Yes. As soon as you change the loan amount, rate, or term, the monthly payment and amortization breakdown refresh instantly in your browser.</p></div>
       </div>
     </details>
   </div>
 </details>
+<!-- AUTO-SEO-SECTIONS:END -->
 
 
 <script>

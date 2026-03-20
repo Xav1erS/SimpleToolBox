@@ -4,7 +4,10 @@
   "type": "module",
   "scripts": {
     "lint": "eslint public/tools/*.html public/*.html --ext .html",
-    "gen-sitemap": "node scripts/gen-sitemap.js"
+    "gen-sitemap": "node scripts/gen-sitemap.js",
+    "check-meta": "python scripts/check-tools-meta.py",
+    "audit-pages": "python scripts/page-audit.py",
+    "preflight-report": "python scripts/generate-report.py"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",

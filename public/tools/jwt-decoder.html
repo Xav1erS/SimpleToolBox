@@ -19,7 +19,7 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it safe to paste my JWT here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Decoding runs entirely in your browser — the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you are certain it is client-side only."}},{"@type":"Question","name":"Can this tool verify the signature?","acceptedAnswer":{"@type":"Answer","text":"No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload — verification must happen on your server."}},{"@type":"Question","name":"What does token expired mean?","acceptedAnswer":{"@type":"Answer","text":"The exp claim is a Unix timestamp indicating when the token stops being valid. If the current time is past that timestamp, the server will reject the token and you will need to re-authenticate."}},{"@type":"Question","name":"What is the difference between JWT and session cookies?","acceptedAnswer":{"@type":"Answer","text":"Session cookies store a session ID on the server and look it up on each request. JWTs are self-contained — all claims are in the token itself, so no server-side session storage is needed. This makes JWTs ideal for stateless, distributed systems."}}]}
   </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=19" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);

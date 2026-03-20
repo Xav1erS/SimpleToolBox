@@ -903,6 +903,30 @@
   flex-shrink: 0;
 }
 
+.ds-tool-nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  flex: 1;
+}
+
+.ds-tool-nav-title {
+  color: var(--ds-color-text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-tool-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  flex-shrink: 0;
+}
+
 .ds-tool-nav-name {
   display: flex;
   align-items: center;

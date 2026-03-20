@@ -18,6 +18,8 @@ import json
 import argparse
 from datetime import date
 
+from tooling_utils import load_tools_meta as parse_tools_meta
+
 TOOLS_DIR = os.path.join(os.path.dirname(__file__), '..', 'public', 'tools')
 REPORTS_DIR = os.path.join(os.path.dirname(__file__), '..', 'reports')
 
@@ -28,16 +30,8 @@ CHECKS = {}
 # ── Load tools-meta.js (optional, used for cross-validation) ───────────────
 
 def load_tools_meta():
-    """Parse TOOLS_META array from tools-meta.js using basic regex extraction."""
-    meta_path = os.path.join(os.path.dirname(__file__), '..', 'public', 'tools-meta.js')
-    if not os.path.exists(meta_path):
-        return {}
     try:
-        import json
-        content = open(meta_path, encoding='utf-8').read()
-        # Extract slug values to build a slug → present map
-        slugs = re.findall(r"slug:\s*'([^']+)'", content)
-        return {s: True for s in slugs}
+        return {item["slug"]: True for item in parse_tools_meta()}
     except Exception:
         return {}
 

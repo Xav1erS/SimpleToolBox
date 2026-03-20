@@ -252,6 +252,7 @@ pre {
    Pages with a local footer {} rule in their own <style> block will
    override these values. Pages without one get these defaults. */
 footer {
+  margin-top: 24px;
   padding: 24px;
   text-align: center;
   font-size: 12px;

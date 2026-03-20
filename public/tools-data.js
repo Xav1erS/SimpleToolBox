@@ -82,6 +82,9 @@ const SITE_TOOLS = [
   { name: 'WebP to JPG Converter',        href: 'tools/webp-to-jpg.html',              tag: 'image',       icon: '🖼️', desc: 'Convert WebP images to JPG or PNG format' },
   { name: 'XML Formatter',                href: 'tools/xml-formatter.html',            tag: 'format',      icon: '📄', desc: 'Beautify and validate XML with syntax highlighting' },
   { name: 'YAML to JSON Converter',       href: 'tools/yaml-json.html',                tag: 'convert',     icon: '🔄', desc: 'Convert between YAML and JSON format instantly' },
+  { name: 'Email Extractor',              href: 'tools/email-extractor.html',          tag: 'text',        icon: '@', desc: 'Extract email addresses from pasted text, logs, or exports' },
+  { name: 'URL Extractor',                href: 'tools/url-extractor.html',            tag: 'text',        icon: '?', desc: 'Extract links from pasted text and normalize plain www URLs' },
+  { name: 'Phone Number Extractor',       href: 'tools/phone-extractor.html',          tag: 'text',        icon: '#', desc: 'Extract phone numbers from text, notes, or lead lists' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -103,7 +106,7 @@ const HUB_PAGE_CONFIG = {
   },
   text: {
     sections: [
-      ['word-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape']
+      ['word-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor']
     ]
   }
 };

@@ -4438,6 +4438,186 @@ const TOOLS_META = [
           "Runs in the browser so config content stays local during conversion."
         ]
       }
+    },
+  {
+      slug: "email-extractor",
+      title: "Email Extractor Online Free | Pull Email Addresses from Text | Simple ToolBox",
+      description: "Extract email addresses from pasted text, logs, CSV exports, or web content. Remove duplicates, sort results, lowercase addresses, and copy the list instantly in your browser.",
+      category: "text",
+      shortTitle: "Email Extractor",
+      relatedTools: [
+        "line-tools",
+        "word-counter",
+        "text-cleaner"
+      ],
+      useCases: [
+        "Pull contact addresses out of pasted lead lists or CRM notes",
+        "Extract email addresses from support tickets, logs, or copied webpages",
+        "Clean exported CSV text before importing into another tool",
+        "Build a deduplicated outreach or review list without writing a script"
+      ],
+      faq: [
+        {
+          q: "Does it validate whether the email address actually exists?",
+          a: "No. It extracts strings that match common email patterns, but it does not verify inbox existence or deliverability."
+        },
+        {
+          q: "Can I remove duplicates automatically?",
+          a: "Yes. The Remove duplicates option is enabled by default, so repeated addresses collapse into one line."
+        },
+        {
+          q: "Can I lowercase all results?",
+          a: "Yes. Turn on Convert to lowercase if you want the output normalized before copying it elsewhere."
+        },
+        {
+          q: "Is my text uploaded anywhere?",
+          a: "No. The extraction runs entirely in your browser and the pasted content stays on your device."
+        }
+      ],
+      example: {
+        input: "Sales: team@example.com, Support@Example.com, jane.doe@vendor.io, team@example.com",
+        output: "jane.doe@vendor.io\nsupport@example.com\nteam@example.com"
+      },
+      seoContent: {
+        whatIsTitle: "What is Email Extractor?",
+        whatIsBody: "Email Extractor scans pasted text and pulls out strings that look like email addresses. It is useful for copied webpages, logs, exports, CRM notes, and any messy text where you need a clean email list fast.",
+        howToTitle: "How to Use Email Extractor",
+        howToSteps: [
+          "Paste the text that contains one or more email addresses.",
+          "Choose whether to remove duplicates, sort the results, or lowercase the output.",
+          "Review the extracted list and match counters instantly.",
+          "Copy the cleaned email list for your spreadsheet, CRM, or audit workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand Email Extraction",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Faster than cleaning messy contact text manually.",
+          "Useful for exports, support logs, lead lists, and copied webpages.",
+          "Runs locally so contact data stays in the browser."
+        ]
+      }
+    },
+  {
+      slug: "url-extractor",
+      title: "URL Extractor Online Free | Pull Links from Text | Simple ToolBox",
+      description: "Extract URLs from text, logs, notes, HTML snippets, or exports. Remove duplicates, sort links, normalize www addresses, and copy the result instantly in your browser.",
+      category: "text",
+      shortTitle: "URL Extractor",
+      relatedTools: [
+        "url-parser",
+        "url-encode",
+        "line-tools"
+      ],
+      useCases: [
+        "Pull all links from copied notes, markdown, or webpage text",
+        "Extract URLs from logs before checking them elsewhere",
+        "Normalize plain www addresses into full links for reuse",
+        "Create a deduplicated list of referenced pages or resources"
+      ],
+      faq: [
+        {
+          q: "Does it extract plain www.example.com links?",
+          a: "Yes. Links starting with www. are matched, and you can normalize them to https:// URLs with one option."
+        },
+        {
+          q: "Will it remove trailing commas or periods?",
+          a: "Yes. Common trailing punctuation is stripped so copied links are cleaner."
+        },
+        {
+          q: "Can I sort and deduplicate the result?",
+          a: "Yes. Both options are enabled by default, and you can turn them off if you want the original order preserved."
+        },
+        {
+          q: "Is the text sent to a server?",
+          a: "No. All extraction happens locally in your browser."
+        }
+      ],
+      example: {
+        input: "Docs: https://simpletoolbox.dev/tools/url-encode.html and www.example.com/pricing",
+        output: "https://simpletoolbox.dev/tools/url-encode.html\nhttps://www.example.com/pricing"
+      },
+      seoContent: {
+        whatIsTitle: "What is URL Extractor?",
+        whatIsBody: "URL Extractor pulls links out of pasted text and turns them into a clean one-per-line list. It is useful for notes, logs, scraped content, markdown, and any text where links are mixed with other content.",
+        howToTitle: "How to Use URL Extractor",
+        howToSteps: [
+          "Paste text that contains one or more URLs.",
+          "Choose whether to remove duplicates, sort the links, or normalize www links.",
+          "Review the extracted URL list and counters instantly.",
+          "Copy the cleaned links into your audit, spreadsheet, or next tool."
+        ]
+      },
+      learnMore: {
+        title: "Understand URL Extraction",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for audits, logs, copied articles, and markdown snippets.",
+          "Helps turn mixed text into a clean link list in one step.",
+          "Runs locally so private notes and logs stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "phone-extractor",
+      title: "Phone Number Extractor Online Free | Pull Numbers from Text | Simple ToolBox",
+      description: "Extract phone numbers from pasted text, exports, CRM notes, or lead lists. Remove duplicates, sort numbers, keep digits only, and copy the result instantly in your browser.",
+      category: "text",
+      shortTitle: "Phone Number Extractor",
+      relatedTools: [
+        "line-tools",
+        "text-cleaner",
+        "word-counter"
+      ],
+      useCases: [
+        "Pull phone numbers from CRM notes, lead dumps, or copied documents",
+        "Clean contact exports before importing them into another system",
+        "Strip formatting and keep digits only for downstream processing",
+        "Build a deduplicated call list without spreadsheet formulas or scripts"
+      ],
+      faq: [
+        {
+          q: "Does it support international formats?",
+          a: "It supports many common international patterns that include spaces, dashes, parentheses, and optional leading plus signs."
+        },
+        {
+          q: "Why are some short number strings ignored?",
+          a: "Matches with fewer than 7 digits are skipped to reduce false positives from IDs, zip codes, or short codes."
+        },
+        {
+          q: "Can I keep only digits in the output?",
+          a: "Yes. Turn on Keep digits only to remove spaces, dashes, and parentheses from each extracted number."
+        },
+        {
+          q: "Is my contact data uploaded anywhere?",
+          a: "No. The tool runs entirely in your browser and does not send the pasted text to a server."
+        }
+      ],
+      example: {
+        input: "+1 (555) 123-4567, +44 20 7946 0958, 555-123-4567",
+        output: "+1 (555) 123-4567\n+44 20 7946 0958\n555-123-4567"
+      },
+      seoContent: {
+        whatIsTitle: "What is Phone Number Extractor?",
+        whatIsBody: "Phone Number Extractor scans pasted text and finds values that look like phone numbers. It is useful for lead lists, CRM notes, exports, messages, and any copied document where phone numbers are mixed into larger blocks of text.",
+        howToTitle: "How to Use Phone Number Extractor",
+        howToSteps: [
+          "Paste text that contains one or more phone numbers.",
+          "Choose whether to remove duplicates, sort the result, or keep digits only.",
+          "Review the extracted list and counts instantly.",
+          "Copy the cleaned numbers into your CRM, spreadsheet, or call workflow."
+        ]
+      },
+      learnMore: {
+        title: "Understand Phone Number Extraction",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for lead cleanup, contact exports, and pasted notes.",
+          "Helps isolate phone numbers from messy mixed-content text quickly.",
+          "Runs locally so contact data never leaves the browser."
+        ]
+      }
     }
 ];
 

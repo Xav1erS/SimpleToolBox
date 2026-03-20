@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Email Extractor Online Free | Pull Email Addresses from Text | Simple ToolBox</title>
+  <meta name="description" content="Extract email addresses from pasted text, logs, CSV exports, or web content. Remove duplicates, sort results, lowercase addresses, and copy the list instantly in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/email-extractor" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/email-extractor.html" />
+  <meta property="og:title" content="Email Extractor Online Free | Pull Email Addresses from Text | Simple ToolBox" />
+  <meta property="og:description" content="Extract email addresses from text, logs, and exports in your browser. Deduplicate, sort, lowercase, and copy results instantly." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Email Extractor",
+  "description": "Extract email addresses from pasted text, logs, CSV exports, or web content. Remove duplicates, sort results, lowercase addresses, and copy the list instantly in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/email-extractor"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it validate whether the email address actually exists?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It extracts strings that match common email patterns, but it does not verify inbox existence or deliverability."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I remove duplicates automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Remove duplicates option is enabled by default, so repeated addresses collapse into one line."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I lowercase all results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Turn on Convert to lowercase if you want the output normalized before copying it elsewhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my text uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The extraction runs entirely in your browser and the pasted content stays on your device."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .option-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-surface);
+      color: var(--ds-color-text-secondary);
+    }
+    .option-check input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--ds-color-accent);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    .stat-card {
+      padding: 16px;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-surface);
+    }
+    .stat-card__label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ds-color-text-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat-card__value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ds-color-text-primary);
+    }
+    .io-btn.copied,
+    .btn-ghost.copied {
+      color: #22c55e;
+      border-color: rgba(34,197,94,0.3);
+    }
+    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
+    .io-textarea:focus { background: rgba(94,106,210,0.025); }
+    .helper-text code {
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .helper-text strong { color: var(--ds-color-text-primary); }
+    @media (max-width: 720px) {
+      .ds-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript>
+  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+    This tool requires JavaScript to run.
+  </div>
+</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">All Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    Email Extractor
+    <span class="nav-tool-badge ds-tool-badge">text</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">@</div>
+      <h1 class="ds-tool-header__title">Email Extractor</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Pull email addresses from pasted text, logs, CSV exports, or scraped content. Deduplicate,
+      sort, lowercase, and copy the final list instantly in your browser.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">emails</span>
+      <span class="ds-tag">deduplicate</span>
+      <span class="ds-tag">sort list</span>
+      <span class="ds-tag">browser only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Source Text</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button>
+        <button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button>
+        <button class="io-btn ds-tool-pane__btn" id="btnClearInput">Clear</button>
+      </div>
+    </div>
+    <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste any text, export, or log here..." spellcheck="false" autocomplete="off"></textarea>
+    <div class="ds-tool-pane__footer">
+      <span class="ds-tool-stat" id="inputStat">0 chars</span>
+    </div>
+  </div>
+
+  <div class="option-grid" aria-label="Extraction options">
+    <label class="option-check"><input type="checkbox" id="optUnique" checked /> Remove duplicates</label>
+    <label class="option-check"><input type="checkbox" id="optSort" checked /> Sort alphabetically</label>
+    <label class="option-check"><input type="checkbox" id="optLowercase" /> Convert to lowercase</label>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-card__label">Matches Found</span>
+      <span class="stat-card__value" id="matchCount">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Unique Emails</span>
+      <span class="stat-card__value" id="uniqueCount">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Output Lines</span>
+      <span class="stat-card__value" id="lineCount">0</span>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Extracted Emails</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnCopyHeader">Copy</button>
+      </div>
+    </div>
+    <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Extracted emails will appear here..." readonly spellcheck="false"></textarea>
+    <div class="ds-tool-pane__footer">
+      <span class="ds-tool-stat" id="outputStat">0 chars</span>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">Extract Emails</button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">Copy Result</button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">Clear All</button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">i</span>
+    <div class="helper-text ds-tool-note__text">
+      <strong>Tip:</strong> This extractor looks for common email patterns such as
+      <code>name@example.com</code>. It works well for pasted webpages, exports, notes, and plain-text lists.
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Email Extractor?</h2>
+    <p>Email Extractor scans pasted text and pulls out strings that look like email addresses. It is useful for copied webpages, logs, exports, CRM notes, and any messy text where you need a clean email list fast.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Email Extractor</h2>
+    <ol>
+      <li>Paste the text that contains one or more email addresses.</li>
+      <li>Choose whether to remove duplicates, sort the results, or lowercase the output.</li>
+      <li>Review the extracted list and match counters instantly.</li>
+      <li>Copy the cleaned email list for your spreadsheet, CRM, or audit workflow.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="line-tools.html" class="ds-related-card"><span class="ds-related-icon">📋</span><div><div class="ds-related-name">Line Tools</div><div class="ds-related-desc">Sort lines, remove duplicates, reverse order, strip blanks</div></div></a>
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Email Extraction</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Sales: team@example.com, Support@Example.com, jane.doe@vendor.io, team@example.com</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">jane.doe@vendor.io
+support@example.com
+team@example.com</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Pull contact addresses out of pasted lead lists or CRM notes</li>
+          <li>Extract email addresses from support tickets, logs, or copied webpages</li>
+          <li>Clean exported CSV text before importing into another tool</li>
+          <li>Build a deduplicated outreach or review list without writing a script</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Faster than cleaning messy contact text manually.</li>
+          <li>Useful for exports, support logs, lead lists, and copied webpages.</li>
+          <li>Runs locally so contact data stays in the browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it validate whether the email address actually exists?</strong><p>No. It extracts strings that match common email patterns, but it does not verify inbox existence or deliverability.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I remove duplicates automatically?</strong><p>Yes. The Remove duplicates option is enabled by default, so repeated addresses collapse into one line.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I lowercase all results?</strong><p>Yes. Turn on Convert to lowercase if you want the output normalized before copying it elsewhere.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is my text uploaded anywhere?</strong><p>No. The extraction runs entirely in your browser and the pasted content stays on your device.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<script>
+  'use strict';
+
+  const EMAIL_RE = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
+  const SAMPLE_TEXT = [
+    'Sales: team@example.com',
+    'Support: Support@Example.com',
+    'Found in export: jane.doe@vendor.io',
+    'Duplicate row: team@example.com'
+  ].join('\n');
+
+  const inputText = document.getElementById('inputText');
+  const outputText = document.getElementById('outputText');
+  const inputStat = document.getElementById('inputStat');
+  const outputStat = document.getElementById('outputStat');
+  const matchCount = document.getElementById('matchCount');
+  const uniqueCount = document.getElementById('uniqueCount');
+  const lineCount = document.getElementById('lineCount');
+  const optUnique = document.getElementById('optUnique');
+  const optSort = document.getElementById('optSort');
+  const optLowercase = document.getElementById('optLowercase');
+  const btnPaste = document.getElementById('btnPaste');
+  const btnSample = document.getElementById('btnSample');
+  const btnClearInput = document.getElementById('btnClearInput');
+  const btnCopyHeader = document.getElementById('btnCopyHeader');
+  const btnCopyResult = document.getElementById('btnCopyResult');
+  const btnClearAll = document.getElementById('btnClearAll');
+  const btnRun = document.getElementById('btnRun');
+
+  function updateStats() {
+    inputStat.textContent = `${inputText.value.length.toLocaleString()} chars`;
+    outputStat.textContent = `${outputText.value.length.toLocaleString()} chars`;
+  }
+
+  function flashCopied(button) {
+    const original = button.textContent;
+    button.classList.add('copied');
+    button.textContent = 'Copied';
+    window.setTimeout(() => {
+      button.classList.remove('copied');
+      button.textContent = original;
+    }, 1400);
+  }
+
+  async function copyText(text, button) {
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+    flashCopied(button);
+  }
+
+  function extractEmails() {
+    const rawMatches = inputText.value.match(EMAIL_RE) || [];
+    let results = rawMatches.slice();
+
+    if (optLowercase.checked) {
+      results = results.map(item => item.toLowerCase());
+    }
+    if (optUnique.checked) {
+      results = [...new Set(results)];
+    }
+    if (optSort.checked) {
+      results.sort((a, b) => a.localeCompare(b));
+    }
+
+    outputText.value = results.join('\n');
+    matchCount.textContent = rawMatches.length.toLocaleString();
+    uniqueCount.textContent = new Set(rawMatches.map(item => item.toLowerCase())).size.toLocaleString();
+    lineCount.textContent = results.length.toLocaleString();
+    updateStats();
+  }
+
+  inputText.addEventListener('input', () => {
+    extractEmails();
+  });
+  [optUnique, optSort, optLowercase].forEach(control => {
+    control.addEventListener('change', extractEmails);
+  });
+
+  btnRun.addEventListener('click', extractEmails);
+  btnCopyHeader.addEventListener('click', () => copyText(outputText.value, btnCopyHeader));
+  btnCopyResult.addEventListener('click', () => copyText(outputText.value, btnCopyResult));
+  btnSample.addEventListener('click', () => {
+    inputText.value = SAMPLE_TEXT;
+    extractEmails();
+  });
+  btnClearInput.addEventListener('click', () => {
+    inputText.value = '';
+    extractEmails();
+  });
+  btnClearAll.addEventListener('click', () => {
+    inputText.value = '';
+    outputText.value = '';
+    matchCount.textContent = '0';
+    uniqueCount.textContent = '0';
+    lineCount.textContent = '0';
+    updateStats();
+  });
+  btnPaste.addEventListener('click', async () => {
+    try {
+      inputText.value = await navigator.clipboard.readText();
+      extractEmails();
+    } catch {}
+  });
+
+  updateStats();
+</script>
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Phone Number Extractor Online Free | Pull Numbers from Text | Simple ToolBox</title>
+  <meta name="description" content="Extract phone numbers from pasted text, exports, CRM notes, or lead lists. Remove duplicates, sort numbers, keep digits only, and copy the result instantly in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/phone-extractor" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/phone-extractor.html" />
+  <meta property="og:title" content="Phone Number Extractor Online Free | Pull Numbers from Text | Simple ToolBox" />
+  <meta property="og:description" content="Extract phone numbers from text, notes, and exports in your browser. Deduplicate, sort, keep digits only, and copy the result instantly." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Phone Number Extractor",
+  "description": "Extract phone numbers from pasted text, exports, CRM notes, or lead lists. Remove duplicates, sort numbers, keep digits only, and copy the result instantly in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/phone-extractor"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it support international formats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It supports many common international patterns that include spaces, dashes, parentheses, and optional leading plus signs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are some short number strings ignored?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Matches with fewer than 7 digits are skipped to reduce False positives from IDs, zip codes, or short codes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I keep only digits in the output?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Turn on Keep digits only to remove spaces, dashes, and parentheses from each extracted number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my contact data uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The tool runs entirely in your browser and does not send the pasted text to a server."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ds-font-sans);
+      background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .option-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-surface);
+      color: var(--ds-color-text-secondary);
+    }
+    .option-check input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--ds-color-accent);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    .stat-card {
+      padding: 16px;
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-surface);
+    }
+    .stat-card__label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ds-color-text-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat-card__value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ds-color-text-primary);
+    }
+    .io-btn.copied,
+    .btn-ghost.copied {
+      color: #22c55e;
+      border-color: rgba(34,197,94,0.3);
+    }
+    .io-textarea::placeholder { color: var(--ds-color-text-muted); }
+    .io-textarea:focus { background: rgba(94,106,210,0.025); }
+    .helper-text code {
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .helper-text strong { color: var(--ds-color-text-primary); }
+    @media (max-width: 720px) {
+      .ds-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript>
+  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+    This tool requires JavaScript to run.
+  </div>
+</noscript>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon">
+      <img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
+    </div>
+    Simple ToolBox
+  </a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">All Tools</a>
+  <div class="nav-divider ds-tool-nav-divider"></div>
+  <div class="nav-tool-name ds-tool-nav-name">
+    Phone Number Extractor
+    <span class="nav-tool-badge ds-tool-badge">text</span>
+  </div>
+  <div class="nav-spacer ds-tool-spacer"></div>
+  <div class="nav-privacy ds-tool-privacy">
+    <span class="nav-privacy-dot ds-tool-privacy-dot"></span>
+    Runs locally &middot; no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">#</div>
+      <h1 class="ds-tool-header__title">Phone Number Extractor</h1>
+    </div>
+    <p class="ds-tool-header__desc">
+      Pull phone numbers from pasted text, CRM notes, exports, or lead lists. Remove duplicates,
+      sort the results, keep digits only if needed, and copy the final list instantly.
+    </p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">phone numbers</span>
+      <span class="ds-tag">lead cleanup</span>
+      <span class="ds-tag">deduplicate</span>
+      <span class="ds-tag">browser only</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Source Text</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button>
+        <button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button>
+        <button class="io-btn ds-tool-pane__btn" id="btnClearInput">Clear</button>
+      </div>
+    </div>
+    <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste text that contains phone numbers..." spellcheck="false" autocomplete="off"></textarea>
+    <div class="ds-tool-pane__footer">
+      <span class="ds-tool-stat" id="inputStat">0 chars</span>
+    </div>
+  </div>
+
+  <div class="option-grid" aria-label="Extraction options">
+    <label class="option-check"><input type="checkbox" id="optUnique" checked /> Remove duplicates</label>
+    <label class="option-check"><input type="checkbox" id="optSort" checked /> Sort ascending</label>
+    <label class="option-check"><input type="checkbox" id="optDigitsOnly" /> Keep digits only</label>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-card__label">Matches Found</span>
+      <span class="stat-card__value" id="matchCount">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Unique Numbers</span>
+      <span class="stat-card__value" id="uniqueCount">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Output Lines</span>
+      <span class="stat-card__value" id="lineCount">0</span>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Extracted Numbers</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnCopyHeader">Copy</button>
+      </div>
+    </div>
+    <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Extracted phone numbers will appear here..." readonly spellcheck="false"></textarea>
+    <div class="ds-tool-pane__footer">
+      <span class="ds-tool-stat" id="outputStat">0 chars</span>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">Extract Numbers</button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">Copy Result</button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">Clear All</button>
+  </div>
+
+  <div class="ds-tool-note">
+    <span class="ds-tool-note__icon">i</span>
+    <div class="helper-text ds-tool-note__text">
+      <strong>Tip:</strong> This extractor is designed for common phone formats like
+      <code>+1 555 123 4567</code>, <code>(020) 7946 0958</code>, or <code>555-0100</code>.
+      Matches shorter than 7 digits are ignored.
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Phone Number Extractor?</h2>
+    <p>Phone Number Extractor scans pasted text and finds values that look like phone numbers. It is useful for lead lists, CRM notes, exports, messages, and any copied document where phone numbers are mixed into larger blocks of text.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Phone Number Extractor</h2>
+    <ol>
+      <li>Paste text that contains one or more phone numbers.</li>
+      <li>Choose whether to remove duplicates, sort the result, or keep digits only.</li>
+      <li>Review the extracted list and counts instantly.</li>
+      <li>Copy the cleaned numbers into your CRM, spreadsheet, or call workflow.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="line-tools.html" class="ds-related-card"><span class="ds-related-icon">📋</span><div><div class="ds-related-name">Line Tools</div><div class="ds-related-desc">Sort lines, remove duplicates, reverse order, strip blanks</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Phone Number Extraction</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">+1 (555) 123-4567, +44 20 7946 0958, 555-123-4567</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">+1 (555) 123-4567
++44 20 7946 0958
+555-123-4567</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Pull phone numbers from CRM notes, lead dumps, or copied documents</li>
+          <li>Clean contact exports before importing them into another system</li>
+          <li>Strip formatting and keep digits only for downstream processing</li>
+          <li>Build a deduplicated call list without spreadsheet formulas or scripts</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for lead cleanup, contact exports, and pasted notes.</li>
+          <li>Helps isolate phone numbers from messy mixed-content text quickly.</li>
+          <li>Runs locally so contact data never leaves the browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it support international formats?</strong><p>It supports many common international patterns that include spaces, dashes, parentheses, and optional leading plus signs.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why are some short number strings ignored?</strong><p>Matches with fewer than 7 digits are skipped to reduce False positives from IDs, zip codes, or short codes.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I keep only digits in the output?</strong><p>Yes. Turn on Keep digits only to remove spaces, dashes, and parentheses from each extracted number.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is my contact data uploaded anywhere?</strong><p>No. The tool runs entirely in your browser and does not send the pasted text to a server.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<script>
+  'use strict';
+
+  const PHONE_RE = /(?:\+?\d[\d().\-\s]{6,}\d)/g;
+  const SAMPLE_TEXT = [
+    'Sales US: +1 (555) 123-4567',
+    'UK office: +44 20 7946 0958',
+    'Alt: 555-123-4567',
+    'Duplicate row: +1 (555) 123-4567'
+  ].join('\n');
+
+  const inputText = document.getElementById('inputText');
+  const outputText = document.getElementById('outputText');
+  const inputStat = document.getElementById('inputStat');
+  const outputStat = document.getElementById('outputStat');
+  const matchCount = document.getElementById('matchCount');
+  const uniqueCount = document.getElementById('uniqueCount');
+  const lineCount = document.getElementById('lineCount');
+  const optUnique = document.getElementById('optUnique');
+  const optSort = document.getElementById('optSort');
+  const optDigitsOnly = document.getElementById('optDigitsOnly');
+  const btnPaste = document.getElementById('btnPaste');
+  const btnSample = document.getElementById('btnSample');
+  const btnClearInput = document.getElementById('btnClearInput');
+  const btnCopyHeader = document.getElementById('btnCopyHeader');
+  const btnCopyResult = document.getElementById('btnCopyResult');
+  const btnClearAll = document.getElementById('btnClearAll');
+  const btnRun = document.getElementById('btnRun');
+
+  function updateStats() {
+    inputStat.textContent = `${inputText.value.length.toLocaleString()} chars`;
+    outputStat.textContent = `${outputText.value.length.toLocaleString()} chars`;
+  }
+
+  function flashCopied(button) {
+    const original = button.textContent;
+    button.classList.add('copied');
+    button.textContent = 'Copied';
+    window.setTimeout(() => {
+      button.classList.remove('copied');
+      button.textContent = original;
+    }, 1400);
+  }
+
+  async function copyText(text, button) {
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+    flashCopied(button);
+  }
+
+  function normalizePhone(item) {
+    const digits = item.replace(/\D/g, '');
+    if (digits.length < 7) return null;
+    return optDigitsOnly.checked ? digits : item.trim().replace(/\s+/g, ' ');
+  }
+
+  function extractPhones() {
+    const rawMatches = inputText.value.match(PHONE_RE) || [];
+    const normalized = rawMatches.map(normalizePhone).filter(Boolean);
+    let results = normalized.slice();
+
+    if (optUnique.checked) {
+      results = [...new Set(results)];
+    }
+    if (optSort.checked) {
+      results.sort((a, b) => a.localeCompare(b));
+    }
+
+    outputText.value = results.join('\n');
+    matchCount.textContent = normalized.length.toLocaleString();
+    uniqueCount.textContent = new Set(normalized).size.toLocaleString();
+    lineCount.textContent = results.length.toLocaleString();
+    updateStats();
+  }
+
+  inputText.addEventListener('input', extractPhones);
+  [optUnique, optSort, optDigitsOnly].forEach(control => {
+    control.addEventListener('change', extractPhones);
+  });
+
+  btnRun.addEventListener('click', extractPhones);
+  btnCopyHeader.addEventListener('click', () => copyText(outputText.value, btnCopyHeader));
+  btnCopyResult.addEventListener('click', () => copyText(outputText.value, btnCopyResult));
+  btnSample.addEventListener('click', () => {
+    inputText.value = SAMPLE_TEXT;
+    extractPhones();
+  });
+  btnClearInput.addEventListener('click', () => {
+    inputText.value = '';
+    extractPhones();
+  });
+  btnClearAll.addEventListener('click', () => {
+    inputText.value = '';
+    outputText.value = '';
+    matchCount.textContent = '0';
+    uniqueCount.textContent = '0';
+    lineCount.textContent = '0';
+    updateStats();
+  });
+  btnPaste.addEventListener('click', async () => {
+    try {
+      inputText.value = await navigator.clipboard.readText();
+      extractPhones();
+    } catch {}
+  });
+
+  updateStats();
+</script>
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+</body>
+</html>

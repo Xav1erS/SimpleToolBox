@@ -30,6 +30,16 @@
       align-items: center;
       flex-wrap: wrap;
     }
+    .reference-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .reference-shell.ds-card:hover {
+      border-color: var(--ds-color-border);
+      background: var(--ds-color-surface);
+      box-shadow: none;
+    }
     .search-input {
       flex: 1;
       min-width: 200px;
@@ -205,6 +215,9 @@
 </div>
 
 <div class="ds-tool-main ds-tool-stack">
+  <section class="ds-card reference-shell">
+    <div class="ds-card__body">
+      <div class="reference-shell">
 
   <div class="search-bar">
     <input class="search-input" id="searchInput" placeholder="Search port number or service name…" autocomplete="off" spellcheck="false" />
@@ -244,8 +257,10 @@
     </table>
     <div class="no-result" id="noResult" style="display:none">No ports match your search.</div>
   </div>
+      </div>
+    </div>
+  </section>
 
-  
   <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">

@@ -20,7 +20,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "AES Encrypt / Decrypt",
-  "description": "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser ? no data is sent to any server.",
+  "description": "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser, and no data is sent to any server.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -57,7 +57,7 @@
       "name": "How strong is AES-256?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide ? it is the gold standard for symmetric encryption."
+        "text": "AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide; it is the gold standard for symmetric encryption."
       }
     },
     {
@@ -148,7 +148,7 @@
       <div class="ds-tool-nav-divider"></div>
   <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
   <div class="ds-tool-nav-divider"></div>
-  <div class="ds-tool-nav-name">AES Encrypt / Decrypt<span class="ds-tool-badge">crypto</span></div>
+  <div class="ds-tool-nav-name">AES Encrypt / Decrypt<span class="ds-tool-badge">encode</span></div>
   <div class="ds-tool-spacer"></div>
   <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &#8212; no data sent</div>
   </nav>
@@ -421,7 +421,7 @@
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
     <a href="hmac.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">HMAC Generator</div><div class="ds-related-desc">Generate HMAC signatures with SHA-256, SHA-512 and more</div></div></a>
-    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">⌗</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
     <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
   </div>
 </div>
@@ -438,7 +438,7 @@
         <div class="ds-seo-example">
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Input</span>
-            <span class="ds-seo-example__value">Plaintext: &quot;Secret message&quot; ? Key: &quot;mykey&quot; ? Mode: AES-GCM-256</span>
+            <span class="ds-seo-example__value">Plaintext: &quot;Secret message&quot; - Key: &quot;mykey&quot; - Mode: AES-GCM-256</span>
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
@@ -473,7 +473,7 @@
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>What is the difference between AES-CBC and AES-GCM?</strong><p>AES-CBC provides confidentiality only and requires a separate MAC for integrity verification. AES-GCM provides both confidentiality and built-in authentication, making it the preferred choice for new systems.</p></div>
         <div class="ds-seo-faq-item"><strong>Why does the ciphertext change every time I encrypt the same message?</strong><p>A random IV (initialization vector) is generated for each encryption operation. This ensures that identical plaintexts produce different ciphertexts, preventing pattern analysis. The IV is stored alongside the ciphertext and used automatically during decryption.</p></div>
-        <div class="ds-seo-faq-item"><strong>How strong is AES-256?</strong><p>AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide ? it is the gold standard for symmetric encryption.</p></div>
+        <div class="ds-seo-faq-item"><strong>How strong is AES-256?</strong><p>AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide; it is the gold standard for symmetric encryption.</p></div>
         <div class="ds-seo-faq-item"><strong>Can I use this tool to encrypt files?</strong><p>This tool is designed for text encryption. For file encryption, consider dedicated tools. However, you can encrypt Base64-encoded file content if needed.</p></div>
       </div>
     </details>

@@ -776,11 +776,31 @@
   const countBadge = document.getElementById('countBadge');
   const pageSub = document.querySelector('.page-sub');
 
+  const TAG_ICON_FALLBACKS = {
+    image: '▣',
+    text: '✎',
+    encode: '⌁',
+    format: '≡',
+    convert: '⇄',
+    generate: '✦',
+    design: '◉',
+    reference: '⌗',
+    calculator: '∑'
+  };
+
+  function getToolIcon(tool) {
+    const icon = (tool.icon || '').trim();
+    if (!icon || icon === '?' || icon === '??' || icon === '???') {
+      return TAG_ICON_FALLBACKS[tool.tag] || '•';
+    }
+    return icon;
+  }
+
   function renderToolCard(tool) {
     const searchName = `${tool.name} ${tool.tag} ${tool.desc}`.replace(/"/g, '&quot;');
     return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}" data-name="${searchName}">
       <div class="tool-card-top">
-        <div class="tool-icon">${tool.icon}</div>
+        <div class="tool-icon">${getToolIcon(tool)}</div>
         <div class="tool-name">${tool.name}</div>
       </div>
       <div class="tool-desc">${tool.desc}</div>
@@ -806,7 +826,7 @@
     if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
     const results = ALL_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)).slice(0, 6);
     if (!results.length) { dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>'; }
-    else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
+    else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${getToolIcon(t)}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
     dropdownEl.classList.add('open');
   }
   const navDropdown = document.getElementById('navSearchDropdown');

@@ -10,8 +10,8 @@
 const TOOLS_META = [
   {
       slug: "base64",
-      title: "Base64 Encoder / Decoder",
-      description: "Encode text or files to Base64 and decode Base64 strings instantly. Supports URL-safe Base64 and binary file encoding. Runs entirely in your browser.",
+      title: "Base64 Encoder / Decoder Online",
+      description: "Encode text or files to Base64 and decode Base64 strings instantly. Supports standard and URL-safe Base64, all in your browser with no uploads.",
       category: "encode",
       relatedTools: [
         "url-encode",
@@ -49,7 +49,7 @@ const TOOLS_META = [
       shortTitle: "Base64 Encoder / Decoder",
       seoContent: {
         whatIsTitle: "What is Base64?",
-        whatIsBody: "Base64 is a text encoding scheme that turns binary or plain text data into ASCII characters. It is often used for email payloads, data URLs, API tokens, and transporting binary content through text-only systems.",
+        whatIsBody: "Base64 is a text encoding method that turns binary data or plain text into a limited ASCII character set. It is commonly used for email payloads, data URLs, API tokens, and moving binary content through text-only systems.",
         howToTitle: "How to Use Base64 Encoder / Decoder",
         howToSteps: [
           "Paste text into the input area or switch to the file mode.",
@@ -70,8 +70,8 @@ const TOOLS_META = [
     },
   {
       slug: "json-formatter",
-      title: "JSON Formatter",
-      description: "Prettify, minify, and validate JSON online. Convert JSON to CSV, SQL INSERT statements, or CSV back to JSON. 100% browser-side.",
+      title: "JSON Formatter Online",
+      description: "Format, minify, and validate JSON online. You can also convert JSON to CSV or SQL INSERT statements, all locally in your browser.",
       category: "format",
       relatedTools: [
         "yaml-json",
@@ -109,7 +109,13 @@ const TOOLS_META = [
       shortTitle: "JSON Formatter",
       seoContent: {
         title: "What is JSON Formatter?",
-        body: "JSON Formatter prettifies, validates, and restructures JSON so you can inspect payloads, debug API responses, and copy clean output faster. It is useful for front-end development, back-end debugging, integrations, and documentation work."
+        body: "JSON Formatter prettifies, validates, and restructures JSON so you can inspect payloads, debug API responses, and copy clean output faster. It is useful for front-end development, back-end debugging, integrations, and documentation work.",
+        howToSteps: [
+          "Paste your JSON into the input panel on the left.",
+          "Click Prettify to format it or Minify to compress it for transport.",
+          "Fix any syntax errors shown in the validation message area if the JSON is invalid.",
+          "Copy the cleaned output or switch to CSV or SQL conversion if you need another format."
+        ]
       },
       learnMore: {
         title: "Understand JSON Formatting"
@@ -117,8 +123,8 @@ const TOOLS_META = [
     },
   {
       slug: "password-generator",
-      title: "Password Generator",
-      description: "Generate strong random passwords locally. Choose length, character sets, and quantity. No passwords are transmitted to any server.",
+      title: "Password Generator Online",
+      description: "Generate strong random passwords locally. Choose length, character sets, and quantity, then copy a single password or a full batch instantly.",
       category: "generate",
       relatedTools: [
         "hash-generator",
@@ -156,7 +162,13 @@ const TOOLS_META = [
       shortTitle: "Password Generator",
       seoContent: {
         title: "What is Password Generator?",
-        body: "Password Generator creates strong random passwords locally in the browser so you can avoid weak, reused credentials. It is useful for account setup, admin handoff, test environments, and any workflow that needs quick secure strings."
+        body: "Password Generator creates strong random passwords locally in the browser so you can avoid weak, reused credentials. It is useful for account setup, admin handoff, test environments, and any workflow that needs quick secure strings.",
+        howToSteps: [
+          "Choose the password length and the character types you want to include.",
+          "Open advanced options if you need multiple passwords or stricter rules.",
+          "Generate the password list instantly in the browser.",
+          "Copy one password or copy the full batch for account setup or handoff."
+        ]
       },
       learnMore: {
         title: "Understand Strong Passwords"
@@ -164,8 +176,8 @@ const TOOLS_META = [
     },
   {
       slug: "timestamp",
-      title: "Timestamp Converter",
-      description: "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds. Shows current timestamp live.",
+      title: "Timestamp Converter Online",
+      description: "Convert Unix timestamps to readable dates and convert dates back to timestamps. Supports seconds, milliseconds, and a live current timestamp.",
       category: "convert",
       shortTitle: "Timestamp Converter",
       relatedTools: [
@@ -224,8 +236,8 @@ const TOOLS_META = [
     },
   {
       slug: "url-encode",
-      title: "URL Encoder / Decoder",
-      description: "Encode or decode URL parameters and components online. Supports percent-encoding, full URL encoding, and component encoding. Works with Unicode and Chinese characters.",
+      title: "URL Encoder / Decoder Online",
+      description: "Encode or decode URL parameters and components online. Works with full URLs, query values, Unicode text, and special characters.",
       category: "encode",
       relatedTools: [
         "base64",
@@ -283,8 +295,8 @@ const TOOLS_META = [
     },
   {
       slug: "uuid-generator",
-      title: "UUID Generator",
-      description: "Generate UUID v1 (time-based) and v4 (random) identifiers in bulk. Copy individually or all at once. Runs entirely in your browser.",
+      title: "UUID Generator Online",
+      description: "Generate UUID v1 and v4 identifiers in bulk. Copy one value or the entire list at once, all locally in your browser.",
       category: "generate",
       relatedTools: [
         "password-generator",
@@ -322,7 +334,13 @@ const TOOLS_META = [
       shortTitle: "UUID Generator",
       seoContent: {
         title: "What is UUID Generator?",
-        body: "UUID Generator creates random unique identifiers in the browser so you can seed records, create test data, and generate IDs without relying on a back-end service. It is useful for development, QA, and local content workflows."
+        body: "UUID Generator creates random unique identifiers in the browser so you can seed records, create test data, and generate IDs without relying on a back-end service. It is useful for development, QA, and local content workflows.",
+        howToSteps: [
+          "Pick UUID v1 or v4 depending on whether you need time-based or random identifiers.",
+          "Set the quantity you want to generate.",
+          "Generate the list instantly in your browser.",
+          "Copy a single UUID or copy the full batch at once for scripts, fixtures, or spreadsheets."
+        ]
       },
       learnMore: {
         title: "Understand UUIDs"
@@ -330,8 +348,8 @@ const TOOLS_META = [
     },
   {
       slug: "word-counter",
-      title: "Word Counter",
-      description: "Count words, characters, sentences, and paragraphs. Get reading time estimates and keyword density. Works entirely in your browser.",
+      title: "Word Counter Online",
+      description: "Count words, characters, sentences, and paragraphs. Get reading time, average word length, and keyword density without leaving your browser.",
       category: "text",
       shortTitle: "Word Counter",
       relatedTools: [
@@ -359,7 +377,7 @@ const TOOLS_META = [
         },
         {
           q: "Why does it use 200 words per minute?",
-          a: "Reading time is estimated by dividing the total word count by 200 words per minute ? the widely cited average adult reading speed for on-screen text. The result is rounded up to the nearest half-minute. Dense or technical content may take longer; casual prose may be read faster."
+          a: "Reading time is estimated by dividing the total word count by 200 words per minute, the widely cited average adult reading speed for on-screen text. The result is rounded up to the nearest half-minute. Dense or technical content may take longer; casual prose may be read faster."
         },
         {
           q: "How are words counted?",
@@ -368,7 +386,7 @@ const TOOLS_META = [
       ],
       seoContent: {
         whatIsTitle: "What is a Word Counter?",
-        whatIsBody: "A word counter measures text length and related writing stats such as words, characters, sentences, paragraphs, and reading time. It helps writers, editors, students, and marketers stay within content limits and understand text density quickly.",
+        whatIsBody: "A word counter measures text length and related writing stats such as words, characters, sentences, paragraphs, and reading time. It helps writers, editors, students, and marketers stay within content limits and quickly understand how dense or readable a draft is.",
         howToTitle: "How to Use the Word Counter",
         howToSteps: [
           "Paste or type text into the editor.",
@@ -513,8 +531,8 @@ const TOOLS_META = [
     },
   {
       slug: "image-resizer",
-      title: "Image Resizer Online Free – Resize Images Without Uploading",
-      description: "Resize images online for free. Set custom dimensions, lock aspect ratio, convert formats (JPG, PNG, WebP), adjust quality, and use social media presets. Privacy-first, browser-based.",
+      title: "Resize Images Online Free",
+      description: "Resize JPG, PNG, and WebP images online for free. Set custom dimensions, keep aspect ratio, switch output format, and use social media presets. Runs locally in your browser with no uploads.",
       category: "image",
       relatedTools: [
         "youtube-thumbnail",
@@ -551,7 +569,7 @@ const TOOLS_META = [
       },
       shortTitle: "Image Resizer",
       seoContent: {
-        title: "What is Image Resizer?",
+        title: "What is an Image Resizer?",
         body: "Image Resizer changes image dimensions directly in the browser so you can prepare files for websites, social media, documents, and app uploads. It is useful when you need exact width and height targets without sending images to a server."
       },
       learnMore: {
@@ -560,8 +578,8 @@ const TOOLS_META = [
     },
   {
       slug: "image-compressor",
-      title: "Image Compressor Online Free – Reduce Image File Size",
-      description: "Compress JPEG, PNG, and WebP images online for free. Reduce file size with quality control, see before/after file size instantly. Privacy-first — runs entirely in your browser, no uploads.",
+      title: "Compress Images Online Free",
+      description: "Compress JPEG, PNG, and WebP images online for free. Adjust quality, compare before-and-after file size, and download the smaller result instantly. Runs locally in your browser with no uploads.",
       category: "image",
       relatedTools: [
         "image-resizer",
@@ -598,8 +616,14 @@ const TOOLS_META = [
       },
       shortTitle: "Image Compressor",
       seoContent: {
-        title: "What is Image Compressor?",
-        body: "Image Compressor reduces image file size in the browser so you can shrink uploads without sending files to a server. It is useful for website performance, email attachments, CMS uploads, and social posts with strict size limits."
+        title: "What is an Image Compressor?",
+        body: "Image Compressor reduces image file size in the browser so you can shrink uploads without sending files to a server. It is useful for website performance, email attachments, CMS uploads, and social posts with strict size limits.",
+        howToSteps: [
+          "Upload the image you want to compress from your device.",
+          "Adjust the quality setting while watching the preview and file size update.",
+          "Compare the original and compressed versions to find the best balance.",
+          "Download the smaller file once the result looks good."
+        ]
       },
       learnMore: {
         title: "Understand Image Compression"
@@ -701,8 +725,8 @@ const TOOLS_META = [
     },
   {
       slug: "qr-code-generator",
-      title: "QR Code Generator Free – Create Custom QR Codes Online",
-      description: "Generate QR codes for URLs, text, WiFi, vCards, and email. Customize colors, error correction level, size, and embed your logo. Download as PNG or SVG. Free, browser-based.",
+      title: "QR Code Generator Online Free",
+      description: "Generate QR codes for URLs, text, WiFi, vCards, and email. Customize colors, error correction, size, and logo placement, then download as PNG or SVG.",
       category: "generate",
       relatedTools: [
         "url-encode",
@@ -868,8 +892,8 @@ const TOOLS_META = [
     },
   {
       slug: "color-picker",
-      title: "Color Picker",
-      description: "Pick colors visually and convert between HEX, RGB, HSL, and CMYK. Copy any format with one click. No sign-up required.",
+      title: "Color Picker Online",
+      description: "Pick colors visually and convert between HEX, RGB, HSL, and CMYK. Copy any format with one click and fine-tune values directly in the browser.",
       category: "convert",
       relatedTools: [
         "color-converter",
@@ -907,7 +931,13 @@ const TOOLS_META = [
       shortTitle: "Color Picker",
       seoContent: {
         title: "What is Color Picker?",
-        body: "Color Picker helps you inspect and copy color values such as HEX, RGB, and HSL directly in the browser. It is useful for UI work, design handoff, CSS authoring, and quick palette exploration without opening a full graphics app."
+        body: "Color Picker helps you inspect and copy color values such as HEX, RGB, and HSL directly in the browser. It is useful for UI work, design handoff, CSS authoring, and quick palette exploration without opening a full graphics app.",
+        howToSteps: [
+          "Enter a HEX value or use the visual picker to choose a color.",
+          "Review the converted RGB, HSL, and CMYK values shown below.",
+          "Fine-tune the inputs until the color matches your design or code target.",
+          "Copy the format you need with one click."
+        ]
       },
       learnMore: {
         title: "Understand Color Picking"
@@ -915,8 +945,8 @@ const TOOLS_META = [
     },
   {
       slug: "regex-tester",
-      title: "Regex Tester Online – Test & Debug Regular Expressions",
-      description: "Test and debug regular expressions in real time. Highlights all matches, shows capture groups, supports global/case-insensitive/multiline flags, and includes replace mode. Free, browser-based.",
+      title: "Regex Tester Online - Test & Debug Regular Expressions",
+      description: "Test and debug regular expressions in real time. See matches, capture groups, flags, and replacements instantly in your browser.",
       category: "text",
       relatedTools: [
         "json-formatter",
@@ -954,7 +984,7 @@ const TOOLS_META = [
       shortTitle: "Regex Tester",
       seoContent: {
         whatIsTitle: "What is Regex Tester?",
-        whatIsBody: "Regex Tester helps you run regular expressions against sample text so you can inspect matches, capture groups, flags, and replacements in real time. It is useful for validation, parsing, search, data cleaning, and debugging patterns before they go into code.",
+        whatIsBody: "Regex Tester lets you run a regular expression against sample text and inspect matches, capture groups, flags, and replacements in real time. It is useful for validation, parsing, search, data cleaning, and debugging patterns before they go into code.",
         howToTitle: "How to Use Regex Tester",
         howToSteps: [
           "Enter the regular expression pattern you want to test.",
@@ -975,8 +1005,8 @@ const TOOLS_META = [
     },
   {
       slug: "markdown-preview",
-      title: "Markdown Preview",
-      description: "Write Markdown in the editor and see a live rendered HTML preview. Supports GFM tables, task lists, and fenced code blocks.",
+      title: "Markdown Preview Online",
+      description: "Write Markdown and see a live rendered preview instantly. Supports GFM tables, task lists, fenced code blocks, and quick HTML export.",
       category: "text",
       relatedTools: [
         "markdown-to-html",
@@ -1013,7 +1043,7 @@ const TOOLS_META = [
       ],
       shortTitle: "Markdown Preview",
       seoContent: {
-        title: "What is Markdown Preview?",
+        title: "What is a Markdown Preview Tool?",
         body: "Markdown Preview renders Markdown into formatted output in real time so you can check headings, lists, links, tables, and code blocks before publishing. It is useful for docs, READMEs, notes, CMS content, and developer tutorials."
       },
       learnMore: {
@@ -1065,7 +1095,7 @@ const TOOLS_META = [
     },
   {
       slug: "jwt-decoder",
-      title: "JWT Decoder Online ??Inspect & Decode JSON Web Tokens",
+      title: "JWT Decoder Online - Inspect & Decode JSON Web Tokens",
       description: "Free online JWT decoder and inspector. Parse JWT header, payload, and signature. View expiration time, algorithm, and all claims. Runs entirely in your browser.",
       category: "encode",
       shortTitle: "JWT Decoder / Inspector",
@@ -1083,11 +1113,11 @@ const TOOLS_META = [
       faq: [
         {
           q: "Is it safe to paste my JWT here?",
-          a: "Yes. Decoding runs entirely in your browser ??the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you are certain it is client-side only."
+          a: "Yes. Decoding runs entirely in your browser, and the token is never sent to a server. That said, avoid pasting production tokens with sensitive claims into any public tool unless you are certain it is client-side only."
         },
         {
           q: "Can this tool verify the signature?",
-          a: "No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload ??verification must happen on your server."
+          a: "No. Signature verification requires the secret (HMAC) or public key (RSA/EC). This tool only decodes the Base64URL-encoded header and payload; verification must happen on your server."
         },
         {
           q: "What does token expired mean?",
@@ -1095,7 +1125,7 @@ const TOOLS_META = [
         },
         {
           q: "What is the difference between JWT and session cookies?",
-          a: "Session cookies store a session ID on the server and look it up on each request. JWTs are self-contained ??all claims are in the token itself, so no server-side session storage is needed. This makes JWTs useful in stateless, distributed systems."
+          a: "Session cookies store a session ID on the server and look it up on each request. JWTs are self-contained: all claims are in the token itself, so no server-side session storage is needed. This makes JWTs useful in stateless, distributed systems."
         }
       ],
       example: {
@@ -1219,7 +1249,7 @@ const TOOLS_META = [
         },
         {
           q: "What is the difference between MD5, SHA-1, SHA-256, and SHA-512?",
-          a: "They differ in digest length and security level. MD5 produces 128-bit (32-char) hashes ? fast but cryptographically broken. SHA-1 produces 160-bit (40-char) hashes ? also deprecated for security use. SHA-256 and SHA-512 are part of the SHA-2 family and remain secure for integrity checking and digital signatures."
+          a: "They differ in digest length and security level. MD5 produces 128-bit (32-char) hashes: fast but cryptographically broken. SHA-1 produces 160-bit (40-char) hashes and is also deprecated for security use. SHA-256 and SHA-512 are part of the SHA-2 family and remain secure for integrity checking and digital signatures."
         }
       ],
       seoContent: {
@@ -1246,8 +1276,8 @@ const TOOLS_META = [
   {
       slug: "date-calculator",
       shortTitle: "Date Calculator",
-      title: "Date Calculator – Day Difference, Business Days & Age",
-      description: "Calculate the difference between two dates, add or subtract days, count business days, and calculate exact age. Free online date calculator.",
+      title: "Date Calculator - Day Difference, Business Days & Age",
+      description: "Calculate the difference between two dates, add or subtract days, count business days, and find exact age. Free browser-based date calculator.",
       category: "calculator",
       relatedTools: [
         "timestamp",
@@ -1284,8 +1314,8 @@ const TOOLS_META = [
         output: "365 days · 52 weeks · 12 months · 0 years"
       },
       seoContent: {
-        whatIsBody: "Date Calculator calculates the difference between two dates in days, weeks, months, and years, adds or subtracts days from any date, computes exact age from a date of birth, and counts business days between dates. All calculations run entirely in your browser — no data is uploaded to any server.",
-        howToTitle: "How to Use",
+        whatIsBody: "Date Calculator compares two dates in days, weeks, months, and years, adds or subtracts days from any date, calculates exact age from a birth date, and counts business days between dates. All calculations run locally in your browser and no data is uploaded.",
+        howToTitle: "How to Use Date Calculator",
         howToSteps: [
           "To find the difference between two dates, enter a start date and an end date in the Date Difference section.",
           "To add or subtract time from a date, use the Add / Subtract section and enter the number of days to offset.",
@@ -1308,8 +1338,8 @@ const TOOLS_META = [
   {
       slug: "bmi-calculator",
       shortTitle: "BMI Calculator",
-      title: "BMI Calculator – Body Mass Index with Healthy Weight Range",
-      description: "Calculate your Body Mass Index (BMI) instantly. Supports Metric and Imperial units. Shows BMI category, visual scale, and healthy weight range for your height.",
+      title: "BMI Calculator Online",
+      description: "Calculate your Body Mass Index (BMI) instantly. Supports metric and imperial units, and shows your BMI category plus a healthy weight range for your height.",
       category: "calculator",
       relatedTools: [
         "loan-calculator",
@@ -1344,8 +1374,8 @@ const TOOLS_META = [
         output: "BMI: 22.9 — Normal weight (18.5–24.9)"
       },
       seoContent: {
-        whatIsTitle: "What is BMI Calculator?",
-        whatIsBody: "BMI Calculator calculates Body Mass Index (BMI) from height and weight in metric or imperial units. It shows your BMI value, weight category, and the healthy weight range for your height.",
+        whatIsTitle: "What is a BMI Calculator?",
+        whatIsBody: "A BMI calculator uses your height and weight to estimate Body Mass Index (BMI). It helps you quickly see your BMI value, weight category, and a healthy weight range for your height.",
         howToTitle: "How to Use BMI Calculator",
         howToSteps: [
           "Enter your height and weight.",
@@ -1369,8 +1399,8 @@ const TOOLS_META = [
   {
       slug: "loan-calculator",
       shortTitle: "Loan Calculator",
-      title: "Loan Calculator – Monthly Payment & Amortization Schedule",
-      description: "Calculate monthly loan payments, total interest, and view a full amortization schedule. Supports any fixed-rate loan — mortgage, car, personal loan.",
+      title: "Loan Calculator Online",
+      description: "Calculate monthly loan payments, total interest, and a full amortization schedule. Works for mortgages, car loans, and other fixed-rate loans.",
       category: "calculator",
       relatedTools: [
         "bmi-calculator",
@@ -1405,9 +1435,9 @@ const TOOLS_META = [
         output: "Monthly payment: $1,264 · Total interest: $255,088 · Total cost: $455,088"
       },
       seoContent: {
-        whatIsTitle: "What is Loan / Mortgage Calculator?",
-        whatIsBody: "Loan Calculator computes monthly payment, total interest paid, and total cost for a fixed-rate loan or mortgage. Enter principal, annual interest rate, and term to see full results plus an amortization schedule.",
-        howToTitle: "How to Use Loan / Mortgage Calculator",
+        whatIsTitle: "What is a Loan Calculator?",
+        whatIsBody: "A loan calculator estimates monthly payment, total interest paid, and total cost for a fixed-rate loan. Enter the loan amount, annual interest rate, and term to see the full repayment breakdown and amortization schedule.",
+        howToTitle: "How to Use Loan Calculator",
         howToSteps: [
           "Enter the loan amount (principal).",
           "Enter the annual interest rate (%).",
@@ -1475,7 +1505,7 @@ const TOOLS_META = [
     },
   {
       slug: "js-minifier",
-      title: "JavaScript Minifier Online – Compress &amp; Minify JS Free",
+      title: "JavaScript Minifier Online – Compress & Minify JS Free",
       description: "Minify and compress JavaScript code instantly using Terser. Mangle variable names, remove dead code, and reduce file size for production. Free, browser-based, no data sent.",
       category: "format",
       relatedTools: [
@@ -1499,11 +1529,11 @@ const TOOLS_META = [
           a: "This is a whitespace/comment minifier — for tree shaking, use a bundler like webpack or Rollup."
         },
         {
-          q: "What does JavaScript Minifier Online – Compress &amp; Minify JS Free do?",
-          a: "JavaScript Minifier Online – Compress &amp; Minify JS Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does JavaScript Minifier Online – Compress & Minify JS Free do?",
+          a: "JavaScript Minifier Online – Compress & Minify JS Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is JavaScript Minifier Online – Compress &amp; Minify JS Free free to use?",
+          q: "Is JavaScript Minifier Online – Compress & Minify JS Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -1522,7 +1552,7 @@ const TOOLS_META = [
     },
   {
       slug: "toml-json",
-      title: "TOML to JSON Converter Online ??Parse & Convert TOML Free",
+      title: "TOML to JSON Converter Online - Parse & Convert TOML Free",
       description: "Convert TOML to JSON and JSON to TOML instantly. Supports tables, arrays, inline tables, dates, and all TOML v1.0 types. Free, browser-based, no data sent.",
       category: "convert",
       shortTitle: "TOML to JSON Converter",
@@ -1749,8 +1779,8 @@ const TOOLS_META = [
     },
   {
       slug: "text-cleaner",
-      title: "Text Cleaner – Remove Extra Spaces, Blank Lines & HTML Tags",
-      description: "Clean and sanitize text instantly. Remove extra spaces, blank lines, duplicate lines, HTML tags, URLs, and more. Live preview with one-click copy.",
+      title: "Text Cleaner Online",
+      description: "Clean messy text instantly. Remove extra spaces, blank lines, duplicate lines, HTML tags, URLs, and other copy-paste clutter with live results.",
       category: "text",
       relatedTools: [
         "word-counter",
@@ -1811,7 +1841,7 @@ const TOOLS_META = [
     },
   {
       slug: "xml-json",
-      title: "XML to JSON Converter Online ??Free Browser-Based Tool",
+      title: "XML to JSON Converter Online - Free Browser-Based Tool",
       description: "Convert XML to JSON and JSON to XML instantly. Handles attributes, nested elements, arrays, and CDATA. Free, browser-based, no data sent.",
       category: "format",
       shortTitle: "XML to JSON Converter",
@@ -1833,14 +1863,14 @@ const TOOLS_META = [
         },
         {
           q: "Can it convert complex SOAP envelopes?",
-          a: "Yes ??SOAP XML converts correctly, producing a nested JSON representation of the envelope."
+          a: "Yes. SOAP XML converts correctly, producing a nested JSON representation of the envelope."
         },
         {
-          q: "What does XML to JSON Converter Online ??Free Browser-Based Tool do?",
-          a: "XML to JSON Converter Online ??Free Browser-Based Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does XML to JSON Converter Online - Free Browser-Based Tool do?",
+          a: "XML to JSON Converter Online - Free Browser-Based Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is XML to JSON Converter Online ??Free Browser-Based Tool free to use?",
+          q: "Is XML to JSON Converter Online - Free Browser-Based Tool free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -1871,8 +1901,8 @@ const TOOLS_META = [
     },
   {
       slug: "number-format",
-      title: "Number Formatter - Format Numbers, Currency & Scientific Notation",
-      description: "Format numbers with thousand separators, currency symbols, decimal places, and scientific notation. Supports locale-aware formatting. Free, browser-based, no data sent.",
+      title: "Number Formatter Online",
+      description: "Format numbers with thousand separators, currency symbols, decimal places, percentages, and scientific notation. Works directly in your browser.",
       category: "convert",
       shortTitle: "Number Formatter",
       relatedTools: [
@@ -2100,8 +2130,8 @@ const TOOLS_META = [
     },
   {
       slug: "aes",
-      title: "AES Encrypt & Decrypt Online ? Browser-Based AES Tool",
-      description: "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser ? no data is sent to any server.",
+      title: "AES Encrypt & Decrypt Online - Browser-Based AES Tool",
+      description: "Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs entirely in your browser, and no data is sent to any server.",
       category: "encode",
       shortTitle: "AES Encrypt / Decrypt",
       relatedTools: [
@@ -2126,7 +2156,7 @@ const TOOLS_META = [
         },
         {
           q: "How strong is AES-256?",
-          a: "AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide ? it is the gold standard for symmetric encryption."
+          a: "AES-256 is considered computationally unbreakable with current technology. A brute-force attack would require more energy than the observable universe could provide; it is the gold standard for symmetric encryption."
         },
         {
           q: "Can I use this tool to encrypt files?",
@@ -2134,7 +2164,7 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Plaintext: \"Secret message\" ? Key: \"mykey\" ? Mode: AES-GCM-256",
+        input: "Plaintext: \"Secret message\" - Key: \"mykey\" - Mode: AES-GCM-256",
         output: "Base64-encoded ciphertext (includes IV + auth tag)"
       },
       seoContent: {
@@ -2280,7 +2310,7 @@ const TOOLS_META = [
     },
   {
       slug: "bcrypt",
-      title: "Bcrypt Hash Generator &amp; Verifier Online ? Secure Password Hashing Free",
+      title: "Bcrypt Hash Generator & Verifier Online - Secure Password Hashing Free",
       description: "Generate and verify bcrypt password hashes in browser",
       category: "encode",
       shortTitle: "Bcrypt Hash Generator / Verifier",
@@ -2298,18 +2328,18 @@ const TOOLS_META = [
       faq: [
         {
           q: "Is this safe to use with real passwords?",
-          a: "This tool runs entirely in your browser ? nothing is transmitted. Still, avoid testing production credentials in any online tool as a precaution."
+          a: "This tool runs entirely in your browser, and nothing is transmitted. Still, avoid testing production credentials in any online tool as a precaution."
         },
         {
           q: "What is the $2a$ prefix?",
           a: "It is the bcrypt version identifier. $2a$, $2b$, and $2y$ are all valid bcrypt variants; $2b$ is the current standard."
         },
         {
-          q: "What does Bcrypt Hash Generator &amp; Verifier Online ? Secure Password Hashing Free do?",
-          a: "Bcrypt Hash Generator &amp; Verifier Online ? Secure Password Hashing Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does Bcrypt Hash Generator & Verifier Online - Secure Password Hashing Free do?",
+          a: "Bcrypt Hash Generator & Verifier Online - Secure Password Hashing Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is Bcrypt Hash Generator &amp; Verifier Online ? Secure Password Hashing Free free to use?",
+          q: "Is Bcrypt Hash Generator & Verifier Online - Secure Password Hashing Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -2439,7 +2469,13 @@ const TOOLS_META = [
       shortTitle: "Blur Image Tool",
       seoContent: {
         title: "What is Blur Image Tool?",
-        body: "Blur Image Tool applies a blur effect in the browser so you can soften screenshots, obscure sensitive areas, or create depth effects without opening a desktop editor. It is useful for UI mockups, privacy redaction, and quick social assets."
+        body: "Blur Image Tool applies a blur effect in the browser so you can soften screenshots, obscure sensitive areas, or create depth effects without opening a desktop editor. It is useful for UI mockups, privacy redaction, and quick social assets.",
+        howToSteps: [
+          "Upload the image you want to soften or obscure.",
+          "Increase the blur amount until the effect matches your goal.",
+          "Preview the result directly in the browser before exporting.",
+          "Download the blurred image as PNG or JPEG when it looks right."
+        ]
       },
       learnMore: {
         title: "Understand Image Blur"
@@ -2508,8 +2544,8 @@ const TOOLS_META = [
     },
   {
       slug: "color-converter",
-      title: "Color Format Converter Online – HEX, RGB, HSL & OKLCH",
-      description: "Convert colors between HEX, RGB, HSL, and CMYK formats instantly. Visual color picker included. Free, browser-based, no data uploaded.",
+      title: "Color Converter Online",
+      description: "Convert colors between HEX, RGB, HSL, and CMYK instantly. Includes a visual picker so you can adjust and copy the format you need.",
       category: "design",
       relatedTools: [
         "color-picker",
@@ -2649,7 +2685,7 @@ const TOOLS_META = [
     },
   {
       slug: "contrast-checker",
-      title: "WCAG Contrast Checker Online – AA &amp; AAA Accessibility Test",
+      title: "WCAG Contrast Checker Online – AA & AAA Accessibility Test",
       description: "Check color contrast ratio for WCAG AA and AAA accessibility compliance. Instantly verify foreground and background color combinations for normal text, large text, and UI components.",
       category: "design",
       relatedTools: [
@@ -2757,7 +2793,7 @@ const TOOLS_META = [
     },
   {
       slug: "css-formatter",
-      title: "CSS Formatter &amp; Minifier Online ??Beautify or Compress CSS Free",
+      title: "CSS Formatter & Minifier Online - Beautify or Compress CSS Free",
       description: "Format and minify CSS code instantly. Beautify compressed CSS for readability or minify for production. Free, browser-based, no data sent.",
       category: "format",
       shortTitle: "CSS Formatter & Minifier",
@@ -2787,7 +2823,7 @@ const TOOLS_META = [
         },
         {
           q: "Should I format CSS before using it in production?",
-          a: "No ??in production you should minify CSS to reduce file size. Use the CSS Formatter during development and code review, then minify before deploying."
+          a: "No. In production you should minify CSS to reduce file size. Use the CSS Formatter during development and code review, then minify before deploying."
         }
       ],
       example: {
@@ -2924,7 +2960,7 @@ const TOOLS_META = [
     },
   {
       slug: "grayscale-image",
-      title: "Grayscale Image Converter Online Free – Convert Photo to Black &amp; White",
+      title: "Grayscale Image Converter Online Free – Convert Photo to Black & White",
       description: "Convert images to grayscale or black and white online for free. Adjust intensity, download as JPEG or PNG. No upload — runs entirely in your browser.",
       category: "image",
       relatedTools: [
@@ -2967,7 +3003,7 @@ const TOOLS_META = [
     },
   {
       slug: "hmac",
-      title: "HMAC Generator Online ? SHA-256 & SHA-512 Authentication",
+      title: "HMAC Generator Online - SHA-256 & SHA-512 Authentication",
       description: "Generate HMAC signatures with SHA-256, SHA-1, SHA-384, or SHA-512. Enter a message and secret key. Output as HEX or Base64. 100% browser-based.",
       category: "encode",
       shortTitle: "HMAC Generator",
@@ -2985,18 +3021,18 @@ const TOOLS_META = [
       faq: [
         {
           q: "What is the difference between HMAC-SHA256 and plain SHA-256?",
-          a: "SHA-256 hashes data without a key ? anyone can reproduce it. HMAC requires a shared secret key, providing authentication in addition to integrity."
+          a: "SHA-256 hashes data without a key, so anyone can reproduce it. HMAC requires a shared secret key, providing authentication in addition to integrity."
         },
         {
           q: "Is SHA-1 HMAC still secure?",
           a: "HMAC-SHA1 is considered weak for new systems. Use HMAC-SHA256 or HMAC-SHA512 for new implementations."
         },
         {
-          q: "What does HMAC Generator Online ? SHA-256 & SHA-512 Authentication do?",
-          a: "HMAC Generator Online ? SHA-256 & SHA-512 Authentication runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does HMAC Generator Online - SHA-256 & SHA-512 Authentication do?",
+          a: "HMAC Generator Online - SHA-256 & SHA-512 Authentication runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is HMAC Generator Online ? SHA-256 & SHA-512 Authentication free to use?",
+          q: "Is HMAC Generator Online - SHA-256 & SHA-512 Authentication free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -3027,7 +3063,7 @@ const TOOLS_META = [
     },
   {
       slug: "html-formatter",
-      title: "HTML Formatter & Minifier Online ??Beautify or Compress HTML",
+      title: "HTML Formatter & Minifier Online - Beautify or Compress HTML",
       description: "Format and minify HTML code online with customizable indentation. Free browser-based HTML beautifier and minifier.",
       category: "format",
       shortTitle: "HTML Formatter / Minifier",
@@ -3049,7 +3085,7 @@ const TOOLS_META = [
         },
         {
           q: "Will formatting change the rendered output of my page?",
-          a: "No. Adding whitespace between block elements does not change visual rendering. Be cautious with inline elements like <span> inside text where whitespace can matter ??the formatter preserves inline content."
+          a: "No. Adding whitespace between block elements does not change visual rendering. Be cautious with inline elements like <span> inside text where whitespace can matter, but the formatter preserves inline content."
         },
         {
           q: "Can I format a full HTML document with <!DOCTYPE> and <head>?",
@@ -3087,8 +3123,8 @@ const TOOLS_META = [
     },
   {
       slug: "http-status",
-      title: "HTTP Status Codes Reference – Complete List with Descriptions",
-      description: "Complete reference of HTTP status codes with descriptions",
+      title: "HTTP Status Codes Reference Online",
+      description: "Look up HTTP status codes and their meanings quickly. Includes common 2xx, 3xx, 4xx, and 5xx responses for debugging and API work.",
       category: "reference",
       relatedTools: [
         "url-encode",
@@ -3125,8 +3161,8 @@ const TOOLS_META = [
       },
       shortTitle: "HTTP Status Codes Reference",
       seoContent: {
-        whatIsTitle: "What is HTTP Status Codes Reference?",
-        whatIsBody: "HTTP Status Codes Reference explains standard response codes such as 200, 301, 404, and 500 so you can quickly understand what a server response means. It is useful for API debugging, backend development, QA, docs, and support workflows.",
+        whatIsTitle: "What is an HTTP Status Codes Reference?",
+        whatIsBody: "An HTTP status codes reference explains standard response codes such as 200, 301, 404, and 500 so you can quickly understand what a server response means. It is useful for API debugging, backend development, QA, docs, and support workflows.",
         howToTitle: "How to Use HTTP Status Codes Reference",
         howToSteps: [
           "Search for the numeric code or status phrase you need.",
@@ -3147,7 +3183,7 @@ const TOOLS_META = [
     },
   {
       slug: "image-rotate",
-      title: "Rotate Image Online Free – Rotate &amp; Flip Photos",
+      title: "Rotate Image Online Free – Rotate & Flip Photos",
       description: "Rotate and flip images online for free. Rotate 90°, 180°, 270°, flip horizontally or vertically. Download as JPEG or PNG instantly. No upload — runs in your browser.",
       category: "image",
       relatedTools: [
@@ -3194,7 +3230,7 @@ const TOOLS_META = [
     },
   {
       slug: "ip-lookup",
-      title: "IP Address Lookup &amp; Geolocation Online – Free IP Info Tool",
+      title: "IP Address Lookup & Geolocation Online – Free IP Info Tool",
       description: "Look up IP address geolocation and network information",
       category: "reference",
       relatedTools: [
@@ -3218,11 +3254,11 @@ const TOOLS_META = [
           a: "Yes — both IPv4 and IPv6 addresses are supported."
         },
         {
-          q: "What does IP Address Lookup &amp; Geolocation Online – Free IP Info Tool do?",
-          a: "IP Address Lookup &amp; Geolocation Online – Free IP Info Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does IP Address Lookup & Geolocation Online – Free IP Info Tool do?",
+          a: "IP Address Lookup & Geolocation Online – Free IP Info Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is IP Address Lookup &amp; Geolocation Online – Free IP Info Tool free to use?",
+          q: "Is IP Address Lookup & Geolocation Online – Free IP Info Tool free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -3284,7 +3320,7 @@ const TOOLS_META = [
     },
   {
       slug: "js-formatter",
-      title: "JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free",
+      title: "JavaScript Formatter & Minifier Online - Beautify & Compress JS Free",
       description: "Format and beautify JavaScript code for readability or minify for production. Configurable indent. Free, browser-based.",
       category: "format",
       shortTitle: "JavaScript Formatter & Minifier",
@@ -3309,11 +3345,11 @@ const TOOLS_META = [
           a: "Basic JSX syntax is preserved during formatting."
         },
         {
-          q: "What does JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free do?",
-          a: "JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does JavaScript Formatter & Minifier Online - Beautify & Compress JS Free do?",
+          a: "JavaScript Formatter & Minifier Online - Beautify & Compress JS Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is JavaScript Formatter &amp; Minifier Online ??Beautify &amp; Compress JS Free free to use?",
+          q: "Is JavaScript Formatter & Minifier Online - Beautify & Compress JS Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -3344,7 +3380,7 @@ const TOOLS_META = [
     },
   {
       slug: "json-csv",
-      title: "JSON to CSV Converter Online ??Convert JSON Arrays Free",
+      title: "JSON to CSV Converter Online - Convert JSON Arrays Free",
       description: "Free online JSON to CSV and CSV to JSON converter. Supports custom delimiters (comma, tab, semicolon, pipe) and header row options. Runs entirely in your browser.",
       category: "convert",
       shortTitle: "JSON to CSV Converter",
@@ -3369,11 +3405,11 @@ const TOOLS_META = [
           a: "Comma, semicolon, tab, and pipe (|) delimiters are supported."
         },
         {
-          q: "What does JSON to CSV Converter Online ??Convert JSON Arrays Free do?",
-          a: "JSON to CSV Converter Online ??Convert JSON Arrays Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does JSON to CSV Converter Online - Convert JSON Arrays Free do?",
+          a: "JSON to CSV Converter Online - Convert JSON Arrays Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is JSON to CSV Converter Online ??Convert JSON Arrays Free free to use?",
+          q: "Is JSON to CSV Converter Online - Convert JSON Arrays Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -3404,8 +3440,8 @@ const TOOLS_META = [
     },
   {
       slug: "jsonpath-tester",
-      title: "JSONPath Tester Online – Query &amp; Test JSONPath Expressions Free",
-      description: "Test JSONPath expressions against JSON data. Supports $, *, [], ?() filter expressions. Real-time results. Free, browser-based, no data sent.",
+      title: "JSONPath Tester Online",
+      description: "Test JSONPath expressions against JSON data and inspect results instantly. Supports common filters, wildcards, and nested paths in the browser.",
       category: "format",
       relatedTools: [
         "json-formatter",
@@ -3428,11 +3464,11 @@ const TOOLS_META = [
           a: "Currently one expression at a time — results show all matching nodes."
         },
         {
-          q: "What does JSONPath Tester Online – Query &amp; Test JSONPath Expressions Free do?",
-          a: "JSONPath Tester Online – Query &amp; Test JSONPath Expressions Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does JSONPath Tester Online – Query & Test JSONPath Expressions Free do?",
+          a: "JSONPath Tester Online – Query & Test JSONPath Expressions Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is JSONPath Tester Online – Query &amp; Test JSONPath Expressions Free free to use?",
+          q: "Is JSONPath Tester Online – Query & Test JSONPath Expressions Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -3464,8 +3500,8 @@ const TOOLS_META = [
     },
   {
       slug: "line-tools",
-      title: "Line Tools Online – Sort, Deduplicate &amp; Reverse Lines Free",
-      description: "Sort lines alphabetically, remove duplicate lines, reverse order, remove empty lines, and trim whitespace. Free browser-based text tool.",
+      title: "Line Tools Online",
+      description: "Sort, deduplicate, reverse, shuffle, and clean one-item-per-line text lists. Useful for keywords, exports, logs, and bulk text cleanup.",
       category: "text",
       relatedTools: [
         "word-counter",
@@ -3488,11 +3524,11 @@ const TOOLS_META = [
           a: "Yes — the filter field accepts regular expressions."
         },
         {
-          q: "What does Line Tools Online – Sort, Deduplicate &amp; Reverse Lines Free do?",
-          a: "Line Tools Online – Sort, Deduplicate &amp; Reverse Lines Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does Line Tools Online – Sort, Deduplicate & Reverse Lines Free do?",
+          a: "Line Tools Online – Sort, Deduplicate & Reverse Lines Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is Line Tools Online – Sort, Deduplicate &amp; Reverse Lines Free free to use?",
+          q: "Is Line Tools Online – Sort, Deduplicate & Reverse Lines Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -3515,7 +3551,7 @@ const TOOLS_META = [
       learnMore: {
         title: "Understand Line Tools",
         extraTitle: "Available Operations",
-        extraHtml: "<ul><li>Sort A?Z / Z?A</li><li>Deduplicate repeated lines</li><li>Filter matching lines</li><li>Reverse order</li><li>Shuffle items</li><li>Trim whitespace per line</li></ul>",
+        extraHtml: "<ul><li>Sort A-Z / Z-A</li><li>Deduplicate repeated lines</li><li>Filter matching lines</li><li>Reverse order</li><li>Shuffle items</li><li>Trim whitespace per line</li></ul>",
         whyUseTitle: "Why Use This Tool",
         whyUseItems: [
           "Faster than writing one-off scripts for simple list transformations.",
@@ -3526,8 +3562,8 @@ const TOOLS_META = [
     },
   {
       slug: "markdown-to-html",
-      title: "Markdown to HTML Converter Online – Free Browser-Based",
-      description: "Convert Markdown text to clean HTML code",
+      title: "Markdown to HTML Converter Online",
+      description: "Convert Markdown text to clean HTML instantly. Useful for CMS editors, email templates, docs, and static site workflows.",
       category: "convert",
       relatedTools: [
         "markdown-preview",
@@ -3633,7 +3669,7 @@ const TOOLS_META = [
     },
   {
       slug: "number-base",
-      title: "Number Base Converter Online – Binary, Octal, Decimal &amp; Hex",
+      title: "Number Base Converter Online – Binary, Octal, Decimal & Hex",
       description: "Convert numbers between binary, octal, decimal and hex",
       category: "convert",
       shortTitle: "Number Base Converter",
@@ -3662,11 +3698,11 @@ const TOOLS_META = [
           a: "Positive integers are supported. Negative numbers and floating-point values require a separate converter."
         },
         {
-          q: "What does Number Base Converter Online – Binary, Octal, Decimal &amp; Hex do?",
-          a: "Number Base Converter Online – Binary, Octal, Decimal &amp; Hex runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does Number Base Converter Online – Binary, Octal, Decimal & Hex do?",
+          a: "Number Base Converter Online – Binary, Octal, Decimal & Hex runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is Number Base Converter Online – Binary, Octal, Decimal &amp; Hex free to use?",
+          q: "Is Number Base Converter Online – Binary, Octal, Decimal & Hex free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -3893,7 +3929,7 @@ const TOOLS_META = [
     },
   {
       slug: "sql-formatter",
-      title: "SQL Formatter Online – Beautify MySQL, PostgreSQL &amp; SQLite",
+      title: "SQL Formatter Online – Beautify MySQL, PostgreSQL & SQLite",
       description: "Format and beautify SQL queries for MySQL, PostgreSQL, SQLite, and standard SQL. Keyword case options, configurable indent. Free, browser-based.",
       category: "format",
       relatedTools: [
@@ -3917,11 +3953,11 @@ const TOOLS_META = [
           a: "Formatting normalizes whitespace and casing but does not validate query correctness against a database."
         },
         {
-          q: "What does SQL Formatter Online – Beautify MySQL, PostgreSQL &amp; SQLite do?",
-          a: "SQL Formatter Online – Beautify MySQL, PostgreSQL &amp; SQLite runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does SQL Formatter Online – Beautify MySQL, PostgreSQL & SQLite do?",
+          a: "SQL Formatter Online – Beautify MySQL, PostgreSQL & SQLite runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is SQL Formatter Online – Beautify MySQL, PostgreSQL &amp; SQLite free to use?",
+          q: "Is SQL Formatter Online – Beautify MySQL, PostgreSQL & SQLite free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -4000,7 +4036,7 @@ const TOOLS_META = [
     },
   {
       slug: "text-case",
-      title: "Text Case Converter Online – camelCase, snake_case &amp; More",
+      title: "Text Case Converter Online – camelCase, snake_case & More",
       description: "Convert text between camelCase, snake_case, PascalCase and more",
       category: "text",
       relatedTools: [
@@ -4024,18 +4060,18 @@ const TOOLS_META = [
           a: "Yes — paste multi-line text and each line is converted independently."
         },
         {
-          q: "What does Text Case Converter Online – camelCase, snake_case &amp; More do?",
-          a: "Text Case Converter Online – camelCase, snake_case &amp; More runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does Text Case Converter Online – camelCase, snake_case & More do?",
+          a: "Text Case Converter Online – camelCase, snake_case & More runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is Text Case Converter Online – camelCase, snake_case &amp; More free to use?",
+          q: "Is Text Case Converter Online – camelCase, snake_case & More free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
       shortTitle: "Text Case Converter",
       example: {
         input: "hello world",
-        output: "camelCase helloWorld ? snake_case hello_world ? kebab-case hello-world"
+        output: "camelCase: helloWorld - snake_case: hello_world - kebab-case: hello-world"
       },
       seoContent: {
         whatIsTitle: "What is Text Case Converter?",
@@ -4171,8 +4207,8 @@ const TOOLS_META = [
     },
   {
       slug: "url-parser",
-      title: "URL Parser &amp; Builder Online – Parse &amp; Construct URLs Free",
-      description: "Parse URLs into protocol, host, path, query and hash components",
+      title: "URL Parser Online",
+      description: "Break a URL into protocol, host, path, query, and hash parts instantly. Useful for debugging links, redirects, and tracking parameters.",
       category: "encode",
       relatedTools: [
         "url-encode",
@@ -4195,11 +4231,11 @@ const TOOLS_META = [
           a: "data: URIs are parsed but the data payload is not decoded."
         },
         {
-          q: "What does URL Parser &amp; Builder Online – Parse &amp; Construct URLs Free do?",
-          a: "URL Parser &amp; Builder Online – Parse &amp; Construct URLs Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does URL Parser & Builder Online – Parse & Construct URLs Free do?",
+          a: "URL Parser & Builder Online – Parse & Construct URLs Free runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is URL Parser &amp; Builder Online – Parse &amp; Construct URLs Free free to use?",
+          q: "Is URL Parser & Builder Online – Parse & Construct URLs Free free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -4321,7 +4357,7 @@ const TOOLS_META = [
     },
   {
       slug: "xml-formatter",
-      title: "XML Formatter &amp; Validator Online ??Beautify &amp; Validate XML",
+      title: "XML Formatter & Validator Online - Beautify & Validate XML",
       description: "Format, beautify, and validate XML online. Minify XML to reduce file size. Supports well-formedness validation. Free, browser-based, no data sent.",
       category: "format",
       shortTitle: "XML Formatter & Validator",
@@ -4343,14 +4379,14 @@ const TOOLS_META = [
         },
         {
           q: "Does it handle XML namespaces?",
-          a: "Yes ??namespace prefixes and xmlns declarations are preserved."
+          a: "Yes. Namespace prefixes and xmlns declarations are preserved."
         },
         {
-          q: "What does XML Formatter &amp; Validator Online ??Beautify &amp; Validate XML do?",
-          a: "XML Formatter &amp; Validator Online ??Beautify &amp; Validate XML runs entirely in your browser and helps you complete this task without uploading data to a server."
+          q: "What does XML Formatter & Validator Online - Beautify & Validate XML do?",
+          a: "XML Formatter & Validator Online - Beautify & Validate XML runs entirely in your browser and helps you complete this task without uploading data to a server."
         },
         {
-          q: "Is XML Formatter &amp; Validator Online ??Beautify &amp; Validate XML free to use?",
+          q: "Is XML Formatter & Validator Online - Beautify & Validate XML free to use?",
           a: "Yes. This tool is free to use and does not require sign-up."
         }
       ],
@@ -4381,7 +4417,7 @@ const TOOLS_META = [
     },
   {
       slug: "yaml-json",
-      title: "YAML to JSON Converter Online ??Parse & Convert YAML Free",
+      title: "YAML to JSON Converter Online - Parse & Convert YAML Free",
       description: "Convert YAML to JSON and JSON to YAML instantly. Supports nested objects, arrays, comments, and multi-line strings. Free, browser-based, no data sent.",
       category: "convert",
       shortTitle: "YAML to JSON Converter",
@@ -4621,8 +4657,8 @@ const TOOLS_META = [
     },
   {
       slug: "png-to-webp",
-      title: "PNG to WebP Converter Online Free | Convert PNG to WebP | Simple ToolBox",
-      description: "Convert PNG images to WebP online for free. Adjust output quality, compare file size, and download the converted WebP instantly. Runs entirely in your browser.",
+      title: "PNG to WebP Converter Online",
+      description: "Convert PNG images to WebP online. Adjust output quality, compare file size, and download the converted WebP instantly in your browser.",
       category: "image",
       shortTitle: "PNG to WebP Converter",
       relatedTools: [
@@ -4655,7 +4691,7 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Upload a transparent 1200?1200 PNG product badge (420 KB)",
+        input: "Upload a transparent 1200x1200 PNG product badge (420 KB)",
         output: "Download a transparent WebP version at 85% quality with a smaller file size"
       },
       seoContent: {
@@ -4681,8 +4717,8 @@ const TOOLS_META = [
     },
   {
       slug: "svg-to-png",
-      title: "SVG to PNG Converter Online Free | Convert SVG to PNG | Simple ToolBox",
-      description: "Convert SVG files to PNG online for free. Choose 1x, 2x, 3x, or 4x export scale and download a raster PNG instantly. Runs entirely in your browser.",
+      title: "SVG to PNG Converter Online",
+      description: "Convert SVG files to PNG online. Choose 1x, 2x, 3x, or 4x export scale and download a raster PNG instantly in your browser.",
       category: "image",
       shortTitle: "SVG to PNG Converter",
       relatedTools: [
@@ -4703,7 +4739,7 @@ const TOOLS_META = [
         },
         {
           q: "What does 2x or 4x export scale mean?",
-          a: "It multiplies the raster output dimensions. For example, a 200?200 SVG exported at 4x becomes an 800?800 PNG."
+          a: "It multiplies the raster output dimensions. For example, a 200x200 SVG exported at 4x becomes an 800x800 PNG."
         },
         {
           q: "Does PNG stay editable like SVG?",
@@ -4715,8 +4751,8 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Upload a 256?256 SVG app icon and choose 4x export scale",
-        output: "Download a 1024?1024 PNG for app store or presentation use"
+        input: "Upload a 256x256 SVG app icon and choose 4x export scale",
+        output: "Download a 1024x1024 PNG for app store or presentation use"
       },
       seoContent: {
         whatIsTitle: "What is SVG to PNG Converter?",
@@ -4801,8 +4837,8 @@ const TOOLS_META = [
     },
   {
       slug: "crop-image",
-      title: "Crop Image Online Free | Crop Photos to Exact Area | Simple ToolBox",
-      description: "Crop images online for free. Set exact crop area, use square or social presets, preview the result, and download the cropped image instantly in your browser.",
+      title: "Crop Image Online",
+      description: "Crop images online to the exact area you need. Use square or social presets, preview the result, and download the cropped image instantly.",
       category: "image",
       shortTitle: "Crop Image",
       relatedTools: [
@@ -4835,7 +4871,7 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Upload a 1600?900 screenshot and switch to a 1:1 crop preset",
+        input: "Upload a 1600x900 screenshot and switch to a 1:1 crop preset",
         output: "Download a square crop for a social thumbnail or avatar"
       },
       seoContent: {
@@ -4861,8 +4897,8 @@ const TOOLS_META = [
     },
   {
       slug: "favicon-generator",
-      title: "Favicon Generator Online Free | Make 16x16, 32x32, 48x48 Favicons | Simple ToolBox",
-      description: "Generate favicon PNG files online for free. Upload an image, preview it at 16x16, 32x32, and 48x48, then download favicon sizes instantly in your browser.",
+      title: "Favicon Generator Online",
+      description: "Generate favicon PNG files online. Upload an image, preview common favicon sizes, and download small website icons instantly in your browser.",
       category: "design",
       shortTitle: "Favicon Generator",
       relatedTools: [
@@ -4879,7 +4915,7 @@ const TOOLS_META = [
       faq: [
         {
           q: "What favicon sizes does this tool create?",
-          a: "This tool previews and exports common favicon PNG sizes such as 16?16, 32?32, 48?48, and 64?64."
+          a: "This tool previews and exports common favicon PNG sizes such as 16x16, 32x32, 48x48, and 64x64."
         },
         {
           q: "Why do simple logos work better for favicons?",
@@ -4895,7 +4931,7 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Upload a square 512?512 logo and preview it at 16?16 and 32?32",
+        input: "Upload a square 512x512 logo and preview it at 16x16 and 32x32",
         output: "Download the favicon PNG sizes that still look clear at tiny browser-tab scale"
       },
       seoContent: {
@@ -4981,8 +5017,8 @@ const TOOLS_META = [
     },
   {
       slug: "merge-images",
-      title: "Merge Images Online Free | Combine Photos Vertically or Horizontally | Simple ToolBox",
-      description: "Merge multiple images online for free. Combine photos vertically or horizontally, set gap and background color, preview the result, and download one merged image instantly.",
+      title: "Merge Images Online",
+      description: "Merge multiple images online. Combine photos vertically or horizontally, set spacing and background color, then download one merged image instantly.",
       category: "image",
       shortTitle: "Merge Images",
       relatedTools: [
@@ -5041,8 +5077,8 @@ const TOOLS_META = [
     },
   {
       slug: "image-palette-extractor",
-      title: "Image Palette Extractor Online Free | Get HEX Colors from Photos | Simple ToolBox",
-      description: "Extract a color palette from an image online for free. Upload a photo, generate dominant HEX colors, copy swatches instantly, and review a compact palette in your browser.",
+      title: "Image Palette Extractor Online",
+      description: "Extract a color palette from an image online. Generate dominant HEX colors, copy swatches instantly, and review a compact palette in your browser.",
       category: "image",
       shortTitle: "Image Palette Extractor",
       relatedTools: [

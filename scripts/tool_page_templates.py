@@ -87,17 +87,20 @@ def render_seo_content(meta: dict) -> str:
         f'    <h2 class="ds-seo-section__title">{esc(what_title)}</h2>',
         f'    <p>{esc(what_body)}</p>',
         "  </section>",
-        '  <section class="ds-seo-section">',
-        f'    <h2 class="ds-seo-section__title">{esc(how_title)}</h2>',
-        "    <ol>",
     ]
-    for step in steps:
-        lines.append(f"      <li>{esc(step)}</li>")
-    lines.extend([
-        "    </ol>",
-        "  </section>",
-        "</div>",
-    ])
+    if steps:
+        lines.extend([
+            '  <section class="ds-seo-section">',
+            f'    <h2 class="ds-seo-section__title">{esc(how_title)}</h2>',
+            "    <ol>",
+        ])
+        for step in steps:
+            lines.append(f"      <li>{esc(step)}</li>")
+        lines.extend([
+            "    </ol>",
+            "  </section>",
+        ])
+    lines.append("</div>")
     return "\n".join(lines)
 
 

@@ -19,7 +19,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Regex Tester",
-  "description": "Test and debug regular expressions in real time. Highlights all matches, shows capture groups, supports global/case-insensitive/multiline flags, and includes replace mode. Free, browser-based.",
+  "description": "Test and debug regular expressions in real time. See matches, capture groups, flags, and replacements instantly in your browser.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -56,7 +56,7 @@
       "name": "How do I match a literal dot or parenthesis?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Escape it with a backslash: \. matches a literal dot, \( matches a literal opening parenthesis. Without the backslash, . matches any character and ( starts a capture group."
+        "text": "Escape it with a backslash: \\. matches a literal dot, \\( matches a literal opening parenthesis. Without the backslash, . matches any character and ( starts a capture group."
       }
     },
     {
@@ -255,7 +255,7 @@
   <div class="ds-tool-nav-divider"></div>
   <div class="ds-tool-nav-name">
     Regex Tester
-    <span class="ds-tool-badge">regex</span>
+    <span class="ds-tool-badge">text</span>
   </div>
   <div class="ds-tool-spacer"></div>
   <div class="ds-tool-privacy">
@@ -394,7 +394,7 @@
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is Regex Tester?</h2>
-    <p>Regex Tester helps you run regular expressions against sample text so you can inspect matches, capture groups, flags, and replacements in real time. It is useful for validation, parsing, search, data cleaning, and debugging patterns before they go into code.</p>
+    <p>Regex Tester lets you run a regular expression against sample text and inspect matches, capture groups, flags, and replacements in real time. It is useful for validation, parsing, search, data cleaning, and debugging patterns before they go into code.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use Regex Tester</h2>
@@ -412,7 +412,7 @@
   <div class="ds-related-grid">
     <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
     <a href="string-escape.html" class="ds-related-card"><span class="ds-related-icon">🔤</span><div><div class="ds-related-name">String Escape / Unescape</div><div class="ds-related-desc">Escape or unescape strings for JSON, JavaScript and HTML</div></div></a>
-    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">⌗</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
   </div>
 </div>
 
@@ -428,7 +428,7 @@
         <div class="ds-seo-example">
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Input</span>
-            <span class="ds-seo-example__value">Pattern: [A-Z][a-z]+ — matches capitalized words</span>
+            <span class="ds-seo-example__value">Pattern: \b[A-Z][a-z]+\b — matches capitalized words</span>
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>

@@ -4978,6 +4978,522 @@ const TOOLS_META = [
           "Runs locally so private images stay on your device."
         ]
       }
+    },
+  {
+      slug: "merge-images",
+      title: "Merge Images Online Free | Combine Photos Vertically or Horizontally | Simple ToolBox",
+      description: "Merge multiple images online for free. Combine photos vertically or horizontally, set gap and background color, preview the result, and download one merged image instantly.",
+      category: "image",
+      shortTitle: "Merge Images",
+      relatedTools: [
+        "crop-image",
+        "image-resizer",
+        "image-compressor"
+      ],
+      useCases: [
+        "Stack screenshots into one image for docs or support tickets",
+        "Combine photo steps into a single vertical how-to graphic",
+        "Place multiple exports side by side for quick comparison",
+        "Create one shareable image instead of sending several files"
+      ],
+      faq: [
+        {
+          q: "Can I merge images vertically and horizontally?",
+          a: "Yes. Switch between vertical and horizontal layout depending on whether you want a stacked strip or a side-by-side image."
+        },
+        {
+          q: "Can I control spacing between images?",
+          a: "Yes. Use the gap slider to add no spacing or a larger gutter between each image."
+        },
+        {
+          q: "What output format does it download?",
+          a: "This version downloads the merged result as a PNG so the combined layout stays intact."
+        },
+        {
+          q: "Are the uploaded images sent anywhere?",
+          a: "No. Everything runs locally in your browser."
+        }
+      ],
+      example: {
+        input: "Upload three product screenshots and choose a vertical layout with 16 px gap",
+        output: "Download one long PNG that combines all screenshots into a single image"
+      },
+      seoContent: {
+        whatIsTitle: "What is Merge Images?",
+        whatIsBody: "Merge Images combines multiple photos or screenshots into one output image. It is useful for step-by-step guides, support reports, social carousels, and any workflow where one combined image is easier to share than several separate files.",
+        howToTitle: "How to Use Merge Images",
+        howToSteps: [
+          "Upload at least two images into the tool.",
+          "Choose a vertical or horizontal merge layout.",
+          "Adjust the gap and background color if needed.",
+          "Preview the combined result and download the merged PNG."
+        ]
+      },
+      learnMore: {
+        title: "Understand Image Merging",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for screenshot bundles, tutorials, and quick side-by-side comparisons.",
+          "Lets you control layout and spacing without opening a desktop editor.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "image-palette-extractor",
+      title: "Image Palette Extractor Online Free | Get HEX Colors from Photos | Simple ToolBox",
+      description: "Extract a color palette from an image online for free. Upload a photo, generate dominant HEX colors, copy swatches instantly, and review a compact palette in your browser.",
+      category: "image",
+      shortTitle: "Image Palette Extractor",
+      relatedTools: [
+        "color-picker-from-image",
+        "color-palette",
+        "color-converter"
+      ],
+      useCases: [
+        "Pull dominant brand colors from a hero image",
+        "Build a compact palette from mood boards and inspiration shots",
+        "Extract reusable HEX colors from product photos",
+        "Review image color balance before designing around it"
+      ],
+      faq: [
+        {
+          q: "How does the palette extractor choose colors?",
+          a: "It samples the uploaded image and groups similar pixels so the most dominant colors rise to the top of the palette."
+        },
+        {
+          q: "Can I change how many colors appear?",
+          a: "Yes. Adjust the palette size slider to generate fewer or more swatches."
+        },
+        {
+          q: "Can I copy the HEX values?",
+          a: "Yes. Each extracted swatch has its own copy button."
+        },
+        {
+          q: "Is the uploaded image processed locally?",
+          a: "Yes. Palette extraction runs entirely in your browser."
+        }
+      ],
+      example: {
+        input: "Upload a travel photo and set the palette size to 6 colors",
+        output: "Copy six dominant HEX values for a quick landing-page palette"
+      },
+      seoContent: {
+        whatIsTitle: "What is Image Palette Extractor?",
+        whatIsBody: "Image Palette Extractor finds dominant colors inside a photo or screenshot and turns them into a small set of reusable swatches. It is useful for design inspiration, branding work, UI matching, and creating color references from real images.",
+        howToTitle: "How to Use Image Palette Extractor",
+        howToSteps: [
+          "Upload one image into the tool.",
+          "Choose how many colors you want in the final palette.",
+          "Adjust the sampling detail if you want a tighter or broader palette.",
+          "Copy the HEX values you want to reuse."
+        ]
+      },
+      learnMore: {
+        title: "Understand Image Palette Extraction",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for design systems, mood boards, and quick branding exploration.",
+          "Turns large images into a small palette you can copy immediately.",
+          "Runs locally so private images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "pixelate-image",
+      title: "Pixelate Image Online Free | Make Mosaic or Pixel Art Effects | Simple ToolBox",
+      description: "Pixelate an image online for free. Adjust block size, preview a mosaic effect instantly, and download the pixelated result in your browser without uploading files.",
+      category: "image",
+      shortTitle: "Pixelate Image",
+      relatedTools: [
+        "blur-image",
+        "crop-image",
+        "image-resizer"
+      ],
+      useCases: [
+        "Create a retro pixel-art effect from a photo",
+        "Obscure part of a screenshot with a stronger mosaic look",
+        "Make stylized avatars or thumbnails with blocky pixels",
+        "Preview different pixel sizes before exporting a final image"
+      ],
+      faq: [
+        {
+          q: "How do I make the image more pixelated?",
+          a: "Increase the block size slider. Larger blocks create a stronger mosaic effect."
+        },
+        {
+          q: "Does this blur the image or create square blocks?",
+          a: "It creates square pixel blocks rather than a soft blur, so the effect looks more like mosaic or pixel art."
+        },
+        {
+          q: "What format does it download?",
+          a: "The tool downloads the result as a PNG."
+        },
+        {
+          q: "Is the image uploaded to a server?",
+          a: "No. Pixelation happens entirely in your browser."
+        }
+      ],
+      example: {
+        input: "Upload a portrait and increase the block size to 20 px",
+        output: "Download a stylized mosaic PNG with a clear pixelated effect"
+      },
+      seoContent: {
+        whatIsTitle: "What is Pixelate Image?",
+        whatIsBody: "Pixelate Image applies a blocky mosaic effect to a photo or screenshot by shrinking detail into larger square pixels. It is useful for stylized edits, retro effects, and privacy-friendly image treatments that need a stronger look than blur.",
+        howToTitle: "How to Use Pixelate Image",
+        howToSteps: [
+          "Upload an image into the pixelation tool.",
+          "Adjust the block size to control how strong the effect looks.",
+          "Review the preview as the pixel size changes.",
+          "Download the pixelated PNG when it looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Image Pixelation",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for stylized image edits, retro graphics, and mosaic effects.",
+          "Gives stronger square-block output than a regular blur filter.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "circle-crop-image",
+      title: "Circle Crop Image Online Free | Make Round Avatars | Simple ToolBox",
+      description: "Crop an image into a circle online for free. Create round profile photos and avatar PNGs with adjustable output size and instant preview, all in your browser.",
+      category: "image",
+      shortTitle: "Circle Crop Image",
+      relatedTools: [
+        "crop-image",
+        "favicon-generator",
+        "image-resizer"
+      ],
+      useCases: [
+        "Create round avatars for social profiles and team pages",
+        "Make circular product badges or speaker photos",
+        "Prepare clean PNG profile images with transparent corners",
+        "Export higher-resolution avatar files for apps and communities"
+      ],
+      faq: [
+        { q: "What format does this tool download?", a: "It downloads a PNG so the corners outside the circle can stay transparent." },
+        { q: "Can I change the final avatar size?", a: "Yes. Choose from common output sizes such as 256, 512, or 1024 pixels." },
+        { q: "Does this tool move the crop area manually?", a: "This version uses a centered circular crop with adjustable zoom so you can quickly create a round avatar." },
+        { q: "Is the image uploaded anywhere?", a: "No. Circle cropping happens entirely in your browser." }
+      ],
+      example: {
+        input: "Upload a portrait and set the output size to 512 with 120% zoom",
+        output: "Download a round PNG avatar ready for profile or team pages"
+      },
+      seoContent: {
+        whatIsTitle: "What is Circle Crop Image?",
+        whatIsBody: "Circle Crop Image turns a regular photo into a round avatar or profile image. It is useful for social profiles, team pages, community accounts, and anywhere a circular image style is standard.",
+        howToTitle: "How to Use Circle Crop Image",
+        howToSteps: [
+          "Upload one image into the tool.",
+          "Adjust the zoom until the centered circular crop looks right.",
+          "Choose the output size you want for the avatar.",
+          "Download the round PNG file."
+        ]
+      },
+      learnMore: {
+        title: "Understand Circle Image Cropping",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for avatars, speaker photos, and round team images.",
+          "Exports PNG so the outer corners stay transparent.",
+          "Runs locally so private photos stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "invert-image",
+      title: "Invert Image Colors Online Free | Reverse Photo Colors | Simple ToolBox",
+      description: "Invert image colors online for free. Reverse photo colors, adjust inversion strength, preview instantly, and download the edited image in your browser.",
+      category: "image",
+      shortTitle: "Invert Image",
+      relatedTools: [
+        "grayscale-image",
+        "blur-image",
+        "pixelate-image"
+      ],
+      useCases: [
+        "Create a negative-style photo effect",
+        "Reverse UI screenshots for quick visual experiments",
+        "Generate stylized poster or art edits",
+        "Test how an image looks under strong color inversion"
+      ],
+      faq: [
+        { q: "Can I make the effect weaker than full inversion?", a: "Yes. Use the strength slider to blend between the original image and full color inversion." },
+        { q: "What does 100% inversion mean?", a: "It means each visible color channel is reversed to its opposite value for a full negative-style effect." },
+        { q: "What format does it download?", a: "This version downloads the edited image as PNG." },
+        { q: "Is the image uploaded anywhere?", a: "No. The inversion effect runs entirely in your browser." }
+      ],
+      example: {
+        input: "Upload a city photo and set inversion strength to 60%",
+        output: "Download a partially inverted PNG with a stylized color shift"
+      },
+      seoContent: {
+        whatIsTitle: "What is Invert Image?",
+        whatIsBody: "Invert Image reverses the visible colors in a photo or screenshot to create a negative-style result. It is useful for quick experiments, stylized edits, and visual transformations without opening a full graphics editor.",
+        howToTitle: "How to Use Invert Image",
+        howToSteps: [
+          "Upload one image into the tool.",
+          "Adjust inversion strength from subtle to full negative.",
+          "Review the preview as the effect updates instantly.",
+          "Download the inverted PNG when it looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Image Color Inversion",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for negative effects, visual experiments, and stylized edits.",
+          "Lets you control how strong the inversion looks.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "add-image-border",
+      title: "Add Image Border Online Free | Add Colored Padding Around Photos | Simple ToolBox",
+      description: "Add a border or padding around an image online for free. Set border thickness and color, preview instantly, and download the framed result in your browser.",
+      category: "image",
+      shortTitle: "Add Image Border",
+      relatedTools: [
+        "image-resizer",
+        "crop-image",
+        "merge-images"
+      ],
+      useCases: [
+        "Add white borders around screenshots for cleaner sharing",
+        "Frame product images before posting them online",
+        "Create extra padding around photos for social graphics",
+        "Prepare images that need a branded edge color"
+      ],
+      faq: [
+        { q: "Can I make the border very thick?", a: "Yes. Increase the border size slider to add more padding around the image." },
+        { q: "Can I choose any border color?", a: "Yes. Use the color picker to set the frame color you want." },
+        { q: "Does the tool change the original image content?", a: "No. It keeps the source image intact and adds new outer space around it." },
+        { q: "Is my image uploaded anywhere?", a: "No. Border rendering happens entirely in your browser." }
+      ],
+      example: {
+        input: "Upload a screenshot, set a 40 px white border, and preview the result",
+        output: "Download a framed PNG with extra padding around the original image"
+      },
+      seoContent: {
+        whatIsTitle: "What is Add Image Border?",
+        whatIsBody: "Add Image Border places a solid frame or padding around a photo or screenshot. It is useful for presentation images, social posts, product cards, and any workflow where a clean border makes the image easier to place on a page.",
+        howToTitle: "How to Use Add Image Border",
+        howToSteps: [
+          "Upload one image into the tool.",
+          "Choose border thickness and border color.",
+          "Review the framed preview instantly.",
+          "Download the bordered PNG when it looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Image Borders",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for screenshots, product images, and social-ready graphics.",
+          "Adds clean padding without opening a desktop editor.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "rounded-corners-image",
+      title: "Rounded Corners Image Online Free | Round Photo Corners | Simple ToolBox",
+      description: "Add rounded corners to an image online for free. Adjust the corner radius, preview instantly, and download a PNG with rounded edges in your browser.",
+      category: "image",
+      shortTitle: "Rounded Corners Image",
+      relatedTools: [
+        "add-image-border",
+        "crop-image",
+        "circle-crop-image"
+      ],
+      useCases: [
+        "Polish screenshots before sharing them in docs or social posts",
+        "Create softer corners for product cards and mockups",
+        "Export transparent PNGs with rounded edges",
+        "Match UI screenshots to a rounded design system"
+      ],
+      faq: [
+        { q: "What format does this tool download?", a: "It downloads a PNG so the outside corner areas can stay transparent." },
+        { q: "Can I make the corners barely rounded or fully rounded?", a: "Yes. Use the radius slider from 0 up to large corner values." },
+        { q: "Does it keep the original image size?", a: "Yes. The canvas keeps the same width and height while only changing the corner shape." },
+        { q: "Is the image uploaded anywhere?", a: "No. The effect runs entirely in your browser." }
+      ],
+      example: {
+        input: "Upload a screenshot and set the corner radius to 48 px",
+        output: "Download a same-size PNG with rounded transparent corners"
+      },
+      seoContent: {
+        whatIsTitle: "What is Rounded Corners Image?",
+        whatIsBody: "Rounded Corners Image gives a photo or screenshot softer corners without changing its core content. It is useful for polished presentations, social graphics, product cards, and UI mockups that need cleaner visual edges.",
+        howToTitle: "How to Use Rounded Corners Image",
+        howToSteps: [
+          "Upload one image into the tool.",
+          "Adjust the corner radius slider to set the roundness you want.",
+          "Review the rounded preview instantly.",
+          "Download the resulting PNG."
+        ]
+      },
+      learnMore: {
+        title: "Understand Rounded Image Corners",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for screenshots, cards, and cleaner presentation images.",
+          "Exports transparent corners in PNG format.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "posterize-image",
+      title: "Posterize Image Online Free | Reduce Color Levels in Photos | Simple ToolBox",
+      description: "Posterize an image online for free. Reduce color levels for a bold graphic effect, preview instantly, and download the posterized PNG in your browser.",
+      category: "image",
+      shortTitle: "Posterize Image",
+      relatedTools: [
+        "duotone-image",
+        "pixelate-image",
+        "invert-image"
+      ],
+      useCases: [
+        "Create a bold graphic look from a regular photo",
+        "Reduce color detail for poster or album-art concepts",
+        "Experiment with stylized marketing assets",
+        "Turn noisy photos into flatter graphic shapes"
+      ],
+      faq: [
+        { q: "What does posterize mean?", a: "Posterizing reduces the number of visible color steps so the image looks flatter and more graphic." },
+        { q: "What happens when I lower the level count?", a: "Lower levels make the effect stronger because more nearby colors collapse into the same value." },
+        { q: "What format does it download?", a: "This version downloads the edited image as PNG." },
+        { q: "Is the image uploaded anywhere?", a: "No. Posterization runs entirely in your browser." }
+      ],
+      example: {
+        input: "Upload a portrait and lower the channel levels to 3 or 4",
+        output: "Download a stylized poster-like PNG with reduced color variation"
+      },
+      seoContent: {
+        whatIsTitle: "What is Posterize Image?",
+        whatIsBody: "Posterize Image reduces the number of distinct color levels in a photo or screenshot to create a flatter, bolder look. It is useful for graphic experiments, stylized edits, and making visual details feel more poster-like.",
+        howToTitle: "How to Use Posterize Image",
+        howToSteps: [
+          "Upload one image into the tool.",
+          "Adjust the number of color levels per channel.",
+          "Review the updated posterized preview instantly.",
+          "Download the edited PNG when it looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Posterization",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for stylized artwork, posters, and flatter visual treatments.",
+          "Lets you control how strong the reduced-color effect looks.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "duotone-image",
+      title: "Duotone Image Online Free | Apply Two-Color Photo Effect | Simple ToolBox",
+      description: "Apply a duotone effect to an image online for free. Choose shadow and highlight colors, preview instantly, and download the edited PNG in your browser.",
+      category: "image",
+      shortTitle: "Duotone Image",
+      relatedTools: [
+        "posterize-image",
+        "color-picker-from-image",
+        "invert-image"
+      ],
+      useCases: [
+        "Create campaign-style two-color hero images",
+        "Apply a brand palette to a monochrome photo treatment",
+        "Make stylized speaker or artist portraits",
+        "Generate fast visual concepts with custom shadow and highlight colors"
+      ],
+      faq: [
+        { q: "What is a duotone effect?", a: "A duotone effect maps the darker and lighter parts of an image to two chosen colors instead of using the original full-color photo." },
+        { q: "Can I choose my own two colors?", a: "Yes. Set one color for shadows and one color for highlights." },
+        { q: "Does this work best on photos?", a: "Yes. Photos, portraits, and high-contrast screenshots usually show the effect most clearly." },
+        { q: "Is the image uploaded anywhere?", a: "No. The duotone effect runs entirely in your browser." }
+      ],
+      example: {
+        input: "Upload a portrait, choose a dark navy shadow and orange highlight",
+        output: "Download a two-color duotone PNG for poster or campaign use"
+      },
+      seoContent: {
+        whatIsTitle: "What is Duotone Image?",
+        whatIsBody: "Duotone Image transforms a photo into a two-color version by mapping shadows and highlights to custom colors. It is useful for posters, campaigns, branding experiments, and any edit that needs a stronger graphic identity than the original photo.",
+        howToTitle: "How to Use Duotone Image",
+        howToSteps: [
+          "Upload one image into the tool.",
+          "Choose a shadow color and a highlight color.",
+          "Review the duotone preview instantly.",
+          "Download the edited PNG when it looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Duotone Effects",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for posters, campaigns, and brand-colored image treatments.",
+          "Lets you apply your own highlight and shadow colors quickly.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "image-brightness-contrast",
+      title: "Image Brightness Contrast Online Free | Adjust Photo Exposure | Simple ToolBox",
+      description: "Adjust image brightness and contrast online for free. Fine-tune photo exposure with instant preview and download the edited PNG in your browser.",
+      category: "image",
+      shortTitle: "Image Brightness Contrast",
+      relatedTools: [
+        "grayscale-image",
+        "invert-image",
+        "image-resizer"
+      ],
+      useCases: [
+        "Brighten a dark screenshot before sharing it",
+        "Increase contrast to make text or UI clearer",
+        "Reduce harsh contrast in an over-edited image",
+        "Quickly correct exposure without opening a full editor"
+      ],
+      faq: [
+        { q: "What does brightness change?", a: "Brightness shifts the overall lightness of the image up or down." },
+        { q: "What does contrast change?", a: "Contrast increases or decreases the separation between darker and lighter tones." },
+        { q: "Can I use both sliders together?", a: "Yes. Most users make small brightness and contrast adjustments together for a cleaner result." },
+        { q: "Is the image uploaded anywhere?", a: "No. All brightness and contrast processing happens in your browser." }
+      ],
+      example: {
+        input: "Upload a dim screenshot and set brightness to 20 with contrast to 15",
+        output: "Download a clearer PNG with more readable midtones and edges"
+      },
+      seoContent: {
+        whatIsTitle: "What is Image Brightness Contrast?",
+        whatIsBody: "Image Brightness Contrast lets you quickly improve a photo or screenshot by changing overall lightness and tonal separation. It is useful for dark images, low-contrast screenshots, and fast corrections when you only need cleaner visibility.",
+        howToTitle: "How to Use Image Brightness Contrast",
+        howToSteps: [
+          "Upload one image into the tool.",
+          "Adjust brightness to lighten or darken the image.",
+          "Adjust contrast to change tonal separation.",
+          "Download the corrected PNG when the preview looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Brightness and Contrast",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for quick exposure fixes and clearer screenshots.",
+          "Lets you tune both lightness and contrast without a full editor.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
     }
 ];
 

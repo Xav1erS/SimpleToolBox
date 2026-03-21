@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Rounded Corners Image Online Free | Round Photo Corners | Simple ToolBox</title>
+  <meta name="description" content="Add rounded corners to an image online for free. Adjust the corner radius, preview instantly, and download a PNG with rounded edges in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/rounded-corners-image" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/rounded-corners-image.html" />
+  <meta property="og:title" content="Rounded Corners Image Online Free | Round Photo Corners | Simple ToolBox" />
+  <meta property="og:description" content="Round image corners online for free with adjustable radius and instant PNG export." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Rounded Corners Image",
+  "description": "Add rounded corners to an image online for free. Adjust the corner radius, preview instantly, and download a PNG with rounded edges in your browser.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/rounded-corners-image"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What format does this tool download?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It downloads a PNG so the outside corner areas can stay transparent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I make the corners barely rounded or fully rounded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the radius slider from 0 up to large corner values."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it keep the original image size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The canvas keeps the same width and height while only changing the corner shape."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the image uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The effect runs entirely in your browser."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    .main{max-width:1100px;margin:0 auto;padding:28px 24px 64px;display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start}
+    .panel,.preview-panel{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);overflow:hidden}
+    .panel-section{padding:18px 20px;border-bottom:1px solid var(--ds-color-border)} .panel-section:last-child{border-bottom:none}
+    .panel-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ds-color-text-muted);margin-bottom:14px}
+    .range-field{display:grid;gap:8px}.range-head{display:flex;justify-content:space-between;font-size:12px;color:var(--ds-color-text-secondary)} .range-field input[type="range"]{width:100%}
+    .action-btn{padding:9px 10px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-secondary);font-size:12px;font-weight:600;transition:.15s}
+    .action-btn:hover{color:var(--ds-color-accent);background:var(--ds-color-surface-tint);border-color:rgba(94,106,210,.3)}
+    .status-note{min-height:20px;padding:0 18px 10px;font-size:12px;color:var(--ds-color-text-muted)} .status-note.is-error{color:#f87171}
+    .preview-panel{display:flex;flex-direction:column;min-height:480px}.preview-header{padding:14px 18px;border-bottom:1px solid var(--ds-color-border);display:flex;align-items:center;justify-content:space-between}.preview-title{font-size:13px;font-weight:600;color:var(--ds-color-text-secondary)}
+    .drop-zone{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:40px 24px;text-align:center;border:2px dashed var(--ds-color-border);margin:16px;border-radius:var(--ds-radius-md);transition:.2s;cursor:pointer}
+    .drop-zone.drag-over{border-color:var(--ds-color-accent);background:var(--ds-color-surface-tint)}
+    .drop-icon{font-size:40px;opacity:.4}.drop-title{font-size:15px;font-weight:600;color:var(--ds-color-text-secondary)} .drop-sub,.drop-formats{color:var(--ds-color-text-muted);font-size:13px}.drop-formats{font-family:var(--ds-font-mono);font-size:11px}
+    .canvas-wrap{flex:1;display:none;align-items:center;justify-content:center;padding:16px;background:repeating-conic-gradient(#1a1a1f 0% 25%,#141418 0% 50%) 0 0/16px 16px} #previewCanvas{max-width:100%;max-height:420px;object-fit:contain}
+    .meta-grid{padding:14px 18px;border-top:1px solid var(--ds-color-border);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.meta-lbl{font-size:11px;color:var(--ds-color-text-muted);margin-bottom:2px}.meta-val{font-family:var(--ds-font-mono);font-size:13px;color:var(--ds-color-text-primary)}
+    .btn-download{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ds-color-accent);color:#fff;font-size:14px;font-weight:600;padding:13px;border-radius:var(--ds-radius-md);transition:.2s}.btn-download:hover{background:var(--ds-color-accent-hover);transform:translateY(-1px)}.btn-download:disabled{background:var(--ds-color-surface-strong);color:var(--ds-color-text-muted);cursor:not-allowed;transform:none}
+    #fileInput,#sourceCanvas,#outputCanvas{display:none}
+    @media (max-width:800px){.main{grid-template-columns:1fr;padding:16px 16px 48px}}
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Rounded Corners Image <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally - no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">◩</div><h1 class="ds-tool-header__title">Rounded Corners Image</h1></div><p class="ds-tool-header__desc">Round the corners of a photo or screenshot, preview the result instantly, and download a clean PNG with transparent outer corners.</p><div class="ds-tool-tag-row"><span class="ds-tag">rounded corners</span><span class="ds-tag">PNG</span><span class="ds-tag">screenshot polish</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="main"><div class="panel"><div class="panel-section"><div class="panel-label">Corner Radius</div><div class="range-field"><div class="range-head"><span>Radius</span><strong id="radiusValue">32 px</strong></div><input id="radiusRange" type="range" min="0" max="200" step="4" value="32" /></div></div><div class="panel-section"><button class="action-btn" id="btnReset">Reset</button></div><div class="panel-section"><button class="btn-download" id="btnDownload" disabled>Download Rounded PNG</button></div></div><div class="preview-panel"><div class="preview-header"><span class="preview-title">Preview</span><button class="action-btn" id="btnChange" style="display:none">Change image</button></div><div class="status-note" id="statusNote"></div><div class="drop-zone" id="dropZone"><div class="drop-icon">◩</div><div class="drop-title">Drop image here</div><div class="drop-sub">or click to browse</div><div class="drop-formats">JPG | PNG | WebP | GIF</div></div><div class="canvas-wrap" id="canvasWrap"><canvas id="previewCanvas"></canvas></div><div class="meta-grid" id="metaGrid" style="display:none"><div><div class="meta-lbl">Original</div><div class="meta-val" id="metaOriginal">-</div></div><div><div class="meta-lbl">Radius</div><div class="meta-val" id="metaRadius">32 px</div></div><div><div class="meta-lbl">Filename</div><div class="meta-val" id="metaFilename">-</div></div></div></div><!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Rounded Corners Image?</h2>
+    <p>Rounded Corners Image gives a photo or screenshot softer corners without changing its core content. It is useful for polished presentations, social graphics, product cards, and UI mockups that need cleaner visual edges.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Rounded Corners Image</h2>
+    <ol>
+      <li>Upload one image into the tool.</li>
+      <li>Adjust the corner radius slider to set the roundness you want.</li>
+      <li>Review the rounded preview instantly.</li>
+      <li>Download the resulting PNG.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="add-image-border.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Add Image Border</div><div class="ds-related-desc">Add colored padding or a frame around any uploaded image</div></div></a>
+    <a href="crop-image.html" class="ds-related-card"><span class="ds-related-icon">??</span><div><div class="ds-related-name">Crop Image</div><div class="ds-related-desc">Crop photos and screenshots to an exact area with presets</div></div></a>
+    <a href="circle-crop-image.html" class="ds-related-card"><span class="ds-related-icon">🟣</span><div><div class="ds-related-name">Circle Crop Image</div><div class="ds-related-desc">Turn photos into circular avatar PNGs with adjustable size</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Rounded Image Corners</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Upload a screenshot and set the corner radius to 48 px</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Download a same-size PNG with rounded transparent corners</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Polish screenshots before sharing them in docs or social posts</li>
+          <li>Create softer corners for product cards and mockups</li>
+          <li>Export transparent PNGs with rounded edges</li>
+          <li>Match UI screenshots to a rounded design system</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for screenshots, cards, and cleaner presentation images.</li>
+          <li>Exports transparent corners in PNG format.</li>
+          <li>Runs locally so your images stay on your device.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What format does this tool download?</strong><p>It downloads a PNG so the outside corner areas can stay transparent.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I make the corners barely rounded or fully rounded?</strong><p>Yes. Use the radius slider from 0 up to large corner values.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it keep the original image size?</strong><p>Yes. The canvas keeps the same width and height while only changing the corner shape.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the image uploaded anywhere?</strong><p>No. The effect runs entirely in your browser.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END --></div>
+<input type="file" id="fileInput" accept="image/*" /><canvas id="sourceCanvas"></canvas><canvas id="outputCanvas"></canvas>
+<script>
+  'use strict';
+  const fileInput=document.getElementById('fileInput'),dropZone=document.getElementById('dropZone'),btnChange=document.getElementById('btnChange'),btnReset=document.getElementById('btnReset'),btnDownload=document.getElementById('btnDownload'),radiusRange=document.getElementById('radiusRange'),radiusValue=document.getElementById('radiusValue'),statusNote=document.getElementById('statusNote'),canvasWrap=document.getElementById('canvasWrap'),metaGrid=document.getElementById('metaGrid'),metaOriginal=document.getElementById('metaOriginal'),metaRadius=document.getElementById('metaRadius'),metaFilename=document.getElementById('metaFilename'),previewCanvas=document.getElementById('previewCanvas'),previewCtx=previewCanvas.getContext('2d'),sourceCanvas=document.getElementById('sourceCanvas'),sourceCtx=sourceCanvas.getContext('2d'),outputCanvas=document.getElementById('outputCanvas'),outputCtx=outputCanvas.getContext('2d'); let currentImage=null,currentName='rounded-image';
+  function setStatus(message,isError=false){statusNote.textContent=message;statusNote.classList.toggle('is-error',isError);}
+  function roundRect(ctx,x,y,w,h,r){const radius=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+radius,y);ctx.arcTo(x+w,y,x+w,y+h,radius);ctx.arcTo(x+w,y+h,x,y+h,radius);ctx.arcTo(x,y+h,x,y,radius);ctx.arcTo(x,y,x+w,y,radius);ctx.closePath();}
+  function resetTool(){currentImage=null;currentName='rounded-image';canvasWrap.style.display='none';metaGrid.style.display='none';dropZone.style.display='flex';btnChange.style.display='none';btnDownload.disabled=true;radiusRange.value=32;radiusValue.textContent='32 px';setStatus('Upload one image to round its corners.');}
+  function renderRounded(){if(!currentImage)return;const radius=Number(radiusRange.value);previewCanvas.width=currentImage.width;previewCanvas.height=currentImage.height;previewCtx.save();previewCtx.clearRect(0,0,previewCanvas.width,previewCanvas.height);roundRect(previewCtx,0,0,previewCanvas.width,previewCanvas.height,radius);previewCtx.clip();previewCtx.drawImage(sourceCanvas,0,0);previewCtx.restore();outputCanvas.width=previewCanvas.width;outputCanvas.height=previewCanvas.height;outputCtx.save();outputCtx.clearRect(0,0,outputCanvas.width,outputCanvas.height);roundRect(outputCtx,0,0,outputCanvas.width,outputCanvas.height,radius);outputCtx.clip();outputCtx.drawImage(sourceCanvas,0,0);outputCtx.restore();canvasWrap.style.display='flex';metaGrid.style.display='grid';dropZone.style.display='none';btnChange.style.display='inline-flex';btnDownload.disabled=false;metaRadius.textContent=`${radius}px`;setStatus('Rounded preview updated. Download when ready.');}
+  function handleFile(file){if(!file)return;if(!/^image\//.test(file.type)){setStatus('Please choose an image file to round.',true);return;}const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{currentImage=img;currentName=file.name.replace(/\.[^.]+$/,'');sourceCanvas.width=img.width;sourceCanvas.height=img.height;sourceCtx.clearRect(0,0,img.width,img.height);sourceCtx.drawImage(img,0,0);metaOriginal.textContent=`${img.width} x ${img.height}`;metaFilename.textContent=file.name;renderRounded();};img.onerror=()=>setStatus('Could not read this image file.',true);img.src=reader.result;};reader.readAsDataURL(file);}
+  function downloadPng(){outputCanvas.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=`${currentName}-rounded.png`;link.click();URL.revokeObjectURL(url);},'image/png');}
+  radiusRange.addEventListener('input',()=>{radiusValue.textContent=`${radiusRange.value} px`;renderRounded();});btnDownload.addEventListener('click',downloadPng);btnReset.addEventListener('click',resetTool);dropZone.addEventListener('click',()=>fileInput.click());btnChange.addEventListener('click',()=>fileInput.click());fileInput.addEventListener('change',event=>handleFile(event.target.files[0]));['dragenter','dragover'].forEach(type=>dropZone.addEventListener(type,event=>{event.preventDefault();dropZone.classList.add('drag-over');}));['dragleave','drop'].forEach(type=>dropZone.addEventListener(type,event=>{event.preventDefault();dropZone.classList.remove('drag-over');}));dropZone.addEventListener('drop',event=>handleFile(event.dataTransfer.files[0]));resetTool();
+</script>
+<footer><a href="../index.html">← Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
+</body>
+</html>

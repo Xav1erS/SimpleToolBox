@@ -91,6 +91,16 @@ const SITE_TOOLS = [
   { name: 'Crop Image',                  href: 'tools/crop-image.html',               tag: 'image',       icon: '??', desc: 'Crop photos and screenshots to an exact area with presets' },
   { name: 'Favicon Generator',          href: 'tools/favicon-generator.html',        tag: 'design',      icon: '??', desc: 'Generate favicon PNG files in standard website icon sizes' },
   { name: 'Color Picker From Image',    href: 'tools/color-picker-from-image.html',  tag: 'design',      icon: '??', desc: 'Pick HEX and RGB colors from uploaded images instantly' },
+  { name: 'Merge Images',               href: 'tools/merge-images.html',             tag: 'image',       icon: '🧩', desc: 'Combine multiple images into one vertical or horizontal layout' },
+  { name: 'Image Palette Extractor',    href: 'tools/image-palette-extractor.html',  tag: 'image',       icon: '🎨', desc: 'Extract a compact palette of dominant HEX colors from an image' },
+  { name: 'Pixelate Image',             href: 'tools/pixelate-image.html',           tag: 'image',       icon: '🟪', desc: 'Apply a mosaic-style pixelation effect with adjustable block size' },
+  { name: 'Circle Crop Image',          href: 'tools/circle-crop-image.html',        tag: 'image',       icon: '🟣', desc: 'Turn photos into circular avatar PNGs with adjustable size' },
+  { name: 'Invert Image',               href: 'tools/invert-image.html',             tag: 'image',       icon: '🔄', desc: 'Reverse image colors with adjustable inversion strength' },
+  { name: 'Add Image Border',           href: 'tools/add-image-border.html',         tag: 'image',       icon: '🖼️', desc: 'Add colored padding or a frame around any uploaded image' },
+  { name: 'Rounded Corners Image',      href: 'tools/rounded-corners-image.html',    tag: 'image',       icon: '◩', desc: 'Round image corners and export a transparent PNG result' },
+  { name: 'Posterize Image',            href: 'tools/posterize-image.html',          tag: 'image',       icon: '⬣', desc: 'Reduce color levels for a bold posterized image effect' },
+  { name: 'Duotone Image',              href: 'tools/duotone-image.html',            tag: 'image',       icon: '◐', desc: 'Map image shadows and highlights to two custom colors' },
+  { name: 'Image Brightness Contrast',  href: 'tools/image-brightness-contrast.html',tag: 'image',       icon: '☼', desc: 'Adjust photo brightness and contrast with instant preview' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -98,7 +108,8 @@ const HUB_PAGE_CONFIG = {
     sections: [
       ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'png-to-webp', 'svg-to-png', 'bmp-to-png'],
       ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
-      ['image-rotate', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image']
+      ['image-rotate', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
+      ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast']
     ]
   },
   developer: {

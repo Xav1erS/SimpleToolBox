@@ -208,6 +208,122 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const ASCII_DATA = [
+    [0,'NUL','Null character'],[1,'SOH','Start of Heading'],[2,'STX','Start of Text'],
+    [3,'ETX','End of Text'],[4,'EOT','End of Transmission'],[5,'ENQ','Enquiry'],
+    [6,'ACK','Acknowledge'],[7,'BEL','Bell (alert)'],[8,'BS','Backspace'],
+    [9,'HT','Horizontal Tab'],[10,'LF','Line Feed (newline)'],[11,'VT','Vertical Tab'],
+    [12,'FF','Form Feed'],[13,'CR','Carriage Return'],[14,'SO','Shift Out'],
+    [15,'SI','Shift In'],[16,'DLE','Data Link Escape'],[17,'DC1','Device Control 1 (XON)'],
+    [18,'DC2','Device Control 2'],[19,'DC3','Device Control 3 (XOFF)'],[20,'DC4','Device Control 4'],
+    [21,'NAK','Negative Acknowledge'],[22,'SYN','Synchronous Idle'],[23,'ETB','End of Transmission Block'],
+    [24,'CAN','Cancel'],[25,'EM','End of Medium'],[26,'SUB','Substitute'],
+    [27,'ESC','Escape'],[28,'FS','File Separator'],[29,'GS','Group Separator'],
+    [30,'RS','Record Separator'],[31,'US','Unit Separator'],
+    [32,' ','Space'],[33,'!','Exclamation mark'],[34,'"','Double quote'],
+    [35,'#','Hash / Number sign'],[36,'$','Dollar sign'],[37,'%','Percent sign'],
+    [38,'&','Ampersand'],[39,"'",'Single quote / Apostrophe'],[40,'(','Left parenthesis'],
+    [41,')','Right parenthesis'],[42,'*','Asterisk'],[43,'+','Plus sign'],
+    [44,',','Comma'],[45,'-','Hyphen / Minus'],[46,'.','Period / Full stop'],
+    [47,'/','Forward slash'],[48,'0','Digit 0'],[49,'1','Digit 1'],
+    [50,'2','Digit 2'],[51,'3','Digit 3'],[52,'4','Digit 4'],
+    [53,'5','Digit 5'],[54,'6','Digit 6'],[55,'7','Digit 7'],
+    [56,'8','Digit 8'],[57,'9','Digit 9'],[58,':','Colon'],
+    [59,';','Semicolon'],[60,'<','Less than'],[61,'=','Equals sign'],
+    [62,'>','Greater than'],[63,'?','Question mark'],[64,'@','At sign'],
+    [65,'A','Capital A'],[66,'B','Capital B'],[67,'C','Capital C'],
+    [68,'D','Capital D'],[69,'E','Capital E'],[70,'F','Capital F'],
+    [71,'G','Capital G'],[72,'H','Capital H'],[73,'I','Capital I'],
+    [74,'J','Capital J'],[75,'K','Capital K'],[76,'L','Capital L'],
+    [77,'M','Capital M'],[78,'N','Capital N'],[79,'O','Capital O'],
+    [80,'P','Capital P'],[81,'Q','Capital Q'],[82,'R','Capital R'],
+    [83,'S','Capital S'],[84,'T','Capital T'],[85,'U','Capital U'],
+    [86,'V','Capital V'],[87,'W','Capital W'],[88,'X','Capital X'],
+    [89,'Y','Capital Y'],[90,'Z','Capital Z'],[91,'[','Left square bracket'],
+    [92,'\\','Backslash'],[93,']','Right square bracket'],[94,'^','Caret'],
+    [95,'_','Underscore'],[96,'`','Grave accent / Backtick'],[97,'a','Lowercase a'],
+    [98,'b','Lowercase b'],[99,'c','Lowercase c'],[100,'d','Lowercase d'],
+    [101,'e','Lowercase e'],[102,'f','Lowercase f'],[103,'g','Lowercase g'],
+    [104,'h','Lowercase h'],[105,'i','Lowercase i'],[106,'j','Lowercase j'],
+    [107,'k','Lowercase k'],[108,'l','Lowercase l'],[109,'m','Lowercase m'],
+    [110,'n','Lowercase n'],[111,'o','Lowercase o'],[112,'p','Lowercase p'],
+    [113,'q','Lowercase q'],[114,'r','Lowercase r'],[115,'s','Lowercase s'],
+    [116,'t','Lowercase t'],[117,'u','Lowercase u'],[118,'v','Lowercase v'],
+    [119,'w','Lowercase w'],[120,'x','Lowercase x'],[121,'y','Lowercase y'],
+    [122,'z','Lowercase z'],[123,'{','Left curly brace'],[124,'|','Vertical bar / Pipe'],
+    [125,'}','Right curly brace'],[126,'~','Tilde'],[127,'DEL','Delete']
+  ];
+
+  function buildRows(data) {
+    const tbody = document.getElementById('asciiBody');
+    tbody.innerHTML = '';
+
+    let lastGroup = null;
+    data.forEach(([dec, ch, desc]) => {
+      const group = dec < 32 ? 'Control Characters (0–31)' : dec === 127 ? 'Delete (127)' : 'Printable Characters (32–126)';
+      if (group !== lastGroup) {
+        const gh = document.createElement('tr');
+        gh.className = 'group-header';
+        gh.innerHTML = `<td colspan="6">${group}</td>`;
+        tbody.appendChild(gh);
+        lastGroup = group;
+      }
+
+      const hex = '0x' + dec.toString(16).toUpperCase().padStart(2, '0');
+      const oct = dec.toString(8).padStart(3, '0');
+      const bin = dec.toString(2).padStart(8, '0');
+      const charDisplay = dec < 32 || dec === 127 ? `<span style="color:var(--ds-color-text-muted);font-size:11px">${ch}</span>` : dec === 32 ? '⎵' : ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch === '&' ? '&amp;' : ch;
+      const copyChar = dec < 32 || dec === 127 ? '' : (dec === 92 ? '\\' : ch);
+
+      const tr = document.createElement('tr');
+      if (dec < 32) tr.className = 'row-control';
+      if (dec === 127) tr.className = 'row-del';
+      tr.dataset.dec = dec;
+      tr.dataset.copy = copyChar || String.fromCharCode(dec);
+      tr.innerHTML = `
+        <td>${dec}</td>
+        <td>${hex}</td>
+        <td class="col-oct">${oct}</td>
+        <td class="col-bin">${bin}</td>
+        <td class="td-char">${charDisplay}</td>
+        <td class="td-desc">${desc}</td>
+      `;
+      tr.addEventListener('click', () => copyRow(tr, copyChar || String.fromCharCode(dec)));
+      tbody.appendChild(tr);
+    });
+  }
+
+  function copyRow(tr, text) {
+    navigator.clipboard.writeText(text).catch(() => {});
+    tr.classList.add('copied-row');
+    setTimeout(() => tr.classList.remove('copied-row'), 800);
+  }
+
+  const searchInput = document.getElementById('searchInput');
+  const resultCount = document.getElementById('resultCount');
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    if (!q) {
+      buildRows(ASCII_DATA);
+      resultCount.textContent = '128 characters';
+      return;
+    }
+    const filtered = ASCII_DATA.filter(([dec, ch, desc]) => {
+      return (
+        dec.toString().includes(q) ||
+        ('0x' + dec.toString(16)).toLowerCase().includes(q) ||
+        ch.toLowerCase().includes(q) ||
+        desc.toLowerCase().includes(q)
+      );
+    });
+    buildRows(filtered);
+    resultCount.textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
+  });
+
+  buildRows(ASCII_DATA);
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

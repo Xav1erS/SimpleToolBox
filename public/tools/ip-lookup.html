@@ -357,6 +357,94 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const FIELDS = [
+    { key: 'city',         label: 'City' },
+    { key: 'region',       label: 'Region' },
+    { key: 'country_name', label: 'Country' },
+    { key: 'country_code', label: 'Country Code' },
+    { key: 'postal',       label: 'Postal Code' },
+    { key: 'latitude',     label: 'Latitude' },
+    { key: 'longitude',    label: 'Longitude' },
+    { key: 'timezone',     label: 'Timezone' },
+    { key: 'org',          label: 'ISP / Org' },
+    { key: 'asn',          label: 'ASN' },
+  ];
+
+  const lookupInput = document.getElementById('lookupInput');
+  const btnLookup   = document.getElementById('btnLookup');
+  const ipCard      = document.getElementById('ipCard');
+  const errorCard   = document.getElementById('errorCard');
+  const loadingCard = document.getElementById('loadingCard');
+  const resultIp    = document.getElementById('resultIp');
+  const resultType  = document.getElementById('resultType');
+  const ipGrid      = document.getElementById('ipGrid');
+  const errorMsg    = document.getElementById('errorMsg');
+
+  async function lookup(ip) {
+    const url = ip ? `https://ipapi.co/${encodeURIComponent(ip)}/json/` : 'https://ipapi.co/json/';
+    showState('loading');
+    try {
+      const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (data.error) throw new Error(data.reason || data.error);
+      renderResult(data);
+    } catch (e) {
+      showError(e.message || 'Lookup failed. Check the IP format and try again.');
+    }
+  }
+
+  function showState(state) {
+    ipCard.style.display      = state === 'result'  ? '' : 'none';
+    errorCard.style.display   = state === 'error'   ? '' : 'none';
+    loadingCard.style.display = state === 'loading' ? '' : 'none';
+  }
+
+  function showError(msg) {
+    errorMsg.textContent = msg;
+    showState('error');
+  }
+
+  function renderResult(data) {
+    resultIp.textContent = data.ip || '—';
+    resultType.textContent = data.version || (data.ip && data.ip.includes(':') ? 'IPv6' : 'IPv4');
+
+    ipGrid.innerHTML = '';
+    FIELDS.forEach(f => {
+      const val = data[f.key];
+      const row = document.createElement('div');
+      row.className = 'ip-row';
+      const displayVal = (val !== null && val !== undefined && val !== '') ? String(val) : '—';
+      const isEmpty = displayVal === '—';
+      row.innerHTML = `
+        <span class="ip-row-key">${f.label}</span>
+        <span class="ip-row-val${isEmpty ? ' empty' : ''}">${displayVal}</span>
+        <button class="ip-row-copy"${isEmpty ? ' style="visibility:hidden"' : ''}>Copy</button>
+      `;
+      if (!isEmpty) {
+        row.querySelector('.ip-row-copy').addEventListener('click', e => {
+          const btn = e.currentTarget;
+          navigator.clipboard.writeText(displayVal).catch(() => {});
+          btn.textContent = '✓';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+        });
+      }
+      ipGrid.appendChild(row);
+    });
+    showState('result');
+  }
+
+  // Lookup on Enter key
+  lookupInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') lookup(lookupInput.value.trim());
+  });
+  btnLookup.addEventListener('click', () => lookup(lookupInput.value.trim()));
+
+  // Auto-lookup own IP on load
+  lookup('');
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

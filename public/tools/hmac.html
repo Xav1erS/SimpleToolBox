@@ -442,6 +442,128 @@
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
 
+<script>
+  let currentAlgo = 'SHA-256', currentFmt = 'hex';
+
+  const messageInput = document.getElementById('messageInput');
+  const keyInput = document.getElementById('keyInput');
+  const keyWarning = document.getElementById('keyWarning');
+  const btnGenerate = document.getElementById('btnGenerate');
+  const btnPaste = document.getElementById('btnPaste');
+  const btnSample = document.getElementById('btnSample');
+  const btnClear = document.getElementById('btnClear');
+  const btnClearAll = document.getElementById('btnClearAll');
+  const algoCtrl = document.getElementById('algoCtrl');
+  const fmtCtrl = document.getElementById('fmtCtrl');
+
+  const ALGO_ROW_MAP = { 'SHA-1': 'rowSha1', 'SHA-256': 'rowSha256', 'SHA-384': 'rowSha384', 'SHA-512': 'rowSha512' };
+  const ALGO_VAL_MAP = { 'SHA-1': 'valSha1', 'SHA-256': 'valSha256', 'SHA-384': 'valSha384', 'SHA-512': 'valSha512' };
+
+  async function generateHMAC(message, key, algo, outputFmt) {
+    const enc = new TextEncoder();
+    const cryptoKey = await crypto.subtle.importKey('raw', enc.encode(key), { name: 'HMAC', hash: algo }, false, ['sign']);
+    const sig = await crypto.subtle.sign('HMAC', cryptoKey, enc.encode(message));
+    if (outputFmt === 'hex') return Array.from(new Uint8Array(sig)).map(b => b.toString(16).padStart(2, '0')).join('');
+    return btoa(String.fromCharCode(...new Uint8Array(sig)));
+  }
+
+  function updateVisibleRow() {
+    Object.keys(ALGO_ROW_MAP).forEach(a => {
+      document.getElementById(ALGO_ROW_MAP[a]).style.display = a === currentAlgo ? '' : 'none';
+    });
+  }
+
+  function setResult(algo, value, state) {
+    const el = document.getElementById(ALGO_VAL_MAP[algo]);
+    if (!el) return;
+    el.textContent = value;
+    el.className = 'result-value' + (state ? ' ' + state : '');
+  }
+
+  async function run() {
+    const msg = messageInput.value, key = keyInput.value;
+    if (!key) {
+      keyWarning.classList.add('show');
+      setResult(currentAlgo, 'Secret key is required', 'empty');
+      return;
+    }
+    keyWarning.classList.remove('show');
+    if (!msg) { setResult(currentAlgo, 'Awaiting input…', 'empty'); return; }
+    setResult(currentAlgo, 'Computing…', 'loading');
+    try {
+      const result = await generateHMAC(msg, key, currentAlgo, currentFmt);
+      setResult(currentAlgo, result, '');
+    } catch (e) {
+      setResult(currentAlgo, 'Error: ' + (e.message || 'computation failed'), 'empty');
+    }
+  }
+
+  let debounceTimer;
+  function scheduleRun() { clearTimeout(debounceTimer); debounceTimer = setTimeout(run, 300); }
+
+  messageInput.addEventListener('input', scheduleRun);
+  keyInput.addEventListener('input', scheduleRun);
+  btnGenerate.addEventListener('click', run);
+
+  algoCtrl.querySelectorAll('.seg-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      algoCtrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentAlgo = btn.dataset.algo;
+      updateVisibleRow();
+      setResult(currentAlgo, 'Awaiting input…', 'empty');
+      scheduleRun();
+    });
+  });
+
+  fmtCtrl.querySelectorAll('.seg-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      fmtCtrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFmt = btn.dataset.fmt;
+      scheduleRun();
+    });
+  });
+
+  btnPaste.addEventListener('click', async () => {
+    try { messageInput.value = await navigator.clipboard.readText(); scheduleRun(); } catch {}
+  });
+
+  btnSample.addEventListener('click', () => {
+    messageInput.value = 'The quick brown fox jumps over the lazy dog';
+    if (!keyInput.value) keyInput.value = 'secret';
+    scheduleRun();
+  });
+
+  btnClear.addEventListener('click', () => { messageInput.value = ''; scheduleRun(); });
+
+  btnClearAll.addEventListener('click', () => {
+    messageInput.value = ''; keyInput.value = '';
+    keyWarning.classList.remove('show');
+    Object.keys(ALGO_VAL_MAP).forEach(a => setResult(a, 'Awaiting input…', 'empty'));
+  });
+
+  document.querySelectorAll('.btn-copy-result').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.dataset.id);
+      const val = el ? el.textContent : '';
+      if (!val || val === 'Awaiting input…' || val === 'Computing…' || val.startsWith('Error')) return;
+      navigator.clipboard.writeText(val).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = val; ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      }).finally(() => {
+        btn.classList.add('copied');
+        const orig = btn.textContent;
+        btn.textContent = '✓ Copied';
+        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = orig; }, 1500);
+      });
+    });
+  });
+
+  document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run(); });
+  updateVisibleRow();
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

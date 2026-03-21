@@ -361,6 +361,148 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const qualitySlider   = document.getElementById('qualitySlider');
+  const qualityVal      = document.getElementById('qualityVal');
+  const qualitySection  = document.getElementById('qualitySection');
+  const btnDownload     = document.getElementById('btnDownload');
+  const btnLabel        = document.getElementById('btnLabel');
+  const dropZone        = document.getElementById('dropZone');
+  const imgWrap         = document.getElementById('imgWrap');
+  const imgPreview      = document.getElementById('imgPreview');
+  const btnChange       = document.getElementById('btnChange');
+  const fileInput       = document.getElementById('fileInput');
+  const canvas          = document.getElementById('canvas');
+  const ctx             = canvas.getContext('2d');
+  const sizeOriginal    = document.getElementById('sizeOriginal');
+  const sizeOutput      = document.getElementById('sizeOutput');
+  const fmtOriginal     = document.getElementById('fmtOriginal');
+  const fmtOutput       = document.getElementById('fmtOutput');
+  const savingBadge     = document.getElementById('savingBadge');
+  const metaDimensions  = document.getElementById('metaDimensions');
+  const metaFormat      = document.getElementById('metaFormat');
+  const metaFilename    = document.getElementById('metaFilename');
+
+  let srcImage  = null;
+  let origSize  = 0;
+  let origType  = '';
+  let outputFmt = 'image/webp';
+  let outputExt = 'webp';
+
+  function fmtBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+  }
+
+  function mimeToLabel(mime) {
+    if (mime === 'image/jpeg') return 'JPEG';
+    if (mime === 'image/png')  return 'PNG';
+    if (mime === 'image/webp') return 'WebP';
+    if (mime === 'image/gif')  return 'GIF';
+    return mime.split('/')[1].toUpperCase();
+  }
+
+  function updateOutputSize() {
+    if (!srcImage) return;
+    const isPng = outputFmt === 'image/png';
+    const q = parseInt(qualitySlider.value) / 100;
+    canvas.width  = srcImage.naturalWidth;
+    canvas.height = srcImage.naturalHeight;
+    ctx.drawImage(srcImage, 0, 0);
+    canvas.toBlob(blob => {
+      if (!blob) return;
+      sizeOutput.textContent = fmtBytes(blob.size);
+      if (origSize > 0) {
+        const diff = origSize - blob.size;
+        const pct = ((Math.abs(diff) / origSize) * 100).toFixed(1);
+        if (diff > 0) {
+          savingBadge.textContent = `↓ ${fmtBytes(diff)} smaller (${pct}%)`;
+          savingBadge.style.color = '#22c55e';
+        } else if (diff < 0) {
+          savingBadge.textContent = `↑ ${fmtBytes(-diff)} larger (+${pct}%)`;
+          savingBadge.style.color = 'var(--ds-color-text-muted)';
+        } else {
+          savingBadge.textContent = 'Same size';
+          savingBadge.style.color = 'var(--ds-color-text-muted)';
+        }
+        savingBadge.classList.add('visible');
+      }
+    }, outputFmt, isPng ? undefined : q);
+  }
+
+  qualitySlider.addEventListener('input', () => {
+    qualityVal.textContent = qualitySlider.value + '%';
+    updateOutputSize();
+  });
+
+  document.querySelectorAll('.fmt-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fmt-card').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      outputFmt = btn.dataset.fmt;
+      outputExt = btn.dataset.ext;
+      const isPng = outputFmt === 'image/png';
+      qualitySection.style.opacity = isPng ? '0.4' : '1';
+      qualitySlider.disabled = isPng;
+      const label = mimeToLabel(outputFmt);
+      fmtOutput.textContent = label;
+      btnLabel.textContent = `Download ${label}`;
+      updateOutputSize();
+    });
+  });
+
+  function loadFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    origSize = file.size;
+    origType = file.type;
+    sizeOriginal.textContent = fmtBytes(origSize);
+    fmtOriginal.textContent  = mimeToLabel(origType) || file.name.split('.').pop().toUpperCase();
+    metaFilename.textContent = file.name;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        srcImage = img;
+        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
+        metaFormat.textContent = mimeToLabel(origType);
+        imgPreview.src = e.target.result;
+        dropZone.style.display = 'none';
+        imgWrap.style.display  = 'flex';
+        btnChange.style.display = 'block';
+        btnDownload.disabled = false;
+        updateOutputSize();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); loadFile(e.dataTransfer.files[0]); });
+  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+  btnChange.addEventListener('click', () => fileInput.click());
+
+  btnDownload.addEventListener('click', () => {
+    if (!srcImage) return;
+    canvas.width  = srcImage.naturalWidth;
+    canvas.height = srcImage.naturalHeight;
+    ctx.drawImage(srcImage, 0, 0);
+    const q = parseInt(qualitySlider.value) / 100;
+    const isPng = outputFmt === 'image/png';
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const srcName = metaFilename.textContent.replace(/\.[^.]+$/, '');
+      const a = Object.assign(document.createElement('a'), { href: url, download: `${srcName}.${outputExt}` });
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }, outputFmt, isPng ? undefined : q);
+  });
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

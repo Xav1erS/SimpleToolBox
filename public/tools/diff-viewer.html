@@ -304,6 +304,210 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const CONTEXT_LINES = 3;
+  let diffMode = 'lines';
+  let diffTimer = null;
+  let lastDiffText = '';
+
+  const textA = document.getElementById('textA');
+  const textB = document.getElementById('textB');
+  const statA = document.getElementById('statA');
+  const statB = document.getElementById('statB');
+  const diffOutput = document.getElementById('diffOutput');
+  const diffSummary = document.getElementById('diffSummary');
+  const ignoreWS = document.getElementById('ignoreWhitespace');
+
+  function lineCount(text) {
+    if (!text) return 0;
+    return text.split('\n').length;
+  }
+
+  function updateStats() {
+    statA.textContent = `${lineCount(textA.value)} lines`;
+    statB.textContent = `${lineCount(textB.value)} lines`;
+  }
+
+  function compare() {
+    const a = textA.value;
+    const b = textB.value;
+
+    if (!a && !b) {
+      diffOutput.innerHTML = '<div class="diff-empty">Paste text in both panels above to compare</div>';
+      diffSummary.innerHTML = '';
+      lastDiffText = '';
+      return;
+    }
+
+    const DiffLib = window.Diff;
+    if (!DiffLib) {
+      diffOutput.innerHTML = '<div class="diff-empty" style="color:#ef4444">diff library not loaded</div>';
+      return;
+    }
+
+    let parts;
+    const opts = { ignoreWhitespace: ignoreWS.checked };
+
+    try {
+      if (diffMode === 'lines') {
+        parts = DiffLib.diffLines(a, b, opts);
+      } else if (diffMode === 'words') {
+        parts = DiffLib.diffWords(a, b, opts);
+      } else {
+        parts = DiffLib.diffChars(a, b, opts);
+      }
+    } catch (e) {
+      diffOutput.innerHTML = `<div class="diff-empty" style="color:#ef4444">Error: ${e.message}</div>`;
+      return;
+    }
+
+    let addedCount = 0;
+    let removedCount = 0;
+
+    if (diffMode === 'lines') {
+      // For line diff: render with context collapsing
+      const lines = [];
+      for (const part of parts) {
+        const partLines = part.value.split('\n');
+        // Remove trailing empty string from split
+        if (partLines[partLines.length - 1] === '') partLines.pop();
+        for (const line of partLines) {
+          if (part.added) { lines.push({ type: 'added', text: line }); addedCount++; }
+          else if (part.removed) { lines.push({ type: 'removed', text: line }); removedCount++; }
+          else { lines.push({ type: 'context', text: line }); }
+        }
+      }
+
+      // Determine which context lines to show
+      const changedIndexes = new Set();
+      lines.forEach((l, i) => { if (l.type !== 'context') changedIndexes.add(i); });
+
+      const visible = new Set();
+      changedIndexes.forEach(i => {
+        for (let j = Math.max(0, i - CONTEXT_LINES); j <= Math.min(lines.length - 1, i + CONTEXT_LINES); j++) {
+          visible.add(j);
+        }
+      });
+
+      const html = [];
+      let prevVisible = true;
+      for (let i = 0; i < lines.length; i++) {
+        if (!visible.has(i)) {
+          if (prevVisible) {
+            html.push('<div class="diff-sep">...</div>');
+            prevVisible = false;
+          }
+          continue;
+        }
+        prevVisible = true;
+        const line = lines[i];
+        const cls = line.type === 'added' ? 'diff-line diff-added'
+                  : line.type === 'removed' ? 'diff-line diff-removed'
+                  : 'diff-line diff-context';
+        const prefix = line.type === 'added' ? '+' : line.type === 'removed' ? '-' : ' ';
+        const escaped = escapeHtml(line.text);
+        html.push(`<div class="${cls}"><span class="diff-prefix">${prefix}</span>${escaped}</div>`);
+      }
+
+      diffOutput.innerHTML = html.length ? html.join('') : '<div class="diff-empty" style="color:#22c55e">No differences found</div>';
+    } else {
+      // Word/char diff: inline highlighting
+      const html = [];
+      for (const part of parts) {
+        if (part.added) {
+          addedCount += part.value.length;
+          html.push(`<span style="background:rgba(34,197,94,0.18);color:#22c55e">${escapeHtml(part.value)}</span>`);
+        } else if (part.removed) {
+          removedCount += part.value.length;
+          html.push(`<span style="background:rgba(239,68,68,0.18);color:#ef4444;text-decoration:line-through">${escapeHtml(part.value)}</span>`);
+        } else {
+          html.push(`<span style="color:var(--ds-color-text-secondary)">${escapeHtml(part.value)}</span>`);
+        }
+      }
+      const label = diffMode === 'words' ? 'words' : 'chars';
+      diffOutput.innerHTML = `<div class="diff-line diff-context" style="white-space:pre-wrap;word-break:break-all">${html.join('')}</div>`;
+    }
+
+    // Summary
+    const addedLabel = diffMode === 'lines' ? 'lines added' : diffMode === 'words' ? 'words added' : 'chars added';
+    const removedLabel = diffMode === 'lines' ? 'lines removed' : diffMode === 'words' ? 'words removed' : 'chars removed';
+    diffSummary.innerHTML = addedCount || removedCount
+      ? `<span class="diff-added-count">+${addedCount}</span> ${addedLabel}, <span class="diff-removed-count">-${removedCount}</span> ${removedLabel}`
+      : '<span style="color:#22c55e">Identical</span>';
+
+    // Store plain-text diff for copy
+    lastDiffText = Array.from(diffOutput.querySelectorAll('.diff-line, .diff-sep'))
+      .map(el => el.textContent).join('\n');
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function scheduleDiff() {
+    clearTimeout(diffTimer);
+    diffTimer = setTimeout(compare, 300);
+    updateStats();
+  }
+
+  textA.addEventListener('input', scheduleDiff);
+  textB.addEventListener('input', scheduleDiff);
+  ignoreWS.addEventListener('change', compare);
+  document.getElementById('btnCompare').addEventListener('click', compare);
+
+  document.querySelectorAll('[data-diffmode]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      diffMode = btn.dataset.diffmode;
+      document.querySelectorAll('[data-diffmode]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      compare();
+    });
+  });
+
+  document.getElementById('btnPasteA').addEventListener('click', async () => {
+    try { textA.value = await navigator.clipboard.readText(); scheduleDiff(); } catch {}
+  });
+  document.getElementById('btnPasteB').addEventListener('click', async () => {
+    try { textB.value = await navigator.clipboard.readText(); scheduleDiff(); } catch {}
+  });
+  document.getElementById('btnClearA').addEventListener('click', () => { textA.value = ''; scheduleDiff(); });
+  document.getElementById('btnClearB').addEventListener('click', () => { textB.value = ''; scheduleDiff(); });
+
+  document.getElementById('btnClearAll').addEventListener('click', () => {
+    textA.value = '';
+    textB.value = '';
+    diffOutput.innerHTML = '<div class="diff-empty">Paste text in both panels above to compare</div>';
+    diffSummary.innerHTML = '';
+    lastDiffText = '';
+    updateStats();
+  });
+
+  async function copyText(text, button) {
+    if (!text) return;
+    const originalHtml = button.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = originalHtml; }, 1500);
+  }
+
+  document.getElementById('btnCopyDiff').addEventListener('click', () => {
+    const btn = document.getElementById('btnCopyDiff');
+    copyText(lastDiffText || diffOutput.innerText, btn);
+  });
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

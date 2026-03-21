@@ -458,6 +458,242 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  // ── Morse table ──────────────────────────────────────────
+  const MORSE = {
+    'A':'.-',   'B':'-...', 'C':'-.-.', 'D':'-..', 'E':'.',
+    'F':'..-.', 'G':'--.', 'H':'....', 'I':'..', 'J':'.---',
+    'K':'-.-',  'L':'.-..', 'M':'--', 'N':'-.', 'O':'---',
+    'P':'.--.', 'Q':'--.-', 'R':'.-.', 'S':'...', 'T':'-',
+    'U':'..-',  'V':'...-', 'W':'.--', 'X':'-..-', 'Y':'-.--',
+    'Z':'--..',
+    '0':'-----','1':'.----','2':'..---','3':'...--','4':'....-',
+    '5':'.....','6':'-....','7':'--...','8':'---..','9':'----.',
+    '.':'.-.-.-', ',':'--..--', '?':'..--..', '!':'-.-.--',
+    "'":'.----.',  '(':'-.--.', ')':'-.--.-', '&':'.-...',
+    ':':'---...',  '=':'-...-',  '+':'.-.-.', '-':'-....-',
+    '/':'-..-.', '@':'.--.-.', '_':'..--.-'
+  };
+  const REVERSE = {};
+  for (const [ch, code] of Object.entries(MORSE)) REVERSE[code] = ch;
+
+  // ── State ────────────────────────────────────────────────
+  let mode = 'encode';
+  let wordSep = 'slash'; // 'slash' | 'double'
+
+  // ── DOM refs ─────────────────────────────────────────────
+  const btnEncode     = document.getElementById('btnEncode');
+  const btnDecode     = document.getElementById('btnDecode');
+  const sepSlash      = document.getElementById('sepSlash');
+  const sepDouble     = document.getElementById('sepDouble');
+  const btnSwap       = document.getElementById('btnSwap');
+  const inputText     = document.getElementById('inputText');
+  const outputText    = document.getElementById('outputText');
+  const inputStat     = document.getElementById('inputStat');
+  const outputStat    = document.getElementById('outputStat');
+  const inputLabel    = document.getElementById('inputLabel');
+  const outputLabel   = document.getElementById('outputLabel');
+  const runLabel      = document.getElementById('runLabel');
+  const btnRun        = document.getElementById('btnRun');
+  const btnCopyHeader = document.getElementById('btnCopyHeader');
+  const btnCopyResult = document.getElementById('btnCopyResult');
+  const btnPaste      = document.getElementById('btnPaste');
+  const btnClearInput = document.getElementById('btnClearInput');
+  const btnClearAll   = document.getElementById('btnClearAll');
+  const outputPanel   = document.getElementById('outputPanel');
+  const errorMsg      = document.getElementById('errorMsg');
+  const arrowIcon     = document.getElementById('arrowIcon');
+
+  // ── Encode ───────────────────────────────────────────────
+  function encodeText(text) {
+    const sep = wordSep === 'slash' ? ' / ' : '  ';
+    const words = text.toUpperCase().split(' ');
+    const encoded = words.map(word => {
+      return word.split('').map(ch => {
+        if (ch === ' ') return sep.trim();
+        return MORSE[ch] || '?';
+      }).join(' ');
+    });
+    return encoded.join(sep);
+  }
+
+  // ── Decode ───────────────────────────────────────────────
+  function decodeMorse(morse) {
+    const sep = wordSep === 'slash' ? ' / ' : '  ';
+    const words = morse.split(sep);
+    let hasError = false;
+    const decoded = words.map(word => {
+      const chars = word.trim().split(' ').filter(s => s.length > 0);
+      return chars.map(code => {
+        if (code === '') return '';
+        const ch = REVERSE[code];
+        if (ch === undefined) { hasError = true; return '?'; }
+        return ch;
+      }).join('');
+    }).join(' ');
+    return { result: decoded, hasError };
+  }
+
+  // ── Run ──────────────────────────────────────────────────
+  function run() {
+    const inp = inputText.value;
+    errorMsg.style.display = 'none';
+    outputPanel.classList.remove('has-error');
+
+    if (!inp.trim()) {
+      outputText.value = '';
+      updateStats();
+      return;
+    }
+
+    if (mode === 'encode') {
+      outputText.value = encodeText(inp);
+    } else {
+      const { result, hasError } = decodeMorse(inp);
+      outputText.value = result;
+      if (hasError) {
+        outputPanel.classList.add('has-error');
+        errorMsg.style.display = 'inline';
+        errorMsg.textContent = 'Unknown Morse sequence — unrecognised codes shown as ?';
+      }
+    }
+    updateStats();
+  }
+
+  function updateStats() {
+    const ic = inputText.value.length;
+    const oc = outputText.value.length;
+    inputStat.textContent  = ic ? `${ic.toLocaleString()} chars` : '0 chars';
+    outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
+  }
+
+  // ── Mode switch ──────────────────────────────────────────
+  function setMode(m) {
+    mode = m;
+    btnEncode.classList.toggle('active', m === 'encode');
+    btnDecode.classList.toggle('active', m === 'decode');
+    inputLabel.textContent  = m === 'encode' ? 'Plain Text'   : 'Morse Code';
+    outputLabel.textContent = m === 'encode' ? 'Morse Code'   : 'Plain Text';
+    runLabel.textContent    = m === 'encode' ? 'Encode'       : 'Decode';
+    inputText.placeholder   = m === 'encode'
+      ? 'Type or paste text here…'
+      : 'Paste Morse code here (e.g. .... . .-.. .-.. --- / .-- --- .-. .-.. -..)';
+    arrowIcon.textContent   = m === 'encode' ? '→' : '←';
+    outputPanel.classList.remove('has-error');
+    errorMsg.style.display  = 'none';
+    run();
+  }
+
+  btnEncode.addEventListener('click', () => setMode('encode'));
+  btnDecode.addEventListener('click', () => setMode('decode'));
+
+  // ── Word separator ───────────────────────────────────────
+  function setSep(s) {
+    wordSep = s;
+    sepSlash.classList.toggle('active', s === 'slash');
+    sepDouble.classList.toggle('active', s === 'double');
+    run();
+  }
+  sepSlash.addEventListener('click',  () => setSep('slash'));
+  sepDouble.addEventListener('click', () => setSep('double'));
+
+  // ── Swap ─────────────────────────────────────────────────
+  btnSwap.addEventListener('click', () => {
+    const out = outputText.value;
+    if (!out) return;
+    inputText.value = out;
+    setMode(mode === 'encode' ? 'decode' : 'encode');
+  });
+
+  // ── Live update ──────────────────────────────────────────
+  inputText.addEventListener('input', run);
+
+  // ── Clipboard ────────────────────────────────────────────
+  async function copyToClipboard(text, btn, label) {
+    if (!text) return;
+    const orig = btn.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ${label || '✓ Copied'}`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
+  }
+
+  btnCopyHeader.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyHeader, '✓ Copied'));
+  btnCopyResult.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyResult, '✓ Copied'));
+
+  // ── Paste / Clear ─────────────────────────────────────────
+  btnPaste.addEventListener('click', async () => {
+    try {
+      inputText.value = await navigator.clipboard.readText();
+      run();
+    } catch { /* permission denied */ }
+  });
+
+  btnClearInput.addEventListener('click', () => {
+    inputText.value = '';
+    outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    errorMsg.style.display = 'none';
+    updateStats();
+  });
+
+  btnClearAll.addEventListener('click', () => {
+    inputText.value = '';
+    outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    errorMsg.style.display = 'none';
+    updateStats();
+  });
+
+  // ── Run button ────────────────────────────────────────────
+  btnRun.addEventListener('click', run);
+
+  // ── Keyboard: Ctrl/Cmd+Enter ─────────────────────────────
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run();
+  });
+
+  // ── Reference table toggle ────────────────────────────────
+  const refToggleBtn  = document.getElementById('refToggleBtn');
+  const refBody       = document.getElementById('refBody');
+  const refToggleIcon = document.getElementById('refToggleIcon');
+
+  refToggleBtn.addEventListener('click', () => {
+    const open = refBody.classList.toggle('open');
+    refToggleIcon.classList.toggle('open', open);
+    refToggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // ── Build reference table ─────────────────────────────────
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const digits  = '0123456789'.split('');
+  const refLettersEl = document.getElementById('refLetters');
+  const refDigitsEl  = document.getElementById('refDigits');
+
+  letters.forEach(ch => {
+    const div = document.createElement('div');
+    div.className = 'morse-ref-item';
+    div.innerHTML = `<span class="morse-ref-char">${ch}</span><span class="morse-ref-code">${MORSE[ch]}</span>`;
+    refLettersEl.appendChild(div);
+  });
+  digits.forEach(ch => {
+    const div = document.createElement('div');
+    div.className = 'morse-ref-item';
+    div.innerHTML = `<span class="morse-ref-char">${ch}</span><span class="morse-ref-code">${MORSE[ch]}</span>`;
+    refDigitsEl.appendChild(div);
+  });
+
+  // ── Init ──────────────────────────────────────────────────
+  setMode('encode');
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

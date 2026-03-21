@@ -216,6 +216,150 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+const MIME_DATA = [
+  // Web
+  {exts:['.html','.htm'], mime:'text/html; charset=utf-8',       cat:'Web',      desc:'HTML document'},
+  {exts:['.css'],         mime:'text/css',                        cat:'Web',      desc:'Cascading Style Sheet'},
+  {exts:['.js','.mjs'],  mime:'text/javascript',                  cat:'Web',      desc:'JavaScript module or script'},
+  {exts:['.ts'],          mime:'text/typescript',                  cat:'Web',      desc:'TypeScript source'},
+  {exts:['.jsx'],         mime:'text/jsx',                         cat:'Web',      desc:'JSX (React) source'},
+  {exts:['.tsx'],         mime:'text/tsx',                         cat:'Web',      desc:'TSX (React + TypeScript)'},
+  {exts:['.wasm'],        mime:'application/wasm',                 cat:'Web',      desc:'WebAssembly binary'},
+  {exts:['.map'],         mime:'application/json',                 cat:'Web',      desc:'Source map file'},
+  // Data
+  {exts:['.json'],        mime:'application/json',                 cat:'Data',     desc:'JSON data'},
+  {exts:['.jsonl'],       mime:'application/x-ndjson',             cat:'Data',     desc:'Newline-delimited JSON'},
+  {exts:['.xml'],         mime:'application/xml',                  cat:'Data',     desc:'XML document'},
+  {exts:['.yaml','.yml'], mime:'application/yaml',                 cat:'Data',     desc:'YAML data'},
+  {exts:['.toml'],        mime:'application/toml',                 cat:'Data',     desc:'TOML configuration'},
+  {exts:['.csv'],         mime:'text/csv',                         cat:'Data',     desc:'Comma-separated values'},
+  {exts:['.tsv'],         mime:'text/tab-separated-values',        cat:'Data',     desc:'Tab-separated values'},
+  {exts:['.sql'],         mime:'application/sql',                  cat:'Data',     desc:'SQL script'},
+  {exts:['.graphql'],     mime:'application/graphql',              cat:'Data',     desc:'GraphQL query'},
+  {exts:['.ndjson'],      mime:'application/x-ndjson',             cat:'Data',     desc:'Newline-delimited JSON'},
+  {exts:['.protobuf'],    mime:'application/protobuf',             cat:'Data',     desc:'Protocol Buffers'},
+  // Image
+  {exts:['.png'],         mime:'image/png',                        cat:'Image',    desc:'PNG image'},
+  {exts:['.jpg','.jpeg'], mime:'image/jpeg',                       cat:'Image',    desc:'JPEG image'},
+  {exts:['.gif'],         mime:'image/gif',                        cat:'Image',    desc:'GIF image'},
+  {exts:['.webp'],        mime:'image/webp',                       cat:'Image',    desc:'WebP image'},
+  {exts:['.avif'],        mime:'image/avif',                       cat:'Image',    desc:'AVIF image (AV1)'},
+  {exts:['.svg'],         mime:'image/svg+xml',                    cat:'Image',    desc:'SVG vector image'},
+  {exts:['.ico'],         mime:'image/x-icon',                     cat:'Image',    desc:'Favicon / icon'},
+  {exts:['.bmp'],         mime:'image/bmp',                        cat:'Image',    desc:'Bitmap image'},
+  {exts:['.tiff','.tif'], mime:'image/tiff',                       cat:'Image',    desc:'TIFF image'},
+  {exts:['.heic'],        mime:'image/heic',                       cat:'Image',    desc:'HEIC image (Apple)'},
+  {exts:['.heif'],        mime:'image/heif',                       cat:'Image',    desc:'HEIF image'},
+  {exts:['.jxl'],         mime:'image/jxl',                        cat:'Image',    desc:'JPEG XL image'},
+  // Video
+  {exts:['.mp4'],         mime:'video/mp4',                        cat:'Video',    desc:'MPEG-4 video'},
+  {exts:['.webm'],        mime:'video/webm',                       cat:'Video',    desc:'WebM video'},
+  {exts:['.ogg','.ogv'],  mime:'video/ogg',                        cat:'Video',    desc:'Ogg video'},
+  {exts:['.mov'],         mime:'video/quicktime',                  cat:'Video',    desc:'QuickTime video'},
+  {exts:['.avi'],         mime:'video/x-msvideo',                  cat:'Video',    desc:'AVI video'},
+  {exts:['.mkv'],         mime:'video/x-matroska',                 cat:'Video',    desc:'Matroska video'},
+  {exts:['.ts'],          mime:'video/mp2t',                       cat:'Video',    desc:'MPEG-2 Transport Stream'},
+  {exts:['.m3u8'],        mime:'application/x-mpegURL',            cat:'Video',    desc:'HLS playlist'},
+  // Audio
+  {exts:['.mp3'],         mime:'audio/mpeg',                       cat:'Audio',    desc:'MP3 audio'},
+  {exts:['.ogg','.oga'],  mime:'audio/ogg',                        cat:'Audio',    desc:'Ogg Vorbis audio'},
+  {exts:['.wav'],         mime:'audio/wav',                        cat:'Audio',    desc:'WAV audio'},
+  {exts:['.aac'],         mime:'audio/aac',                        cat:'Audio',    desc:'AAC audio'},
+  {exts:['.flac'],        mime:'audio/flac',                       cat:'Audio',    desc:'FLAC lossless audio'},
+  {exts:['.m4a'],         mime:'audio/mp4',                        cat:'Audio',    desc:'M4A audio (AAC in MP4)'},
+  {exts:['.opus'],        mime:'audio/opus',                       cat:'Audio',    desc:'Opus audio'},
+  {exts:['.webm'],        mime:'audio/webm',                       cat:'Audio',    desc:'WebM audio'},
+  // Font
+  {exts:['.woff'],        mime:'font/woff',                        cat:'Font',     desc:'Web Open Font Format 1'},
+  {exts:['.woff2'],       mime:'font/woff2',                       cat:'Font',     desc:'Web Open Font Format 2'},
+  {exts:['.ttf'],         mime:'font/ttf',                         cat:'Font',     desc:'TrueType font'},
+  {exts:['.otf'],         mime:'font/otf',                         cat:'Font',     desc:'OpenType font'},
+  {exts:['.eot'],         mime:'application/vnd.ms-fontobject',    cat:'Font',     desc:'Embedded OpenType (IE legacy)'},
+  // Document
+  {exts:['.pdf'],         mime:'application/pdf',                  cat:'Document', desc:'PDF document'},
+  {exts:['.txt'],         mime:'text/plain',                       cat:'Document', desc:'Plain text'},
+  {exts:['.md'],          mime:'text/markdown',                    cat:'Document', desc:'Markdown document'},
+  {exts:['.rtf'],         mime:'application/rtf',                  cat:'Document', desc:'Rich Text Format'},
+  {exts:['.doc'],         mime:'application/msword',               cat:'Document', desc:'Microsoft Word (legacy)'},
+  {exts:['.docx'],        mime:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', cat:'Document', desc:'Microsoft Word (OOXML)'},
+  {exts:['.xls'],         mime:'application/vnd.ms-excel',         cat:'Document', desc:'Microsoft Excel (legacy)'},
+  {exts:['.xlsx'],        mime:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', cat:'Document', desc:'Microsoft Excel (OOXML)'},
+  {exts:['.ppt'],         mime:'application/vnd.ms-powerpoint',    cat:'Document', desc:'Microsoft PowerPoint (legacy)'},
+  {exts:['.pptx'],        mime:'application/vnd.openxmlformats-officedocument.presentationml.presentation', cat:'Document', desc:'Microsoft PowerPoint (OOXML)'},
+  {exts:['.odt'],         mime:'application/vnd.oasis.opendocument.text', cat:'Document', desc:'OpenDocument Text'},
+  {exts:['.ods'],         mime:'application/vnd.oasis.opendocument.spreadsheet', cat:'Document', desc:'OpenDocument Spreadsheet'},
+  {exts:['.epub'],        mime:'application/epub+zip',             cat:'Document', desc:'ePub ebook'},
+  // Archive
+  {exts:['.zip'],         mime:'application/zip',                  cat:'Archive',  desc:'ZIP archive'},
+  {exts:['.tar'],         mime:'application/x-tar',                cat:'Archive',  desc:'TAR archive'},
+  {exts:['.gz','.tar.gz'],mime:'application/gzip',                 cat:'Archive',  desc:'Gzip compressed'},
+  {exts:['.bz2'],         mime:'application/x-bzip2',              cat:'Archive',  desc:'Bzip2 compressed'},
+  {exts:['.xz'],          mime:'application/x-xz',                 cat:'Archive',  desc:'XZ compressed'},
+  {exts:['.7z'],          mime:'application/x-7z-compressed',      cat:'Archive',  desc:'7-Zip archive'},
+  {exts:['.rar'],         mime:'application/x-rar-compressed',     cat:'Archive',  desc:'RAR archive'},
+  {exts:['.jar'],         mime:'application/java-archive',         cat:'Archive',  desc:'Java archive'},
+  {exts:['.whl'],         mime:'application/zip',                  cat:'Archive',  desc:'Python wheel package'},
+  // Binary / App
+  {exts:['.bin'],         mime:'application/octet-stream',         cat:'Data',     desc:'Generic binary data'},
+  {exts:['.exe'],         mime:'application/octet-stream',         cat:'Data',     desc:'Windows executable'},
+  {exts:['.dmg'],         mime:'application/octet-stream',         cat:'Data',     desc:'macOS disk image'},
+  {exts:['.apk'],         mime:'application/vnd.android.package-archive', cat:'Data', desc:'Android package'},
+  {exts:['.ipa'],         mime:'application/octet-stream',         cat:'Data',     desc:'iOS app package'},
+];
+
+  let activeCat = 'all';
+  let query = '';
+
+  function render() {
+    const q = query.toLowerCase().replace(/^\./,'');
+    const filtered = MIME_DATA.filter(m => {
+      const matchCat = activeCat === 'all' || m.cat === activeCat;
+      const matchQ = !q || m.exts.some(e => e.toLowerCase().includes(q)) || m.mime.toLowerCase().includes(q) || m.desc.toLowerCase().includes(q);
+      return matchCat && matchQ;
+    });
+
+    const tbody = document.getElementById('mimeBody');
+    tbody.innerHTML = filtered.map((m, i) => `
+      <tr>
+        <td class="ext-cell">${m.exts.map(e => `<span class="ext-badge">${e}</span>`).join('')}</td>
+        <td class="mime-cell">${m.mime}</td>
+        <td><span class="cat-badge">${m.cat}</span></td>
+        <td><button class="copy-btn" data-i="${i}" title="Copy MIME type">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button></td>
+      </tr>`).join('');
+
+    document.getElementById('noResult').style.display = filtered.length ? 'none' : 'block';
+    document.getElementById('statLine').textContent = `Showing ${filtered.length} of ${MIME_DATA.length} MIME types`;
+
+    // Store filtered for copy
+    tbody.querySelectorAll('.copy-btn').forEach(btn => {
+      const idx = parseInt(btn.dataset.i);
+      btn.addEventListener('click', async () => {
+        const mime = filtered[idx].mime;
+        try { await navigator.clipboard.writeText(mime); } catch {}
+        btn.classList.add('copied');
+        btn.innerHTML = '&#10003; Copied';
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy'; }, 1500);
+      });
+    });
+  }
+
+  document.getElementById('searchInput').addEventListener('input', e => { query = e.target.value; render(); });
+
+  document.querySelectorAll('[data-cat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCat = btn.dataset.cat;
+      document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    });
+  });
+
+  render();
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

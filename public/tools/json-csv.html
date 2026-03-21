@@ -252,6 +252,241 @@ Bob,25</span>
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+(function () {
+  const inputArea  = document.getElementById('inputArea');
+  const outputArea = document.getElementById('outputArea');
+  const inputLabel = document.getElementById('inputLabel');
+  const outputLabel= document.getElementById('outputLabel');
+  const inputStat  = document.getElementById('inputStat');
+  const outputStat = document.getElementById('outputStat');
+  const errorBox   = document.getElementById('errorBox');
+  const btnConvert = document.getElementById('btnConvert');
+  const btnPaste   = document.getElementById('btnPaste');
+  const btnClear   = document.getElementById('btnClear');
+  const btnCopy    = document.getElementById('btnCopy');
+  const headerRow  = document.getElementById('headerRow');
+  const arrowEl    = document.getElementById('arrowEl');
+
+  let currentMode = 'json2csv';
+  let currentDelim = ',';
+  let debounceTimer = null;
+
+  // ---- Mode buttons ----
+  document.querySelectorAll('.ds-tool-modebtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ds-tool-modebtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentMode = btn.dataset.mode;
+      updateLabels();
+      clearOutput();
+      debounceConvert();
+    });
+  });
+
+  // ---- Delimiter buttons ----
+  document.querySelectorAll('#delimCtrl .seg-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#delimCtrl .seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDelim = btn.dataset.delim;
+      debounceConvert();
+    });
+  });
+
+  headerRow.addEventListener('change', debounceConvert);
+
+  function updateLabels() {
+    if (currentMode === 'json2csv') {
+      inputLabel.textContent  = 'JSON Input';
+      outputLabel.textContent = 'CSV Output';
+      inputArea.placeholder   = '[{"name":"Alice","age":30},{"name":"Bob","age":25}]';
+      arrowEl.textContent = '→';
+    } else {
+      inputLabel.textContent  = 'CSV Input';
+      outputLabel.textContent = 'JSON Output';
+      inputArea.placeholder   = 'name,age\nAlice,30\nBob,25';
+      arrowEl.textContent = '→';
+    }
+  }
+
+  function clearOutput() {
+    outputArea.value = '';
+    outputStat.textContent = '0 chars';
+    hideError();
+  }
+
+  function showError(msg) {
+    errorBox.textContent = '⚠ ' + msg;
+    errorBox.style.display = 'block';
+  }
+
+  function hideError() {
+    errorBox.style.display = 'none';
+  }
+
+  // ---- JSON → CSV ----
+  function jsonToCSV(jsonStr, delimiter, hasHeader) {
+    const data = JSON.parse(jsonStr);
+    if (!Array.isArray(data) || data.length === 0) {
+      throw new Error('Input must be a non-empty JSON array of objects.');
+    }
+    if (typeof data[0] !== 'object' || data[0] === null || Array.isArray(data[0])) {
+      throw new Error('Each element in the JSON array must be an object.');
+    }
+    const keys = Object.keys(data[0]);
+    const escape = (v) => {
+      const s = String(v ?? '');
+      if (s.includes(delimiter) || s.includes('"') || s.includes('\n') || s.includes('\r')) {
+        return '"' + s.replace(/"/g, '""') + '"';
+      }
+      return s;
+    };
+    const rows = data.map(row => keys.map(k => escape(row[k])).join(delimiter));
+    if (hasHeader) {
+      return [keys.map(escape).join(delimiter), ...rows].join('\n');
+    }
+    return rows.join('\n');
+  }
+
+  // ---- CSV → JSON ----
+  function parseCsvLine(line, delimiter) {
+    const vals = [];
+    let i = 0;
+    const len = line.length;
+    const delimLen = delimiter.length;
+    while (i <= len) {
+      if (i === len) {
+        vals.push('');
+        break;
+      }
+      if (line[i] === '"') {
+        // quoted field
+        let end = i + 1;
+        let field = '';
+        while (end < len) {
+          if (line[end] === '"') {
+            if (line[end + 1] === '"') {
+              field += '"';
+              end += 2;
+            } else {
+              end++;
+              break;
+            }
+          } else {
+            field += line[end];
+            end++;
+          }
+        }
+        vals.push(field);
+        // skip delimiter after closing quote
+        if (line.slice(end, end + delimLen) === delimiter) {
+          i = end + delimLen;
+        } else {
+          i = end + 1;
+        }
+      } else {
+        const next = line.indexOf(delimiter, i);
+        if (next === -1) {
+          vals.push(line.slice(i));
+          break;
+        } else {
+          vals.push(line.slice(i, next));
+          i = next + delimLen;
+        }
+      }
+    }
+    return vals;
+  }
+
+  function csvToJSON(csvStr, delimiter, hasHeader) {
+    const lines = csvStr.trim().split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    if (lines.length === 0) throw new Error('Empty input.');
+    if (hasHeader) {
+      if (lines.length < 2) throw new Error('CSV must have at least a header row and one data row.');
+      const headers = parseCsvLine(lines[0], delimiter);
+      return lines.slice(1).map(line => {
+        const vals = parseCsvLine(line, delimiter);
+        const obj = {};
+        headers.forEach((h, idx) => { obj[h] = vals[idx] !== undefined ? vals[idx] : ''; });
+        return obj;
+      });
+    } else {
+      return lines.map(line => parseCsvLine(line, delimiter));
+    }
+  }
+
+  // ---- Main convert ----
+  function convert() {
+    hideError();
+    const input = inputArea.value;
+    if (!input.trim()) {
+      clearOutput();
+      return;
+    }
+    try {
+      let result;
+      if (currentMode === 'json2csv') {
+        result = jsonToCSV(input, currentDelim, headerRow.checked);
+      } else {
+        const arr = csvToJSON(input, currentDelim, headerRow.checked);
+        result = JSON.stringify(arr, null, 2);
+      }
+      outputArea.value = result;
+      outputStat.textContent = result.length.toLocaleString() + ' chars';
+    } catch (err) {
+      outputArea.value = '';
+      outputStat.textContent = '0 chars';
+      showError(err.message);
+    }
+  }
+
+  function debounceConvert() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(convert, 300);
+  }
+
+  // ---- Input stat update ----
+  inputArea.addEventListener('input', () => {
+    inputStat.textContent = inputArea.value.length.toLocaleString() + ' chars';
+    debounceConvert();
+  });
+
+  // ---- Buttons ----
+  btnConvert.addEventListener('click', convert);
+
+  btnPaste.addEventListener('click', async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      inputArea.value = text;
+      inputStat.textContent = text.length.toLocaleString() + ' chars';
+      debounceConvert();
+    } catch {
+      inputArea.focus();
+    }
+  });
+
+  btnClear.addEventListener('click', () => {
+    inputArea.value = '';
+    inputStat.textContent = '0 chars';
+    clearOutput();
+  });
+
+  btnCopy.addEventListener('click', () => {
+    const text = outputArea.value;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      btnCopy.innerHTML = '✓ Copied';
+      btnCopy.style.color = '#22c55e';
+      setTimeout(() => {
+        btnCopy.innerHTML = 'Copy';
+        btnCopy.style.color = '';
+      }, 1500);
+    });
+  });
+
+})();
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

@@ -267,6 +267,189 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const SAMPLE_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+  <book category="fiction">
+    <title lang="en">The Great Gatsby</title>
+    <author>F. Scott Fitzgerald</author>
+    <year>1925</year>
+    <price>12.99</price>
+  </book>
+  <book category="non-fiction">
+    <title lang="en">Sapiens</title>
+    <author>Yuval Noah Harari</author>
+    <year>2011</year>
+    <price>15.99</price>
+  </book>
+</bookstore>`;
+
+  const SAMPLE_JSON = `{
+  "bookstore": {
+    "book": [
+      {
+        "@attributes": { "category": "fiction" },
+        "title": { "@attributes": { "lang": "en" }, "#text": "The Great Gatsby" },
+        "author": "F. Scott Fitzgerald",
+        "year": "1925",
+        "price": "12.99"
+      },
+      {
+        "@attributes": { "category": "non-fiction" },
+        "title": { "@attributes": { "lang": "en" }, "#text": "Sapiens" },
+        "author": "Yuval Noah Harari",
+        "year": "2011",
+        "price": "15.99"
+      }
+    ]
+  }
+}`;
+
+  let currentMode = 'xml-to-json';
+  let indentSize = 2;
+
+  // XML → JSON
+  function xmlNodeToObj(node) {
+    const obj = {};
+    if (node.attributes && node.attributes.length > 0) {
+      obj['@attributes'] = {};
+      for (const attr of node.attributes) obj['@attributes'][attr.name] = attr.value;
+    }
+    if (node.childNodes.length === 1 && node.childNodes[0].nodeType === 3) {
+      const text = node.childNodes[0].nodeValue.trim();
+      if (Object.keys(obj).length === 0) return text;
+      if (text) obj['#text'] = text;
+      return obj;
+    }
+    for (const child of node.childNodes) {
+      if (child.nodeType === 3) {
+        const text = child.nodeValue.trim();
+        if (text) obj['#text'] = (obj['#text'] || '') + text;
+      } else if (child.nodeType === 4) {
+        obj['#cdata'] = child.nodeValue;
+      } else if (child.nodeType === 1) {
+        const val = xmlNodeToObj(child);
+        if (obj[child.nodeName] === undefined) obj[child.nodeName] = val;
+        else if (!Array.isArray(obj[child.nodeName])) obj[child.nodeName] = [obj[child.nodeName], val];
+        else obj[child.nodeName].push(val);
+      }
+    }
+    return obj;
+  }
+
+  function xmlToJson(xmlStr) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xmlStr, 'application/xml');
+    const err = doc.querySelector('parsererror');
+    if (err) throw new Error(err.textContent.split('\n')[0] || 'XML parse error');
+    const root = doc.documentElement;
+    const result = {};
+    result[root.nodeName] = xmlNodeToObj(root);
+    return JSON.stringify(result, null, indentSize);
+  }
+
+  // JSON → XML
+  function objToXml(key, val, indent) {
+    indent = indent || '';
+    const ni = indent + '  ';
+    if (val === null || val === undefined) return indent + '<' + key + '/>\n';
+    if (Array.isArray(val)) return val.map(item => objToXml(key, item, indent)).join('');
+    if (typeof val !== 'object') return indent + '<' + key + '>' + escXml(String(val)) + '</' + key + '>\n';
+    let attrs = '';
+    let body = '';
+    for (const [k, v] of Object.entries(val)) {
+      if (k === '@attributes' && typeof v === 'object') {
+        attrs = ' ' + Object.entries(v).map(([ak, av]) => ak + '="' + escXml(String(av)) + '"').join(' ');
+      } else if (k === '#text') {
+        body += escXml(String(v));
+      } else if (k === '#cdata') {
+        body += '<![CDATA[' + v + ']]>';
+      } else {
+        body += objToXml(k, v, ni);
+      }
+    }
+    const hasChildren = body.includes('\n') || body.includes('<');
+    if (!body) return indent + '<' + key + attrs + '/>\n';
+    if (hasChildren) return indent + '<' + key + attrs + '>\n' + body + indent + '</' + key + '>\n';
+    return indent + '<' + key + attrs + '>' + body + '</' + key + '>\n';
+  }
+
+  function escXml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+  }
+
+  function jsonToXml(jsonStr) {
+    const obj = JSON.parse(jsonStr);
+    const keys = Object.keys(obj);
+    if (keys.length !== 1) throw new Error('JSON root must have exactly one key (the XML root element)');
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + objToXml(keys[0], obj[keys[0]], '').trimEnd();
+  }
+
+  const inputText = document.getElementById('inputText');
+  const outputText = document.getElementById('outputText');
+  const inputLabel = document.getElementById('inputLabel');
+  const outputLabel = document.getElementById('outputLabel');
+  const outputPanel = document.getElementById('outputPanel');
+  const errorMsg = document.getElementById('errorMsg');
+
+  function run() {
+    outputPanel.classList.remove('has-error');
+    errorMsg.textContent = '';
+    if (!inputText.value.trim()) { outputText.value = ''; updateStats(); return; }
+    try {
+      outputText.value = currentMode === 'xml-to-json' ? xmlToJson(inputText.value) : jsonToXml(inputText.value);
+    } catch (e) {
+      outputPanel.classList.add('has-error');
+      outputText.value = '';
+      errorMsg.textContent = e.message || 'Conversion failed';
+    }
+    updateStats();
+  }
+
+  function updateStats() {
+    document.getElementById('inputStat').textContent = inputText.value.length.toLocaleString() + ' chars';
+    document.getElementById('outputStat').textContent = outputText.value.length.toLocaleString() + ' chars';
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.getElementById('btnXmlToJson').classList.toggle('active', mode === 'xml-to-json');
+    document.getElementById('btnJsonToXml').classList.toggle('active', mode === 'json-to-xml');
+    document.getElementById('optionsBar').style.display = mode === 'xml-to-json' ? '' : 'none';
+    inputLabel.textContent = mode === 'xml-to-json' ? 'XML Input' : 'JSON Input';
+    outputLabel.textContent = mode === 'xml-to-json' ? 'JSON Output' : 'XML Output';
+    inputText.placeholder = mode === 'xml-to-json' ? 'Paste XML here...' : 'Paste JSON here...';
+    inputText.value = ''; outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    updateStats();
+  }
+
+  async function copyText(text, btn) {
+    if (!text) return;
+    const orig = btn.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch { const ta=Object.assign(document.createElement('textarea'),{value:text});ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta); }
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
+  }
+
+  document.getElementById('btnXmlToJson').addEventListener('click', () => setMode('xml-to-json'));
+  document.getElementById('btnJsonToXml').addEventListener('click', () => setMode('json-to-xml'));
+  document.querySelectorAll('[data-indent]').forEach(btn => { btn.addEventListener('click', () => { indentSize=parseInt(btn.dataset.indent,10); document.querySelectorAll('[data-indent]').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); run(); }); });
+  inputText.addEventListener('input', run);
+  document.getElementById('btnRun').addEventListener('click', run);
+  document.getElementById('btnPaste').addEventListener('click', async () => { try { inputText.value = await navigator.clipboard.readText(); run(); } catch {} });
+  document.getElementById('btnSample').addEventListener('click', () => { inputText.value = currentMode==='xml-to-json'?SAMPLE_XML:SAMPLE_JSON; run(); });
+  document.getElementById('btnClearInput').addEventListener('click', () => { inputText.value=''; outputText.value=''; outputPanel.classList.remove('has-error'); updateStats(); });
+  document.getElementById('btnClearAll').addEventListener('click', () => { inputText.value=''; outputText.value=''; outputPanel.classList.remove('has-error'); updateStats(); });
+  document.getElementById('btnCopyHeader').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyHeader')));
+  document.getElementById('btnCopyResult').addEventListener('click', () => copyText(outputText.value, document.getElementById('btnCopyResult')));
+
+  // Escape key: clear input when focused
+  inputText.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); inputText.value = ''; outputText.value = ''; outputPanel.classList.remove('has-error'); updateStats(); }
+  });
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

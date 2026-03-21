@@ -352,6 +352,219 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const SAMPLE_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE2MjM5MDIyLCJleHAiOjk5OTk5OTk5OTl9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
+  const CLAIM_NAMES = {
+    iss: 'Issuer', sub: 'Subject', aud: 'Audience',
+    exp: 'Expiration', nbf: 'Not Before', iat: 'Issued At',
+    jti: 'JWT ID', name: 'Full Name', email: 'Email',
+    role: 'Role', roles: 'Roles', scope: 'Scope',
+    azp: 'Authorized Party', nonce: 'Nonce',
+  };
+
+  function b64urlDecode(str) {
+    str = str.replace(/-/g, '+').replace(/_/g, '/');
+    while (str.length % 4) str += '=';
+    try {
+      return decodeURIComponent(Array.from(atob(str)).map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+    } catch { return atob(str); }
+  }
+
+  function syntaxHighlight(json) {
+    const escaped = json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return escaped.replace(/("(\\u[\dA-Fa-f]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, match => {
+      let cls = 'json-number';
+      if (/^"/.test(match)) {
+        cls = /:$/.test(match) ? 'json-key' : 'json-string';
+        if (cls === 'json-key') match = match.replace(/:$/, '');
+        else return `<span class="${cls}">${match}</span>`;
+        return `<span class="${cls}">${match}</span><span class="json-bracket">:</span>`;
+      } else if (/true|false/.test(match)) cls = 'json-bool';
+      else if (/null/.test(match)) cls = 'json-null';
+      return `<span class="${cls}">${match}</span>`;
+    });
+  }
+
+  function formatTime(ts) {
+    try {
+      return new Date(ts * 1000).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+    } catch { return String(ts); }
+  }
+
+  function getExpStatus(payload) {
+    if (payload.exp == null) return null;
+    const now = Math.floor(Date.now() / 1000);
+    const diff = payload.exp - now;
+    if (diff < 0) return { cls: 'expired', label: `Expired ${Math.abs(Math.round(diff/60))} min ago` };
+    if (diff < 300) return { cls: 'warn', label: `Expires in ${Math.round(diff/60)} min` };
+    if (diff < 3600) return { cls: 'warn', label: `Expires in ${Math.round(diff/60)} min` };
+    return { cls: 'valid', label: `Valid · expires ${formatTime(payload.exp)}` };
+  }
+
+  function renderClaimValue(key, val) {
+    if ((key === 'exp' || key === 'iat' || key === 'nbf') && typeof val === 'number') {
+      const date = formatTime(val);
+      let expCls = '';
+      if (key === 'exp') {
+        const status = getExpStatus({ exp: val });
+        expCls = status ? ` exp-${status.cls}` : '';
+      }
+      return `<span class="${expCls}">${val}</span> <span style="color:var(--text-muted);font-size:11px;">(${date})</span>`;
+    }
+    if (typeof val === 'object') return `<code style="font-size:11px;color:var(--text-secondary)">${JSON.stringify(val)}</code>`;
+    return `${val}`;
+  }
+
+  let parsedData = { header: null, payload: null, sig: '' };
+
+  function decode(token) {
+    token = token.trim();
+    const errorBanner = document.getElementById('errorBanner');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const decodedArea = document.getElementById('decodedArea');
+    const copyRow = document.getElementById('copyRow');
+
+    if (!token) {
+      errorBanner.classList.remove('show');
+      statusDot.className = 'status-dot none';
+      statusText.className = 'status-text';
+      statusText.textContent = 'Awaiting token…';
+      decodedArea.innerHTML = `<div class="empty-state"><div class="empty-icon">🔐</div><div class="empty-title">Paste a JWT to decode</div><div class="empty-sub">Supports HS256, RS256, ES256 and all standard JWT algorithms</div></div>`;
+      copyRow.style.display = 'none';
+      parsedData = { header: null, payload: null, sig: '' };
+      return;
+    }
+
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      errorBanner.textContent = 'Invalid JWT: expected 3 dot-separated segments (header.payload.signature).';
+      errorBanner.classList.add('show');
+      decodedArea.innerHTML = '';
+      copyRow.style.display = 'none';
+      return;
+    }
+
+    let header, payload;
+    try { header = JSON.parse(b64urlDecode(parts[0])); } catch {
+      errorBanner.textContent = 'Failed to decode header: invalid Base64url or JSON.';
+      errorBanner.classList.add('show'); return;
+    }
+    try { payload = JSON.parse(b64urlDecode(parts[1])); } catch {
+      errorBanner.textContent = 'Failed to decode payload: invalid Base64url or JSON.';
+      errorBanner.classList.add('show'); return;
+    }
+
+    errorBanner.classList.remove('show');
+    parsedData = { header, payload, sig: parts[2] };
+
+    // Status bar
+    const alg = header.alg || 'unknown';
+    const expStatus = getExpStatus(payload);
+    statusDot.className = `status-dot ${expStatus ? expStatus.cls : 'valid'}`;
+    statusText.className = `status-text ${expStatus ? expStatus.cls : 'valid'}`;
+    statusText.textContent = expStatus ? expStatus.label : 'No expiration set';
+
+    const statusBar = document.getElementById('statusBar');
+    statusBar.innerHTML = `
+      <div class="status-item">
+        <span class="status-dot ${expStatus ? expStatus.cls : 'valid'}"></span>
+        <span class="status-text ${expStatus ? expStatus.cls : 'valid'}">${expStatus ? expStatus.label : 'No expiration set'}</span>
+      </div>
+      <span class="alg-badge">${alg}</span>
+      ${payload.iss ? `<span style="font-size:12px;color:var(--text-muted)">iss: <span style="color:var(--text-secondary)">${payload.iss}</span></span>` : ''}
+      ${payload.sub ? `<span style="font-size:12px;color:var(--text-muted)">sub: <span style="color:var(--text-secondary)">${payload.sub}</span></span>` : ''}
+    `;
+
+    // Sections
+    const headerJson = JSON.stringify(header, null, 2);
+    const payloadJson = JSON.stringify(payload, null, 2);
+
+    const claimRows = Object.entries(payload).map(([k, v]) => {
+      const name = CLAIM_NAMES[k] || '';
+      return `<div class="claim-row"><span class="claim-key">${k}</span><span class="claim-val">${renderClaimValue(k, v)}</span>${name ? `<span class="claim-note">${name}</span>` : ''}</div>`;
+    }).join('');
+
+    decodedArea.innerHTML = `
+      <div class="sections-grid">
+        <div class="section-card">
+          <div class="section-header">
+            <span class="section-title"><span class="section-dot dot-header"></span>Header</span>
+          </div>
+          <div class="section-body">
+            <div class="json-view">${syntaxHighlight(headerJson)}</div>
+          </div>
+        </div>
+        <div class="section-card">
+          <div class="section-header">
+            <span class="section-title"><span class="section-dot dot-payload"></span>Payload</span>
+          </div>
+          <div class="section-body">
+            ${claimRows}
+          </div>
+        </div>
+      </div>
+      <div class="section-card" style="margin-top:12px">
+        <div class="section-header">
+          <span class="section-title"><span class="section-dot dot-sig"></span>Signature</span>
+        </div>
+        <div class="section-body">
+          <div class="sig-display">${parts[2]}</div>
+          <div class="sig-note">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            Signature cannot be verified client-side without the secret key.
+          </div>
+        </div>
+      </div>
+    `;
+
+    copyRow.style.display = 'flex';
+  }
+
+  document.getElementById('jwtInput').addEventListener('input', e => decode(e.target.value));
+
+  document.getElementById('btnPaste').addEventListener('click', async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      document.getElementById('jwtInput').value = text;
+      decode(text);
+    } catch { alert('Clipboard access denied'); }
+  });
+
+  document.getElementById('btnClear').addEventListener('click', () => {
+    document.getElementById('jwtInput').value = '';
+    decode('');
+  });
+
+  document.getElementById('btnSample').addEventListener('click', () => {
+    document.getElementById('jwtInput').value = SAMPLE_JWT;
+    decode(SAMPLE_JWT);
+  });
+
+  function makeCopyBtn(btnId, getter) {
+    document.getElementById(btnId).addEventListener('click', () => {
+      const text = getter();
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById(btnId);
+        btn.classList.add('copied');
+        const orig = btn.innerHTML;
+        btn.innerHTML = btn.innerHTML.replace(/Copy \w+( \w+)?/, '✓ Copied!');
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
+      });
+    });
+  }
+
+  makeCopyBtn('copyHeader', () => parsedData.header ? JSON.stringify(parsedData.header, null, 2) : '');
+  makeCopyBtn('copyPayload', () => parsedData.payload ? JSON.stringify(parsedData.payload, null, 2) : '');
+  makeCopyBtn('copySig', () => parsedData.sig || '');
+
+  // Escape key: clear JWT input when focused
+  document.getElementById('jwtInput').addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); document.getElementById('jwtInput').value = ''; decode(''); }
+  });
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

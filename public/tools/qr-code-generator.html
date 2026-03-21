@@ -434,6 +434,320 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  // ── STATE ──────────────────────────────────────────────
+  let qrCanvas    = null;    // The canvas element created by qrcode.js
+  let qrContainer = null;    // The wrapper div inserted by generate()
+  let logoDataUrl = null;    // Logo image data URL
+  let currentECL  = 'M';
+  let currentSize = 256;
+  let currentType = 'text';
+  let wifiSec = 'WPA';
+
+  // ── REFS ───────────────────────────────────────────────
+  const qrWrap         = document.getElementById('qrWrap');
+  const qrPlaceholder  = document.getElementById('qrPlaceholder');
+  const qrLogoOverlay  = document.getElementById('qrLogoOverlay');
+  const colorFg        = document.getElementById('colorFg');
+  const colorBg        = document.getElementById('colorBg');
+  const colorFgHex     = document.getElementById('colorFgHex');
+  const colorBgHex     = document.getElementById('colorBgHex');
+  const logoDropzone   = document.getElementById('logoDropzone');
+  const logoFile       = document.getElementById('logoFile');
+  const logoPreviewWrap= document.getElementById('logoPreviewWrap');
+  const logoThumb      = document.getElementById('logoThumb');
+  const logoFileName   = document.getElementById('logoFileName');
+
+  // ── INPUT TYPE TABS ────────────────────────────────────
+  document.querySelectorAll('.input-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      currentType = tab.dataset.type;
+      document.querySelectorAll('.input-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.input-mode').forEach(m => m.classList.remove('active'));
+      document.getElementById('mode' + currentType.charAt(0).toUpperCase() + currentType.slice(1)).classList.add('active');
+    });
+  });
+
+  // ── CONTENT BUILDER ────────────────────────────────────
+  function buildContent() {
+    if (currentType === 'text') {
+      return document.getElementById('textInput').value.trim();
+    }
+    if (currentType === 'wifi') {
+      const ssid = document.getElementById('wifiSsid').value;
+      const pass = document.getElementById('wifiPass').value;
+      const sec  = wifiSec;
+      // WiFi QR string format
+      const escapeWifi = s => s.replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/"/g,'\\"').replace(/:/g,'\\:');
+      if (sec === 'nopass') return `WIFI:T:nopass;S:${escapeWifi(ssid)};;`;
+      return `WIFI:T:${sec};S:${escapeWifi(ssid)};P:${escapeWifi(pass)};;`;
+    }
+    if (currentType === 'vcard') {
+      const n = document.getElementById('vcardName').value;
+      const p = document.getElementById('vcardPhone').value;
+      const e = document.getElementById('vcardEmail').value;
+      const o = document.getElementById('vcardOrg').value;
+      const u = document.getElementById('vcardUrl').value;
+      return `BEGIN:VCARD\nVERSION:3.0\nFN:${n}${p?'\nTEL:'+p:''}${e?'\nEMAIL:'+e:''}${o?'\nORG:'+o:''}${u?'\nURL:'+u:''}\nEND:VCARD`;
+    }
+    if (currentType === 'email') {
+      const to  = document.getElementById('emailTo').value;
+      const sub = encodeURIComponent(document.getElementById('emailSubject').value);
+      const bod = encodeURIComponent(document.getElementById('emailBody').value);
+      return `mailto:${to}?subject=${sub}&body=${bod}`;
+    }
+    return '';
+  }
+
+  // ── QR GENERATION ──────────────────────────────────────
+  const ECL_MAP = { L: QRCode.CorrectLevel.L, M: QRCode.CorrectLevel.M, Q: QRCode.CorrectLevel.Q, H: QRCode.CorrectLevel.H };
+
+  function generate() {
+    const content = buildContent();
+    if (!content) { alert('Please enter some content first.'); return; }
+
+    // Remove old QR container entirely (fixes stacking/height bug)
+    if (qrContainer) { qrContainer.remove(); qrContainer = null; qrCanvas = null; }
+    qrPlaceholder.style.display = 'none';
+    qrLogoOverlay.style.display = 'none';
+
+    const previewSize = Math.min(currentSize, 300); // cap preview at 300px
+    const container   = document.createElement('div');
+    qrContainer = container;
+    qrWrap.insertBefore(container, qrLogoOverlay);
+
+    new QRCode(container, {
+      text:            content,
+      width:           previewSize,
+      height:          previewSize,
+      colorDark:       colorFg.value,
+      colorLight:      colorBg.value,
+      correctLevel:    ECL_MAP[currentECL],
+    });
+
+    // QRCode.js creates a canvas inside container
+    qrCanvas = container.querySelector('canvas');
+    if (!qrCanvas) {
+      // fallback: img element
+      qrCanvas = container.querySelector('img');
+    }
+
+    // Overlay logo
+    if (logoDataUrl) {
+      qrLogoOverlay.src = logoDataUrl;
+      qrLogoOverlay.style.display = '';
+    }
+  }
+
+  // ── STYLE CONTROLS ─────────────────────────────────────
+  function syncColor(picker, hex) {
+    picker.addEventListener('input', () => { hex.value = picker.value; });
+    hex.addEventListener('input', () => {
+      const v = hex.value.trim();
+      if (/^#[0-9a-fA-F]{6}$/.test(v)) picker.value = v;
+    });
+  }
+  syncColor(colorFg, colorFgHex);
+  syncColor(colorBg, colorBgHex);
+  colorFg.addEventListener('input', debouncedGenerate);
+  colorBg.addEventListener('input', debouncedGenerate);
+  colorFgHex.addEventListener('input', () => { if (/^#[0-9a-fA-F]{6}$/.test(colorFgHex.value)) debouncedGenerate(); });
+  colorBgHex.addEventListener('input', () => { if (/^#[0-9a-fA-F]{6}$/.test(colorBgHex.value)) debouncedGenerate(); });
+
+  document.querySelectorAll('[data-ecl]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentECL = btn.dataset.ecl;
+      btn.closest('.seg-ctrl').querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateTextStat();
+      generate();
+    });
+  });
+
+  document.querySelectorAll('[data-size]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentSize = +btn.dataset.size;
+      btn.closest('.seg-ctrl').querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      generate();
+    });
+  });
+
+  document.querySelectorAll('[data-wifi-sec]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      wifiSec = btn.dataset.wifiSec;
+      btn.closest('.seg-ctrl').querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // ── LOGO UPLOAD ────────────────────────────────────────
+  logoDropzone.addEventListener('click', () => logoFile.click());
+  logoDropzone.addEventListener('dragover', e => { e.preventDefault(); logoDropzone.classList.add('drag'); });
+  logoDropzone.addEventListener('dragleave', () => logoDropzone.classList.remove('drag'));
+  logoDropzone.addEventListener('drop', e => { e.preventDefault(); logoDropzone.classList.remove('drag'); if (e.dataTransfer.files[0]) loadLogo(e.dataTransfer.files[0]); });
+  logoFile.addEventListener('change', () => { if (logoFile.files[0]) loadLogo(logoFile.files[0]); });
+
+  function loadLogo(file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      // Validate the result is a loadable image before accepting
+      const img = new Image();
+      img.onload = () => {
+        logoDataUrl = e.target.result;
+        logoThumb.src = logoDataUrl;
+        logoFileName.textContent = file.name;
+        logoDropzone.style.display = 'none';
+        logoPreviewWrap.classList.add('visible');
+        // Auto-upgrade error correction to H when logo is added
+        currentECL = 'H';
+        document.querySelectorAll('[data-ecl]').forEach(b => {
+          b.classList.toggle('active', b.dataset.ecl === 'H');
+        });
+        generate();
+      };
+      img.onerror = () => alert('Could not load image. Please try a different file.');
+      img.src = e.target.result;
+    };
+    reader.onerror = () => alert('Failed to read file. Please try again.');
+    reader.readAsDataURL(file);
+  }
+
+  document.getElementById('btnRemoveLogo').addEventListener('click', () => {
+    logoDataUrl = null; logoFile.value = '';
+    logoDropzone.style.display = '';
+    logoPreviewWrap.classList.remove('visible');
+    qrLogoOverlay.style.display = 'none';
+    generate();
+  });
+
+  // ── DOWNLOAD ───────────────────────────────────────────
+  function getQrCanvas() {
+    // Return a high-res canvas at currentSize
+    const content = buildContent();
+    if (!content) return null;
+    const tempDiv = document.createElement('div');
+    tempDiv.style.cssText = 'position:absolute;left:-9999px';
+    document.body.appendChild(tempDiv);
+    return new Promise(resolve => {
+      new QRCode(tempDiv, {
+        text: content, width: currentSize, height: currentSize,
+        colorDark: colorFg.value, colorLight: colorBg.value, correctLevel: ECL_MAP[currentECL],
+      });
+      setTimeout(() => {
+        const c = tempDiv.querySelector('canvas');
+        document.body.removeChild(tempDiv);
+        resolve(c);
+      }, 100);
+    });
+  }
+
+  document.getElementById('btnDownloadPng').addEventListener('click', async () => {
+    const c = await getQrCanvas();
+    if (!c) { alert('Generate a QR code first.'); return; }
+    let finalCanvas = c;
+    // Overlay logo if present
+    if (logoDataUrl) {
+      finalCanvas = document.createElement('canvas');
+      finalCanvas.width = c.width; finalCanvas.height = c.height;
+      const ctx = finalCanvas.getContext('2d');
+      ctx.drawImage(c, 0, 0);
+      await new Promise(res => {
+        const img = new Image(); img.onload = () => {
+          const lw = c.width * 0.2, lh = (img.height / img.width) * lw;
+          ctx.drawImage(img, (c.width - lw) / 2, (c.height - lh) / 2, lw, lh); res();
+        }; img.src = logoDataUrl;
+      });
+    }
+    finalCanvas.toBlob(blob => {
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'qrcode.png' });
+      a.click(); URL.revokeObjectURL(a.href);
+    });
+  });
+
+  document.getElementById('btnDownloadSvg').addEventListener('click', async () => {
+    const content = buildContent();
+    if (!content) { alert('Generate a QR code first.'); return; }
+    // QRCode.js doesn't natively export SVG; generate via canvas then embed as image in SVG
+    const c = await getQrCanvas();
+    if (!c) return;
+    const dataUrl = c.toDataURL('image/png');
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${currentSize}" height="${currentSize}"><image href="${dataUrl}" width="${currentSize}" height="${currentSize}"/></svg>`;
+    const blob = new Blob([svg], { type: 'image/svg+xml' });
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'qrcode.svg' });
+    a.click(); URL.revokeObjectURL(a.href);
+  });
+
+  // ── RESET ──────────────────────────────────────────────
+  function resetAll() {
+    // Clear QR
+    if (qrContainer) { qrContainer.remove(); qrContainer = null; qrCanvas = null; }
+    qrPlaceholder.style.display = '';
+    qrLogoOverlay.style.display = 'none';
+
+    // Reset to text tab
+    currentType = 'text';
+    document.querySelectorAll('.input-tab').forEach(t => t.classList.toggle('active', t.dataset.type === 'text'));
+    document.querySelectorAll('.input-mode').forEach(m => m.classList.toggle('active', m.id === 'modeText'));
+
+    // Clear all inputs
+    ['textInput','wifiSsid','wifiPass','vcardName','vcardPhone','vcardEmail','vcardOrg','vcardUrl','emailTo','emailSubject','emailBody']
+      .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+
+    // Reset colors
+    colorFg.value = '#000000'; colorFgHex.value = '#000000';
+    colorBg.value = '#ffffff'; colorBgHex.value = '#ffffff';
+
+    // Reset ECL to M
+    currentECL = 'M';
+    document.querySelectorAll('[data-ecl]').forEach(b => b.classList.toggle('active', b.dataset.ecl === 'M'));
+
+    // Reset size to 256
+    currentSize = 256;
+    document.querySelectorAll('[data-size]').forEach(b => b.classList.toggle('active', +b.dataset.size === 256));
+
+    // Reset WiFi security to WPA
+    wifiSec = 'WPA';
+    document.querySelectorAll('[data-wifi-sec]').forEach(b => b.classList.toggle('active', b.dataset.wifiSec === 'WPA'));
+
+    // Remove logo
+    logoDataUrl = null; logoFile.value = '';
+    logoDropzone.style.display = '';
+    logoPreviewWrap.classList.remove('visible');
+    logoThumb.src = ''; logoFileName.textContent = '';
+  }
+
+  document.getElementById('btnReset').addEventListener('click', resetAll);
+  document.getElementById('btnGenerate').addEventListener('click', generate);
+
+  // ── TEXT INPUT STAT ────────────────────────────────────
+  const QR_BYTE_CAP = { L: 2953, M: 2331, Q: 1663, H: 1273 };
+  function updateTextStat() {
+    const val = document.getElementById('textInput').value;
+    const stat = document.getElementById('textInputStat');
+    if (!val) { stat.textContent = '0 chars'; stat.style.color = ''; return; }
+    const bytes = new TextEncoder().encode(val).length;
+    const cap = QR_BYTE_CAP[currentECL] || 2331;
+    const pct = Math.round(bytes / cap * 100);
+    stat.textContent = `${val.length.toLocaleString()} chars · ${bytes.toLocaleString()} bytes · ${pct}% QR capacity`;
+    stat.style.color = pct > 90 ? 'var(--red)' : pct > 70 ? 'var(--yellow)' : '';
+  }
+  document.getElementById('textInput').addEventListener('input', updateTextStat);
+
+  // Auto-generate on all content input changes
+  let genTimer = null;
+  function debouncedGenerate() { clearTimeout(genTimer); genTimer = setTimeout(generate, 500); }
+  ['textInput','wifiSsid','wifiPass','vcardName','vcardPhone','vcardEmail','vcardOrg','vcardUrl','emailTo','emailSubject','emailBody'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', debouncedGenerate);
+  });
+
+  // Generate on Enter key (when not in textarea)
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && !e.metaKey && !e.ctrlKey) generate();
+  });
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

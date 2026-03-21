@@ -129,6 +129,26 @@ def c_jsonld(content, fname):
     if 'application/ld+json' not in content:
         return 'Missing JSON-LD structured data'
 
+@check('has_runtime_logic')
+def c_runtime_logic(content, fname):
+    stripped = re.sub(r'<script type="application/ld\+json">[\s\S]*?</script>', '', content)
+    stripped = re.sub(r'<script async src="https://www.googletagmanager.com/gtag/js[^>]*></script>', '', stripped)
+    stripped = re.sub(
+        r'<script>\s*window\.dataLayer[\s\S]*?gtag\(\'config\',.*?</script>',
+        '',
+        stripped,
+        flags=re.DOTALL,
+    )
+    logic_signals = (
+        'addEventListener(',
+        'function render',
+        'const state =',
+        'navigator.clipboard',
+        'document.getElementById(',
+    )
+    if not any(signal in stripped for signal in logic_signals):
+        return 'Missing runtime interaction script'
+
 @check('has_design_system_css', severity='warning')
 def c_ds_css(content, fname):
     if 'design-system.css' not in content:

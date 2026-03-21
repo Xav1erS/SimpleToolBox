@@ -457,6 +457,152 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+    // ── State ────────────────────────────────────────────────────────────────
+    let gradientType = 'linear';
+    let angle = 90;
+    const MAX_STOPS = 6;
+
+    // Initial stops
+    let stops = [
+      { color: '#5E6AD2', pos: 0 },
+      { color: '#9B59B6', pos: 100 }
+    ];
+
+    // ── DOM refs ─────────────────────────────────────────────────────────────
+    const typeGroup   = document.getElementById('typeGroup');
+    const dirSection  = document.getElementById('dirSection');
+    const dirGrid     = document.getElementById('dirGrid');
+    const stopsList   = document.getElementById('stopsList');
+    const btnAddStop  = document.getElementById('btnAddStop');
+    const btnCopyCss  = document.getElementById('btnCopyCss');
+    const btnCopySmall= document.getElementById('btnCopySmall');
+    const previewRect = document.getElementById('previewRect');
+    const cssOutput   = document.getElementById('cssOutput');
+
+    // ── Build gradient CSS ────────────────────────────────────────────────────
+    function buildGradient() {
+      const sorted = [...stops].sort((a, b) => a.pos - b.pos);
+      const stopStr = sorted.map(s => `${s.color} ${s.pos}%`).join(', ');
+      if (gradientType === 'linear') {
+        return `linear-gradient(${angle}deg, ${stopStr})`;
+      } else {
+        return `radial-gradient(circle, ${stopStr})`;
+      }
+    }
+
+    // ── Update preview ────────────────────────────────────────────────────────
+    function updatePreview() {
+      const grad = buildGradient();
+      previewRect.style.background = grad;
+      cssOutput.textContent = `background: ${grad};`;
+    }
+
+    // ── Render stops list ─────────────────────────────────────────────────────
+    function renderStops() {
+      stopsList.innerHTML = '';
+      stops.forEach((stop, idx) => {
+        const row = document.createElement('div');
+        row.className = 'stop-row';
+        row.innerHTML = `
+          <input type="color" class="stop-color-input" value="${stop.color}" data-idx="${idx}" />
+          <input type="range" class="stop-pos-slider" min="0" max="100" value="${stop.pos}" data-idx="${idx}" />
+          <span class="stop-pos-val">${stop.pos}%</span>
+          <button class="stop-del-btn" data-idx="${idx}" ${stops.length <= 2 ? 'disabled' : ''}>✕</button>
+        `;
+
+        // Color change
+        row.querySelector('.stop-color-input').addEventListener('input', e => {
+          stops[+e.target.dataset.idx].color = e.target.value;
+          updatePreview();
+        });
+
+        // Position change
+        const slider = row.querySelector('.stop-pos-slider');
+        const posVal = row.querySelector('.stop-pos-val');
+        slider.addEventListener('input', e => {
+          const i = +e.target.dataset.idx;
+          stops[i].pos = +e.target.value;
+          posVal.textContent = e.target.value + '%';
+          updatePreview();
+        });
+
+        // Delete stop
+        row.querySelector('.stop-del-btn').addEventListener('click', e => {
+          const i = +e.target.dataset.idx;
+          if (stops.length > 2) {
+            stops.splice(i, 1);
+            renderStops();
+            updatePreview();
+          }
+        });
+
+        stopsList.appendChild(row);
+      });
+
+      btnAddStop.disabled = stops.length >= MAX_STOPS;
+    }
+
+    // ── Event: gradient type ──────────────────────────────────────────────────
+    typeGroup.addEventListener('click', e => {
+      const btn = e.target.closest('.seg-btn');
+      if (!btn) return;
+      typeGroup.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      gradientType = btn.dataset.type;
+      dirSection.classList.toggle('hidden', gradientType === 'radial');
+      updatePreview();
+    });
+
+    // ── Event: direction grid ─────────────────────────────────────────────────
+    dirGrid.addEventListener('click', e => {
+      const btn = e.target.closest('.dir-btn[data-angle]');
+      if (!btn) return;
+      dirGrid.querySelectorAll('.dir-btn[data-angle]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      angle = +btn.dataset.angle;
+      updatePreview();
+    });
+
+    // ── Event: add stop ───────────────────────────────────────────────────────
+    btnAddStop.addEventListener('click', () => {
+      if (stops.length >= MAX_STOPS) return;
+      // Insert a stop at the midpoint of the first gap
+      const sorted = [...stops].sort((a, b) => a.pos - b.pos);
+      let bestPos = 50;
+      let bestGap = -1;
+      for (let i = 0; i < sorted.length - 1; i++) {
+        const gap = sorted[i + 1].pos - sorted[i].pos;
+        if (gap > bestGap) {
+          bestGap = gap;
+          bestPos = Math.round((sorted[i].pos + sorted[i + 1].pos) / 2);
+        }
+      }
+      stops.push({ color: '#ffffff', pos: bestPos });
+      renderStops();
+      updatePreview();
+    });
+
+    // ── Copy helpers ──────────────────────────────────────────────────────────
+    function doCopy(btn, text, originalLabel) {
+      navigator.clipboard.writeText(text).catch(() => {});
+      btn.innerHTML = '✓ Copied';
+      btn.style.color = '#22c55e';
+      setTimeout(() => { btn.innerHTML = originalLabel; btn.style.color = ''; }, 1500);
+    }
+
+    btnCopyCss.addEventListener('click', () => {
+      doCopy(btnCopyCss, `background: ${buildGradient()};`, 'Copy CSS');
+    });
+
+    btnCopySmall.addEventListener('click', () => {
+      doCopy(btnCopySmall, `background: ${buildGradient()};`, 'Copy');
+    });
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    renderStops();
+    updatePreview();
+  </script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

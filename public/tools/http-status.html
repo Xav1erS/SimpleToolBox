@@ -218,6 +218,146 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const CODES = [
+    // 1xx
+    { code: 100, name: 'Continue', desc: 'Server received the request headers; client should proceed to send the body.' },
+    { code: 101, name: 'Switching Protocols', desc: 'Server agrees to switch protocols as requested by the client (e.g. WebSocket upgrade).' },
+    { code: 102, name: 'Processing', desc: 'Server has received and is processing the request, but no response is available yet (WebDAV).' },
+    { code: 103, name: 'Early Hints', desc: 'Preload hints sent before the final response, used with Link headers to improve page load.' },
+    // 2xx
+    { code: 200, name: 'OK', desc: 'Standard success response. The request was successful and the response body contains the result.' },
+    { code: 201, name: 'Created', desc: 'Request succeeded and a new resource was created. Used after POST/PUT.' },
+    { code: 202, name: 'Accepted', desc: 'Request accepted for processing, but processing is not complete (async operations).' },
+    { code: 203, name: 'Non-Authoritative Information', desc: 'Returned metadata is from a local or third-party copy, not from the origin server.' },
+    { code: 204, name: 'No Content', desc: 'Request succeeded but there is no content to return. Common for DELETE and PUT.' },
+    { code: 205, name: 'Reset Content', desc: 'Server requires the client to reset the document view (clear a form, for example).' },
+    { code: 206, name: 'Partial Content', desc: 'Server is delivering only part of the resource due to a Range header in the request.' },
+    { code: 207, name: 'Multi-Status', desc: 'Multiple status codes might apply (WebDAV). Body is an XML message.' },
+    { code: 208, name: 'Already Reported', desc: 'Members of a DAV binding have already been enumerated (WebDAV, RFC 5842).' },
+    { code: 226, name: 'IM Used', desc: 'Server fulfilled a GET request and the response is one or more instance-manipulations.' },
+    // 3xx
+    { code: 300, name: 'Multiple Choices', desc: 'Request has more than one possible response. User or user agent should choose one.' },
+    { code: 301, name: 'Moved Permanently', desc: 'URL has permanently changed. Future requests should use the new URL in Location header.' },
+    { code: 302, name: 'Found', desc: 'Resource temporarily at a different URI. Client should continue to use the original URI.' },
+    { code: 303, name: 'See Other', desc: 'Response to the request can be found at another URI using GET (after a POST).' },
+    { code: 304, name: 'Not Modified', desc: 'Cached version is still valid. Client should use its cached copy.' },
+    { code: 307, name: 'Temporary Redirect', desc: 'Like 302 but the method must not change. POST stays POST, GET stays GET.' },
+    { code: 308, name: 'Permanent Redirect', desc: 'Like 301 but the method must not change (POST stays POST).' },
+    // 4xx
+    { code: 400, name: 'Bad Request', desc: 'Server cannot process the request due to client error (malformed syntax, invalid parameters).' },
+    { code: 401, name: 'Unauthorized', desc: 'Authentication is required. Client must authenticate itself to get the requested response.' },
+    { code: 402, name: 'Payment Required', desc: 'Reserved for future use. Sometimes used by APIs for quota/subscription limits.' },
+    { code: 403, name: 'Forbidden', desc: 'Client does not have access rights. Unlike 401, the server knows who the client is.' },
+    { code: 404, name: 'Not Found', desc: 'Server cannot find the requested resource. The URL is not recognized.' },
+    { code: 405, name: 'Method Not Allowed', desc: 'HTTP method is not allowed for this endpoint (e.g. DELETE on a read-only resource).' },
+    { code: 406, name: 'Not Acceptable', desc: 'Server cannot produce a response matching the Accept headers sent by the client.' },
+    { code: 407, name: 'Proxy Authentication Required', desc: 'Authentication must be done by a proxy before the server can respond.' },
+    { code: 408, name: 'Request Timeout', desc: 'Server timed out waiting for the request. Client may re-submit the request.' },
+    { code: 409, name: 'Conflict', desc: 'Request conflicts with the current state of the server (e.g. version conflict, duplicate).' },
+    { code: 410, name: 'Gone', desc: 'Resource is permanently deleted and will not be available again (unlike 404).' },
+    { code: 411, name: 'Length Required', desc: 'Request did not specify the length of its content, which is required.' },
+    { code: 412, name: 'Precondition Failed', desc: 'Server does not meet one of the conditions set in the request headers.' },
+    { code: 413, name: 'Content Too Large', desc: 'Request body is larger than limits defined by the server.' },
+    { code: 414, name: 'URI Too Long', desc: 'URI requested by the client is longer than the server is willing to interpret.' },
+    { code: 415, name: 'Unsupported Media Type', desc: 'Media format of the request data is not supported (check Content-Type header).' },
+    { code: 416, name: 'Range Not Satisfiable', desc: 'Range specified in Range header cannot be fulfilled.' },
+    { code: 417, name: 'Expectation Failed', desc: 'Expectation indicated in the Expect header cannot be met by the server.' },
+    { code: 418, name: "I'm a Teapot", desc: 'April Fools joke from RFC 2324. Any server refusing to brew coffee because it is a teapot.' },
+    { code: 421, name: 'Misdirected Request', desc: 'Request was directed at a server that is not able to produce a response.' },
+    { code: 422, name: 'Unprocessable Content', desc: 'Request was well-formed but contains semantic errors (common in REST APIs for validation).' },
+    { code: 423, name: 'Locked', desc: 'Resource being accessed is locked (WebDAV).' },
+    { code: 424, name: 'Failed Dependency', desc: 'Request failed because it depends on another request that failed (WebDAV).' },
+    { code: 425, name: 'Too Early', desc: 'Server is unwilling to risk processing a request that might be replayed.' },
+    { code: 426, name: 'Upgrade Required', desc: 'Client should switch to a different protocol (specified in Upgrade header).' },
+    { code: 428, name: 'Precondition Required', desc: 'Origin server requires the request to be conditional (to prevent lost update problems).' },
+    { code: 429, name: 'Too Many Requests', desc: 'Client has sent too many requests in a given time window — rate limiting.' },
+    { code: 431, name: 'Request Header Fields Too Large', desc: 'Server is unwilling to process the request because headers are too large.' },
+    { code: 451, name: 'Unavailable For Legal Reasons', desc: 'Resource has been blocked for legal reasons (e.g. government censorship).' },
+    // 5xx
+    { code: 500, name: 'Internal Server Error', desc: 'Generic server error. Catch-all for unexpected server-side failures.' },
+    { code: 501, name: 'Not Implemented', desc: 'Server does not support the functionality required to fulfill the request.' },
+    { code: 502, name: 'Bad Gateway', desc: 'Server acting as a gateway received an invalid response from an upstream server.' },
+    { code: 503, name: 'Service Unavailable', desc: 'Server is not ready to handle the request — overloaded or down for maintenance.' },
+    { code: 504, name: 'Gateway Timeout', desc: 'Server acting as a gateway did not get a response from the upstream server in time.' },
+    { code: 505, name: 'HTTP Version Not Supported', desc: 'HTTP version used in the request is not supported by the server.' },
+    { code: 506, name: 'Variant Also Negotiates', desc: 'Server configuration error in transparent content negotiation.' },
+    { code: 507, name: 'Insufficient Storage', desc: 'Server unable to store the representation to complete the request (WebDAV).' },
+    { code: 508, name: 'Loop Detected', desc: 'Server detected an infinite loop while processing the request (WebDAV).' },
+    { code: 510, name: 'Not Extended', desc: 'Further extensions to the request are required for the server to fulfill it.' },
+    { code: 511, name: 'Network Authentication Required', desc: 'Client needs to authenticate to gain network access (captive portals).' },
+  ];
+
+  function codeClass(code) {
+    if (code < 200) return 'c1';
+    if (code < 300) return 'c2';
+    if (code < 400) return 'c3';
+    if (code < 500) return 'c4';
+    return 'c5';
+  }
+
+  function codeCat(code) {
+    return `${Math.floor(code / 100)}xx`;
+  }
+
+  const grid     = document.getElementById('statusGrid');
+  const noResult = document.getElementById('noResults');
+  const search   = document.getElementById('searchInput');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+
+  let activeCat = 'all';
+
+  // build rows
+  CODES.forEach(c => {
+    const row = document.createElement('div');
+    row.className = 'status-row';
+    row.dataset.code = c.code;
+    row.dataset.cat  = codeCat(c.code);
+    row.innerHTML = `
+      <span class="status-code ${codeClass(c.code)}">${c.code}</span>
+      <div class="status-info">
+        <div class="status-name">${c.name}</div>
+        <div class="status-desc">${c.desc}</div>
+      </div>
+      <button class="status-copy">Copy</button>
+    `;
+    row.querySelector('.status-copy').addEventListener('click', (e) => {
+      const btn = e.currentTarget;
+      navigator.clipboard.writeText(`${c.code} ${c.name}`).catch(() => {});
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+    });
+    grid.appendChild(row);
+  });
+
+  function applyFilter() {
+    const q = search.value.toLowerCase().trim();
+    let visible = 0;
+    grid.querySelectorAll('.status-row').forEach(row => {
+      const code = row.dataset.code;
+      const cat  = row.dataset.cat;
+      const text = row.textContent.toLowerCase();
+      const catMatch = activeCat === 'all' || cat === activeCat;
+      const qMatch   = !q || code.includes(q) || text.includes(q);
+      const show = catMatch && qMatch;
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    noResult.style.display = visible === 0 ? '' : 'none';
+  }
+
+  search.addEventListener('input', applyFilter);
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCat = btn.dataset.cat;
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter();
+    });
+  });
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

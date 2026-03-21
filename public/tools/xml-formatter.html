@@ -302,6 +302,166 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  let mode   = 'beautify'; // 'beautify' | 'minify'
+  let indent = '  ';       // 2 or 4 spaces
+
+  const btnBeautify   = document.getElementById('btnBeautify');
+  const btnMinify     = document.getElementById('btnMinify');
+  const indentCtrl    = document.getElementById('indentCtrl');
+  const optionsBar    = document.getElementById('optionsBar');
+  const btnSwap       = document.getElementById('btnSwap');
+  const inputText     = document.getElementById('inputText');
+  const outputText    = document.getElementById('outputText');
+  const inputStat     = document.getElementById('inputStat');
+  const outputStat    = document.getElementById('outputStat');
+  const outputLabel   = document.getElementById('outputLabel');
+  const btnRun        = document.getElementById('btnRun');
+  const btnCopyHeader = document.getElementById('btnCopyHeader');
+  const btnCopyResult = document.getElementById('btnCopyResult');
+  const btnPaste      = document.getElementById('btnPaste');
+  const btnClearInput = document.getElementById('btnClearInput');
+  const btnClearAll   = document.getElementById('btnClearAll');
+  const outputPanel   = document.getElementById('outputPanel');
+  const errorMsg      = document.getElementById('errorMsg');
+
+  // ── Validation ─────────────────────────────────────────────
+  function validateXml(text) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/xml');
+    const err = doc.querySelector('parsererror');
+    if (err) {
+      // Extract the error message text
+      return err.textContent.trim().split('\n')[0] || 'XML parse error';
+    }
+    return null;
+  }
+
+  // ── Conversion ─────────────────────────────────────────────
+  function run() {
+    const input = inputText.value.trim();
+    outputPanel.classList.remove('has-error');
+
+    if (!input) {
+      outputText.value = '';
+      updateStats();
+      return;
+    }
+
+    // Validate first
+    const validationError = validateXml(input);
+    if (validationError) {
+      outputPanel.classList.add('has-error');
+      outputText.value = '';
+      errorMsg.textContent = validationError;
+      updateStats();
+      return;
+    }
+
+    try {
+      let result;
+      if (mode === 'beautify') {
+        result = vkbeautify.xml(input, indent);
+      } else {
+        result = vkbeautify.xmlmin(input, false);
+      }
+      outputText.value = result;
+    } catch (e) {
+      outputPanel.classList.add('has-error');
+      outputText.value = '';
+      errorMsg.textContent = e.message || 'Format error';
+    }
+
+    updateStats();
+  }
+
+  function updateStats() {
+    const ic = inputText.value.length;
+    const oc = outputText.value.length;
+    inputStat.textContent  = ic ? `${ic.toLocaleString()} chars` : '0 chars';
+    outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
+  }
+
+  // ── Mode switching ─────────────────────────────────────────
+  function setMode(nextMode) {
+    mode = nextMode;
+    const isBeautify = nextMode === 'beautify';
+    btnBeautify.classList.toggle('active', isBeautify);
+    btnMinify.classList.toggle('active', !isBeautify);
+    optionsBar.style.display = isBeautify ? '' : 'none';
+    outputLabel.textContent  = isBeautify ? 'Formatted XML' : 'Minified XML';
+    outputPanel.classList.remove('has-error');
+    run();
+  }
+
+  btnBeautify.addEventListener('click', () => setMode('beautify'));
+  btnMinify.addEventListener('click', () => setMode('minify'));
+
+  // ── Indent control ─────────────────────────────────────────
+  indentCtrl.querySelectorAll('.seg-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      indent = btn.dataset.indent === '4' ? '    ' : '  ';
+      indentCtrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      run();
+    });
+  });
+
+  // ── Swap ───────────────────────────────────────────────────
+  btnSwap.addEventListener('click', () => {
+    const output = outputText.value;
+    if (!output) return;
+    inputText.value = output;
+    outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    run();
+  });
+
+  // ── Live conversion ────────────────────────────────────────
+  inputText.addEventListener('input', run);
+  btnRun.addEventListener('click', run);
+
+  // ── Copy helpers ───────────────────────────────────────────
+  async function copyText(text, button) {
+    if (!text) return;
+    const originalHtml = button.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+    setTimeout(() => {
+      button.classList.remove('copied');
+      button.innerHTML = originalHtml;
+    }, 1500);
+  }
+
+  btnCopyHeader.addEventListener('click', () => copyText(outputText.value, btnCopyHeader));
+  btnCopyResult.addEventListener('click', () => copyText(outputText.value, btnCopyResult));
+
+  btnPaste.addEventListener('click', async () => {
+    try { inputText.value = await navigator.clipboard.readText(); run(); } catch {}
+  });
+
+  function clearAll() {
+    inputText.value = '';
+    outputText.value = '';
+    outputPanel.classList.remove('has-error');
+    updateStats();
+  }
+
+  btnClearInput.addEventListener('click', clearAll);
+  btnClearAll.addEventListener('click', clearAll);
+
+  setMode('beautify');
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

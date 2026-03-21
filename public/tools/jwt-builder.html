@@ -561,6 +561,193 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const DEFAULT_CLAIMS = [
+    { key: 'sub', val: '1234567890' },
+    { key: 'name', val: 'John Doe' },
+    { key: 'iat', val: String(Math.floor(Date.now() / 1000)) },
+  ];
+
+  const claimsList = document.getElementById('claimsList');
+  const tokenDisplay = document.getElementById('tokenDisplay');
+  const tokenStat = document.getElementById('tokenStat');
+  const errorBanner = document.getElementById('errorBanner');
+  let generatedToken = '';
+
+  function addClaimRow(key, val) {
+    key = key || '';
+    val = val || '';
+    const row = document.createElement('div');
+    row.className = 'claim-row';
+    row.innerHTML = `
+      <input class="claim-key" type="text" placeholder="claim key" value="${escHtml(key)}" spellcheck="false" />
+      <input class="claim-val" type="text" placeholder="value" value="${escHtml(val)}" spellcheck="false" />
+      <button class="btn-remove-claim" title="Remove">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>`;
+    row.querySelector('.btn-remove-claim').addEventListener('click', () => { row.remove(); buildToken(); });
+    row.querySelectorAll('input').forEach(inp => inp.addEventListener('input', buildToken));
+    claimsList.appendChild(row);
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function getClaims() {
+    const claims = {};
+    claimsList.querySelectorAll('.claim-row').forEach(row => {
+      const key = row.querySelector('.claim-key').value.trim();
+      const rawVal = row.querySelector('.claim-val').value.trim();
+      if (!key) return;
+      // Auto-type numeric values
+      if (rawVal === 'true') claims[key] = true;
+      else if (rawVal === 'false') claims[key] = false;
+      else if (rawVal !== '' && !isNaN(rawVal) && rawVal !== '') claims[key] = Number(rawVal);
+      else claims[key] = rawVal;
+    });
+    return claims;
+  }
+
+  function b64url(str) {
+    return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  }
+
+  function b64urlFromBytes(buf) {
+    return btoa(String.fromCharCode(...new Uint8Array(buf)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  }
+
+  function decodeSecret(raw, encoding) {
+    if (encoding === 'base64') {
+      const bin = atob(raw.replace(/-/g,'+').replace(/_/g,'/'));
+      return Uint8Array.from(bin, c => c.charCodeAt(0));
+    }
+    if (encoding === 'hex') {
+      const hex = raw.replace(/\s/g,'');
+      const bytes = new Uint8Array(hex.length / 2);
+      for (let i = 0; i < bytes.length; i++) bytes[i] = parseInt(hex.substr(i*2,2),16);
+      return bytes;
+    }
+    return new TextEncoder().encode(raw);
+  }
+
+  async function buildToken() {
+    errorBanner.classList.remove('show');
+    const alg = document.getElementById('algSelect').value;
+    const secret = document.getElementById('secretInput').value;
+    const encoding = document.getElementById('secretEncoding').value;
+
+    if (!secret) {
+      tokenDisplay.innerHTML = '<span style="color:var(--ds-color-text-muted);font-style:italic">Enter a signing secret to generate a token…</span>';
+      tokenStat.textContent = '';
+      generatedToken = '';
+      return;
+    }
+
+    try {
+      const header = { alg, typ: 'JWT' };
+      const payload = getClaims();
+
+      const headerB64 = b64url(JSON.stringify(header));
+      const payloadB64 = b64url(JSON.stringify(payload));
+      const signingInput = headerB64 + '.' + payloadB64;
+
+      const hashAlg = { HS256: 'SHA-256', HS384: 'SHA-384', HS512: 'SHA-512' }[alg];
+      const keyData = decodeSecret(secret, encoding);
+      const key = await crypto.subtle.importKey('raw', keyData, { name: 'HMAC', hash: hashAlg }, false, ['sign']);
+      const sigBuf = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(signingInput));
+      const sigB64 = b64urlFromBytes(sigBuf);
+
+      generatedToken = signingInput + '.' + sigB64;
+      tokenDisplay.innerHTML =
+        `<span class="token-part-header">${escHtml(headerB64)}</span>` +
+        `<span class="token-dot">.</span>` +
+        `<span class="token-part-payload">${escHtml(payloadB64)}</span>` +
+        `<span class="token-dot">.</span>` +
+        `<span class="token-part-sig">${escHtml(sigB64)}</span>`;
+      tokenStat.textContent = generatedToken.length + ' chars';
+    } catch (e) {
+      generatedToken = '';
+      errorBanner.textContent = 'Signing failed: ' + (e.message || 'Unknown error');
+      errorBanner.classList.add('show');
+      tokenDisplay.innerHTML = '<span style="color:#fca5a5">Error generating token</span>';
+      tokenStat.textContent = '';
+    }
+  }
+
+  async function copyText(text, button) {
+    if (!text) return;
+    const orig = button.innerHTML;
+    try { await navigator.clipboard.writeText(text); } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = button.innerHTML.replace(/Copy.*/, '&#10003; Copied');
+    setTimeout(() => { button.classList.remove('copied'); button.innerHTML = orig; }, 1500);
+  }
+
+  // Wire up events
+  document.getElementById('algSelect').addEventListener('change', buildToken);
+  document.getElementById('secretInput').addEventListener('input', buildToken);
+  document.getElementById('secretEncoding').addEventListener('change', buildToken);
+
+  document.getElementById('btnBuild').addEventListener('click', buildToken);
+  document.getElementById('btnCopyToken').addEventListener('click', () => copyText(generatedToken, document.getElementById('btnCopyToken')));
+  document.getElementById('btnCopyResult').addEventListener('click', () => copyText(generatedToken, document.getElementById('btnCopyResult')));
+
+  document.getElementById('btnAddClaim').addEventListener('click', () => {
+    addClaimRow('', '');
+  });
+
+  document.getElementById('btnGenSecret').addEventListener('click', () => {
+    const bytes = crypto.getRandomValues(new Uint8Array(32));
+    document.getElementById('secretInput').value = Array.from(bytes).map(b => b.toString(16).padStart(2,'0')).join('');
+    document.getElementById('secretEncoding').value = 'hex';
+    buildToken();
+  });
+
+  document.getElementById('btnAddIat').addEventListener('click', () => {
+    const existing = [...claimsList.querySelectorAll('.claim-key')].find(k => k.value.trim() === 'iat');
+    if (existing) {
+      existing.closest('.claim-row').querySelector('.claim-val').value = String(Math.floor(Date.now() / 1000));
+    } else {
+      addClaimRow('iat', String(Math.floor(Date.now() / 1000)));
+    }
+    buildToken();
+  });
+
+  document.querySelectorAll('[data-exp]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const seconds = parseInt(btn.dataset.exp, 10);
+      const exp = Math.floor(Date.now() / 1000) + seconds;
+      const existing = [...claimsList.querySelectorAll('.claim-key')].find(k => k.value.trim() === 'exp');
+      if (existing) {
+        existing.closest('.claim-row').querySelector('.claim-val').value = String(exp);
+      } else {
+        addClaimRow('exp', String(exp));
+      }
+      buildToken();
+    });
+  });
+
+  document.getElementById('btnReset').addEventListener('click', () => {
+    claimsList.innerHTML = '';
+    DEFAULT_CLAIMS.forEach(c => addClaimRow(c.key, c.val));
+    document.getElementById('algSelect').value = 'HS256';
+    document.getElementById('secretInput').value = '';
+    document.getElementById('secretEncoding').value = 'utf8';
+    tokenDisplay.innerHTML = '<span style="color:var(--ds-color-text-muted);font-style:italic">Fill in the fields above to generate a token…</span>';
+    tokenStat.textContent = '';
+    generatedToken = '';
+    errorBanner.classList.remove('show');
+  });
+
+  // Init with default claims
+  DEFAULT_CLAIMS.forEach(c => addClaimRow(c.key, c.val));
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

@@ -312,6 +312,110 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  const blurSlider    = document.getElementById('blurSlider');
+  const blurVal       = document.getElementById('blurVal');
+  const dropZone      = document.getElementById('dropZone');
+  const canvasWrap    = document.getElementById('canvasWrap');
+  const previewCanvas = document.getElementById('previewCanvas');
+  const pCtx          = previewCanvas.getContext('2d');
+  const canvas        = document.getElementById('canvas');
+  const ctx           = canvas.getContext('2d');
+  const btnChange     = document.getElementById('btnChange');
+  const fileInput     = document.getElementById('fileInput');
+  const btnDownload   = document.getElementById('btnDownload');
+  const btnLabel      = document.getElementById('btnLabel');
+  const imgMeta       = document.getElementById('imgMeta');
+  const metaDimensions = document.getElementById('metaDimensions');
+  const metaFilename  = document.getElementById('metaFilename');
+
+  let srcImage  = null;
+  let outputFmt = 'image/jpeg';
+  let outputExt = 'jpg';
+  let fileName  = 'image';
+
+  function drawBlurred(targetCanvas, targetCtx) {
+    if (!srcImage) return;
+    const w = srcImage.naturalWidth;
+    const h = srcImage.naturalHeight;
+    targetCanvas.width  = w;
+    targetCanvas.height = h;
+    targetCtx.filter = `blur(${blurSlider.value}px)`;
+    targetCtx.drawImage(srcImage, 0, 0);
+    targetCtx.filter = 'none';
+  }
+
+  function updatePreview() {
+    if (!srcImage) return;
+    drawBlurred(previewCanvas, pCtx);
+  }
+
+  blurSlider.addEventListener('input', () => {
+    blurVal.textContent = blurSlider.value + 'px';
+    updatePreview();
+  });
+
+  document.querySelectorAll('.preset-mini').forEach(btn => {
+    btn.addEventListener('click', () => {
+      blurSlider.value = btn.dataset.blur;
+      blurVal.textContent = btn.dataset.blur + 'px';
+      updatePreview();
+    });
+  });
+
+  document.querySelectorAll('.fmt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fmt-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      outputFmt = btn.dataset.fmt;
+      outputExt = btn.dataset.ext;
+      btnLabel.textContent = `Download ${btn.textContent}`;
+    });
+  });
+
+  function loadFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    fileName = file.name.replace(/\.[^.]+$/, '');
+    metaFilename.textContent = file.name;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        srcImage = img;
+        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
+        dropZone.style.display   = 'none';
+        canvasWrap.style.display = 'flex';
+        imgMeta.style.display    = 'grid';
+        btnChange.style.display  = 'block';
+        btnDownload.disabled = false;
+        updatePreview();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); loadFile(e.dataTransfer.files[0]); });
+  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+  btnChange.addEventListener('click', () => fileInput.click());
+
+  btnDownload.addEventListener('click', () => {
+    if (!srcImage) return;
+    drawBlurred(canvas, ctx);
+    const isPng = outputFmt === 'image/png';
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = Object.assign(document.createElement('a'), { href: url, download: `${fileName}-blur${blurSlider.value}.${outputExt}` });
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }, outputFmt, isPng ? undefined : 0.92);
+  });
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

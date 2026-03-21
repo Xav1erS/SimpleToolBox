@@ -488,6 +488,332 @@
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
+<script>
+  let currentMode = 'parse'; // 'parse' | 'build'
+
+  // ── Element refs ───────────────────────────────────────────
+  const btnParseModeBtn  = document.getElementById('btnParse');
+  const btnBuildModeBtn  = document.getElementById('btnBuild');
+  const parseMode        = document.getElementById('parseMode');
+  const buildMode        = document.getElementById('buildMode');
+
+  // Parse mode
+  const parseInput       = document.getElementById('parseInput');
+  const parseInputStat   = document.getElementById('parseInputStat');
+  const parseOutputStat  = document.getElementById('parseOutputStat');
+  const parseError       = document.getElementById('parseError');
+  const parseInputPanel  = document.getElementById('parseInputPanel');
+  const urlBreakdown     = document.getElementById('urlBreakdown');
+  const btnPasteUrl      = document.getElementById('btnPasteUrl');
+  const btnClearParseInput = document.getElementById('btnClearParseInput');
+  const btnCopyAll       = document.getElementById('btnCopyAll');
+
+  // Build mode
+  const buildProtocol    = document.getElementById('buildProtocol');
+  const buildUsername    = document.getElementById('buildUsername');
+  const buildPassword    = document.getElementById('buildPassword');
+  const buildHostname    = document.getElementById('buildHostname');
+  const buildPort        = document.getElementById('buildPort');
+  const buildPathname    = document.getElementById('buildPathname');
+  const buildHash        = document.getElementById('buildHash');
+  const paramBuilderList = document.getElementById('paramBuilderList');
+  const btnAddParam      = document.getElementById('btnAddParam');
+  const buildOutput      = document.getElementById('buildOutput');
+  const buildOutputStat  = document.getElementById('buildOutputStat');
+  const buildError       = document.getElementById('buildError');
+  const btnClearBuild    = document.getElementById('btnClearBuild');
+  const btnCopyBuildHeader = document.getElementById('btnCopyBuildHeader');
+
+  // Shared
+  const btnRun           = document.getElementById('btnRun');
+  const runLabel         = document.getElementById('runLabel');
+  const btnCopyResult    = document.getElementById('btnCopyResult');
+  const btnClearAll      = document.getElementById('btnClearAll');
+
+  // ── URL component rows definition ──────────────────────────
+  const URL_FIELDS = [
+    { key: 'Protocol',  prop: 'protocol' },
+    { key: 'Username',  prop: 'username' },
+    { key: 'Password',  prop: 'password' },
+    { key: 'Host',      prop: 'host' },
+    { key: 'Hostname',  prop: 'hostname' },
+    { key: 'Port',      prop: 'port' },
+    { key: 'Pathname',  prop: 'pathname' },
+    { key: 'Search',    prop: 'search' },
+    { key: 'Hash',      prop: 'hash' },
+    { key: 'Origin',    prop: 'origin' },
+  ];
+
+  // ── Parse logic ────────────────────────────────────────────
+  function runParse() {
+    const raw = parseInput.value.trim();
+    parseInputStat.textContent = parseInput.value.length
+      ? `${parseInput.value.length.toLocaleString()} chars`
+      : '0 chars';
+
+    parseError.style.display = 'none';
+    parseInputPanel.classList.remove('has-error');
+
+    if (!raw) {
+      urlBreakdown.innerHTML = `<div style="color: var(--ds-color-text-muted); font-size: 13px; padding: 20px 0; text-align: center;">Enter a URL on the left to see its components.</div>`;
+      parseOutputStat.textContent = '—';
+      return;
+    }
+
+    let parsed;
+    try {
+      parsed = new URL(raw);
+    } catch (e) {
+      parseError.textContent = 'Invalid URL';
+      parseError.style.display = '';
+      parseInputPanel.classList.add('has-error');
+      urlBreakdown.innerHTML = `<div style="color: #ef4444; font-size: 13px; padding: 20px 0; text-align: center;">Could not parse URL: ${escapeHtml(e.message)}</div>`;
+      parseOutputStat.textContent = '—';
+      return;
+    }
+
+    // Build breakdown HTML
+    let html = '';
+    for (const field of URL_FIELDS) {
+      const val = parsed[field.prop] || '';
+      const isEmpty = !val;
+      html += `
+        <div class="url-row">
+          <span class="url-key">${field.key}</span>
+          <span class="url-val${isEmpty ? ' empty' : ''}">${isEmpty ? '(empty)' : escapeHtml(val)}</span>
+          ${!isEmpty ? `<button class="url-copy-btn" data-val="${escapeAttr(val)}">Copy</button>` : '<span></span>'}
+        </div>`;
+    }
+
+    // Query params section
+    const params = Array.from(parsed.searchParams.entries());
+    if (params.length > 0) {
+      html += `<div class="param-section"><div class="param-title">Query Parameters (${params.length})</div>`;
+      for (const [k, v] of params) {
+        html += `
+          <div class="param-row">
+            <span class="param-key">${escapeHtml(k)}</span>
+            <span class="param-eq">=</span>
+            <span class="param-value">${escapeHtml(v)}</span>
+          </div>`;
+      }
+      html += `</div>`;
+    }
+
+    urlBreakdown.innerHTML = html;
+    parseOutputStat.textContent = `${URL_FIELDS.length} fields · ${params.length} params`;
+
+    // Attach copy buttons
+    urlBreakdown.querySelectorAll('.url-copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.dataset.val;
+        copyTextFn(val, btn, 'Copy', 'Copied!');
+      });
+    });
+  }
+
+  // ── Build logic ────────────────────────────────────────────
+  function addParamRow(key = '', val = '') {
+    const row = document.createElement('div');
+    row.className = 'param-builder-row';
+    row.innerHTML = `
+      <input class="form-input param-key-input" type="text" placeholder="key" value="${escapeAttr(key)}" spellcheck="false" autocomplete="off" />
+      <input class="form-input param-val-input" type="text" placeholder="value" value="${escapeAttr(val)}" spellcheck="false" autocomplete="off" />
+      <button class="param-del" title="Remove">✕</button>`;
+    row.querySelector('.param-del').addEventListener('click', () => {
+      row.remove();
+      runBuild();
+    });
+    row.querySelectorAll('input').forEach(inp => inp.addEventListener('input', runBuild));
+    paramBuilderList.appendChild(row);
+  }
+
+  function runBuild() {
+    buildError.style.display = 'none';
+
+    const protocol = (buildProtocol.value.trim() || 'https').replace(/:$/, '');
+    const hostname = buildHostname.value.trim();
+
+    if (!hostname) {
+      buildOutput.value = '';
+      buildOutputStat.textContent = '0 chars';
+      return;
+    }
+
+    let urlStr = `${protocol}://${hostname}`;
+    const port = buildPort.value.trim();
+    if (port) urlStr += `:${port}`;
+
+    let pathname = buildPathname.value.trim();
+    if (pathname && !pathname.startsWith('/')) pathname = '/' + pathname;
+    if (pathname) urlStr += pathname;
+
+    let parsed;
+    try {
+      parsed = new URL(urlStr);
+    } catch (e) {
+      buildError.textContent = 'Invalid URL';
+      buildError.style.display = '';
+      buildOutput.value = '';
+      buildOutputStat.textContent = '0 chars';
+      return;
+    }
+
+    // credentials
+    const username = buildUsername.value.trim();
+    const password = buildPassword.value.trim();
+    if (username) parsed.username = username;
+    if (password) parsed.password = password;
+
+    // query params
+    parsed.search = '';
+    paramBuilderList.querySelectorAll('.param-builder-row').forEach(row => {
+      const k = row.querySelector('.param-key-input').value.trim();
+      const v = row.querySelector('.param-val-input').value;
+      if (k) parsed.searchParams.append(k, v);
+    });
+
+    // hash
+    const hash = buildHash.value.trim();
+    if (hash) parsed.hash = hash.startsWith('#') ? hash : '#' + hash;
+
+    buildOutput.value = parsed.href;
+    buildOutputStat.textContent = `${parsed.href.length.toLocaleString()} chars`;
+  }
+
+  // ── Mode switching ─────────────────────────────────────────
+  function setMode(mode) {
+    currentMode = mode;
+    const isParse = mode === 'parse';
+    btnParseModeBtn.classList.toggle('active', isParse);
+    btnBuildModeBtn.classList.toggle('active', !isParse);
+    parseMode.style.display = isParse ? '' : 'none';
+    buildMode.style.display = isParse ? 'none' : '';
+    runLabel.textContent = isParse ? 'Parse' : 'Build URL';
+    if (isParse) runParse(); else runBuild();
+  }
+
+  btnParseModeBtn.addEventListener('click', () => setMode('parse'));
+  btnBuildModeBtn.addEventListener('click', () => setMode('build'));
+
+  // ── Copy helper ────────────────────────────────────────────
+  async function copyTextFn(text, button, defaultLabel, doneLabel) {
+    if (!text) return;
+    const originalHtml = button.innerHTML;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    button.classList.add('copied');
+    button.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ${doneLabel}`;
+    setTimeout(() => {
+      button.classList.remove('copied');
+      button.innerHTML = originalHtml;
+    }, 1500);
+  }
+
+  // ── Escape helpers ─────────────────────────────────────────
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+  function escapeAttr(str) {
+    return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  // ── Event bindings ─────────────────────────────────────────
+  parseInput.addEventListener('input', runParse);
+  btnRun.addEventListener('click', () => {
+    if (currentMode === 'parse') runParse(); else runBuild();
+  });
+
+  btnPasteUrl.addEventListener('click', async () => {
+    try { parseInput.value = await navigator.clipboard.readText(); runParse(); } catch {}
+  });
+  btnClearParseInput.addEventListener('click', () => {
+    parseInput.value = '';
+    runParse();
+  });
+
+  btnCopyAll.addEventListener('click', () => {
+    // Copy a plain text summary of all fields
+    const raw = parseInput.value.trim();
+    if (!raw) return;
+    let parsed;
+    try { parsed = new URL(raw); } catch { return; }
+    const lines = URL_FIELDS.map(f => `${f.key.padEnd(12)}: ${parsed[f.prop] || '(empty)'}`);
+    const params = Array.from(parsed.searchParams.entries());
+    if (params.length) {
+      lines.push('');
+      lines.push('Query Parameters:');
+      params.forEach(([k, v]) => lines.push(`  ${k} = ${v}`));
+    }
+    copyTextFn(lines.join('\n'), btnCopyAll, 'Copy All', 'Copied!');
+  });
+
+  btnCopyBuildHeader.addEventListener('click', () => copyTextFn(buildOutput.value, btnCopyBuildHeader, 'Copy', 'Copied!'));
+
+  btnCopyResult.addEventListener('click', () => {
+    if (currentMode === 'parse') {
+      const raw = parseInput.value.trim();
+      if (!raw) return;
+      let parsed; try { parsed = new URL(raw); } catch { return; }
+      const lines = URL_FIELDS.map(f => `${f.key.padEnd(12)}: ${parsed[f.prop] || '(empty)'}`);
+      copyTextFn(lines.join('\n'), btnCopyResult, 'Copy Result', 'Copied!');
+    } else {
+      copyTextFn(buildOutput.value, btnCopyResult, 'Copy Result', 'Copied!');
+    }
+  });
+
+  btnClearAll.addEventListener('click', () => {
+    parseInput.value = '';
+    buildProtocol.value = '';
+    buildUsername.value = '';
+    buildPassword.value = '';
+    buildHostname.value = '';
+    buildPort.value = '';
+    buildPathname.value = '';
+    buildHash.value = '';
+    paramBuilderList.innerHTML = '';
+    addParamRow();
+    runParse();
+    runBuild();
+  });
+
+  btnClearBuild.addEventListener('click', () => {
+    buildProtocol.value = '';
+    buildUsername.value = '';
+    buildPassword.value = '';
+    buildHostname.value = '';
+    buildPort.value = '';
+    buildPathname.value = '';
+    buildHash.value = '';
+    paramBuilderList.innerHTML = '';
+    addParamRow();
+    runBuild();
+  });
+
+  btnAddParam.addEventListener('click', () => {
+    addParamRow();
+  });
+
+  // Build fields live update
+  [buildProtocol, buildUsername, buildPassword, buildHostname, buildPort, buildPathname, buildHash]
+    .forEach(el => el.addEventListener('input', runBuild));
+
+  // ── Init ───────────────────────────────────────────────────
+  addParamRow();
+  setMode('parse');
+</script>
 <footer>
   <a href="../index.html">← Home</a> &nbsp;·&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;

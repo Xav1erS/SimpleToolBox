@@ -4618,6 +4618,366 @@ const TOOLS_META = [
           "Runs locally so contact data never leaves the browser."
         ]
       }
+    },
+  {
+      slug: "png-to-webp",
+      title: "PNG to WebP Converter Online Free | Convert PNG to WebP | Simple ToolBox",
+      description: "Convert PNG images to WebP online for free. Adjust output quality, compare file size, and download the converted WebP instantly. Runs entirely in your browser.",
+      category: "image",
+      shortTitle: "PNG to WebP Converter",
+      relatedTools: [
+        "webp-converter",
+        "image-compressor",
+        "jpg-to-png"
+      ],
+      useCases: [
+        "Shrink PNG assets before uploading them to websites or CMS platforms",
+        "Keep transparency while reducing file size for UI graphics and stickers",
+        "Prepare faster-loading images for landing pages and product cards",
+        "Convert exported design assets into a more web-friendly image format"
+      ],
+      faq: [
+        {
+          q: "Does WebP keep transparency from PNG?",
+          a: "Yes. WebP supports transparency, so transparent PNG files can be converted without losing the alpha channel."
+        },
+        {
+          q: "Why is WebP usually smaller than PNG?",
+          a: "WebP uses more modern compression methods than PNG, especially for photographs and mixed graphics, so the same image often takes less space."
+        },
+        {
+          q: "Can I control output quality?",
+          a: "Yes. Use the quality slider to trade file size against sharpness before downloading the result."
+        },
+        {
+          q: "Is the conversion done locally?",
+          a: "Yes. The image is processed entirely in your browser and never uploaded to a server."
+        }
+      ],
+      example: {
+        input: "Upload a transparent 1200?1200 PNG product badge (420 KB)",
+        output: "Download a transparent WebP version at 85% quality with a smaller file size"
+      },
+      seoContent: {
+        whatIsTitle: "What is PNG to WebP Converter?",
+        whatIsBody: "PNG to WebP Converter turns PNG images into WebP so you can keep visual quality and transparency while usually reducing file size. It is useful for websites, product assets, UI graphics, and social images that need to load faster.",
+        howToTitle: "How to Use PNG to WebP Converter",
+        howToSteps: [
+          "Drop a PNG file into the tool or click to browse.",
+          "Adjust the quality slider until the size and quality tradeoff looks right.",
+          "Review the preview and file size comparison instantly.",
+          "Download the converted WebP file for your site, app, or asset library."
+        ]
+      },
+      learnMore: {
+        title: "Understand PNG to WebP Conversion",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for web graphics, transparent assets, and site-speed optimization.",
+          "Lets you balance sharpness and file size without opening a desktop editor.",
+          "Runs locally so private design assets stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "svg-to-png",
+      title: "SVG to PNG Converter Online Free | Convert SVG to PNG | Simple ToolBox",
+      description: "Convert SVG files to PNG online for free. Choose 1x, 2x, 3x, or 4x export scale and download a raster PNG instantly. Runs entirely in your browser.",
+      category: "image",
+      shortTitle: "SVG to PNG Converter",
+      relatedTools: [
+        "jpg-to-png",
+        "png-to-jpg",
+        "image-resizer"
+      ],
+      useCases: [
+        "Turn vector logos or icons into PNG assets for apps and slide decks",
+        "Export SVG artwork for platforms that only accept raster images",
+        "Generate multiple pixel-density versions of the same SVG design",
+        "Convert design handoff files into ready-to-upload image outputs"
+      ],
+      faq: [
+        {
+          q: "Why would I convert SVG to PNG?",
+          a: "PNG is easier to upload into many CMS, slide, social, and marketplace workflows that do not fully support SVG files."
+        },
+        {
+          q: "What does 2x or 4x export scale mean?",
+          a: "It multiplies the raster output dimensions. For example, a 200?200 SVG exported at 4x becomes an 800?800 PNG."
+        },
+        {
+          q: "Does PNG stay editable like SVG?",
+          a: "No. SVG is vector-based, while PNG is raster output made of pixels, so the exported file is no longer infinitely scalable."
+        },
+        {
+          q: "Is the SVG uploaded to a server?",
+          a: "No. The file is read and rasterized locally in your browser."
+        }
+      ],
+      example: {
+        input: "Upload a 256?256 SVG app icon and choose 4x export scale",
+        output: "Download a 1024?1024 PNG for app store or presentation use"
+      },
+      seoContent: {
+        whatIsTitle: "What is SVG to PNG Converter?",
+        whatIsBody: "SVG to PNG Converter rasterizes vector SVG files into PNG images at the export scale you choose. It is useful when a design is in SVG format but the destination requires a pixel-based image file.",
+        howToTitle: "How to Use SVG to PNG Converter",
+        howToSteps: [
+          "Drop an SVG file into the tool or browse for it manually.",
+          "Pick the export scale that matches your target use case.",
+          "Review the preview and source versus output size instantly.",
+          "Download the PNG file for upload, sharing, or asset delivery."
+        ]
+      },
+      learnMore: {
+        title: "Understand SVG to PNG Conversion",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for logos, icons, illustrations, and design handoff files.",
+          "Makes vector artwork easy to reuse in raster-only workflows.",
+          "Runs locally so private design files stay in the browser."
+        ]
+      }
+    },
+  {
+      slug: "bmp-to-png",
+      title: "BMP to PNG Converter Online Free | Convert BMP to PNG | Simple ToolBox",
+      description: "Convert BMP images to PNG online for free. Turn bitmap files into portable PNG images instantly and download the result in your browser without uploading anything.",
+      category: "image",
+      shortTitle: "BMP to PNG Converter",
+      relatedTools: [
+        "jpg-to-png",
+        "png-to-jpg",
+        "image-compressor"
+      ],
+      useCases: [
+        "Convert legacy BMP images from Windows apps into modern PNG files",
+        "Prepare bitmap screenshots and exports for web or document use",
+        "Turn old design assets into a format that works everywhere",
+        "Reuse BMP files in tools that do not accept bitmap uploads directly"
+      ],
+      faq: [
+        {
+          q: "Why convert BMP to PNG?",
+          a: "BMP files are bulky and not well suited for modern sharing or web workflows. PNG is widely supported and usually easier to reuse."
+        },
+        {
+          q: "Does PNG reduce image quality compared with BMP?",
+          a: "No. PNG uses lossless compression, so the pixel data is preserved."
+        },
+        {
+          q: "Will the converted PNG be smaller?",
+          a: "Often yes. BMP is usually uncompressed, while PNG compresses the same image data more efficiently without losing quality."
+        },
+        {
+          q: "Is the bitmap uploaded anywhere?",
+          a: "No. The conversion happens entirely in your browser on your device."
+        }
+      ],
+      example: {
+        input: "Upload a bitmap screenshot exported from an older Windows tool",
+        output: "Download a PNG version that is easier to share and reuse"
+      },
+      seoContent: {
+        whatIsTitle: "What is BMP to PNG Converter?",
+        whatIsBody: "BMP to PNG Converter changes bitmap image files into PNG so they become easier to share, upload, and reuse in modern workflows. It is especially useful for older Windows exports, archived assets, and bulky BMP screenshots.",
+        howToTitle: "How to Use BMP to PNG Converter",
+        howToSteps: [
+          "Drop a BMP file into the tool or click to browse.",
+          "Review the preview and original file information instantly.",
+          "Check the converted PNG size and dimensions.",
+          "Download the new PNG file for reuse in websites, docs, or design tools."
+        ]
+      },
+      learnMore: {
+        title: "Understand BMP to PNG Conversion",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for legacy image exports and old Windows bitmap files.",
+          "Makes BMP images easier to share and use in modern apps.",
+          "Runs locally so your files never leave the browser."
+        ]
+      }
+    },
+  {
+      slug: "crop-image",
+      title: "Crop Image Online Free | Crop Photos to Exact Area | Simple ToolBox",
+      description: "Crop images online for free. Set exact crop area, use square or social presets, preview the result, and download the cropped image instantly in your browser.",
+      category: "image",
+      shortTitle: "Crop Image",
+      relatedTools: [
+        "image-resizer",
+        "image-rotate",
+        "png-to-jpg"
+      ],
+      useCases: [
+        "Crop screenshots before adding them to docs or slide decks",
+        "Prepare square, portrait, or landscape image cuts for social posts",
+        "Remove unused edges from product photos or UI exports",
+        "Create exact image areas without opening desktop editing software"
+      ],
+      faq: [
+        {
+          q: "Can I crop to a square or portrait ratio?",
+          a: "Yes. Use the built-in ratio presets such as 1:1, 16:9, or 4:5 to jump to common crop shapes quickly."
+        },
+        {
+          q: "Do I need to drag a crop box?",
+          a: "No. This version focuses on precise numeric crop control so you can edit the crop area exactly and see the result immediately."
+        },
+        {
+          q: "Can I download the cropped result as PNG or JPEG?",
+          a: "Yes. Choose the output format before downloading the cropped image."
+        },
+        {
+          q: "Is the image uploaded anywhere?",
+          a: "No. The crop preview and export run entirely in your browser."
+        }
+      ],
+      example: {
+        input: "Upload a 1600?900 screenshot and switch to a 1:1 crop preset",
+        output: "Download a square crop for a social thumbnail or avatar"
+      },
+      seoContent: {
+        whatIsTitle: "What is Crop Image?",
+        whatIsBody: "Crop Image lets you trim a picture down to the exact area you need. It is useful for social posts, screenshots, product photos, and any image that needs a cleaner frame before publishing or sharing.",
+        howToTitle: "How to Use Crop Image",
+        howToSteps: [
+          "Upload an image into the crop tool.",
+          "Choose a free or preset crop ratio.",
+          "Adjust the crop coordinates and size until the preview looks right.",
+          "Download the cropped result in your preferred format."
+        ]
+      },
+      learnMore: {
+        title: "Understand Image Cropping",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for screenshots, product images, and social media assets.",
+          "Makes exact cropping possible without opening a desktop editor.",
+          "Runs locally so your images stay on your device."
+        ]
+      }
+    },
+  {
+      slug: "favicon-generator",
+      title: "Favicon Generator Online Free | Make 16x16, 32x32, 48x48 Favicons | Simple ToolBox",
+      description: "Generate favicon PNG files online for free. Upload an image, preview it at 16x16, 32x32, and 48x48, then download favicon sizes instantly in your browser.",
+      category: "design",
+      shortTitle: "Favicon Generator",
+      relatedTools: [
+        "image-resizer",
+        "svg-to-png",
+        "png-to-webp"
+      ],
+      useCases: [
+        "Turn a logo into website favicon assets",
+        "Preview how a tiny site icon looks at common browser sizes",
+        "Export standard PNG icon sizes for app demos and prototypes",
+        "Generate quick favicon files without opening a graphics editor"
+      ],
+      faq: [
+        {
+          q: "What favicon sizes does this tool create?",
+          a: "This tool previews and exports common favicon PNG sizes such as 16?16, 32?32, 48?48, and 64?64."
+        },
+        {
+          q: "Why do simple logos work better for favicons?",
+          a: "Favicons are tiny, so high-detail artwork becomes unreadable. Bold shapes, letters, and strong contrast stay visible better at small sizes."
+        },
+        {
+          q: "Does this tool export ICO files?",
+          a: "This version focuses on PNG favicon sizes. If you need ICO packaging later, PNG exports still give you the core icon assets."
+        },
+        {
+          q: "Is my logo uploaded anywhere?",
+          a: "No. Everything runs locally in your browser."
+        }
+      ],
+      example: {
+        input: "Upload a square 512?512 logo and preview it at 16?16 and 32?32",
+        output: "Download the favicon PNG sizes that still look clear at tiny browser-tab scale"
+      },
+      seoContent: {
+        whatIsTitle: "What is Favicon Generator?",
+        whatIsBody: "Favicon Generator turns a source image into small website icon sizes so you can preview and export favicons quickly. It is useful for websites, prototypes, landing pages, and quick design handoff workflows.",
+        howToTitle: "How to Use Favicon Generator",
+        howToSteps: [
+          "Upload a logo or icon image into the tool.",
+          "Switch between standard favicon sizes to inspect clarity.",
+          "Download the PNG sizes you want to use on your site.",
+          "Test the smallest sizes to make sure the icon is still readable."
+        ]
+      },
+      learnMore: {
+        title: "Understand Favicon Generation",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for site launches, redesigns, and quick branding work.",
+          "Lets you see tiny favicon readability before exporting files.",
+          "Runs locally so logos and brand assets stay private."
+        ]
+      }
+    },
+  {
+      slug: "color-picker-from-image",
+      title: "Color Picker From Image Online Free | Pick HEX Colors from Images | Simple ToolBox",
+      description: "Pick colors from an uploaded image online for free. Click any point to get HEX and RGB values, save swatches, and copy picked colors instantly in your browser.",
+      category: "design",
+      shortTitle: "Color Picker From Image",
+      relatedTools: [
+        "color-picker",
+        "color-converter",
+        "color-palette"
+      ],
+      useCases: [
+        "Sample brand colors from a screenshot or product image",
+        "Extract a HEX color from a photo for design matching",
+        "Build quick swatch references from inspiration images",
+        "Check exact pixel colors before recreating UI elements"
+      ],
+      faq: [
+        {
+          q: "How do I pick a color from the image?",
+          a: "Upload an image and click any point on the preview. The tool reads the clicked pixel and shows the HEX and RGB values instantly."
+        },
+        {
+          q: "Can I save multiple colors?",
+          a: "Yes. Use Save Swatch to store several picked colors for quick comparison and copying."
+        },
+        {
+          q: "Does it support HEX and RGB output?",
+          a: "Yes. The tool shows both HEX and RGB for the currently picked pixel color."
+        },
+        {
+          q: "Is the uploaded image sent to a server?",
+          a: "No. Color picking happens entirely inside your browser."
+        }
+      ],
+      example: {
+        input: "Upload a product screenshot and click a button background color",
+        output: "Copy the exact HEX and RGB values and save the swatch for later reference"
+      },
+      seoContent: {
+        whatIsTitle: "What is Color Picker From Image?",
+        whatIsBody: "Color Picker From Image lets you upload a picture and sample exact pixel colors from any point in the preview. It is useful for design matching, reverse engineering UI colors, palette extraction, and visual audits.",
+        howToTitle: "How to Use Color Picker From Image",
+        howToSteps: [
+          "Upload an image into the tool.",
+          "Click anywhere on the preview to sample that pixel color.",
+          "Copy the HEX or RGB value you need.",
+          "Save multiple swatches if you want a small palette from the same image."
+        ]
+      },
+      learnMore: {
+        title: "Understand Image Color Picking",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for design systems, screenshots, and visual reverse engineering.",
+          "Gives exact HEX and RGB values without opening a graphics editor.",
+          "Runs locally so private images stay on your device."
+        ]
+      }
     }
 ];
 

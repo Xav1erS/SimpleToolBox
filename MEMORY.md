@@ -1,146 +1,139 @@
 # SimpleToolBox Memory
 
-## Current Focus
+## Current Snapshot (2026-03-21)
 
-The current focus is to consolidate existing page styles into one design system instead of introducing a new visual direction.
+- Tool count: **84**
+- Tool pages: all connected to metadata-driven SEO rendering
+- Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
+- Hub pages live: `image-tools`, `developer-tools`, `text-tools`
+- Shared tool source: `public/tools-data.js`
+- Shared tool metadata source: `public/tools-meta.js`
+- Latest preflight: fully green
 
-The project keeps the current dark visual language and gradually moves repeated inline page styles into shared tokens, base rules, and component classes.
+## Real Current Focus
 
-## Design System Files
+The focus is **no longer design-system migration**.
 
-- `public/styles/design-system.css`
-- `public/styles/design-tokens.css`
-- `public/styles/design-base.css`
-- `public/styles/design-components.css`
-- `DESIGN_SYSTEM.md`
-- `public/design-system.html`
+The real focus is:
 
-## Site-Wide Status
+1. grow from 84 to 100
+2. then to 150
+3. do it without losing consistency, SEO structure, or QA coverage
+4. simultaneously improve tool competitiveness so growth does not outpace usefulness
 
-### Non-Tool Pages
+## Unified Strategy Summary
 
-These pages are already migrated:
+SimpleToolBox should be run as a:
 
-- `public/index.html`
-- `public/all-tools.html`
-- `public/about.html`
-- `public/privacy.html`
-- `public/terms.html`
-- `public/contact.html`
+**task-oriented online tool site**
 
-Shared capabilities already in place:
+The project should expand in this order:
 
-- Shared site entry CSS
-- Shared nav skeleton
-- Shared search input and search interaction layer
-- Shared hero and marketing page patterns
-- Shared legal document page pattern
-- Shared buttons, inputs, pills, tags, notices, cards, and panels
-- Shared Contact form states and success states
+1. Image
+2. Text
+3. Calculators
+4. Generators / Utility
+5. Developer
+6. PDF
 
-### Tool Pages
+This is intentionally different from the earlier developer-heavy phase.
 
-#### `public/tools/base64.html`
+Reason:
 
-- Most complete sample page
-- Most repeated CSS already removed
-- Shared layer controls nav, header, two-pane workbench, actions, and note card
+- the site already has a solid developer-tool base
+- broader task intent offers a better next growth step
+- PDF should be approached carefully because many document workflows are not good pure-frontend candidates yet
 
-#### `public/tools/json-formatter.html`
+## Tool Competitiveness Reminder
 
-- Nearly complete
-- `Format / Validate / JSON->CSV / CSV->JSON` workbenches already aligned with shared components
-- Keeps page-specific styles such as `toolbar`, `history`, `sql-section`, and `io-valid`
+The project now has to balance three things at once:
 
-#### `public/tools/qr-code-generator.html`
+1. growth
+2. SEO / discoverability
+3. actual tool quality
 
-- First round plus layout cleanup completed
-- Established the "settings sidepanel + result preview" shared pattern
+The key idea:
 
-#### `public/tools/password-generator.html`
+**A tool page is only strategically valuable if users can complete the task smoothly after landing.**
 
-- Core layout migration completed
-- Keeps unique controls such as slider, checkbox, advanced collapse, strength bar, and password list
+So future work should not only ask:
 
-#### `public/tools/url-encode.html`
+- Does this keyword matter?
+- Does this page exist?
 
-- Migration completed
-- Original file had encoding corruption and was rebuilt
-- Original URL encode/decode behavior and key SEO metadata were preserved
+It must also ask:
 
-#### `public/tools/hash-generator.html`
+- Is this tool fast to understand?
+- Is it fast to start?
+- Does it behave well on common inputs?
+- Are errors recoverable?
+- Is the result easy to take away?
+- Is it competitive with obvious alternatives?
 
-- Migration completed
-- Established the "vertical-stack panels" tool page pattern (input panel + results panel, no side-by-side workbench)
-- Shared classes now control nav, header, pane headers/labels/actions/buttons, and textarea
-- Kept local: underline tabs (Text/File), column-centered drop zone, hash result rows, case toggle, file info strip
+## Immediate Execution Rules
 
-#### `public/tools/timestamp.html`
+When adding a new tool:
 
-- Migration completed
-- Established the "converter form cards" tool page pattern (live clock + multiple input→result converter cards, vertical stack)
-- Shared classes now control nav and header
-- Kept local: `.main` (flex column 900px), `.live-clock`, `.card*`, `.field-*`, `.btn-convert`, `.seg-ctrl`, `.result-*`, `.info-card`, related tools
+1. create the tool page with DS skeleton
+2. add the tool to `public/tools-data.js`
+3. add metadata to `public/tools-meta.js`
+4. render SEO sections with `scripts/render-tool-sections.py`
+5. update `public/sitemap.xml`
+6. run the appropriate QA commands
+7. do a basic product-quality pass, not just a structural pass
 
-#### `public/tools/word-counter.html`
+## Current Architecture Facts
 
-- Migration completed
-- Established the "wide editor + sidebar stats cards" tool page pattern (left textarea + right column of multiple stat cards)
-- Shared classes now control nav, header, pane header/label/actions/buttons, textarea, pane footer, stat label
-- Kept local: `.main` grid layout (1fr 300px), `.editor-panel` container, `.stats-col`, all stat card internals, platform bars, related tools section
+### Data
 
-## Migration Principles
+- `public/tools-data.js` is the single source for homepage, all-tools, and hub pages
+- `public/tools-meta.js` is the single source for structured data, learn-more, FAQ, and related tools
 
-- Minimum necessary change
-- Reuse shared design system classes first
-- Attach shared skeleton first, then delete repeated local CSS
-- Keep page-specific business styles when needed
-- Do not roll back completed design system migrations
-- Do not refactor unrelated pages
+### Page Types
 
-## Current Goal: 300+ Tools
+- Tool page
+- Hub page
+- All-tools page
+- Homepage
 
-设计系统迁移已全部完成（21 个工具 + 6 个站点页面）。当前主要工作是新增工具，目标 300+ 个。
+Scenario pages and workflow pages are **future expansion**, not the current default.
 
-### 工具开发优先级
+## What Should Not Reappear
 
-1. **文本处理**：行去重、行排序、大小写转换、文本差异对比、空白清理
-2. **开发工具**：CSS/JS minify、YAML↔JSON、HTML formatter、diff viewer
-3. **编码/加密**：Base58、Base32、AES 加解密、HMAC、SHA-3
-4. **数字/数学**：进制转换、科学计数、排列组合
-5. **时间日期**：时区转换、工作日计算、日期差值
-6. **颜色/设计**：调色板生成、渐变生成、WCAG 对比度检查
-7. **网络/URL**：UserAgent 解析、端口参考、MIME 查询
+- old migration-first framing
+- old counts like 21 or 81 when the repo has moved on
+- manually maintained duplicate tool lists inside hub pages
+- free-form SEO block HTML on each tool page
+- heavy directory-style navigation
+- large-scale AI writing pages without real value
 
-### 关键开发原则
+## Near-Term Expansion Goal
 
-- 工具粒度要小，一个工具只做一件事
-- 同类工具批量开发，共享骨架只换核心逻辑
-- 纯计算工具优先引入成熟 JS 库（dayjs、math.js 等）
-- 工具数超过 50 个时，`all-tools.html` 必须加分类筛选
-- 每次新增工具后同步更新 `all-tools.html`
+Use 84 → 150 to complete category skeleton, not to blindly chase 500.
 
-### 分阶段里程碑
+Recommended near-term bias:
 
-| 阶段 | 目标 | 重点 |
-| ---- | ---- | ---- |
-| 阶段一 | 50 个 | 文本、开发、编码 |
-| 阶段二 | 100 个 | 数学、颜色、时间、网络 |
-| 阶段三 | 200 个 | 细分场景专业工具 |
-| 阶段四 | 300+ 个 | 长尾需求 |
+- more extract / convert / compress / resize / count / calculate tools
+- fewer niche developer-only expansions
+- only selective PDF work
 
-### 新工具上线检查清单
+Recommended near-term quality bias:
 
-完整检查清单见 `CLAUDE.md` → "新工具上线前检查"。核心项：
-
-- Migration Checklist（设计系统骨架）
-- Interaction Quality Checklist（按钮/复制/预设交互）
-- 独立 SEO 元数据（title、description、ld+json）
-- `all-tools.html` 已更新
-- 移动端布局正常
+- spend more polish on high-frequency image/text/calculator tools
+- ensure defaults, presets, and output flows feel effortless
+- avoid shipping technically correct but awkward tools just to increase count
 
 ## Historical Note
 
-There was an earlier idea to extract the nav into a separate `public/nav.js` injection flow.
+Earlier files and older handoff notes may still mention:
 
-That is no longer the current priority. The design system migration is complete. If shared navigation extraction is needed later, evaluate it after reaching 100+ tools.
+- unfinished design-system migration
+- 21 tools
+- 81 tools
+- 300+ target as the main frame
+
+Those are now outdated.
+
+The correct active frame is:
+
+**84 tools, QA stable, growth-first, task-intent expansion toward 150 and then 500.**

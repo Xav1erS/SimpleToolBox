@@ -2,343 +2,473 @@
 
 ## Working Rules
 
-- Always reply in Chinese to the user.
-- Start responses with the conclusion, then list key steps.
-- Before running commands, editing files, or running tests, briefly say what you are about to do.
-- After code changes, explain the files touched and the key changes.
-- Prefer the minimum necessary change. Avoid unrelated refactors.
+- Always reply in Chinese.
+- Start with the conclusion, then list key steps.
+- Before commands, edits, or tests, briefly say what you are about to do.
+- After changes, explain files touched and key changes.
+- Prefer the minimum necessary change.
+
+## Unified Project Strategy
+
+### Real Positioning
+
+SimpleToolBox should be operated as a:
+
+**Task-oriented online tool site**
+
+Not:
+
+- a pure developer-tools brand
+- a heavy directory site
+- a content blog
+
+Users arrive with explicit task intent:
+
+- compress
+- convert
+- extract
+- format
+- generate
+- calculate
+- inspect
+
+That means:
+
+- product organization can follow implementation efficiency
+- front-end browsing should follow user language
+- SEO should follow search intent
+
+These three layers must stay aligned.
+
+## Current Actual State (2026-03-21)
+
+- **84 tool pages** are live.
+- All 84 tools already use the unified SEO structure driven by `public/tools-meta.js` + `scripts/render-tool-sections.py`.
+- `public/tools-data.js` is now the single shared data source for:
+  - `public/index.html`
+  - `public/all-tools.html`
+  - `public/image-tools.html`
+  - `public/developer-tools.html`
+  - `public/text-tools.html`
+- Hub pages already exist:
+  - `public/image-tools.html`
+  - `public/developer-tools.html`
+  - `public/text-tools.html`
+- Latest preflight is fully green:
+  - metadata failures: 0
+  - page load failures: 0
+  - console errors: 0
+  - smoke failures: 0
+  - visual failures: 0
+
+Reference:
+
+- `reports/preflight-report.md`
+- `QA.md`
+
+## What Is Finished
+
+### Engineering / QA
+
+- Unified metadata-driven SEO block rendering
+- Unified related-tools and learn-more structure
+- Metadata validation
+- Page audit
+- Smoke tests
+- Visual regression
+- Preflight summary reporting
+
+### Site Structure
+
+- Homepage is data-driven
+- `all-tools.html` is data-driven
+- 3 hub pages are data-driven
+- Tool pages are using a consistent DS-based skeleton
+
+### Migration Status
+
+Design-system migration is complete enough for current needs.
+
+Do **not** treat the main task as “continue migration”.
+
+The main task is now **growth with discipline**.
 
 ## Current Main Task
 
-**Design-system migration is complete. All 81 tool pages and 6 site pages are migrated.**
+### Primary Goal
 
-The current main task is to **expand the tool count toward 500**. New tools must be built using the design system from the start and include complete SEO content structure.
+Expand from **84 → 100 → 150 → 500** tools without breaking the system.
 
-A QA system is in place (`QA.md`). Run the appropriate checks after every change (see Change Risk Tiers in `QA.md`).
+This goal now has **three parallel constraints**:
 
-## Design System Entry Points
+1. growth
+2. SEO / discoverability
+3. tool competitiveness / usability
 
-- `public/styles/design-system.css`
-- `public/styles/design-tokens.css`
-- `public/styles/design-base.css`
-- `public/styles/design-components.css`
-- `DESIGN_SYSTEM.md`
-- `public/design-system.html`
+### Highest-Priority Direction
 
-New pages and migrated pages should use these shared files and existing `ds-*` classes first.
+Based on current tool mix, the real expansion order should be:
 
-## Migration Rules
+1. **Image**
+2. **Text**
+3. **Calculators**
+4. **Generators / Utility**
+5. **Developer**
+6. **PDF**
 
-- Reuse `ds-*` classes whenever possible.
-- Prefer deleting repeated local CSS after shared classes are attached.
-- Keep page-specific business UI styles when they are truly unique.
-- Do not roll back pages that are already migrated.
-- Do not touch unrelated files during migration work.
-- If a page has encoding corruption or broken HTML, rebuilding the page is allowed as long as core functionality, SEO metadata, and intended behavior are preserved.
+Reason:
 
-## What Is Already Migrated
+- current project is already relatively strong in developer/encoding/conversion tools
+- the next growth opportunity is broader task intent
+- PDF is important long term but should not dominate the near-term roadmap
 
-### Site Pages
+## What To Build Next
 
-These pages are already migrated into the design system:
+### Phase 1: 84 → 150
 
-- `public/index.html`
-- `public/all-tools.html`
-- `public/about.html`
-- `public/privacy.html`
-- `public/terms.html`
-- `public/contact.html`
+Goal: complete the category skeleton.
 
-These pages already use shared navigation, hero, page containers, cards, inputs, buttons, legal page patterns, marketing page patterns, and form states.
+Recommended target mix:
+
+- Image: grow aggressively
+- Text: grow aggressively
+- Calculators: grow carefully but steadily
+- Utility / generators: fill common gaps
+- Developer: keep adding only high-value holes
+- PDF: only ship the pure-frontend subset that is genuinely usable
+
+### Phase 2: 150 → 300
+
+Goal: expand into scenario keywords.
+
+Only after the category skeleton is credible, start pages like:
+
+- resize image for instagram
+- compress image for email
+- resize image for passport
+- json formatter for api response
+
+### Phase 3: 300 → 500
+
+Goal: build a keyword matrix and internal-link network.
+
+At this stage, focus on:
+
+- long-tail task variations
+- hub pages
+- workflow / chain pages
+- winner-page expansion
+
+## Tool Competitiveness Strategy
+
+Coverage alone is not enough.
+
+The site should not become “a large set of pages that technically exist”.
+
+It should become:
+
+**a large set of pages where users can complete tasks successfully with minimal friction**
+
+### Core Principle
+
+SEO brings the user in.
+
+Tool competitiveness determines:
+
+- whether the user succeeds
+- whether the user returns
+- whether the page earns trust
+- whether the site becomes more than a keyword surface
+
+### The 6 Usability Standards For Every Tool
+
+1. **1-second comprehension**
+   - users should understand the tool immediately from title, description, and first-screen UI
+2. **1-step start**
+   - paste / upload / type should be obvious without reading long instructions
+3. **instant feedback**
+   - option changes, preset clicks, sliders, and toggles should update output immediately
+4. **recoverable failure**
+   - empty input, invalid input, and boundary cases must not break the page
+5. **easy result export**
+   - copy / download / reset / retry must be frictionless
+6. **real workflow fit**
+   - presets, default values, and output choices should match real user tasks, not just technical capability
+
+### What Usually Creates Competitive Advantage
+
+Not just “having the feature”.
+
+Usually the advantage comes from:
+
+- better defaults
+- clearer empty states
+- fewer clicks
+- immediate output
+- useful presets
+- smarter error states
+- easier copy/download flow
+- better mobile usability
+- stronger next-step related tools
+
+### Two Quality Tiers
+
+#### Tier A: tools worth heavy polishing
+
+These deserve extra effort:
+
+- high-frequency image tools
+- high-frequency text tools
+- common calculators
+- homepage / hub / popular tools
+
+For these tools, aim to be **better than alternatives**, not just present.
+
+#### Tier B: tools worth fast but solid coverage
+
+These need:
+
+- clear purpose
+- stable logic
+- good metadata
+- good mobile layout
+- usable output flow
+
+But they do not need deep product investment immediately.
+
+### New Tool Product Check
+
+Before shipping a new tool, check:
+
+- Is the purpose obvious in one glance?
+- Can a first-time user start in one step?
+- Does changing inputs update results fast enough?
+- Are default options sensible?
+- Is at least one realistic example / preset included?
+- Are error states human-readable?
+- Is output easy to copy / download?
+- Is mobile use still practical?
+- Do related tools reflect the natural next step?
+
+### Top Tool Strengthening
+
+Once search data begins to show winner pages, strengthen those pages with:
+
+- better defaults
+- faster workflow
+- more realistic presets
+- richer output controls
+- stronger related-tool sequencing
+- more task-specific FAQs
+- better mobile ergonomics
+
+## What Not To Do Yet
+
+- Do not prioritize large-scale PDF expansion yet
+- Do not mass-produce AI writing tools
+- Do not mass-produce scenario pages before the category skeleton exists
+- Do not start multilingual expansion yet
+- Do not create near-duplicate keyword swap pages
+
+## Front-End / Information Architecture Rules
+
+### URL Types
+
+Use four page types long term:
+
+1. Tool pages
+   - `/tools/base64`
+   - `/tools/image-compressor`
+2. Hub pages
+   - `/image-tools`
+   - `/developer-tools`
+   - `/text-tools`
+3. Scenario pages
+   - `/resize-image-for-instagram`
+   - `/compress-pdf-for-email`
+4. Workflow / chain pages
+   - `/image-resize-and-compress`
+   - `/json-format-and-validate`
+
+### Homepage
+
+Homepage is:
+
+**brand entry + high-click tool entry + internal-link distribution**
+
+It should not become:
+
+- a long article
+- a giant directory dump
+- a heavy nav page
+
+### All Tools
+
+`public/all-tools.html` should be treated as:
+
+**a find system**
+
+Not a classic left-sidebar directory.
+
+Priorities:
+
+- search
+- category grouping
+- popular tools
+- new / updated
+- clean scanability
 
 ### Tool Pages
 
-- `public/tools/base64.html`
-  - Most complete tool page sample.
-  - Shared layout already controls nav, header, two-pane workbench, actions, and notes.
-  - Most repeated local CSS has already been removed.
+Keep the current standard:
 
-- `public/tools/json-formatter.html`
-  - Almost at the same completion level as `base64.html`.
-  - All three workbench modes are already aligned with shared tool components.
-  - Local styles like `toolbar`, `history dropdown`, `sql-section`, and `io-valid` are intentionally kept.
+1. H1
+2. short description
+3. working tool UI
+4. trust/privacy hint
+5. related tools
+6. learn more (collapsed)
 
-- `public/tools/qr-code-generator.html`
-  - Established the "side settings panel + preview panel" tool page pattern.
-  - Shared classes such as `ds-tool-split`, `ds-tool-sidepanel*`, and `ds-tool-preview*` were added for this pattern.
+Do not move SEO content above the working tool.
 
-- `public/tools/password-generator.html`
-  - Core layout migration is done.
-  - Shared classes already control nav, header, split layout, main panel, actions, and notes.
-  - Unique UI like slider, checkbox list, advanced collapse, strength bar, and password list stays local.
+## Shared Data Rules
 
-- `public/tools/url-encode.html`
-  - Migration is complete.
-  - The page was rebuilt because the original file had encoding corruption and broken nodes.
-  - Shared classes now control nav, header, two-pane workbench, actions, and notes.
+### `public/tools-data.js`
 
-- `public/tools/hash-generator.html`
-  - Established the "vertical-stack panels" tool page pattern (input panel + results panel).
-  - Shared classes control nav, header, pane headers/labels/actions/buttons, and textarea.
-  - Kept local: underline tabs (Text/File), column-centered drop zone, hash result rows, case toggle.
+This is the only shared tool list source.
 
-- `public/tools/word-counter.html`
-  - Established the "editor + stats column" pattern (1fr + 300px right column).
-  - Shared classes control nav, header, pane header/actions/buttons, textarea, pane footer.
-  - Kept local: stat-card grid, time-row, word-row, platform-bar.
+After adding a tool:
 
-- `public/tools/timestamp.html`
-  - Single-column stack of converter cards.
-  - Shared classes control nav and header.
-  - Kept local: live-clock, card, field-row, result-box, btn-convert.
+1. append it to `SITE_TOOLS`
+2. update `HUB_PAGE_CONFIG` if needed
+3. do not manually maintain separate tool lists in hub pages
 
-- `public/tools/uuid-generator.html`
-  - Uses `ds-tool-main ds-tool-split` + `ds-tool-sidepanel` + `ds-tool-sidepanel__section`.
-  - Kept local: slider, checkboxes, uuid-row list, actions buttons, info-card.
+### `public/tools-meta.js`
 
-- `public/tools/slug-generator.html`
-  - Single-column stack (`ds-tool-main ds-tool-stack`), cards kept local.
-  - Kept local: card container, options-row, segment controls, slug output, copy buttons, SEO hint.
+This is the source of:
 
-- `public/tools/lorem-ipsum-generator.html`
-  - Uses `ds-tool-main ds-tool-split` + `ds-tool-sidepanel` pattern.
-  - Kept local: theme-grid, output-panel/header/footer, output-textarea.
+- structured data
+- SEO content
+- related tools
+- learn more
+- FAQ
 
-- `public/tools/random-number-generator.html`
-  - Three layout modes (numbers/list/dice). All use local `.main`/`.list-main`/`.dice-main`.
-  - Shared classes control nav and header only.
+After adding a tool:
 
-- `public/tools/unit-converter.html`
-  - Single-column stack with local `.body-wrap`.
-  - Kept local: category tabs, converter-card, ref-table.
+1. add a complete metadata entry
+2. run `python scripts/render-tool-sections.py <slug>`
+3. do not hand-write unique SEO block HTML structures unless strictly necessary
 
-- `public/tools/youtube-thumbnail.html`
-  - Single-column layout. Shared classes control nav and header.
+## New Tool Page Checklist
 
-- `public/tools/color-picker.html`
-  - Sidebar (340px) + color preview panel layout. Shared classes control nav and header.
+Every new tool page must:
 
-- `public/tools/image-resizer.html`
-  - Sidebar (300px) + preview panel layout. Shared classes control nav and header.
-
-- `public/tools/jwt-decoder.html`
-  - Single-column stack with three-column card grid output. Shared classes control nav and header.
-
-- `public/tools/html-entities.html`
-  - Two-pane IO + reference table with modebar. Shared classes control nav and header.
-
-- `public/tools/markdown-preview.html`
-  - Full-height editor + preview split layout. Shared classes control nav and header.
-  - Kept local: workspace, toolbar, split-area, editor/preview pane, Markdown render styles.
-
-- `public/tools/regex-tester.html`
-  - Pattern input UI + test area + match detail list. Shared classes control nav and header.
-  - Kept local: pattern-bar, flag checkboxes, match highlights, match list, quick-ref panel.
-
-- `public/tools/cron-builder.html`
-  - Cron expression builder with 5-field grid. Shared classes control nav and header.
-  - Kept local: expr-bar, fields-grid, field-card, field controls, runs-list, presets.
-
-- `public/tools/webp-converter.html`
-  - Image format converter. Shared classes control nav and header.
-
-- `public/tools/image-compressor.html`
-  - Client-side image compression. Shared classes control nav and header.
-
-### Phase 1 New Tools (49 tools — SEO structure complete as of 2026-03-19)
-
-These tools were built using the design system from scratch. **All 49 now have complete SEO content structure** (`ds-seo-content` / `ds-related-tools` / `ds-seo-more` / `footer`).
-
-**Text Processing:** `text-case`, `text-cleaner`, `line-tools`, `diff-viewer`, `string-escape`, `binary-text`, `morse-code`, `ascii-table`, `roman-numerals`
-
-**Developer Tools:** `html-formatter`, `css-formatter`, `css-minifier`, `js-formatter`, `js-minifier`, `sql-formatter`, `xml-formatter`, `json-csv`, `xml-json`, `yaml-json`, `toml-json`, `jsonpath-tester`, `number-base`, `number-format`, `chmod-calculator`, `http-status`, `port-reference`, `mime-types`
-
-**Encoding / Crypto:** `base32`, `base58`, `bcrypt`, `hmac`, `aes`
-
-**Date / Time:** `timezone-converter`, `date-calculator`, `countdown`
-
-**Color / Design:** `color-palette`, `gradient-generator`, `color-converter`, `color-blindness`, `color-contrast-aa`, `contrast-checker`
-
-**Network / URL:** `url-builder`, `url-parser`, `user-agent`, `ip-lookup`
-
-**Utility:** `bmi-calculator`, `loan-calculator`, `jwt-builder`, `markdown-to-html`
-
-## Migration Checklist for New Tool Pages
-
-When creating a new tool page, follow this checklist:
-
-1. Link `../styles/design-system.css` (no Google Fonts needed — DS provides Inter + JetBrains Mono).
-2. Use DS token aliases in `:root` (not hardcoded hex values).
-3. Use `ds-nav__brand` for the logo link and `ds-nav__logo-icon` for the icon wrapper — no local override CSS needed.
-4. Use `ds-tool-nav` + `ds-tool-nav-*` for the sticky nav bar.
-5. Use `ds-tool-header` + `ds-tool-header__*` for the page header band.
-6. Use `ds-tool-main` (+ `ds-tool-split` or `ds-tool-stack`) for the main content container.
-7. Use `ds-tool-sidepanel` + `ds-tool-sidepanel__section` for 300px left settings panels.
-8. Use `ds-tool-pane__header/label/actions/btn/footer` for pane internals.
-9. Use `ds-tool-textarea` for primary text input areas.
-10. Keep only page-specific business CSS local — do not re-implement nav, header, or base styles.
+1. link `../styles/design-system.css?v=20`
+2. use `ds-tool-nav`, `ds-tool-header`, `ds-tool-main`
+3. keep the tool UI in the first screen
+4. include unique:
+   - `title`
+   - `meta description`
+   - canonical
+   - og tags
+5. include marker pairs:
+   - `AUTO-STRUCTURED-DATA`
+   - `AUTO-SEO-SECTIONS`
+6. have complete metadata in `public/tools-meta.js`
+7. be indexed in `public/tools-data.js`
+8. be added to `public/sitemap.xml`
+9. pass the product check above, not just the SEO / QA checklist
 
 ## Interaction Quality Checklist
 
-Every interactive element must satisfy this checklist before shipping:
+Every grouped control must:
 
-### Button Groups / Option Selectors
+- define an `.active` state
+- update `.active` in JS immediately on click
+- update output/preview immediately in the same handler
 
-- Every clickable option button that belongs to a group (tabs, presets, segment controls) **must** have a `.active` CSS class defined — visually identical to its `:hover` style so selected = highlighted.
-- The JS handler **must** (1) remove `.active` from all siblings in the group, (2) add `.active` to the clicked element.
-- Mutually exclusive groups (e.g. Quick Scale vs. Social Media Presets) must also clear each other's `.active` on click.
+Every copy/action button must:
 
-### Standard `.active` Pattern
+- show temporary success state (`Copied`, `Done`, etc.)
 
-```css
-/* hover and active should look the same */
-.your-btn:hover  { color: var(--accent); background: var(--accent-dim); border-color: rgba(94,106,210,0.3); }
-.your-btn.active { color: var(--accent); background: var(--accent-dim); border-color: rgba(94,106,210,0.3); }
-```
+Every preset click that changes input value must:
 
-```js
-// in every click handler for a grouped button:
-container.querySelectorAll('.your-btn').forEach(b => b.classList.remove('active'));
-clickedBtn.classList.add('active');
-```
+- trigger result refresh immediately
 
-### Copy / Action Buttons
+## QA Rules
 
-- Must show a temporary `.copied` / `.done` state (change label + icon) for ~1.5 s after the action.
+### Low-Risk Changes
 
-### Inputs with Side Effects
+Examples:
 
-- After any preset/option click that changes an input value, the corresponding output/preview must update immediately in the same handler — do not rely on the user re-triggering an `input` event.
+- one-tool logic fix
+- one-tool copy change
+- FAQ/update on one page
 
-## Reusable Tool Page Patterns Already Established
+Minimum:
 
-### Shared Tool Skeleton
+- `python scripts/validate-tools.py <slug>`
+- relevant smoke test when available
 
-- `ds-tool-header*`
-- `ds-tool-main`
-- `ds-tool-stack`
-- `ds-tool-tag-row`
-- `ds-tool-nav-*`
+### Medium-Risk Changes
 
-### Brand / Logo Pattern (used on all pages)
+Examples:
 
-- `ds-nav__brand` — logo link (`<a>`) for both site pages and tool pages
-- `ds-nav__logo-icon` — icon wrapper div (no background or border override needed)
-- `ds-footer-logo-icon` — footer icon wrapper div
-- `logo-img` — the `<img>` element inside the icon wrapper
+- new tools
+- `tools-data.js`
+- `tools-meta.js`
+- SEO render flow
+- shared hub/all-tools/home data logic
 
-### Two-Pane Workbench Pattern
+Minimum:
 
-- `ds-tool-modebar`
-- `ds-tool-modebtn`
-- `ds-tool-options`
-- `ds-tool-workbench`
-- `ds-tool-pane*`
-- `ds-tool-textarea`
-- `ds-tool-pane__footer`
-- `ds-tool-stat`
-- `ds-tool-error`
-- `ds-tool-arrow*`
-- `ds-tool-actions*`
-- `ds-tool-note*`
+- `python scripts/check-tools-meta.py`
+- `python scripts/validate-tools.py`
+- `python scripts/page-audit.py`
+- `python scripts/generate-report.py`
 
-### Sidepanel + Preview Pattern
+### High-Risk Changes
 
-- `ds-tool-split`
-- `ds-tool-sidepanel*`
-- `ds-tool-preview*`
+Examples:
 
-## Migration Status
+- design system CSS
+- global layout
+- shared nav / hero / footer / SEO output structure
 
-**All 81 tool pages and all 6 site pages use the design system.** No further design-system migration work is needed.
+Minimum:
 
-Brand logo classes are unified: `ds-nav__brand` + `ds-nav__logo-icon` (nav), `ds-footer-logo-icon` (footer). No local override CSS required.
+- full validate
+- full page audit
+- smoke
+- visual
+- preflight report
 
-### SEO Content Structure
+## Success Metrics
 
-**81/81 tool pages have complete SEO content structure** (as of 2026-03-19).
+Do not optimize for total page count alone.
 
-All tool pages have: `ds-seo-content` block (two `<section class="ds-seo-section">` elements: "What is [Tool]" + "How to Use [Tool]") + `ds-related-tools` block (3+ links) + `ds-seo-more` progressive disclosure block (4 `ds-seo-collapse` sections: **Example → [tool-specific middle section] → Why Use This Tool → Frequently Asked Questions**).
+Track these instead:
 
-Future work should focus on:
+1. impressions added per 100 new tools
+2. percentage of tools with search visibility
+3. traffic concentration in top tools
+4. related-tools click-through behavior
+5. whether hub pages begin to rank
+6. whether users can complete the task with low friction
 
-- Expanding tool count (target 500, currently at 81).
-- Building category/hub pages (Priority 3 of SEO roadmap).
-- Expanding `public/tools-meta.js` rich metadata (currently covers 10 tools, 71 tools remain).
+Practical signals for tool competitiveness:
 
-## 300+ Tools Roadmap
-
-### 目标
-
-将网站做到 500 个纯前端工具，全部浏览器端运行，不上传数据。当前已有 81 个工具（全部有完整 SEO 内容结构）。
-
-### 六大类目标规模
-
-| 类别 | 目标规模 | 当前数量 | 重点子方向 |
-| ---- | ------- | ------- | --------- |
-| 🖼️ Image Tools | 120 | 4 | 压缩/转格式/尺寸/裁剪/颜色辅助 |
-| 📄 PDF & Document | 90 | 0 | 合并/分割/转换/提取/安全 |
-| ✍️ Text / Writing / SEO | 90 | 11 | 文本处理/格式整理/关键词/AI轻工具 |
-| 🛠️ Developer Tools | 75 | 39 | 编码/格式化/转换/生成/调试 |
-| 🧮 Calculators | 65 | 3 | 日常/工作/健康/金融 |
-| ⚙️ Generators / Utility | 60 | 8 | 生成类/实用类 |
-
-**总目标：500 个工具**（当前 81 个）
-
-### 开发效率原则
-
-1. **工具粒度要小**：一个工具只做一件事。"文本工具集"应拆成"去除重复行"、"行排序"、"空白清理"等独立工具 — SEO 更好，开发更快。
-2. **同类工具批量开发**：同类工具共享 95% 的 HTML/CSS 骨架，只替换核心 JS 逻辑，一次可产出 3-5 个工具。
-3. **引入成熟库**：纯计算类工具优先用 `dayjs`、`math.js`、`fflate` 等库，不手写复杂算法。
-4. **模板复用**：每个新工具从最接近的已有工具复制骨架，按 Migration Checklist 逐项对照。
-5. **场景词优先**：阶段二之后优先构建"for [场景]"工具（for instagram、for email、for passport），而非纯功能工具——场景词 SEO 竞争更低，转化更高。
-
-### 分阶段里程碑
-
-| 阶段 | 目标工具数 | 重点方向 | 状态 |
-| ---- | --------- | ------- | ---- |
-| 阶段一 | 100 个 | 补全 SEO 结构，开发者/文本核心工具（已有 81 个，SEO 结构 81/81 完成） | 进行中（新增工具至 100） |
-| 阶段二 | 150 个 | **Image Tools 骨架**（30 个）+ **PDF Tools 骨架**（20 个）+ Text/Calculator 补充 | 待开始 |
-| 阶段三 | 300 个 | 长尾场景词（for instagram / for email / for api）大规模覆盖 | 待开始 |
-| 阶段四 | 500 个 | 放大已有流量：Hub 页 + 场景页 + 工具链 | 待开始 |
-
-### all-tools.html 维护规则
-
-- 工具数超过 50 个时，必须为 `all-tools.html` 加入分类筛选功能。
-- 每次新增工具后立即更新 `all-tools.html` 工具列表，分类须正确。
-- 每个工具条目需包含：工具名、描述、所属分类、页面链接。
-
-### tools-data.js 维护规则
-
-`public/tools-data.js` 是全站搜索的唯一数据源，被 `index.html` 和三个 hub 页共享。
-
-- 每次新增工具后，在 `tools-data.js` 末尾追加一条记录，格式：
-
-  ```js
-  { name: '工具名', href: 'tools/slug.html', tag: 'xxx', icon: '🔣', desc: '一句话描述' },
-  ```
-
-- `tag` 值对应 `all-tools.html` 中的分类标识（`image` / `text` / `encode` / `format` / `convert` / `generate` / `calculator` / `design` / `reference`）。
-- 不要在各 hub 页面内维护独立的工具列表；hub 页已统一引用 `SITE_TOOLS`。
-
-### 新工具上线前检查
-
-除 Migration Checklist 和 Interaction Quality Checklist 外，还需确认：
-
-- [ ] `<title>` 和 `<meta description>` 对该工具唯一且描述准确
-- [ ] `ld+json` Schema 已填写（`SoftwareApplication` 类型）
-- [ ] `all-tools.html` 已更新，分类正确
-- [ ] Related Tools 区域指向相关工具（至少 2 个）
-- [ ] 页面在移动端布局正常（≤480px）
-- [ ] `canonical` 使用 `https://simpletoolbox.dev/tools/[slug]`（无 `.html` 后缀）
-- [ ] `public/sitemap.xml` 已更新：运行 `npm run gen-sitemap` 自动重新生成（会扫描 `public/tools/` 下所有 `.html` 文件，自动更新 `lastmod` 为当天日期）
+- fewer abandoned flows on key tools
+- higher repeat use on the same tools
+- more related-tool clicks after successful completion
+- fewer obvious UX regressions when comparing against competing tools
 
 ## Files To Read First
 
-If Claude Code takes over, read these first:
+If taking over work, read:
 
 1. `AGENTS.md`
 2. `CLAUDE.md`
-3. `DESIGN_SYSTEM.md`
-4. `MEMORY.md`
-5. `QA.md`
+3. `MEMORY.md`
+4. `QA.md`
+5. `reports/preflight-report.md`

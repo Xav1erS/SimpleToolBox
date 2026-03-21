@@ -85,14 +85,20 @@ const SITE_TOOLS = [
   { name: 'Email Extractor',              href: 'tools/email-extractor.html',          tag: 'text',        icon: '@', desc: 'Extract email addresses from pasted text, logs, or exports' },
   { name: 'URL Extractor',                href: 'tools/url-extractor.html',            tag: 'text',        icon: '?', desc: 'Extract links from pasted text and normalize plain www URLs' },
   { name: 'Phone Number Extractor',       href: 'tools/phone-extractor.html',          tag: 'text',        icon: '#', desc: 'Extract phone numbers from text, notes, or lead lists' },
+  { name: 'PNG to WebP Converter',       href: 'tools/png-to-webp.html',             tag: 'image',       icon: '??', desc: 'Convert PNG images to smaller WebP files with adjustable quality' },
+  { name: 'SVG to PNG Converter',        href: 'tools/svg-to-png.html',              tag: 'image',       icon: '??', desc: 'Convert SVG files to raster PNG images at 1x to 4x scale' },
+  { name: 'BMP to PNG Converter',        href: 'tools/bmp-to-png.html',              tag: 'image',       icon: '???', desc: 'Convert BMP bitmap files into portable PNG images instantly' },
+  { name: 'Crop Image',                  href: 'tools/crop-image.html',               tag: 'image',       icon: '??', desc: 'Crop photos and screenshots to an exact area with presets' },
+  { name: 'Favicon Generator',          href: 'tools/favicon-generator.html',        tag: 'design',      icon: '??', desc: 'Generate favicon PNG files in standard website icon sizes' },
+  { name: 'Color Picker From Image',    href: 'tools/color-picker-from-image.html',  tag: 'design',      icon: '??', desc: 'Pick HEX and RGB colors from uploaded images instantly' },
 ];
 
 const HUB_PAGE_CONFIG = {
   image: {
     sections: [
-      ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg'],
+      ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'png-to-webp', 'svg-to-png', 'bmp-to-png'],
       ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
-      ['image-rotate', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail']
+      ['image-rotate', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image']
     ]
   },
   developer: {

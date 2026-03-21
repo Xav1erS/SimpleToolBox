@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Favicon Generator Online Free | Make 16x16, 32x32, 48x48 Favicons | Simple ToolBox</title>
+  <meta name="description" content="Generate favicon PNG files online for free. Upload an image, preview it at 16x16, 32x32, and 48x48, then download favicon sizes instantly in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/favicon-generator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/favicon-generator.html" />
+  <meta property="og:title" content="Favicon Generator Online Free | Make 16x16, 32x32, 48x48 Favicons | Simple ToolBox" />
+  <meta property="og:description" content="Generate favicon PNG files online for free with live preview and multiple standard sizes." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Favicon Generator",
+  "description": "Generate favicon PNG files online for free. Upload an image, preview it at 16x16, 32x32, and 48x48, then download favicon sizes instantly in your browser.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/favicon-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What favicon sizes does this tool create?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool previews and exports common favicon PNG sizes such as 16?16, 32?32, 48?48, and 64?64."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do simple logos work better for favicons?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Favicons are tiny, so high-detail artwork becomes unreadable. Bold shapes, letters, and strong contrast stay visible better at small sizes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool export ICO files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This version focuses on PNG favicon sizes. If you need ICO packaging later, PNG exports still give you the core icon assets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my logo uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs locally in your browser."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
+    .panel, .preview-panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    .panel-section { padding: 18px 20px; border-bottom: 1px solid var(--ds-color-border); }
+    .panel-section:last-child { border-bottom: none; }
+    .panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 14px; }
+    .size-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .size-btn { padding: 10px 8px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); color: var(--ds-color-text-secondary); font-size: 12px; font-weight: 600; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .size-btn:hover, .size-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .preview-panel { display: flex; flex-direction: column; min-height: 420px; }
+    .preview-header { padding: 14px 18px; border-bottom: 1px solid var(--ds-color-border); display: flex; align-items: center; justify-content: space-between; }
+    .preview-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .btn-change { font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); }
+    .status-note { min-height: 20px; padding: 0 18px 10px; font-size: 12px; color: var(--ds-color-text-muted); }
+    .status-note.is-error { color: #f87171; }
+    .drop-zone { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 24px; text-align: center; border: 2px dashed var(--ds-color-border); margin: 16px; border-radius: var(--ds-radius-md); transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 40px; opacity: 0.4; }
+    .drop-title { font-size: 15px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub, .drop-formats { color: var(--ds-color-text-muted); font-size: 13px; }
+    .drop-formats { font-family: var(--ds-font-mono); font-size: 11px; }
+    .favicon-stage { display: none; flex: 1; padding: 18px; }
+    .favicon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .favicon-card { padding: 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-bg); text-align: center; }
+    .favicon-box { margin: 0 auto 12px; display: grid; place-items: center; background: repeating-conic-gradient(#1a1a1f 0% 25%, #141418 0% 50%) 0 0 / 12px 12px; border-radius: 10px; }
+    .favicon-card canvas { image-rendering: pixelated; }
+    .favicon-size { font-family: var(--ds-font-mono); font-size: 12px; color: var(--ds-color-text-secondary); margin-bottom: 10px; }
+    .download-btn { width: 100%; padding: 9px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); color: var(--ds-color-text-secondary); font-size: 12px; font-weight: 600; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .download-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .info-box { background: var(--ds-color-bg); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 12px 14px; font-size: 12px; color: var(--ds-color-text-muted); line-height: 1.5; }
+    #fileInput, #workCanvas { display: none; }
+    @media (max-width: 800px) { .main { grid-template-columns: 1fr; padding: 16px 16px 48px; } }
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Favicon Generator <span class="ds-tool-badge">image</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🔖</div>
+      <h1 class="ds-tool-header__title">Favicon Generator</h1>
+    </div>
+    <p class="ds-tool-header__desc">Turn a logo or square image into favicon PNG files. Preview 16x16, 32x32, 48x48, and 64x64 outputs before downloading standard website icon sizes.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">favicon</span>
+      <span class="ds-tag">website icon</span>
+      <span class="ds-tag">16x16</span>
+      <span class="ds-tag">PNG export</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="panel">
+    <div class="panel-section">
+      <div class="panel-label">Standard Sizes</div>
+      <div class="size-grid" id="sizeGrid">
+        <button class="size-btn active" data-size="16">16×16</button>
+        <button class="size-btn" data-size="32">32×32</button>
+        <button class="size-btn" data-size="48">48×48</button>
+        <button class="size-btn" data-size="64">64×64</button>
+      </div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-label">Tips</div>
+      <div class="info-box">
+        Use square source artwork with clear contrast. Favicons are tiny, so simple logos and bold shapes work better than detailed illustrations.
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-panel">
+    <div class="preview-header">
+      <span class="preview-title">Preview</span>
+      <button class="btn-change" id="btnChange" style="display:none">Change image</button>
+    </div>
+    <div class="status-note" id="statusNote"></div>
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">🔖</div>
+      <div class="drop-title">Drop logo or icon here</div>
+      <div class="drop-sub">or click to browse</div>
+      <div class="drop-formats">PNG · JPG · WebP · SVG screenshots</div>
+    </div>
+    <div class="favicon-stage" id="faviconStage">
+      <div class="favicon-grid" id="faviconGrid"></div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Favicon Generator?</h2>
+    <p>Favicon Generator turns a source image into small website icon sizes so you can preview and export favicons quickly. It is useful for websites, prototypes, landing pages, and quick design handoff workflows.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Favicon Generator</h2>
+    <ol>
+      <li>Upload a logo or icon image into the tool.</li>
+      <li>Switch between standard favicon sizes to inspect clarity.</li>
+      <li>Download the PNG sizes you want to use on your site.</li>
+      <li>Test the smallest sizes to make sure the icon is still readable.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images client-side with preset dimensions</div></div></a>
+    <a href="svg-to-png.html" class="ds-related-card"><span class="ds-related-icon">??</span><div><div class="ds-related-name">SVG to PNG Converter</div><div class="ds-related-desc">Convert SVG files to raster PNG images at 1x to 4x scale</div></div></a>
+    <a href="png-to-webp.html" class="ds-related-card"><span class="ds-related-icon">??</span><div><div class="ds-related-name">PNG to WebP Converter</div><div class="ds-related-desc">Convert PNG images to smaller WebP files with adjustable quality</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Favicon Generation</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Upload a square 512?512 logo and preview it at 16?16 and 32?32</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Download the favicon PNG sizes that still look clear at tiny browser-tab scale</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Turn a logo into website favicon assets</li>
+          <li>Preview how a tiny site icon looks at common browser sizes</li>
+          <li>Export standard PNG icon sizes for app demos and prototypes</li>
+          <li>Generate quick favicon files without opening a graphics editor</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for site launches, redesigns, and quick branding work.</li>
+          <li>Lets you see tiny favicon readability before exporting files.</li>
+          <li>Runs locally so logos and brand assets stay private.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What favicon sizes does this tool create?</strong><p>This tool previews and exports common favicon PNG sizes such as 16?16, 32?32, 48?48, and 64?64.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why do simple logos work better for favicons?</strong><p>Favicons are tiny, so high-detail artwork becomes unreadable. Bold shapes, letters, and strong contrast stay visible better at small sizes.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does this tool export ICO files?</strong><p>This version focuses on PNG favicon sizes. If you need ICO packaging later, PNG exports still give you the core icon assets.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is my logo uploaded anywhere?</strong><p>No. Everything runs locally in your browser.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<input type="file" id="fileInput" accept="image/*" />
+<canvas id="workCanvas"></canvas>
+
+<script>
+  'use strict';
+  const fileInput = document.getElementById('fileInput');
+  const dropZone = document.getElementById('dropZone');
+  const btnChange = document.getElementById('btnChange');
+  const statusNote = document.getElementById('statusNote');
+  const faviconStage = document.getElementById('faviconStage');
+  const faviconGrid = document.getElementById('faviconGrid');
+  const sizeGrid = document.getElementById('sizeGrid');
+  const workCanvas = document.getElementById('workCanvas');
+  const workCtx = workCanvas.getContext('2d');
+  let currentImage = null;
+  let currentFilename = 'favicon';
+  let activeSize = 16;
+  const sizes = [16, 32, 48, 64];
+
+  function setStatus(message, isError = false) {
+    statusNote.textContent = message;
+    statusNote.classList.toggle('is-error', isError);
+  }
+
+  function drawSizeCard(size) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'favicon-card';
+    const box = document.createElement('div');
+    box.className = 'favicon-box';
+    box.style.width = `${Math.max(72, size + 28)}px`;
+    box.style.height = `${Math.max(72, size + 28)}px`;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    canvas.style.width = `${size}px`;
+    canvas.style.height = `${size}px`;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, size, size);
+    ctx.drawImage(currentImage, 0, 0, size, size);
+    box.appendChild(canvas);
+    const label = document.createElement('div');
+    label.className = 'favicon-size';
+    label.textContent = `${size}×${size}`;
+    const button = document.createElement('button');
+    button.className = 'download-btn';
+    button.textContent = activeSize === size ? 'Primary Size' : 'Download PNG';
+    button.addEventListener('click', () => {
+      const url = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${currentFilename}-${size}x${size}.png`;
+      link.click();
+    });
+    wrapper.append(box, label, button);
+    return wrapper;
+  }
+
+  function renderFavicons() {
+    if (!currentImage) return;
+    faviconGrid.innerHTML = '';
+    sizes.forEach(size => faviconGrid.appendChild(drawSizeCard(size)));
+    faviconStage.style.display = 'block';
+    dropZone.style.display = 'none';
+    btnChange.style.display = 'inline-flex';
+    setStatus(`Image loaded. Preview and download favicon sizes. Primary size: ${activeSize}×${activeSize}.`);
+  }
+
+  function handleFile(file) {
+    if (!file) return;
+    if (!/^image\//.test(file.type)) {
+      setStatus('Please choose an image file for favicon generation.', true);
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        currentImage = img;
+        currentFilename = file.name.replace(/\.[^.]+$/, '');
+        renderFavicons();
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  sizeGrid.addEventListener('click', event => {
+    const button = event.target.closest('.size-btn');
+    if (!button) return;
+    sizeGrid.querySelectorAll('.size-btn').forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+    activeSize = Number(button.dataset.size);
+    renderFavicons();
+  });
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  btnChange.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', event => handleFile(event.target.files[0]));
+  ['dragenter', 'dragover'].forEach(type => dropZone.addEventListener(type, event => { event.preventDefault(); dropZone.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(type => dropZone.addEventListener(type, event => { event.preventDefault(); dropZone.classList.remove('drag-over'); }));
+  dropZone.addEventListener('drop', event => handleFile(event.dataTransfer.files[0]));
+</script>
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+</body>
+</html>

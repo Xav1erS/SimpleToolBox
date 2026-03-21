@@ -467,6 +467,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://simpletoolbox.dev/tools/bmp-to-png</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/png-to-webp</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/svg-to-png</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/color-picker-from-image</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/crop-image</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/favicon-generator</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://simpletoolbox.dev/tools/email-extractor</loc>
     <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>

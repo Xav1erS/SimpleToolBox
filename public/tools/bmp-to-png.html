@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>BMP to PNG Converter Online Free | Convert BMP to PNG | Simple ToolBox</title>
+  <meta name="description" content="Convert BMP images to PNG online for free. Turn bitmap files into portable PNG images instantly and download the result in your browser without uploading anything." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/bmp-to-png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/bmp-to-png.html" />
+  <meta property="og:title" content="BMP to PNG Converter Online Free | Convert BMP to PNG | Simple ToolBox" />
+  <meta property="og:description" content="Convert BMP images to PNG online for free with instant browser-based download." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "BMP to PNG Converter",
+  "description": "Convert BMP images to PNG online for free. Turn bitmap files into portable PNG images instantly and download the result in your browser without uploading anything.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/bmp-to-png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why convert BMP to PNG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BMP files are bulky and not well suited for modern sharing or web workflows. PNG is widely supported and usually easier to reuse."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does PNG reduce image quality compared with BMP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. PNG uses lossless compression, so the pixel data is preserved."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the converted PNG be smaller?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often yes. BMP is usually uncompressed, while PNG compresses the same image data more efficiently without losing quality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the bitmap uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The conversion happens entirely in your browser on your device."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
+    .panel, .preview-panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    .panel-section { padding: 18px 20px; border-bottom: 1px solid var(--ds-color-border); }
+    .panel-section:last-child { border-bottom: none; }
+    .panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 14px; }
+    .info-box, .size-box { background: var(--ds-color-bg); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); }
+    .info-box { padding: 12px 14px; }
+    .info-box-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-primary); margin-bottom: 4px; }
+    .info-box-desc { font-size: 12px; color: var(--ds-color-text-muted); line-height: 1.5; }
+    .size-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; }
+    .size-box { padding: 10px 12px; text-align: center; }
+    .size-box-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 4px; }
+    .size-box-val { font-family: var(--ds-font-mono); font-size: 14px; font-weight: 600; }
+    .size-box-fmt { font-size: 10px; color: var(--ds-color-text-muted); margin-top: 2px; }
+    .size-arrow { color: var(--ds-color-text-muted); font-size: 16px; text-align: center; }
+    .btn-download { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--ds-color-accent); color: #fff; font-size: 14px; font-weight: 600; padding: 13px; border-radius: var(--ds-radius-md); transition: background 0.2s, transform 0.15s; }
+    .btn-download:hover { background: var(--ds-color-accent-hover); transform: translateY(-1px); }
+    .btn-download:disabled { background: var(--ds-color-surface-strong); color: var(--ds-color-text-muted); cursor: not-allowed; transform: none; }
+    .preview-panel { display: flex; flex-direction: column; min-height: 400px; }
+    .preview-header { padding: 14px 18px; border-bottom: 1px solid var(--ds-color-border); display: flex; align-items: center; justify-content: space-between; }
+    .preview-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .btn-change { font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); }
+    .status-note { min-height: 20px; padding: 0 18px 10px; font-size: 12px; color: var(--ds-color-text-muted); }
+    .status-note.is-error { color: #f87171; }
+    .drop-zone { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 24px; text-align: center; border: 2px dashed var(--ds-color-border); margin: 16px; border-radius: var(--ds-radius-md); transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 40px; opacity: 0.4; }
+    .drop-title { font-size: 15px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub, .drop-formats { color: var(--ds-color-text-muted); font-size: 13px; }
+    .drop-formats { font-family: var(--ds-font-mono); font-size: 11px; }
+    .img-wrap { flex: 1; display: flex; flex-direction: column; }
+    .img-preview { width: 100%; max-height: 360px; object-fit: contain; background: repeating-conic-gradient(#1a1a1f 0% 25%, #141418 0% 50%) 0 0 / 16px 16px; }
+    .img-meta { padding: 14px 18px; border-top: 1px solid var(--ds-color-border); display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .meta-lbl { font-size: 11px; color: var(--ds-color-text-muted); margin-bottom: 2px; }
+    .meta-val { font-family: var(--ds-font-mono); font-size: 13px; color: var(--ds-color-text-primary); }
+    #fileInput, #canvas { display: none; }
+    @media (max-width: 800px) { .main { grid-template-columns: 1fr; padding: 16px 16px 48px; } }
+    @media (max-width: 480px) { .main { padding: 12px 12px 40px; gap: 14px; } .img-meta { grid-template-columns: repeat(2, 1fr); } .size-compare { grid-template-columns: 1fr; } .size-arrow { transform: rotate(90deg); } }
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">BMP to PNG <span class="ds-tool-badge">image</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🗂️</div>
+      <h1 class="ds-tool-header__title">BMP to PNG Converter</h1>
+    </div>
+    <p class="ds-tool-header__desc">Convert bitmap BMP files into portable PNG images instantly. Useful for old Windows exports, screenshots, and assets that need a modern browser-friendly format.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">BMP</span>
+      <span class="ds-tag">PNG</span>
+      <span class="ds-tag">lossless</span>
+      <span class="ds-tag">browser only</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="panel">
+    <div class="panel-section">
+      <div class="panel-label">Output Format</div>
+      <div class="info-box">
+        <div class="info-box-title">PNG</div>
+        <div class="info-box-desc">PNG is widely supported across browsers, editors, and design tools. It keeps pixel data lossless and is much easier to reuse than BMP.</div>
+      </div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-label">File Size</div>
+      <div class="size-compare">
+        <div class="size-box"><div class="size-box-label">Original</div><div class="size-box-val" id="sizeOriginal">—</div><div class="size-box-fmt">BMP</div></div>
+        <div class="size-arrow">→</div>
+        <div class="size-box"><div class="size-box-label">Output</div><div class="size-box-val" id="sizeOutput">—</div><div class="size-box-fmt">PNG</div></div>
+      </div>
+    </div>
+    <div class="panel-section">
+      <button class="btn-download" id="btnDownload" disabled>Download PNG</button>
+    </div>
+  </div>
+
+  <div class="preview-panel">
+    <div class="preview-header">
+      <span class="preview-title">Preview</span>
+      <button class="btn-change" id="btnChange" style="display:none">Change image</button>
+    </div>
+    <div class="status-note" id="statusNote"></div>
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">🗂️</div>
+      <div class="drop-title">Drop your BMP here</div>
+      <div class="drop-sub">or click to browse</div>
+      <div class="drop-formats">BMP · bitmap exports</div>
+    </div>
+    <div class="img-wrap" id="imgWrap" style="display:none">
+      <img class="img-preview" id="imgPreview" alt="Preview" />
+      <div class="img-meta">
+        <div><div class="meta-lbl">Dimensions</div><div class="meta-val" id="metaDimensions">—</div></div>
+        <div><div class="meta-lbl">Source Format</div><div class="meta-val">BMP</div></div>
+        <div><div class="meta-lbl">Filename</div><div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is BMP to PNG Converter?</h2>
+    <p>BMP to PNG Converter changes bitmap image files into PNG so they become easier to share, upload, and reuse in modern workflows. It is especially useful for older Windows exports, archived assets, and bulky BMP screenshots.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use BMP to PNG Converter</h2>
+    <ol>
+      <li>Drop a BMP file into the tool or click to browse.</li>
+      <li>Review the preview and original file information instantly.</li>
+      <li>Check the converted PNG size and dimensions.</li>
+      <li>Download the new PNG file for reuse in websites, docs, or design tools.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="jpg-to-png.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">JPG to PNG Converter</div><div class="ds-related-desc">Convert JPG/JPEG images to PNG format instantly</div></div></a>
+    <a href="png-to-jpg.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">PNG to JPG Converter</div><div class="ds-related-desc">Convert PNG images to JPG with adjustable quality</div></div></a>
+    <a href="image-compressor.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">Image Compressor</div><div class="ds-related-desc">Reduce image file size with quality control</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand BMP to PNG Conversion</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Upload a bitmap screenshot exported from an older Windows tool</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Download a PNG version that is easier to share and reuse</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Convert legacy BMP images from Windows apps into modern PNG files</li>
+          <li>Prepare bitmap screenshots and exports for web or document use</li>
+          <li>Turn old design assets into a format that works everywhere</li>
+          <li>Reuse BMP files in tools that do not accept bitmap uploads directly</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for legacy image exports and old Windows bitmap files.</li>
+          <li>Makes BMP images easier to share and use in modern apps.</li>
+          <li>Runs locally so your files never leave the browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Why convert BMP to PNG?</strong><p>BMP files are bulky and not well suited for modern sharing or web workflows. PNG is widely supported and usually easier to reuse.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does PNG reduce image quality compared with BMP?</strong><p>No. PNG uses lossless compression, so the pixel data is preserved.</p></div>
+        <div class="ds-seo-faq-item"><strong>Will the converted PNG be smaller?</strong><p>Often yes. BMP is usually uncompressed, while PNG compresses the same image data more efficiently without losing quality.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the bitmap uploaded anywhere?</strong><p>No. The conversion happens entirely in your browser on your device.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<input type="file" id="fileInput" accept=".bmp,image/bmp" />
+<canvas id="canvas"></canvas>
+
+<script>
+  'use strict';
+  const fileInput = document.getElementById('fileInput');
+  const dropZone = document.getElementById('dropZone');
+  const btnChange = document.getElementById('btnChange');
+  const btnDownload = document.getElementById('btnDownload');
+  const imgWrap = document.getElementById('imgWrap');
+  const imgPreview = document.getElementById('imgPreview');
+  const statusNote = document.getElementById('statusNote');
+  const metaDimensions = document.getElementById('metaDimensions');
+  const metaFilename = document.getElementById('metaFilename');
+  const sizeOriginal = document.getElementById('sizeOriginal');
+  const sizeOutput = document.getElementById('sizeOutput');
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let currentFile = null;
+  let currentImage = null;
+
+  function setStatus(message, isError = false) {
+    statusNote.textContent = message;
+    statusNote.classList.toggle('is-error', isError);
+  }
+
+  function formatBytes(bytes) {
+    if (!bytes && bytes !== 0) return '—';
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  }
+
+  function renderImage(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = async () => {
+        currentImage = img;
+        currentFile = file;
+        imgPreview.src = reader.result;
+        metaDimensions.textContent = `${img.width} × ${img.height}`;
+        metaFilename.textContent = file.name;
+        sizeOriginal.textContent = formatBytes(file.size);
+        imgWrap.style.display = 'flex';
+        dropZone.style.display = 'none';
+        btnChange.style.display = 'inline-flex';
+        setStatus('BMP loaded. Review the preview and download the PNG.');
+        await updateOutput();
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  async function updateOutput() {
+    if (!currentImage) return;
+    canvas.width = currentImage.width;
+    canvas.height = currentImage.height;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(currentImage, 0, 0);
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+    if (!blob) return;
+    sizeOutput.textContent = formatBytes(blob.size);
+    btnDownload.disabled = false;
+    btnDownload.onclick = () => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = currentFile.name.replace(/\.[^.]+$/, '') + '.png';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+  }
+
+  function handleFile(file) {
+    if (!file) return;
+    if (!/bmp/i.test(file.type + file.name)) {
+      setStatus('Please choose a BMP file for this converter.', true);
+      return;
+    }
+    renderImage(file);
+  }
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  btnChange.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', event => handleFile(event.target.files[0]));
+  ['dragenter', 'dragover'].forEach(type => dropZone.addEventListener(type, event => {
+    event.preventDefault();
+    dropZone.classList.add('drag-over');
+  }));
+  ['dragleave', 'drop'].forEach(type => dropZone.addEventListener(type, event => {
+    event.preventDefault();
+    dropZone.classList.remove('drag-over');
+  }));
+  dropZone.addEventListener('drop', event => handleFile(event.dataTransfer.files[0]));
+</script>
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+</body>
+</html>

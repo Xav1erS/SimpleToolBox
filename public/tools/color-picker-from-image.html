@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Color Picker From Image Online Free | Pick HEX Colors from Images | Simple ToolBox</title>
+  <meta name="description" content="Pick colors from an uploaded image online for free. Click any point to get HEX and RGB values, save swatches, and copy picked colors instantly in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/color-picker-from-image" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/color-picker-from-image.html" />
+  <meta property="og:title" content="Color Picker From Image Online Free | Pick HEX Colors from Images | Simple ToolBox" />
+  <meta property="og:description" content="Pick HEX and RGB colors from uploaded images online for free with saved swatches and instant copy." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Color Picker From Image",
+  "description": "Pick colors from an uploaded image online for free. Click any point to get HEX and RGB values, save swatches, and copy picked colors instantly in your browser.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/color-picker-from-image"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I pick a color from the image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upload an image and click any point on the preview. The tool reads the clicked pixel and shows the HEX and RGB values instantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I save multiple colors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use Save Swatch to store several picked colors for quick comparison and copying."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it support HEX and RGB output?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tool shows both HEX and RGB for the currently picked pixel color."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the uploaded image sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Color picking happens entirely inside your browser."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
+    .panel, .preview-panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    .panel-section { padding: 18px 20px; border-bottom: 1px solid var(--ds-color-border); }
+    .panel-section:last-child { border-bottom: none; }
+    .panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 14px; }
+    .color-card { display: grid; gap: 12px; }
+    .swatch-large { height: 84px; border-radius: var(--ds-radius-sm); border: 1px solid var(--ds-color-border); background: #5e6ad2; }
+    .field-row { display: flex; flex-direction: column; gap: 5px; }
+    .field-label { font-size: 12px; color: var(--ds-color-text-secondary); }
+    .field-value { display: flex; gap: 8px; }
+    .field-value input { flex: 1; padding: 8px 10px; background: var(--ds-color-bg); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); color: var(--ds-color-text-primary); font-family: var(--ds-font-mono); font-size: 13px; }
+    .copy-btn, .save-btn { padding: 8px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); color: var(--ds-color-text-secondary); font-size: 12px; font-weight: 600; transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .copy-btn:hover, .save-btn:hover, .copy-btn.copied { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
+    .saved-swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .saved-swatch { display: grid; gap: 6px; }
+    .saved-swatch button { width: 100%; height: 40px; border-radius: var(--ds-radius-sm); border: 1px solid var(--ds-color-border); }
+    .saved-swatch code { font-family: var(--ds-font-mono); font-size: 11px; color: var(--ds-color-text-secondary); text-align: center; }
+    .preview-panel { display: flex; flex-direction: column; min-height: 420px; }
+    .preview-header { padding: 14px 18px; border-bottom: 1px solid var(--ds-color-border); display: flex; align-items: center; justify-content: space-between; }
+    .preview-title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .btn-change { font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); }
+    .status-note { min-height: 20px; padding: 0 18px 10px; font-size: 12px; color: var(--ds-color-text-muted); }
+    .status-note.is-error { color: #f87171; }
+    .drop-zone { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 24px; text-align: center; border: 2px dashed var(--ds-color-border); margin: 16px; border-radius: var(--ds-radius-md); transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 40px; opacity: 0.4; }
+    .drop-title { font-size: 15px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub, .drop-formats { color: var(--ds-color-text-muted); font-size: 13px; }
+    .drop-formats { font-family: var(--ds-font-mono); font-size: 11px; }
+    .canvas-wrap { flex: 1; display: none; align-items: center; justify-content: center; padding: 16px; background: repeating-conic-gradient(#1a1a1f 0% 25%, #141418 0% 50%) 0 0 / 16px 16px; }
+    #previewCanvas { max-width: 100%; max-height: 380px; object-fit: contain; cursor: crosshair; }
+    #fileInput { display: none; }
+    @media (max-width: 800px) { .main { grid-template-columns: 1fr; padding: 16px 16px 48px; } }
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Color Picker From Image <span class="ds-tool-badge">design</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🎨</div>
+      <h1 class="ds-tool-header__title">Color Picker From Image</h1>
+    </div>
+    <p class="ds-tool-header__desc">Upload an image and click any point to sample its color. Copy HEX or RGB values instantly and save a few swatches for quick reference.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">HEX</span>
+      <span class="ds-tag">RGB</span>
+      <span class="ds-tag">sample colors</span>
+      <span class="ds-tag">image palette</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="panel">
+    <div class="panel-section">
+      <div class="panel-label">Picked Color</div>
+      <div class="color-card">
+        <div class="swatch-large" id="swatchLarge"></div>
+        <div class="field-row">
+          <span class="field-label">HEX</span>
+          <div class="field-value">
+            <input id="hexValue" readonly value="#5E6AD2" />
+            <button class="copy-btn" id="copyHex">Copy</button>
+          </div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">RGB</span>
+          <div class="field-value">
+            <input id="rgbValue" readonly value="rgb(94, 106, 210)" />
+            <button class="copy-btn" id="copyRgb">Copy</button>
+          </div>
+        </div>
+        <button class="save-btn" id="saveSwatch">Save Swatch</button>
+      </div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-label">Saved Swatches</div>
+      <div class="saved-swatches" id="savedSwatches"></div>
+    </div>
+  </div>
+
+  <div class="preview-panel">
+    <div class="preview-header">
+      <span class="preview-title">Preview</span>
+      <button class="btn-change" id="btnChange" style="display:none">Change image</button>
+    </div>
+    <div class="status-note" id="statusNote"></div>
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">🎨</div>
+      <div class="drop-title">Drop image here</div>
+      <div class="drop-sub">or click to browse</div>
+      <div class="drop-formats">JPG · PNG · WebP · GIF</div>
+    </div>
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="previewCanvas"></canvas>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Color Picker From Image?</h2>
+    <p>Color Picker From Image lets you upload a picture and sample exact pixel colors from any point in the preview. It is useful for design matching, reverse engineering UI colors, palette extraction, and visual audits.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Color Picker From Image</h2>
+    <ol>
+      <li>Upload an image into the tool.</li>
+      <li>Click anywhere on the preview to sample that pixel color.</li>
+      <li>Copy the HEX or RGB value you need.</li>
+      <li>Save multiple swatches if you want a small palette from the same image.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="color-picker.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Picker</div><div class="ds-related-desc">Convert colors between HEX, RGB, HSL, and CMYK</div></div></a>
+    <a href="color-converter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Format Converter</div><div class="ds-related-desc">Convert colors between HEX, RGB, HSL, OKLCH formats</div></div></a>
+    <a href="color-palette.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Palette Generator</div><div class="ds-related-desc">Generate complementary, analogous and triadic color palettes</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Image Color Picking</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Upload a product screenshot and click a button background color</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Copy the exact HEX and RGB values and save the swatch for later reference</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Sample brand colors from a screenshot or product image</li>
+          <li>Extract a HEX color from a photo for design matching</li>
+          <li>Build quick swatch references from inspiration images</li>
+          <li>Check exact pixel colors before recreating UI elements</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for design systems, screenshots, and visual reverse engineering.</li>
+          <li>Gives exact HEX and RGB values without opening a graphics editor.</li>
+          <li>Runs locally so private images stay on your device.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How do I pick a color from the image?</strong><p>Upload an image and click any point on the preview. The tool reads the clicked pixel and shows the HEX and RGB values instantly.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I save multiple colors?</strong><p>Yes. Use Save Swatch to store several picked colors for quick comparison and copying.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it support HEX and RGB output?</strong><p>Yes. The tool shows both HEX and RGB for the currently picked pixel color.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the uploaded image sent to a server?</strong><p>No. Color picking happens entirely inside your browser.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<input type="file" id="fileInput" accept="image/*" />
+
+<script>
+  'use strict';
+  const fileInput = document.getElementById('fileInput');
+  const dropZone = document.getElementById('dropZone');
+  const btnChange = document.getElementById('btnChange');
+  const statusNote = document.getElementById('statusNote');
+  const canvasWrap = document.getElementById('canvasWrap');
+  const previewCanvas = document.getElementById('previewCanvas');
+  const ctx = previewCanvas.getContext('2d', { willReadFrequently: true });
+  const swatchLarge = document.getElementById('swatchLarge');
+  const hexValue = document.getElementById('hexValue');
+  const rgbValue = document.getElementById('rgbValue');
+  const copyHex = document.getElementById('copyHex');
+  const copyRgb = document.getElementById('copyRgb');
+  const saveSwatch = document.getElementById('saveSwatch');
+  const savedSwatches = document.getElementById('savedSwatches');
+  let saved = [];
+
+  function setStatus(message, isError = false) {
+    statusNote.textContent = message;
+    statusNote.classList.toggle('is-error', isError);
+  }
+
+  function rgbToHex(r, g, b) {
+    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase();
+  }
+
+  function setPickedColor(r, g, b) {
+    const hex = rgbToHex(r, g, b);
+    const rgb = `rgb(${r}, ${g}, ${b})`;
+    swatchLarge.style.background = hex;
+    hexValue.value = hex;
+    rgbValue.value = rgb;
+  }
+
+  async function copyText(value, button) {
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {}
+    const original = button.textContent;
+    button.textContent = 'Copied';
+    button.classList.add('copied');
+    setTimeout(() => { button.textContent = original; button.classList.remove('copied'); }, 1200);
+  }
+
+  function renderSavedSwatches() {
+    savedSwatches.innerHTML = '';
+    saved.slice(0, 8).forEach(hex => {
+      const item = document.createElement('div');
+      item.className = 'saved-swatch';
+      const btn = document.createElement('button');
+      btn.style.background = hex;
+      btn.addEventListener('click', () => {
+        const match = hex.match(/^#(..)(..)(..)$/);
+        const rgb = match.slice(1).map(part => parseInt(part, 16));
+        setPickedColor(rgb[0], rgb[1], rgb[2]);
+      });
+      const code = document.createElement('code');
+      code.textContent = hex;
+      item.append(btn, code);
+      savedSwatches.appendChild(item);
+    });
+  }
+
+  function handleFile(file) {
+    if (!file) return;
+    if (!/^image\//.test(file.type)) {
+      setStatus('Please choose an image file for color picking.', true);
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        previewCanvas.width = img.width;
+        previewCanvas.height = img.height;
+        ctx.clearRect(0, 0, img.width, img.height);
+        ctx.drawImage(img, 0, 0);
+        canvasWrap.style.display = 'flex';
+        dropZone.style.display = 'none';
+        btnChange.style.display = 'inline-flex';
+        setStatus('Image loaded. Click anywhere on the image to pick a color.');
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  previewCanvas.addEventListener('click', event => {
+    const rect = previewCanvas.getBoundingClientRect();
+    const scaleX = previewCanvas.width / rect.width;
+    const scaleY = previewCanvas.height / rect.height;
+    const x = Math.floor((event.clientX - rect.left) * scaleX);
+    const y = Math.floor((event.clientY - rect.top) * scaleY);
+    const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+    setPickedColor(r, g, b);
+    setStatus(`Picked color at (${x}, ${y}).`);
+  });
+
+  copyHex.addEventListener('click', () => copyText(hexValue.value, copyHex));
+  copyRgb.addEventListener('click', () => copyText(rgbValue.value, copyRgb));
+  saveSwatch.addEventListener('click', () => {
+    if (!saved.includes(hexValue.value)) saved.unshift(hexValue.value);
+    renderSavedSwatches();
+    setStatus('Swatch saved.');
+  });
+  dropZone.addEventListener('click', () => fileInput.click());
+  btnChange.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', event => handleFile(event.target.files[0]));
+  ['dragenter', 'dragover'].forEach(type => dropZone.addEventListener(type, event => { event.preventDefault(); dropZone.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(type => dropZone.addEventListener(type, event => { event.preventDefault(); dropZone.classList.remove('drag-over'); }));
+  dropZone.addEventListener('drop', event => handleFile(event.dataTransfer.files[0]));
+  renderSavedSwatches();
+</script>
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+</body>
+</html>

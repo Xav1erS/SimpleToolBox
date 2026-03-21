@@ -57,7 +57,7 @@ public/
 python scripts/validate-tools.py
 ```
 
-Checks all 81 tool pages for:
+Checks all tool pages for:
 - Structural completeness (footer, ds-seo-content, ds-related-tools, ds-seo-more)
 - SEO elements (title, meta description, canonical, h1, JSON-LD)
 - Design system compliance (design-system.css linked, ds-seo-section__title on h2)
@@ -150,7 +150,37 @@ Notes:
 
 ---
 
-### 6. Preflight Report
+### 6. Product Quality Check
+
+In addition to structural QA, every new tool should pass a lightweight product-quality review.
+
+This is not fully automated yet, but it is now part of the release checklist.
+
+Template:
+
+- `NEW_TOOL_ACCEPTANCE_TEMPLATE.md`
+
+Check:
+
+- purpose is understandable within one glance
+- first action is obvious (paste / type / upload)
+- output updates immediately after key option changes
+- empty / invalid input states are recoverable and human-readable
+- copy / download / reset flow is frictionless
+- at least one realistic sample, preset, or helpful default is present when appropriate
+- mobile layout remains practical for the core task
+- related tools represent a natural next step
+
+Use this especially for:
+
+- new image tools
+- new text tools
+- new calculators
+- homepage / hub promoted tools
+
+---
+
+### 7. Preflight Report
 
 ```bash
 python scripts/generate-report.py
@@ -177,9 +207,9 @@ Use the tier matrix below to decide which checks to run after a change.
 
 | Change Type | Examples | Required Checks |
 |---|---|---|
-| **Low risk** | Single tool logic fix, single tool copy edit, single tool FAQ update | Validate that tool only: `python scripts/validate-tools.py <slug>` + its smoke test |
-| **Medium risk** | Shared SEO component edit, ds-seo-more structure change, tools-data.js update, new tool page | Full static validation + metadata validation + page audit + all smoke tests + visual compare for affected pages |
-| **High risk** | design-system.css change, global layout change, theme/token change, sitemap script change | Full static validation + metadata validation + page audit + all smoke tests + full visual regression + preflight report |
+| **Low risk** | Single tool logic fix, single tool copy edit, single tool FAQ update | Validate that tool only: `python scripts/validate-tools.py <slug>` + its smoke test + quick product-quality pass |
+| **Medium risk** | Shared SEO component edit, ds-seo-more structure change, tools-data.js update, new tool page | Full static validation + metadata validation + page audit + all smoke tests + visual compare for affected pages + product-quality pass for changed tools |
+| **High risk** | design-system.css change, global layout change, theme/token change, sitemap script change | Full static validation + metadata validation + page audit + all smoke tests + full visual regression + preflight report + spot-check product quality on key tools |
 
 ### Low Risk (single tool)
 ```bash
@@ -213,11 +243,15 @@ python scripts/generate-report.py
 1. Create `public/tools/<slug>.html` following CLAUDE.md Migration Checklist.
 2. Add entry to `public/tools-data.js`.
 3. Add entry to `public/tools-meta.js` (slug, title, description, category, relatedTools, faq, useCases, example).
-4. Update `public/all-tools.html`.
-5. Run `python scripts/gen-sitemap.py` or `node scripts/gen-sitemap.js` to update sitemap.
-6. Run `python scripts/validate-tools.py <slug>` — must pass with 0 errors.
-7. Write a smoke test in `tests/smoke/<slug>.test.js` (at least "page loads" + 1 core path test).
-8. Run `npx playwright test tests/visual/snapshot.test.js --update-snapshots` to add baseline.
+4. Update `HUB_PAGE_CONFIG` in `public/tools-data.js` if the tool belongs in a hub page grouping.
+5. Update `public/sitemap.xml` (or regenerate it via the sitemap script when used).
+6. Run `python scripts/render-tool-sections.py <slug>` to inject structured data and SEO blocks.
+7. Run `python scripts/validate-tools.py <slug>` — must pass with 0 errors.
+8. Run `python scripts/check-tools-meta.py`.
+9. Do a quick product-quality pass using the checklist above.
+   - Recommended: fill `NEW_TOOL_ACCEPTANCE_TEMPLATE.md`
+10. Write a smoke test in `tests/smoke/<slug>.test.js` when the tool becomes important enough for automated coverage.
+11. Update visual baselines only when the page is added to the visual snapshot set.
 
 ---
 
@@ -250,8 +284,8 @@ for f in sorted(missing): print(' ', f)
 "
 ```
 
-Progressively add entries to `tools-meta.js` as tools are edited or audited.
-Priority: tools with the most traffic first.
+`tools-meta.js` is now expected to cover all tools.
+Any missing entry should be treated as a regression.
 
 ---
 

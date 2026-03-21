@@ -570,7 +570,14 @@ const TOOLS_META = [
       shortTitle: "Image Resizer",
       seoContent: {
         title: "What is an Image Resizer?",
-        body: "Image Resizer changes image dimensions directly in the browser so you can prepare files for websites, social media, documents, and app uploads. It is useful when you need exact width and height targets without sending images to a server."
+        body: "Image Resizer changes image dimensions directly in the browser so you can prepare files for websites, social media, documents, and app uploads. It is useful when you need exact width and height targets without sending images to a server.",
+        howToTitle: "How to Use Image Resizer",
+        howToSteps: [
+          "Upload the image you want to resize.",
+          "Choose a preset size or enter the exact width and height you need.",
+          "Keep the aspect ratio locked if you want to avoid stretching the image.",
+          "Preview the result and download the resized file when it looks correct."
+        ]
       },
       learnMore: {
         title: "Understand Image Resizing"
@@ -670,7 +677,14 @@ const TOOLS_META = [
       shortTitle: "WebP Converter",
       seoContent: {
         title: "What is WebP Converter?",
-        body: "WebP Converter turns images into WebP so you can reduce file size while keeping web-friendly quality. It is useful when preparing site assets, blog images, app screenshots, and storefront visuals for faster loading."
+        body: "WebP Converter turns images into WebP so you can reduce file size while keeping web-friendly quality. It is useful when preparing site assets, blog images, app screenshots, and storefront visuals for faster loading.",
+        howToTitle: "How to Use WebP Converter",
+        howToSteps: [
+          "Upload the source image you want to convert.",
+          "Adjust the quality or output options if the tool provides them.",
+          "Preview the converted result and compare the file size.",
+          "Download the WebP file when the balance looks right for web use."
+        ]
       },
       learnMore: {
         title: "Understand WebP Images"
@@ -717,7 +731,14 @@ const TOOLS_META = [
       shortTitle: "YouTube Thumbnail Downloader",
       seoContent: {
         title: "What is YouTube Thumbnail Downloader?",
-        body: "YouTube Thumbnail Downloader fetches the available preview images for a YouTube video so you can inspect or save them quickly. It is useful for competitive research, campaign planning, content audits, and presentation mockups."
+        body: "YouTube Thumbnail Downloader fetches the available preview images for a YouTube video so you can inspect or save them quickly. It is useful for competitive research, campaign planning, content audits, and presentation mockups.",
+        howToTitle: "How to Use YouTube Thumbnail Downloader",
+        howToSteps: [
+          "Paste the YouTube video URL into the input field.",
+          "Let the tool fetch the available thumbnail sizes automatically.",
+          "Preview the different thumbnail versions to choose the one you need.",
+          "Download the thumbnail image for research, mockups, or reference use."
+        ]
       },
       learnMore: {
         title: "Understand YouTube Thumbnails"
@@ -764,7 +785,14 @@ const TOOLS_META = [
       shortTitle: "QR Code Generator",
       seoContent: {
         title: "What is QR Code Generator?",
-        body: "QR Code Generator creates scannable codes for links, text, Wi-Fi credentials, email, and contact details directly in the browser. It is useful for print materials, menus, event signage, onboarding flows, and quick device handoffs."
+        body: "QR Code Generator creates scannable codes for links, text, Wi-Fi credentials, email, and contact details directly in the browser. It is useful for print materials, menus, event signage, onboarding flows, and quick device handoffs.",
+        howToTitle: "How to Use QR Code Generator",
+        howToSteps: [
+          "Choose the QR code type such as URL, text, Wi-Fi, email, or contact card.",
+          "Fill in the fields with the data you want people to scan.",
+          "Adjust the size or styling options if needed and preview the code live.",
+          "Download the finished QR code as an image for print or digital use."
+        ]
       },
       learnMore: {
         title: "Understand QR Codes"
@@ -1044,7 +1072,14 @@ const TOOLS_META = [
       shortTitle: "Markdown Preview",
       seoContent: {
         title: "What is a Markdown Preview Tool?",
-        body: "Markdown Preview renders Markdown into formatted output in real time so you can check headings, lists, links, tables, and code blocks before publishing. It is useful for docs, READMEs, notes, CMS content, and developer tutorials."
+        body: "Markdown Preview renders Markdown into formatted output in real time so you can check headings, lists, links, tables, and code blocks before publishing. It is useful for docs, READMEs, notes, CMS content, and developer tutorials.",
+        howToTitle: "How to Use Markdown Preview",
+        howToSteps: [
+          "Paste or type your Markdown into the editor.",
+          "Watch the formatted preview update as you edit.",
+          "Check headings, lists, tables, links, and code blocks before publishing.",
+          "Copy the Markdown or export the rendered HTML when you are done."
+        ]
       },
       learnMore: {
         title: "Understand Markdown Rendering"
@@ -1087,7 +1122,14 @@ const TOOLS_META = [
       shortTitle: "Cron Builder",
       seoContent: {
         title: "What is Cron Builder?",
-        body: "Cron Builder helps you create cron expressions from readable schedule choices instead of memorizing field syntax. It is useful for scheduled jobs, deployment tasks, maintenance scripts, and dashboards that rely on cron rules."
+        body: "Cron Builder helps you create cron expressions from readable schedule choices instead of memorizing field syntax. It is useful for scheduled jobs, deployment tasks, maintenance scripts, and dashboards that rely on cron rules.",
+        howToTitle: "How to Use Cron Builder",
+        howToSteps: [
+          "Choose the schedule pattern you want, such as hourly, daily, weekly, or monthly.",
+          "Fill in the readable time and date fields instead of editing raw cron syntax first.",
+          "Review the generated cron expression and the human-readable summary.",
+          "Copy the expression into your server, scheduler, or deployment workflow."
+        ]
       },
       learnMore: {
         title: "Understand Cron Expressions"
@@ -1497,7 +1539,14 @@ const TOOLS_META = [
       shortTitle: "CSS Minifier",
       seoContent: {
         title: "What is CSS Minifier?",
-        body: "CSS Minifier compresses CSS by removing extra whitespace and nonessential characters so you can reduce payload size quickly. It is useful for front-end optimization, static site publishing, demos, and copying compact styles into constrained environments."
+        body: "CSS Minifier compresses CSS by removing extra whitespace and nonessential characters so you can reduce payload size quickly. It is useful for front-end optimization, static site publishing, demos, and copying compact styles into constrained environments.",
+        howToTitle: "How to Use CSS Minifier",
+        howToSteps: [
+          "Paste your CSS into the input panel.",
+          "Run the minifier to remove whitespace and other nonessential characters.",
+          "Review the compact output to make sure the stylesheet still looks correct.",
+          "Copy or download the minified CSS for deployment or embedding."
+        ]
       },
       learnMore: {
         title: "Understand CSS Minification"
@@ -1544,7 +1593,14 @@ const TOOLS_META = [
       shortTitle: "JS Minifier",
       seoContent: {
         title: "What is JS Minifier?",
-        body: "JS Minifier compresses JavaScript into a smaller output that is easier to ship in lightweight demos or static deployments. It is useful for reducing file size, testing minified behavior, and generating compact script snippets in the browser."
+        body: "JS Minifier compresses JavaScript into a smaller output that is easier to ship in lightweight demos or static deployments. It is useful for reducing file size, testing minified behavior, and generating compact script snippets in the browser.",
+        howToTitle: "How to Use JS Minifier",
+        howToSteps: [
+          "Paste the JavaScript code you want to compress.",
+          "Run the minifier to generate a smaller output version.",
+          "Check the result if you need to verify names, spacing, or behavior.",
+          "Copy the minified script for demos, snippets, or deployment."
+        ]
       },
       learnMore: {
         title: "Understand JavaScript Minification"
@@ -1707,7 +1763,14 @@ const TOOLS_META = [
       shortTitle: "Color Blindness Simulator",
       seoContent: {
         title: "What is Color Blindness Simulator?",
-        body: "Color Blindness Simulator previews how artwork or interfaces may appear under different color-vision deficiencies. It is useful for evaluating charts, status colors, UI states, and image-heavy layouts that depend too much on hue alone."
+        body: "Color Blindness Simulator previews how artwork or interfaces may appear under different color-vision deficiencies. It is useful for evaluating charts, status colors, UI states, and image-heavy layouts that depend too much on hue alone.",
+        howToTitle: "How to Use Color Blindness Simulator",
+        howToSteps: [
+          "Upload the image or screen design you want to check.",
+          "Switch between the different color-vision deficiency modes.",
+          "Compare how key UI elements, charts, or labels change under each mode.",
+          "Adjust your design colors if important meaning is lost in the preview."
+        ]
       },
       learnMore: {
         title: "Understand Color Blindness Modes"
@@ -2579,7 +2642,14 @@ const TOOLS_META = [
       shortTitle: "Color Converter",
       seoContent: {
         title: "What is Color Converter?",
-        body: "Color Converter helps you switch between HEX, RGB, HSL, HSV, CMYK, and named CSS colors without recalculating values by hand. It is useful when moving colors between design tools, front-end code, brand docs, and print workflows."
+        body: "Color Converter helps you switch between HEX, RGB, HSL, HSV, CMYK, and named CSS colors without recalculating values by hand. It is useful when moving colors between design tools, front-end code, brand docs, and print workflows.",
+        howToTitle: "How to Use Color Converter",
+        howToSteps: [
+          "Enter a color in HEX, RGB, HSL, HSV, or another supported format.",
+          "Let the tool convert the value into the other color formats automatically.",
+          "Fine-tune any field until the output matches your target color exactly.",
+          "Copy the format you need for CSS, design handoff, or print work."
+        ]
       },
       learnMore: {
         title: "Understand Color Formats"
@@ -2630,7 +2700,14 @@ const TOOLS_META = [
       shortTitle: "Color Palette Generator",
       seoContent: {
         title: "What is Color Palette Generator?",
-        body: "Color Palette Generator creates coordinated color sets from a starting hue so you can explore complementary, analogous, monochrome, and accent combinations faster. It is useful for UI themes, brand explorations, dashboards, and presentation graphics."
+        body: "Color Palette Generator creates coordinated color sets from a starting hue so you can explore complementary, analogous, monochrome, and accent combinations faster. It is useful for UI themes, brand explorations, dashboards, and presentation graphics.",
+        howToTitle: "How to Use Color Palette Generator",
+        howToSteps: [
+          "Pick the base color you want to build from.",
+          "Choose the palette style such as complementary, analogous, or monochrome.",
+          "Review the generated swatches and tweak the base color if needed.",
+          "Copy the HEX values you want to reuse in your design system or mockup."
+        ]
       },
       learnMore: {
         title: "Understand Color Palettes"
@@ -2677,7 +2754,14 @@ const TOOLS_META = [
       shortTitle: "Compress to 100KB",
       seoContent: {
         title: "What is Compress to 100KB?",
-        body: "Compress to 100KB helps you reduce an image until it fits a common file-size target used by forms, portals, and job applications. It is useful when a site rejects larger uploads and you need a fast browser-only workaround."
+        body: "Compress to 100KB helps you reduce an image until it fits a common file-size target used by forms, portals, and job applications. It is useful when a site rejects larger uploads and you need a fast browser-only workaround.",
+        howToTitle: "How to Use Compress to 100KB",
+        howToSteps: [
+          "Upload the image that needs to fit under the 100KB limit.",
+          "Let the tool reduce quality or dimensions until the target size is reached.",
+          "Check the preview to make sure the image still looks acceptable.",
+          "Download the compressed file once it meets the size limit."
+        ]
       },
       learnMore: {
         title: "Understand Targeted Image Compression"
@@ -2724,7 +2808,14 @@ const TOOLS_META = [
       shortTitle: "Contrast Checker",
       seoContent: {
         title: "What is Contrast Checker?",
-        body: "Contrast Checker compares foreground and background colors to show whether text contrast is readable and accessible. It is useful for UI design reviews, brand color validation, component libraries, and fixing low-contrast text before release."
+        body: "Contrast Checker compares foreground and background colors to show whether text contrast is readable and accessible. It is useful for UI design reviews, brand color validation, component libraries, and fixing low-contrast text before release.",
+        howToTitle: "How to Use Contrast Checker",
+        howToSteps: [
+          "Enter or pick the foreground text color.",
+          "Enter or pick the background color behind it.",
+          "Review the contrast ratio and WCAG pass or fail result instantly.",
+          "Adjust either color until the combination meets your accessibility target."
+        ]
       },
       learnMore: {
         title: "Understand Color Contrast"
@@ -2952,7 +3043,14 @@ const TOOLS_META = [
       shortTitle: "CSS Gradient Generator",
       seoContent: {
         title: "What is Gradient Generator?",
-        body: "Gradient Generator lets you build linear and radial gradients visually, then copy production-ready CSS. It is useful for landing pages, hero sections, buttons, cards, and background experiments where raw CSS syntax is tedious to write by hand."
+        body: "Gradient Generator lets you build linear and radial gradients visually, then copy production-ready CSS. It is useful for landing pages, hero sections, buttons, cards, and background experiments where raw CSS syntax is tedious to write by hand.",
+        howToTitle: "How to Use Gradient Generator",
+        howToSteps: [
+          "Choose whether you want a linear or radial gradient.",
+          "Add or adjust the color stops until the blend looks right.",
+          "Fine-tune the angle, position, or spread values in the live preview.",
+          "Copy the generated CSS when you are ready to use it in your project."
+        ]
       },
       learnMore: {
         title: "Understand CSS Gradients"
@@ -2995,7 +3093,14 @@ const TOOLS_META = [
       shortTitle: "Grayscale Image Tool",
       seoContent: {
         title: "What is Grayscale Image Tool?",
-        body: "Grayscale Image Tool converts color images into monochrome versions directly in the browser. It is useful for design explorations, print previews, accessibility checks, and preparing image variants without sending files anywhere."
+        body: "Grayscale Image Tool converts color images into monochrome versions directly in the browser. It is useful for design explorations, print previews, accessibility checks, and preparing image variants without sending files anywhere.",
+        howToTitle: "How to Use Grayscale Image Tool",
+        howToSteps: [
+          "Upload the image you want to convert to grayscale.",
+          "Preview the black-and-white result directly in the browser.",
+          "Compare the grayscale version if you are checking tone or readability.",
+          "Download the converted image when the result looks right."
+        ]
       },
       learnMore: {
         title: "Understand Grayscale Images"
@@ -3222,7 +3327,14 @@ const TOOLS_META = [
       shortTitle: "Image Rotate Tool",
       seoContent: {
         title: "What is Image Rotate Tool?",
-        body: "Image Rotate Tool rotates photos and screenshots by fixed angles so you can correct orientation problems quickly. It is useful for phone photos, scanned documents, product shots, and any asset that needs a fast turn before export."
+        body: "Image Rotate Tool rotates photos and screenshots by fixed angles so you can correct orientation problems quickly. It is useful for phone photos, scanned documents, product shots, and any asset that needs a fast turn before export.",
+        howToTitle: "How to Use Image Rotate Tool",
+        howToSteps: [
+          "Upload the image with the wrong orientation.",
+          "Rotate it by 90, 180, or 270 degrees, or flip it if needed.",
+          "Check the preview to confirm the image is now upright.",
+          "Download the corrected image for reuse or sharing."
+        ]
       },
       learnMore: {
         title: "Understand Image Rotation"
@@ -3312,7 +3424,14 @@ const TOOLS_META = [
       shortTitle: "JPG to PNG Converter",
       seoContent: {
         title: "What is JPG to PNG Converter?",
-        body: "JPG to PNG Converter changes JPEG images into PNG format in the browser. It is useful when you need a lossless output format for editing pipelines, documentation, or workflows that expect PNG files."
+        body: "JPG to PNG Converter changes JPEG images into PNG format in the browser. It is useful when you need a lossless output format for editing pipelines, documentation, or workflows that expect PNG files.",
+        howToTitle: "How to Use JPG to PNG Converter",
+        howToSteps: [
+          "Upload the JPG or JPEG image you want to convert.",
+          "Let the tool render the image into PNG format in the browser.",
+          "Preview the result if you want to confirm the converted output.",
+          "Download the new PNG file for editing, sharing, or reuse."
+        ]
       },
       learnMore: {
         title: "Understand JPG and PNG"
@@ -3769,7 +3888,14 @@ const TOOLS_META = [
       shortTitle: "PNG to JPG Converter",
       seoContent: {
         title: "What is PNG to JPG Converter?",
-        body: "PNG to JPG Converter turns PNG files into JPEG so you can cut file size and create photo-friendly outputs. It is useful for web uploads, email attachments, blog images, and general cases where transparency is not required."
+        body: "PNG to JPG Converter turns PNG files into JPEG so you can cut file size and create photo-friendly outputs. It is useful for web uploads, email attachments, blog images, and general cases where transparency is not required.",
+        howToTitle: "How to Use PNG to JPG Converter",
+        howToSteps: [
+          "Upload the PNG image you want to convert.",
+          "Choose a background color if the original PNG uses transparency.",
+          "Preview the JPEG output and compare the result.",
+          "Download the JPG file when the conversion looks right."
+        ]
       },
       learnMore: {
         title: "Understand PNG and JPG"
@@ -3816,7 +3942,14 @@ const TOOLS_META = [
       shortTitle: "EXIF Remover",
       seoContent: {
         title: "What is EXIF Remover?",
-        body: "EXIF Remover strips image metadata such as camera details, timestamps, and GPS coordinates before you share a file. It is useful for privacy, public uploads, listings, press kits, and any workflow where hidden metadata should not leave your device."
+        body: "EXIF Remover strips image metadata such as camera details, timestamps, and GPS coordinates before you share a file. It is useful for privacy, public uploads, listings, press kits, and any workflow where hidden metadata should not leave your device.",
+        howToTitle: "How to Use EXIF Remover",
+        howToSteps: [
+          "Upload the photo whose metadata you want to remove.",
+          "Let the tool create a clean copy without EXIF information.",
+          "Confirm that the image still looks correct after processing.",
+          "Download the metadata-free file before sharing it publicly."
+        ]
       },
       learnMore: {
         title: "Understand EXIF Metadata"
@@ -3859,7 +3992,14 @@ const TOOLS_META = [
       shortTitle: "Resize for Instagram",
       seoContent: {
         title: "What is Resize for Instagram?",
-        body: "Resize for Instagram prepares images for common Instagram feed, story, reel, and profile dimensions. It is useful when you need fast export sizes for social posting without opening a full design tool."
+        body: "Resize for Instagram prepares images for common Instagram feed, story, reel, and profile dimensions. It is useful when you need fast export sizes for social posting without opening a full design tool.",
+        howToTitle: "How to Use Resize for Instagram",
+        howToSteps: [
+          "Upload the image you want to prepare for Instagram.",
+          "Choose the target format such as feed, story, reel, or profile size.",
+          "Adjust crop or padding options until the composition looks right.",
+          "Download the resized image ready for posting."
+        ]
       },
       learnMore: {
         title: "Understand Instagram Image Sizes"
@@ -4199,7 +4339,14 @@ const TOOLS_META = [
       shortTitle: "URL Builder",
       seoContent: {
         title: "What is URL Builder?",
-        body: "URL Builder helps you assemble URLs from a base address, path, query parameters, and fragments without hand-editing separators. It is useful for tracking links, API requests, QA scenarios, and sharing long URLs with fewer mistakes."
+        body: "URL Builder helps you assemble URLs from a base address, path, query parameters, and fragments without hand-editing separators. It is useful for tracking links, API requests, QA scenarios, and sharing long URLs with fewer mistakes.",
+        howToTitle: "How to Use URL Builder",
+        howToSteps: [
+          "Enter the base URL or domain you want to start from.",
+          "Add the path, query parameters, and fragment values you need.",
+          "Review the assembled URL and the encoded parameter values.",
+          "Copy the final link for analytics, QA, API calls, or sharing."
+        ]
       },
       learnMore: {
         title: "Understand URL Building"
@@ -4242,7 +4389,14 @@ const TOOLS_META = [
       shortTitle: "URL Parser",
       seoContent: {
         title: "What is URL Parser?",
-        body: "URL Parser breaks a URL into protocol, host, path, query parameters, and fragments so you can inspect how a link is structured. It is useful for QA, debugging redirects, analytics links, and API request analysis."
+        body: "URL Parser breaks a URL into protocol, host, path, query parameters, and fragments so you can inspect how a link is structured. It is useful for QA, debugging redirects, analytics links, and API request analysis.",
+        howToTitle: "How to Use URL Parser",
+        howToSteps: [
+          "Paste the full URL into the input field.",
+          "Review the parsed protocol, host, path, query string, and fragment parts.",
+          "Inspect individual query parameters when you need to debug tracking or API links.",
+          "Copy the decoded pieces or use the result to rebuild a cleaner URL."
+        ]
       },
       learnMore: {
         title: "Understand URL Parts"
@@ -4349,7 +4503,14 @@ const TOOLS_META = [
       shortTitle: "WebP to JPG Converter",
       seoContent: {
         title: "What is WebP to JPG Converter?",
-        body: "WebP to JPG Converter changes WebP images into JPEG for broader compatibility with older tools, CMS platforms, and document workflows. It is useful when a browser-exported WebP file cannot be used directly elsewhere."
+        body: "WebP to JPG Converter changes WebP images into JPEG for broader compatibility with older tools, CMS platforms, and document workflows. It is useful when a browser-exported WebP file cannot be used directly elsewhere.",
+        howToTitle: "How to Use WebP to JPG Converter",
+        howToSteps: [
+          "Upload the WebP image you need to convert.",
+          "Let the tool convert it into a JPEG-compatible output.",
+          "Check the preview if you want to confirm the visual result.",
+          "Download the JPG file for broader software or CMS compatibility."
+        ]
       },
       learnMore: {
         title: "Understand WebP to JPG Conversion"

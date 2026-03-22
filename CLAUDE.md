@@ -343,6 +343,45 @@ After adding a tool:
 2. update `HUB_PAGE_CONFIG` if needed
 3. do not manually maintain separate tool lists in hub pages
 
+#### Primary Icon Rules
+
+- The `icon` field in `public/tools-data.js` is the single source of truth for the tool's primary icon.
+- Tool page headers, `all-tools.html`, and hub pages should all follow that same icon source.
+- Prefer emoji as the long-term icon system.
+- Do not use placeholder question marks, geometric fallback symbols, ASCII text, or HTML entities as the intended final icon style.
+- Keep semantic consistency within the same tool family instead of picking a different style for every page.
+
+Recommended defaults:
+
+- `format`
+  - default: `🧾`
+  - compression / minify variants may use `⚡`
+- `convert`
+  - default: `🔄`
+  - dimension / unit / sizing tools may use `📐`
+  - numeric base / number formatting tools may use `🔢`
+- `encode`
+  - prefer `🔐`, `🔑`, or `🔗` depending on the user-facing task
+- `text`
+  - choose by action: `🔤`, `🧹`, `🔢`, `✉️`, `🔗`
+- `image`
+  - choose by action: `🖼️`, `✂️`, `🔄`, `🎨`, `☀️`
+- `design`
+  - default: `🎨`
+  - accessibility / contrast tools should prefer `♿`
+- `reference`
+  - prefer `📄`, `🏷️`, `🌐`, `🔌`
+- `generate`
+  - prefer `🔑`, `🎲`, `📷`, `🆔`
+- `calculator`
+  - prefer `📅`, `⚖️`, `🏦`, `🔢`
+
+When changing a primary icon:
+
+1. check whether the same family already has a stable semantic icon choice
+2. optimize for the user's task, not the underlying implementation detail
+3. verify the result still feels coherent across the tool page header, `all-tools.html`, and relevant hub pages
+
 ### `public/tools-meta.js`
 
 This is the source of:

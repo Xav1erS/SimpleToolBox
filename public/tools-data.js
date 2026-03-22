@@ -85,6 +85,12 @@ const SITE_TOOLS = [
   { name: 'Email Extractor', href: 'tools/email-extractor.html', tag: 'text', icon: '✉️', desc: 'Extract email addresses from pasted text, logs, or exports' },
   { name: 'URL Extractor', href: 'tools/url-extractor.html', tag: 'text', icon: '🔗', desc: 'Extract links from pasted text and normalize plain www URLs' },
   { name: 'Phone Number Extractor', href: 'tools/phone-extractor.html', tag: 'text', icon: '📞', desc: 'Extract phone numbers from text, notes, or lead lists' },
+  { name: 'Duplicate Line Remover', href: 'tools/duplicate-line-remover.html', tag: 'text', icon: '??', desc: 'Remove repeated lines while keeping the first occurrence' },
+  { name: 'Line Sorter', href: 'tools/line-sorter.html', tag: 'text', icon: '??', desc: 'Sort one-item-per-line text lists A-Z or Z-A with natural order' },
+  { name: 'List Deduplicator', href: 'tools/list-deduplicator.html', tag: 'text', icon: '??', desc: 'Deduplicate comma, newline, tab, or semicolon separated lists' },
+  { name: 'Whitespace Trimmer', href: 'tools/whitespace-trimmer.html', tag: 'text', icon: '??', desc: 'Trim spaces and tabs from each line and clean blank rows' },
+  { name: 'Sentence Counter', href: 'tools/sentence-counter.html', tag: 'text', icon: '??', desc: 'Count sentences and estimate average words per sentence' },
+  { name: 'Keyword Density Checker', href: 'tools/keyword-density-checker.html', tag: 'text', icon: '??', desc: 'Measure keyword frequency and density in pasted text' },
   { name: 'PNG to WebP Converter', href: 'tools/png-to-webp.html', tag: 'image', icon: '🔄', desc: 'Convert PNG images to smaller WebP files with adjustable quality' },
   { name: 'SVG to PNG Converter', href: 'tools/svg-to-png.html', tag: 'image', icon: '📐', desc: 'Convert SVG files to raster PNG images at 1x to 4x scale' },
   { name: 'BMP to PNG Converter', href: 'tools/bmp-to-png.html', tag: 'image', icon: '🗂️', desc: 'Convert BMP bitmap files into portable PNG images instantly' },
@@ -123,7 +129,7 @@ const HUB_PAGE_CONFIG = {
   },
   text: {
     sections: [
-      ['word-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor']
+      ['word-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker']
     ]
   }
 };

@@ -5691,6 +5691,294 @@ const TOOLS_META = [
           "Runs locally so your images stay on your device."
         ]
       }
+    },
+  {
+      slug: "duplicate-line-remover",
+      title: "Duplicate Line Remover Online | Simple ToolBox",
+      description: "Remove duplicate lines from pasted text instantly. Keep original order, ignore case if needed, trim whitespace, and copy the cleaned result in your browser.",
+      category: "text",
+      shortTitle: "Duplicate Line Remover",
+      relatedTools: [
+        "line-tools",
+        "text-cleaner",
+        "list-deduplicator"
+      ],
+      useCases: [
+        "Clean one-item-per-line exports before importing them elsewhere",
+        "Remove repeated keywords or tags while keeping the first occurrence",
+        "Deduplicate copied logs, notes, or spreadsheet rows",
+        "Quickly sanitize long pasted lists without writing a script"
+      ],
+      faq: [
+        { q: "Does it keep the first or last duplicate?", a: "It keeps the first matching line and removes later repeats." },
+        { q: "Can it ignore case differences?", a: "Yes. Turn on Ignore case if Apple and apple should count as the same line." },
+        { q: "Will blank lines be removed too?", a: "Yes. Remove blank lines is enabled by default, and you can turn it off if you want to preserve empty rows." },
+        { q: "Is my text uploaded anywhere?", a: "No. Duplicate removal runs entirely in your browser." }
+      ],
+      example: {
+        input: "Apple\nOrange\napple\nOrange\nBanana",
+        output: "Apple\nOrange\nBanana"
+      },
+      seoContent: {
+        whatIsTitle: "What is Duplicate Line Remover?",
+        whatIsBody: "Duplicate Line Remover scans one-item-per-line text and removes repeated rows while keeping the first occurrence. It is useful for keyword lists, exports, logs, and any pasted text where duplicates need to be cleaned quickly.",
+        howToTitle: "How to Use Duplicate Line Remover",
+        howToSteps: [
+          "Paste the text list you want to clean into the input area.",
+          "Choose whether to trim each line, ignore case, or remove blank rows.",
+          "Review the deduplicated result instantly in the output panel.",
+          "Copy the cleaned list when it looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Duplicate Line Removal",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Faster than manually spotting repeated rows in long pasted lists.",
+          "Useful for exports, logs, tags, and keyword sets.",
+          "Runs locally so your source text stays on your device."
+        ]
+      }
+    },
+  {
+      slug: "line-sorter",
+      title: "Line Sorter Online | Simple ToolBox",
+      description: "Sort text lines A-Z or Z-A instantly. Ignore case, use natural number sorting, remove blanks, and copy the sorted result in your browser.",
+      category: "text",
+      shortTitle: "Line Sorter",
+      relatedTools: [
+        "line-tools",
+        "duplicate-line-remover",
+        "list-deduplicator"
+      ],
+      useCases: [
+        "Sort lists of filenames, tags, or values before comparing them",
+        "Order pasted rows for cleaner review or export",
+        "Sort numbered items using natural numeric order",
+        "Quickly normalize list order without spreadsheet formulas"
+      ],
+      faq: [
+        { q: "What is natural sorting?", a: "Natural sorting treats numbers inside text more like humans expect, so item 2 comes before item 10." },
+        { q: "Can I sort in reverse order?", a: "Yes. Change the sort order to Z-A to reverse the result." },
+        { q: "Does it ignore case?", a: "Yes. Ignore case is enabled by default, and you can turn it off if you need exact uppercase and lowercase ordering." },
+        { q: "Is the sorting done locally?", a: "Yes. Everything runs entirely in your browser." }
+      ],
+      example: {
+        input: "item 20\nitem 3\nitem 1\nBanana\napple",
+        output: "apple\nBanana\nitem 1\nitem 3\nitem 20"
+      },
+      seoContent: {
+        whatIsTitle: "What is Line Sorter?",
+        whatIsBody: "Line Sorter orders one-item-per-line text lists alphabetically or in reverse. It can also use natural numeric sorting, which makes mixed text like item 2 and item 10 sort in a more intuitive order.",
+        howToTitle: "How to Use Line Sorter",
+        howToSteps: [
+          "Paste the list you want to sort into the input area.",
+          "Choose A-Z or Z-A order and set the sorting options you need.",
+          "Review the sorted lines instantly in the output panel.",
+          "Copy the final list back into your document, sheet, or script."
+        ]
+      },
+      learnMore: {
+        title: "Understand Line Sorting",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for lists, filenames, tags, and mixed text values.",
+          "Supports natural numeric sorting for clearer ordering.",
+          "Runs in the browser so you can sort quickly without external tools."
+        ]
+      }
+    },
+  {
+      slug: "list-deduplicator",
+      title: "List Deduplicator Online | Simple ToolBox",
+      description: "Deduplicate comma-separated, newline, tab, or semicolon lists instantly. Normalize spacing, keep original order, and export the result in your preferred delimiter.",
+      category: "text",
+      shortTitle: "List Deduplicator",
+      relatedTools: [
+        "duplicate-line-remover",
+        "line-tools",
+        "text-cleaner"
+      ],
+      useCases: [
+        "Remove duplicate values from comma-separated exports",
+        "Clean copied tag, keyword, or category lists",
+        "Convert between newline and comma output while deduplicating",
+        "Prepare unique values before importing data into another tool"
+      ],
+      faq: [
+        { q: "What input separators does it support?", a: "It supports newline, comma, semicolon, and tab separated lists." },
+        { q: "Can I output the result in a different delimiter?", a: "Yes. You can parse one delimiter and export the unique list in another." },
+        { q: "Does it trim spaces around each item?", a: "Yes. Trim each item is enabled by default so values like Apple and  Apple count as the same item more often." },
+        { q: "Is the list processed locally?", a: "Yes. Everything runs in your browser and no list data is uploaded." }
+      ],
+      example: {
+        input: "Apple, Orange, apple, Banana, Orange, Kiwi",
+        output: "Apple\nOrange\napple\nBanana\nKiwi"
+      },
+      seoContent: {
+        whatIsTitle: "What is List Deduplicator?",
+        whatIsBody: "List Deduplicator removes repeated items from delimited lists such as comma-separated values, newline lists, tab-separated rows, and semicolon-separated fields. It is useful when copied data is not formatted as one item per line but still needs to be cleaned quickly.",
+        howToTitle: "How to Use List Deduplicator",
+        howToSteps: [
+          "Paste the list and choose the delimiter used in the input.",
+          "Choose the output delimiter you want for the cleaned result.",
+          "Turn on trimming or ignore case if you want stricter matching.",
+          "Copy the unique list after the output updates."
+        ]
+      },
+      learnMore: {
+        title: "Understand List Deduplication",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for comma lists, tags, exports, and pasted values from spreadsheets.",
+          "Lets you switch between input and output delimiters in one pass.",
+          "Runs locally so copied data stays on your device."
+        ]
+      }
+    },
+  {
+      slug: "whitespace-trimmer",
+      title: "Whitespace Trimmer Online | Simple ToolBox",
+      description: "Trim leading and trailing whitespace from each line instantly. Remove blank lines, collapse tabs, and copy the cleaned result in your browser.",
+      category: "text",
+      shortTitle: "Whitespace Trimmer",
+      relatedTools: [
+        "text-cleaner",
+        "line-tools",
+        "duplicate-line-remover"
+      ],
+      useCases: [
+        "Clean copied text from documents or terminals before reusing it",
+        "Trim spaces around line-based exports or notes",
+        "Normalize tabs and repeated inner spaces before comparison",
+        "Remove blank rows from pasted multiline text"
+      ],
+      faq: [
+        { q: "Does it trim each line separately?", a: "Yes. It trims leading and trailing whitespace on every line, not just the beginning and end of the full text block." },
+        { q: "Can it replace tabs too?", a: "Yes. Turn on Convert tabs to single spaces if you want tab characters normalized." },
+        { q: "Will it remove blank lines?", a: "Yes. Remove blank lines is enabled by default, and you can turn it off if you want to preserve empty rows." },
+        { q: "Is the text sent anywhere?", a: "No. Everything runs locally in your browser." }
+      ],
+      example: {
+        input: "  Apple  \n\tOrange\t\n\n  Banana   split  ",
+        output: "Apple\nOrange\nBanana split"
+      },
+      seoContent: {
+        whatIsTitle: "What is Whitespace Trimmer?",
+        whatIsBody: "Whitespace Trimmer removes unnecessary leading and trailing spaces from multiline text. It is useful for copied terminal output, exports, notes, and any pasted text where inconsistent spacing makes the content harder to reuse.",
+        howToTitle: "How to Use Whitespace Trimmer",
+        howToSteps: [
+          "Paste the text that contains extra spaces, tabs, or blank rows.",
+          "Choose whether to trim each line, convert tabs, collapse repeated spaces, or remove empty lines.",
+          "Review the cleaned output instantly.",
+          "Copy the trimmed result when it looks right."
+        ]
+      },
+      learnMore: {
+        title: "Understand Whitespace Trimming",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for pasted text from docs, terminals, exports, and chat logs.",
+          "Lets you combine trimming, tab cleanup, and blank-line removal in one step.",
+          "Runs locally so your text stays on your device."
+        ]
+      }
+    },
+  {
+      slug: "sentence-counter",
+      title: "Sentence Counter Online | Simple ToolBox",
+      description: "Count sentences in pasted text instantly. See sentence totals, average words per sentence, and estimated paragraphs in your browser.",
+      category: "text",
+      shortTitle: "Sentence Counter",
+      relatedTools: [
+        "word-counter",
+        "text-cleaner",
+        "keyword-density-checker"
+      ],
+      useCases: [
+        "Check article or essay structure while editing",
+        "Estimate average sentence length for readability reviews",
+        "Count sentences in product descriptions or landing pages",
+        "Inspect sentence breakdowns in pasted drafts"
+      ],
+      faq: [
+        { q: "How does it split sentences?", a: "It uses common sentence-ending punctuation such as periods, exclamation marks, and question marks as a practical browser-side estimate." },
+        { q: "Can it handle multiple paragraphs?", a: "Yes. It also estimates paragraph count based on blank-line paragraph breaks." },
+        { q: "Is the count always perfect?", a: "No automated sentence parser is perfect. Abbreviations and unusual punctuation can affect the estimate, but it works well for most normal prose." },
+        { q: "Is the text uploaded?", a: "No. The analysis stays in your browser." }
+      ],
+      example: {
+        input: "Simple ToolBox helps you finish small tasks quickly. It runs in your browser, so pasted text stays local.",
+        output: "2 sentences · 15 words · 8 avg words/sentence"
+      },
+      seoContent: {
+        whatIsTitle: "What is Sentence Counter?",
+        whatIsBody: "Sentence Counter estimates how many sentences appear in a block of pasted text. It also shows supporting writing stats such as average words per sentence and paragraph count, which makes it useful for editing and readability checks.",
+        howToTitle: "How to Use Sentence Counter",
+        howToSteps: [
+          "Paste the text you want to analyze into the input area.",
+          "Review the sentence total, word count, average length, and paragraph count.",
+          "Scan the per-sentence breakdown if you want to inspect long or short lines.",
+          "Adjust your draft elsewhere and paste again to compare the new count."
+        ]
+      },
+      learnMore: {
+        title: "Understand Sentence Counting",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for articles, essays, landing pages, and product copy.",
+          "Shows both total sentence count and sentence-length context.",
+          "Runs locally so your writing stays in the browser."
+        ]
+      }
+    },
+  {
+      slug: "keyword-density-checker",
+      title: "Keyword Density Checker Online | Simple ToolBox",
+      description: "Check keyword density in pasted text instantly. See total mentions, exact-match percentage, and top repeating words or phrases in your browser.",
+      category: "text",
+      shortTitle: "Keyword Density Checker",
+      relatedTools: [
+        "word-counter",
+        "sentence-counter",
+        "text-cleaner"
+      ],
+      useCases: [
+        "Review landing page copy for keyword repetition",
+        "Check whether a target phrase appears too often in a draft",
+        "Inspect top repeated terms before publishing SEO content",
+        "Compare keyword presence across article revisions"
+      ],
+      faq: [
+        { q: "How is keyword density calculated?", a: "This tool divides the number of exact keyword mentions by the total word count and shows the percentage." },
+        { q: "Does it support phrases, not just single words?", a: "Yes. You can enter a phrase in the keyword box and the tool will count exact string matches." },
+        { q: "What does the top terms panel show?", a: "It shows the most repeated words or phrases based on the selected phrase size so you can spot repetition patterns quickly." },
+        { q: "Is the analyzed text uploaded?", a: "No. The analysis runs entirely in your browser." }
+      ],
+      example: {
+        input: "A keyword checker helps you see whether a target keyword appears naturally. This keyword density checker also shows repeated terms.",
+        output: "keyword · 3 mentions · 20.00% density"
+      },
+      seoContent: {
+        whatIsTitle: "What is Keyword Density Checker?",
+        whatIsBody: "Keyword Density Checker measures how often a word or phrase appears in pasted text and compares that count to the total number of words. It is useful for reviewing SEO drafts, spotting overuse, and checking whether a target term appears naturally.",
+        howToTitle: "How to Use Keyword Density Checker",
+        howToSteps: [
+          "Paste the text you want to review into the input area.",
+          "Enter the keyword or phrase you want to measure.",
+          "Review total mentions, density percentage, and the top repeated terms.",
+          "Adjust your draft and re-check if you want to compare a revised version."
+        ]
+      },
+      learnMore: {
+        title: "Understand Keyword Density",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for SEO drafts, landing pages, and article reviews.",
+          "Shows both exact keyword mentions and repeated terms around the page.",
+          "Runs locally so your draft text stays in the browser."
+        ]
+      }
     }
 ];
 

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Sentence Counter Online | Simple ToolBox</title>
+  <meta name="description" content="Count sentences in pasted text instantly. See sentence totals, average words per sentence, and estimated paragraphs in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/sentence-counter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/sentence-counter.html" />
+  <meta property="og:title" content="Sentence Counter Online | Simple ToolBox" />
+  <meta property="og:description" content="Count sentences and analyze sentence length instantly in pasted text." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Sentence Counter",
+  "description": "Count sentences in pasted text instantly. See sentence totals, average words per sentence, and estimated paragraphs in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/sentence-counter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does it split sentences?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses common sentence-ending punctuation such as periods, exclamation marks, and question marks as a practical browser-side estimate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it handle multiple paragraphs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It also estimates paragraph count based on blank-line paragraph breaks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the count always perfect?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No automated sentence parser is perfect. Abbreviations and unusual punctuation can affect the estimate, but it works well for most normal prose."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the text uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The analysis stays in your browser."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .stat-card { padding: 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); }
+    .stat-card__label { display: block; margin-bottom: 6px; color: var(--ds-color-text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .stat-card__value { font-size: 24px; font-weight: 700; color: var(--ds-color-text-primary); }
+    .sentence-list { display: flex; flex-direction: column; gap: 10px; }
+    .sentence-item { padding: 12px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); }
+    .sentence-item__meta { margin-bottom: 6px; font-size: 12px; color: var(--ds-color-text-muted); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Sentence Counter <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📑</div><h1 class="ds-tool-header__title">Sentence Counter</h1></div><p class="ds-tool-header__desc">Count sentences in pasted text instantly and inspect rough sentence length, paragraph count, and per-sentence breakdown.</p><div class="ds-tool-tag-row"><span class="ds-tag">sentence count</span><span class="ds-tag">writing stats</span><span class="ds-tag">paragraphs</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane"><div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Text</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button></div></div><textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste text or an article excerpt..." spellcheck="false"></textarea><div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="charStat">0 chars</span></div></div>
+  <div class="stats-grid">
+    <div class="stat-card"><span class="stat-card__label">Sentences</span><span class="stat-card__value" id="sentenceCount">0</span></div>
+    <div class="stat-card"><span class="stat-card__label">Words</span><span class="stat-card__value" id="wordCount">0</span></div>
+    <div class="stat-card"><span class="stat-card__label">Avg Words / Sentence</span><span class="stat-card__value" id="avgWords">0</span></div>
+    <div class="stat-card"><span class="stat-card__label">Paragraphs</span><span class="stat-card__value" id="paragraphCount">0</span></div>
+  </div>
+  <section class="ds-card"><div class="ds-card__body"><div class="sentence-list" id="sentenceList"><div class="sentence-item"><div class="sentence-item__meta">No sentences yet</div><div>Paste text to see the breakdown.</div></div></div></div></section>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Sentence Counter?</h2>
+    <p>Sentence Counter estimates how many sentences appear in a block of pasted text. It also shows supporting writing stats such as average words per sentence and paragraph count, which makes it useful for editing and readability checks.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Sentence Counter</h2>
+    <ol>
+      <li>Paste the text you want to analyze into the input area.</li>
+      <li>Review the sentence total, word count, average length, and paragraph count.</li>
+      <li>Scan the per-sentence breakdown if you want to inspect long or short lines.</li>
+      <li>Adjust your draft elsewhere and paste again to compare the new count.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+    <a href="keyword-density-checker.html" class="ds-related-card"><span class="ds-related-icon">??</span><div><div class="ds-related-name">Keyword Density Checker</div><div class="ds-related-desc">Measure keyword frequency and density in pasted text</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Sentence Counting</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Simple ToolBox helps you finish small tasks quickly. It runs in your browser, so pasted text stays local.</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">2 sentences · 15 words · 8 avg words/sentence</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Check article or essay structure while editing</li>
+          <li>Estimate average sentence length for readability reviews</li>
+          <li>Count sentences in product descriptions or landing pages</li>
+          <li>Inspect sentence breakdowns in pasted drafts</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for articles, essays, landing pages, and product copy.</li>
+          <li>Shows both total sentence count and sentence-length context.</li>
+          <li>Runs locally so your writing stays in the browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How does it split sentences?</strong><p>It uses common sentence-ending punctuation such as periods, exclamation marks, and question marks as a practical browser-side estimate.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can it handle multiple paragraphs?</strong><p>Yes. It also estimates paragraph count based on blank-line paragraph breaks.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the count always perfect?</strong><p>No automated sentence parser is perfect. Abbreviations and unusual punctuation can affect the estimate, but it works well for most normal prose.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the text uploaded?</strong><p>No. The analysis stays in your browser.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  const SAMPLE = 'Simple ToolBox helps you finish small tasks quickly. It runs in your browser, so pasted text stays local. Sentence counting is useful when you are editing an article or checking readability.';
+  const inputText = document.getElementById('inputText');
+  const sentenceList = document.getElementById('sentenceList');
+  function analyze(){ const text=inputText.value.trim(); const sentences=text?text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []:[]; const cleaned=sentences.map((s)=>s.trim()).filter(Boolean); const words=text?((text.match(/\\b[\\w'-]+\\b/g)||[]).length):0; const paragraphs=text?text.split(/\\n\\s*\\n/).filter((p)=>p.trim()!=='').length:0; document.getElementById('charStat').textContent=`${inputText.value.length.toLocaleString()} chars`; document.getElementById('sentenceCount').textContent=`${cleaned.length}`; document.getElementById('wordCount').textContent=`${words}`; document.getElementById('avgWords').textContent=`${cleaned.length?Math.round(words/cleaned.length):0}`; document.getElementById('paragraphCount').textContent=`${paragraphs}`; if(!cleaned.length){ sentenceList.innerHTML='<div class=\"sentence-item\"><div class=\"sentence-item__meta\">No sentences yet</div><div>Paste text to see the breakdown.</div></div>'; return; } sentenceList.innerHTML=cleaned.map((sentence,index)=>{ const count=(sentence.match(/\\b[\\w\\'-]+\\b/g)||[]).length; return `<div class=\"sentence-item\"><div class=\"sentence-item__meta\">Sentence ${index+1} · ${count} words</div><div>${sentence.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`; }).join(''); }
+  inputText.addEventListener('input', analyze);
+  document.getElementById('btnSample').addEventListener('click',()=>{inputText.value=SAMPLE;analyze();});
+  document.getElementById('btnClear').addEventListener('click',()=>{inputText.value='';analyze();});
+  document.getElementById('btnPaste').addEventListener('click',async()=>{try{inputText.value=await navigator.clipboard.readText();analyze();}catch{}});
+  analyze();
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

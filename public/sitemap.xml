@@ -581,6 +581,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://simpletoolbox.dev/tools/duplicate-line-remover</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/line-sorter</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/list-deduplicator</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/whitespace-trimmer</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/sentence-counter</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/keyword-density-checker</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://simpletoolbox.dev/tools/unit-converter</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>

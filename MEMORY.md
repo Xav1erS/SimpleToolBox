@@ -1,33 +1,50 @@
 # SimpleToolBox Memory
 
-## Current Snapshot (2026-03-21)
+## Current Snapshot (2026-03-23)
 
-- Tool count: **84**
-- Tool pages: all connected to metadata-driven SEO rendering
-- Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
-- Hub pages live: `image-tools`, `developer-tools`, `text-tools`
-- Shared tool source: `public/tools-data.js`
-- Shared tool metadata source: `public/tools-meta.js`
+- Tool count: **106**
+- Shared tool list source: `public/tools-data.js`
+- Shared metadata source: `public/tools-meta.js`
 - Latest preflight: fully green
+- Main phase: **growth-first**, not migration-first
+
+## What Just Happened
+
+- Added 6 new text tools:
+  - `duplicate-line-remover`
+  - `line-sorter`
+  - `list-deduplicator`
+  - `whitespace-trimmer`
+  - `sentence-counter`
+  - `keyword-density-checker`
+- Repaired a batch of old `reference` pages that had:
+  - lost runtime scripts
+  - missing local styles
+  - broken card/layout structure
+- Fixed the real footer issue:
+  - many pages had footer nested inside `.main` / `.ds-tool-main`
+  - now corrected so footer is back under `body`
+- Strengthened QA:
+  - missing runtime scripts are now caught by validation
+  - report generation is resilient to local `node/npx` PATH issues
 
 ## Real Current Focus
 
-The focus is **no longer design-system migration**.
+The focus is no longer:
+
+- finish migration
+- polish every old page
 
 The real focus is:
 
-1. grow from 84 to 100
-2. then to 150
-3. do it without losing consistency, SEO structure, or QA coverage
-4. simultaneously improve tool competitiveness so growth does not outpace usefulness
+1. grow from **106 to 150**
+2. keep QA green
+3. keep shared data/template architecture converging
+4. improve tool competitiveness in parallel
 
-## Unified Strategy Summary
+## Priority Order
 
-SimpleToolBox should be run as a:
-
-**task-oriented online tool site**
-
-The project should expand in this order:
+Current expansion order:
 
 1. Image
 2. Text
@@ -36,104 +53,39 @@ The project should expand in this order:
 5. Developer
 6. PDF
 
-This is intentionally different from the earlier developer-heavy phase.
+## Tool Quality Reminder
 
-Reason:
+A page only has strategic value if the user can actually finish the task after landing.
 
-- the site already has a solid developer-tool base
-- broader task intent offers a better next growth step
-- PDF should be approached carefully because many document workflows are not good pure-frontend candidates yet
+Always ask:
 
-## Tool Competitiveness Reminder
+- Is the tool obvious on first view?
+- Can it be started immediately?
+- Does it recover from common bad input?
+- Is output easy to copy/download?
+- Does it feel smooth on mobile?
 
-The project now has to balance three things at once:
+## Current Constraints
 
-1. growth
-2. SEO / discoverability
-3. actual tool quality
+- Some legacy pages still have minor copy/encoding debt.
+- That debt is lower priority than adding high-value new tools unless it breaks usability.
+- Legacy cleanup should now be bug-driven, not open-ended.
 
-The key idea:
+## Immediate Next Step
 
-**A tool page is only strategically valuable if users can complete the task smoothly after landing.**
+Highest-priority next work:
 
-So future work should not only ask:
+1. `csv-column-extractor`
+2. `text-list-to-array`
+3. `word-frequency-counter`
 
-- Does this keyword matter?
-- Does this page exist?
+After that:
 
-It must also ask:
+- move into a calculator batch
+- only revisit old pages when there is a real functional or structural issue
 
-- Is this tool fast to understand?
-- Is it fast to start?
-- Does it behave well on common inputs?
-- Are errors recoverable?
-- Is the result easy to take away?
-- Is it competitive with obvious alternatives?
+## Active Frame
 
-## Immediate Execution Rules
+Correct active frame:
 
-When adding a new tool:
-
-1. create the tool page with DS skeleton
-2. add the tool to `public/tools-data.js`
-3. add metadata to `public/tools-meta.js`
-4. render SEO sections with `scripts/render-tool-sections.py`
-5. update `public/sitemap.xml`
-6. run the appropriate QA commands
-7. do a basic product-quality pass, not just a structural pass
-
-## Current Architecture Facts
-
-### Data
-
-- `public/tools-data.js` is the single source for homepage, all-tools, and hub pages
-- `public/tools-meta.js` is the single source for structured data, learn-more, FAQ, and related tools
-
-### Page Types
-
-- Tool page
-- Hub page
-- All-tools page
-- Homepage
-
-Scenario pages and workflow pages are **future expansion**, not the current default.
-
-## What Should Not Reappear
-
-- old migration-first framing
-- old counts like 21 or 81 when the repo has moved on
-- manually maintained duplicate tool lists inside hub pages
-- free-form SEO block HTML on each tool page
-- heavy directory-style navigation
-- large-scale AI writing pages without real value
-
-## Near-Term Expansion Goal
-
-Use 84 → 150 to complete category skeleton, not to blindly chase 500.
-
-Recommended near-term bias:
-
-- more extract / convert / compress / resize / count / calculate tools
-- fewer niche developer-only expansions
-- only selective PDF work
-
-Recommended near-term quality bias:
-
-- spend more polish on high-frequency image/text/calculator tools
-- ensure defaults, presets, and output flows feel effortless
-- avoid shipping technically correct but awkward tools just to increase count
-
-## Historical Note
-
-Earlier files and older handoff notes may still mention:
-
-- unfinished design-system migration
-- 21 tools
-- 81 tools
-- 300+ target as the main frame
-
-Those are now outdated.
-
-The correct active frame is:
-
-**84 tools, QA stable, growth-first, task-intent expansion toward 150 and then 500.**
+**106 tools, QA green, shared architecture stable, continue disciplined expansion toward 150.**

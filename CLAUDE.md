@@ -3,57 +3,20 @@
 ## Working Rules
 
 - Always reply in Chinese.
-- Start with the conclusion, then list key steps.
+- Start with the conclusion, then key steps.
 - Before commands, edits, or tests, briefly say what you are about to do.
-- After changes, explain files touched and key changes.
 - Prefer the minimum necessary change.
 
-## Unified Project Strategy
+## Current Actual State (2026-03-23)
 
-### Real Positioning
-
-SimpleToolBox should be operated as a:
-
-**Task-oriented online tool site**
-
-Not:
-
-- a pure developer-tools brand
-- a heavy directory site
-- a content blog
-
-Users arrive with explicit task intent:
-
-- compress
-- convert
-- extract
-- format
-- generate
-- calculate
-- inspect
-
-That means:
-
-- product organization can follow implementation efficiency
-- front-end browsing should follow user language
-- SEO should follow search intent
-
-These three layers must stay aligned.
-
-## Current Actual State (2026-03-21)
-
-- **84 tool pages** are live.
-- All 84 tools already use the unified SEO structure driven by `public/tools-meta.js` + `scripts/render-tool-sections.py`.
-- `public/tools-data.js` is now the single shared data source for:
-  - `public/index.html`
-  - `public/all-tools.html`
-  - `public/image-tools.html`
-  - `public/developer-tools.html`
-  - `public/text-tools.html`
-- Hub pages already exist:
-  - `public/image-tools.html`
-  - `public/developer-tools.html`
-  - `public/text-tools.html`
+- Tool count: **106**
+- Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
+- Hub pages live and data-driven:
+  - `image-tools`
+  - `developer-tools`
+  - `text-tools`
+- `public/tools-data.js` is the shared source for homepage, all-tools, and hub pages.
+- `public/tools-meta.js` is the shared source for JSON-LD, FAQ, learn-more, and related tools.
 - Latest preflight is fully green:
   - metadata failures: 0
   - page load failures: 0
@@ -63,51 +26,73 @@ These three layers must stay aligned.
 
 Reference:
 
-- `reports/preflight-report.md`
-- `QA.md`
+- [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\reports\preflight-report.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\reports\preflight-report.md)
+- [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\QA.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\QA.md)
 
-## What Is Finished
+## What Was Finished Recently
 
-### Engineering / QA
+### Growth
 
-- Unified metadata-driven SEO block rendering
-- Unified related-tools and learn-more structure
-- Metadata validation
-- Page audit
-- Smoke tests
-- Visual regression
-- Preflight summary reporting
+Added 6 new text tools:
 
-### Site Structure
+- `duplicate-line-remover`
+- `line-sorter`
+- `list-deduplicator`
+- `whitespace-trimmer`
+- `sentence-counter`
+- `keyword-density-checker`
 
-- Homepage is data-driven
-- `all-tools.html` is data-driven
-- 3 hub pages are data-driven
-- Tool pages are using a consistent DS-based skeleton
+### Recovery / Stabilization
 
-### Migration Status
+Repaired a batch of old reference pages:
 
-Design-system migration is complete enough for current needs.
+- `port-reference`
+- `mime-types`
+- `http-status`
+- `ascii-table`
+- `ip-lookup`
 
-Do **not** treat the main task as “continue migration”.
+These fixes included:
 
-The main task is now **growth with discipline**.
+- restoring lost runtime scripts
+- restoring missing local styles
+- reconnecting old pages to `ds-card` / `ds-tool-main` structure where needed
 
-## Current Main Task
+### Footer Root-Cause Fix
 
-### Primary Goal
+The footer problem was not only CSS.
 
-Expand from **84 → 100 → 150 → 500** tools without breaking the system.
+Real cause:
 
-This goal now has **three parallel constraints**:
+- many tool pages had missing closing tags
+- `footer` ended up nested inside `.main` / `.ds-tool-main`
+
+This has now been batch-fixed so footer is back under `body`.
+
+### QA Hardening
+
+- `scripts/validate-tools.py` now guards against missing runtime interaction scripts
+- `scripts/generate-report.py` now handles local `node/npx` path detection more reliably
+
+## Real Main Task
+
+Do **not** treat the project as “continue migration”.
+
+That phase is no longer the main storyline.
+
+The real task is now:
+
+**grow from 106 to 150 with discipline, while keeping QA green and tools actually useful**
+
+This means every decision must balance:
 
 1. growth
-2. SEO / discoverability
-3. tool competitiveness / usability
+2. discoverability / SEO
+3. usability / competitiveness
 
-### Highest-Priority Direction
+## Expansion Order
 
-Based on current tool mix, the real expansion order should be:
+Current priority order:
 
 1. **Image**
 2. **Text**
@@ -118,396 +103,158 @@ Based on current tool mix, the real expansion order should be:
 
 Reason:
 
-- current project is already relatively strong in developer/encoding/conversion tools
-- the next growth opportunity is broader task intent
-- PDF is important long term but should not dominate the near-term roadmap
-
-## What To Build Next
-
-### Phase 1: 84 → 150
-
-Goal: complete the category skeleton.
-
-Recommended target mix:
-
-- Image: grow aggressively
-- Text: grow aggressively
-- Calculators: grow carefully but steadily
-- Utility / generators: fill common gaps
-- Developer: keep adding only high-value holes
-- PDF: only ship the pure-frontend subset that is genuinely usable
-
-### Phase 2: 150 → 300
-
-Goal: expand into scenario keywords.
-
-Only after the category skeleton is credible, start pages like:
-
-- resize image for instagram
-- compress image for email
-- resize image for passport
-- json formatter for api response
-
-### Phase 3: 300 → 500
-
-Goal: build a keyword matrix and internal-link network.
-
-At this stage, focus on:
-
-- long-tail task variations
-- hub pages
-- workflow / chain pages
-- winner-page expansion
+- developer/encoding/conversion coverage is already decent
+- image/text/calculator tools match broader task intent
+- PDF remains important long term but should not dominate near-term work
 
 ## Tool Competitiveness Strategy
 
-Coverage alone is not enough.
+SimpleToolBox must not become only a large set of pages that technically exist.
 
-The site should not become “a large set of pages that technically exist”.
+It must become a large set of pages where users can finish tasks with low friction.
 
-It should become:
-
-**a large set of pages where users can complete tasks successfully with minimal friction**
-
-### Core Principle
-
-SEO brings the user in.
-
-Tool competitiveness determines:
-
-- whether the user succeeds
-- whether the user returns
-- whether the page earns trust
-- whether the site becomes more than a keyword surface
-
-### The 6 Usability Standards For Every Tool
+### The 6 Usability Standards
 
 1. **1-second comprehension**
-   - users should understand the tool immediately from title, description, and first-screen UI
 2. **1-step start**
-   - paste / upload / type should be obvious without reading long instructions
 3. **instant feedback**
-   - option changes, preset clicks, sliders, and toggles should update output immediately
 4. **recoverable failure**
-   - empty input, invalid input, and boundary cases must not break the page
 5. **easy result export**
-   - copy / download / reset / retry must be frictionless
 6. **real workflow fit**
-   - presets, default values, and output choices should match real user tasks, not just technical capability
 
-### What Usually Creates Competitive Advantage
+### High-Polish Tier
 
-Not just “having the feature”.
-
-Usually the advantage comes from:
-
-- better defaults
-- clearer empty states
-- fewer clicks
-- immediate output
-- useful presets
-- smarter error states
-- easier copy/download flow
-- better mobile usability
-- stronger next-step related tools
-
-### Two Quality Tiers
-
-#### Tier A: tools worth heavy polishing
-
-These deserve extra effort:
+Spend more product effort on:
 
 - high-frequency image tools
 - high-frequency text tools
 - common calculators
 - homepage / hub / popular tools
 
-For these tools, aim to be **better than alternatives**, not just present.
+### Coverage Tier
 
-#### Tier B: tools worth fast but solid coverage
-
-These need:
+For medium/long-tail pages, first ensure:
 
 - clear purpose
 - stable logic
-- good metadata
-- good mobile layout
-- usable output flow
+- mobile usability
+- copy/download flow
+- complete metadata
 
-But they do not need deep product investment immediately.
+## Architecture Rules
 
-### New Tool Product Check
+### Shared Data
 
-Before shipping a new tool, check:
-
-- Is the purpose obvious in one glance?
-- Can a first-time user start in one step?
-- Does changing inputs update results fast enough?
-- Are default options sensible?
-- Is at least one realistic example / preset included?
-- Are error states human-readable?
-- Is output easy to copy / download?
-- Is mobile use still practical?
-- Do related tools reflect the natural next step?
-
-### Top Tool Strengthening
-
-Once search data begins to show winner pages, strengthen those pages with:
-
-- better defaults
-- faster workflow
-- more realistic presets
-- richer output controls
-- stronger related-tool sequencing
-- more task-specific FAQs
-- better mobile ergonomics
-
-## What Not To Do Yet
-
-- Do not prioritize large-scale PDF expansion yet
-- Do not mass-produce AI writing tools
-- Do not mass-produce scenario pages before the category skeleton exists
-- Do not start multilingual expansion yet
-- Do not create near-duplicate keyword swap pages
-
-## Front-End / Information Architecture Rules
-
-### URL Types
-
-Use four page types long term:
-
-1. Tool pages
-   - `/tools/base64`
-   - `/tools/image-compressor`
-2. Hub pages
-   - `/image-tools`
-   - `/developer-tools`
-   - `/text-tools`
-3. Scenario pages
-   - `/resize-image-for-instagram`
-   - `/compress-pdf-for-email`
-4. Workflow / chain pages
-   - `/image-resize-and-compress`
-   - `/json-format-and-validate`
-
-### Homepage
-
-Homepage is:
-
-**brand entry + high-click tool entry + internal-link distribution**
-
-It should not become:
-
-- a long article
-- a giant directory dump
-- a heavy nav page
-
-### All Tools
-
-`public/all-tools.html` should be treated as:
-
-**a find system**
-
-Not a classic left-sidebar directory.
-
-Priorities:
-
-- search
-- category grouping
-- popular tools
-- new / updated
-- clean scanability
-
-### Tool Pages
-
-Keep the current standard:
-
-1. H1
-2. short description
-3. working tool UI
-4. trust/privacy hint
-5. related tools
-6. learn more (collapsed)
-
-Do not move SEO content above the working tool.
-
-## Shared Data Rules
-
-### `public/tools-data.js`
-
-This is the only shared tool list source.
+`public/tools-data.js` is the only shared tool list source.
 
 After adding a tool:
 
-1. append it to `SITE_TOOLS`
-2. update `HUB_PAGE_CONFIG` if needed
-3. do not manually maintain separate tool lists in hub pages
+1. add it to `SITE_TOOLS`
+2. update `HUB_PAGE_CONFIG` when relevant
+3. do not maintain separate manual lists in hub pages or all-tools
 
-#### Primary Icon Rules
+### Shared Metadata
 
-- The `icon` field in `public/tools-data.js` is the single source of truth for the tool's primary icon.
-- Tool page headers, `all-tools.html`, and hub pages should all follow that same icon source.
-- Prefer emoji as the long-term icon system.
-- Do not use placeholder question marks, geometric fallback symbols, ASCII text, or HTML entities as the intended final icon style.
-- Keep semantic consistency within the same tool family instead of picking a different style for every page.
-
-Recommended defaults:
-
-- `format`
-  - default: `🧾`
-  - compression / minify variants may use `⚡`
-- `convert`
-  - default: `🔄`
-  - dimension / unit / sizing tools may use `📐`
-  - numeric base / number formatting tools may use `🔢`
-- `encode`
-  - prefer `🔐`, `🔑`, or `🔗` depending on the user-facing task
-- `text`
-  - choose by action: `🔤`, `🧹`, `🔢`, `✉️`, `🔗`
-- `image`
-  - choose by action: `🖼️`, `✂️`, `🔄`, `🎨`, `☀️`
-- `design`
-  - default: `🎨`
-  - accessibility / contrast tools should prefer `♿`
-- `reference`
-  - prefer `📄`, `🏷️`, `🌐`, `🔌`
-- `generate`
-  - prefer `🔑`, `🎲`, `📷`, `🆔`
-- `calculator`
-  - prefer `📅`, `⚖️`, `🏦`, `🔢`
-
-When changing a primary icon:
-
-1. check whether the same family already has a stable semantic icon choice
-2. optimize for the user's task, not the underlying implementation detail
-3. verify the result still feels coherent across the tool page header, `all-tools.html`, and relevant hub pages
-
-### `public/tools-meta.js`
-
-This is the source of:
+`public/tools-meta.js` is the source of:
 
 - structured data
 - SEO content
 - related tools
-- learn more
+- learn-more
 - FAQ
+- how-to steps
 
 After adding a tool:
 
 1. add a complete metadata entry
 2. run `python scripts/render-tool-sections.py <slug>`
-3. do not hand-write unique SEO block HTML structures unless strictly necessary
+3. avoid custom one-off SEO HTML
 
-## New Tool Page Checklist
+### Icon Rule
 
-Every new tool page must:
+`public/tools-data.js` `icon` is the single source of truth.
 
-1. link `../styles/design-system.css?v=20`
-2. use `ds-tool-nav`, `ds-tool-header`, `ds-tool-main`
-3. keep the tool UI in the first screen
-4. include unique:
-   - `title`
-   - `meta description`
-   - canonical
-   - og tags
-5. include marker pairs:
-   - `AUTO-STRUCTURED-DATA`
-   - `AUTO-SEO-SECTIONS`
-6. have complete metadata in `public/tools-meta.js`
-7. be indexed in `public/tools-data.js`
-8. be added to `public/sitemap.xml`
-9. pass the product check above, not just the SEO / QA checklist
+- tool page header
+- all-tools
+- hub pages
 
-## Interaction Quality Checklist
+must stay aligned with it.
 
-Every grouped control must:
+Prefer emoji as the final icon system.
 
-- define an `.active` state
-- update `.active` in JS immediately on click
-- update output/preview immediately in the same handler
+## Current Constraints
 
-Every copy/action button must:
-
-- show temporary success state (`Copied`, `Done`, etc.)
-
-Every preset click that changes input value must:
-
-- trigger result refresh immediately
+- Some legacy pages still contain minor visible mojibake or older copy quality issues.
+- Legacy `reference` pages are now usable; do not sink unlimited time into cosmetic micro-fixes.
+- If a legacy-page issue does not affect functionality, structure, or user comprehension, it is lower priority than new high-value tools.
 
 ## QA Rules
 
-### Low-Risk Changes
+### Low Risk
 
 Examples:
 
-- one-tool logic fix
-- one-tool copy change
-- FAQ/update on one page
+- single-tool logic fix
+- single-tool copy update
 
-Minimum:
+Run at least:
 
 - `python scripts/validate-tools.py <slug>`
-- relevant smoke test when available
 
-### Medium-Risk Changes
+### Medium Risk
 
 Examples:
 
 - new tools
 - `tools-data.js`
 - `tools-meta.js`
-- SEO render flow
-- shared hub/all-tools/home data logic
+- SEO render changes
 
-Minimum:
+Run:
 
-- `python scripts/check-tools-meta.py`
 - `python scripts/validate-tools.py`
 - `python scripts/page-audit.py`
 - `python scripts/generate-report.py`
 
-### High-Risk Changes
+### High Risk
 
 Examples:
 
 - design system CSS
 - global layout
-- shared nav / hero / footer / SEO output structure
+- shared nav / footer / templates
 
-Minimum:
+Run:
 
 - full validate
 - full page audit
 - smoke
 - visual
-- preflight report
+- preflight
 
-## Success Metrics
+## Immediate Next Step
 
-Do not optimize for total page count alone.
+Highest priority now:
 
-Track these instead:
+**continue building high-frequency Text tools, then move into Calculators**
 
-1. impressions added per 100 new tools
-2. percentage of tools with search visibility
-3. traffic concentration in top tools
-4. related-tools click-through behavior
-5. whether hub pages begin to rank
-6. whether users can complete the task with low friction
+Recommended next batch:
 
-Practical signals for tool competitiveness:
+1. `csv-column-extractor`
+2. `text-list-to-array`
+3. `word-frequency-counter`
 
-- fewer abandoned flows on key tools
-- higher repeat use on the same tools
-- more related-tool clicks after successful completion
-- fewer obvious UX regressions when comparing against competing tools
+After that:
+
+- add a small calculator batch
+- only return to legacy-page cleanup if a real usability bug is reported
 
 ## Files To Read First
 
-If taking over work, read:
+If taking over work, read in this order:
 
-1. `AGENTS.md`
-2. `CLAUDE.md`
-3. `MEMORY.md`
-4. `QA.md`
-5. `reports/preflight-report.md`
+1. [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\AGENTS.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\AGENTS.md)
+2. [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\CLAUDE.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\CLAUDE.md)
+3. [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\MEMORY.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\MEMORY.md)
+4. [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\QA.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\QA.md)
+5. [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\reports\preflight-report.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\reports\preflight-report.md)

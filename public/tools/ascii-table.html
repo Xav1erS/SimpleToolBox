@@ -14,6 +14,43 @@
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+
+    .body-wrap { max-width: none; margin: 0; padding: 0; }
+
+    .search-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .search-wrap { position: relative; flex: 1; max-width: 400px; }
+    .search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; stroke: var(--ds-color-text-muted); fill: none; stroke-width: 2; stroke-linecap: round; pointer-events: none; }
+    .search-wrap input { width: 100%; min-height: 38px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 0 12px 0 34px; font-size: 13px; color: var(--ds-color-text-primary); font-family: var(--ds-font-sans); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .search-wrap input:focus { border-color: var(--ds-color-accent); box-shadow: var(--ds-shadow-focus); }
+    .search-wrap input::placeholder { color: var(--ds-color-text-muted); }
+    .result-count { font-size: 12px; color: var(--ds-color-text-muted); }
+
+    .table-wrap { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead { position: sticky; top: 56px; z-index: 10; background: var(--ds-color-surface-strong); }
+    th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--ds-color-border); }
+    td { padding: 9px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-family: var(--ds-font-mono); font-size: 12px; color: var(--ds-color-text-secondary); vertical-align: middle; }
+    td.td-desc { font-family: var(--ds-font-sans); font-size: 12px; }
+    td.td-char { font-size: 14px; color: var(--ds-color-text-primary); font-weight: 600; }
+    tr.row-control { background: rgba(94,106,210,0.04); }
+    tr.row-del { background: rgba(248,113,113,0.04); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--ds-color-surface-tint); cursor: pointer; }
+    tr.copied-row td { background: rgba(52,211,153,0.1); }
+    .group-header td { background: var(--ds-color-surface-strong); color: var(--ds-color-text-muted); font-family: var(--ds-font-sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; padding: 6px 14px; border-bottom: 1px solid var(--ds-color-border); cursor: default; }
+    .copy-hint { font-size: 11px; color: var(--ds-color-text-muted); margin-left: auto; padding: 0 14px 12px; text-align: right; }
+
+    footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
+    footer a { color: var(--ds-color-text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--ds-color-text-primary); }
+
+    @media (max-width: 600px) {
+      .col-oct, .col-bin { display: none; }
+      .body-wrap { padding: 16px 12px 60px; }
+    }
+  </style>
     <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {
@@ -93,13 +130,16 @@
     <h1 class="ds-tool-header__title">ASCII Table</h1>
     <p class="ds-tool-header__desc">Complete ASCII 0–127 reference with decimal, hexadecimal, octal, and binary values. Search by character, code, or name. Click any row to copy.</p>
     <div class="ds-tool-tag-row">
-      <span class="ds-tool-tag">reference</span>
-      <span class="ds-tool-tag">encode</span>
-      <span class="ds-tool-tag">developer</span>
+        <span class="ds-tag">reference</span>
+        <span class="ds-tag">encode</span>
+        <span class="ds-tag">developer</span>
     </div>
   </div>
 </div>
 
+<div class="ds-tool-main ds-tool-stack">
+  <section class="ds-card">
+    <div class="ds-card__body">
 <div class="body-wrap">
   <div class="search-bar">
     <div class="search-wrap">
@@ -128,7 +168,9 @@
 </div>
 
 
-  <!-- AUTO-SEO-SECTIONS:START -->
+    </div>
+  </section>
+<!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is ASCII Table Reference?</h2>
@@ -330,5 +372,7 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
 </body>
 </html>

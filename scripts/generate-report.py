@@ -15,10 +15,11 @@ from tooling_utils import REPORTS_DIR, save_json_report
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def detect_npx() -> tuple[str | None, str | None]:
+def detect_npx() -> tuple[str | None, list[str]]:
     npx = shutil.which("npx") or shutil.which("npx.cmd")
     if npx:
-        return npx, str(Path(npx).parent)
+        parent = str(Path(npx).parent)
+        return npx, [parent]
 
     candidates = [
         Path(r"C:\Program Files\nodejs\npx.cmd"),
@@ -28,15 +29,21 @@ def detect_npx() -> tuple[str | None, str | None]:
     ]
     for candidate in candidates:
         if candidate.exists():
-            return str(candidate), str(candidate.parent)
-    return None, None
+            extra_paths = [str(candidate.parent)]
+            node_dir = Path(r"C:\Program Files\nodejs")
+            if node_dir.exists() and str(node_dir) not in extra_paths:
+                extra_paths.append(str(node_dir))
+            return str(candidate), extra_paths
+    return None, []
 
 
-def run_command(label: str, command: list[str], extra_path: str | None = None) -> dict:
+def run_command(label: str, command: list[str], extra_paths: list[str] | None = None) -> dict:
     try:
         env = os.environ.copy()
-        if extra_path:
-            env["PATH"] = extra_path + os.pathsep + env.get("PATH", "")
+        if extra_paths:
+            merged = [path for path in extra_paths if path]
+            if merged:
+                env["PATH"] = os.pathsep.join(merged + [env.get("PATH", "")])
         proc = subprocess.run(
             command,
             cwd=ROOT,
@@ -166,10 +173,10 @@ def main() -> None:
         "page_audit": run_command("page_audit", [sys.executable, "scripts/page-audit.py"]),
     }
 
-    npx, extra_path = detect_npx()
+    npx, extra_paths = detect_npx()
     if npx:
-        commands["smoke"] = run_command("smoke", [npx, "playwright", "test", "tests/smoke/", "--project=Desktop Chrome"], extra_path=extra_path)
-        commands["visual"] = run_command("visual", [npx, "playwright", "test", "tests/visual/snapshot.test.js", "--project=Desktop Chrome"], extra_path=extra_path)
+        commands["smoke"] = run_command("smoke", [npx, "playwright", "test", "tests/smoke/", "--project=Desktop Chrome"], extra_paths=extra_paths)
+        commands["visual"] = run_command("visual", [npx, "playwright", "test", "tests/visual/snapshot.test.js", "--project=Desktop Chrome"], extra_paths=extra_paths)
     else:
         commands["smoke"] = {"label": "smoke", "command": ["npx", "playwright", "test", "tests/smoke/", "--project=Desktop Chrome"], "exit_code": None, "stdout": "", "stderr": "npx not found in PATH", "status": "skipped"}
         commands["visual"] = {"label": "visual", "command": ["npx", "playwright", "test", "tests/visual/snapshot.test.js", "--project=Desktop Chrome"], "exit_code": None, "stdout": "", "stderr": "npx not found in PATH", "status": "skipped"}

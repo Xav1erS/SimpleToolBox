@@ -95,7 +95,7 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
-    .main { max-width: 760px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 20px; }
+    .main { max-width: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 20px; }
 
     /* ── Lookup bar ─────────────────────────────── */
     .lookup-bar { display: flex; gap: 10px; }
@@ -242,7 +242,7 @@
   <div class="nav-divider ds-tool-nav-divider"></div>
   <div class="nav-tool-name ds-tool-nav-name">
     IP Lookup
-    <span class="nav-tool-badge ds-tool-badge">network</span>
+    <span class="nav-tool-badge ds-tool-badge">reference</span>
   </div>
   <div class="nav-spacer ds-tool-spacer"></div>
   <div class="nav-privacy ds-tool-privacy">
@@ -271,16 +271,19 @@
   </div>
 </div>
 
-<div class="main">
-  <!-- Lookup bar -->
-  <div class="lookup-bar">
-    <input class="lookup-input" id="lookupInput" type="text"
-      placeholder="Enter IP address (leave blank for your own IP)…"
-      autocomplete="off" />
-    <button class="ds-tool-primary" id="btnLookup">
-      Look Up
-    </button>
-  </div>
+  <div class="ds-tool-main ds-tool-stack">
+    <section class="ds-card">
+      <div class="ds-card__body">
+        <div class="lookup-bar">
+          <input class="lookup-input" id="lookupInput" type="text"
+            placeholder="Enter IP address (leave blank for your own IP)…"
+            autocomplete="off" />
+          <button class="ds-tool-primary" id="btnLookup">
+            Look Up
+          </button>
+        </div>
+      </div>
+    </section>
 
   <!-- Loading state -->
   <div class="loading-card" id="loadingCard" style="display:none">
@@ -309,8 +312,8 @@
     <strong>Privacy:</strong> IP lookups are sent to <a href="https://ipapi.co" style="color:var(--ds-color-accent)">ipapi.co</a> — a third-party geolocation service. We do not store your IP or lookup history. Free tier allows up to 1,000 requests/day.
   </div>
 
-  <!-- Related tools -->
-  
+    <!-- Related tools -->
+
 <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
@@ -451,5 +454,7 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
 </body>
 </html>

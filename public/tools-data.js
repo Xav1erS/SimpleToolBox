@@ -151,7 +151,7 @@ const HUB_PAGE_CONFIG = {
   },
   text: {
     sections: [
-      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array']
+      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace']
     ]
   },
   calculator: {

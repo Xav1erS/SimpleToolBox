@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Roman Numeral Converter Online | Simple ToolBox</title>
+  <meta name="description" content="Convert between Arabic numbers and Roman numerals instantly. Supports 1–3999. Free browser-based Roman numeral converter." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/roman-numeral-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/roman-numeral-converter.html" />
+  <meta property="og:title" content="Roman Numeral Converter Online | Simple ToolBox" />
+  <meta property="og:description" content="Convert numbers to Roman numerals and back. Supports 1–3999. Free, instant, no ads." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Roman Numeral Converter Online",
+  "description": "Convert between Arabic numbers and Roman numerals instantly. Supports 1–3999, works both ways. Free browser-based Roman numeral converter.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/roman-numeral-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the largest number supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard Roman numeral system supports 1 to 3999 (MMMCMXCIX). Numbers outside this range cannot be represented in classical Roman numerals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does subtractive notation work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Instead of writing IIII for 4, Romans wrote IV (5 minus 1). Similarly, IX = 9, XL = 40, XC = 90, CD = 400, and CM = 900. This tool uses standard subtractive notation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert Roman numerals back to numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Switch to \"Roman → Number\" mode, enter a Roman numeral like MMXXIV, and the tool returns the Arabic equivalent (2024)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is zero a Roman numeral?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The Roman numeral system has no symbol for zero. It was a later invention. This tool only supports 1–3999."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .mode-tabs { display: flex; gap: 8px; }
+    .mode-tab { padding: 8px 20px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 14px; cursor: pointer; transition: all 0.15s; }
+    .mode-tab.active { background: var(--ds-color-accent); color: #fff; border-color: var(--ds-color-accent); }
+    .io-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; }
+    @media (max-width: 560px) { .io-row { grid-template-columns: 1fr; } .swap-arrow { transform: rotate(90deg); } }
+    .swap-arrow { color: var(--ds-color-text-muted); font-size: 22px; text-align: center; user-select: none; }
+    .field-label { font-size: 12px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .field-input { padding: 12px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-primary); font-size: 22px; font-weight: 700; width: 100%; box-sizing: border-box; text-align: center; letter-spacing: 0.04em; }
+    .field-input:focus { outline: none; border-color: var(--ds-color-accent); }
+    .field-input.error { border-color: #ef4444; color: #ef4444; }
+    .result-box { padding: 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); text-align: center; }
+    .result-value { font-size: 28px; font-weight: 700; color: var(--ds-color-accent); letter-spacing: 0.06em; min-height: 40px; }
+    .result-hint { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 6px; }
+    .error-msg { font-size: 13px; color: #ef4444; min-height: 18px; text-align: center; }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ref-table th { text-align: left; padding: 6px 12px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ds-color-border); }
+    .ref-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .roman-sym { font-weight: 700; color: var(--ds-color-accent); font-size: 15px; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Roman Numeral Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🏛️</div><h1 class="ds-tool-header__title">Roman Numeral Converter</h1></div><p class="ds-tool-header__desc">Convert between Arabic numbers (1–3999) and Roman numerals instantly. Works both ways.</p><div class="ds-tool-tag-row"><span class="ds-tag">roman numerals</span><span class="ds-tag">converter</span><span class="ds-tag">numbers</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Mode</span>
+    </div>
+    <div style="padding:0 0 4px 0">
+      <div class="mode-tabs">
+        <button class="mode-tab active" id="tabToRoman">Number → Roman</button>
+        <button class="mode-tab" id="tabToArabic">Roman → Number</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label" id="inputLabel">Enter a number (1 – 3999)</span>
+    </div>
+    <div style="padding:4px 0 8px">
+      <input class="field-input" type="text" id="inputVal" placeholder="e.g. 2024" autocomplete="off" spellcheck="false" />
+    </div>
+    <div class="error-msg" id="errorMsg"></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label" id="resultLabel">Roman numeral</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnCopy">Copy</button>
+      </div>
+    </div>
+    <div class="result-box">
+      <div class="result-value" id="resultVal">—</div>
+      <div class="result-hint" id="resultHint"></div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0">
+      <div class="examples-row" id="examplesRow"></div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Roman numeral reference</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead><tr><th>Symbol</th><th>Value</th><th>Symbol</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td class="roman-sym">I</td><td>1</td><td class="roman-sym">L</td><td>50</td></tr>
+          <tr><td class="roman-sym">IV</td><td>4</td><td class="roman-sym">XC</td><td>90</td></tr>
+          <tr><td class="roman-sym">V</td><td>5</td><td class="roman-sym">C</td><td>100</td></tr>
+          <tr><td class="roman-sym">IX</td><td>9</td><td class="roman-sym">CD</td><td>400</td></tr>
+          <tr><td class="roman-sym">X</td><td>10</td><td class="roman-sym">D</td><td>500</td></tr>
+          <tr><td class="roman-sym">XL</td><td>40</td><td class="roman-sym">CM</td><td>900</td></tr>
+          <tr><td class="roman-sym">—</td><td>—</td><td class="roman-sym">M</td><td>1000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What are Roman Numerals?</h2>
+    <p>Roman numerals are a numeral system originating in ancient Rome that uses letters (I, V, X, L, C, D, M) to represent numbers. They are still widely used today in clock faces, movie credits, book chapters, and formal documents. This converter handles both directions: Arabic to Roman and Roman to Arabic, for all standard values from 1 to 3999.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Roman Numerals</h2>
+    <ol>
+      <li>Choose a mode: &quot;Number → Roman&quot; or &quot;Roman → Number&quot;.</li>
+      <li>Type your value into the input field, or click a quick example.</li>
+      <li>The result appears instantly below.</li>
+      <li>Click Copy to copy the result to your clipboard.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="number-to-words.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Number to Words</div><div class="ds-related-desc">Convert numbers to English words — plain, currency, ordinal, or year format</div></div></a>
+    <a href="binary-text.html" class="ds-related-card"><span class="ds-related-icon">💾</span><div><div class="ds-related-name">Binary to Text Converter</div><div class="ds-related-desc">Convert text to binary and binary back to text</div></div></a>
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="number-base.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Number Base Converter</div><div class="ds-related-desc">Convert numbers between binary, octal, decimal and hex</div></div></a>
+    <a href="ascii-table.html" class="ds-related-card"><span class="ds-related-icon">🔣</span><div><div class="ds-related-name">ASCII Table</div><div class="ds-related-desc">Full ASCII 0-127 reference with Dec, Hex, Oct, Binary values</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Roman Numeral Rules</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">2024</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">MMXXIV</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Converting years for movie credits or book copyright lines</li>
+          <li>Reading clock faces and watch dials</li>
+          <li>Understanding historical dates and chapter numbering</li>
+          <li>Homework and school assignments</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the largest number supported?</strong><p>The standard Roman numeral system supports 1 to 3999 (MMMCMXCIX). Numbers outside this range cannot be represented in classical Roman numerals.</p></div>
+        <div class="ds-seo-faq-item"><strong>How does subtractive notation work?</strong><p>Instead of writing IIII for 4, Romans wrote IV (5 minus 1). Similarly, IX = 9, XL = 40, XC = 90, CD = 400, and CM = 900. This tool uses standard subtractive notation.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I convert Roman numerals back to numbers?</strong><p>Yes. Switch to &quot;Roman → Number&quot; mode, enter a Roman numeral like MMXXIV, and the tool returns the Arabic equivalent (2024).</p></div>
+        <div class="ds-seo-faq-item"><strong>Is zero a Roman numeral?</strong><p>No. The Roman numeral system has no symbol for zero. It was a later invention. This tool only supports 1–3999.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+// Roman numeral conversion tables
+const TO_ROMAN = [
+  [1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],
+  [100,'C'],[90,'XC'],[50,'L'],[40,'XL'],
+  [10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']
+];
+const FROM_ROMAN = { I:1,V:5,X:10,L:50,C:100,D:500,M:1000 };
+
+function toRoman(n) {
+  if (!Number.isInteger(n) || n < 1 || n > 3999) return null;
+  let result = '';
+  for (const [val, sym] of TO_ROMAN) {
+    while (n >= val) { result += sym; n -= val; }
+  }
+  return result;
+}
+
+function fromRoman(s) {
+  s = s.trim().toUpperCase();
+  if (!/^[IVXLCDM]+$/.test(s)) return null;
+  let total = 0;
+  for (let i = 0; i < s.length; i++) {
+    const cur = FROM_ROMAN[s[i]];
+    const next = FROM_ROMAN[s[i + 1]];
+    if (!cur) return null;
+    if (next && next > cur) { total += next - cur; i++; }
+    else { total += cur; }
+  }
+  // Validate by round-trip
+  if (toRoman(total) !== s) return null;
+  return total;
+}
+
+let mode = 'toRoman'; // 'toRoman' | 'toArabic'
+
+const EXAMPLES_TO_ROMAN = [1, 4, 9, 14, 40, 99, 400, 1999, 2024, 3999];
+const EXAMPLES_TO_ARABIC = ['IV','IX','XIV','XL','XCIX','CD','MCMXCIX','MMXXIV','MMMCMXCIX'];
+
+function setMode(m) {
+  mode = m;
+  const toRoman = m === 'toRoman';
+  document.getElementById('tabToRoman').classList.toggle('active', toRoman);
+  document.getElementById('tabToArabic').classList.toggle('active', !toRoman);
+  document.getElementById('inputLabel').textContent = toRoman ? 'Enter a number (1 – 3999)' : 'Enter a Roman numeral';
+  document.getElementById('inputVal').placeholder = toRoman ? 'e.g. 2024' : 'e.g. MMXXIV';
+  document.getElementById('resultLabel').textContent = toRoman ? 'Roman numeral' : 'Arabic number';
+  document.getElementById('inputVal').value = '';
+  document.getElementById('resultVal').textContent = '—';
+  document.getElementById('resultHint').textContent = '';
+  document.getElementById('errorMsg').textContent = '';
+  renderExamples();
+}
+
+function renderExamples() {
+  const row = document.getElementById('examplesRow');
+  const examples = mode === 'toRoman' ? EXAMPLES_TO_ROMAN : EXAMPLES_TO_ARABIC;
+  row.innerHTML = examples.map(e => `<button class="ex-btn" data-val="${e}">${e}</button>`).join('');
+  row.querySelectorAll('.ex-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('inputVal').value = btn.dataset.val;
+      convert();
+    });
+  });
+}
+
+function convert() {
+  const raw = document.getElementById('inputVal').value.trim();
+  const errorEl = document.getElementById('errorMsg');
+  const resultEl = document.getElementById('resultVal');
+  const hintEl = document.getElementById('resultHint');
+
+  if (!raw) {
+    resultEl.textContent = '—';
+    hintEl.textContent = '';
+    errorEl.textContent = '';
+    return;
+  }
+
+  if (mode === 'toRoman') {
+    const n = parseInt(raw, 10);
+    if (isNaN(n) || String(n) !== raw || n < 1 || n > 3999) {
+      errorEl.textContent = 'Enter a whole number between 1 and 3999';
+      resultEl.textContent = '—';
+      hintEl.textContent = '';
+      document.getElementById('inputVal').classList.add('error');
+      return;
+    }
+    document.getElementById('inputVal').classList.remove('error');
+    errorEl.textContent = '';
+    const roman = toRoman(n);
+    resultEl.textContent = roman;
+    hintEl.textContent = `${n} → ${roman} (${roman.length} characters)`;
+  } else {
+    const roman = raw.toUpperCase();
+    const n = fromRoman(roman);
+    if (n === null) {
+      errorEl.textContent = 'Invalid Roman numeral — use I, V, X, L, C, D, M only (standard form)';
+      resultEl.textContent = '—';
+      hintEl.textContent = '';
+      document.getElementById('inputVal').classList.add('error');
+      return;
+    }
+    document.getElementById('inputVal').classList.remove('error');
+    errorEl.textContent = '';
+    resultEl.textContent = n;
+    hintEl.textContent = `${roman} → ${n}`;
+  }
+}
+
+document.getElementById('tabToRoman').addEventListener('click', () => setMode('toRoman'));
+document.getElementById('tabToArabic').addEventListener('click', () => setMode('toArabic'));
+document.getElementById('inputVal').addEventListener('input', convert);
+document.getElementById('btnCopy').addEventListener('click', () => {
+  const val = document.getElementById('resultVal').textContent;
+  if (val && val !== '—') {
+    navigator.clipboard.writeText(val).then(() => {
+      const btn = document.getElementById('btnCopy');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+    });
+  }
+});
+
+renderExamples();
+</script>
+</body>
+</html>

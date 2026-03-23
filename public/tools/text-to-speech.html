@@ -91,6 +91,10 @@
     .progress-bar { height: 6px; border-radius: 3px; background: var(--ds-color-border); overflow: hidden; }
     .progress-fill { height: 100%; border-radius: 3px; background: var(--ds-color-accent); width: 0%; transition: width 0.2s; }
     .word-count { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 4px; }
+    .speed-presets { display: flex; gap: 6px; margin-top: 6px; }
+    .speed-preset-btn { padding: 4px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 12px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .speed-preset-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+    .speed-preset-btn.active { border-color: var(--ds-color-accent); color: var(--ds-color-accent); background: rgba(99,102,241,0.08); }
     .no-support { padding: 16px; border: 1px solid rgba(239,68,68,0.3); border-radius: var(--ds-radius-md); background: rgba(239,68,68,0.06); color: #ef4444; font-size: 14px; display: none; }
     .highlight-word { background: rgba(99,102,241,0.25); border-radius: 2px; }
     .preview-area { font-size: 15px; line-height: 1.8; padding: 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); min-height: 60px; max-height: 160px; overflow-y: auto; display: none; }
@@ -144,6 +148,12 @@
         <span style="font-size:12px;color:var(--ds-color-text-muted)">0.5×</span>
         <input type="range" id="rateSlider" min="0.5" max="2" step="0.1" value="1" />
         <span style="font-size:12px;color:var(--ds-color-text-muted)">2×</span>
+      </div>
+      <div class="speed-presets">
+        <button class="speed-preset-btn" data-rate="0.75">Slow</button>
+        <button class="speed-preset-btn active" data-rate="1">Normal</button>
+        <button class="speed-preset-btn" data-rate="1.5">Fast</button>
+        <button class="speed-preset-btn" data-rate="2">2×</button>
       </div>
     </div>
     <div class="field-group">
@@ -346,9 +356,6 @@ document.getElementById('btnStop').addEventListener('click', () => {
   document.getElementById('wordStatus').textContent = 'Stopped';
 });
 
-document.getElementById('rateSlider').addEventListener('input', function() {
-  document.getElementById('rateLabel').textContent = parseFloat(this.value).toFixed(1) + '×';
-});
 document.getElementById('pitchSlider').addEventListener('input', function() {
   document.getElementById('pitchLabel').textContent = parseFloat(this.value).toFixed(1);
 });
@@ -370,6 +377,25 @@ document.getElementById('btnClear').addEventListener('click', () => {
   document.getElementById('wordStatus').textContent = 'Ready';
   document.getElementById('btnPlay').textContent = '▶';
   document.getElementById('btnStop').disabled = true;
+});
+
+document.querySelectorAll('.speed-preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const rate = parseFloat(btn.dataset.rate);
+    const slider = document.getElementById('rateSlider');
+    slider.value = rate;
+    document.getElementById('rateLabel').textContent = rate.toFixed(1) + '×';
+    document.querySelectorAll('.speed-preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+document.getElementById('rateSlider').addEventListener('input', function() {
+  document.getElementById('rateLabel').textContent = parseFloat(this.value).toFixed(1) + '×';
+  // Sync active state on preset buttons
+  const val = parseFloat(this.value);
+  document.querySelectorAll('.speed-preset-btn').forEach(b => {
+    b.classList.toggle('active', parseFloat(b.dataset.rate) === val);
+  });
 });
 </script>
 </body>

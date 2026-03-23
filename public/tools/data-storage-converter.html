@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Data Storage Converter — KB, MB, GB, TB | Simple ToolBox</title>
+  <meta name="description" content="Convert data storage between bits, bytes, KB, MB, GB, TB, and PB instantly. Supports both decimal (SI) and binary (IEC) prefixes. Free browser-based data converter." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/data-storage-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/data-storage-converter.html" />
+  <meta property="og:title" content="Data Storage Converter — KB, MB, GB, TB | Simple ToolBox" />
+  <meta property="og:description" content="Convert data between bits, bytes, KB, MB, GB, TB, and PB. Supports SI and IEC prefixes." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Data Storage Converter — KB, MB, GB, TB",
+  "description": "Convert data storage between bits, bytes, KB, MB, GB, TB, and PB instantly. Supports both decimal (SI) and binary (IEC) prefixes. Free browser-based data converter.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/data-storage-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between KB and KiB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "KB (kilobyte) is 1,000 bytes in the SI/decimal system used by storage manufacturers. KiB (kibibyte) is 1,024 bytes in the binary/IEC system used by operating systems. This is why a \"500 GB\" hard drive shows as ~465 GB in Windows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many bytes are in a gigabyte?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the decimal (SI) system: 1 GB = 1,000,000,000 bytes. In the binary (IEC) system: 1 GiB = 1,073,741,824 bytes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a petabyte?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A petabyte (PB) is 1,000 terabytes or 10^15 bytes in decimal. It is used to measure data centre and cloud storage capacities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my hard drive show less space than advertised?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Manufacturers use decimal (1 GB = 10^9 bytes), but operating systems measure in binary (1 GiB = 2^30 bytes). A 1 TB drive contains ~931 GiB as reported by your OS."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .mode-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .mode-tab { padding: 7px 18px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: all 0.15s; }
+    .mode-tab.active { background: var(--ds-color-accent); color: #fff; border-color: var(--ds-color-accent); }
+    .conv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 620px) { .conv-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 380px) { .conv-grid { grid-template-columns: 1fr; } }
+    .conv-card { padding: 14px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+    .conv-card.active { border-color: var(--ds-color-accent); }
+    .conv-label { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .conv-input { font-size: 20px; font-weight: 700; background: none; border: none; outline: none; color: var(--ds-color-text-primary); width: 100%; padding: 0; }
+    .conv-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; font-size: 16px; }
+    .conv-unit { font-size: 12px; color: var(--ds-color-text-muted); }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ref-table th { text-align: left; padding: 6px 12px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ds-color-border); }
+    .ref-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-name { font-weight: 600; color: var(--ds-color-text-primary); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Data Storage Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">💾</div><h1 class="ds-tool-header__title">Data Storage Converter</h1></div><p class="ds-tool-header__desc">Convert data storage between bits, bytes, KB, MB, GB, TB, and PB. Switch between decimal (SI) and binary (IEC) prefixes.</p><div class="ds-tool-tag-row"><span class="ds-tag">KB</span><span class="ds-tag">MB</span><span class="ds-tag">GB</span><span class="ds-tag">TB</span><span class="ds-tag">binary</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Prefix standard</span>
+    </div>
+    <div style="padding:2px 0 4px">
+      <div class="mode-tabs">
+        <button class="mode-tab active" id="tabDecimal">Decimal (SI) — 1 KB = 1,000 B</button>
+        <button class="mode-tab" id="tabBinary">Binary (IEC) — 1 KiB = 1,024 B</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Storage</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <div class="conv-grid" id="convGrid"></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0"><div class="examples-row" id="examplesRow"></div></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Reference sizes</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead><tr><th>Item</th><th>Approx. size</th></tr></thead>
+        <tbody>
+          <tr><td class="ref-name">Text file (1 page)</td><td>~4 KB</td></tr>
+          <tr><td class="ref-name">MP3 song (4 min)</td><td>~4 MB</td></tr>
+          <tr><td class="ref-name">HD photo (JPEG)</td><td>~3–5 MB</td></tr>
+          <tr><td class="ref-name">4K video (1 min)</td><td>~400 MB</td></tr>
+          <tr><td class="ref-name">DVD movie</td><td>~4.7 GB</td></tr>
+          <tr><td class="ref-name">Blu-ray movie</td><td>~25–50 GB</td></tr>
+          <tr><td class="ref-name">Laptop SSD</td><td>256 GB – 2 TB</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Data Storage Converter?</h2>
+    <p>A data storage converter translates values between units of digital information: bits, bytes, kilobytes, megabytes, gigabytes, terabytes, and petabytes. There are two standards: decimal (SI), where 1 KB = 1,000 bytes, used by hard drive manufacturers; and binary (IEC), where 1 KiB = 1,024 bytes, used by operating systems. This tool supports both.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Data Storage Units</h2>
+    <ol>
+      <li>Choose a prefix standard: Decimal (SI) or Binary (IEC).</li>
+      <li>Type a value into any unit field.</li>
+      <li>All other units update instantly.</li>
+      <li>Use the quick example buttons to start from common sizes.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="binary-text.html" class="ds-related-card"><span class="ds-related-icon">💾</span><div><div class="ds-related-name">Binary to Text Converter</div><div class="ds-related-desc">Convert text to binary and binary back to text</div></div></a>
+    <a href="number-base.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Number Base Converter</div><div class="ds-related-desc">Convert numbers between binary, octal, decimal and hex</div></div></a>
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="ascii-table.html" class="ds-related-card"><span class="ds-related-icon">🔣</span><div><div class="ds-related-name">ASCII Table</div><div class="ds-related-desc">Full ASCII 0-127 reference with Dec, Hex, Oct, Binary values</div></div></a>
+    <a href="speed-converter.html" class="ds-related-card"><span class="ds-related-icon">💨</span><div><div class="ds-related-name">Speed Converter</div><div class="ds-related-desc">Convert speed between mph, km/h, m/s, knots, ft/s, and Mach. Type in any field to update all others.</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Decimal vs Binary Prefixes</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">1 GB</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">1,000 MB / 1,000,000 KB / 0.001 TB</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Comparing advertised drive sizes to OS-reported sizes</li>
+          <li>Cloud storage and bandwidth planning</li>
+          <li>Converting network transfer speeds (Mbps to MB/s)</li>
+          <li>Software and database sizing</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the difference between KB and KiB?</strong><p>KB (kilobyte) is 1,000 bytes in the SI/decimal system used by storage manufacturers. KiB (kibibyte) is 1,024 bytes in the binary/IEC system used by operating systems. This is why a &quot;500 GB&quot; hard drive shows as ~465 GB in Windows.</p></div>
+        <div class="ds-seo-faq-item"><strong>How many bytes are in a gigabyte?</strong><p>In the decimal (SI) system: 1 GB = 1,000,000,000 bytes. In the binary (IEC) system: 1 GiB = 1,073,741,824 bytes.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is a petabyte?</strong><p>A petabyte (PB) is 1,000 terabytes or 10^15 bytes in decimal. It is used to measure data centre and cloud storage capacities.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why does my hard drive show less space than advertised?</strong><p>Manufacturers use decimal (1 GB = 10^9 bytes), but operating systems measure in binary (1 GiB = 2^30 bytes). A 1 TB drive contains ~931 GiB as reported by your OS.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+const DECIMAL_UNITS = [
+  { key: 'Bit',   label: 'Bit',      unit: 'bit',  factor: 0.125 },
+  { key: 'Byte',  label: 'Byte',     unit: 'B',    factor: 1 },
+  { key: 'KB',    label: 'Kilobyte', unit: 'KB',   factor: 1e3 },
+  { key: 'MB',    label: 'Megabyte', unit: 'MB',   factor: 1e6 },
+  { key: 'GB',    label: 'Gigabyte', unit: 'GB',   factor: 1e9 },
+  { key: 'TB',    label: 'Terabyte', unit: 'TB',   factor: 1e12 },
+  { key: 'PB',    label: 'Petabyte', unit: 'PB',   factor: 1e15 },
+  { key: 'Kbps',  label: 'Kilobit',  unit: 'Kbit', factor: 125 },
+  { key: 'Mbps',  label: 'Megabit',  unit: 'Mbit', factor: 125000 },
+];
+
+const BINARY_UNITS = [
+  { key: 'Bit',  label: 'Bit',       unit: 'bit',  factor: 0.125 },
+  { key: 'Byte', label: 'Byte',      unit: 'B',    factor: 1 },
+  { key: 'KiB',  label: 'Kibibyte',  unit: 'KiB',  factor: 1024 },
+  { key: 'MiB',  label: 'Mebibyte',  unit: 'MiB',  factor: 1024**2 },
+  { key: 'GiB',  label: 'Gibibyte',  unit: 'GiB',  factor: 1024**3 },
+  { key: 'TiB',  label: 'Tebibyte',  unit: 'TiB',  factor: 1024**4 },
+  { key: 'PiB',  label: 'Pebibyte',  unit: 'PiB',  factor: 1024**5 },
+];
+
+const DECIMAL_EXAMPLES = [
+  { key: 'MB', val: 1,    label: '1 MB' },
+  { key: 'GB', val: 1,    label: '1 GB' },
+  { key: 'GB', val: 25,   label: '25 GB' },
+  { key: 'TB', val: 1,    label: '1 TB' },
+  { key: 'KB', val: 4096, label: '4096 KB' },
+];
+
+const BINARY_EXAMPLES = [
+  { key: 'MiB', val: 1,    label: '1 MiB' },
+  { key: 'GiB', val: 1,    label: '1 GiB' },
+  { key: 'GiB', val: 32,   label: '32 GiB' },
+  { key: 'TiB', val: 1,    label: '1 TiB' },
+  { key: 'KiB', val: 4096, label: '4096 KiB' },
+];
+
+let mode = 'decimal';
+let updating = false;
+
+function fmt(n) {
+  if (n === 0) return '0';
+  if (Math.abs(n) >= 1e15 || (Math.abs(n) < 1e-6 && n !== 0)) return n.toExponential(4);
+  const s = n.toPrecision(10).replace(/\.?0+$/, '');
+  return s;
+}
+
+function setActive(key) {
+  document.querySelectorAll('.conv-card').forEach(c => c.classList.remove('active'));
+  const el = document.getElementById('card' + key);
+  if (el) el.classList.add('active');
+}
+
+function update(source) {
+  if (updating) return;
+  updating = true;
+  const units = mode === 'decimal' ? DECIMAL_UNITS : BINARY_UNITS;
+  const val = parseFloat(document.getElementById('input' + source).value);
+  if (isNaN(val)) {
+    units.forEach(u => { if (u.key !== source) document.getElementById('input' + u.key).value = ''; });
+    updating = false; return;
+  }
+  const sourceUnit = units.find(u => u.key === source);
+  const bytes = val * sourceUnit.factor;
+  units.forEach(u => {
+    if (u.key !== source) document.getElementById('input' + u.key).value = fmt(bytes / u.factor);
+  });
+  setActive(source);
+  updating = false;
+}
+
+function buildGrid() {
+  const units = mode === 'decimal' ? DECIMAL_UNITS : BINARY_UNITS;
+  const grid = document.getElementById('convGrid');
+  grid.innerHTML = units.map(u => `
+    <div class="conv-card" id="card${u.key}">
+      <div class="conv-label">${u.label}</div>
+      <input class="conv-input" id="input${u.key}" type="number" placeholder="0" step="any" />
+      <div class="conv-unit">${u.unit}</div>
+    </div>`).join('');
+  units.forEach(u => {
+    document.getElementById('input' + u.key).addEventListener('input', () => update(u.key));
+    document.getElementById('input' + u.key).addEventListener('focus', () => setActive(u.key));
+  });
+}
+
+function buildExamples() {
+  const examples = mode === 'decimal' ? DECIMAL_EXAMPLES : BINARY_EXAMPLES;
+  const row = document.getElementById('examplesRow');
+  row.innerHTML = '';
+  examples.forEach(e => {
+    const btn = document.createElement('button');
+    btn.className = 'ex-btn'; btn.textContent = e.label;
+    btn.addEventListener('click', () => {
+      const units = mode === 'decimal' ? DECIMAL_UNITS : BINARY_UNITS;
+      units.forEach(u => document.getElementById('input' + u.key).value = '');
+      document.getElementById('input' + e.key).value = e.val;
+      update(e.key);
+    });
+    row.appendChild(btn);
+  });
+}
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('tabDecimal').classList.toggle('active', m === 'decimal');
+  document.getElementById('tabBinary').classList.toggle('active', m === 'binary');
+  buildGrid();
+  buildExamples();
+}
+
+document.getElementById('tabDecimal').addEventListener('click', () => setMode('decimal'));
+document.getElementById('tabBinary').addEventListener('click', () => setMode('binary'));
+document.getElementById('btnClear').addEventListener('click', () => {
+  const units = mode === 'decimal' ? DECIMAL_UNITS : BINARY_UNITS;
+  units.forEach(u => document.getElementById('input' + u.key).value = '');
+  document.querySelectorAll('.conv-card').forEach(c => c.classList.remove('active'));
+});
+
+setMode('decimal');
+</script>
+</body>
+</html>

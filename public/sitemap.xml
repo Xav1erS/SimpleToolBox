@@ -137,6 +137,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://simpletoolbox.dev/tools/calorie-burn-calculator</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://simpletoolbox.dev/tools/calorie-calculator</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -251,6 +257,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://simpletoolbox.dev/tools/currency-exchange-rate</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/data-storage-converter</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://simpletoolbox.dev/tools/date-calculator</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -300,6 +318,12 @@
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/find-and-replace</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/fuel-consumption-calculator</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -563,6 +587,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://simpletoolbox.dev/tools/percentage-change-calculator</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://simpletoolbox.dev/tools/phone-extractor</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -629,6 +659,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://simpletoolbox.dev/tools/roman-numeral-converter</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://simpletoolbox.dev/tools/roman-numerals</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -659,6 +695,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://simpletoolbox.dev/tools/speed-converter</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://simpletoolbox.dev/tools/sql-formatter</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -672,6 +714,12 @@
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/svg-to-png</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/temperature-converter</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -702,6 +750,12 @@
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/text-to-speech</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/time-zone-converter</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -780,6 +834,12 @@
   </url>
   <url>
     <loc>https://simpletoolbox.dev/tools/webp-to-jpg</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://simpletoolbox.dev/tools/weight-converter</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

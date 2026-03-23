@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Percentage Change Calculator | Simple ToolBox</title>
+  <meta name="description" content="Calculate percentage increase or decrease between two values. Shows formula, direction, and absolute difference. Free browser-based percentage change calculator." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/percentage-change-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/percentage-change-calculator.html" />
+  <meta property="og:title" content="Percentage Change Calculator | Simple ToolBox" />
+  <meta property="og:description" content="Calculate percentage increase or decrease between two values. Shows formula and direction." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Percentage Change Calculator",
+  "description": "Calculate percentage increase or decrease between two values. Shows formula, direction, and absolute difference. Free browser-based percentage change calculator.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/percentage-change-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is percentage change?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new − old) ÷ |old| × 100."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between percentage change and percentage difference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Percentage change uses the original value as the base and indicates direction (increase/decrease). Percentage difference uses the average of both values and has no direction — it just measures gap size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a negative percentage change mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A negative result means the value decreased. For example, −25% means the new value is 25% lower than the original."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the multiplier?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The multiplier shows how many times larger the new value is compared to the original. A multiplier of 1.5 means the value grew to 1.5× its original size (a 50% increase)."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .input-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; }
+    @media (max-width: 560px) { .input-row { grid-template-columns: 1fr; } .arrow-mid { display: none; } }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-label { font-size: 12px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .field-input { padding: 12px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-primary); font-size: 20px; font-weight: 700; width: 100%; box-sizing: border-box; text-align: center; }
+    .field-input:focus { outline: none; border-color: var(--ds-color-accent); }
+    .arrow-mid { color: var(--ds-color-text-muted); font-size: 22px; text-align: center; padding-bottom: 12px; }
+    .result-card { padding: 20px 24px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); text-align: center; }
+    .result-pct { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; }
+    .result-pct.increase { color: #22c55e; }
+    .result-pct.decrease { color: #ef4444; }
+    .result-pct.neutral  { color: var(--ds-color-text-muted); }
+    .result-label { font-size: 14px; color: var(--ds-color-text-muted); margin-top: 4px; }
+    .result-formula { font-size: 13px; color: var(--ds-color-text-muted); margin-top: 10px; font-style: italic; }
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 500px) { .stats-row { grid-template-columns: 1fr 1fr; } }
+    .stat-box { padding: 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); text-align: center; }
+    .stat-val { font-size: 18px; font-weight: 700; color: var(--ds-color-text-primary); }
+    .stat-lbl { font-size: 11px; color: var(--ds-color-text-muted); margin-top: 2px; }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Percentage Change <span class="ds-tool-badge">calculator</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📈</div><h1 class="ds-tool-header__title">Percentage Change Calculator</h1></div><p class="ds-tool-header__desc">Calculate the percentage increase or decrease between two values. Shows direction, absolute difference, and the formula used.</p><div class="ds-tool-tag-row"><span class="ds-tag">percentage increase</span><span class="ds-tag">percentage decrease</span><span class="ds-tag">calculator</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Values</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnSwap">Swap</button>
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="field-group">
+        <label class="field-label" for="inputFrom">Original value</label>
+        <input class="field-input" id="inputFrom" type="number" placeholder="100" step="any" />
+      </div>
+      <div class="arrow-mid">→</div>
+      <div class="field-group">
+        <label class="field-label" for="inputTo">New value</label>
+        <input class="field-input" id="inputTo" type="number" placeholder="150" step="any" />
+      </div>
+    </div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <div class="result-pct neutral" id="resultPct">—</div>
+    <div class="result-label" id="resultLabel">Enter both values to calculate</div>
+    <div class="result-formula" id="resultFormula"></div>
+  </div>
+
+  <div class="stats-row" id="statsRow" style="display:none">
+    <div class="stat-box"><div class="stat-val" id="statAbsDiff">—</div><div class="stat-lbl">Absolute difference</div></div>
+    <div class="stat-box"><div class="stat-val" id="statMultiplier">—</div><div class="stat-lbl">Multiplier</div></div>
+    <div class="stat-box"><div class="stat-val" id="statReverse">—</div><div class="stat-lbl">Reverse change</div></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0">
+      <div class="examples-row" id="examplesRow"></div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Percentage Change?</h2>
+    <p>Percentage change expresses the relative difference between an old and a new value as a percentage. A positive result is an increase; a negative result is a decrease. The formula is: (new value − original value) ÷ |original value| × 100. It is widely used in finance, statistics, and everyday comparisons.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Calculate Percentage Change</h2>
+    <ol>
+      <li>Enter the original (starting) value in the first field.</li>
+      <li>Enter the new (ending) value in the second field.</li>
+      <li>The percentage change, direction, and formula appear instantly.</li>
+      <li>Click Swap to reverse the direction of comparison.</li>
+      <li>Use the quick example buttons to explore common scenarios.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+    <a href="discount-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏷️</span><div><div class="ds-related-name">Discount Calculator</div><div class="ds-related-desc">Calculate sale price and savings from a discount percentage</div></div></a>
+    <a href="tip-calculator.html" class="ds-related-card"><span class="ds-related-icon">🍽️</span><div><div class="ds-related-name">Tip Calculator</div><div class="ds-related-desc">Calculate tip amount and split the bill among any number of people</div></div></a>
+    <a href="savings-calculator.html" class="ds-related-card"><span class="ds-related-icon">💰</span><div><div class="ds-related-name">Savings Calculator</div><div class="ds-related-desc">Project future savings with compound interest and monthly contributions</div></div></a>
+    <a href="loan-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏦</span><div><div class="ds-related-name">Loan Calculator</div><div class="ds-related-desc">Calculate monthly loan payments and amortization schedule</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Percentage Change vs Percentage Difference</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">From 100 to 150</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">+50% increase</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Comparing prices before and after a sale</li>
+          <li>Tracking stock or investment performance</li>
+          <li>Measuring growth in revenue or user numbers</li>
+          <li>Checking year-over-year change in metrics</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is percentage change?</strong><p>Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new − old) ÷ |old| × 100.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the difference between percentage change and percentage difference?</strong><p>Percentage change uses the original value as the base and indicates direction (increase/decrease). Percentage difference uses the average of both values and has no direction — it just measures gap size.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does a negative percentage change mean?</strong><p>A negative result means the value decreased. For example, −25% means the new value is 25% lower than the original.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the multiplier?</strong><p>The multiplier shows how many times larger the new value is compared to the original. A multiplier of 1.5 means the value grew to 1.5× its original size (a 50% increase).</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+const EXAMPLES = [
+  { from: 100, to: 150, label: '100→150' },
+  { from: 200, to: 180, label: '200→180' },
+  { from: 50,  to: 75,  label: '50→75' },
+  { from: 1000, to: 850, label: '1000→850' },
+  { from: 25, to: 100, label: '25→100' },
+];
+
+function fmt(n) {
+  return Number.isInteger(n) ? n.toString() : parseFloat(n.toFixed(4)).toString();
+}
+
+function calc() {
+  const from = parseFloat(document.getElementById('inputFrom').value);
+  const to   = parseFloat(document.getElementById('inputTo').value);
+  const pctEl   = document.getElementById('resultPct');
+  const lblEl   = document.getElementById('resultLabel');
+  const fmlEl   = document.getElementById('resultFormula');
+  const statsEl = document.getElementById('statsRow');
+
+  if (isNaN(from) || isNaN(to)) {
+    pctEl.textContent = '—';
+    pctEl.className = 'result-pct neutral';
+    lblEl.textContent = 'Enter both values to calculate';
+    fmlEl.textContent = '';
+    statsEl.style.display = 'none';
+    return;
+  }
+  if (from === 0) {
+    pctEl.textContent = '∞';
+    pctEl.className = 'result-pct neutral';
+    lblEl.textContent = 'Original value cannot be zero';
+    fmlEl.textContent = '';
+    statsEl.style.display = 'none';
+    return;
+  }
+
+  const change = (to - from) / Math.abs(from) * 100;
+  const rounded = Math.round(change * 10000) / 10000;
+  const isIncrease = change > 0;
+  const isZero = change === 0;
+
+  pctEl.textContent = (isIncrease ? '+' : '') + fmt(rounded) + '%';
+  pctEl.className = 'result-pct ' + (isZero ? 'neutral' : isIncrease ? 'increase' : 'decrease');
+  lblEl.textContent = isZero ? 'No change' : (isIncrease ? 'Increase' : 'Decrease') + ` from ${fmt(from)} to ${fmt(to)}`;
+  fmlEl.textContent = `Formula: (${fmt(to)} − ${fmt(from)}) ÷ |${fmt(from)}| × 100 = ${fmt(rounded)}%`;
+
+  // Stats
+  const absDiff = Math.abs(to - from);
+  const mult = to / from;
+  const rev = from !== 0 && to !== 0 ? ((from - to) / Math.abs(to) * 100) : null;
+
+  document.getElementById('statAbsDiff').textContent = fmt(Math.round(absDiff * 10000) / 10000);
+  document.getElementById('statMultiplier').textContent = fmt(Math.round(mult * 10000) / 10000) + '×';
+  document.getElementById('statReverse').textContent = rev !== null ? (rev > 0 ? '+' : '') + fmt(Math.round(rev * 10000) / 10000) + '%' : '—';
+  statsEl.style.display = 'grid';
+}
+
+document.getElementById('inputFrom').addEventListener('input', calc);
+document.getElementById('inputTo').addEventListener('input', calc);
+
+document.getElementById('btnSwap').addEventListener('click', () => {
+  const a = document.getElementById('inputFrom').value;
+  const b = document.getElementById('inputTo').value;
+  document.getElementById('inputFrom').value = b;
+  document.getElementById('inputTo').value = a;
+  calc();
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  document.getElementById('inputFrom').value = '';
+  document.getElementById('inputTo').value = '';
+  calc();
+});
+
+// Examples
+const row = document.getElementById('examplesRow');
+EXAMPLES.forEach(e => {
+  const btn = document.createElement('button');
+  btn.className = 'ex-btn';
+  btn.textContent = e.label;
+  btn.addEventListener('click', () => {
+    document.getElementById('inputFrom').value = e.from;
+    document.getElementById('inputTo').value = e.to;
+    calc();
+  });
+  row.appendChild(btn);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Speed Converter — mph, km/h, m/s, knots | Simple ToolBox</title>
+  <meta name="description" content="Convert speed between mph, km/h, m/s, knots, and Mach number instantly. Type in any field to update all others. Free browser-based speed converter." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/speed-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/speed-converter.html" />
+  <meta property="og:title" content="Speed Converter — mph, km/h, m/s, knots | Simple ToolBox" />
+  <meta property="og:description" content="Convert speed between mph, km/h, m/s, knots, and Mach instantly. Type in any field." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Speed Converter — mph, km/h, m/s, knots",
+  "description": "Convert speed between mph, km/h, m/s, knots, ft/s, and Mach number instantly. Type in any field to update all others. Free browser-based speed converter.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/speed-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many km/h is 60 mph?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "60 mph = 96.56 km/h. To convert mph to km/h, multiply by 1.60934."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is 1 knot in km/h?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 knot = 1.852 km/h. Knots are used in aviation and maritime navigation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Mach 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mach 1 is the speed of sound at sea level — approximately 340.29 m/s, 1,235 km/h, or 767 mph. The exact value varies with air temperature and altitude."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert m/s to km/h?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply m/s by 3.6. For example, 10 m/s × 3.6 = 36 km/h."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .speed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 620px) { .speed-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 400px) { .speed-grid { grid-template-columns: 1fr; } }
+    .speed-card { padding: 14px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+    .speed-card.active { border-color: var(--ds-color-accent); }
+    .speed-label { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .speed-input { font-size: 22px; font-weight: 700; background: none; border: none; outline: none; color: var(--ds-color-text-primary); width: 100%; padding: 0; }
+    .speed-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; font-size: 18px; }
+    .speed-unit { font-size: 12px; color: var(--ds-color-text-muted); }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ref-table th { text-align: left; padding: 6px 12px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ds-color-border); }
+    .ref-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-name { font-weight: 600; color: var(--ds-color-text-primary); }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Speed Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">💨</div><h1 class="ds-tool-header__title">Speed Converter</h1></div><p class="ds-tool-header__desc">Convert speed between mph, km/h, m/s, knots, and Mach number. Type in any field to update all others instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">mph</span><span class="ds-tag">km/h</span><span class="ds-tag">m/s</span><span class="ds-tag">knots</span><span class="ds-tag">Mach</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Speed</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <div class="speed-grid">
+      <div class="speed-card" id="cardMph">
+        <div class="speed-label">Miles per hour</div>
+        <input class="speed-input" id="inputMph" type="number" placeholder="0" step="any" />
+        <div class="speed-unit">mph</div>
+      </div>
+      <div class="speed-card" id="cardKph">
+        <div class="speed-label">Kilometres per hour</div>
+        <input class="speed-input" id="inputKph" type="number" placeholder="0" step="any" />
+        <div class="speed-unit">km/h</div>
+      </div>
+      <div class="speed-card" id="cardMs">
+        <div class="speed-label">Metres per second</div>
+        <input class="speed-input" id="inputMs" type="number" placeholder="0" step="any" />
+        <div class="speed-unit">m/s</div>
+      </div>
+      <div class="speed-card" id="cardKnots">
+        <div class="speed-label">Knots</div>
+        <input class="speed-input" id="inputKnots" type="number" placeholder="0" step="any" />
+        <div class="speed-unit">kn</div>
+      </div>
+      <div class="speed-card" id="cardFts">
+        <div class="speed-label">Feet per second</div>
+        <input class="speed-input" id="inputFts" type="number" placeholder="0" step="any" />
+        <div class="speed-unit">ft/s</div>
+      </div>
+      <div class="speed-card" id="cardMach">
+        <div class="speed-label">Mach (sea level)</div>
+        <input class="speed-input" id="inputMach" type="number" placeholder="0" step="any" />
+        <div class="speed-unit">Mach</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0">
+      <div class="examples-row" id="examplesRow"></div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Speed reference</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead><tr><th>Reference</th><th>mph</th><th>km/h</th><th>m/s</th></tr></thead>
+        <tbody>
+          <tr><td class="ref-name">Walking pace</td><td>3.1</td><td>5</td><td>1.4</td></tr>
+          <tr><td class="ref-name">Cycling average</td><td>12.4</td><td>20</td><td>5.6</td></tr>
+          <tr><td class="ref-name">City speed limit</td><td>31</td><td>50</td><td>13.9</td></tr>
+          <tr><td class="ref-name">Motorway limit</td><td>70</td><td>113</td><td>31.3</td></tr>
+          <tr><td class="ref-name">Usain Bolt (peak)</td><td>27.8</td><td>44.72</td><td>12.4</td></tr>
+          <tr><td class="ref-name">Speed of sound</td><td>767</td><td>1235</td><td>343</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Speed Converter?</h2>
+    <p>A speed converter translates a speed value between different units of measurement. Common units include miles per hour (mph, used in the US and UK), kilometres per hour (km/h, used in most countries), metres per second (m/s, the SI unit), knots (used in aviation and sailing), and Mach (a ratio to the speed of sound). This tool updates all units simultaneously when you type in any field.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Speed</h2>
+    <ol>
+      <li>Type a speed value into any field (mph, km/h, m/s, knots, ft/s, or Mach).</li>
+      <li>All other fields update instantly with the converted values.</li>
+      <li>Use the quick example buttons to load common reference speeds.</li>
+      <li>Clear all fields with the Clear button to start over.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="temperature-converter.html" class="ds-related-card"><span class="ds-related-icon">🌡️</span><div><div class="ds-related-name">Temperature Converter</div><div class="ds-related-desc">Convert temperatures between Celsius, Fahrenheit, and Kelvin. Type in any field to update the others.</div></div></a>
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+    <a href="time-zone-converter.html" class="ds-related-card"><span class="ds-related-icon">🌍</span><div><div class="ds-related-name">Time Zone Converter</div><div class="ds-related-desc">Convert a time between any two time zones. Includes a world clock for 14 major cities.</div></div></a>
+    <a href="percentage-change-calculator.html" class="ds-related-card"><span class="ds-related-icon">📈</span><div><div class="ds-related-name">Percentage Change</div><div class="ds-related-desc">Calculate percentage increase or decrease between two values. Shows formula and absolute difference.</div></div></a>
+    <a href="roman-numeral-converter.html" class="ds-related-card"><span class="ds-related-icon">🏛️</span><div><div class="ds-related-name">Roman Numeral Converter</div><div class="ds-related-desc">Convert between Arabic numbers and Roman numerals instantly. Supports 1–3999, works both ways.</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Speed Units Explained</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">100 km/h</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">62.14 mph / 27.78 m/s / 53.99 kn</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Converting car speed limits between mph and km/h for travel</li>
+          <li>Aviation: converting knots to km/h or mph</li>
+          <li>Physics and engineering: working in m/s</li>
+          <li>Checking athlete running or cycling speeds</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How many km/h is 60 mph?</strong><p>60 mph = 96.56 km/h. To convert mph to km/h, multiply by 1.60934.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is 1 knot in km/h?</strong><p>1 knot = 1.852 km/h. Knots are used in aviation and maritime navigation.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is Mach 1?</strong><p>Mach 1 is the speed of sound at sea level — approximately 340.29 m/s, 1,235 km/h, or 767 mph. The exact value varies with air temperature and altitude.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I convert m/s to km/h?</strong><p>Multiply m/s by 3.6. For example, 10 m/s × 3.6 = 36 km/h.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+// All values in m/s as the base unit
+const UNITS = {
+  Mph:   { factor: 0.44704,    label: 'mph' },
+  Kph:   { factor: 1/3.6,      label: 'km/h' },
+  Ms:    { factor: 1,          label: 'm/s' },
+  Knots: { factor: 0.514444,   label: 'kn' },
+  Fts:   { factor: 0.3048,     label: 'ft/s' },
+  Mach:  { factor: 340.29,     label: 'Mach' },
+};
+
+const EXAMPLES = [
+  { unit: 'Mph', val: 60, label: '60 mph' },
+  { unit: 'Kph', val: 100, label: '100 km/h' },
+  { unit: 'Kph', val: 300, label: '300 km/h' },
+  { unit: 'Knots', val: 20, label: '20 knots' },
+  { unit: 'Mach', val: 1, label: 'Mach 1' },
+  { unit: 'Ms', val: 9.58, label: '9.58 m/s' },
+];
+
+const round = (n, dp = 6) => Math.round(n * 10**dp) / 10**dp;
+
+let updating = false;
+
+function setActive(key) {
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+  document.getElementById('card' + key).classList.add('active');
+}
+
+function update(source) {
+  if (updating) return;
+  updating = true;
+  const val = parseFloat(document.getElementById('input' + source).value);
+  if (isNaN(val)) {
+    Object.keys(UNITS).forEach(k => { if (k !== source) document.getElementById('input' + k).value = ''; });
+    updating = false;
+    return;
+  }
+  const ms = val * UNITS[source].factor; // convert to m/s
+  Object.keys(UNITS).forEach(k => {
+    if (k !== source) {
+      document.getElementById('input' + k).value = round(ms / UNITS[k].factor);
+    }
+  });
+  setActive(source);
+  updating = false;
+}
+
+Object.keys(UNITS).forEach(k => {
+  document.getElementById('input' + k).addEventListener('input', () => update(k));
+  document.getElementById('input' + k).addEventListener('focus', () => setActive(k));
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+});
+
+// Examples
+const row = document.getElementById('examplesRow');
+EXAMPLES.forEach(e => {
+  const btn = document.createElement('button');
+  btn.className = 'ex-btn';
+  btn.textContent = e.label;
+  btn.addEventListener('click', () => {
+    Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+    document.getElementById('input' + e.unit).value = e.val;
+    update(e.unit);
+  });
+  row.appendChild(btn);
+});
+</script>
+</body>
+</html>

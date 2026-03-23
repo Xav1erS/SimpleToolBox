@@ -130,6 +130,16 @@ const SITE_TOOLS = [
   { name: 'Find & Replace',           href: 'tools/find-and-replace.html',         tag: 'text',     icon: '🔎', desc: 'Find and replace text with plain string, whole-word, or regex mode' },
   { name: 'Number to Words',          href: 'tools/number-to-words.html',          tag: 'convert',  icon: '🔢', desc: 'Convert numbers to English words — plain, currency, ordinal, or year format' },
   { name: 'Text to Speech',           href: 'tools/text-to-speech.html',           tag: 'text',     icon: '🔊', desc: 'Convert text to speech in your browser using system voices. Choose voice, speed, and pitch.' },
+  { name: 'Roman Numeral Converter',  href: 'tools/roman-numeral-converter.html',  tag: 'convert',  icon: '🏛️', desc: 'Convert between Arabic numbers and Roman numerals instantly. Supports 1–3999, works both ways.' },
+  { name: 'Temperature Converter',    href: 'tools/temperature-converter.html',    tag: 'convert',  icon: '🌡️', desc: 'Convert temperatures between Celsius, Fahrenheit, and Kelvin. Type in any field to update the others.' },
+  { name: 'Percentage Change',        href: 'tools/percentage-change-calculator.html', tag: 'calculator', icon: '📈', desc: 'Calculate percentage increase or decrease between two values. Shows formula and absolute difference.' },
+  { name: 'Time Zone Converter',      href: 'tools/time-zone-converter.html',      tag: 'convert',  icon: '🌍', desc: 'Convert a time between any two time zones. Includes a world clock for 14 major cities.' },
+  { name: 'Speed Converter',          href: 'tools/speed-converter.html',          tag: 'convert',  icon: '💨', desc: 'Convert speed between mph, km/h, m/s, knots, ft/s, and Mach. Type in any field to update all others.' },
+  { name: 'Calorie Burn Calculator',  href: 'tools/calorie-burn-calculator.html',  tag: 'calculator', icon: '🔥', desc: 'Estimate calories burned during exercise using MET values for 30+ activities.' },
+  { name: 'Currency Exchange Rate',   href: 'tools/currency-exchange-rate.html',   tag: 'reference', icon: '💱', desc: 'Manual exchange rate calculator and reference guide. Enter an amount and a rate to compute the result.' },
+  { name: 'Weight Converter',         href: 'tools/weight-converter.html',         tag: 'convert',  icon: '⚖️', desc: 'Convert weight between kg, lbs, oz, grams, stone, and metric tons. Type in any field to update all others.' },
+  { name: 'Data Storage Converter',   href: 'tools/data-storage-converter.html',   tag: 'convert',  icon: '💾', desc: 'Convert data between bits, bytes, KB, MB, GB, TB, and PB. Supports both decimal (SI) and binary (IEC) prefixes.' },
+  { name: 'Fuel Consumption',         href: 'tools/fuel-consumption-calculator.html', tag: 'calculator', icon: '⛽', desc: 'Convert fuel efficiency between mpg, L/100km, and km/L. Calculate trip fuel cost from distance and price.' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -148,7 +158,7 @@ const HUB_PAGE_CONFIG = {
       ['base64', 'base32', 'base58', 'hash-generator', 'hmac', 'aes', 'bcrypt', 'jwt-decoder', 'jwt-builder', 'html-entities', 'string-escape', 'morse-code', 'binary-text'],
       ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'number-base', 'markdown-to-html', 'url-encode', 'url-parser'],
       ['password-generator', 'uuid-generator', 'qr-code-generator', 'cron-builder', 'random-number-generator', 'lorem-ipsum-generator'],
-      ['regex-tester', 'jsonpath-tester', 'http-status', 'chmod-calculator', 'port-reference', 'mime-types', 'ip-lookup', 'user-agent', 'ascii-table', 'timestamp']
+      ['regex-tester', 'jsonpath-tester', 'http-status', 'chmod-calculator', 'port-reference', 'mime-types', 'ip-lookup', 'user-agent', 'ascii-table', 'timestamp', 'data-storage-converter']
     ]
   },
   text: {
@@ -158,10 +168,11 @@ const HUB_PAGE_CONFIG = {
   },
   calculator: {
     sections: [
-      ['percentage-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator'],
+      ['percentage-calculator', 'percentage-change-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator'],
       ['mortgage-calculator', 'loan-calculator', 'savings-calculator'],
-      ['bmi-calculator', 'calorie-calculator', 'gpa-calculator'],
-      ['date-calculator', 'currency-converter']
+      ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator'],
+      ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'],
+      ['speed-converter', 'weight-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words']
     ]
   }
 };

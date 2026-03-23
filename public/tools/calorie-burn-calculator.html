@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Calorie Burn Calculator | Simple ToolBox</title>
+  <meta name="description" content="Estimate calories burned during exercise. Choose activity, enter weight and duration. Uses MET values for 30+ activities. Free browser-based calorie burn calculator." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/calorie-burn-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/calorie-burn-calculator.html" />
+  <meta property="og:title" content="Calorie Burn Calculator | Simple ToolBox" />
+  <meta property="og:description" content="Estimate calories burned during exercise using MET values for 30+ activities." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Calorie Burn Calculator",
+  "description": "Estimate calories burned during exercise. Choose activity, enter weight and duration. Uses MET values for 30+ activities. Free browser-based calorie burn calculator.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/calorie-burn-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a MET value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MET (Metabolic Equivalent of Task) measures the energy cost of an activity relative to sitting still (1 MET). Running at 8 km/h has a MET of 8, meaning it burns 8× more energy than sitting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the calorie estimate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The formula gives a reasonable estimate, but actual calorie burn varies by age, sex, fitness level, and intensity. Use it as a guide, not a precise measurement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the formula used?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Calories (kcal) = MET × body weight (kg) × duration (hours). This is the standard formula derived from the Compendium of Physical Activities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I enter weight in pounds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Toggle the unit button between kg and lbs — the tool converts automatically."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 520px) { .form-grid { grid-template-columns: 1fr; } }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-label { font-size: 12px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .field-input, .field-select { padding: 10px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-primary); font-size: 16px; width: 100%; box-sizing: border-box; }
+    .field-input:focus, .field-select:focus { outline: none; border-color: var(--ds-color-accent); }
+    .unit-toggle { display: flex; gap: 6px; }
+    .unit-btn { padding: 6px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: all 0.15s; }
+    .unit-btn.active { background: var(--ds-color-accent); color: #fff; border-color: var(--ds-color-accent); }
+    .result-card { padding: 22px 24px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); display: flex; align-items: center; gap: 20px; }
+    .result-flame { font-size: 42px; line-height: 1; }
+    .result-body { flex: 1; }
+    .result-cal { font-size: 44px; font-weight: 800; color: var(--ds-color-accent); letter-spacing: -0.02em; line-height: 1; }
+    .result-unit { font-size: 16px; color: var(--ds-color-text-muted); margin-top: 4px; }
+    .result-note { font-size: 13px; color: var(--ds-color-text-muted); margin-top: 6px; }
+    .cat-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .cat-tab { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 12px; cursor: pointer; transition: all 0.15s; }
+    .cat-tab.active { border-color: var(--ds-color-accent); color: var(--ds-color-accent); background: rgba(99,102,241,0.08); }
+    .activity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px; }
+    .act-btn { padding: 8px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.15s; }
+    .act-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-text-primary); }
+    .act-btn.selected { border-color: var(--ds-color-accent); color: var(--ds-color-accent); background: rgba(99,102,241,0.08); }
+    .act-met { font-size: 11px; color: var(--ds-color-text-muted); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Calorie Burn Calculator <span class="ds-tool-badge">calculator</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔥</div><h1 class="ds-tool-header__title">Calorie Burn Calculator</h1></div><p class="ds-tool-header__desc">Estimate calories burned during exercise using MET (Metabolic Equivalent of Task) values. Enter your weight, duration, and activity.</p><div class="ds-tool-tag-row"><span class="ds-tag">calories</span><span class="ds-tag">exercise</span><span class="ds-tag">MET</span><span class="ds-tag">fitness</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Your details</span>
+    </div>
+    <div class="form-grid">
+      <div class="field-group">
+        <label class="field-label">Weight</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input class="field-input" id="inputWeight" type="number" value="70" min="1" max="500" step="0.5" style="flex:1" />
+          <div class="unit-toggle">
+            <button class="unit-btn active" id="btnKg" onclick="setWeightUnit('kg')">kg</button>
+            <button class="unit-btn" id="btnLbs" onclick="setWeightUnit('lbs')">lbs</button>
+          </div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="inputDuration">Duration (minutes)</label>
+        <input class="field-input" id="inputDuration" type="number" value="30" min="1" max="600" step="1" />
+      </div>
+    </div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <div class="result-flame">🔥</div>
+    <div class="result-body">
+      <div class="result-cal" id="resultCal">—</div>
+      <div class="result-unit">kcal</div>
+      <div class="result-note" id="resultNote">Select an activity below</div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Activity</span>
+    </div>
+    <div class="cat-tabs" id="catTabs"></div>
+    <div class="activity-grid" id="activityGrid"></div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Calorie Burn Calculator?</h2>
+    <p>A calorie burn calculator estimates the energy expended during physical activity using MET (Metabolic Equivalent of Task) values. MET values are published in the Compendium of Physical Activities, a research database covering hundreds of activities from sleeping to marathon running. The formula is simple: kcal = MET × weight in kg × duration in hours.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use the Calorie Burn Calculator</h2>
+    <ol>
+      <li>Enter your body weight and choose kg or lbs.</li>
+      <li>Enter the duration of your activity in minutes.</li>
+      <li>Browse activity categories (Cardio, Sports, Gym, Daily) and click an activity.</li>
+      <li>The calorie estimate updates instantly with the MET value used.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="bmi-calculator.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">BMI Calculator</div><div class="ds-related-desc">Calculate Body Mass Index with Metric or Imperial units</div></div></a>
+    <a href="calorie-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔥</span><div><div class="ds-related-name">Calorie Calculator</div><div class="ds-related-desc">Calculate BMR and daily calorie needs (TDEE) from age, height, weight</div></div></a>
+    <a href="age-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Age Calculator</div><div class="ds-related-desc">Calculate exact age in years, months, days and next birthday</div></div></a>
+    <a href="percentage-change-calculator.html" class="ds-related-card"><span class="ds-related-icon">📈</span><div><div class="ds-related-name">Percentage Change</div><div class="ds-related-desc">Calculate percentage increase or decrease between two values. Shows formula and absolute difference.</div></div></a>
+    <a href="tip-calculator.html" class="ds-related-card"><span class="ds-related-icon">🍽️</span><div><div class="ds-related-name">Tip Calculator</div><div class="ds-related-desc">Calculate tip amount and split the bill among any number of people</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>About MET Values and Calorie Estimation</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">70 kg, 30 min running at 8 km/h</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">~280 kcal</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Estimating energy expenditure for a workout</li>
+          <li>Tracking calories burned across different sports</li>
+          <li>Comparing the calorie cost of different activities</li>
+          <li>Fitness planning and calorie deficit calculations</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is a MET value?</strong><p>MET (Metabolic Equivalent of Task) measures the energy cost of an activity relative to sitting still (1 MET). Running at 8 km/h has a MET of 8, meaning it burns 8× more energy than sitting.</p></div>
+        <div class="ds-seo-faq-item"><strong>How accurate is the calorie estimate?</strong><p>The formula gives a reasonable estimate, but actual calorie burn varies by age, sex, fitness level, and intensity. Use it as a guide, not a precise measurement.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the formula used?</strong><p>Calories (kcal) = MET × body weight (kg) × duration (hours). This is the standard formula derived from the Compendium of Physical Activities.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I enter weight in pounds?</strong><p>Yes. Toggle the unit button between kg and lbs — the tool converts automatically.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+// MET values from Ainsworth et al. (2011 Compendium of Physical Activities)
+const ACTIVITIES = {
+  'Cardio': [
+    { name: 'Walking (leisurely)', met: 2.8 },
+    { name: 'Walking (brisk)', met: 3.5 },
+    { name: 'Jogging', met: 7.0 },
+    { name: 'Running (8 km/h)', met: 8.0 },
+    { name: 'Running (12 km/h)', met: 11.5 },
+    { name: 'Cycling (leisure)', met: 4.0 },
+    { name: 'Cycling (vigorous)', met: 8.0 },
+    { name: 'Swimming (moderate)', met: 5.8 },
+    { name: 'Swimming (vigorous)', met: 9.8 },
+    { name: 'Jump rope', met: 11.8 },
+  ],
+  'Sports': [
+    { name: 'Basketball', met: 6.5 },
+    { name: 'Football (soccer)', met: 7.0 },
+    { name: 'Tennis (singles)', met: 7.3 },
+    { name: 'Badminton', met: 5.5 },
+    { name: 'Volleyball', met: 3.0 },
+    { name: 'Golf (walking)', met: 4.3 },
+    { name: 'Hiking', met: 5.3 },
+    { name: 'Rock climbing', met: 7.5 },
+    { name: 'Martial arts', met: 10.3 },
+    { name: 'Dancing', met: 4.8 },
+  ],
+  'Gym': [
+    { name: 'Weight training (light)', met: 3.0 },
+    { name: 'Weight training (heavy)', met: 6.0 },
+    { name: 'Circuit training', met: 8.0 },
+    { name: 'Yoga', met: 2.5 },
+    { name: 'Pilates', met: 3.0 },
+    { name: 'Rowing machine', met: 7.0 },
+    { name: 'Elliptical trainer', met: 5.0 },
+    { name: 'Stair climbing', met: 9.0 },
+    { name: 'HIIT', met: 8.0 },
+    { name: 'Stretching', met: 2.3 },
+  ],
+  'Daily': [
+    { name: 'Cleaning (general)', met: 3.3 },
+    { name: 'Gardening', met: 3.5 },
+    { name: 'Mowing lawn', met: 5.5 },
+    { name: 'Cooking', met: 2.0 },
+    { name: 'Standing', met: 1.8 },
+    { name: 'Sitting (desk work)', met: 1.5 },
+    { name: 'Sleeping', met: 0.95 },
+    { name: 'Shopping', met: 2.3 },
+  ],
+};
+
+let weightUnit = 'kg';
+let selectedActivity = null;
+let activeCategory = 'Cardio';
+
+function setWeightUnit(unit) {
+  const w = parseFloat(document.getElementById('inputWeight').value);
+  weightUnit = unit;
+  document.getElementById('btnKg').classList.toggle('active', unit === 'kg');
+  document.getElementById('btnLbs').classList.toggle('active', unit === 'lbs');
+  if (!isNaN(w)) {
+    document.getElementById('inputWeight').value = unit === 'lbs'
+      ? Math.round(w * 2.20462 * 10) / 10
+      : Math.round(w / 2.20462 * 10) / 10;
+  }
+  calc();
+}
+
+function getWeightKg() {
+  const w = parseFloat(document.getElementById('inputWeight').value);
+  if (isNaN(w) || w <= 0) return null;
+  return weightUnit === 'lbs' ? w / 2.20462 : w;
+}
+
+function calc() {
+  const wKg = getWeightKg();
+  const min = parseFloat(document.getElementById('inputDuration').value);
+  const noteEl = document.getElementById('resultNote');
+
+  if (!selectedActivity || !wKg || isNaN(min) || min <= 0) {
+    document.getElementById('resultCal').textContent = '—';
+    noteEl.textContent = selectedActivity ? 'Enter weight and duration' : 'Select an activity below';
+    return;
+  }
+  // Formula: kcal = MET × weight_kg × duration_hours
+  const kcal = Math.round(selectedActivity.met * wKg * (min / 60));
+  document.getElementById('resultCal').textContent = kcal.toLocaleString();
+  noteEl.textContent = `${selectedActivity.name} · ${min} min · ${weightUnit === 'kg' ? wKg.toFixed(1) + ' kg' : document.getElementById('inputWeight').value + ' lbs'} · MET ${selectedActivity.met}`;
+}
+
+function renderCategories() {
+  const tabs = document.getElementById('catTabs');
+  tabs.innerHTML = Object.keys(ACTIVITIES).map(cat =>
+    `<button class="cat-tab ${cat === activeCategory ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
+  ).join('');
+}
+
+function setCategory(cat) {
+  activeCategory = cat;
+  renderCategories();
+  renderActivities();
+}
+
+function renderActivities() {
+  const grid = document.getElementById('activityGrid');
+  grid.innerHTML = ACTIVITIES[activeCategory].map(act =>
+    `<button class="act-btn ${selectedActivity && selectedActivity.name === act.name ? 'selected' : ''}"
+      onclick="selectActivity(${JSON.stringify(act).replace(/"/g, '&quot;')})">
+      <span>${act.name}</span>
+      <span class="act-met">MET ${act.met}</span>
+    </button>`
+  ).join('');
+}
+
+function selectActivity(act) {
+  selectedActivity = act;
+  renderActivities();
+  calc();
+}
+
+document.getElementById('inputWeight').addEventListener('input', calc);
+document.getElementById('inputDuration').addEventListener('input', calc);
+
+renderCategories();
+renderActivities();
+</script>
+</body>
+</html>

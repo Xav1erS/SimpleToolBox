@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Time Zone Converter | Simple ToolBox</title>
+  <meta name="description" content="Convert a time between any two time zones. Shows UTC offset and local time. No sign-in required — runs entirely in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/time-zone-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/time-zone-converter.html" />
+  <meta property="og:title" content="Time Zone Converter | Simple ToolBox" />
+  <meta property="og:description" content="Convert a time between any two time zones. Runs in your browser — no sign-in required." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Time Zone Converter",
+  "description": "Convert a time between any two time zones. Shows UTC offset and local time. No sign-in required — runs entirely in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/time-zone-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does this tool know all time zones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses the browser's built-in Intl API (IANA time zone database), which includes all standard time zones worldwide including daylight saving time rules."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it handle daylight saving time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Intl API automatically applies DST rules for each time zone based on the selected date and time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert to UTC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Select UTC in the \"To time zone\" dropdown. UTC has no offset and never observes daylight saving time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the world clock show?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The world clock shows the current local time in 14 major cities. Click any city card to set it as the target time zone."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .tz-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; }
+    @media (max-width: 580px) { .tz-grid { grid-template-columns: 1fr; } .tz-arrow { display: none; } }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-label { font-size: 12px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .field-select, .field-input { padding: 10px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-primary); font-size: 14px; width: 100%; box-sizing: border-box; }
+    .field-select:focus, .field-input:focus { outline: none; border-color: var(--ds-color-accent); }
+    .tz-arrow { color: var(--ds-color-text-muted); font-size: 22px; text-align: center; padding-bottom: 12px; }
+    .result-card { padding: 20px 24px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); }
+    .result-time { font-size: 36px; font-weight: 800; color: var(--ds-color-accent); letter-spacing: -0.01em; }
+    .result-date { font-size: 14px; color: var(--ds-color-text-muted); margin-top: 4px; }
+    .result-offset { font-size: 13px; color: var(--ds-color-text-muted); margin-top: 8px; font-style: italic; }
+    .now-btn { padding: 6px 14px; border: 1px solid var(--ds-color-accent); border-radius: var(--ds-radius-sm); background: none; color: var(--ds-color-accent); font-size: 13px; cursor: pointer; transition: background 0.15s; }
+    .now-btn:hover { background: rgba(99,102,241,0.1); }
+    .world-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+    .world-card { padding: 10px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); cursor: pointer; transition: border-color 0.15s; }
+    .world-card:hover { border-color: var(--ds-color-accent); }
+    .world-city { font-size: 13px; font-weight: 600; color: var(--ds-color-text-primary); }
+    .world-time { font-size: 16px; font-weight: 700; color: var(--ds-color-accent); margin-top: 2px; }
+    .world-offset { font-size: 11px; color: var(--ds-color-text-muted); margin-top: 1px; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Time Zone Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🌍</div><h1 class="ds-tool-header__title">Time Zone Converter</h1></div><p class="ds-tool-header__desc">Convert a time between any two time zones. Uses your browser's Intl API — no server needed.</p><div class="ds-tool-tag-row"><span class="ds-tag">time zones</span><span class="ds-tag">UTC</span><span class="ds-tag">world clock</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Convert time</span>
+      <div class="ds-tool-pane__actions">
+        <button class="now-btn" id="btnNow">Use current time</button>
+        <button class="io-btn ds-tool-pane__btn" id="btnSwap">Swap</button>
+      </div>
+    </div>
+    <div style="margin-bottom:12px">
+      <label class="field-label" style="display:block;margin-bottom:6px" for="inputDateTime">Date &amp; time</label>
+      <input class="field-input" type="datetime-local" id="inputDateTime" />
+    </div>
+    <div class="tz-grid">
+      <div class="field-group">
+        <label class="field-label" for="tzFrom">From time zone</label>
+        <select class="field-select" id="tzFrom"></select>
+      </div>
+      <div class="tz-arrow">→</div>
+      <div class="field-group">
+        <label class="field-label" for="tzTo">To time zone</label>
+        <select class="field-select" id="tzTo"></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <div class="result-time" id="resultTime">—</div>
+    <div class="result-date" id="resultDate"></div>
+    <div class="result-offset" id="resultOffset"></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">World clock (current time)</span>
+    </div>
+    <div class="world-grid" id="worldGrid"></div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Time Zone Converter?</h2>
+    <p>A time zone converter translates a specific date and time from one time zone to another. Time zones are defined by their offset from Coordinated Universal Time (UTC) and may shift by one hour during daylight saving time. This tool uses the browser&#x27;s built-in IANA time zone database to ensure accuracy for all regions and seasons.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Time Zones</h2>
+    <ol>
+      <li>Click &quot;Use current time&quot; to prefill with the current date and time, or type a custom date and time.</li>
+      <li>Select the source time zone in the &quot;From&quot; dropdown.</li>
+      <li>Select the target time zone in the &quot;To&quot; dropdown.</li>
+      <li>The converted time appears instantly in the result card.</li>
+      <li>Click any city in the world clock to use it as the target time zone.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="date-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Date Calculator</div><div class="ds-related-desc">Calculate date differences, business days, and exact age</div></div></a>
+    <a href="age-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Age Calculator</div><div class="ds-related-desc">Calculate exact age in years, months, days and next birthday</div></div></a>
+    <a href="timestamp.html" class="ds-related-card"><span class="ds-related-icon">⏱️</span><div><div class="ds-related-name">Timestamp Converter</div><div class="ds-related-desc">Convert Unix timestamps to readable dates</div></div></a>
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understanding Time Zones and UTC</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">9:00 AM New York (EST)</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">2:00 PM London (GMT)</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Scheduling meetings across different countries</li>
+          <li>Checking what time it is in a client&#x27;s city</li>
+          <li>Converting event times for international audiences</li>
+          <li>Planning travel across time zones</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How does this tool know all time zones?</strong><p>It uses the browser&#x27;s built-in Intl API (IANA time zone database), which includes all standard time zones worldwide including daylight saving time rules.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it handle daylight saving time?</strong><p>Yes. The Intl API automatically applies DST rules for each time zone based on the selected date and time.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I convert to UTC?</strong><p>Yes. Select UTC in the &quot;To time zone&quot; dropdown. UTC has no offset and never observes daylight saving time.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does the world clock show?</strong><p>The world clock shows the current local time in 14 major cities. Click any city card to set it as the target time zone.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+const WORLD_CITIES = [
+  { city: 'New York',    tz: 'America/New_York' },
+  { city: 'Los Angeles', tz: 'America/Los_Angeles' },
+  { city: 'Chicago',     tz: 'America/Chicago' },
+  { city: 'São Paulo',   tz: 'America/Sao_Paulo' },
+  { city: 'London',      tz: 'Europe/London' },
+  { city: 'Paris',       tz: 'Europe/Paris' },
+  { city: 'Berlin',      tz: 'Europe/Berlin' },
+  { city: 'Moscow',      tz: 'Europe/Moscow' },
+  { city: 'Dubai',       tz: 'Asia/Dubai' },
+  { city: 'Mumbai',      tz: 'Asia/Kolkata' },
+  { city: 'Singapore',   tz: 'Asia/Singapore' },
+  { city: 'Tokyo',       tz: 'Asia/Tokyo' },
+  { city: 'Sydney',      tz: 'Australia/Sydney' },
+  { city: 'Auckland',    tz: 'Pacific/Auckland' },
+];
+
+// Build timezone list from Intl API
+const ALL_TZ = Intl.supportedValuesOf
+  ? Intl.supportedValuesOf('timeZone')
+  : WORLD_CITIES.map(c => c.tz);
+
+function getOffset(tz, date) {
+  try {
+    const fmt = new Intl.DateTimeFormat('en', { timeZone: tz, timeZoneName: 'shortOffset' });
+    const parts = fmt.formatToParts(date);
+    const off = parts.find(p => p.type === 'timeZoneName');
+    return off ? off.value : '';
+  } catch { return ''; }
+}
+
+function populateSelects() {
+  const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const opts = ALL_TZ.map(tz => `<option value="${tz}" ${tz === userTz ? 'selected' : ''}>${tz.replace(/_/g,' ')}</option>`).join('');
+  document.getElementById('tzFrom').innerHTML = opts;
+  // Default "To" = UTC
+  const toOpts = ALL_TZ.map(tz => `<option value="${tz}" ${tz === 'UTC' ? 'selected' : ''}>${tz.replace(/_/g,' ')}</option>`).join('');
+  document.getElementById('tzTo').innerHTML = toOpts;
+}
+
+function setNow() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  document.getElementById('inputDateTime').value = local.toISOString().slice(0, 16);
+}
+
+function convert() {
+  const dtVal = document.getElementById('inputDateTime').value;
+  const tzFrom = document.getElementById('tzFrom').value;
+  const tzTo   = document.getElementById('tzTo').value;
+
+  if (!dtVal) {
+    document.getElementById('resultTime').textContent = '—';
+    document.getElementById('resultDate').textContent = '';
+    document.getElementById('resultOffset').textContent = '';
+    return;
+  }
+
+  try {
+    // Parse input as time in tzFrom
+    // Use a trick: format a UTC date as if it were tzFrom, find offset
+    const naive = new Date(dtVal); // treated as local
+    // Get the UTC equivalent for the given datetime in tzFrom
+    const tzFromDate = new Date(dtVal + ':00');
+    // We'll use Intl to display the result in tzTo
+    const timeFmt = new Intl.DateTimeFormat('en-US', {
+      timeZone: tzTo,
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false,
+    });
+    const dateFmt = new Intl.DateTimeFormat('en-US', {
+      timeZone: tzTo,
+      weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
+    });
+
+    // Convert: interpret input as tzFrom
+    const inputMs = tzFromDate.getTime();
+    // Offset of tzFrom at inputMs
+    const fromOffset = getIANAOffset(tzFrom, tzFromDate);
+    const toOffset   = getIANAOffset(tzTo,   tzFromDate);
+    const utcMs = inputMs - fromOffset * 60000;
+    const result = new Date(utcMs);
+
+    document.getElementById('resultTime').textContent = timeFmt.format(result);
+    document.getElementById('resultDate').textContent = dateFmt.format(result);
+
+    const fromOff = getOffset(tzFrom, result);
+    const toOff   = getOffset(tzTo, result);
+    document.getElementById('resultOffset').textContent = `${tzFrom} (${fromOff}) → ${tzTo} (${toOff})`;
+  } catch (e) {
+    document.getElementById('resultTime').textContent = 'Error';
+    document.getElementById('resultDate').textContent = e.message;
+  }
+}
+
+function getIANAOffset(tz, date) {
+  // Returns offset in minutes (positive = ahead of UTC)
+  const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+  const tzDate  = new Date(date.toLocaleString('en-US', { timeZone: tz }));
+  return (tzDate - utcDate) / 60000;
+}
+
+function renderWorldClock() {
+  const grid = document.getElementById('worldGrid');
+  const now = new Date();
+  grid.innerHTML = WORLD_CITIES.map(c => {
+    const time = now.toLocaleTimeString('en-US', { timeZone: c.tz, hour: '2-digit', minute: '2-digit', hour12: false });
+    const off  = getOffset(c.tz, now);
+    return `<div class="world-card" onclick="setTzTo('${c.tz}')">
+      <div class="world-city">${c.city}</div>
+      <div class="world-time">${time}</div>
+      <div class="world-offset">${off}</div>
+    </div>`;
+  }).join('');
+}
+
+function setTzTo(tz) {
+  document.getElementById('tzTo').value = tz;
+  convert();
+}
+
+populateSelects();
+setNow();
+convert();
+renderWorldClock();
+
+document.getElementById('inputDateTime').addEventListener('input', convert);
+document.getElementById('tzFrom').addEventListener('change', convert);
+document.getElementById('tzTo').addEventListener('change', convert);
+document.getElementById('btnNow').addEventListener('click', () => { setNow(); convert(); });
+document.getElementById('btnSwap').addEventListener('click', () => {
+  const a = document.getElementById('tzFrom').value;
+  const b = document.getElementById('tzTo').value;
+  document.getElementById('tzFrom').value = b;
+  document.getElementById('tzTo').value = a;
+  convert();
+});
+
+// Refresh world clock every 30s
+setInterval(renderWorldClock, 30000);
+</script>
+</body>
+</html>

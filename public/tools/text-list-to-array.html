@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Text List to Array Converter — Convert to JS, Python, JSON | Simple ToolBox</title>
+  <meta name="description" content="Convert a plain text list (one item per line) into a JavaScript, Python, PHP, Ruby, or JSON array instantly. Choose quote style and copy the code." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/text-list-to-array" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/text-list-to-array.html" />
+  <meta property="og:title" content="Text List to Array Converter — JS, Python, JSON | Simple ToolBox" />
+  <meta property="og:description" content="Turn a plain text list into a JavaScript, Python, PHP, Ruby, or JSON array. Instant output, copy in one click." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Text List to Array",
+  "description": "Convert a plain text list (one item per line) into a JavaScript, Python, PHP, Ruby, or JSON array instantly. Choose quote style and copy the code.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/text-list-to-array"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which languages are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JavaScript, Python, PHP, Ruby, and JSON. The array syntax differs slightly between languages — for example Python and JavaScript use the same bracket syntax but PHP and Ruby differ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I choose single or double quotes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the Quote dropdown to switch between single and double quotes. JSON always uses double quotes regardless of the setting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to empty lines?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By default empty lines are skipped. Uncheck 'Skip empty lines' to include them as empty string items."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it handle special characters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Quotes and backslashes inside items are automatically escaped for the selected language."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .opts-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .opts-row label { font-size: 13px; color: var(--ds-color-text-secondary); }
+    .opts-row select { padding: 7px 10px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-size: 13px; }
+    .lang-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .lang-btn { padding: 6px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; }
+    .lang-btn.active { border-color: var(--ds-color-accent, #5e6ad2); color: var(--ds-color-text-primary); background: rgba(94,106,210,0.15); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Text List to Array <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔤</div><h1 class="ds-tool-header__title">Text List to Array Converter</h1></div><p class="ds-tool-header__desc">Paste a plain list — one item per line — and get it as a JavaScript, Python, PHP, Ruby, or JSON array instantly. Choose single or double quotes and copy the result.</p><div class="ds-tool-tag-row"><span class="ds-tag">array</span><span class="ds-tag">list</span><span class="ds-tag">convert</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Text List (one item per line)</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button></div></div>
+    <textarea class="io-textarea ds-tool-textarea" id="inputText" rows="7" placeholder="apple&#10;banana&#10;cherry&#10;date" spellcheck="false"></textarea>
+    <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="statCount">0 items</span></div>
+  </div>
+  <div class="lang-group">
+    <button class="lang-btn active" data-lang="js">JavaScript</button>
+    <button class="lang-btn" data-lang="python">Python</button>
+    <button class="lang-btn" data-lang="php">PHP</button>
+    <button class="lang-btn" data-lang="ruby">Ruby</button>
+    <button class="lang-btn" data-lang="json">JSON</button>
+  </div>
+  <div class="opts-row">
+    <label>Quote: <select id="quoteStyle"><option value="double">Double "…"</option><option value="single">Single '…'</option></select></label>
+    <label><input type="checkbox" id="chkTrim" checked /> Trim whitespace</label>
+    <label><input type="checkbox" id="chkSkipEmpty" checked /> Skip empty lines</label>
+  </div>
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label" id="outLabel">JavaScript Array</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnCopy">Copy</button></div></div>
+    <textarea class="io-textarea ds-tool-textarea" id="outputText" rows="7" readonly></textarea>
+  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Text List to Array?</h2>
+    <p>Text List to Array converts a plain text list — one item per line — into an array literal in the programming language of your choice. It supports JavaScript, Python, PHP, Ruby, and JSON, with options for quote style and whitespace handling.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Text List to Array</h2>
+    <ol>
+      <li>Paste your list (one item per line) into the input area.</li>
+      <li>Select the target language: JavaScript, Python, PHP, Ruby, or JSON.</li>
+      <li>Choose single or double quotes.</li>
+      <li>Toggle &#x27;Trim whitespace&#x27; and &#x27;Skip empty lines&#x27; as needed.</li>
+      <li>Click Copy to copy the array literal.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="csv-column-extractor.html" class="ds-related-card"><span class="ds-related-icon">📋</span><div><div class="ds-related-name">CSV Column Extractor</div><div class="ds-related-desc">Extract a single column from CSV by name or index</div></div></a>
+    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🧾</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
+    <a href="string-escape.html" class="ds-related-card"><span class="ds-related-icon">✏️</span><div><div class="ds-related-name">String Escape / Unescape</div><div class="ds-related-desc">Escape or unescape strings for JSON, JavaScript and HTML</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Array Conversion</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">apple
+banana
+cherry</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">[&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]  (JavaScript, double quotes)</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Convert a list of product names into a JavaScript array for a front-end component</li>
+          <li>Turn a copied list of IDs into a Python list literal</li>
+          <li>Build a JSON array from a plain text item list</li>
+          <li>Quickly scaffold test data arrays from a spreadsheet column</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Saves time when scaffolding arrays from copied lists or spreadsheet data.</li>
+          <li>Handles quote escaping automatically so you don&#x27;t need to do it manually.</li>
+          <li>Supports five languages with a single click to switch between them.</li>
+          <li>Runs locally — no text is sent to any server.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Which languages are supported?</strong><p>JavaScript, Python, PHP, Ruby, and JSON. The array syntax differs slightly between languages — for example Python and JavaScript use the same bracket syntax but PHP and Ruby differ.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I choose single or double quotes?</strong><p>Yes. Use the Quote dropdown to switch between single and double quotes. JSON always uses double quotes regardless of the setting.</p></div>
+        <div class="ds-seo-faq-item"><strong>What happens to empty lines?</strong><p>By default empty lines are skipped. Uncheck &#x27;Skip empty lines&#x27; to include them as empty string items.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it handle special characters?</strong><p>Yes. Quotes and backslashes inside items are automatically escaped for the selected language.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  const SAMPLE = 'apple\nbanana\ncherry\ndate\nelderberry';
+  let lang = 'js';
+  const LANG_LABELS = { js: 'JavaScript Array', python: 'Python List', php: 'PHP Array', ruby: 'Ruby Array', json: 'JSON Array' };
+
+  function escape(s, q) { return q === '"' ? s.replace(/\\/g,'\\\\').replace(/"/g,'\\"') : s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+
+  function convert() {
+    const raw = document.getElementById('inputText').value;
+    const trim = document.getElementById('chkTrim').checked;
+    const skipEmpty = document.getElementById('chkSkipEmpty').checked;
+    const q = document.getElementById('quoteStyle').value === 'single' ? "'" : '"';
+    let items = raw.split(/\r?\n/);
+    if (trim) items = items.map(s => s.trim());
+    if (skipEmpty) items = items.filter(s => s.length > 0);
+    document.getElementById('statCount').textContent = `${items.length} items`;
+    document.getElementById('outLabel').textContent = LANG_LABELS[lang] || 'Output';
+    const quoted = items.map(s => `${q}${escape(s, q)}${q}`);
+    let out = '';
+    if (lang === 'js') out = `[${quoted.length <= 4 ? quoted.join(', ') : '\n  ' + quoted.join(',\n  ') + '\n'}]`;
+    else if (lang === 'python') out = `[${quoted.length <= 4 ? quoted.join(', ') : '\n  ' + quoted.join(',\n  ') + '\n'}]`;
+    else if (lang === 'php') out = `[${quoted.length <= 4 ? quoted.join(', ') : '\n  ' + quoted.join(',\n  ') + '\n'}]`;
+    else if (lang === 'ruby') out = `[${quoted.length <= 4 ? quoted.join(', ') : '\n  ' + quoted.join(",\n  ") + '\n'}]`;
+    else if (lang === 'json') out = JSON.stringify(items, null, 2);
+    document.getElementById('outputText').value = out;
+  }
+
+  document.getElementById('inputText').addEventListener('input', convert);
+  document.getElementById('quoteStyle').addEventListener('change', convert);
+  document.getElementById('chkTrim').addEventListener('change', convert);
+  document.getElementById('chkSkipEmpty').addEventListener('change', convert);
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      lang = btn.dataset.lang;
+      convert();
+    });
+  });
+  document.getElementById('btnSample').addEventListener('click', () => { document.getElementById('inputText').value = SAMPLE; convert(); });
+  document.getElementById('btnClear').addEventListener('click', () => { document.getElementById('inputText').value = ''; convert(); });
+  document.getElementById('btnPaste').addEventListener('click', async () => { try { document.getElementById('inputText').value = await navigator.clipboard.readText(); convert(); } catch {} });
+  document.getElementById('btnCopy').addEventListener('click', () => {
+    const val = document.getElementById('outputText').value;
+    if (!val) return;
+    navigator.clipboard.writeText(val).then(() => { const btn = document.getElementById('btnCopy'); btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 1500); }).catch(() => {});
+  });
+  convert();
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

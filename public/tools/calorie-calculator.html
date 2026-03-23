@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Calorie Calculator — BMR and Daily Calorie Needs (TDEE) | Simple ToolBox</title>
+  <meta name="description" content="Calculate your Basal Metabolic Rate (BMR) and daily calorie needs (TDEE) using the Mifflin-St Jeor formula. Supports metric and imperial units. Browser-only." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/calorie-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/calorie-calculator.html" />
+  <meta property="og:title" content="Calorie Calculator — BMR and Daily Calorie Needs (TDEE) | Simple ToolBox" />
+  <meta property="og:description" content="Find your BMR and TDEE based on age, height, weight and activity level. Metric and imperial units supported." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Calorie Calculator",
+  "description": "Calculate your Basal Metabolic Rate (BMR) and daily calorie needs (TDEE) using the Mifflin-St Jeor formula. Supports metric and imperial units. Browser-only.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/calorie-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is BMR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basal Metabolic Rate (BMR) is the number of calories your body burns at complete rest to maintain basic functions like breathing and circulation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is TDEE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Total Daily Energy Expenditure (TDEE) is BMR multiplied by an activity factor. It represents the total calories you burn in a day including exercise and movement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which formula does this use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Mifflin-St Jeor equation, which is considered the most accurate general-population BMR formula for most adults."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "These are population-average estimates. Individual metabolism varies due to genetics, muscle mass, hormones, and other factors. Use results as a starting point."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .unit-toggle { display: flex; gap: 0; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; width: fit-content; }
+    .unit-btn { padding: 7px 20px; background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; border: none; }
+    .unit-btn.active { background: var(--ds-color-accent,#5e6ad2); color: #fff; }
+    .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 12px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .field input, .field select { padding: 10px 14px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-size: 15px; }
+    .sex-row { display: flex; gap: 10px; }
+    .sex-btn { flex: 1; padding: 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 14px; cursor: pointer; text-align: center; }
+    .sex-btn.active { border-color: var(--ds-color-accent,#5e6ad2); color: var(--ds-color-text-primary); background: rgba(94,106,210,0.15); }
+    .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+    .result-card { padding: 20px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); }
+    .result-card__label { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .result-card__value { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+    .result-card__sub { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 4px; }
+    .result-card--accent { border-color: var(--ds-color-accent,#5e6ad2); }
+    .goal-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .goal-table th { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--ds-color-border); font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .goal-table td { padding: 10px 12px; border-bottom: 1px solid var(--ds-color-border); }
+    .empty-state { text-align: center; color: var(--ds-color-text-muted); padding: 32px; font-size: 14px; }
+    .disclaimer { font-size: 12px; color: var(--ds-color-text-muted); padding: 12px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Calorie Calculator <span class="ds-tool-badge">calculator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔥</div><h1 class="ds-tool-header__title">Calorie Calculator</h1></div><p class="ds-tool-header__desc">Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) using the Mifflin-St Jeor equation. See calorie targets for weight loss, maintenance, and gain.</p><div class="ds-tool-tag-row"><span class="ds-tag">bmr</span><span class="ds-tag">tdee</span><span class="ds-tag">calories</span><span class="ds-tag">health</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Your Details</span></div>
+    <div style="padding:20px 0;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:13px;color:var(--ds-color-text-muted)">Units:</span>
+        <div class="unit-toggle">
+          <button class="unit-btn active" id="btnMetric">Metric</button>
+          <button class="unit-btn" id="btnImperial">Imperial</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--ds-color-text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px">Sex</div>
+        <div class="sex-row">
+          <button class="sex-btn active" id="btnMale">♂ Male</button>
+          <button class="sex-btn" id="btnFemale">♀ Female</button>
+        </div>
+      </div>
+      <div class="input-grid">
+        <div class="field"><label>Age (years)</label><input type="number" id="age" min="10" max="100" placeholder="30" /></div>
+        <div class="field" id="fldHeight"><label id="lblHeight">Height (cm)</label><input type="number" id="heightCm" min="100" max="250" placeholder="175" /></div>
+        <div class="field" id="fldHeightFt" style="display:none"><label>Height (ft)</label><input type="number" id="heightFt" min="3" max="8" step="1" placeholder="5" /></div>
+        <div class="field" id="fldHeightIn" style="display:none"><label>Height (in)</label><input type="number" id="heightIn" min="0" max="11" step="1" placeholder="9" /></div>
+        <div class="field"><label id="lblWeight">Weight (kg)</label><input type="number" id="weight" min="20" max="300" placeholder="70" /></div>
+      </div>
+      <div class="field">
+        <label>Activity level</label>
+        <select id="activity">
+          <option value="1.2">Sedentary — little or no exercise</option>
+          <option value="1.375">Lightly active — light exercise 1–3 days/week</option>
+          <option value="1.55" selected>Moderately active — moderate exercise 3–5 days/week</option>
+          <option value="1.725">Very active — hard exercise 6–7 days/week</option>
+          <option value="1.9">Extra active — very hard exercise or physical job</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div id="resultArea"><div class="empty-state">Enter your details above to calculate calorie needs.</div></div>
+
+  <p class="disclaimer">These estimates are based on population averages using the Mifflin-St Jeor equation. Individual metabolism varies. Consult a healthcare professional before making significant dietary changes.</p>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Calorie Calculator?</h2>
+    <p>Calorie Calculator computes your Basal Metabolic Rate (BMR) — the calories burned at rest — and your Total Daily Energy Expenditure (TDEE) based on your activity level. It then shows suggested calorie targets for weight loss, maintenance, and gain.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Calorie Calculator</h2>
+    <ol>
+      <li>Select Metric or Imperial units.</li>
+      <li>Choose your sex and enter your age, height, and weight.</li>
+      <li>Select the activity level that best matches your typical week.</li>
+      <li>Read your BMR and TDEE, then check the goal table for calorie targets.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="bmi-calculator.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">BMI Calculator</div><div class="ds-related-desc">Calculate Body Mass Index with Metric or Imperial units</div></div></a>
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Calorie Needs</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Male, 30 years, 175 cm, 75 kg, moderately active</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">BMR: 1,781 kcal · TDEE: 2,760 kcal · Weight loss (−0.5 kg/wk): 2,210 kcal</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Find your maintenance calories before starting a diet</li>
+          <li>Calculate the calorie deficit needed to lose 0.5 kg per week</li>
+          <li>Estimate TDEE after changing your activity level</li>
+          <li>Check calorie targets for a lean bulk or cut phase</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Uses the Mifflin-St Jeor equation — the most widely validated BMR formula.</li>
+          <li>Shows calorie targets for five different goals in one table.</li>
+          <li>Supports both metric and imperial units.</li>
+          <li>Runs entirely in your browser — no personal data is sent anywhere.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is BMR?</strong><p>Basal Metabolic Rate (BMR) is the number of calories your body burns at complete rest to maintain basic functions like breathing and circulation.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is TDEE?</strong><p>Total Daily Energy Expenditure (TDEE) is BMR multiplied by an activity factor. It represents the total calories you burn in a day including exercise and movement.</p></div>
+        <div class="ds-seo-faq-item"><strong>Which formula does this use?</strong><p>The Mifflin-St Jeor equation, which is considered the most accurate general-population BMR formula for most adults.</p></div>
+        <div class="ds-seo-faq-item"><strong>How accurate is it?</strong><p>These are population-average estimates. Individual metabolism varies due to genetics, muscle mass, hormones, and other factors. Use results as a starting point.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  let sex = 'male', metric = true;
+
+  const inputs = ['age','heightCm','heightFt','heightIn','weight','activity'];
+
+  document.getElementById('btnMale').addEventListener('click', () => { sex='male'; document.getElementById('btnMale').classList.add('active'); document.getElementById('btnFemale').classList.remove('active'); calc(); });
+  document.getElementById('btnFemale').addEventListener('click', () => { sex='female'; document.getElementById('btnFemale').classList.add('active'); document.getElementById('btnMale').classList.remove('active'); calc(); });
+  document.getElementById('btnMetric').addEventListener('click', () => { metric=true; setUnits(); calc(); });
+  document.getElementById('btnImperial').addEventListener('click', () => { metric=false; setUnits(); calc(); });
+  inputs.forEach(id => { const el = document.getElementById(id); if(el) el.addEventListener('input', calc); });
+
+  function setUnits() {
+    document.getElementById('btnMetric').classList.toggle('active', metric);
+    document.getElementById('btnImperial').classList.toggle('active', !metric);
+    document.getElementById('fldHeight').style.display = metric ? '' : 'none';
+    document.getElementById('fldHeightFt').style.display = metric ? 'none' : '';
+    document.getElementById('fldHeightIn').style.display = metric ? 'none' : '';
+    document.getElementById('lblWeight').textContent = metric ? 'Weight (kg)' : 'Weight (lbs)';
+  }
+
+  function calc() {
+    const age = parseFloat(document.getElementById('age').value);
+    const weightRaw = parseFloat(document.getElementById('weight').value);
+    const act = parseFloat(document.getElementById('activity').value);
+
+    let heightCm, weightKg;
+    if (metric) {
+      heightCm = parseFloat(document.getElementById('heightCm').value);
+      weightKg = weightRaw;
+    } else {
+      const ft = parseFloat(document.getElementById('heightFt').value) || 0;
+      const inch = parseFloat(document.getElementById('heightIn').value) || 0;
+      heightCm = (ft * 12 + inch) * 2.54;
+      weightKg = weightRaw * 0.453592;
+    }
+
+    if (isNaN(age) || isNaN(heightCm) || isNaN(weightKg) || isNaN(act) || heightCm <= 0 || weightKg <= 0 || age <= 0) {
+      document.getElementById('resultArea').innerHTML = '<div class="empty-state">Enter your details above to calculate calorie needs.</div>';
+      return;
+    }
+
+    // Mifflin-St Jeor
+    const bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + (sex === 'male' ? 5 : -161);
+    const tdee = bmr * act;
+
+    document.getElementById('resultArea').innerHTML = `
+      <div class="result-grid">
+        <div class="result-card"><div class="result-card__label">BMR</div><div class="result-card__value">${Math.round(bmr)}</div><div class="result-card__sub">kcal/day at rest</div></div>
+        <div class="result-card result-card--accent"><div class="result-card__label">TDEE (Maintenance)</div><div class="result-card__value">${Math.round(tdee)}</div><div class="result-card__sub">kcal/day for your activity</div></div>
+      </div>
+      <section class="ds-card"><div class="ds-card__body" style="overflow-x:auto"><table class="goal-table">
+        <thead><tr><th>Goal</th><th>Daily Calories</th><th>Weekly Change</th></tr></thead>
+        <tbody>
+          <tr><td>Aggressive loss (−1 kg/week)</td><td>${Math.round(tdee - 1100)}</td><td>−1 kg (−2.2 lb)</td></tr>
+          <tr><td>Moderate loss (−0.5 kg/week)</td><td>${Math.round(tdee - 550)}</td><td>−0.5 kg (−1.1 lb)</td></tr>
+          <tr><td style="font-weight:600">Maintenance</td><td style="font-weight:600">${Math.round(tdee)}</td><td>0</td></tr>
+          <tr><td>Moderate gain (+0.5 kg/week)</td><td>${Math.round(tdee + 550)}</td><td>+0.5 kg (+1.1 lb)</td></tr>
+          <tr><td>Aggressive gain (+1 kg/week)</td><td>${Math.round(tdee + 1100)}</td><td>+1 kg (+2.2 lb)</td></tr>
+        </tbody>
+      </table></div></section>`;
+  }
+  setUnits();
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

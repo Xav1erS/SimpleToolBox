@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>All Tools — Simple ToolBox</title>
-  <meta name="description" content="Browse all 81 free browser-based tools on Simple ToolBox. Search, filter by category, and jump between text, image, developer, design, calculator, and reference tools." />
+  <meta name="description" content="Browse all 124 free browser-based tools on Simple ToolBox. Search, filter by category, and jump between text, image, developer, calculator, design, and reference tools." />
   <link rel="canonical" href="https://simpletoolbox.dev/all-tools" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/all-tools.html" />
   <meta property="og:title" content="All Tools — Simple ToolBox" />
-  <meta property="og:description" content="Browse all 81 free browser-based tools. Search and filter by encode, format, convert, generate, text, image, design, reference, and calculator." />
+  <meta property="og:description" content="Browse all 124 free browser-based tools. Search and filter by encode, format, convert, generate, text, image, design, reference, and calculator." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles/design-system.css?v=20" />
@@ -21,6 +21,11 @@
     .page-header { max-width: 1100px; margin: 0 auto; padding: 48px 24px 0; }
     .page-title { font-size: var(--ds-font-size-h1); font-weight: 700; line-height: 1.1; letter-spacing: -0.045em; margin-bottom: 8px; }
     .page-sub { font-size: var(--ds-font-size-body-lg); color: var(--ds-color-text-secondary); line-height: var(--ds-line-height-relaxed); margin-bottom: 32px; }
+
+    /* Hub links row */
+    .hub-links { max-width: 1100px; margin: 0 auto; padding: 0 24px 20px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .hub-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border: 1px solid var(--ds-color-border); border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--ds-color-text-secondary); text-decoration: none; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+    .hub-link:hover { border-color: rgba(255,255,255,0.25); color: var(--ds-color-text-primary); background: var(--ds-color-surface); }
 
     /* Filter bar */
     .filter-bar { max-width: 1100px; margin: 0 auto; padding: 0 24px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -103,6 +108,13 @@
 <div class="page-header">
   <h1 class="page-title">All Tools</h1>
   <p class="page-sub">Search across all browser-based tools, jump by category, and find the right utility fast. Everything runs locally on your device.</p>
+</div>
+
+<div class="hub-links">
+  <a href="image-tools.html" class="hub-link">🖼️ Image Tools</a>
+  <a href="developer-tools.html" class="hub-link">🛠️ Developer Tools</a>
+  <a href="text-tools.html" class="hub-link">✍️ Text Tools</a>
+  <a href="calculator-tools.html" class="hub-link">🧮 Calculator Tools</a>
 </div>
 
 <div class="filter-bar">

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Age Calculator — Exact Age in Years, Months and Days | Simple ToolBox</title>
+  <meta name="description" content="Calculate your exact age in years, months, and days from your date of birth. Also shows total days lived, weeks, and days until your next birthday." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/age-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/age-calculator.html" />
+  <meta property="og:title" content="Age Calculator — Exact Age in Years, Months and Days | Simple ToolBox" />
+  <meta property="og:description" content="Enter your date of birth and get your exact age in years, months, days, weeks and total days. Includes next birthday countdown." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Age Calculator",
+  "description": "Calculate your exact age in years, months, and days from your date of birth. Also shows total days lived, weeks, and days until your next birthday.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/age-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is the age calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The calculator counts full calendar years, months, and days from the date of birth to the reference date, accounting for varying month lengths."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I calculate age as of a past or future date?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Change the 'Calculate as of' date to any past or future date to see what the age was or will be on that day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the next birthday calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The next birthday is the nearest future occurrence of the birth month and day. If today is the birthday, it shows 'Today!'."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this account for leap years?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The calculator uses standard JavaScript date arithmetic which handles leap years correctly."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .date-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .date-row input[type="date"] { padding: 10px 14px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-size: 15px; color-scheme: dark; }
+    .date-row label { font-size: 13px; color: var(--ds-color-text-secondary); }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .stat-card { padding: 20px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); }
+    .stat-card__label { display: block; margin-bottom: 6px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .stat-card__value { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+    .stat-card__sub { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 4px; }
+    .age-headline { font-size: 20px; font-weight: 700; padding: 20px 24px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); letter-spacing: -0.3px; }
+    .age-headline span { color: var(--ds-color-text-muted); font-weight: 400; font-size: 16px; }
+    .empty-state { text-align: center; color: var(--ds-color-text-muted); padding: 32px; font-size: 14px; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Age Calculator <span class="ds-tool-badge">calculator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📅</div><h1 class="ds-tool-header__title">Age Calculator</h1></div><p class="ds-tool-header__desc">Enter a date of birth and get the exact age in years, months, and days. Also shows the total days and weeks lived, and how many days until the next birthday.</p><div class="ds-tool-tag-row"><span class="ds-tag">age</span><span class="ds-tag">birthday</span><span class="ds-tag">date</span><span class="ds-tag">calculator</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Date of Birth</span></div>
+    <div style="padding: 20px 0">
+      <div class="date-row">
+        <label>Date of birth</label>
+        <input type="date" id="dob" max="" />
+        <label style="margin-left:16px">Calculate as of</label>
+        <input type="date" id="asOf" />
+      </div>
+    </div>
+  </div>
+
+  <div id="resultArea"><div class="empty-state">Enter a date of birth above to calculate age.</div></div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Age Calculator?</h2>
+    <p>Age Calculator computes the exact number of years, months, and days between a date of birth and a reference date (today by default). It also shows the total days and weeks lived, and how many days remain until the next birthday.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Age Calculator</h2>
+    <ol>
+      <li>Enter the date of birth using the date picker.</li>
+      <li>The reference date defaults to today — change it to calculate age as of any date.</li>
+      <li>View the exact age broken down into years, months, and days.</li>
+      <li>Check the stats cards for total months, weeks, days lived, and next birthday countdown.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="date-calculator.html" class="ds-related-card"><span class="ds-related-icon">📅</span><div><div class="ds-related-name">Date Calculator</div><div class="ds-related-desc">Calculate date differences, business days, and exact age</div></div></a>
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+    <a href="countdown.html" class="ds-related-card"><span class="ds-related-icon">⏱️</span><div><div class="ds-related-name">Countdown Timer</div><div class="ds-related-desc">Create countdown timers to any future date and time</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Age Calculation</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Date of birth: 1990-06-15, as of: 2026-03-23</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Age: 35 years, 9 months, 8 days | 13,066 days lived | Next birthday in 83 days</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Calculate your exact current age for a medical or legal form</li>
+          <li>Find out how many days old you are</li>
+          <li>Check how many days until your next birthday</li>
+          <li>Calculate a child&#x27;s age in months and days for a pediatric visit</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Gives the exact age in years, months, and days — not just years.</li>
+          <li>Useful for forms that ask for age in months, or for medical and legal contexts.</li>
+          <li>The &#x27;as of&#x27; date lets you calculate historical or future ages.</li>
+          <li>Runs entirely in your browser — no data is sent anywhere.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How is the age calculated?</strong><p>The calculator counts full calendar years, months, and days from the date of birth to the reference date, accounting for varying month lengths.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I calculate age as of a past or future date?</strong><p>Yes. Change the &#x27;Calculate as of&#x27; date to any past or future date to see what the age was or will be on that day.</p></div>
+        <div class="ds-seo-faq-item"><strong>How is the next birthday calculated?</strong><p>The next birthday is the nearest future occurrence of the birth month and day. If today is the birthday, it shows &#x27;Today!&#x27;.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does this account for leap years?</strong><p>Yes. The calculator uses standard JavaScript date arithmetic which handles leap years correctly.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  const dobInput = document.getElementById('dob');
+  const asOfInput = document.getElementById('asOf');
+  const resultArea = document.getElementById('resultArea');
+
+  // Set today as default for asOf, and max for dob
+  function toDateStr(d) { return d.toISOString().slice(0,10); }
+  const today = new Date(); today.setHours(0,0,0,0);
+  asOfInput.value = toDateStr(today);
+  dobInput.max = toDateStr(today);
+
+  function calcAge(dob, asOf) {
+    let years = asOf.getFullYear() - dob.getFullYear();
+    let months = asOf.getMonth() - dob.getMonth();
+    let days = asOf.getDate() - dob.getDate();
+    if (days < 0) { months--; const prevMonth = new Date(asOf.getFullYear(), asOf.getMonth(), 0); days += prevMonth.getDate(); }
+    if (months < 0) { years--; months += 12; }
+    return { years, months, days };
+  }
+
+  function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
+
+  function nextBirthday(dob, asOf) {
+    let next = new Date(asOf.getFullYear(), dob.getMonth(), dob.getDate());
+    if (next <= asOf) next = new Date(asOf.getFullYear() + 1, dob.getMonth(), dob.getDate());
+    return daysBetween(asOf, next);
+  }
+
+  function update() {
+    const dobVal = dobInput.value;
+    const asOfVal = asOfInput.value;
+    if (!dobVal || !asOfVal) { resultArea.innerHTML = '<div class="empty-state">Enter a date of birth above to calculate age.</div>'; return; }
+    const dob = new Date(dobVal + 'T00:00:00');
+    const asOf = new Date(asOfVal + 'T00:00:00');
+    if (dob > asOf) { resultArea.innerHTML = '<div class="empty-state">Date of birth must be before the reference date.</div>'; return; }
+    const { years, months, days } = calcAge(dob, asOf);
+    const totalDays = daysBetween(dob, asOf);
+    const totalWeeks = Math.floor(totalDays / 7);
+    const nextBday = nextBirthday(dob, asOf);
+    resultArea.innerHTML = `
+      <div class="age-headline">Age: <strong>${years} years</strong>, ${months} months, ${days} days</div>
+      <div class="stats-grid">
+        <div class="stat-card"><span class="stat-card__label">Years</span><div class="stat-card__value">${years}</div></div>
+        <div class="stat-card"><span class="stat-card__label">Months</span><div class="stat-card__value">${years * 12 + months}</div><div class="stat-card__sub">total months</div></div>
+        <div class="stat-card"><span class="stat-card__label">Weeks</span><div class="stat-card__value">${totalWeeks.toLocaleString()}</div><div class="stat-card__sub">total weeks lived</div></div>
+        <div class="stat-card"><span class="stat-card__label">Days</span><div class="stat-card__value">${totalDays.toLocaleString()}</div><div class="stat-card__sub">total days lived</div></div>
+        <div class="stat-card"><span class="stat-card__label">Next Birthday</span><div class="stat-card__value">${nextBday === 0 ? '🎂 Today!' : nextBday}</div>${nextBday > 0 ? '<div class="stat-card__sub">days away</div>' : ''}</div>
+      </div>`;
+  }
+
+  dobInput.addEventListener('change', update);
+  asOfInput.addEventListener('change', update);
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Percentage Calculator — What is X% of Y, Percentage Change | Simple ToolBox</title>
+  <meta name="description" content="Calculate percentages instantly. Find what percent of a number is, what percentage X is of Y, or the percentage change between two values. Fast and browser-only." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/percentage-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/percentage-calculator.html" />
+  <meta property="og:title" content="Percentage Calculator — What is X% of Y, Percentage Change | Simple ToolBox" />
+  <meta property="og:description" content="Three percentage calculators in one: X% of Y, X is what % of Y, and percentage change. Instant results." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Percentage Calculator",
+  "description": "Calculate percentages instantly. Find what percent of a number is, what percentage X is of Y, or the percentage change between two values. Fast and browser-only.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/percentage-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate 20% of 150?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the first calculator: enter 20 in the percent field and 150 in the number field. The result is 30."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find what percentage 30 is of 150?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the second calculator: enter 30 as X and 150 as Y. The result is 20%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is percentage change?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Percentage change measures how much a value increased or decreased relative to its original value. A positive result means growth; a negative result means a decrease."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it handle decimals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All three calculators accept decimal inputs and display up to six decimal places when needed."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .calc-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
+    .calc-card__title { font-size: 13px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 0; }
+    .calc-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 15px; }
+    .calc-row input { width: 90px; padding: 8px 10px; background: var(--ds-color-bg); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-size: 15px; text-align: right; }
+    .calc-row span { color: var(--ds-color-text-secondary); }
+    .calc-result { font-size: 28px; font-weight: 700; color: var(--ds-color-text-primary); letter-spacing: -0.5px; min-height: 36px; }
+    .calc-result.empty { color: var(--ds-color-text-muted); font-size: 16px; font-weight: 400; }
+    .copy-small { padding: 4px 10px; font-size: 12px; background: var(--ds-color-surface-strong, var(--ds-color-surface)); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); cursor: pointer; color: var(--ds-color-text-secondary); }
+    .copy-small:hover { color: var(--ds-color-text-primary); }
+    hr.calc-divider { border: none; border-top: 1px solid var(--ds-color-border); margin: 4px 0; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Percentage Calculator <span class="ds-tool-badge">calculator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔢</div><h1 class="ds-tool-header__title">Percentage Calculator</h1></div><p class="ds-tool-header__desc">Three calculators in one: find what X% of a number is, calculate what percentage one number is of another, or compute the percentage change between two values.</p><div class="ds-tool-tag-row"><span class="ds-tag">percent</span><span class="ds-tag">percentage change</span><span class="ds-tag">calculator</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <!-- Calculator 1: X% of Y -->
+  <div class="calc-card">
+    <p class="calc-card__title">What is X % of Y?</p>
+    <div class="calc-row">
+      <span>What is</span>
+      <input type="number" id="c1p" placeholder="%" step="any" />
+      <span>% of</span>
+      <input type="number" id="c1n" placeholder="number" step="any" />
+      <span>?</span>
+    </div>
+    <hr class="calc-divider" />
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="calc-result empty" id="r1">—</span>
+      <button class="copy-small" id="cp1">Copy</button>
+    </div>
+  </div>
+
+  <!-- Calculator 2: X is what % of Y -->
+  <div class="calc-card">
+    <p class="calc-card__title">X is what % of Y?</p>
+    <div class="calc-row">
+      <input type="number" id="c2x" placeholder="X" step="any" />
+      <span>is what % of</span>
+      <input type="number" id="c2y" placeholder="Y" step="any" />
+      <span>?</span>
+    </div>
+    <hr class="calc-divider" />
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="calc-result empty" id="r2">—</span>
+      <button class="copy-small" id="cp2">Copy</button>
+    </div>
+  </div>
+
+  <!-- Calculator 3: Percentage change -->
+  <div class="calc-card">
+    <p class="calc-card__title">Percentage change from X to Y</p>
+    <div class="calc-row">
+      <span>From</span>
+      <input type="number" id="c3x" placeholder="old value" step="any" />
+      <span>to</span>
+      <input type="number" id="c3y" placeholder="new value" step="any" />
+    </div>
+    <hr class="calc-divider" />
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="calc-result empty" id="r3">—</span>
+      <button class="copy-small" id="cp3">Copy</button>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Percentage Calculator?</h2>
+    <p>Percentage Calculator provides three instant calculators: find what X% of a number equals, determine what percentage one number is of another, and compute the percentage change between an old and new value. All three update instantly as you type.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Percentage Calculator</h2>
+    <ol>
+      <li>Choose the calculation type: percentage of a number, percentage ratio, or percentage change.</li>
+      <li>Enter the numbers in the appropriate fields.</li>
+      <li>The result updates instantly as you type.</li>
+      <li>Click Copy next to any result to copy it to your clipboard.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="bmi-calculator.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">BMI Calculator</div><div class="ds-related-desc">Calculate Body Mass Index with Metric or Imperial units</div></div></a>
+    <a href="loan-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏦</span><div><div class="ds-related-name">Loan Calculator</div><div class="ds-related-desc">Calculate monthly loan payments and amortization schedule</div></div></a>
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Percentage Calculations</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">What is 15% of 80?</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">12</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Calculate a tip or discount amount at a restaurant or shop</li>
+          <li>Find what percentage a sale price is off the original</li>
+          <li>Measure percentage growth between two revenue figures</li>
+          <li>Check what fraction of a total a value represents</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Three common percentage questions answered in one place.</li>
+          <li>Instant results — no need to press a button to calculate.</li>
+          <li>Copy result in one click for use in documents or spreadsheets.</li>
+          <li>Runs locally with no data sent anywhere.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How do I calculate 20% of 150?</strong><p>Use the first calculator: enter 20 in the percent field and 150 in the number field. The result is 30.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I find what percentage 30 is of 150?</strong><p>Use the second calculator: enter 30 as X and 150 as Y. The result is 20%.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is percentage change?</strong><p>Percentage change measures how much a value increased or decreased relative to its original value. A positive result means growth; a negative result means a decrease.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can it handle decimals?</strong><p>Yes. All three calculators accept decimal inputs and display up to six decimal places when needed.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  function fmt(n) {
+    if (!isFinite(n)) return null;
+    return n % 1 === 0 ? n.toString() : parseFloat(n.toFixed(6)).toString();
+  }
+
+  function setResult(id, val, suffix) {
+    const el = document.getElementById(id);
+    if (val === null) { el.textContent = '—'; el.className = 'calc-result empty'; }
+    else { el.textContent = val + (suffix || ''); el.className = 'calc-result'; }
+  }
+
+  function copyResult(id, btnId) {
+    const txt = document.getElementById(id).textContent;
+    if (!txt || txt === '—') return;
+    navigator.clipboard.writeText(txt).then(() => { const b = document.getElementById(btnId); b.textContent = 'Copied!'; setTimeout(() => b.textContent = 'Copy', 1500); }).catch(() => {});
+  }
+
+  function calc1() {
+    const p = parseFloat(document.getElementById('c1p').value);
+    const n = parseFloat(document.getElementById('c1n').value);
+    setResult('r1', (!isNaN(p) && !isNaN(n)) ? fmt(p / 100 * n) : null);
+  }
+  function calc2() {
+    const x = parseFloat(document.getElementById('c2x').value);
+    const y = parseFloat(document.getElementById('c2y').value);
+    setResult('r2', (!isNaN(x) && !isNaN(y) && y !== 0) ? fmt(x / y * 100) + '%' : null);
+  }
+  function calc3() {
+    const x = parseFloat(document.getElementById('c3x').value);
+    const y = parseFloat(document.getElementById('c3y').value);
+    if (isNaN(x) || isNaN(y) || x === 0) { setResult('r3', null); return; }
+    const ch = (y - x) / Math.abs(x) * 100;
+    const s = fmt(ch);
+    setResult('r3', s !== null ? (ch >= 0 ? '+' : '') + s + '%' : null);
+  }
+
+  ['c1p','c1n'].forEach(id => document.getElementById(id).addEventListener('input', calc1));
+  ['c2x','c2y'].forEach(id => document.getElementById(id).addEventListener('input', calc2));
+  ['c3x','c3y'].forEach(id => document.getElementById(id).addEventListener('input', calc3));
+  document.getElementById('cp1').addEventListener('click', () => copyResult('r1','cp1'));
+  document.getElementById('cp2').addEventListener('click', () => copyResult('r2','cp2'));
+  document.getElementById('cp3').addEventListener('click', () => copyResult('r3','cp3'));
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

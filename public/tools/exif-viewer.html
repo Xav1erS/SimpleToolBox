@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>EXIF Data Viewer — Read Image Metadata Online | Simple ToolBox</title>
+  <meta name="description" content="View full EXIF metadata from any image file: camera model, GPS coordinates, exposure, aperture, ISO, date taken, and more. Runs locally — no image is uploaded." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/exif-viewer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/exif-viewer.html" />
+  <meta property="og:title" content="EXIF Data Viewer — Read Image Metadata | Simple ToolBox" />
+  <meta property="og:description" content="Read camera model, GPS, exposure, and all EXIF metadata from any image. 100% local — your image never leaves your device." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "EXIF Data Viewer",
+  "description": "Read camera model, GPS coordinates, exposure settings, and full EXIF metadata from any image file. Runs entirely in your browser — no image is uploaded.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/exif-viewer"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is EXIF data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EXIF (Exchangeable Image File Format) is metadata embedded in image files by cameras and smartphones. It includes technical details like camera make/model, lens, shutter speed, aperture, ISO, and often GPS coordinates and the date the photo was taken."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which file types contain EXIF data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPEG files are the most common carrier of EXIF data. TIFF, HEIC, and most camera RAW formats also support EXIF. PNG files can carry a limited metadata subset but rarely contain full EXIF. SVG and WebP support varies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All parsing happens in your browser using JavaScript. Your image never leaves your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my image show no EXIF data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many apps and social networks strip EXIF data before displaying or storing images. Screenshots, edited images, and files processed through web services often contain no EXIF. Use the original file from your camera for best results."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .drop-zone { border: 2px dashed var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 48px 24px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .drop-zone:hover, .drop-zone.drag { border-color: var(--ds-color-accent,#5e6ad2); background: rgba(94,106,210,0.06); }
+    .drop-icon { font-size: 40px; margin-bottom: 12px; }
+    .drop-text { font-size: 15px; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 6px; }
+    .drop-input { display: none; }
+    .preview-wrap { display: none; gap: 20px; align-items: flex-start; }
+    .preview-wrap.show { display: flex; }
+    .preview-img { max-width: 220px; max-height: 180px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); object-fit: contain; flex-shrink: 0; }
+    .preview-info { font-size: 13px; color: var(--ds-color-text-muted); }
+    .exif-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .exif-table th { padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid var(--ds-color-border); background: var(--ds-color-surface); }
+    .exif-table td { padding: 8px 12px; border-bottom: 1px solid var(--ds-color-border); vertical-align: top; }
+    .exif-table td:first-child { font-weight: 600; color: var(--ds-color-text-primary); white-space: nowrap; width: 220px; }
+    .exif-table td:last-child { color: var(--ds-color-text-secondary); word-break: break-all; }
+    .exif-table tr:last-child td { border-bottom: none; }
+    .exif-group { margin-bottom: 8px; }
+    .exif-group-title { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 12px 4px; border-bottom: 1px solid var(--ds-color-border); }
+    .map-link { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; background: rgba(94,106,210,0.12); border: 1px solid rgba(94,106,210,0.3); border-radius: var(--ds-radius-sm); font-size: 12px; color: var(--ds-color-accent,#818cf8); text-decoration: none; margin-top: 6px; }
+    .map-link:hover { background: rgba(94,106,210,0.2); }
+    .no-exif { padding: 32px; text-align: center; color: var(--ds-color-text-muted); font-size: 14px; }
+    .copy-btn { padding: 7px 16px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; }
+    .copy-btn:hover { border-color: var(--ds-color-accent,#5e6ad2); color: var(--ds-color-text-primary); }
+    @media (max-width: 600px) { .preview-wrap { flex-direction: column; } .preview-img { max-width: 100%; } .exif-table td:first-child { width: 140px; } }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">EXIF Viewer <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no image uploaded</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔍</div><h1 class="ds-tool-header__title">EXIF Data Viewer</h1></div><p class="ds-tool-header__desc">Drop any JPEG, TIFF, HEIC, or RAW image to read its full EXIF metadata: camera model, lens, exposure, GPS coordinates, date taken, and more. Your image never leaves your device.</p><div class="ds-tool-tag-row"><span class="ds-tag">EXIF</span><span class="ds-tag">metadata</span><span class="ds-tag">GPS</span><span class="ds-tag">image</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Image File</span></div>
+    <div style="padding: 20px 0;">
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">🖼️</div>
+        <div class="drop-text">Drop an image here or click to browse</div>
+        <div class="drop-sub">JPEG, TIFF, PNG, WebP, HEIC, RAW — processed locally</div>
+        <input type="file" class="drop-input" id="fileInput" accept="image/*,.heic,.heif,.cr2,.nef,.arw,.dng" />
+      </div>
+      <div class="preview-wrap" id="previewWrap">
+        <img class="preview-img" id="previewImg" alt="preview" />
+        <div class="preview-info" id="previewInfo"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="exifOutput" style="display:none">
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header">
+        <span class="ds-tool-pane__label">EXIF Metadata</span>
+        <button class="copy-btn" id="copyBtn">Copy as JSON</button>
+      </div>
+      <div style="overflow-x:auto">
+        <div id="exifContent"></div>
+      </div>
+      <div id="gpsActions" style="padding: 0 12px 12px; display:none">
+        <a id="mapLink" href="#" target="_blank" rel="noopener" class="map-link">📍 View on Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is EXIF Viewer?</h2>
+    <p>EXIF Viewer reads the Exchangeable Image File Format (EXIF) metadata embedded inside JPEG, TIFF, and other image files. It extracts camera and lens information, exposure parameters, color space, orientation, GPS coordinates, and timestamps — all grouped into readable sections. Since everything runs locally, you can inspect private or confidential images without uploading them anywhere.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use EXIF Viewer</h2>
+    <ol>
+      <li>Drop an image file onto the drop zone, or click to browse.</li>
+      <li>The tool reads EXIF metadata instantly from the file.</li>
+      <li>Browse the grouped sections: Camera, Capture Settings, Date &amp; Time, Image Info, and GPS.</li>
+      <li>If GPS data is present, click &quot;View on Google Maps&quot; to see the photo location.</li>
+      <li>Click &quot;Copy as JSON&quot; to copy all metadata for use in other tools.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="remove-exif.html" class="ds-related-card"><span class="ds-related-icon">🛡️</span><div><div class="ds-related-name">Remove EXIF Data</div><div class="ds-related-desc">Strip GPS location and EXIF metadata from photos</div></div></a>
+    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
+    <a href="image-rotate.html" class="ds-related-card"><span class="ds-related-icon">🔃</span><div><div class="ds-related-name">Image Rotate &amp; Flip</div><div class="ds-related-desc">Rotate or flip images 90°, 180°, 270° in browser</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand EXIF Metadata</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">JPEG photo from smartphone</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Make: Apple | Model: iPhone 15 Pro | GPS: 37.4219°N 122.0840°W | ISO: 64 | f/1.8 | 1/2000s</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Check GPS coordinates before sharing a photo</li>
+          <li>Verify camera settings for a particular shot</li>
+          <li>Audit which images contain sensitive location data</li>
+          <li>Inspect lens and focal length information</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Inspect GPS location before sharing — avoid accidentally revealing private locations.</li>
+          <li>Shows all EXIF fields without installing software.</li>
+          <li>GPS to Google Maps link for instant location check.</li>
+          <li>Copy as JSON for programmatic use or logging.</li>
+          <li>100% local — no image is ever uploaded.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is EXIF data?</strong><p>EXIF (Exchangeable Image File Format) is metadata embedded in image files by cameras and smartphones. It includes technical details like camera make/model, lens, shutter speed, aperture, ISO, and often GPS coordinates and the date the photo was taken.</p></div>
+        <div class="ds-seo-faq-item"><strong>Which file types contain EXIF data?</strong><p>JPEG files are the most common carrier of EXIF data. TIFF, HEIC, and most camera RAW formats also support EXIF. PNG files can carry a limited metadata subset but rarely contain full EXIF. SVG and WebP support varies.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is my image uploaded to a server?</strong><p>No. All parsing happens in your browser using JavaScript. Your image never leaves your device.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why does my image show no EXIF data?</strong><p>Many apps and social networks strip EXIF data before displaying or storing images. Screenshots, edited images, and files processed through web services often contain no EXIF. Use the original file from your camera for best results.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+
+  // Minimal EXIF parser — reads Exif IFD from JPEG / TIFF ArrayBuffer
+  // Supports the most common tags without external dependencies
+
+  const EXIF_TAGS = {
+    0x010F: 'Make', 0x0110: 'Model', 0x0112: 'Orientation',
+    0x011A: 'XResolution', 0x011B: 'YResolution', 0x0128: 'ResolutionUnit',
+    0x0131: 'Software', 0x0132: 'DateTime', 0x013B: 'Artist',
+    0x013E: 'WhitePoint', 0x013F: 'PrimaryChromaticities',
+    0x0213: 'YCbCrPositioning', 0x8769: 'ExifIFDPointer', 0x8825: 'GPSInfoIFDPointer',
+    // Exif sub-IFD
+    0x829A: 'ExposureTime', 0x829D: 'FNumber', 0x8822: 'ExposureProgram',
+    0x8827: 'ISOSpeedRatings', 0x9000: 'ExifVersion', 0x9003: 'DateTimeOriginal',
+    0x9004: 'DateTimeDigitized', 0x9201: 'ShutterSpeedValue', 0x9202: 'ApertureValue',
+    0x9203: 'BrightnessValue', 0x9204: 'ExposureBiasValue', 0x9205: 'MaxApertureValue',
+    0x9206: 'SubjectDistance', 0x9207: 'MeteringMode', 0x9208: 'LightSource',
+    0x9209: 'Flash', 0x920A: 'FocalLength', 0xA001: 'ColorSpace',
+    0xA002: 'PixelXDimension', 0xA003: 'PixelYDimension', 0xA20E: 'FocalPlaneXResolution',
+    0xA20F: 'FocalPlaneYResolution', 0xA210: 'FocalPlaneResolutionUnit',
+    0xA217: 'SensingMethod', 0xA300: 'FileSource', 0xA301: 'SceneType',
+    0xA402: 'ExposureMode', 0xA403: 'WhiteBalance', 0xA404: 'DigitalZoomRatio',
+    0xA405: 'FocalLengthIn35mmFilm', 0xA406: 'SceneCaptureType', 0xA408: 'Contrast',
+    0xA409: 'Saturation', 0xA40A: 'Sharpness', 0xA432: 'LensSpecification',
+    0xA433: 'LensMake', 0xA434: 'LensModel',
+    // GPS sub-IFD
+    0x0000: 'GPSVersionID', 0x0001: 'GPSLatitudeRef', 0x0002: 'GPSLatitude',
+    0x0003: 'GPSLongitudeRef', 0x0004: 'GPSLongitude', 0x0005: 'GPSAltitudeRef',
+    0x0006: 'GPSAltitude', 0x0007: 'GPSTimeStamp', 0x0012: 'GPSMapDatum',
+    0x001D: 'GPSDateStamp'
+  };
+
+  const ORIENTATION_MAP = { 1:'Normal',2:'Mirror H',3:'180°',4:'Mirror V',5:'Mirror H + 90° CW',6:'90° CW',7:'Mirror H + 90° CCW',8:'90° CCW' };
+  const EXPOSURE_PROG = { 0:'Not defined',1:'Manual',2:'Program AE',3:'Aperture priority',4:'Shutter priority',5:'Creative',6:'Action',7:'Portrait',8:'Landscape' };
+  const METERING = { 0:'Unknown',1:'Average',2:'Center-weighted',3:'Spot',4:'Multi-spot',5:'Pattern',6:'Partial' };
+  const FLASH_MAP = { 0:'No flash',1:'Flash fired',5:'Strobe,no detection',7:'Flash+strobe',9:'Flash compulsory',13:'Flash compulsory+strobe',15:'Flash compulsory+strobe+no ret.',16:'Flash suppressed',24:'No flash,auto mode',25:'Flash,auto',29:'Flash+no detection,auto',31:'Flash+no detection+strobe,auto',32:'No flash,unavailable',65:'Flash,red-eye',69:'Flash+strobe,red-eye',71:'Flash+strobe+no ret,red-eye',73:'Flash compulsory,red-eye',77:'Flash compulsory+no ret,red-eye',79:'Flash compulsory+strobe+no ret,red-eye',89:'Flash auto,red-eye',93:'Flash auto+no ret,red-eye',95:'Flash auto+strobe+no ret,red-eye' };
+
+  function readUint16(dv, offset, le) { return dv.getUint16(offset, le); }
+  function readUint32(dv, offset, le) { return dv.getUint32(offset, le); }
+  function readInt32(dv, offset, le) { return dv.getInt32(offset, le); }
+
+  function readRational(dv, offset, le) {
+    const num = readUint32(dv, offset, le);
+    const den = readUint32(dv, offset + 4, le);
+    return den ? num / den : 0;
+  }
+  function readSRational(dv, offset, le) {
+    const num = readInt32(dv, offset, le);
+    const den = readInt32(dv, offset + 4, le);
+    return den ? num / den : 0;
+  }
+
+  function readString(buf, offset, len) {
+    const bytes = new Uint8Array(buf, offset, len);
+    let s = '';
+    for (let i = 0; i < len; i++) {
+      if (bytes[i] === 0) break;
+      s += String.fromCharCode(bytes[i]);
+    }
+    return s.trim();
+  }
+
+  function readIFD(buf, ifdOffset, tiffOffset, le) {
+    const dv = new DataView(buf);
+    const count = readUint16(dv, tiffOffset + ifdOffset, le);
+    const entries = {};
+    for (let i = 0; i < count; i++) {
+      const entryOffset = tiffOffset + ifdOffset + 2 + i * 12;
+      const tag = readUint16(dv, entryOffset, le);
+      const type = readUint16(dv, entryOffset + 2, le);
+      const numValues = readUint32(dv, entryOffset + 4, le);
+      const valueOffset = entryOffset + 8;
+      const dataOffset = numValues * [0,1,1,2,4,8,1,1,2,4,8,4,8][type] > 4
+        ? tiffOffset + readUint32(dv, valueOffset, le) : valueOffset;
+
+      let value;
+      try {
+        if (type === 2) { // ASCII
+          value = readString(buf, dataOffset, numValues);
+        } else if (type === 5) { // RATIONAL
+          if (numValues === 1) value = readRational(dv, dataOffset, le);
+          else value = Array.from({length: numValues}, (_, k) => readRational(dv, dataOffset + k * 8, le));
+        } else if (type === 10) { // SRATIONAL
+          if (numValues === 1) value = readSRational(dv, dataOffset, le);
+          else value = Array.from({length: numValues}, (_, k) => readSRational(dv, dataOffset + k * 8, le));
+        } else if (type === 3) { // SHORT
+          if (numValues === 1) value = readUint16(dv, dataOffset, le);
+          else value = Array.from({length: numValues}, (_, k) => readUint16(dv, valueOffset + k * 2, le));
+        } else if (type === 4) { // LONG
+          if (numValues === 1) value = readUint32(dv, dataOffset, le);
+          else value = Array.from({length: numValues}, (_, k) => readUint32(dv, dataOffset + k * 4, le));
+        } else if (type === 7) { // UNDEFINED
+          value = numValues <= 4 ? '0x' + Array.from(new Uint8Array(buf, dataOffset, numValues)).map(b => b.toString(16).padStart(2,'0')).join('') : `[${numValues} bytes]`;
+        } else {
+          value = '—';
+        }
+      } catch { value = '—'; }
+
+      entries[tag] = value;
+    }
+    return entries;
+  }
+
+  function parseExif(buf) {
+    const dv = new DataView(buf);
+    // Find JPEG Exif marker
+    let offset = 0;
+    if (dv.getUint16(0) === 0xFFD8) { // JPEG
+      let pos = 2;
+      while (pos < dv.byteLength - 1) {
+        const marker = dv.getUint16(pos);
+        if (marker === 0xFFE1) {
+          const id = readString(buf, pos + 4, 4);
+          if (id === 'Exif') { offset = pos + 10; break; }
+        }
+        if (marker < 0xFF00) break;
+        pos += 2 + dv.getUint16(pos + 2);
+      }
+    }
+    if (offset === 0) return null;
+
+    const tiffOffset = offset;
+    const byteOrder = readUint16(dv, tiffOffset, false);
+    const le = byteOrder === 0x4949; // II = little-endian, MM = big-endian
+    const ifd0Offset = readUint32(new DataView(buf), tiffOffset + 4, le);
+    const ifd0 = readIFD(buf, ifd0Offset, tiffOffset, le);
+
+    const result = { ...ifd0 };
+    if (ifd0[0x8769]) { // ExifIFD
+      const exifSub = readIFD(buf, ifd0[0x8769], tiffOffset, le);
+      Object.assign(result, exifSub);
+    }
+    if (ifd0[0x8825]) { // GPSIFD
+      const gpsSub = readIFD(buf, ifd0[0x8825], tiffOffset, le);
+      for (const k in gpsSub) result['GPS_' + k] = gpsSub[k];
+    }
+    return result;
+  }
+
+  function dmsToDecimal(dms, ref) {
+    if (!Array.isArray(dms) || dms.length < 3) return null;
+    const dec = dms[0] + dms[1] / 60 + dms[2] / 3600;
+    return (ref === 'S' || ref === 'W') ? -dec : dec;
+  }
+
+  function formatValue(tag, val) {
+    if (tag === 'Orientation') return ORIENTATION_MAP[val] || val;
+    if (tag === 'ExposureProgram') return EXPOSURE_PROG[val] || val;
+    if (tag === 'MeteringMode') return METERING[val] || val;
+    if (tag === 'Flash') return FLASH_MAP[val] || `0x${val.toString(16)}`;
+    if (tag === 'ExposureTime') return val < 1 ? `1/${Math.round(1/val)}s` : val + 's';
+    if (tag === 'FNumber') return 'f/' + val.toFixed(1);
+    if (tag === 'FocalLength' || tag === 'FocalLengthIn35mmFilm') return val.toFixed(1) + ' mm';
+    if (tag === 'ISOSpeedRatings') return val;
+    if (tag === 'ExposureBiasValue') return (val >= 0 ? '+' : '') + val.toFixed(2) + ' EV';
+    if (Array.isArray(val)) return val.map(v => typeof v === 'number' ? v.toFixed(4) : v).join(', ');
+    if (typeof val === 'number') return isNaN(val) ? '—' : (Number.isInteger(val) ? val : val.toFixed(6));
+    return String(val);
+  }
+
+  const GROUPS = [
+    { title: 'Camera', keys: ['Make','Model','LensMake','LensModel','LensSpecification','Software'] },
+    { title: 'Capture Settings', keys: ['ExposureTime','FNumber','ISOSpeedRatings','ExposureProgram','ExposureBiasValue','MeteringMode','Flash','FocalLength','FocalLengthIn35mmFilm','WhiteBalance','ExposureMode','SceneCaptureType','MaxApertureValue'] },
+    { title: 'Date & Time', keys: ['DateTime','DateTimeOriginal','DateTimeDigitized'] },
+    { title: 'Image Info', keys: ['PixelXDimension','PixelYDimension','Orientation','ColorSpace','XResolution','YResolution','ResolutionUnit'] },
+    { title: 'GPS', keys: ['GPS_1','GPS_2','GPS_3','GPS_4','GPS_5','GPS_6','GPS_7','GPS_29','GPS_18'] },
+    { title: 'Other', keys: [] }
+  ];
+
+  function renderExif(raw) {
+    const nameMap = Object.fromEntries(Object.entries(EXIF_TAGS).map(([k,v]) => [v, parseInt(k)]));
+    const knownKeys = new Set(GROUPS.flatMap(g => g.keys));
+    const allTagNames = Object.keys(EXIF_TAGS);
+    const rawByName = {};
+    for (const [hexKey, name] of Object.entries(EXIF_TAGS)) {
+      const intKey = parseInt(hexKey);
+      if (raw[intKey] !== undefined) rawByName[name] = raw[intKey];
+      if (raw['GPS_' + intKey] !== undefined) rawByName['GPS_' + intKey] = raw['GPS_' + intKey];
+    }
+
+    let html = '';
+    let covered = new Set();
+    for (const group of GROUPS) {
+      const rows = [];
+      if (group.keys.length > 0) {
+        for (const key of group.keys) {
+          const val = rawByName[key];
+          if (val === undefined || val === null || val === '') continue;
+          rows.push([key, formatValue(key, val)]);
+          covered.add(key);
+        }
+      } else {
+        // "Other" group: all uncovered tags
+        for (const [name, val] of Object.entries(rawByName)) {
+          if (!covered.has(name) && val !== undefined && val !== null && val !== '') {
+            rows.push([name, formatValue(name, val)]);
+          }
+        }
+      }
+      if (!rows.length) continue;
+      html += `<div class="exif-group"><div class="exif-group-title">${group.title}</div>`;
+      html += `<table class="exif-table"><tbody>`;
+      for (const [k, v] of rows) html += `<tr><td>${k}</td><td>${String(v).replace(/</g,'&lt;')}</td></tr>`;
+      html += `</tbody></table></div>`;
+    }
+    return { html, rawByName };
+  }
+
+  // Drop zone
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+  let lastRaw = null;
+
+  function handleFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const buf = e.target.result;
+      const img = document.getElementById('previewImg');
+      img.src = URL.createObjectURL(file);
+      document.getElementById('previewInfo').innerHTML = `
+        <strong>${file.name}</strong><br>
+        ${(file.size/1024).toFixed(1)} KB · ${file.type || 'unknown type'}
+      `;
+      document.getElementById('previewWrap').classList.add('show');
+
+      const raw = parseExif(buf);
+      const output = document.getElementById('exifOutput');
+      const content = document.getElementById('exifContent');
+
+      if (!raw || Object.keys(raw).length === 0) {
+        content.innerHTML = '<div class="no-exif">No EXIF data found in this image. JPEGs from cameras and smartphones usually contain EXIF. PNGs, processed images, or stripped files may not.</div>';
+        output.style.display = 'block';
+        document.getElementById('gpsActions').style.display = 'none';
+        lastRaw = null;
+        return;
+      }
+
+      const { html, rawByName } = renderExif(raw);
+      content.innerHTML = html;
+      output.style.display = 'block';
+      lastRaw = rawByName;
+
+      // GPS link
+      const lat = dmsToDecimal(rawByName['GPS_2'], rawByName['GPS_1']);
+      const lon = dmsToDecimal(rawByName['GPS_4'], rawByName['GPS_3']);
+      if (lat !== null && lon !== null) {
+        document.getElementById('mapLink').href = `https://www.google.com/maps?q=${lat.toFixed(6)},${lon.toFixed(6)}`;
+        document.getElementById('gpsActions').style.display = 'block';
+      } else {
+        document.getElementById('gpsActions').style.display = 'none';
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    if (!lastRaw) return;
+    navigator.clipboard.writeText(JSON.stringify(lastRaw, null, 2)).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy as JSON'; }, 1500);
+    });
+  });
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

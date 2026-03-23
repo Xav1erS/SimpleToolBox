@@ -34,6 +34,11 @@ const SNAPSHOT_TOOLS = [
   'slug-generator',
   'regex-tester',
   'jwt-decoder',
+  // Image tools batch
+  'exif-viewer',
+  'image-to-base64',
+  'base64-to-image',
+  'image-metadata-editor',
 ];
 
 // Screenshot options

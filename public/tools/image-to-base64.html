@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Image to Base64 Converter — Encode & Embed Images | Simple ToolBox</title>
+  <meta name="description" content="Convert any image to a Base64 string or a data URI ready to embed in HTML or CSS. Supports JPEG, PNG, WebP, GIF, SVG and more. Runs locally — no image is uploaded." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/image-to-base64" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/image-to-base64.html" />
+  <meta property="og:title" content="Image to Base64 Converter — Encode & Embed Images | Simple ToolBox" />
+  <meta property="og:description" content="Encode any image to Base64 or a data URI. Copy the result to embed in HTML, CSS, or JSON. 100% local." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Image to Base64 Converter",
+  "description": "Convert any image to a Base64 string or data URI for embedding in HTML, CSS, or JSON. Runs entirely in your browser — no image is uploaded.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/image-to-base64"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Base64 image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64 is a way to encode binary data (like an image) as a plain-text ASCII string. A data URI is a Base64 string prefixed with the MIME type, formatted as data:image/png;base64,... — this can be placed directly in the src attribute of an img tag or in a CSS background-image to embed the image without a separate file request."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I use data URIs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Data URIs are ideal for small icons, logos, or inlined images in HTML emails where external file references may be blocked. For large images they increase page weight and can hurt performance, so use them sparingly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The FileReader API encodes the image directly in your browser. Your image never leaves your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much larger is a Base64 image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64 encoding increases the data size by approximately 33% because every 3 bytes of binary data become 4 ASCII characters. A 100 KB image becomes roughly 133 KB as a Base64 string."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .drop-zone { border: 2px dashed var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 48px 24px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .drop-zone:hover, .drop-zone.drag { border-color: var(--ds-color-accent,#5e6ad2); background: rgba(94,106,210,0.06); }
+    .drop-icon { font-size: 40px; margin-bottom: 12px; }
+    .drop-text { font-size: 15px; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 6px; }
+    .drop-input { display: none; }
+    .preview-row { display: none; gap: 16px; align-items: flex-start; }
+    .preview-row.show { display: flex; flex-wrap: wrap; }
+    .preview-img { max-width: 160px; max-height: 120px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); object-fit: contain; flex-shrink: 0; }
+    .preview-meta { font-size: 13px; color: var(--ds-color-text-muted); display: flex; flex-direction: column; gap: 4px; }
+    .format-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .format-tab { padding: 6px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; }
+    .format-tab.active { border-color: var(--ds-color-accent,#5e6ad2); color: var(--ds-color-text-primary); background: rgba(94,106,210,0.12); }
+    .output-box { width: 100%; box-sizing: border-box; padding: 14px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-family: var(--ds-font-mono, monospace); font-size: 12px; resize: vertical; min-height: 120px; word-break: break-all; white-space: pre-wrap; }
+    .action-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .copy-btn { padding: 8px 18px; background: rgba(94,106,210,0.15); border: 1px solid rgba(94,106,210,0.4); border-radius: var(--ds-radius-md); color: var(--ds-color-accent,#818cf8); font-size: 13px; cursor: pointer; }
+    .copy-btn:hover { background: rgba(94,106,210,0.25); }
+    .size-note { font-size: 12px; color: var(--ds-color-text-muted); }
+    .warn-note { font-size: 12px; color: #f9a94d; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Image to Base64 <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no image uploaded</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🖼️</div><h1 class="ds-tool-header__title">Image to Base64</h1></div><p class="ds-tool-header__desc">Drop any image to convert it to a Base64 string or a data URI. Choose the output format and copy it directly into HTML, CSS, or JSON. No file is uploaded — everything runs in your browser.</p><div class="ds-tool-tag-row"><span class="ds-tag">Base64</span><span class="ds-tag">data URI</span><span class="ds-tag">embed</span><span class="ds-tag">image</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Image File</span></div>
+    <div style="padding: 20px 0; display: flex; flex-direction: column; gap: 16px;">
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">📤</div>
+        <div class="drop-text">Drop an image here or click to browse</div>
+        <div class="drop-sub">JPEG, PNG, WebP, GIF, SVG, BMP, ICO — processed locally</div>
+        <input type="file" class="drop-input" id="fileInput" accept="image/*" />
+      </div>
+      <div class="preview-row" id="previewRow">
+        <img class="preview-img" id="previewImg" alt="preview" />
+        <div class="preview-meta" id="previewMeta"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="outputSection" style="display:none">
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Output Format</span></div>
+      <div style="padding: 16px 0; display: flex; flex-direction: column; gap: 16px;">
+        <div class="format-tabs">
+          <button class="format-tab active" data-fmt="datauri">Data URI (for HTML/CSS)</button>
+          <button class="format-tab" data-fmt="base64">Raw Base64</button>
+          <button class="format-tab" data-fmt="css">CSS background-image</button>
+          <button class="format-tab" data-fmt="html">HTML &lt;img&gt; tag</button>
+        </div>
+        <textarea class="output-box" id="outputBox" readonly rows="6"></textarea>
+        <div class="action-row">
+          <button class="copy-btn" id="copyBtn">Copy to Clipboard</button>
+          <span class="size-note" id="sizeNote"></span>
+          <span class="warn-note" id="warnNote" style="display:none">⚠ Large base64 strings may slow down HTML/CSS loading</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Image to Base64?</h2>
+    <p>Image to Base64 converts an image file into a Base64-encoded string using the browser&#x27;s built-in FileReader API. The output can be formatted as a raw Base64 string, a full data URI, a CSS background-image declaration, or an HTML img tag — whichever is needed for the target use case.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Image to Base64</h2>
+    <ol>
+      <li>Drop an image file onto the drop zone, or click to browse.</li>
+      <li>Choose an output format: Data URI, Raw Base64, CSS background-image, or HTML img tag.</li>
+      <li>Copy the result to your clipboard with one click.</li>
+      <li>Paste directly into HTML, CSS, JSON, or any other destination.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="exif-viewer.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">EXIF Viewer</div><div class="ds-related-desc">Read camera model, GPS, exposure, and full EXIF metadata from any image</div></div></a>
+    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG format</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Base64 Image Encoding</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">logo.png (2 KB)</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Embed a small logo in an HTML email</li>
+          <li>Inline a spinner or icon in a CSS file</li>
+          <li>Pass image data as a JSON string to an API</li>
+          <li>Create self-contained HTML files with embedded images</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Four output formats — data URI, raw Base64, CSS, and HTML.</li>
+          <li>Shows original size vs encoded size and the % increase.</li>
+          <li>Warns when the image is large enough to impact page performance.</li>
+          <li>No file upload — everything runs in your browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is a Base64 image?</strong><p>Base64 is a way to encode binary data (like an image) as a plain-text ASCII string. A data URI is a Base64 string prefixed with the MIME type, formatted as data:image/png;base64,... — this can be placed directly in the src attribute of an img tag or in a CSS background-image to embed the image without a separate file request.</p></div>
+        <div class="ds-seo-faq-item"><strong>When should I use data URIs?</strong><p>Data URIs are ideal for small icons, logos, or inlined images in HTML emails where external file references may be blocked. For large images they increase page weight and can hurt performance, so use them sparingly.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is my image uploaded to a server?</strong><p>No. The FileReader API encodes the image directly in your browser. Your image never leaves your device.</p></div>
+        <div class="ds-seo-faq-item"><strong>How much larger is a Base64 image?</strong><p>Base64 encoding increases the data size by approximately 33% because every 3 bytes of binary data become 4 ASCII characters. A 100 KB image becomes roughly 133 KB as a Base64 string.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  let currentDataURI = '';
+  let currentMime = '';
+  let currentBase64 = '';
+  let currentFmt = 'datauri';
+
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+  function handleFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const dataURI = e.target.result;
+      currentDataURI = dataURI;
+      const commaIdx = dataURI.indexOf(',');
+      currentMime = file.type || 'image/jpeg';
+      currentBase64 = dataURI.slice(commaIdx + 1);
+
+      // Preview
+      document.getElementById('previewImg').src = dataURI;
+      document.getElementById('previewMeta').innerHTML = `
+        <strong>${file.name}</strong>
+        <span>${(file.size / 1024).toFixed(1)} KB original</span>
+        <span>${(currentBase64.length / 1024).toFixed(1)} KB Base64</span>
+        <span>~${((currentBase64.length / file.size - 1) * 100).toFixed(0)}% size increase</span>
+      `;
+      document.getElementById('previewRow').classList.add('show');
+      document.getElementById('outputSection').style.display = 'block';
+
+      updateOutput();
+
+      const warnEl = document.getElementById('warnNote');
+      warnEl.style.display = file.size > 200 * 1024 ? 'inline' : 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function getOutput(fmt) {
+    if (fmt === 'datauri') return currentDataURI;
+    if (fmt === 'base64') return currentBase64;
+    if (fmt === 'css') return `background-image: url("${currentDataURI}");`;
+    if (fmt === 'html') return `<img src="${currentDataURI}" alt="image" />`;
+    return currentDataURI;
+  }
+
+  function updateOutput() {
+    const out = getOutput(currentFmt);
+    document.getElementById('outputBox').value = out;
+    document.getElementById('sizeNote').textContent = `${(out.length / 1024).toFixed(1)} KB`;
+  }
+
+  document.querySelectorAll('.format-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.format-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFmt = btn.dataset.fmt;
+      updateOutput();
+    });
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    const out = getOutput(currentFmt);
+    navigator.clipboard.writeText(out).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy to Clipboard'; }, 1500);
+    });
+  });
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

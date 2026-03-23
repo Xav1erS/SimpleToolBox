@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Word Frequency Counter — Rank Words by Count Online | Simple ToolBox</title>
+  <meta name="description" content="Paste any text to see every word ranked by frequency. Filter stop words, set a minimum count, and copy the results instantly. Runs entirely in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/word-frequency-counter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/word-frequency-counter.html" />
+  <meta property="og:title" content="Word Frequency Counter — Rank Words by Count Online | Simple ToolBox" />
+  <meta property="og:description" content="Paste text and see every word ranked by frequency. Filter stop words, set a min count, copy results." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Word Frequency Counter",
+  "description": "Paste any text to see every word ranked by frequency. Filter stop words, set a minimum count, and copy the results instantly. Runs entirely in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/word-frequency-counter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a stop word?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stop words are common words like 'the', 'a', 'and' that appear in almost every text and usually aren't meaningful for frequency analysis. Enabling the filter removes them so you see only content words."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it count only English words?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool tokenizes on word boundaries and works best with Latin-script text. It does not currently handle CJK or other scripts that don't use spaces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the text uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Analysis runs entirely in your browser — nothing is sent to any server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the maximum text size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no hard limit. Very large texts (10 MB+) may be slow depending on your device."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .options-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .options-row label { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ds-color-text-secondary); cursor: pointer; }
+    .options-row input[type="number"] { width: 64px; padding: 6px 8px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); }
+    .freq-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .freq-table th { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--ds-color-border); color: var(--ds-color-text-muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .freq-table td { padding: 8px 12px; border-bottom: 1px solid var(--ds-color-border-subtle, var(--ds-color-border)); }
+    .freq-bar { display: inline-block; height: 8px; border-radius: 4px; background: var(--ds-color-accent, #5e6ad2); opacity: 0.7; min-width: 4px; }
+    .empty-state { padding: 32px; text-align: center; color: var(--ds-color-text-muted); font-size: 14px; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Word Frequency Counter <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📊</div><h1 class="ds-tool-header__title">Word Frequency Counter</h1></div><p class="ds-tool-header__desc">Paste any text to rank every word by how often it appears. Optionally filter common stop words, set a minimum count, and copy the ranked list.</p><div class="ds-tool-tag-row"><span class="ds-tag">word count</span><span class="ds-tag">frequency</span><span class="ds-tag">text analysis</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Text Input</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button></div></div>
+    <textarea class="io-textarea ds-tool-textarea" id="inputText" rows="7" placeholder="Paste your text here..." spellcheck="false"></textarea>
+    <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="statSummary">0 words · 0 unique</span></div>
+  </div>
+  <div class="options-row">
+    <label><input type="checkbox" id="chkStop" checked /> Filter stop words</label>
+    <label>Min count: <input type="number" id="minCount" value="1" min="1" max="999" /></label>
+    <label>Show top: <input type="number" id="topN" value="50" min="5" max="500" /></label>
+    <button class="io-btn ds-tool-pane__btn" id="btnCopy" style="margin-left:auto">Copy</button>
+  </div>
+  <section class="ds-card">
+    <div class="ds-card__body" style="overflow-x:auto">
+      <div id="resultArea"><div class="empty-state">Paste text above to see word frequencies.</div></div>
+    </div>
+  </section>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Word Frequency Counter?</h2>
+    <p>Word Frequency Counter scans pasted text and counts how many times each word appears, then ranks the results from most to least frequent. It is useful for spotting overused words, analyzing content patterns, or auditing vocabulary diversity.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Word Frequency Counter</h2>
+    <ol>
+      <li>Paste your text into the input area.</li>
+      <li>Toggle stop-word filtering to hide or include common words like &#x27;the&#x27; and &#x27;and&#x27;.</li>
+      <li>Set a minimum count if you only want words that appear multiple times.</li>
+      <li>Adjust &#x27;Show top&#x27; to control how many results appear.</li>
+      <li>Click Copy to copy the ranked list.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="keyword-density-checker.html" class="ds-related-card"><span class="ds-related-icon">🎯</span><div><div class="ds-related-name">Keyword Density Checker</div><div class="ds-related-desc">Measure keyword frequency and density in pasted text</div></div></a>
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Word Frequency</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">The quick brown fox jumps over the lazy dog. The dog barked at the fox.</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">fox: 2, dog: 2, quick: 1, brown: 1, jumps: 1, barked: 1 (stop words filtered)</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Analyze blog post or article content for repetition</li>
+          <li>Find the most-used words in a customer support transcript</li>
+          <li>Spot filler words to reduce in an essay or speech</li>
+          <li>Compare vocabulary frequency across two drafts</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Useful for writers reviewing repetitive drafts or essays.</li>
+          <li>Helps content marketers spot over-used filler words.</li>
+          <li>Provides a fast vocabulary audit without uploading text anywhere.</li>
+          <li>Stop-word filter focuses results on meaningful content words.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is a stop word?</strong><p>Stop words are common words like &#x27;the&#x27;, &#x27;a&#x27;, &#x27;and&#x27; that appear in almost every text and usually aren&#x27;t meaningful for frequency analysis. Enabling the filter removes them so you see only content words.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it count only English words?</strong><p>The tool tokenizes on word boundaries and works best with Latin-script text. It does not currently handle CJK or other scripts that don&#x27;t use spaces.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the text uploaded anywhere?</strong><p>No. Analysis runs entirely in your browser — nothing is sent to any server.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the maximum text size?</strong><p>There is no hard limit. Very large texts (10 MB+) may be slow depending on your device.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  const STOP = new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','as','is','are','was','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','shall','can','not','no','it','its','this','that','these','those','i','we','you','he','she','they','me','us','him','her','them','my','our','your','his','their','what','which','who','when','where','how','all','each','so','if','then','than','there','their','about','up','out','into','more','also','just','like','over','after','before','while','one','two','three','some','any','such','own','same','much','many','most','other','new','old','great','good','first','last','long','little','few','too','very','only','now','here']);
+  const SAMPLE = 'The quick brown fox jumps over the lazy dog. The dog barked at the fox. The fox ran away quickly. Dogs and foxes are both animals. The quick fox was very clever and the dog was very lazy.';
+  const inputText = document.getElementById('inputText');
+  const chkStop = document.getElementById('chkStop');
+  const minCount = document.getElementById('minCount');
+  const topN = document.getElementById('topN');
+  const resultArea = document.getElementById('resultArea');
+  const statSummary = document.getElementById('statSummary');
+
+  function analyze() {
+    const text = inputText.value;
+    const words = (text.toLowerCase().match(/\b[a-z']{2,}\b/g) || []);
+    const map = new Map();
+    for (const w of words) {
+      if (chkStop.checked && STOP.has(w)) continue;
+      map.set(w, (map.get(w) || 0) + 1);
+    }
+    statSummary.textContent = `${words.length.toLocaleString()} words · ${map.size.toLocaleString()} unique`;
+    const min = Math.max(1, parseInt(minCount.value) || 1);
+    const limit = Math.max(5, parseInt(topN.value) || 50);
+    const sorted = [...map.entries()].filter(([,c]) => c >= min).sort((a,b) => b[1] - a[1]).slice(0, limit);
+    if (!sorted.length) {
+      resultArea.innerHTML = '<div class="empty-state">No words match the current filters.</div>';
+      return;
+    }
+    const max = sorted[0][1];
+    const rows = sorted.map(([word, count], i) => {
+      const pct = Math.round((count / max) * 100);
+      return `<tr><td style="color:var(--ds-color-text-muted);width:40px">${i+1}</td><td>${word}</td><td>${count}</td><td><span class="freq-bar" style="width:${pct}px"></span></td></tr>`;
+    }).join('');
+    resultArea.innerHTML = `<table class="freq-table"><thead><tr><th>#</th><th>Word</th><th>Count</th><th>Frequency</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+
+  inputText.addEventListener('input', analyze);
+  chkStop.addEventListener('change', analyze);
+  minCount.addEventListener('input', analyze);
+  topN.addEventListener('input', analyze);
+  document.getElementById('btnSample').addEventListener('click', () => { inputText.value = SAMPLE; analyze(); });
+  document.getElementById('btnClear').addEventListener('click', () => { inputText.value = ''; analyze(); });
+  document.getElementById('btnPaste').addEventListener('click', async () => { try { inputText.value = await navigator.clipboard.readText(); analyze(); } catch {} });
+  document.getElementById('btnCopy').addEventListener('click', () => {
+    const rows = resultArea.querySelectorAll('tbody tr');
+    if (!rows.length) return;
+    const text = [...rows].map(r => { const cells = r.querySelectorAll('td'); return `${cells[1].textContent}\t${cells[2].textContent}`; }).join('\n');
+    navigator.clipboard.writeText(text).then(() => { const btn = document.getElementById('btnCopy'); btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 1500); }).catch(() => {});
+  });
+  analyze();
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

@@ -9,12 +9,13 @@
 
 ## Current Actual State (2026-03-23)
 
-- Tool count: **106**
+- Tool count: **124**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
 - Hub pages live and data-driven:
   - `image-tools`
   - `developer-tools`
   - `text-tools`
+  - `calculator-tools`
 - `public/tools-data.js` is the shared source for homepage, all-tools, and hub pages.
 - `public/tools-meta.js` is the shared source for JSON-LD, FAQ, learn-more, and related tools.
 - Latest preflight is fully green:
@@ -82,7 +83,7 @@ That phase is no longer the main storyline.
 
 The real task is now:
 
-**grow from 106 to 150 with discipline, while keeping QA green and tools actually useful**
+### grow from 106 to 150 with discipline, while keeping QA green and tools actually useful
 
 This means every decision must balance:
 
@@ -236,7 +237,7 @@ Run:
 
 Highest priority now:
 
-**continue building high-frequency Text tools, then move into Calculators**
+### continue building high-frequency Text tools, then move into Calculators
 
 Recommended next batch:
 

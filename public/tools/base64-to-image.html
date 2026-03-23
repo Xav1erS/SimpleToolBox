@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Base64 to Image Converter — Decode & Preview | Simple ToolBox</title>
+  <meta name="description" content="Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF, SVG and more. Runs locally — nothing is sent." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/base64-to-image" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/base64-to-image.html" />
+  <meta property="og:title" content="Base64 to Image Converter — Decode & Preview | Simple ToolBox" />
+  <meta property="og:description" content="Paste a Base64 string or data URI to preview and download the image. 100% local." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Base64 to Image Converter",
+  "description": "Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF and more. Runs locally — nothing is sent.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/base64-to-image"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Base64 image string?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Base64 image is a binary image file encoded as ASCII characters. A data URI wraps it as data:image/png;base64,... so a browser can render it directly from the string without loading an external file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get the correct Base64 string?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paste either a full data URI (starting with \"data:image/...\") or a raw Base64 string (the characters after the comma in a data URI). The tool auto-detects the format and renders the image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What image formats are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any image format your browser can render: JPEG, PNG, WebP, GIF, SVG, BMP, and ICO. The tool detects the format from the Base64 magic bytes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I download the decoded image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Click \"Download original format\" to save the file in its native format. For raster images, \"Download as PNG\" converts via a canvas element."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .input-area { width: 100%; box-sizing: border-box; padding: 14px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-family: var(--ds-font-mono, monospace); font-size: 12px; resize: vertical; min-height: 130px; word-break: break-all; white-space: pre-wrap; }
+    .input-area:focus { outline: none; border-color: var(--ds-color-accent, #5e6ad2); }
+    .input-area::placeholder { color: var(--ds-color-text-muted); }
+    .action-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .btn-primary { padding: 9px 20px; background: rgba(94,106,210,0.15); border: 1px solid rgba(94,106,210,0.4); border-radius: var(--ds-radius-md); color: var(--ds-color-accent,#818cf8); font-size: 13px; cursor: pointer; }
+    .btn-primary:hover { background: rgba(94,106,210,0.25); }
+    .btn-clear { padding: 9px 16px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); color: var(--ds-color-text-muted); font-size: 13px; cursor: pointer; }
+    .btn-clear:hover { border-color: rgba(255,255,255,0.2); color: var(--ds-color-text-secondary); }
+    .preview-box { display: none; }
+    .preview-box.show { display: flex; flex-direction: column; gap: 14px; }
+    .preview-img-wrap { background: repeating-conic-gradient(#3a3a4a 0% 25%, #2a2a3a 0% 50%) 0 0 / 20px 20px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 120px; }
+    .preview-img { max-width: 100%; max-height: 500px; display: block; }
+    .preview-meta { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--ds-color-text-muted); }
+    .preview-meta span { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 3px 10px; }
+    .download-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .dl-btn { padding: 8px 16px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .dl-btn:hover { border-color: var(--ds-color-accent,#5e6ad2); color: var(--ds-color-text-primary); }
+    .error-box { display: none; padding: 12px 16px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: var(--ds-radius-md); color: #f87171; font-size: 13px; }
+    .error-box.show { display: block; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Base64 to Image <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔓</div><h1 class="ds-tool-header__title">Base64 to Image</h1></div><p class="ds-tool-header__desc">Paste a Base64-encoded image string or a full data URI to instantly preview the image and download it as a file. Everything runs in your browser — nothing is sent anywhere.</p><div class="ds-tool-tag-row"><span class="ds-tag">Base64</span><span class="ds-tag">decode</span><span class="ds-tag">data URI</span><span class="ds-tag">image</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Input</span></div>
+    <div style="padding: 20px 0; display: flex; flex-direction: column; gap: 14px;">
+      <textarea class="input-area" id="inputArea" placeholder="Paste a Base64 string or data URI here…&#10;&#10;Examples:&#10;  data:image/png;base64,iVBORw0KGgo...&#10;  /9j/4AAQSkZJRgAB... (raw JPEG Base64)&#10;  iVBORw0KGgo... (raw PNG Base64)" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
+      <div class="action-row">
+        <button class="btn-primary" id="decodeBtn">Decode & Preview</button>
+        <button class="btn-clear" id="clearBtn">Clear</button>
+      </div>
+      <div class="error-box" id="errorBox"></div>
+    </div>
+  </div>
+
+  <div class="preview-box" id="previewBox">
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Preview</span></div>
+      <div style="padding: 16px 0; display: flex; flex-direction: column; gap: 12px;">
+        <div class="preview-img-wrap">
+          <img class="preview-img" id="previewImg" alt="Decoded image" />
+        </div>
+        <div class="preview-meta" id="previewMeta"></div>
+        <div class="download-row">
+          <a class="dl-btn" id="dlPng">⬇ Download as PNG</a>
+          <a class="dl-btn" id="dlOrig">⬇ Download original format</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Base64 to Image?</h2>
+    <p>Base64 to Image decodes a Base64-encoded string or data URI back into a viewable image. It renders the image directly in the browser using an img element, displays dimensions and size, and provides download buttons for the original format and as PNG. Everything runs locally — no string or image is sent to a server.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Base64 to Image</h2>
+    <ol>
+      <li>Paste a Base64 string or data URI into the input box.</li>
+      <li>Click &quot;Decode &amp; Preview&quot; (or press Ctrl+Enter).</li>
+      <li>The image renders in the preview area with dimensions and size info.</li>
+      <li>Click a download button to save the image file.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="exif-viewer.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">EXIF Viewer</div><div class="ds-related-desc">Read camera model, GPS, exposure, and full EXIF metadata from any image</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Base64 Decoding</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">data:image/png;base64,iVBORw0KGgo...</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Live image preview + download buttons (PNG, 45x45px, 2.1 KB)</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Preview a data URI to check it is correct</li>
+          <li>Recover an image from a Base64 string in code</li>
+          <li>Download an image embedded in an HTML or CSS file</li>
+          <li>Verify a Base64 image before deploying</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Auto-detects whether input is a data URI or raw Base64.</li>
+          <li>Detects MIME type from magic bytes — no manual format selection needed.</li>
+          <li>Provides both original-format and PNG download options.</li>
+          <li>100% local — your data never leaves your browser.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is a Base64 image string?</strong><p>A Base64 image is a binary image file encoded as ASCII characters. A data URI wraps it as data:image/png;base64,... so a browser can render it directly from the string without loading an external file.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I get the correct Base64 string?</strong><p>Paste either a full data URI (starting with &quot;data:image/...&quot;) or a raw Base64 string (the characters after the comma in a data URI). The tool auto-detects the format and renders the image.</p></div>
+        <div class="ds-seo-faq-item"><strong>What image formats are supported?</strong><p>Any image format your browser can render: JPEG, PNG, WebP, GIF, SVG, BMP, and ICO. The tool detects the format from the Base64 magic bytes.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I download the decoded image?</strong><p>Yes. Click &quot;Download original format&quot; to save the file in its native format. For raster images, &quot;Download as PNG&quot; converts via a canvas element.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+
+  const MIME_EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif', 'image/svg+xml': 'svg', 'image/bmp': 'bmp', 'image/ico': 'ico', 'image/x-icon': 'ico' };
+
+  function detectMime(raw) {
+    // Check magic bytes from base64
+    try {
+      const bytes = atob(raw.slice(0, 16));
+      const b = bytes.charCodeAt.bind(bytes);
+      if (b(0) === 0xFF && b(1) === 0xD8) return 'image/jpeg';
+      if (bytes.startsWith('\x89PNG')) return 'image/png';
+      if (bytes.startsWith('GIF8')) return 'image/gif';
+      if (bytes.startsWith('RIFF')) return 'image/webp';
+      if (bytes.startsWith('<svg') || bytes.startsWith('<?xml') || bytes.startsWith('<SVG')) return 'image/svg+xml';
+    } catch {}
+    return 'image/png'; // fallback
+  }
+
+  function decode() {
+    const raw = document.getElementById('inputArea').value.trim();
+    const err = document.getElementById('errorBox');
+    const preview = document.getElementById('previewBox');
+    err.className = 'error-box';
+
+    if (!raw) { err.textContent = 'Please paste a Base64 string or data URI.'; err.className = 'error-box show'; return; }
+
+    let dataUri, mime, b64;
+    try {
+      if (raw.startsWith('data:')) {
+        const comma = raw.indexOf(',');
+        if (comma === -1) throw new Error('Invalid data URI: missing comma');
+        const header = raw.slice(5, comma);
+        mime = header.split(';')[0] || 'image/png';
+        b64 = raw.slice(comma + 1);
+        dataUri = raw;
+      } else {
+        // Raw base64 — strip whitespace
+        b64 = raw.replace(/\s/g, '');
+        mime = detectMime(b64);
+        dataUri = `data:${mime};base64,${b64}`;
+      }
+      // Validate base64
+      atob(b64.slice(0, 100));
+    } catch (e) {
+      err.textContent = 'Invalid Base64: ' + e.message;
+      err.className = 'error-box show';
+      return;
+    }
+
+    const img = document.getElementById('previewImg');
+    img.onload = () => {
+      document.getElementById('previewMeta').innerHTML = `
+        <span>Format: ${mime}</span>
+        <span>Dimensions: ${img.naturalWidth} × ${img.naturalHeight}px</span>
+        <span>Base64 size: ${(b64.length / 1024).toFixed(1)} KB</span>
+        <span>Approx original: ${(b64.length * 0.75 / 1024).toFixed(1)} KB</span>
+      `;
+      const ext = MIME_EXT[mime] || 'png';
+      const dlOrig = document.getElementById('dlOrig');
+      const dlPng = document.getElementById('dlPng');
+      dlOrig.href = dataUri;
+      dlOrig.download = `image.${ext}`;
+      dlOrig.textContent = `⬇ Download as ${ext.toUpperCase()}`;
+
+      // PNG download: draw on canvas
+      if (mime !== 'image/svg+xml') {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        dlPng.href = canvas.toDataURL('image/png');
+        dlPng.download = 'image.png';
+        dlPng.style.display = 'inline-flex';
+      } else {
+        dlPng.style.display = 'none';
+      }
+
+      preview.className = 'preview-box show';
+    };
+    img.onerror = () => {
+      err.textContent = 'Could not render image. Check that the Base64 string is a valid image.';
+      err.className = 'error-box show';
+      preview.className = 'preview-box';
+    };
+    img.src = dataUri;
+  }
+
+  document.getElementById('decodeBtn').addEventListener('click', decode);
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    document.getElementById('inputArea').value = '';
+    document.getElementById('previewBox').className = 'preview-box';
+    document.getElementById('errorBox').className = 'error-box';
+  });
+  document.getElementById('inputArea').addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') decode();
+  });
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

@@ -127,6 +127,7 @@ const TOOLS_META = [
       description: "Generate strong random passwords locally. Choose length, character sets, and quantity, then copy a single password or a full batch instantly.",
       category: "generate",
       relatedTools: [
+        "password-strength-checker",
         "hash-generator",
         "uuid-generator",
         "bcrypt"
@@ -4635,7 +4636,8 @@ const TOOLS_META = [
           "Runs in the browser so config content stays local during conversion."
         ]
       }
-    },
+    }
+,
   {
       slug: "email-extractor",
       title: "Email Extractor Online Free | Pull Email Addresses from Text | Simple ToolBox",
@@ -5979,7 +5981,688 @@ const TOOLS_META = [
           "Runs locally so your draft text stays in the browser."
         ]
       }
+    },
+    {
+      slug: "word-frequency-counter",
+      title: "Word Frequency Counter — Rank Words by Count Online | Simple ToolBox",
+      description: "Paste any text to see every word ranked by frequency. Filter stop words, set a minimum count, and copy the results instantly. Runs entirely in your browser.",
+      category: "text",
+      shortTitle: "Word Frequency Counter",
+      relatedTools: ["keyword-density-checker", "word-counter", "text-cleaner"],
+      useCases: [
+        "Analyze blog post or article content for repetition",
+        "Find the most-used words in a customer support transcript",
+        "Spot filler words to reduce in an essay or speech",
+        "Compare vocabulary frequency across two drafts"
+      ],
+      faq: [
+        { q: "What is a stop word?", a: "Stop words are common words like 'the', 'a', 'and' that appear in almost every text and usually aren't meaningful for frequency analysis. Enabling the filter removes them so you see only content words." },
+        { q: "Does it count only English words?", a: "The tool tokenizes on word boundaries and works best with Latin-script text. It does not currently handle CJK or other scripts that don't use spaces." },
+        { q: "Is the text uploaded anywhere?", a: "No. Analysis runs entirely in your browser — nothing is sent to any server." },
+        { q: "What is the maximum text size?", a: "There is no hard limit. Very large texts (10 MB+) may be slow depending on your device." }
+      ],
+      example: {
+        input: "The quick brown fox jumps over the lazy dog. The dog barked at the fox.",
+        output: "fox: 2, dog: 2, quick: 1, brown: 1, jumps: 1, barked: 1 (stop words filtered)"
+      },
+      seoContent: {
+        whatIsTitle: "What is Word Frequency Counter?",
+        whatIsBody: "Word Frequency Counter scans pasted text and counts how many times each word appears, then ranks the results from most to least frequent. It is useful for spotting overused words, analyzing content patterns, or auditing vocabulary diversity.",
+        howToTitle: "How to Use Word Frequency Counter",
+        howToSteps: [
+          "Paste your text into the input area.",
+          "Toggle stop-word filtering to hide or include common words like 'the' and 'and'.",
+          "Set a minimum count if you only want words that appear multiple times.",
+          "Adjust 'Show top' to control how many results appear.",
+          "Click Copy to copy the ranked list."
+        ]
+      },
+      learnMore: {
+        title: "Understand Word Frequency",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Useful for writers reviewing repetitive drafts or essays.",
+          "Helps content marketers spot over-used filler words.",
+          "Provides a fast vocabulary audit without uploading text anywhere.",
+          "Stop-word filter focuses results on meaningful content words."
+        ]
+      }
+    },
+    {
+      slug: "csv-column-extractor",
+      title: "CSV Column Extractor — Extract One Column from CSV Online | Simple ToolBox",
+      description: "Paste CSV data and extract a single column by name or number. Copy all values as a plain list, JSON array, or quoted CSV. Runs entirely in your browser.",
+      category: "text",
+      shortTitle: "CSV Column Extractor",
+      relatedTools: ["json-csv", "text-list-to-array", "word-frequency-counter"],
+      useCases: [
+        "Pull all email addresses from a exported contacts CSV",
+        "Extract a list of product IDs from a spreadsheet export",
+        "Grab a column of values to paste into another tool",
+        "Convert a CSV column to a JSON array for use in code"
+      ],
+      faq: [
+        { q: "Does it handle quoted CSV fields?", a: "Yes. Fields wrapped in double quotes are handled correctly, including fields with commas inside quotes." },
+        { q: "Can I use tabs or semicolons as delimiters?", a: "Yes. Use the Delimiter dropdown to switch between comma, tab, and semicolon." },
+        { q: "Is my CSV data uploaded?", a: "No. All processing happens in your browser — nothing is sent to a server." },
+        { q: "Does the first row have to be a header?", a: "Yes, the tool treats the first row as column headers. If your CSV has no header row, the column names will be the raw values from the first row." }
+      ],
+      example: {
+        input: "name,email,department\nAlice,alice@example.com,Engineering\nBob,bob@example.com,Marketing",
+        output: "alice@example.com\nbob@example.com  (column: email, format: plain list)"
+      },
+      seoContent: {
+        whatIsTitle: "What is CSV Column Extractor?",
+        whatIsBody: "CSV Column Extractor lets you paste any CSV data, pick a column by header name or column number, and immediately get all values from that column. You can export the result as a plain line-by-line list, a JSON array, or a quoted CSV string.",
+        howToTitle: "How to Use CSV Column Extractor",
+        howToSteps: [
+          "Paste your CSV data into the input area (or click Sample to try an example).",
+          "Select the column you want from the dropdown — columns are shown by name and position.",
+          "Choose whether to include the header row in the output.",
+          "Pick an output format: plain list, JSON array, or quoted CSV.",
+          "Click Copy to copy the extracted values."
+        ]
+      },
+      learnMore: {
+        title: "Understand CSV Column Extraction",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Faster than opening a spreadsheet just to copy one column.",
+          "Handles common delimiters: comma, tab, semicolon.",
+          "Outputs in multiple formats including JSON array for use in code.",
+          "Runs locally so exported data never leaves your browser."
+        ]
+      }
+    },
+    {
+      slug: "text-list-to-array",
+      title: "Text List to Array Converter — Convert to JS, Python, JSON | Simple ToolBox",
+      description: "Convert a plain text list (one item per line) into a JavaScript, Python, PHP, Ruby, or JSON array instantly. Choose quote style and copy the code.",
+      category: "text",
+      shortTitle: "Text List to Array",
+      relatedTools: ["csv-column-extractor", "json-formatter", "string-escape"],
+      useCases: [
+        "Convert a list of product names into a JavaScript array for a front-end component",
+        "Turn a copied list of IDs into a Python list literal",
+        "Build a JSON array from a plain text item list",
+        "Quickly scaffold test data arrays from a spreadsheet column"
+      ],
+      faq: [
+        { q: "Which languages are supported?", a: "JavaScript, Python, PHP, Ruby, and JSON. The array syntax differs slightly between languages — for example Python and JavaScript use the same bracket syntax but PHP and Ruby differ." },
+        { q: "Can I choose single or double quotes?", a: "Yes. Use the Quote dropdown to switch between single and double quotes. JSON always uses double quotes regardless of the setting." },
+        { q: "What happens to empty lines?", a: "By default empty lines are skipped. Uncheck 'Skip empty lines' to include them as empty string items." },
+        { q: "Does it handle special characters?", a: "Yes. Quotes and backslashes inside items are automatically escaped for the selected language." }
+      ],
+      example: {
+        input: "apple\nbanana\ncherry",
+        output: '["apple", "banana", "cherry"]  (JavaScript, double quotes)'
+      },
+      seoContent: {
+        whatIsTitle: "What is Text List to Array?",
+        whatIsBody: "Text List to Array converts a plain text list — one item per line — into an array literal in the programming language of your choice. It supports JavaScript, Python, PHP, Ruby, and JSON, with options for quote style and whitespace handling.",
+        howToTitle: "How to Use Text List to Array",
+        howToSteps: [
+          "Paste your list (one item per line) into the input area.",
+          "Select the target language: JavaScript, Python, PHP, Ruby, or JSON.",
+          "Choose single or double quotes.",
+          "Toggle 'Trim whitespace' and 'Skip empty lines' as needed.",
+          "Click Copy to copy the array literal."
+        ]
+      },
+      learnMore: {
+        title: "Understand Array Conversion",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Saves time when scaffolding arrays from copied lists or spreadsheet data.",
+          "Handles quote escaping automatically so you don't need to do it manually.",
+          "Supports five languages with a single click to switch between them.",
+          "Runs locally — no text is sent to any server."
+        ]
+      }
+    },
+    {
+      slug: "percentage-calculator",
+      title: "Percentage Calculator — What is X% of Y, Percentage Change | Simple ToolBox",
+      description: "Calculate percentages instantly. Find what percent of a number is, what percentage X is of Y, or the percentage change between two values. Fast and browser-only.",
+      category: "calculator",
+      shortTitle: "Percentage Calculator",
+      relatedTools: ["bmi-calculator", "loan-calculator", "unit-converter"],
+      useCases: [
+        "Calculate a tip or discount amount at a restaurant or shop",
+        "Find what percentage a sale price is off the original",
+        "Measure percentage growth between two revenue figures",
+        "Check what fraction of a total a value represents"
+      ],
+      faq: [
+        { q: "How do I calculate 20% of 150?", a: "Use the first calculator: enter 20 in the percent field and 150 in the number field. The result is 30." },
+        { q: "How do I find what percentage 30 is of 150?", a: "Use the second calculator: enter 30 as X and 150 as Y. The result is 20%." },
+        { q: "What is percentage change?", a: "Percentage change measures how much a value increased or decreased relative to its original value. A positive result means growth; a negative result means a decrease." },
+        { q: "Can it handle decimals?", a: "Yes. All three calculators accept decimal inputs and display up to six decimal places when needed." }
+      ],
+      example: {
+        input: "What is 15% of 80?",
+        output: "12"
+      },
+      seoContent: {
+        whatIsTitle: "What is Percentage Calculator?",
+        whatIsBody: "Percentage Calculator provides three instant calculators: find what X% of a number equals, determine what percentage one number is of another, and compute the percentage change between an old and new value. All three update instantly as you type.",
+        howToTitle: "How to Use Percentage Calculator",
+        howToSteps: [
+          "Choose the calculation type: percentage of a number, percentage ratio, or percentage change.",
+          "Enter the numbers in the appropriate fields.",
+          "The result updates instantly as you type.",
+          "Click Copy next to any result to copy it to your clipboard."
+        ]
+      },
+      learnMore: {
+        title: "Understand Percentage Calculations",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Three common percentage questions answered in one place.",
+          "Instant results — no need to press a button to calculate.",
+          "Copy result in one click for use in documents or spreadsheets.",
+          "Runs locally with no data sent anywhere."
+        ]
+      }
+    },
+    {
+      slug: "age-calculator",
+      title: "Age Calculator — Exact Age in Years, Months and Days | Simple ToolBox",
+      description: "Calculate your exact age in years, months, and days from your date of birth. Also shows total days lived, weeks, and days until your next birthday.",
+      category: "calculator",
+      shortTitle: "Age Calculator",
+      relatedTools: ["date-calculator", "percentage-calculator", "countdown"],
+      useCases: [
+        "Calculate your exact current age for a medical or legal form",
+        "Find out how many days old you are",
+        "Check how many days until your next birthday",
+        "Calculate a child's age in months and days for a pediatric visit"
+      ],
+      faq: [
+        { q: "How is the age calculated?", a: "The calculator counts full calendar years, months, and days from the date of birth to the reference date, accounting for varying month lengths." },
+        { q: "Can I calculate age as of a past or future date?", a: "Yes. Change the 'Calculate as of' date to any past or future date to see what the age was or will be on that day." },
+        { q: "How is the next birthday calculated?", a: "The next birthday is the nearest future occurrence of the birth month and day. If today is the birthday, it shows 'Today!'." },
+        { q: "Does this account for leap years?", a: "Yes. The calculator uses standard JavaScript date arithmetic which handles leap years correctly." }
+      ],
+      example: {
+        input: "Date of birth: 1990-06-15, as of: 2026-03-23",
+        output: "Age: 35 years, 9 months, 8 days | 13,066 days lived | Next birthday in 83 days"
+      },
+      seoContent: {
+        whatIsTitle: "What is Age Calculator?",
+        whatIsBody: "Age Calculator computes the exact number of years, months, and days between a date of birth and a reference date (today by default). It also shows the total days and weeks lived, and how many days remain until the next birthday.",
+        howToTitle: "How to Use Age Calculator",
+        howToSteps: [
+          "Enter the date of birth using the date picker.",
+          "The reference date defaults to today — change it to calculate age as of any date.",
+          "View the exact age broken down into years, months, and days.",
+          "Check the stats cards for total months, weeks, days lived, and next birthday countdown."
+        ]
+      },
+      learnMore: {
+        title: "Understand Age Calculation",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Gives the exact age in years, months, and days — not just years.",
+          "Useful for forms that ask for age in months, or for medical and legal contexts.",
+          "The 'as of' date lets you calculate historical or future ages.",
+          "Runs entirely in your browser — no data is sent anywhere."
+        ]
+      }
+    },
+    {
+      slug: "tip-calculator",
+      title: "Tip Calculator — Split Bill and Calculate Tip Instantly | Simple ToolBox",
+      description: "Calculate tip amount and total bill instantly. Choose a tip percentage, split the bill among any number of people, and see per-person totals. Browser-only.",
+      category: "calculator",
+      shortTitle: "Tip Calculator",
+      relatedTools: ["discount-calculator", "percentage-calculator", "loan-calculator"],
+      useCases: [
+        "Calculate the tip at a restaurant and split it among friends",
+        "Find the per-person total for a group dinner",
+        "Compare different tip percentages before deciding",
+        "Calculate a custom tip amount for exceptional service"
+      ],
+      faq: [
+        { q: "What tip percentage should I leave?", a: "Common tip amounts are 15% for standard service, 18% for good service, and 20–25% for excellent service. The right amount depends on your location and the quality of service." },
+        { q: "How does the bill split work?", a: "The calculator divides the total bill (including tip) equally among the number of people you specify." },
+        { q: "Can I enter a custom tip percentage?", a: "Yes. Click 'Custom' to enter any tip percentage you like." },
+        { q: "Does this account for tax?", a: "No. Enter the pre-tax bill amount and the tool will calculate tip on that amount. If you want to tip on the post-tax amount, enter the total including tax." }
+      ],
+      example: {
+        input: "Bill: $85.00, Tip: 18%, People: 4",
+        output: "Tip: $15.30 | Total: $100.30 | Per person: $25.08"
+      },
+      seoContent: {
+        whatIsTitle: "What is Tip Calculator?",
+        whatIsBody: "Tip Calculator computes the tip amount, total bill, and per-person split from a bill amount, tip percentage, and number of diners. Preset buttons cover the most common tip percentages, and a custom input lets you enter any value.",
+        howToTitle: "How to Use Tip Calculator",
+        howToSteps: [
+          "Enter the bill amount.",
+          "Select a tip percentage from the preset buttons, or click Custom and type your own.",
+          "Enter the number of people splitting the bill.",
+          "Read the tip amount, total, and per-person totals from the result cards."
+        ]
+      },
+      learnMore: {
+        title: "Understand Tip Calculations",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Instant results — no tapping required after entering numbers.",
+          "Preset buttons for the most common tip percentages.",
+          "Shows both the per-person tip and the per-person total.",
+          "Runs locally in your browser."
+        ]
+      }
+    },
+    {
+      slug: "discount-calculator",
+      title: "Discount Calculator — Sale Price and Savings Amount | Simple ToolBox",
+      description: "Calculate the sale price after a discount instantly. Enter original price and discount percentage to get final price, amount saved, and effective discount rate. Browser-only.",
+      category: "calculator",
+      shortTitle: "Discount Calculator",
+      relatedTools: ["percentage-calculator", "tip-calculator", "bmi-calculator"],
+      useCases: [
+        "Find the final price of an item on sale before buying",
+        "Calculate how much you save with a coupon or promo code",
+        "Work backwards to find what discount was applied between two prices",
+        "Compare sale prices across multiple discounts"
+      ],
+      faq: [
+        { q: "How is the sale price calculated?", a: "Sale price = original price × (1 − discount% / 100). For example, a $100 item at 20% off costs $80." },
+        { q: "How do I find the discount % between two prices?", a: "Use the second calculator: enter the original price and the sale price. The tool calculates (original − sale) / original × 100." },
+        { q: "Can I calculate a discount greater than 100%?", a: "No. A discount over 100% would imply a negative price, so the tool caps the input at 100%." },
+        { q: "Is there a currency option?", a: "The tool uses $ as a placeholder. The math works for any currency — just treat the numbers as your local currency." }
+      ],
+      example: {
+        input: "Original: $120.00, Discount: 25%",
+        output: "Sale price: $90.00 | You save: $30.00"
+      },
+      seoContent: {
+        whatIsTitle: "What is Discount Calculator?",
+        whatIsBody: "Discount Calculator provides two calculators: the first finds the sale price and savings from an original price and a discount percentage; the second works in reverse — given the original and sale price, it calculates what discount was applied.",
+        howToTitle: "How to Use Discount Calculator",
+        howToSteps: [
+          "To find the sale price: enter the original price and the discount percentage.",
+          "Read the sale price, amount saved, and the percentage of the original you are paying.",
+          "To find the discount %: enter the original price and the sale price in the second calculator.",
+          "Read the discount percentage and the amount saved."
+        ]
+      },
+      learnMore: {
+        title: "Understand Discount Calculations",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Two calculators in one: forward (price → sale) and reverse (sale → discount %).",
+          "Instant results — updates as you type.",
+          "Useful for shopping, budgeting, and price comparisons.",
+          "Runs entirely in your browser."
+        ]
+      }
+    },
+    {
+      slug: "gpa-calculator",
+      title: "GPA Calculator — Calculate Weighted GPA Online | Simple ToolBox",
+      description: "Calculate your GPA by entering course grades and credit hours. Supports letter grades (A–F) and 4.0 scale. Add up to 20 courses and see weighted GPA instantly.",
+      category: "calculator",
+      shortTitle: "GPA Calculator",
+      relatedTools: ["percentage-calculator", "age-calculator", "date-calculator"],
+      useCases: [
+        "Calculate semester GPA before final grades are posted",
+        "Estimate cumulative GPA after adding a new course result",
+        "Check if your GPA meets the threshold for an honor roll or scholarship",
+        "Plan future grades needed to hit a target GPA"
+      ],
+      faq: [
+        { q: "What grade point scale does this use?", a: "The standard US 4.0 scale: A/A+ = 4.0, A− = 3.7, B+ = 3.3, B = 3.0, B− = 2.7, C+ = 2.3, C = 2.0, C− = 1.7, D+ = 1.3, D = 1.0, D− = 0.7, F = 0.0." },
+        { q: "How is weighted GPA calculated?", a: "Each course grade is converted to grade points, multiplied by credit hours, then divided by total credit hours. This gives a credit-weighted average." },
+        { q: "Can I add more than the default number of courses?", a: "Yes. Click 'Add Course' to add as many rows as you need." },
+        { q: "Does it support plus/minus grades?", a: "Yes. All standard plus and minus letter grades (A+, A, A−, B+, etc.) are supported." }
+      ],
+      example: {
+        input: "Calculus (A, 4 cr) + English (B+, 3 cr) + History (A−, 3 cr)",
+        output: "GPA: 3.70 | Total credits: 10 | Grade points: 37.0"
+      },
+      seoContent: {
+        whatIsTitle: "What is GPA Calculator?",
+        whatIsBody: "GPA Calculator lets you enter each course, its letter grade, and its credit hours. It converts letter grades to the standard 4.0 grade-point scale, weights each grade by credit hours, and calculates your cumulative GPA instantly.",
+        howToTitle: "How to Use GPA Calculator",
+        howToSteps: [
+          "Enter the course name (optional), letter grade, and credit hours for each course.",
+          "Click 'Add Course' to add more rows as needed.",
+          "Read your GPA, total credits, and total grade points from the result cards.",
+          "The GPA bar shows your score visually on the 0.0–4.0 scale."
+        ]
+      },
+      learnMore: {
+        title: "Understand GPA Calculation",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Supports all standard plus/minus letter grades on the 4.0 scale.",
+          "Weighted by credit hours — heavier courses count more.",
+          "Add or remove courses dynamically without page reload.",
+          "Runs entirely in your browser — no data sent anywhere."
+        ]
+      }
+    },
+    {
+      slug: "calorie-calculator",
+      title: "Calorie Calculator — BMR and Daily Calorie Needs (TDEE) | Simple ToolBox",
+      description: "Calculate your Basal Metabolic Rate (BMR) and daily calorie needs (TDEE) using the Mifflin-St Jeor formula. Supports metric and imperial units. Browser-only.",
+      category: "calculator",
+      shortTitle: "Calorie Calculator",
+      relatedTools: ["bmi-calculator", "percentage-calculator", "unit-converter"],
+      useCases: [
+        "Find your maintenance calories before starting a diet",
+        "Calculate the calorie deficit needed to lose 0.5 kg per week",
+        "Estimate TDEE after changing your activity level",
+        "Check calorie targets for a lean bulk or cut phase"
+      ],
+      faq: [
+        { q: "What is BMR?", a: "Basal Metabolic Rate (BMR) is the number of calories your body burns at complete rest to maintain basic functions like breathing and circulation." },
+        { q: "What is TDEE?", a: "Total Daily Energy Expenditure (TDEE) is BMR multiplied by an activity factor. It represents the total calories you burn in a day including exercise and movement." },
+        { q: "Which formula does this use?", a: "The Mifflin-St Jeor equation, which is considered the most accurate general-population BMR formula for most adults." },
+        { q: "How accurate is it?", a: "These are population-average estimates. Individual metabolism varies due to genetics, muscle mass, hormones, and other factors. Use results as a starting point." }
+      ],
+      example: {
+        input: "Male, 30 years, 175 cm, 75 kg, moderately active",
+        output: "BMR: 1,781 kcal · TDEE: 2,760 kcal · Weight loss (−0.5 kg/wk): 2,210 kcal"
+      },
+      seoContent: {
+        whatIsTitle: "What is Calorie Calculator?",
+        whatIsBody: "Calorie Calculator computes your Basal Metabolic Rate (BMR) — the calories burned at rest — and your Total Daily Energy Expenditure (TDEE) based on your activity level. It then shows suggested calorie targets for weight loss, maintenance, and gain.",
+        howToTitle: "How to Use Calorie Calculator",
+        howToSteps: [
+          "Select Metric or Imperial units.",
+          "Choose your sex and enter your age, height, and weight.",
+          "Select the activity level that best matches your typical week.",
+          "Read your BMR and TDEE, then check the goal table for calorie targets."
+        ]
+      },
+      learnMore: {
+        title: "Understand Calorie Needs",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Uses the Mifflin-St Jeor equation — the most widely validated BMR formula.",
+          "Shows calorie targets for five different goals in one table.",
+          "Supports both metric and imperial units.",
+          "Runs entirely in your browser — no personal data is sent anywhere."
+        ]
+      }
+    },
+    {
+      slug: "currency-converter",
+      title: "Currency Converter — Quick Exchange Rate Estimates | Simple ToolBox",
+      description: "Convert between 30+ major currencies using approximate reference rates. Instant results, swap currencies in one click. Rates are estimates — verify before financial decisions.",
+      category: "calculator",
+      shortTitle: "Currency Converter",
+      relatedTools: ["percentage-calculator", "discount-calculator", "unit-converter"],
+      useCases: [
+        "Get a quick estimate before booking international travel",
+        "Check rough conversion for a foreign invoice or price",
+        "Compare prices across currencies while shopping online",
+        "Estimate currency exchange for budgeting purposes"
+      ],
+      faq: [
+        { q: "Are the rates live?", a: "No. The rates are approximate reference values baked into the tool. For live rates before financial transactions, use your bank or a real-time provider." },
+        { q: "Which currencies are supported?", a: "30+ major currencies including USD, EUR, GBP, JPY, CAD, AUD, CHF, CNY, INR, KRW, MXN, BRL, and more." },
+        { q: "How do I swap the currencies?", a: "Click the ⇅ button between the two currency selectors to reverse the conversion direction." },
+        { q: "Why use approximate rates?", a: "For quick estimates — travel planning, price comparisons, or ballpark figures — approximate rates are sufficient and faster than waiting for a live API." }
+      ],
+      example: {
+        input: "100 USD → EUR",
+        output: "92.00 EUR (at approximate reference rate)"
+      },
+      seoContent: {
+        whatIsTitle: "What is Currency Converter?",
+        whatIsBody: "Currency Converter lets you quickly convert between 30+ major world currencies using built-in approximate reference exchange rates. It is designed for fast estimates — travel budgeting, invoice comparisons, or price checks — rather than live financial transactions.",
+        howToTitle: "How to Use Currency Converter",
+        howToSteps: [
+          "Enter the amount you want to convert.",
+          "Select the source currency from the first dropdown.",
+          "Select the target currency from the second dropdown.",
+          "Read the converted result and the exchange rate below.",
+          "Click ⇅ to swap the two currencies."
+        ]
+      },
+      learnMore: {
+        title: "Understand Currency Conversion",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Instant conversion with no login, API key, or network request.",
+          "Covers 30+ major currencies for quick travel and price estimates.",
+          "One-click swap to reverse conversion direction.",
+          "Rate disclaimer included — so you know when to verify before spending."
+        ]
+      }
+    },
+    {
+      slug: "char-counter",
+      title: "Character Counter — Count Letters, Digits, Emoji and Unicode | Simple ToolBox",
+      description: "Count characters in pasted text with a detailed breakdown: letters, digits, punctuation, spaces, emoji, and Unicode code points. Instant, browser-only.",
+      category: "text",
+      shortTitle: "Character Counter",
+      relatedTools: ["word-counter", "word-frequency-counter", "text-cleaner"],
+      useCases: [
+        "Check character count before posting to Twitter or LinkedIn",
+        "Count characters for an SMS message within the 160-character limit",
+        "Analyze emoji usage in marketing copy",
+        "Verify character limits for database fields or API inputs"
+      ],
+      faq: [
+        { q: "How does this differ from Word Counter?", a: "Word Counter focuses on words, sentences, and reading time. Character Counter gives a deeper character-level breakdown: letters, digits, punctuation, spaces, emoji, and Unicode code points." },
+        { q: "Does it count emoji as one character?", a: "Yes. Each emoji is counted as one character using Unicode code point iteration, which correctly handles multi-byte emoji." },
+        { q: "What are Unicode code points beyond BMP?", a: "Characters outside the Basic Multilingual Plane (code points above U+FFFF) include most emoji and some rare scripts. JavaScript strings store these as two 'surrogate pair' code units, so naïve .length counts them as 2. This tool correctly counts them as 1." },
+        { q: "Is the text uploaded anywhere?", a: "No. All analysis runs in your browser." }
+      ],
+      example: {
+        input: "Hello 🌍! Café.",
+        output: "Total: 14 chars | Letters: 9 | Emoji: 1 | Punctuation: 2 | Spaces: 1"
+      },
+      seoContent: {
+        whatIsTitle: "What is Character Counter?",
+        whatIsBody: "Character Counter scans pasted text and produces a detailed breakdown of every character type: letters (including accented and non-ASCII), digits, punctuation, whitespace, emoji, and Unicode code points beyond the Basic Multilingual Plane. It also supports character-limit tracking for common platforms like Twitter and SMS.",
+        howToTitle: "How to Use Character Counter",
+        howToSteps: [
+          "Paste or type text into the input area.",
+          "Read the stats cards for the character breakdown.",
+          "Optionally set a character limit — use the preset buttons for Twitter, SMS, or LinkedIn, or enter a custom value.",
+          "The progress bar turns yellow at 85% and red when you exceed the limit."
+        ]
+      },
+      learnMore: {
+        title: "Understand Character Counting",
+        whyUseTitle: "Why Use This Tool",
+        whyUseItems: [
+          "Goes beyond total count — shows letters, digits, punctuation, spaces, and emoji separately.",
+          "Correctly handles multi-byte Unicode characters and emoji using code point iteration.",
+          "Built-in presets for Twitter (280), SMS (160), and LinkedIn (700) limits.",
+          "Runs entirely in your browser — no text is sent anywhere."
+        ]
+      }
+    },
+    {
+      slug: 'mortgage-calculator',
+      title: 'Mortgage Calculator',
+      description: 'Calculate monthly mortgage payment, total interest, and amortization schedule. Enter home price, down payment, interest rate, and loan term.',
+      category: 'calculator',
+      relatedTools: ['loan-calculator', 'savings-calculator', 'percentage-calculator'],
+      faq: [
+        { q: 'What is the formula for a mortgage payment?', a: 'Monthly payment M = P × [r(1+r)^n] / [(1+r)^n − 1], where P is the loan amount (home price minus down payment), r is the monthly interest rate (annual rate ÷ 12), and n is the number of monthly payments (years × 12).' },
+        { q: 'What is included in PITI?', a: 'PITI stands for Principal, Interest, Taxes, and Insurance. The calculator shows both the P&I payment and the full PITI total when you add monthly property tax and home insurance amounts.' },
+        { q: 'How much down payment do I need?', a: 'Conventional loans typically require 5–20% down. A 20% down payment avoids Private Mortgage Insurance (PMI). FHA loans allow as little as 3.5% down.' },
+        { q: 'Does the amortization schedule show early payoff?', a: 'The table shows the yearly schedule at the specified rate and term. To model early payoff, try different loan terms in the term dropdown.' }
+      ],
+      useCases: ['Estimate monthly payments before buying a home', 'Compare 15-year vs 30-year loan costs', 'See how much total interest a mortgage will cost', 'Check how much you can borrow with a given monthly budget'],
+      example: { input: 'Home: $400,000 | Down: $80,000 | Rate: 6.5% | Term: 30yr', output: 'Monthly P&I: $2,022 | Total Interest: $407,920 | Total Cost: $727,920' },
+      seoContent: {
+        whatIsTitle: 'What is Mortgage Calculator?',
+        whatIsBody: 'Mortgage Calculator computes the monthly principal and interest payment for a fixed-rate home loan using the standard amortization formula. It also shows total interest over the life of the loan, a full PITI estimate when you add property tax and insurance, and a year-by-year amortization schedule.',
+        howToTitle: 'How to Use Mortgage Calculator',
+        howToSteps: ['Enter the home price and down payment.', 'Set the annual interest rate and loan term.', 'Optionally add monthly property tax and insurance amounts.', 'Read the monthly payment, total interest, and total cost.', 'Click "Show Amortization Schedule" for a year-by-year breakdown.']
+      },
+      learnMore: {
+        title: 'Understand Mortgage Payments',
+        whyUseTitle: 'Why Use This Tool',
+        whyUseItems: ['See exactly how much interest you will pay over the life of the loan.', 'Compare 15-year and 30-year scenarios instantly.', 'Shows PITI — not just P&I — when you add taxes and insurance.', 'Full amortization table helps you understand equity buildup.', 'Runs entirely in your browser — no data is sent.']
+      }
+    },
+    {
+      slug: 'savings-calculator',
+      title: 'Savings Calculator',
+      description: 'Project future savings with compound interest. Enter initial balance, monthly contribution, interest rate, and time horizon to see your future balance and interest earned.',
+      category: 'calculator',
+      relatedTools: ['mortgage-calculator', 'loan-calculator', 'percentage-calculator'],
+      faq: [
+        { q: 'How is compound interest calculated?', a: 'FV = PV × (1 + r/n)^(n×t) + PMT × [((1+r/n)^(n×t) − 1) / (r/n)], where PV is the starting balance, PMT is the monthly contribution, r is the annual rate, n is the compounding frequency, and t is the years.' },
+        { q: 'What compound frequency should I choose?', a: 'Most savings accounts and CDs compound monthly or daily. Money market accounts often compound daily. Choose the frequency that matches your account type for the most accurate projection.' },
+        { q: 'Does this account for inflation?', a: 'No. The calculator shows nominal returns. To estimate real purchasing power, subtract the expected inflation rate from your annual interest rate.' },
+        { q: 'What is the difference between APR and APY?', a: 'APR is the stated rate before compounding. APY (Annual Percentage Yield) is the effective annual rate after compounding. For monthly compounding at 5% APR, the APY is about 5.12%.' }
+      ],
+      useCases: ['Project retirement savings over 20–30 years', 'Compare savings account rates', 'See how monthly contributions accelerate growth', 'Estimate an emergency fund timeline'],
+      example: { input: 'Initial: $5,000 | Monthly: $200 | Rate: 5% | 10 years', output: 'Future Balance: $37,066 | Contributions: $29,000 | Interest: $8,066' },
+      seoContent: {
+        whatIsTitle: 'What is Savings Calculator?',
+        whatIsBody: 'Savings Calculator projects the future value of a savings account or investment using compound interest. It accounts for an initial lump sum plus regular monthly contributions, with configurable compounding frequency. A year-by-year table shows exactly how your balance grows over time.',
+        howToTitle: 'How to Use Savings Calculator',
+        howToSteps: ['Enter your current or initial balance.', 'Set a monthly contribution amount (can be 0).', 'Enter the expected annual interest rate.', 'Choose a time period and compounding frequency.', 'Read the future balance, total contributions, and interest earned.', 'Click "Show Year-by-Year Growth" for the full table.']
+      },
+      learnMore: {
+        title: 'Understand Compound Interest',
+        whyUseTitle: 'Why Use This Tool',
+        whyUseItems: ['See exactly how much interest you will earn over any time horizon.', 'Visual bar shows the split between contributions and interest.', 'Year-by-year table reveals how growth accelerates over time.', 'Configurable compounding frequency for accurate projections.', 'Runs entirely in your browser — no data is sent.']
+      }
+    },
+    {
+      slug: 'password-strength-checker',
+      title: 'Password Strength Checker',
+      description: 'Check password entropy, estimated crack time, and a detailed character-type breakdown. Runs entirely in your browser — your password is never sent anywhere.',
+      category: 'generate',
+      relatedTools: ['password-generator', 'hash-generator', 'bcrypt'],
+      faq: [
+        { q: 'What is password entropy?', a: 'Entropy measures unpredictability in bits. It is calculated as length × log₂(charset size). A password using 94 printable ASCII characters with length 12 has about 78.8 bits of entropy — generally considered strong.' },
+        { q: 'How is crack time estimated?', a: 'The tool assumes an offline brute-force attack at 1 billion guesses per second. This represents a capable attacker with modern hardware. Real crack times vary based on the attack method and attacker resources.' },
+        { q: 'Is my password sent to a server?', a: 'No. All analysis runs entirely in your browser using JavaScript. Your password never leaves your device.' },
+        { q: 'What makes a password strong?', a: 'Length is the single most important factor. A 16-character password with mixed characters is far stronger than an 8-character one. Also avoid dictionary words, sequences like "123", and repeated characters.' }
+      ],
+      useCases: ['Check a new password before using it', 'Understand why a password was rejected', 'Learn what makes a password weak or strong', 'Test passphrase strength vs random character strings'],
+      example: { input: 'P@ssw0rd123', output: 'Entropy: 65.2 bits | Strength: Fair | Crack time: 3.7 years' },
+      seoContent: {
+        whatIsTitle: 'What is Password Strength Checker?',
+        whatIsBody: 'Password Strength Checker evaluates a password by computing its Shannon entropy based on character set size and length, then estimates the time needed to brute-force it at 1 billion guesses per second. It also runs 8 specific checks — length, character types, common sequences, repetition, and dictionary patterns — and suggests improvements.',
+        howToTitle: 'How to Use Password Strength Checker',
+        howToSteps: ['Type or paste a password into the input field.', 'Toggle the eye icon to show or hide the password.', 'Read the strength meter, entropy, and estimated crack time.', 'Review the checklist to see which criteria are met.', 'Follow the tips to improve your password if needed.']
+      },
+      learnMore: {
+        title: 'Understand Password Security',
+        whyUseTitle: 'Why Use This Tool',
+        whyUseItems: ['Shows entropy in bits — the gold standard for password strength.', 'Crack time estimate based on realistic offline attack scenario.', 'Checks for common weaknesses: sequences, repeats, dictionary words.', 'Actionable tips to fix every failing check.', '100% local — your password never leaves your browser.']
+      }
+    },
+    {
+      slug: 'exif-viewer',
+      title: 'EXIF Data Viewer',
+      description: 'Read camera model, GPS coordinates, exposure settings, and full EXIF metadata from any image file. Runs entirely in your browser — no image is uploaded.',
+      category: 'image',
+      relatedTools: ['remove-exif', 'image-to-base64', 'image-rotate'],
+      faq: [
+        { q: 'What is EXIF data?', a: 'EXIF (Exchangeable Image File Format) is metadata embedded in image files by cameras and smartphones. It includes technical details like camera make/model, lens, shutter speed, aperture, ISO, and often GPS coordinates and the date the photo was taken.' },
+        { q: 'Which file types contain EXIF data?', a: 'JPEG files are the most common carrier of EXIF data. TIFF, HEIC, and most camera RAW formats also support EXIF. PNG files can carry a limited metadata subset but rarely contain full EXIF. SVG and WebP support varies.' },
+        { q: 'Is my image uploaded to a server?', a: 'No. All parsing happens in your browser using JavaScript. Your image never leaves your device.' },
+        { q: 'Why does my image show no EXIF data?', a: 'Many apps and social networks strip EXIF data before displaying or storing images. Screenshots, edited images, and files processed through web services often contain no EXIF. Use the original file from your camera for best results.' }
+      ],
+      useCases: ['Check GPS coordinates before sharing a photo', 'Verify camera settings for a particular shot', 'Audit which images contain sensitive location data', 'Inspect lens and focal length information'],
+      example: { input: 'JPEG photo from smartphone', output: 'Make: Apple | Model: iPhone 15 Pro | GPS: 37.4219°N 122.0840°W | ISO: 64 | f/1.8 | 1/2000s' },
+      seoContent: {
+        whatIsTitle: 'What is EXIF Viewer?',
+        whatIsBody: 'EXIF Viewer reads the Exchangeable Image File Format (EXIF) metadata embedded inside JPEG, TIFF, and other image files. It extracts camera and lens information, exposure parameters, color space, orientation, GPS coordinates, and timestamps — all grouped into readable sections. Since everything runs locally, you can inspect private or confidential images without uploading them anywhere.',
+        howToTitle: 'How to Use EXIF Viewer',
+        howToSteps: ['Drop an image file onto the drop zone, or click to browse.', 'The tool reads EXIF metadata instantly from the file.', 'Browse the grouped sections: Camera, Capture Settings, Date & Time, Image Info, and GPS.', 'If GPS data is present, click "View on Google Maps" to see the photo location.', 'Click "Copy as JSON" to copy all metadata for use in other tools.']
+      },
+      learnMore: {
+        title: 'Understand EXIF Metadata',
+        whyUseTitle: 'Why Use This Tool',
+        whyUseItems: ['Inspect GPS location before sharing — avoid accidentally revealing private locations.', 'Shows all EXIF fields without installing software.', 'GPS to Google Maps link for instant location check.', 'Copy as JSON for programmatic use or logging.', '100% local — no image is ever uploaded.']
+      }
+    },
+    {
+      slug: 'image-to-base64',
+      title: 'Image to Base64 Converter',
+      description: 'Convert any image to a Base64 string or data URI for embedding in HTML, CSS, or JSON. Runs entirely in your browser — no image is uploaded.',
+      category: 'image',
+      relatedTools: ['base64', 'exif-viewer', 'webp-converter'],
+      faq: [
+        { q: 'What is a Base64 image?', a: 'Base64 is a way to encode binary data (like an image) as a plain-text ASCII string. A data URI is a Base64 string prefixed with the MIME type, formatted as data:image/png;base64,... — this can be placed directly in the src attribute of an img tag or in a CSS background-image to embed the image without a separate file request.' },
+        { q: 'When should I use data URIs?', a: 'Data URIs are ideal for small icons, logos, or inlined images in HTML emails where external file references may be blocked. For large images they increase page weight and can hurt performance, so use them sparingly.' },
+        { q: 'Is my image uploaded to a server?', a: 'No. The FileReader API encodes the image directly in your browser. Your image never leaves your device.' },
+        { q: 'How much larger is a Base64 image?', a: 'Base64 encoding increases the data size by approximately 33% because every 3 bytes of binary data become 4 ASCII characters. A 100 KB image becomes roughly 133 KB as a Base64 string.' }
+      ],
+      useCases: ['Embed a small logo in an HTML email', 'Inline a spinner or icon in a CSS file', 'Pass image data as a JSON string to an API', 'Create self-contained HTML files with embedded images'],
+      example: { input: 'logo.png (2 KB)', output: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...' },
+      seoContent: {
+        whatIsTitle: 'What is Image to Base64?',
+        whatIsBody: 'Image to Base64 converts an image file into a Base64-encoded string using the browser\'s built-in FileReader API. The output can be formatted as a raw Base64 string, a full data URI, a CSS background-image declaration, or an HTML img tag — whichever is needed for the target use case.',
+        howToTitle: 'How to Use Image to Base64',
+        howToSteps: ['Drop an image file onto the drop zone, or click to browse.', 'Choose an output format: Data URI, Raw Base64, CSS background-image, or HTML img tag.', 'Copy the result to your clipboard with one click.', 'Paste directly into HTML, CSS, JSON, or any other destination.']
+      },
+      learnMore: {
+        title: 'Understand Base64 Image Encoding',
+        whyUseTitle: 'Why Use This Tool',
+        whyUseItems: ['Four output formats — data URI, raw Base64, CSS, and HTML.', 'Shows original size vs encoded size and the % increase.', 'Warns when the image is large enough to impact page performance.', 'No file upload — everything runs in your browser.']
+      }
+    },
+    {
+      slug: 'base64-to-image',
+      title: 'Base64 to Image Converter',
+      description: 'Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF and more. Runs locally — nothing is sent.',
+      category: 'image',
+      relatedTools: ['image-to-base64', 'base64', 'exif-viewer'],
+      faq: [
+        { q: 'What is a Base64 image string?', a: 'A Base64 image is a binary image file encoded as ASCII characters. A data URI wraps it as data:image/png;base64,... so a browser can render it directly from the string without loading an external file.' },
+        { q: 'How do I get the correct Base64 string?', a: 'Paste either a full data URI (starting with "data:image/...") or a raw Base64 string (the characters after the comma in a data URI). The tool auto-detects the format and renders the image.' },
+        { q: 'What image formats are supported?', a: 'Any image format your browser can render: JPEG, PNG, WebP, GIF, SVG, BMP, and ICO. The tool detects the format from the Base64 magic bytes.' },
+        { q: 'Can I download the decoded image?', a: 'Yes. Click "Download original format" to save the file in its native format. For raster images, "Download as PNG" converts via a canvas element.' }
+      ],
+      useCases: ['Preview a data URI to check it is correct', 'Recover an image from a Base64 string in code', 'Download an image embedded in an HTML or CSS file', 'Verify a Base64 image before deploying'],
+      example: { input: 'data:image/png;base64,iVBORw0KGgo...', output: 'Live image preview + download buttons (PNG, 45x45px, 2.1 KB)' },
+      seoContent: {
+        whatIsTitle: 'What is Base64 to Image?',
+        whatIsBody: 'Base64 to Image decodes a Base64-encoded string or data URI back into a viewable image. It renders the image directly in the browser using an img element, displays dimensions and size, and provides download buttons for the original format and as PNG. Everything runs locally — no string or image is sent to a server.',
+        howToTitle: 'How to Use Base64 to Image',
+        howToSteps: ['Paste a Base64 string or data URI into the input box.', 'Click "Decode & Preview" (or press Ctrl+Enter).', 'The image renders in the preview area with dimensions and size info.', 'Click a download button to save the image file.']
+      },
+      learnMore: {
+        title: 'Understand Base64 Decoding',
+        whyUseTitle: 'Why Use This Tool',
+        whyUseItems: ['Auto-detects whether input is a data URI or raw Base64.', 'Detects MIME type from magic bytes — no manual format selection needed.', 'Provides both original-format and PNG download options.', '100% local — your data never leaves your browser.']
+      }
+    },
+    {
+      slug: 'image-metadata-editor',
+      title: 'Image Metadata Editor',
+      description: 'Edit title, description, author, copyright, and keyword fields in a JPEG and download the updated file. Reads existing EXIF camera data. Runs locally.',
+      category: 'image',
+      relatedTools: ['exif-viewer', 'remove-exif', 'image-to-base64'],
+      faq: [
+        { q: 'What metadata fields can I edit?', a: 'You can add or edit Title, Author/Artist, Copyright, Keywords, and Description/Caption. These are written as JPEG COM (Comment) segments in the output file, which are readable by most photo software.' },
+        { q: 'Will my EXIF camera data be preserved?', a: 'Yes. The tool writes the new metadata as additional COM segments while keeping the original JPEG data intact, including any existing EXIF segments.' },
+        { q: 'Why JPEG only?', a: 'JPEG COM segments are a simple, universal way to embed text metadata that works without external libraries. PNG, WebP, and TIFF use different metadata formats that require more complex parsers and writers.' },
+        { q: 'Is this the same as full IPTC/XMP editing?', a: 'No. Full IPTC/XMP editing requires dedicated software. This tool writes metadata as JPEG comment fields, which is readable by most tools but is not the same as structured IPTC or XMP blocks.' }
+      ],
+      useCases: ['Add copyright before sharing photos online', 'Label archived images with title and description', 'Correct or add author attribution to JPEG files', 'Add keywords to make photos searchable'],
+      example: { input: 'photo.jpg (no metadata)', output: 'photo_edited.jpg with Title: Sunset | Author: Jane Smith | Copyright: 2024' },
+      seoContent: {
+        whatIsTitle: 'What is Image Metadata Editor?',
+        whatIsBody: 'Image Metadata Editor lets you open a JPEG, read its existing EXIF camera information (make, model, date, dimensions), and add or edit descriptive metadata fields: Title, Author, Copyright, Keywords, and Description. The new metadata is embedded as JPEG COM segments in a downloaded copy of the file.',
+        howToTitle: 'How to Use Image Metadata Editor',
+        howToSteps: ['Drop a JPEG file onto the drop zone or click to browse.', 'Read any existing EXIF data shown in the summary panel.', 'Fill in the metadata fields: title, author, copyright, keywords, and description.', 'Click "Download Updated JPEG" to save the edited file.']
+      },
+      learnMore: {
+        title: 'Understand Image Metadata',
+        whyUseTitle: 'Why Use This Tool',
+        whyUseItems: ['Add copyright and author info before publishing photos.', 'Pre-fills Author field from existing EXIF Artist tag if present.', 'Non-destructive — creates a new file, never overwrites the original.', '100% local — no image is ever uploaded.']
+      }
     }
 ];
 
-if (typeof module !== 'undefined') module.exports = { TOOLS_META };
+if (typeof module !== 'undefined') module.exports = { TOOLS_META }; !== 'undefined') module.exports = { TOOLS_META };

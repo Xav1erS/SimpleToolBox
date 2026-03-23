@@ -85,12 +85,12 @@ const SITE_TOOLS = [
   { name: 'Email Extractor', href: 'tools/email-extractor.html', tag: 'text', icon: '✉️', desc: 'Extract email addresses from pasted text, logs, or exports' },
   { name: 'URL Extractor', href: 'tools/url-extractor.html', tag: 'text', icon: '🔗', desc: 'Extract links from pasted text and normalize plain www URLs' },
   { name: 'Phone Number Extractor', href: 'tools/phone-extractor.html', tag: 'text', icon: '📞', desc: 'Extract phone numbers from text, notes, or lead lists' },
-  { name: 'Duplicate Line Remover', href: 'tools/duplicate-line-remover.html', tag: 'text', icon: '??', desc: 'Remove repeated lines while keeping the first occurrence' },
-  { name: 'Line Sorter', href: 'tools/line-sorter.html', tag: 'text', icon: '??', desc: 'Sort one-item-per-line text lists A-Z or Z-A with natural order' },
-  { name: 'List Deduplicator', href: 'tools/list-deduplicator.html', tag: 'text', icon: '??', desc: 'Deduplicate comma, newline, tab, or semicolon separated lists' },
-  { name: 'Whitespace Trimmer', href: 'tools/whitespace-trimmer.html', tag: 'text', icon: '??', desc: 'Trim spaces and tabs from each line and clean blank rows' },
-  { name: 'Sentence Counter', href: 'tools/sentence-counter.html', tag: 'text', icon: '??', desc: 'Count sentences and estimate average words per sentence' },
-  { name: 'Keyword Density Checker', href: 'tools/keyword-density-checker.html', tag: 'text', icon: '??', desc: 'Measure keyword frequency and density in pasted text' },
+  { name: 'Duplicate Line Remover', href: 'tools/duplicate-line-remover.html', tag: 'text', icon: '🗑️', desc: 'Remove repeated lines while keeping the first occurrence' },
+  { name: 'Line Sorter', href: 'tools/line-sorter.html', tag: 'text', icon: '↕️', desc: 'Sort one-item-per-line text lists A-Z or Z-A with natural order' },
+  { name: 'List Deduplicator', href: 'tools/list-deduplicator.html', tag: 'text', icon: '♻️', desc: 'Deduplicate comma, newline, tab, or semicolon separated lists' },
+  { name: 'Whitespace Trimmer', href: 'tools/whitespace-trimmer.html', tag: 'text', icon: '✂️', desc: 'Trim spaces and tabs from each line and clean blank rows' },
+  { name: 'Sentence Counter', href: 'tools/sentence-counter.html', tag: 'text', icon: '💬', desc: 'Count sentences and estimate average words per sentence' },
+  { name: 'Keyword Density Checker', href: 'tools/keyword-density-checker.html', tag: 'text', icon: '🎯', desc: 'Measure keyword frequency and density in pasted text' },
   { name: 'PNG to WebP Converter', href: 'tools/png-to-webp.html', tag: 'image', icon: '🔄', desc: 'Convert PNG images to smaller WebP files with adjustable quality' },
   { name: 'SVG to PNG Converter', href: 'tools/svg-to-png.html', tag: 'image', icon: '📐', desc: 'Convert SVG files to raster PNG images at 1x to 4x scale' },
   { name: 'BMP to PNG Converter', href: 'tools/bmp-to-png.html', tag: 'image', icon: '🗂️', desc: 'Convert BMP bitmap files into portable PNG images instantly' },
@@ -107,6 +107,24 @@ const SITE_TOOLS = [
   { name: 'Posterize Image', href: 'tools/posterize-image.html', tag: 'image', icon: '🖍️', desc: 'Reduce color levels for a bold posterized image effect' },
   { name: 'Duotone Image', href: 'tools/duotone-image.html', tag: 'image', icon: '🌓', desc: 'Map image shadows and highlights to two custom colors' },
   { name: 'Image Brightness Contrast', href: 'tools/image-brightness-contrast.html', tag: 'image', icon: '☀️', desc: 'Adjust photo brightness and contrast with instant preview' },
+  { name: 'Word Frequency Counter',    href: 'tools/word-frequency-counter.html',    tag: 'text',       icon: '📊', desc: 'Rank every word in pasted text by how often it appears' },
+  { name: 'CSV Column Extractor',      href: 'tools/csv-column-extractor.html',      tag: 'text',       icon: '📋', desc: 'Extract a single column from CSV by name or index' },
+  { name: 'Text List to Array',        href: 'tools/text-list-to-array.html',        tag: 'text',       icon: '🔤', desc: 'Convert a plain list to a JS, Python, PHP, Ruby, or JSON array' },
+  { name: 'Percentage Calculator',     href: 'tools/percentage-calculator.html',     tag: 'calculator', icon: '🔢', desc: 'Find X% of Y, what % X is of Y, or percentage change' },
+  { name: 'Age Calculator',            href: 'tools/age-calculator.html',            tag: 'calculator', icon: '📅', desc: 'Calculate exact age in years, months, days and next birthday' },
+  { name: 'Tip Calculator',           href: 'tools/tip-calculator.html',           tag: 'calculator', icon: '🍽️', desc: 'Calculate tip amount and split the bill among any number of people' },
+  { name: 'Discount Calculator',      href: 'tools/discount-calculator.html',      tag: 'calculator', icon: '🏷️', desc: 'Calculate sale price and savings from a discount percentage' },
+  { name: 'GPA Calculator',           href: 'tools/gpa-calculator.html',           tag: 'calculator', icon: '🎓', desc: 'Calculate weighted GPA from course grades and credit hours' },
+  { name: 'Calorie Calculator',       href: 'tools/calorie-calculator.html',       tag: 'calculator', icon: '🔥', desc: 'Calculate BMR and daily calorie needs (TDEE) from age, height, weight' },
+  { name: 'Currency Converter',       href: 'tools/currency-converter.html',       tag: 'calculator', icon: '💱', desc: 'Convert between 30+ currencies with approximate reference rates' },
+  { name: 'Character Counter',        href: 'tools/char-counter.html',             tag: 'text',       icon: '🔡', desc: 'Count characters with a full breakdown: letters, digits, emoji, Unicode' },
+  { name: 'Mortgage Calculator',      href: 'tools/mortgage-calculator.html',      tag: 'calculator', icon: '🏠', desc: 'Calculate monthly mortgage payment, total interest, and amortization schedule' },
+  { name: 'Savings Calculator',       href: 'tools/savings-calculator.html',       tag: 'calculator', icon: '💰', desc: 'Project future savings with compound interest and monthly contributions' },
+  { name: 'Password Strength Checker', href: 'tools/password-strength-checker.html', tag: 'generate', icon: '🔐', desc: 'Check password entropy, estimated crack time, and character-type breakdown' },
+  { name: 'EXIF Viewer',              href: 'tools/exif-viewer.html',              tag: 'image',    icon: '🔍', desc: 'Read camera model, GPS, exposure, and full EXIF metadata from any image' },
+  { name: 'Image to Base64',          href: 'tools/image-to-base64.html',          tag: 'image',    icon: '🔢', desc: 'Convert any image to a Base64 string or data URI for embedding in HTML/CSS' },
+  { name: 'Base64 to Image',          href: 'tools/base64-to-image.html',          tag: 'image',    icon: '🔓', desc: 'Paste a Base64 string or data URI to preview and download the image' },
+  { name: 'Image Metadata Editor',    href: 'tools/image-metadata-editor.html',    tag: 'image',    icon: '✏️', desc: 'Edit title, author, copyright, and description fields in a JPEG and download' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -115,7 +133,8 @@ const HUB_PAGE_CONFIG = {
       ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'png-to-webp', 'svg-to-png', 'bmp-to-png'],
       ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
       ['image-rotate', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
-      ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast']
+      ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
+      ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor']
     ]
   },
   developer: {
@@ -129,7 +148,15 @@ const HUB_PAGE_CONFIG = {
   },
   text: {
     sections: [
-      ['word-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker']
+      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array']
+    ]
+  },
+  calculator: {
+    sections: [
+      ['percentage-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator'],
+      ['mortgage-calculator', 'loan-calculator', 'savings-calculator'],
+      ['bmi-calculator', 'calorie-calculator', 'gpa-calculator'],
+      ['date-calculator', 'currency-converter']
     ]
   }
 };

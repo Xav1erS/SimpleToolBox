@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Mortgage Calculator — Monthly Payment & Total Interest | Simple ToolBox</title>
+  <meta name="description" content="Calculate your monthly mortgage payment, total interest, and see a full amortization schedule. Enter home price, down payment, interest rate, and loan term." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/mortgage-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/mortgage-calculator.html" />
+  <meta property="og:title" content="Mortgage Calculator — Monthly Payment & Total Interest | Simple ToolBox" />
+  <meta property="og:description" content="Calculate monthly mortgage payment, total interest, and amortization schedule instantly." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Mortgage Calculator",
+  "description": "Calculate monthly mortgage payment, total interest, and amortization schedule. Enter home price, down payment, interest rate, and loan term.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/mortgage-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the formula for a mortgage payment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Monthly payment M = P × [r(1+r)^n] / [(1+r)^n − 1], where P is the loan amount (home price minus down payment), r is the monthly interest rate (annual rate ÷ 12), and n is the number of monthly payments (years × 12)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is included in PITI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PITI stands for Principal, Interest, Taxes, and Insurance. The calculator shows both the P&I payment and the full PITI total when you add monthly property tax and home insurance amounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much down payment do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Conventional loans typically require 5–20% down. A 20% down payment avoids Private Mortgage Insurance (PMI). FHA loans allow as little as 3.5% down."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the amortization schedule show early payoff?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The table shows the yearly schedule at the specified rate and term. To model early payoff, try different loan terms in the term dropdown."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 600px) { .input-grid { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 12px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .field input, .field select { padding: 10px 14px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-size: 16px; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--ds-color-accent,#5e6ad2); }
+    .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .result-card { padding: 20px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); }
+    .result-card__label { font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .result-card__value { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+    .result-card__sub { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 4px; }
+    .result-card--accent .result-card__value { color: #7fd17f; }
+    .result-card--warn .result-card__value { color: #f9a94d; }
+    .breakdown-bar { height: 12px; border-radius: 6px; background: var(--ds-color-border); overflow: hidden; margin-top: 10px; }
+    .breakdown-bar__fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #5e6ad2, #7fd17f); transition: width 0.3s; }
+    .amort-toggle { margin-top: 8px; }
+    .amort-toggle button { padding: 8px 18px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; }
+    .amort-toggle button:hover { border-color: var(--ds-color-accent,#5e6ad2); color: var(--ds-color-text-primary); }
+    .amort-table-wrap { overflow-x: auto; margin-top: 14px; max-height: 320px; overflow-y: auto; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); display: none; }
+    .amort-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .amort-table th { padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid var(--ds-color-border); position: sticky; top: 0; background: var(--ds-color-surface); }
+    .amort-table td { padding: 7px 12px; border-bottom: 1px solid var(--ds-color-border); color: var(--ds-color-text-secondary); }
+    .amort-table tr:last-child td { border-bottom: none; }
+    .section-sep { border: none; border-top: 1px solid var(--ds-color-border); margin: 4px 0; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Mortgage Calculator <span class="ds-tool-badge">calculator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🏠</div><h1 class="ds-tool-header__title">Mortgage Calculator</h1></div><p class="ds-tool-header__desc">Enter home price, down payment, interest rate, and loan term to see your monthly payment, total interest, and a full year-by-year amortization schedule.</p><div class="ds-tool-tag-row"><span class="ds-tag">mortgage</span><span class="ds-tag">home loan</span><span class="ds-tag">amortization</span><span class="ds-tag">calculator</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Loan Details</span></div>
+    <div style="padding: 20px 0; display: flex; flex-direction: column; gap: 18px;">
+      <div class="input-grid">
+        <div class="field">
+          <label>Home Price ($)</label>
+          <input type="number" id="homePrice" value="400000" min="0" step="1000" />
+        </div>
+        <div class="field">
+          <label>Down Payment ($)</label>
+          <input type="number" id="downPayment" value="80000" min="0" step="1000" />
+        </div>
+        <div class="field">
+          <label>Annual Interest Rate (%)</label>
+          <input type="number" id="rate" value="6.5" min="0" max="30" step="0.05" />
+        </div>
+        <div class="field">
+          <label>Loan Term</label>
+          <select id="term">
+            <option value="30">30 years</option>
+            <option value="20">20 years</option>
+            <option value="15">15 years</option>
+            <option value="10">10 years</option>
+            <option value="5">5 years</option>
+          </select>
+        </div>
+      </div>
+      <hr class="section-sep" />
+      <div style="font-size:12px;font-weight:600;color:var(--ds-color-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">Optional Monthly Costs</div>
+      <div class="input-grid">
+        <div class="field">
+          <label>Property Tax ($/mo)</label>
+          <input type="number" id="propTax" value="" min="0" step="10" placeholder="0" />
+        </div>
+        <div class="field">
+          <label>Home Insurance ($/mo)</label>
+          <input type="number" id="insurance" value="" min="0" step="5" placeholder="0" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-grid" id="resultGrid">
+    <div class="result-card result-card--accent">
+      <div class="result-card__label">Monthly P&amp;I</div>
+      <div class="result-card__value" id="rMonthly">—</div>
+    </div>
+    <div class="result-card">
+      <div class="result-card__label">Monthly Total (PITI)</div>
+      <div class="result-card__value" id="rPITI">—</div>
+      <div class="result-card__sub">with tax &amp; insurance</div>
+    </div>
+    <div class="result-card">
+      <div class="result-card__label">Loan Amount</div>
+      <div class="result-card__value" id="rLoan">—</div>
+    </div>
+    <div class="result-card result-card--warn">
+      <div class="result-card__label">Total Interest</div>
+      <div class="result-card__value" id="rInterest">—</div>
+    </div>
+    <div class="result-card">
+      <div class="result-card__label">Total Cost</div>
+      <div class="result-card__value" id="rTotal">—</div>
+    </div>
+    <div class="result-card">
+      <div class="result-card__label">Down Payment %</div>
+      <div class="result-card__value" id="rDownPct">—</div>
+    </div>
+  </div>
+
+  <div>
+    <div style="margin-bottom:6px;font-size:12px;font-weight:600;color:var(--ds-color-text-muted)">Principal vs Interest Breakdown</div>
+    <div class="breakdown-bar"><div class="breakdown-bar__fill" id="breakdownBar" style="width:50%"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ds-color-text-muted);margin-top:4px">
+      <span id="breakdownPrinLabel">Principal: —</span>
+      <span id="breakdownIntLabel">Interest: —</span>
+    </div>
+  </div>
+
+  <div class="amort-toggle">
+    <button id="amortBtn">Show Amortization Schedule ▾</button>
+    <div class="amort-table-wrap" id="amortWrap">
+      <table class="amort-table">
+        <thead><tr><th>Year</th><th>Principal Paid</th><th>Interest Paid</th><th>Balance</th></tr></thead>
+        <tbody id="amortBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Mortgage Calculator?</h2>
+    <p>Mortgage Calculator computes the monthly principal and interest payment for a fixed-rate home loan using the standard amortization formula. It also shows total interest over the life of the loan, a full PITI estimate when you add property tax and insurance, and a year-by-year amortization schedule.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Mortgage Calculator</h2>
+    <ol>
+      <li>Enter the home price and down payment.</li>
+      <li>Set the annual interest rate and loan term.</li>
+      <li>Optionally add monthly property tax and insurance amounts.</li>
+      <li>Read the monthly payment, total interest, and total cost.</li>
+      <li>Click &quot;Show Amortization Schedule&quot; for a year-by-year breakdown.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="loan-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏦</span><div><div class="ds-related-name">Loan Calculator</div><div class="ds-related-desc">Calculate monthly loan payments and amortization schedule</div></div></a>
+    <a href="savings-calculator.html" class="ds-related-card"><span class="ds-related-icon">💰</span><div><div class="ds-related-name">Savings Calculator</div><div class="ds-related-desc">Project future savings with compound interest and monthly contributions</div></div></a>
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Mortgage Payments</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Home: $400,000 | Down: $80,000 | Rate: 6.5% | Term: 30yr</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Monthly P&amp;I: $2,022 | Total Interest: $407,920 | Total Cost: $727,920</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Estimate monthly payments before buying a home</li>
+          <li>Compare 15-year vs 30-year loan costs</li>
+          <li>See how much total interest a mortgage will cost</li>
+          <li>Check how much you can borrow with a given monthly budget</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>See exactly how much interest you will pay over the life of the loan.</li>
+          <li>Compare 15-year and 30-year scenarios instantly.</li>
+          <li>Shows PITI — not just P&amp;I — when you add taxes and insurance.</li>
+          <li>Full amortization table helps you understand equity buildup.</li>
+          <li>Runs entirely in your browser — no data is sent.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the formula for a mortgage payment?</strong><p>Monthly payment M = P × [r(1+r)^n] / [(1+r)^n − 1], where P is the loan amount (home price minus down payment), r is the monthly interest rate (annual rate ÷ 12), and n is the number of monthly payments (years × 12).</p></div>
+        <div class="ds-seo-faq-item"><strong>What is included in PITI?</strong><p>PITI stands for Principal, Interest, Taxes, and Insurance. The calculator shows both the P&amp;I payment and the full PITI total when you add monthly property tax and home insurance amounts.</p></div>
+        <div class="ds-seo-faq-item"><strong>How much down payment do I need?</strong><p>Conventional loans typically require 5–20% down. A 20% down payment avoids Private Mortgage Insurance (PMI). FHA loans allow as little as 3.5% down.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does the amortization schedule show early payoff?</strong><p>The table shows the yearly schedule at the specified rate and term. To model early payoff, try different loan terms in the term dropdown.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+  function fmtD(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function pct(n) { return n.toFixed(1) + '%'; }
+
+  const ids = ['homePrice','downPayment','rate','term','propTax','insurance'];
+  ids.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', calc); });
+
+  let amortOpen = false;
+  document.getElementById('amortBtn').addEventListener('click', () => {
+    amortOpen = !amortOpen;
+    document.getElementById('amortWrap').style.display = amortOpen ? 'block' : 'none';
+    document.getElementById('amortBtn').textContent = amortOpen ? 'Hide Amortization Schedule ▴' : 'Show Amortization Schedule ▾';
+  });
+
+  function setVal(id, val) { document.getElementById(id).textContent = val; }
+
+  function calc() {
+    const homePrice = parseFloat(document.getElementById('homePrice').value) || 0;
+    const down = parseFloat(document.getElementById('downPayment').value) || 0;
+    const annualRate = parseFloat(document.getElementById('rate').value);
+    const years = parseInt(document.getElementById('term').value) || 30;
+    const propTax = parseFloat(document.getElementById('propTax').value) || 0;
+    const ins = parseFloat(document.getElementById('insurance').value) || 0;
+
+    if (homePrice <= 0 || isNaN(annualRate) || annualRate < 0) {
+      ['rMonthly','rPITI','rLoan','rInterest','rTotal','rDownPct'].forEach(id => setVal(id, '—'));
+      return;
+    }
+
+    const principal = Math.max(0, homePrice - down);
+    const r = annualRate / 100 / 12;
+    const n = years * 12;
+
+    let monthly;
+    if (r === 0) {
+      monthly = principal / n;
+    } else {
+      monthly = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+
+    const totalPaid = monthly * n;
+    const totalInterest = totalPaid - principal;
+    const downPct = homePrice > 0 ? (down / homePrice * 100) : 0;
+    const piti = monthly + propTax + ins;
+
+    setVal('rMonthly', fmtD(monthly));
+    setVal('rPITI', fmtD(piti));
+    setVal('rLoan', fmt(principal));
+    setVal('rInterest', fmt(totalInterest));
+    setVal('rTotal', fmt(totalPaid));
+    setVal('rDownPct', pct(downPct));
+
+    // Breakdown bar: width = principal / total paid
+    const prinPct = totalPaid > 0 ? (principal / totalPaid * 100) : 50;
+    document.getElementById('breakdownBar').style.width = prinPct + '%';
+    document.getElementById('breakdownPrinLabel').textContent = 'Principal: ' + fmt(principal);
+    document.getElementById('breakdownIntLabel').textContent = 'Interest: ' + fmt(totalInterest);
+
+    // Build yearly amortization
+    buildAmort(principal, r, n, monthly);
+  }
+
+  function buildAmort(principal, r, n, monthly) {
+    let balance = principal;
+    const rows = [];
+    for (let yr = 1; yr <= n / 12; yr++) {
+      let yearPrincipal = 0, yearInterest = 0;
+      for (let mo = 0; mo < 12 && balance > 0; mo++) {
+        const intPayment = balance * r;
+        const prinPayment = Math.min(monthly - intPayment, balance);
+        yearInterest += intPayment;
+        yearPrincipal += prinPayment;
+        balance = Math.max(0, balance - prinPayment);
+      }
+      rows.push(`<tr><td>${yr}</td><td>$${Math.round(yearPrincipal).toLocaleString()}</td><td>$${Math.round(yearInterest).toLocaleString()}</td><td>$${Math.round(balance).toLocaleString()}</td></tr>`);
+    }
+    document.getElementById('amortBody').innerHTML = rows.join('');
+  }
+
+  calc();
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

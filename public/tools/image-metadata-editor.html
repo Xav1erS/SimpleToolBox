@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Image Metadata Editor — Edit Title, Description & Copyright | Simple ToolBox</title>
+  <meta name="description" content="Edit image metadata fields: title, description, author, copyright, and keywords. Reads EXIF date and basic info, lets you write clean IPTC-style fields to a new JPEG. Runs locally." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/image-metadata-editor" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/image-metadata-editor.html" />
+  <meta property="og:title" content="Image Metadata Editor — Edit Title, Author & Copyright | Simple ToolBox" />
+  <meta property="og:description" content="View and edit image metadata fields and download the updated file. 100% local — no upload." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Image Metadata Editor",
+  "description": "Edit title, description, author, copyright, and keyword fields in a JPEG and download the updated file. Reads existing EXIF camera data. Runs locally.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/image-metadata-editor"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What metadata fields can I edit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can add or edit Title, Author/Artist, Copyright, Keywords, and Description/Caption. These are written as JPEG COM (Comment) segments in the output file, which are readable by most photo software."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my EXIF camera data be preserved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tool writes the new metadata as additional COM segments while keeping the original JPEG data intact, including any existing EXIF segments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why JPEG only?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPEG COM segments are a simple, universal way to embed text metadata that works without external libraries. PNG, WebP, and TIFF use different metadata formats that require more complex parsers and writers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this the same as full IPTC/XMP editing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Full IPTC/XMP editing requires dedicated software. This tool writes metadata as JPEG comment fields, which is readable by most tools but is not the same as structured IPTC or XMP blocks."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .drop-zone { border: 2px dashed var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 48px 24px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .drop-zone:hover, .drop-zone.drag { border-color: var(--ds-color-accent,#5e6ad2); background: rgba(94,106,210,0.06); }
+    .drop-icon { font-size: 40px; margin-bottom: 12px; }
+    .drop-text { font-size: 15px; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 6px; }
+    .drop-input { display: none; }
+    .meta-form { display: none; }
+    .meta-form.show { display: flex; flex-direction: column; gap: 16px; }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 600px) { .field-grid { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 12px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .field input, .field textarea { padding: 10px 14px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-size: 14px; font-family: var(--ds-font-sans); }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--ds-color-accent,#5e6ad2); }
+    .field textarea { resize: vertical; min-height: 72px; }
+    .field .hint { font-size: 11px; color: var(--ds-color-text-muted); margin-top: 2px; }
+    .preview-row { display: flex; gap: 14px; align-items: flex-start; }
+    .preview-img { max-width: 160px; max-height: 120px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); object-fit: contain; flex-shrink: 0; }
+    .preview-meta { font-size: 12px; color: var(--ds-color-text-muted); display: flex; flex-direction: column; gap: 3px; }
+    .section-sep { border: none; border-top: 1px solid var(--ds-color-border); margin: 4px 0; }
+    .exif-read { padding: 10px 14px; background: rgba(94,106,210,0.07); border: 1px solid rgba(94,106,210,0.2); border-radius: var(--ds-radius-md); font-size: 12px; color: var(--ds-color-text-muted); }
+    .exif-read strong { color: var(--ds-color-text-secondary); }
+    .save-btn { padding: 10px 24px; background: rgba(94,106,210,0.15); border: 1px solid rgba(94,106,210,0.4); border-radius: var(--ds-radius-md); color: var(--ds-color-accent,#818cf8); font-size: 14px; cursor: pointer; align-self: flex-start; }
+    .save-btn:hover { background: rgba(94,106,210,0.25); }
+    .notice { font-size: 12px; color: var(--ds-color-text-muted); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Image Metadata Editor <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no image uploaded</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">✏️</div><h1 class="ds-tool-header__title">Image Metadata Editor</h1></div><p class="ds-tool-header__desc">Open a JPEG to read its EXIF date and dimensions. Add or edit title, description, author, copyright, and keywords, then download the updated JPEG with the new fields embedded. Runs entirely in your browser.</p><div class="ds-tool-tag-row"><span class="ds-tag">EXIF</span><span class="ds-tag">metadata</span><span class="ds-tag">copyright</span><span class="ds-tag">image</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Image File</span></div>
+    <div style="padding: 20px 0; display: flex; flex-direction: column; gap: 14px;">
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">🖼️</div>
+        <div class="drop-text">Drop a JPEG here or click to browse</div>
+        <div class="drop-sub">JPEG only — metadata writing requires JFIF/EXIF segment support</div>
+        <input type="file" class="drop-input" id="fileInput" accept="image/jpeg,.jpg,.jpeg" />
+      </div>
+      <div class="preview-row" id="previewRow" style="display:none">
+        <img class="preview-img" id="previewImg" alt="preview" />
+        <div class="preview-meta" id="previewMeta"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="meta-form" id="metaForm">
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Read from Image (EXIF)</span></div>
+      <div style="padding: 14px 0;">
+        <div class="exif-read" id="exifReadout">No EXIF data detected in this image.</div>
+      </div>
+    </div>
+
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Edit Metadata Fields</span></div>
+      <div style="padding: 16px 0; display: flex; flex-direction: column; gap: 16px;">
+        <div class="field-grid">
+          <div class="field">
+            <label>Title</label>
+            <input type="text" id="mTitle" placeholder="e.g. Sunset at the beach" />
+          </div>
+          <div class="field">
+            <label>Author / Artist</label>
+            <input type="text" id="mAuthor" placeholder="e.g. Jane Smith" />
+          </div>
+          <div class="field">
+            <label>Copyright</label>
+            <input type="text" id="mCopyright" placeholder="e.g. © 2024 Jane Smith" />
+          </div>
+          <div class="field">
+            <label>Keywords</label>
+            <input type="text" id="mKeywords" placeholder="e.g. sunset, beach, landscape" />
+            <span class="hint">Comma-separated</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Description / Caption</label>
+          <textarea id="mDesc" placeholder="Add a description or caption…"></textarea>
+        </div>
+        <hr class="section-sep" />
+        <div class="notice">
+          ⚠ The new metadata is written into a fresh JPEG copy using Comment (COM) segments. Original EXIF camera data (aperture, GPS, etc.) is preserved as-is. IPTC fields require dedicated software for full IPTC/XMP embedding.
+        </div>
+        <button class="save-btn" id="saveBtn">Download Updated JPEG</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Image Metadata Editor?</h2>
+    <p>Image Metadata Editor lets you open a JPEG, read its existing EXIF camera information (make, model, date, dimensions), and add or edit descriptive metadata fields: Title, Author, Copyright, Keywords, and Description. The new metadata is embedded as JPEG COM segments in a downloaded copy of the file.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Image Metadata Editor</h2>
+    <ol>
+      <li>Drop a JPEG file onto the drop zone or click to browse.</li>
+      <li>Read any existing EXIF data shown in the summary panel.</li>
+      <li>Fill in the metadata fields: title, author, copyright, keywords, and description.</li>
+      <li>Click &quot;Download Updated JPEG&quot; to save the edited file.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="exif-viewer.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">EXIF Viewer</div><div class="ds-related-desc">Read camera model, GPS, exposure, and full EXIF metadata from any image</div></div></a>
+    <a href="remove-exif.html" class="ds-related-card"><span class="ds-related-icon">🛡️</span><div><div class="ds-related-name">Remove EXIF Data</div><div class="ds-related-desc">Strip GPS location and EXIF metadata from photos</div></div></a>
+    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand Image Metadata</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">photo.jpg (no metadata)</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">photo_edited.jpg with Title: Sunset | Author: Jane Smith | Copyright: 2024</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Add copyright before sharing photos online</li>
+          <li>Label archived images with title and description</li>
+          <li>Correct or add author attribution to JPEG files</li>
+          <li>Add keywords to make photos searchable</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Why Use This Tool</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Add copyright and author info before publishing photos.</li>
+          <li>Pre-fills Author field from existing EXIF Artist tag if present.</li>
+          <li>Non-destructive — creates a new file, never overwrites the original.</li>
+          <li>100% local — no image is ever uploaded.</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What metadata fields can I edit?</strong><p>You can add or edit Title, Author/Artist, Copyright, Keywords, and Description/Caption. These are written as JPEG COM (Comment) segments in the output file, which are readable by most photo software.</p></div>
+        <div class="ds-seo-faq-item"><strong>Will my EXIF camera data be preserved?</strong><p>Yes. The tool writes the new metadata as additional COM segments while keeping the original JPEG data intact, including any existing EXIF segments.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why JPEG only?</strong><p>JPEG COM segments are a simple, universal way to embed text metadata that works without external libraries. PNG, WebP, and TIFF use different metadata formats that require more complex parsers and writers.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is this the same as full IPTC/XMP editing?</strong><p>No. Full IPTC/XMP editing requires dedicated software. This tool writes metadata as JPEG comment fields, which is readable by most tools but is not the same as structured IPTC or XMP blocks.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+
+  let originalBuf = null;
+  let origFileName = 'image.jpg';
+
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+  function handleFile(file) {
+    if (!file) return;
+    if (!file.type.includes('jpeg') && !file.name.toLowerCase().match(/\.jpe?g$/)) {
+      alert('Please use a JPEG file. Other formats are not supported for metadata writing.');
+      return;
+    }
+    origFileName = file.name;
+    const reader = new FileReader();
+    reader.onload = e => {
+      originalBuf = new Uint8Array(e.target.result);
+      document.getElementById('previewImg').src = URL.createObjectURL(file);
+      document.getElementById('previewMeta').innerHTML = `
+        <strong>${file.name}</strong>
+        <span>${(file.size / 1024).toFixed(1)} KB</span>
+        <span>${file.type}</span>
+      `;
+      document.getElementById('previewRow').style.display = 'flex';
+      readExif(e.target.result);
+      document.getElementById('metaForm').className = 'meta-form show';
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  // Minimal EXIF reader for display only
+  function readExif(buf) {
+    const dv = new DataView(buf);
+    const fields = {};
+    if (dv.getUint16(0) !== 0xFFD8) { document.getElementById('exifReadout').textContent = 'Not a valid JPEG.'; return; }
+    let pos = 2;
+    while (pos < dv.byteLength - 1) {
+      const marker = dv.getUint16(pos);
+      if (marker === 0xFFE1) {
+        const segLen = dv.getUint16(pos + 2);
+        const id = String.fromCharCode(...new Uint8Array(buf, pos + 4, 4));
+        if (id === 'Exif') {
+          const tiff = pos + 10;
+          const le = dv.getUint16(tiff) === 0x4949;
+          const ifd0 = tiff + dv.getUint32(tiff + 4, le);
+          const n = dv.getUint16(ifd0, le);
+          for (let i = 0; i < n; i++) {
+            const eOff = ifd0 + 2 + i * 12;
+            const tag = dv.getUint16(eOff, le);
+            const type = dv.getUint16(eOff + 2, le);
+            const count = dv.getUint32(eOff + 4, le);
+            if (type === 2) {
+              const dataOff = count > 4 ? tiff + dv.getUint32(eOff + 8, le) : eOff + 8;
+              let s = '';
+              const bytes = new Uint8Array(buf, dataOff, count);
+              for (let j = 0; j < count; j++) { if (!bytes[j]) break; s += String.fromCharCode(bytes[j]); }
+              if (tag === 0x010F) fields['Make'] = s.trim();
+              if (tag === 0x0110) fields['Model'] = s.trim();
+              if (tag === 0x0132) fields['DateTime'] = s.trim();
+              if (tag === 0x013B) fields['Artist'] = s.trim();
+            }
+            if (tag === 0xA002 && (type === 3 || type === 4)) {
+              fields['Width'] = type === 3 ? dv.getUint16(eOff + 8, le) : dv.getUint32(eOff + 8, le);
+            }
+            if (tag === 0xA003 && (type === 3 || type === 4)) {
+              fields['Height'] = type === 3 ? dv.getUint16(eOff + 8, le) : dv.getUint32(eOff + 8, le);
+            }
+          }
+        }
+        pos += 2 + segLen;
+        continue;
+      }
+      if ((marker & 0xFF00) !== 0xFF00) break;
+      if (marker === 0xFFD9) break;
+      pos += 2 + dv.getUint16(pos + 2);
+    }
+
+    const parts = [];
+    if (fields.Make || fields.Model) parts.push(`<strong>Camera:</strong> ${[fields.Make, fields.Model].filter(Boolean).join(' ')}`);
+    if (fields.DateTime) parts.push(`<strong>Date:</strong> ${fields.DateTime}`);
+    if (fields.Width && fields.Height) parts.push(`<strong>Dimensions:</strong> ${fields.Width} × ${fields.Height}`);
+    if (fields.Artist) { parts.push(`<strong>Artist:</strong> ${fields.Artist}`); document.getElementById('mAuthor').value = fields.Artist; }
+
+    document.getElementById('exifReadout').innerHTML = parts.length
+      ? parts.join(' &nbsp;·&nbsp; ')
+      : 'No readable EXIF fields found. You can still add metadata fields below.';
+  }
+
+  // Write metadata as JPEG COM segments
+  document.getElementById('saveBtn').addEventListener('click', () => {
+    if (!originalBuf) return;
+
+    const fields = {
+      title: document.getElementById('mTitle').value.trim(),
+      author: document.getElementById('mAuthor').value.trim(),
+      copyright: document.getElementById('mCopyright').value.trim(),
+      keywords: document.getElementById('mKeywords').value.trim(),
+      description: document.getElementById('mDesc').value.trim()
+    };
+
+    const comments = Object.entries(fields)
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k.charAt(0).toUpperCase() + k.slice(1)}: ${v}`);
+
+    // Build new JPEG: keep SOI + existing segments, inject COM before SOS/EOI
+    const encoder = new TextEncoder();
+    const parts = [];
+    // SOI
+    parts.push(new Uint8Array([0xFF, 0xD8]));
+    // COM segments
+    for (const comment of comments) {
+      const data = encoder.encode(comment);
+      const segLen = data.length + 2;
+      const seg = new Uint8Array(4 + data.length);
+      seg[0] = 0xFF; seg[1] = 0xFE;
+      seg[2] = (segLen >> 8) & 0xFF; seg[3] = segLen & 0xFF;
+      seg.set(data, 4);
+      parts.push(seg);
+    }
+    // Rest of original JPEG (skip original SOI, keep everything else)
+    parts.push(originalBuf.slice(2));
+
+    const totalLen = parts.reduce((s, p) => s + p.length, 0);
+    const out = new Uint8Array(totalLen);
+    let offset = 0;
+    for (const p of parts) { out.set(p, offset); offset += p.length; }
+
+    const blob = new Blob([out], { type: 'image/jpeg' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = origFileName.replace(/\.jpe?g$/i, '') + '_edited.jpg';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  });
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

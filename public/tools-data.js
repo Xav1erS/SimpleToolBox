@@ -129,6 +129,7 @@ const SITE_TOOLS = [
   { name: 'Text Diff',                href: 'tools/text-diff.html',                tag: 'text',     icon: '⚖️', desc: 'Compare two texts line by line and highlight added, removed, and unchanged lines' },
   { name: 'Find & Replace',           href: 'tools/find-and-replace.html',         tag: 'text',     icon: '🔎', desc: 'Find and replace text with plain string, whole-word, or regex mode' },
   { name: 'Number to Words',          href: 'tools/number-to-words.html',          tag: 'convert',  icon: '🔢', desc: 'Convert numbers to English words — plain, currency, ordinal, or year format' },
+  { name: 'Text to Speech',           href: 'tools/text-to-speech.html',           tag: 'text',     icon: '🔊', desc: 'Convert text to speech in your browser using system voices. Choose voice, speed, and pitch.' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -152,7 +153,7 @@ const HUB_PAGE_CONFIG = {
   },
   text: {
     sections: [
-      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace']
+      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech']
     ]
   },
   calculator: {

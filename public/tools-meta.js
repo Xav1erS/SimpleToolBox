@@ -6785,6 +6785,43 @@ const TOOLS_META = [
       title: 'About Number-to-Words Conversion',
       body: 'Converting numbers to words is required in legal contracts, financial documents, cheques, and accessibility tools (screen readers). The English system uses groups of three digits (thousands, millions, billions) up to quintillions. Ordinal numbers (first, second) derive from cardinal numbers (one, two) with irregular forms for the first twelve.',
     },
+  },
+  {
+    slug: 'text-to-speech',
+    title: 'Text to Speech Online',
+    description: 'Convert text to speech in your browser. Choose voice, speed, and pitch. Powered by the Web Speech API — no upload required.',
+    category: 'text',
+    tags: ['text'],
+    relatedTools: ['word-counter', 'char-counter', 'sentence-counter', 'find-and-replace', 'text-case'],
+    faq: [
+      { q: 'Does this upload my text anywhere?', a: 'No. The Web Speech API runs entirely in your browser using your system\'s built-in voices. No text is ever sent to a server.' },
+      { q: 'Why do I see no voices?', a: 'Voices come from your operating system and browser. Try Chrome, Edge, or Safari on desktop for the widest selection. Some voices take a moment to load.' },
+      { q: 'Can I change the reading speed?', a: 'Yes. Use the Speed slider (0.5× to 2×) to slow down or speed up playback.' },
+      { q: 'Can I pause and resume?', a: 'Yes. Click the play button while speaking to pause, and click again to resume from where it stopped.' },
+    ],
+    useCases: [
+      'Proofreading documents by ear',
+      'Accessibility: hearing text read aloud',
+      'Language learning: hearing pronunciation',
+      'Checking how a voice assistant will read your content',
+    ],
+    example: { input: 'The quick brown fox jumps over the lazy dog.', output: '(Spoken aloud in the selected voice)' },
+    seoContent: {
+      whatIsTitle: 'What is Text to Speech?',
+      whatIsBody: 'Text to Speech (TTS) converts written text into spoken audio using your browser\'s built-in Web Speech API. Select from available system voices, adjust reading speed and pitch, and listen to any text instantly — no file uploads, no accounts required.',
+      howToTitle: 'How to Use Text to Speech',
+      howToSteps: [
+        'Type or paste your text into the input box, or click Sample to use example text.',
+        'Choose a voice from the dropdown. Filter by language if needed.',
+        'Adjust Speed and Pitch sliders to your preference.',
+        'Click the play button to start listening. Click again to pause or resume.',
+        'Click the stop button (■) to end playback at any time.',
+      ],
+    },
+    learnMore: {
+      title: 'About the Web Speech API',
+      body: 'The Web Speech API is a browser standard that enables JavaScript to access speech synthesis (text-to-speech) and speech recognition. The voices available depend on your operating system: Windows includes voices via its speech engine, macOS and iOS offer high-quality Siri-based voices, and Chrome on Android adds network-based voices. All synthesis happens locally — no audio is transmitted.',
+    },
   }
 ];
 

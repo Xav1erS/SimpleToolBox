@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Text to Speech Online | Simple ToolBox</title>
+  <meta name="description" content="Convert text to speech in your browser. Choose voice, speed, and pitch. Play, pause, and download the audio. Powered by the Web Speech API — no upload required." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/text-to-speech" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/text-to-speech.html" />
+  <meta property="og:title" content="Text to Speech Online | Simple ToolBox" />
+  <meta property="og:description" content="Convert text to speech in your browser. Choose voice, speed, and pitch. No upload required." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Text to Speech Online",
+  "description": "Convert text to speech in your browser. Choose voice, speed, and pitch. Powered by the Web Speech API — no upload required.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/text-to-speech"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this upload my text anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The Web Speech API runs entirely in your browser using your system's built-in voices. No text is ever sent to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I see no voices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Voices come from your operating system and browser. Try Chrome, Edge, or Safari on desktop for the widest selection. Some voices take a moment to load."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I change the reading speed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the Speed slider (0.5× to 2×) to slow down or speed up playback."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I pause and resume?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Click the play button while speaking to pause, and click again to resume from where it stopped."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .controls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 560px) { .controls-grid { grid-template-columns: 1fr; } }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-group label { font-size: 12px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .field-select, .field-input { padding: 10px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-primary); font-size: 14px; width: 100%; box-sizing: border-box; }
+    .field-select:focus, .field-input:focus { outline: none; border-color: var(--ds-color-accent); }
+    .range-row { display: flex; align-items: center; gap: 12px; }
+    .range-row input[type=range] { flex: 1; accent-color: var(--ds-color-accent); }
+    .range-val { font-size: 14px; font-weight: 700; color: var(--ds-color-accent); min-width: 36px; text-align: right; }
+    .player-bar { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); }
+    .play-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--ds-color-accent); color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: opacity 0.15s; }
+    .play-btn:hover { opacity: 0.85; }
+    .play-btn:disabled { background: var(--ds-color-border); cursor: not-allowed; }
+    .progress-wrap { flex: 1; }
+    .progress-bar { height: 6px; border-radius: 3px; background: var(--ds-color-border); overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 3px; background: var(--ds-color-accent); width: 0%; transition: width 0.2s; }
+    .word-count { font-size: 12px; color: var(--ds-color-text-muted); margin-top: 4px; }
+    .no-support { padding: 16px; border: 1px solid rgba(239,68,68,0.3); border-radius: var(--ds-radius-md); background: rgba(239,68,68,0.06); color: #ef4444; font-size: 14px; display: none; }
+    .highlight-word { background: rgba(99,102,241,0.25); border-radius: 2px; }
+    .preview-area { font-size: 15px; line-height: 1.8; padding: 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); min-height: 60px; max-height: 160px; overflow-y: auto; display: none; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Text to Speech <span class="ds-tool-badge">text</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔊</div><h1 class="ds-tool-header__title">Text to Speech</h1></div><p class="ds-tool-header__desc">Convert text to speech in your browser. Choose from available system voices, adjust speed and pitch, and listen to any text instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">text to speech</span><span class="ds-tag">TTS</span><span class="ds-tag">voice</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="no-support" id="noSupport">
+    Your browser does not support the Web Speech API. Try Chrome, Edge, or Safari.
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Text</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button>
+        <button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button>
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Type or paste text to read aloud..." spellcheck="false" style="min-height:140px"></textarea>
+    <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="charCount">0 chars</span></div>
+  </div>
+
+  <div class="controls-grid">
+    <div class="field-group">
+      <label for="voiceSelect">Voice</label>
+      <select class="field-select" id="voiceSelect"><option>Loading voices...</option></select>
+    </div>
+    <div class="field-group">
+      <label for="langFilter">Filter by language</label>
+      <select class="field-select" id="langFilter"><option value="">All languages</option></select>
+    </div>
+    <div class="field-group">
+      <label>Speed <span id="rateLabel">1.0×</span></label>
+      <div class="range-row">
+        <span style="font-size:12px;color:var(--ds-color-text-muted)">0.5×</span>
+        <input type="range" id="rateSlider" min="0.5" max="2" step="0.1" value="1" />
+        <span style="font-size:12px;color:var(--ds-color-text-muted)">2×</span>
+      </div>
+    </div>
+    <div class="field-group">
+      <label>Pitch <span id="pitchLabel">1.0</span></label>
+      <div class="range-row">
+        <span style="font-size:12px;color:var(--ds-color-text-muted)">0</span>
+        <input type="range" id="pitchSlider" min="0" max="2" step="0.1" value="1" />
+        <span style="font-size:12px;color:var(--ds-color-text-muted)">2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="player-bar">
+    <button class="play-btn" id="btnPlay" title="Play">▶</button>
+    <button class="play-btn" id="btnStop" title="Stop" style="background:var(--ds-color-surface);border:1px solid var(--ds-color-border);color:var(--ds-color-text-secondary);font-size:14px" disabled>■</button>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="word-count" id="wordStatus">Ready</div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Text to Speech?</h2>
+    <p>Text to Speech (TTS) converts written text into spoken audio using your browser&#x27;s built-in Web Speech API. Select from available system voices, adjust reading speed and pitch, and listen to any text instantly — no file uploads, no accounts required.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Text to Speech</h2>
+    <ol>
+      <li>Type or paste your text into the input box, or click Sample to use example text.</li>
+      <li>Choose a voice from the dropdown. Filter by language if needed.</li>
+      <li>Adjust Speed and Pitch sliders to your preference.</li>
+      <li>Click the play button to start listening. Click again to pause or resume.</li>
+      <li>Click the stop button (■) to end playback at any time.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
+    <a href="char-counter.html" class="ds-related-card"><span class="ds-related-icon">🔡</span><div><div class="ds-related-name">Character Counter</div><div class="ds-related-desc">Count characters with a full breakdown: letters, digits, emoji, Unicode</div></div></a>
+    <a href="sentence-counter.html" class="ds-related-card"><span class="ds-related-icon">💬</span><div><div class="ds-related-name">Sentence Counter</div><div class="ds-related-desc">Count sentences and estimate average words per sentence</div></div></a>
+    <a href="find-and-replace.html" class="ds-related-card"><span class="ds-related-icon">🔎</span><div><div class="ds-related-name">Find &amp; Replace</div><div class="ds-related-desc">Find and replace text with plain string, whole-word, or regex mode</div></div></a>
+    <a href="text-case.html" class="ds-related-card"><span class="ds-related-icon">🔤</span><div><div class="ds-related-name">Text Case Converter</div><div class="ds-related-desc">Convert text between camelCase, snake_case, PascalCase and more</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>About the Web Speech API</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">The quick brown fox jumps over the lazy dog.</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">(Spoken aloud in the selected voice)</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Proofreading documents by ear</li>
+          <li>Accessibility: hearing text read aloud</li>
+          <li>Language learning: hearing pronunciation</li>
+          <li>Checking how a voice assistant will read your content</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does this upload my text anywhere?</strong><p>No. The Web Speech API runs entirely in your browser using your system&#x27;s built-in voices. No text is ever sent to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Why do I see no voices?</strong><p>Voices come from your operating system and browser. Try Chrome, Edge, or Safari on desktop for the widest selection. Some voices take a moment to load.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I change the reading speed?</strong><p>Yes. Use the Speed slider (0.5× to 2×) to slow down or speed up playback.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I pause and resume?</strong><p>Yes. Click the play button while speaking to pause, and click again to resume from where it stopped.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+const SAMPLE = 'The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet, and has been used for decades to test fonts and voice synthesis. Simple ToolBox lets you hear any text instantly using your browser\'s built-in speech engine.';
+
+if (!('speechSynthesis' in window)) {
+  document.getElementById('noSupport').style.display = 'block';
+}
+
+const synth = window.speechSynthesis;
+let voices = [], currentUtter = null, speaking = false;
+let wordCount = 0, wordIndex = 0;
+
+function loadVoices() {
+  voices = synth.getVoices().sort((a, b) => a.lang.localeCompare(b.lang));
+  const langFilter = document.getElementById('langFilter');
+  const voiceSelect = document.getElementById('voiceSelect');
+  const currentLang = langFilter.value;
+
+  // Populate language filter
+  const langs = [...new Set(voices.map(v => v.lang.split('-')[0]))].sort();
+  langFilter.innerHTML = '<option value="">All languages</option>' + langs.map(l => `<option value="${l}" ${l === currentLang ? 'selected' : ''}>${l}</option>`).join('');
+
+  // Populate voice list
+  const filtered = currentLang ? voices.filter(v => v.lang.startsWith(currentLang)) : voices;
+  voiceSelect.innerHTML = filtered.length
+    ? filtered.map((v, i) => `<option value="${voices.indexOf(v)}">${v.name} (${v.lang})${v.default ? ' — default' : ''}</option>`).join('')
+    : '<option>No voices for this language</option>';
+}
+
+synth.onvoiceschanged = loadVoices;
+loadVoices();
+document.getElementById('langFilter').addEventListener('change', loadVoices);
+
+function getVoice() {
+  const idx = parseInt(document.getElementById('voiceSelect').value);
+  return voices[idx] || null;
+}
+
+function speak() {
+  const text = document.getElementById('inputText').value.trim();
+  if (!text) return;
+  synth.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.voice = getVoice();
+  utter.rate = parseFloat(document.getElementById('rateSlider').value);
+  utter.pitch = parseFloat(document.getElementById('pitchSlider').value);
+
+  const words = text.split(/\s+/).filter(Boolean);
+  wordCount = words.length;
+  wordIndex = 0;
+
+  utter.onstart = () => {
+    speaking = true;
+    document.getElementById('btnPlay').textContent = '⏸';
+    document.getElementById('btnStop').disabled = false;
+    document.getElementById('wordStatus').textContent = `Speaking... (0 / ${wordCount} words)`;
+  };
+  utter.onboundary = e => {
+    if (e.name === 'word') {
+      wordIndex++;
+      const pct = Math.min(100, wordIndex / wordCount * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('wordStatus').textContent = `Word ${wordIndex} of ${wordCount}`;
+    }
+  };
+  utter.onend = () => {
+    speaking = false;
+    document.getElementById('btnPlay').textContent = '▶';
+    document.getElementById('btnStop').disabled = true;
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('wordStatus').textContent = 'Done';
+  };
+  utter.onerror = () => {
+    speaking = false;
+    document.getElementById('btnPlay').textContent = '▶';
+    document.getElementById('btnStop').disabled = true;
+    document.getElementById('wordStatus').textContent = 'Error — try a different voice';
+  };
+  currentUtter = utter;
+  synth.speak(utter);
+}
+
+document.getElementById('btnPlay').addEventListener('click', () => {
+  if (synth.speaking && !synth.paused) {
+    synth.pause();
+    document.getElementById('btnPlay').textContent = '▶';
+    document.getElementById('wordStatus').textContent = 'Paused';
+  } else if (synth.paused) {
+    synth.resume();
+    document.getElementById('btnPlay').textContent = '⏸';
+    document.getElementById('wordStatus').textContent = `Speaking... (${wordIndex} / ${wordCount} words)`;
+  } else {
+    speak();
+  }
+});
+
+document.getElementById('btnStop').addEventListener('click', () => {
+  synth.cancel();
+  speaking = false;
+  document.getElementById('btnPlay').textContent = '▶';
+  document.getElementById('btnStop').disabled = true;
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('wordStatus').textContent = 'Stopped';
+});
+
+document.getElementById('rateSlider').addEventListener('input', function() {
+  document.getElementById('rateLabel').textContent = parseFloat(this.value).toFixed(1) + '×';
+});
+document.getElementById('pitchSlider').addEventListener('input', function() {
+  document.getElementById('pitchLabel').textContent = parseFloat(this.value).toFixed(1);
+});
+
+const inputText = document.getElementById('inputText');
+inputText.addEventListener('input', () => {
+  document.getElementById('charCount').textContent = inputText.value.length + ' chars';
+});
+document.getElementById('btnPaste').addEventListener('click', () => {
+  navigator.clipboard.readText().then(t => { inputText.value = t; inputText.dispatchEvent(new Event('input')); });
+});
+document.getElementById('btnSample').addEventListener('click', () => {
+  inputText.value = SAMPLE; inputText.dispatchEvent(new Event('input'));
+});
+document.getElementById('btnClear').addEventListener('click', () => {
+  inputText.value = ''; inputText.dispatchEvent(new Event('input'));
+  synth.cancel();
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('wordStatus').textContent = 'Ready';
+  document.getElementById('btnPlay').textContent = '▶';
+  document.getElementById('btnStop').disabled = true;
+});
+</script>
+</body>
+</html>

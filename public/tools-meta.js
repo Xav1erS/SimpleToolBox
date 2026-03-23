@@ -6755,6 +6755,36 @@ const TOOLS_META = [
       title: 'About Find and Replace',
       body: 'Find and replace is one of the oldest text-editing operations, present in every text editor and word processor. Regular expressions extend it from literal string matching to pattern matching — you can replace all digits, strip HTML tags, or reformat dates with a single regex. JavaScript uses PCRE-inspired regex with flags for global (g), case-insensitive (i), and multiline (m) matching.',
     },
+  },
+  {
+    slug: 'number-to-words',
+    title: 'Number to Words',
+    description: 'Convert numbers to English words instantly. Supports integers, decimals, currency (dollars and cents), and ordinal numbers up to quintillions.',
+    category: 'convert',
+    relatedTools: ['unit-converter', 'percentage-calculator', 'discount-calculator', 'currency-converter'],
+    faq: [
+      { q: 'What is the largest number it can convert?', a: 'Up to quintillions (10^18). Numbers larger than that are not supported.' },
+      { q: 'Does it support decimals?', a: 'Yes. In plain mode, decimals are read digit by digit after the word "point". For example, 3.14 becomes "Three point one four".' },
+      { q: 'How does currency mode work?', a: 'It splits the number into dollars and cents. For example, 99.99 becomes "Ninety-nine dollars and ninety-nine cents".' },
+      { q: 'What is ordinal mode?', a: 'Ordinal mode converts numbers to their position form: 1 becomes "First", 42 becomes "Forty-second", and so on.' },
+    ],
+    useCases: ['Write out cheque amounts in words', 'Convert numbers for legal documents', 'Generate year names for scripts or narration'],
+    example: { input: '1234567', output: 'One million, two hundred thirty-four thousand, five hundred sixty-seven' },
+    seoContent: {
+      whatIsTitle: 'What is Number to Words?',
+      whatIsBody: 'Number to Words converts any number into its English written form. It handles plain integers and decimals, currency amounts (dollars and cents), ordinal numbers (first, second, third), and year pronunciation. Everything runs in your browser — no server needed.',
+      howToTitle: 'How to Use Number to Words',
+      howToSteps: [
+        'Type or paste a number into the input field.',
+        'Choose a mode: Plain, Currency, Ordinal, or Year.',
+        'The result updates instantly as you type.',
+        'Click Copy to copy the words to your clipboard.',
+      ],
+    },
+    learnMore: {
+      title: 'About Number-to-Words Conversion',
+      body: 'Converting numbers to words is required in legal contracts, financial documents, cheques, and accessibility tools (screen readers). The English system uses groups of three digits (thousands, millions, billions) up to quintillions. Ordinal numbers (first, second) derive from cardinal numbers (one, two) with irregular forms for the first twelve.',
+    },
   }
 ];
 

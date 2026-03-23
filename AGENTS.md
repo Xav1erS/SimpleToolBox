@@ -10,13 +10,13 @@
 
 ## 当前真实状态（2026-03-23）
 
-- **127 个工具页**已上线。
+- **128 个工具页**已上线。
 - **6 个站点页**已完成设计系统迁移：`index`、`all-tools`、`about`、`privacy`、`terms`、`contact`。
 - **4 个 hub 页**已存在并接入共享数据源：`image-tools`、`developer-tools`、`text-tools`、`calculator-tools`。
 - `public/tools-data.js` 是首页、`all-tools.html`、4 个 hub 页共享的唯一工具数据源。
-- `public/tools-meta.js` 已覆盖全部 127 个工具；`scripts/render-tool-sections.py` 负责统一渲染结构化数据与 SEO 区块。
+- `public/tools-meta.js` 已覆盖全部 128 个工具；`scripts/render-tool-sections.py` 负责统一渲染结构化数据与 SEO 区块。
 - QA 体系已打通，最新 [`reports/preflight-report.md`](C:/Users/Windows11/Documents/GitHub/SimpleToolBox/reports/preflight-report.md) 为全绿：
-  - total tools: 127
+  - total tools: 128
   - metadata failures: 0
   - page load failures: 0
   - console errors: 0

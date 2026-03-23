@@ -128,6 +128,7 @@ const SITE_TOOLS = [
   { name: 'Word Wrap Formatter',      href: 'tools/word-wrap-formatter.html',      tag: 'text',     icon: '↵',  desc: 'Wrap long lines at a custom column width — 72, 80, 100, or any character limit' },
   { name: 'Text Diff',                href: 'tools/text-diff.html',                tag: 'text',     icon: '⚖️', desc: 'Compare two texts line by line and highlight added, removed, and unchanged lines' },
   { name: 'Find & Replace',           href: 'tools/find-and-replace.html',         tag: 'text',     icon: '🔎', desc: 'Find and replace text with plain string, whole-word, or regex mode' },
+  { name: 'Number to Words',          href: 'tools/number-to-words.html',          tag: 'convert',  icon: '🔢', desc: 'Convert numbers to English words — plain, currency, ordinal, or year format' },
 ];
 
 const HUB_PAGE_CONFIG = {

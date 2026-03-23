@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Number to Words Converter Online | Simple ToolBox</title>
+  <meta name="description" content="Convert numbers to English words instantly. Supports integers, decimals, currency mode, and ordinal numbers up to quintillions. Free browser-based converter." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/number-to-words" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/number-to-words.html" />
+  <meta property="og:title" content="Number to Words Converter Online | Simple ToolBox" />
+  <meta property="og:description" content="Convert any number to English words. Supports currency mode and ordinal numbers. Free browser-based tool." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Number to Words",
+  "description": "Convert numbers to English words instantly. Supports integers, decimals, currency (dollars and cents), and ordinal numbers up to quintillions.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/number-to-words"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the largest number it can convert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Up to quintillions (10^18). Numbers larger than that are not supported."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it support decimals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In plain mode, decimals are read digit by digit after the word \"point\". For example, 3.14 becomes \"Three point one four\"."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does currency mode work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It splits the number into dollars and cents. For example, 99.99 becomes \"Ninety-nine dollars and ninety-nine cents\"."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is ordinal mode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ordinal mode converts numbers to their position form: 1 becomes \"First\", 42 becomes \"Forty-second\", and so on."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .big-input { font-size: 28px; font-weight: 700; padding: 16px 20px; border: 2px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-primary); width: 100%; box-sizing: border-box; text-align: right; transition: border-color 0.15s; font-family: var(--ds-font-mono, monospace); }
+    .big-input:focus { outline: none; border-color: var(--ds-color-accent); }
+    .option-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .opt-btn { padding: 7px 16px; border: 1px solid var(--ds-color-border); border-radius: 20px; background: transparent; color: var(--ds-color-text-secondary); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+    .opt-btn.active { border-color: var(--ds-color-accent); color: var(--ds-color-accent); background: rgba(99,102,241,0.08); }
+    .result-box { padding: 20px 24px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); font-size: 18px; line-height: 1.6; color: var(--ds-color-text-primary); min-height: 64px; }
+    .result-box.has-result { border-color: var(--ds-color-accent); background: rgba(99,102,241,0.04); }
+    .result-empty { color: var(--ds-color-text-muted); font-size: 15px; }
+    .quick-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .quick-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-muted); font-size: 12px; cursor: pointer; transition: all 0.15s; }
+    .quick-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Number to Words <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔢</div><h1 class="ds-tool-header__title">Number to Words</h1></div><p class="ds-tool-header__desc">Convert any number into English words. Supports integers up to quintillions, decimals, currency (dollars and cents), and ordinal numbers.</p><div class="ds-tool-tag-row"><span class="ds-tag">number to text</span><span class="ds-tag">currency words</span><span class="ds-tag">ordinal</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div>
+    <input class="big-input" type="text" id="numInput" placeholder="Enter a number..." inputmode="decimal" autocomplete="off" />
+    <div style="margin-top:8px;font-size:12px;color:var(--ds-color-text-muted)" id="inputNote"></div>
+  </div>
+
+  <div class="option-row">
+    <button class="opt-btn active" data-mode="plain">Plain</button>
+    <button class="opt-btn" data-mode="currency">Currency (USD)</button>
+    <button class="opt-btn" data-mode="ordinal">Ordinal</button>
+    <button class="opt-btn" data-mode="year">Year</button>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <span class="result-empty">Type a number above to see it in words</span>
+  </div>
+
+  <div style="display:flex;gap:8px">
+    <button class="io-btn" id="btnCopy" style="display:none">Copy</button>
+    <button class="io-btn" id="btnClear">Clear</button>
+  </div>
+
+  <div>
+    <div style="font-size:12px;font-weight:600;color:var(--ds-color-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Quick Examples</div>
+    <div class="quick-row">
+      <button class="quick-btn" data-val="42">42</button>
+      <button class="quick-btn" data-val="1000">1000</button>
+      <button class="quick-btn" data-val="1000000">1000000</button>
+      <button class="quick-btn" data-val="3.14">3.14</button>
+      <button class="quick-btn" data-val="99.99">99.99</button>
+      <button class="quick-btn" data-val="-7">-7</button>
+      <button class="quick-btn" data-val="1000000000">1 Billion</button>
+      <button class="quick-btn" data-val="1234567890">1,234,567,890</button>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Number to Words?</h2>
+    <p>Number to Words converts any number into its English written form. It handles plain integers and decimals, currency amounts (dollars and cents), ordinal numbers (first, second, third), and year pronunciation. Everything runs in your browser — no server needed.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Number to Words</h2>
+    <ol>
+      <li>Type or paste a number into the input field.</li>
+      <li>Choose a mode: Plain, Currency, Ordinal, or Year.</li>
+      <li>The result updates instantly as you type.</li>
+      <li>Click Copy to copy the words to your clipboard.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+    <a href="discount-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏷️</span><div><div class="ds-related-name">Discount Calculator</div><div class="ds-related-desc">Calculate sale price and savings from a discount percentage</div></div></a>
+    <a href="currency-converter.html" class="ds-related-card"><span class="ds-related-icon">💱</span><div><div class="ds-related-name">Currency Converter</div><div class="ds-related-desc">Convert between 30+ currencies with approximate reference rates</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>About Number-to-Words Conversion</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">1234567</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">One million, two hundred thirty-four thousand, five hundred sixty-seven</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Write out cheque amounts in words</li>
+          <li>Convert numbers for legal documents</li>
+          <li>Generate year names for scripts or narration</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is the largest number it can convert?</strong><p>Up to quintillions (10^18). Numbers larger than that are not supported.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it support decimals?</strong><p>Yes. In plain mode, decimals are read digit by digit after the word &quot;point&quot;. For example, 3.14 becomes &quot;Three point one four&quot;.</p></div>
+        <div class="ds-seo-faq-item"><strong>How does currency mode work?</strong><p>It splits the number into dollars and cents. For example, 99.99 becomes &quot;Ninety-nine dollars and ninety-nine cents&quot;.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is ordinal mode?</strong><p>Ordinal mode converts numbers to their position form: 1 becomes &quot;First&quot;, 42 becomes &quot;Forty-second&quot;, and so on.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+const ONES = ['','one','two','three','four','five','six','seven','eight','nine',
+  'ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+const TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+const SCALES = ['','thousand','million','billion','trillion','quadrillion','quintillion'];
+
+function threeDigits(n) {
+  if (n === 0) return '';
+  let w = '';
+  if (n >= 100) { w += ONES[Math.floor(n/100)] + ' hundred'; n %= 100; if (n) w += ' '; }
+  if (n >= 20) { w += TENS[Math.floor(n/10)]; if (n%10) w += '-' + ONES[n%10]; }
+  else if (n > 0) w += ONES[n];
+  return w;
+}
+
+function intToWords(n) {
+  if (n === 0) return 'zero';
+  const neg = n < 0; n = Math.abs(n);
+  const chunks = [];
+  while (n > 0) { chunks.unshift(n % 1000); n = Math.floor(n / 1000); }
+  const parts = [];
+  chunks.forEach((c, i) => {
+    if (c === 0) return;
+    const scale = SCALES[chunks.length - 1 - i];
+    parts.push(threeDigits(c) + (scale ? ' ' + scale : ''));
+  });
+  return (neg ? 'negative ' : '') + parts.join(', ');
+}
+
+const ORD = {one:'first',two:'second',three:'third',four:'fourth',five:'fifth',
+  six:'sixth',seven:'seventh',eight:'eighth',nine:'ninth',ten:'tenth',
+  eleven:'eleventh',twelve:'twelfth',thirteen:'thirteenth',fifteen:'fifteenth',
+  twenty:'twentieth',thirty:'thirtieth',forty:'fortieth',fifty:'fiftieth',
+  sixty:'sixtieth',seventy:'seventieth',eighty:'eightieth',ninety:'ninetieth'};
+
+function makeOrdinal(words) {
+  const parts = words.split(' ');
+  const last = parts[parts.length - 1];
+  if (last.includes('-')) {
+    const sub = last.split('-');
+    const lastSub = sub[sub.length - 1];
+    if (ORD[lastSub]) { sub[sub.length-1] = ORD[lastSub]; return parts.slice(0,-1).concat(sub.join('-')).join(' '); }
+    return words + 'th';
+  }
+  if (ORD[last]) { parts[parts.length-1] = ORD[last]; return parts.join(' '); }
+  if (last.endsWith('t')) return words + 'h';
+  return words + 'th';
+}
+
+function yearToWords(n) {
+  if (n < 1 || n > 9999) return intToWords(n);
+  if (n < 100) return intToWords(n);
+  if (n % 100 === 0) return intToWords(Math.floor(n/100)) + ' hundred';
+  const high = Math.floor(n / 100);
+  const low = n % 100;
+  return intToWords(high) + ' ' + (low < 10 ? 'oh ' + ONES[low] : intToWords(low));
+}
+
+let currentMode = 'plain';
+
+function convert() {
+  const raw = document.getElementById('numInput').value.trim().replace(/,/g,'');
+  const note = document.getElementById('inputNote');
+  const box = document.getElementById('resultBox');
+  const copyBtn = document.getElementById('btnCopy');
+  if (!raw) {
+    box.innerHTML = '<span class="result-empty">Type a number above to see it in words</span>';
+    box.classList.remove('has-result');
+    copyBtn.style.display = 'none';
+    note.textContent = '';
+    return;
+  }
+  const num = parseFloat(raw);
+  if (isNaN(num)) {
+    box.innerHTML = '<span style="color:#ef4444">Not a valid number</span>';
+    box.classList.remove('has-result');
+    copyBtn.style.display = 'none';
+    return;
+  }
+  if (Math.abs(num) > 999999999999999999) {
+    box.innerHTML = '<span style="color:#ef4444">Number too large (max: quintillions)</span>';
+    box.classList.remove('has-result');
+    return;
+  }
+
+  let result = '';
+  const intPart = Math.trunc(num);
+  const decStr = raw.includes('.') ? raw.split('.')[1] : '';
+
+  if (currentMode === 'plain') {
+    result = intToWords(intPart);
+    if (decStr) result += ' point ' + decStr.split('').map(d => ONES[parseInt(d)] || 'zero').join(' ');
+  } else if (currentMode === 'currency') {
+    const cents = Math.round(Math.abs(num) * 100) % 100;
+    const dollars = Math.abs(Math.trunc(num));
+    result = (num < 0 ? 'negative ' : '') + intToWords(dollars) + ' dollar' + (dollars !== 1 ? 's' : '');
+    if (cents > 0) result += ' and ' + intToWords(cents) + ' cent' + (cents !== 1 ? 's' : '');
+  } else if (currentMode === 'ordinal') {
+    result = makeOrdinal(intToWords(Math.abs(intPart)));
+    if (num < 0) result = 'negative ' + result;
+  } else if (currentMode === 'year') {
+    result = yearToWords(Math.abs(intPart));
+    if (num < 0) result = 'negative ' + result;
+  }
+
+  result = result.charAt(0).toUpperCase() + result.slice(1);
+  box.textContent = result;
+  box.classList.add('has-result');
+  copyBtn.style.display = '';
+  note.textContent = isFinite(num) ? num.toLocaleString('en-US') : '';
+}
+
+document.getElementById('numInput').addEventListener('input', convert);
+
+document.querySelectorAll('.opt-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMode = btn.dataset.mode;
+    convert();
+  });
+});
+
+document.querySelectorAll('.quick-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('numInput').value = btn.dataset.val;
+    convert();
+  });
+});
+
+document.getElementById('btnCopy').addEventListener('click', function() {
+  navigator.clipboard.writeText(document.getElementById('resultBox').textContent).then(() => {
+    this.textContent = 'Copied!'; this.classList.add('copied');
+    setTimeout(() => { this.textContent = 'Copy'; this.classList.remove('copied'); }, 1500);
+  });
+});
+document.getElementById('btnClear').addEventListener('click', () => {
+  document.getElementById('numInput').value = '';
+  convert();
+});
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@
 
 ## Current Actual State (2026-03-23)
 
-- Tool count: **127**
+- Tool count: **128**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
 - Hub pages live and data-driven:
   - `image-tools`

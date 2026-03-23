@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Find and Replace Text Online | Simple ToolBox</title>
+  <meta name="description" content="Find and replace text online. Supports plain text, case-insensitive, whole word, and regex modes. Highlights all matches, shows match count, and copies the result instantly." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/find-and-replace" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/find-and-replace.html" />
+  <meta property="og:title" content="Find and Replace Text Online | Simple ToolBox" />
+  <meta property="og:description" content="Find and replace in text with plain, regex, or whole-word modes. Free browser-based tool." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Find & Replace",
+  "description": "Find and replace text with plain string, whole-word, or regex mode. Highlights all matches, shows match count, and copies the result instantly.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/find-and-replace"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it support regular expressions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enable Regex mode and enter any valid JavaScript regular expression. The replacement field supports capture group references like $1."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I delete all matches without replacing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leave the Replace with field empty and click Replace All. Every match will be removed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does whole-word mode do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It adds word boundary anchors around your pattern so it only matches complete words. For example, cat will not match concatenate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the text sent anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs locally in your browser."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .search-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px) { .search-grid { grid-template-columns: 1fr; } }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-group label { font-size: 12px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .field-input { padding: 10px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-primary); font-size: 14px; font-family: var(--ds-font-mono, monospace); transition: border-color 0.15s; }
+    .field-input:focus { outline: none; border-color: var(--ds-color-accent); }
+    .field-input.error { border-color: #ef4444; }
+    .option-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .option-check { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s; }
+    .option-check:hover { border-color: var(--ds-color-accent); }
+    .option-check input { width: 15px; height: 15px; accent-color: var(--ds-color-accent); }
+    .match-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: var(--ds-radius-md); font-size: 13px; font-weight: 600; }
+    .match-badge.has-matches { background: rgba(99,102,241,0.12); color: var(--ds-color-accent); }
+    .match-badge.no-matches { background: rgba(239,68,68,0.1); color: #ef4444; }
+    .match-badge.idle { background: var(--ds-color-surface); color: var(--ds-color-text-muted); border: 1px solid var(--ds-color-border); }
+    .preview-area { position: relative; }
+    .preview-box { padding: 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); font-family: var(--ds-font-mono, monospace); font-size: 13px; white-space: pre-wrap; word-break: break-word; max-height: 280px; overflow-y: auto; line-height: 1.7; color: var(--ds-color-text-primary); }
+    .preview-box mark { background: rgba(251,191,36,0.35); color: var(--ds-color-text-primary); border-radius: 2px; padding: 0 1px; }
+    .err-msg { font-size: 12px; color: #ef4444; margin-top: 4px; }
+    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Find &amp; Replace <span class="ds-tool-badge">text</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔎</div><h1 class="ds-tool-header__title">Find &amp; Replace</h1></div><p class="ds-tool-header__desc">Find and replace text with plain string, whole-word, or regex mode. Highlights all matches live and copies the result in one click.</p><div class="ds-tool-tag-row"><span class="ds-tag">find replace</span><span class="ds-tag">regex</span><span class="ds-tag">bulk edit</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Input Text</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClearInput">Clear</button></div></div>
+    <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste your text here..." spellcheck="false"></textarea>
+    <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="inputStat">0 chars</span></div>
+  </div>
+
+  <div class="search-grid">
+    <div class="field-group">
+      <label for="findField">Find</label>
+      <input class="field-input" type="text" id="findField" placeholder='e.g. "hello" or /\d+/' autocomplete="off" spellcheck="false" />
+      <span class="err-msg" id="regexErr" style="display:none"></span>
+    </div>
+    <div class="field-group">
+      <label for="replaceField">Replace with</label>
+      <input class="field-input" type="text" id="replaceField" placeholder="Replacement text (leave empty to delete)" autocomplete="off" spellcheck="false" />
+    </div>
+  </div>
+
+  <div class="option-row">
+    <label class="option-check"><input type="checkbox" id="optCaseInsensitive" checked /> Case insensitive</label>
+    <label class="option-check"><input type="checkbox" id="optWholeWord" /> Whole word only</label>
+    <label class="option-check"><input type="checkbox" id="optRegex" /> Regex mode</label>
+    <label class="option-check"><input type="checkbox" id="optMultiline" /> Multiline (^ $ per line)</label>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <span class="match-badge idle" id="matchBadge">No search</span>
+    <span style="font-size:13px;color:var(--ds-color-text-muted)" id="previewNote"></span>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnReplaceAll">Replace All</button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">Copy Result</button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">Clear All</button>
+  </div>
+
+  <div>
+    <div style="font-size:12px;font-weight:600;color:var(--ds-color-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Preview (matches highlighted)</div>
+    <div class="preview-box" id="previewBox"><span style="color:var(--ds-color-text-muted)">Match preview will appear here…</span></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Result</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnCopyHeader">Copy</button></div></div>
+    <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Result appears after Replace All…" readonly spellcheck="false"></textarea>
+    <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="outputStat">0 chars</span></div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Find &amp; Replace?</h2>
+    <p>Find and Replace lets you search for any text pattern and replace every occurrence in one click. It supports plain text, case-insensitive, whole-word, and full JavaScript regex mode. The live preview highlights all matches before you commit the replacement.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Find &amp; Replace</h2>
+    <ol>
+      <li>Paste your text into the Input Text field.</li>
+      <li>Enter the search term in the Find field.</li>
+      <li>Enter the replacement text (leave blank to delete matches).</li>
+      <li>Choose options: case-insensitive, whole word, or regex.</li>
+      <li>Click Replace All to apply. Copy the result from the Result field.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="text-diff.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">Text Diff</div><div class="ds-related-desc">Compare two texts line by line and highlight added, removed, and unchanged lines</div></div></a>
+    <a href="whitespace-trimmer.html" class="ds-related-card"><span class="ds-related-icon">✂️</span><div><div class="ds-related-name">Whitespace Trimmer</div><div class="ds-related-desc">Trim spaces and tabs from each line and clean blank rows</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+    <a href="word-wrap-formatter.html" class="ds-related-card"><span class="ds-related-icon">↵</span><div><div class="ds-related-name">Word Wrap Formatter</div><div class="ds-related-desc">Wrap long lines at a custom column width — 72, 80, 100, or any character limit</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>About Find and Replace</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">The quick fox. The slow fox.</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Replace fox with cat: The quick cat. The slow cat.</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Bulk-rename variables in copied code</li>
+          <li>Remove a repeated phrase from a document</li>
+          <li>Replace all occurrences of a URL</li>
+          <li>Clean up exported data with regex</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it support regular expressions?</strong><p>Yes. Enable Regex mode and enter any valid JavaScript regular expression. The replacement field supports capture group references like $1.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I delete all matches without replacing?</strong><p>Leave the Replace with field empty and click Replace All. Every match will be removed.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does whole-word mode do?</strong><p>It adds word boundary anchors around your pattern so it only matches complete words. For example, cat will not match concatenate.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the text sent anywhere?</strong><p>No. Everything runs locally in your browser.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+const inputText = document.getElementById('inputText');
+const outputText = document.getElementById('outputText');
+const findField = document.getElementById('findField');
+const replaceField = document.getElementById('replaceField');
+const optCI = document.getElementById('optCaseInsensitive');
+const optWW = document.getElementById('optWholeWord');
+const optRE = document.getElementById('optRegex');
+const optML = document.getElementById('optMultiline');
+const matchBadge = document.getElementById('matchBadge');
+const previewBox = document.getElementById('previewBox');
+const regexErr = document.getElementById('regexErr');
+const inputStat = document.getElementById('inputStat');
+const outputStat = document.getElementById('outputStat');
+
+const SAMPLE = `The quick brown fox jumps over the lazy dog.
+The fox is very quick and the dog is very lazy.
+Foxes are members of the family Canidae.
+A quick summary: foxes and dogs can coexist.`;
+
+function buildRegex(pattern, forReplace) {
+  regexErr.style.display = 'none';
+  findField.classList.remove('error');
+  if (!pattern) return null;
+  try {
+    let flags = forReplace ? 'g' : 'g';
+    if (optCI.checked) flags += 'i';
+    if (optML.checked) flags += 'm';
+    let src = pattern;
+    if (!optRE.checked) src = pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (optWW.checked) src = `\\b${src}\\b`;
+    return new RegExp(src, flags);
+  } catch (e) {
+    regexErr.textContent = 'Invalid regex: ' + e.message;
+    regexErr.style.display = 'block';
+    findField.classList.add('error');
+    return null;
+  }
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function updatePreview() {
+  const text = inputText.value;
+  const pattern = findField.value;
+  if (!text || !pattern) {
+    previewBox.innerHTML = text ? escHtml(text.slice(0, 2000)) : '<span style="color:var(--ds-color-text-muted)">Match preview will appear here…</span>';
+    matchBadge.className = 'match-badge idle';
+    matchBadge.textContent = 'No search';
+    return;
+  }
+  const re = buildRegex(pattern, false);
+  if (!re) { previewBox.innerHTML = escHtml(text.slice(0, 2000)); matchBadge.className = 'match-badge idle'; matchBadge.textContent = '—'; return; }
+  const matches = [...text.matchAll(re)];
+  const count = matches.length;
+  if (count === 0) {
+    previewBox.innerHTML = escHtml(text.slice(0, 2000));
+    matchBadge.className = 'match-badge no-matches';
+    matchBadge.textContent = '0 matches';
+    return;
+  }
+  matchBadge.className = 'match-badge has-matches';
+  matchBadge.textContent = count + (count === 1 ? ' match' : ' matches');
+  // Build highlighted preview (max 2000 chars)
+  const preview = text.slice(0, 2000);
+  const rePreview = buildRegex(pattern, false);
+  let html = '';
+  let last = 0;
+  for (const m of preview.matchAll(rePreview)) {
+    html += escHtml(preview.slice(last, m.index));
+    html += '<mark>' + escHtml(m[0]) + '</mark>';
+    last = m.index + m[0].length;
+  }
+  html += escHtml(preview.slice(last));
+  previewBox.innerHTML = html;
+}
+
+function replaceAll() {
+  const text = inputText.value;
+  const pattern = findField.value;
+  const replacement = replaceField.value;
+  if (!text) { outputText.value = ''; return; }
+  if (!pattern) { outputText.value = text; outputStat.textContent = text.length + ' chars'; return; }
+  const re = buildRegex(pattern, true);
+  if (!re) return;
+  const result = text.replace(re, replacement);
+  outputText.value = result;
+  outputStat.textContent = result.length + ' chars';
+}
+
+function copy(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent; btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+  });
+}
+
+document.getElementById('btnReplaceAll').addEventListener('click', () => { replaceAll(); updatePreview(); });
+document.getElementById('btnCopyResult').addEventListener('click', () => copy(outputText.value, document.getElementById('btnCopyResult')));
+document.getElementById('btnCopyHeader').addEventListener('click', () => copy(outputText.value, document.getElementById('btnCopyHeader')));
+document.getElementById('btnClearInput').addEventListener('click', () => { inputText.value = ''; inputStat.textContent = '0 chars'; updatePreview(); });
+document.getElementById('btnClearAll').addEventListener('click', () => { inputText.value = ''; outputText.value = ''; findField.value = ''; replaceField.value = ''; inputStat.textContent = '0 chars'; outputStat.textContent = '0 chars'; updatePreview(); });
+document.getElementById('btnPaste').addEventListener('click', () => navigator.clipboard.readText().then(t => { inputText.value = t; inputStat.textContent = t.length + ' chars'; updatePreview(); }));
+document.getElementById('btnSample').addEventListener('click', () => { inputText.value = SAMPLE; inputStat.textContent = SAMPLE.length + ' chars'; findField.value = 'fox'; replaceField.value = 'cat'; updatePreview(); });
+
+inputText.addEventListener('input', () => { inputStat.textContent = inputText.value.length + ' chars'; updatePreview(); });
+findField.addEventListener('input', updatePreview);
+replaceField.addEventListener('input', () => {});
+[optCI, optWW, optRE, optML].forEach(el => el.addEventListener('change', updatePreview));
+</script>
+</body>
+</html>

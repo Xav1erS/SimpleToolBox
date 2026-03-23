@@ -125,6 +125,9 @@ const SITE_TOOLS = [
   { name: 'Image to Base64',          href: 'tools/image-to-base64.html',          tag: 'image',    icon: '🔢', desc: 'Convert any image to a Base64 string or data URI for embedding in HTML/CSS' },
   { name: 'Base64 to Image',          href: 'tools/base64-to-image.html',          tag: 'image',    icon: '🔓', desc: 'Paste a Base64 string or data URI to preview and download the image' },
   { name: 'Image Metadata Editor',    href: 'tools/image-metadata-editor.html',    tag: 'image',    icon: '✏️', desc: 'Edit title, author, copyright, and description fields in a JPEG and download' },
+  { name: 'Word Wrap Formatter',      href: 'tools/word-wrap-formatter.html',      tag: 'text',     icon: '↵',  desc: 'Wrap long lines at a custom column width — 72, 80, 100, or any character limit' },
+  { name: 'Text Diff',                href: 'tools/text-diff.html',                tag: 'text',     icon: '⚖️', desc: 'Compare two texts line by line and highlight added, removed, and unchanged lines' },
+  { name: 'Find & Replace',           href: 'tools/find-and-replace.html',         tag: 'text',     icon: '🔎', desc: 'Find and replace text with plain string, whole-word, or regex mode' },
 ];
 
 const HUB_PAGE_CONFIG = {

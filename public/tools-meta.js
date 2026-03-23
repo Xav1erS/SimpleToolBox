@@ -6662,7 +6662,100 @@ const TOOLS_META = [
         whyUseTitle: 'Why Use This Tool',
         whyUseItems: ['Add copyright and author info before publishing photos.', 'Pre-fills Author field from existing EXIF Artist tag if present.', 'Non-destructive — creates a new file, never overwrites the original.', '100% local — no image is ever uploaded.']
       }
-    }
+    },
+  {
+    slug: 'word-wrap-formatter',
+    title: 'Word Wrap Formatter',
+    description: 'Wrap long lines at a custom column width. Preserves paragraphs and word boundaries. Runs entirely in your browser.',
+    category: 'text',
+    relatedTools: ['whitespace-trimmer', 'text-cleaner', 'duplicate-line-remover', 'line-sorter'],
+    faq: [
+      { q: 'What does word wrap formatting do?', a: 'It breaks long lines of text at a specified column width so each line stays within that limit. Words are kept intact.' },
+      { q: 'What column width should I use?', a: '80 characters is the most common standard. Use 72 for Git commit messages. Use 100 or 120 for wider modern displays.' },
+      { q: 'Will it break long URLs or file paths?', a: 'With hard-wrap disabled (default), words longer than the column width are placed on their own line but not broken. Enable hard-wrap to split them.' },
+      { q: 'Does it preserve paragraph breaks?', a: 'Yes, by default blank lines between paragraphs are preserved. Each paragraph is wrapped independently.' },
+    ],
+    useCases: ['Format commit messages to 72 characters', 'Wrap documentation for terminal-width readability', 'Prepare email body text at 80 columns'],
+    example: { input: 'The quick brown fox jumps over the lazy dog and then runs away very quickly into the forest.', output: 'Wrapped at 40: The quick brown fox jumps / over the lazy dog and then runs away...' },
+    seoContent: {
+      whatIsTitle: 'What is Word Wrap Formatter?',
+      whatIsBody: 'Word Wrap Formatter breaks long lines of text at a column boundary you choose. It respects word boundaries so no word is split in the middle. Paragraph spacing is preserved. Use it for terminal output, email formatting, commit messages, or any plain-text content that needs to fit a fixed width.',
+      howToTitle: 'How to Use Word Wrap Formatter',
+      howToSteps: [
+        'Paste your long-line text into the Input field.',
+        'Set the column width using the number field or a preset (72, 80, 100, 120).',
+        'Toggle Preserve blank lines and Hard-wrap options as needed.',
+        'Review the wrapped output and the max line length stat.',
+        'Copy the result with the Copy button.',
+      ],
+    },
+    learnMore: {
+      title: 'About Column-Width Conventions',
+      body: 'The 80-character line-width convention originated with punch cards and early terminals. Python PEP 8 recommends 79 characters; the Linux kernel style guide uses 80. Git commit messages conventionally wrap at 72 characters to leave room for indentation in git log output.',
+    },
+  },
+  {
+    slug: 'text-diff',
+    title: 'Text Diff',
+    description: 'Compare two texts line by line. Added lines are highlighted green, removed lines red. Works entirely in your browser.',
+    category: 'text',
+    relatedTools: ['find-and-replace', 'whitespace-trimmer', 'line-sorter', 'duplicate-line-remover'],
+    faq: [
+      { q: 'How does the diff work?', a: 'It uses a Longest Common Subsequence (LCS) algorithm to find the minimum set of line additions and removals that transform the original into the modified text.' },
+      { q: 'Can I filter to show only added or removed lines?', a: 'Yes. Use the Added only or Removed only view buttons to focus on one type of change.' },
+      { q: 'Is my text sent to a server?', a: 'No. All comparison happens locally in your browser. Neither input is uploaded anywhere.' },
+      { q: 'Does it support character-level diff?', a: 'Currently it diffs at the line level. Character-level highlighting within changed lines is not shown.' },
+    ],
+    useCases: ['Compare two versions of a document', 'Review config file changes before deploying', 'Spot differences between API responses', 'Find accidental edits in copied text'],
+    example: { input: 'Original line A / Shared line', output: 'Removed: "Original line A" / Added: "line B" / Unchanged: "Shared line"' },
+    seoContent: {
+      whatIsTitle: 'What is Text Diff?',
+      whatIsBody: 'Text Diff compares two blocks of text line by line and shows which lines were added, removed, or unchanged. It uses an LCS algorithm entirely in your browser. Switch between unified, added-only, and removed-only views and copy the diff output as plain text.',
+      howToTitle: 'How to Use Text Diff',
+      howToSteps: [
+        'Paste the original text in the left panel.',
+        'Paste the modified text in the right panel.',
+        'Click Compare (or press Ctrl+Enter).',
+        'Use the view buttons to filter by Added only or Removed only.',
+        'Copy the diff output if needed.',
+      ],
+    },
+    learnMore: {
+      title: 'About Text Diffing',
+      body: 'Text diffing originated with the Unix diff utility (1974). It uses the Longest Common Subsequence (LCS) algorithm to find the minimal set of edits. Modern tools like git diff build on the same foundation. Line-level diff is standard for code review; character-level diff is better suited for prose editing.',
+    },
+  },
+  {
+    slug: 'find-and-replace',
+    title: 'Find & Replace',
+    description: 'Find and replace text with plain string, whole-word, or regex mode. Highlights all matches, shows match count, and copies the result instantly.',
+    category: 'text',
+    relatedTools: ['text-diff', 'whitespace-trimmer', 'text-cleaner', 'word-wrap-formatter'],
+    faq: [
+      { q: 'Does it support regular expressions?', a: 'Yes. Enable Regex mode and enter any valid JavaScript regular expression. The replacement field supports capture group references like $1.' },
+      { q: 'How do I delete all matches without replacing?', a: 'Leave the Replace with field empty and click Replace All. Every match will be removed.' },
+      { q: 'What does whole-word mode do?', a: 'It adds word boundary anchors around your pattern so it only matches complete words. For example, cat will not match concatenate.' },
+      { q: 'Is the text sent anywhere?', a: 'No. Everything runs locally in your browser.' },
+    ],
+    useCases: ['Bulk-rename variables in copied code', 'Remove a repeated phrase from a document', 'Replace all occurrences of a URL', 'Clean up exported data with regex'],
+    example: { input: 'The quick fox. The slow fox.', output: 'Replace fox with cat: The quick cat. The slow cat.' },
+    seoContent: {
+      whatIsTitle: 'What is Find & Replace?',
+      whatIsBody: 'Find and Replace lets you search for any text pattern and replace every occurrence in one click. It supports plain text, case-insensitive, whole-word, and full JavaScript regex mode. The live preview highlights all matches before you commit the replacement.',
+      howToTitle: 'How to Use Find & Replace',
+      howToSteps: [
+        'Paste your text into the Input Text field.',
+        'Enter the search term in the Find field.',
+        'Enter the replacement text (leave blank to delete matches).',
+        'Choose options: case-insensitive, whole word, or regex.',
+        'Click Replace All to apply. Copy the result from the Result field.',
+      ],
+    },
+    learnMore: {
+      title: 'About Find and Replace',
+      body: 'Find and replace is one of the oldest text-editing operations, present in every text editor and word processor. Regular expressions extend it from literal string matching to pattern matching — you can replace all digits, strip HTML tags, or reformat dates with a single regex. JavaScript uses PCRE-inspired regex with flags for global (g), case-insensitive (i), and multiline (m) matching.',
+    },
+  }
 ];
 
-if (typeof module !== 'undefined') module.exports = { TOOLS_META }; !== 'undefined') module.exports = { TOOLS_META };
+if (typeof module !== 'undefined') module.exports = { TOOLS_META };

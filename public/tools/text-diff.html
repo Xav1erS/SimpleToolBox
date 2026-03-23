@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Text Diff Checker Online | Simple ToolBox</title>
+  <meta name="description" content="Compare two texts and highlight the differences line by line. See added, removed, and unchanged lines instantly. Free browser-based diff tool — no upload required." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/text-diff" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/text-diff.html" />
+  <meta property="og:title" content="Text Diff Checker Online | Simple ToolBox" />
+  <meta property="og:description" content="Compare two texts and highlight added, removed, and unchanged lines. Free browser-based diff tool." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Text Diff",
+  "description": "Compare two texts line by line. Added lines are highlighted green, removed lines red. Works entirely in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/text-diff"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does the diff work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses a Longest Common Subsequence (LCS) algorithm to find the minimum set of line additions and removals that transform the original into the modified text."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I filter to show only added or removed lines?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the Added only or Removed only view buttons to focus on one type of change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my text sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All comparison happens locally in your browser. Neither input is uploaded anywhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it support character-level diff?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Currently it diffs at the line level. Character-level highlighting within changed lines is not shown."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .inputs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .inputs-row { grid-template-columns: 1fr; } }
+    .diff-output { border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); overflow: hidden; }
+    .diff-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--ds-color-border); }
+    .diff-header__label { font-size: 13px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .diff-body { font-family: var(--ds-font-mono, monospace); font-size: 13px; overflow-x: auto; max-height: 420px; overflow-y: auto; }
+    .diff-line { display: flex; align-items: flex-start; min-height: 24px; }
+    .diff-line__num { min-width: 44px; padding: 3px 8px; text-align: right; color: var(--ds-color-text-muted); font-size: 11px; user-select: none; border-right: 1px solid var(--ds-color-border); flex-shrink: 0; }
+    .diff-line__sign { min-width: 20px; padding: 3px 4px; text-align: center; font-weight: 700; flex-shrink: 0; }
+    .diff-line__text { padding: 3px 10px; white-space: pre-wrap; word-break: break-all; flex: 1; }
+    .diff-line.added { background: rgba(34,197,94,0.1); }
+    .diff-line.added .diff-line__sign { color: #22c55e; }
+    .diff-line.removed { background: rgba(239,68,68,0.1); }
+    .diff-line.removed .diff-line__sign { color: #ef4444; }
+    .diff-line.unchanged .diff-line__sign { color: var(--ds-color-text-muted); }
+    .diff-empty { padding: 40px; text-align: center; color: var(--ds-color-text-muted); font-size: 14px; }
+    .stats-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .stat-pill { padding: 5px 14px; border-radius: var(--ds-radius-md); font-size: 13px; }
+    .stat-pill.added { background: rgba(34,197,94,0.12); color: #22c55e; }
+    .stat-pill.removed { background: rgba(239,68,68,0.12); color: #ef4444; }
+    .stat-pill.unchanged { background: var(--ds-color-surface); color: var(--ds-color-text-muted); border: 1px solid var(--ds-color-border); }
+    .view-toggle { display: flex; gap: 4px; }
+    .view-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: transparent; color: var(--ds-color-text-secondary); font-size: 12px; cursor: pointer; transition: all 0.15s; }
+    .view-btn.active { border-color: var(--ds-color-accent); color: var(--ds-color-accent); background: rgba(99,102,241,0.08); }
+    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Text Diff <span class="ds-tool-badge">text</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">⚖️</div><h1 class="ds-tool-header__title">Text Diff</h1></div><p class="ds-tool-header__desc">Compare two texts line by line. Added lines are highlighted green, removed lines red. Works entirely in your browser — nothing is uploaded.</p><div class="ds-tool-tag-row"><span class="ds-tag">compare text</span><span class="ds-tag">diff</span><span class="ds-tag">line diff</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="inputs-row">
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Original</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClearA">Clear</button></div></div>
+      <textarea class="io-textarea ds-tool-textarea" id="textA" placeholder="Paste original text here..." spellcheck="false" style="min-height:200px"></textarea>
+      <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="statA">0 lines</span></div>
+    </div>
+    <div class="ds-tool-pane">
+      <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Modified</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnClearB">Clear</button></div></div>
+      <textarea class="io-textarea ds-tool-textarea" id="textB" placeholder="Paste modified text here..." spellcheck="false" style="min-height:200px"></textarea>
+      <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="statB">0 lines</span></div>
+    </div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnCompare">Compare</button>
+    <div class="view-toggle">
+      <button class="view-btn active" data-view="unified">Unified</button>
+      <button class="view-btn" data-view="added">Added only</button>
+      <button class="view-btn" data-view="removed">Removed only</button>
+    </div>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnSwap">Swap ⇄</button>
+  </div>
+
+  <div class="stats-row" id="statsRow" style="display:none">
+    <span class="stat-pill added" id="statAdded">+0 added</span>
+    <span class="stat-pill removed" id="statRemoved">−0 removed</span>
+    <span class="stat-pill unchanged" id="statUnchanged">0 unchanged</span>
+  </div>
+
+  <div class="diff-output">
+    <div class="diff-header">
+      <span class="diff-header__label">Diff Output</span>
+      <button class="io-btn" id="btnCopyDiff" style="font-size:12px;padding:4px 10px">Copy</button>
+    </div>
+    <div class="diff-body" id="diffBody">
+      <div class="diff-empty">Paste text in both fields and click Compare</div>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Text Diff?</h2>
+    <p>Text Diff compares two blocks of text line by line and shows which lines were added, removed, or unchanged. It uses an LCS algorithm entirely in your browser. Switch between unified, added-only, and removed-only views and copy the diff output as plain text.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Text Diff</h2>
+    <ol>
+      <li>Paste the original text in the left panel.</li>
+      <li>Paste the modified text in the right panel.</li>
+      <li>Click Compare (or press Ctrl+Enter).</li>
+      <li>Use the view buttons to filter by Added only or Removed only.</li>
+      <li>Copy the diff output if needed.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="find-and-replace.html" class="ds-related-card"><span class="ds-related-icon">🔎</span><div><div class="ds-related-name">Find &amp; Replace</div><div class="ds-related-desc">Find and replace text with plain string, whole-word, or regex mode</div></div></a>
+    <a href="whitespace-trimmer.html" class="ds-related-card"><span class="ds-related-icon">✂️</span><div><div class="ds-related-name">Whitespace Trimmer</div><div class="ds-related-desc">Trim spaces and tabs from each line and clean blank rows</div></div></a>
+    <a href="line-sorter.html" class="ds-related-card"><span class="ds-related-icon">↕️</span><div><div class="ds-related-name">Line Sorter</div><div class="ds-related-desc">Sort one-item-per-line text lists A-Z or Z-A with natural order</div></div></a>
+    <a href="duplicate-line-remover.html" class="ds-related-card"><span class="ds-related-icon">🗑️</span><div><div class="ds-related-name">Duplicate Line Remover</div><div class="ds-related-desc">Remove repeated lines while keeping the first occurrence</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>About Text Diffing</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Original line A / Shared line</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Removed: &quot;Original line A&quot; / Added: &quot;line B&quot; / Unchanged: &quot;Shared line&quot;</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Compare two versions of a document</li>
+          <li>Review config file changes before deploying</li>
+          <li>Spot differences between API responses</li>
+          <li>Find accidental edits in copied text</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How does the diff work?</strong><p>It uses a Longest Common Subsequence (LCS) algorithm to find the minimum set of line additions and removals that transform the original into the modified text.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I filter to show only added or removed lines?</strong><p>Yes. Use the Added only or Removed only view buttons to focus on one type of change.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is my text sent to a server?</strong><p>No. All comparison happens locally in your browser. Neither input is uploaded anywhere.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it support character-level diff?</strong><p>Currently it diffs at the line level. Character-level highlighting within changed lines is not shown.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+const textA = document.getElementById('textA');
+const textB = document.getElementById('textB');
+const diffBody = document.getElementById('diffBody');
+const statsRow = document.getElementById('statsRow');
+const statAdded = document.getElementById('statAdded');
+const statRemoved = document.getElementById('statRemoved');
+const statUnchanged = document.getElementById('statUnchanged');
+let currentDiff = [];
+let currentView = 'unified';
+
+const SAMPLE_A = `The quick brown fox jumps over the lazy dog.
+This is line two.
+This line will be removed.
+Both texts share this line.
+Another shared line here.`;
+
+const SAMPLE_B = `The quick brown fox jumps over the lazy dog.
+This is line two, slightly modified.
+Both texts share this line.
+Another shared line here.
+This line was added at the end.`;
+
+// Myers diff algorithm (line-level)
+function lcs(a, b) {
+  const m = a.length, n = b.length;
+  const dp = Array.from({length: m+1}, () => new Array(n+1).fill(0));
+  for (let i = 1; i <= m; i++)
+    for (let j = 1; j <= n; j++)
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] + 1 : Math.max(dp[i-1][j], dp[i][j-1]);
+  // Backtrack
+  const seq = [];
+  let i = m, j = n;
+  while (i > 0 && j > 0) {
+    if (a[i-1] === b[j-1]) { seq.unshift({type:'unchanged', text:a[i-1], ia:i-1, ib:j-1}); i--; j--; }
+    else if (dp[i-1][j] >= dp[i][j-1]) i--;
+    else j--;
+  }
+  return seq;
+}
+
+function diff(a, b) {
+  const lcsSeq = lcs(a, b);
+  const result = [];
+  let ia = 0, ib = 0, lIdx = 0;
+  while (lIdx < lcsSeq.length) {
+    const {ia: la, ib: lb} = lcsSeq[lIdx];
+    while (ia < la) { result.push({type:'removed', text:a[ia++]}); }
+    while (ib < lb) { result.push({type:'added', text:b[ib++]}); }
+    result.push(lcsSeq[lIdx]);
+    ia = la + 1; ib = lb + 1; lIdx++;
+  }
+  while (ia < a.length) result.push({type:'removed', text:a[ia++]});
+  while (ib < b.length) result.push({type:'added', text:b[ib++]});
+  return result;
+}
+
+function renderDiff(d, view) {
+  if (!d.length) { diffBody.innerHTML = '<div class="diff-empty">No differences found — the texts are identical.</div>'; return; }
+  let addedN=0, removedN=0, unchangedN=0;
+  let lnA=1, lnB=1;
+  let html = '';
+  for (const line of d) {
+    if (line.type === 'added') addedN++;
+    else if (line.type === 'removed') removedN++;
+    else unchangedN++;
+  }
+  statAdded.textContent = `+${addedN} added`;
+  statRemoved.textContent = `−${removedN} removed`;
+  statUnchanged.textContent = `${unchangedN} unchanged`;
+  statsRow.style.display = 'flex';
+
+  lnA = 1; lnB = 1;
+  for (const line of d) {
+    if (view === 'added' && line.type !== 'added') { if (line.type==='removed') {} else lnA++, lnB++; if (line.type==='removed') lnA++; continue; }
+    if (view === 'removed' && line.type !== 'removed') { if (line.type==='added') {} else lnA++, lnB++; if (line.type==='added') lnB++; continue; }
+    const sign = line.type==='added' ? '+' : line.type==='removed' ? '−' : ' ';
+    const numA = line.type==='added' ? '' : lnA;
+    const numB = line.type==='removed' ? '' : lnB;
+    const numStr = `${numA || ''}`;
+    html += `<div class="diff-line ${line.type}"><span class="diff-line__num">${numStr}</span><span class="diff-line__sign">${sign}</span><span class="diff-line__text">${escHtml(line.text)}</span></div>`;
+    if (line.type !== 'added') lnA++;
+    if (line.type !== 'removed') lnB++;
+  }
+  diffBody.innerHTML = html;
+}
+
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function run() {
+  const a = textA.value.split('\n');
+  const b = textB.value.split('\n');
+  if (!textA.value && !textB.value) { diffBody.innerHTML = '<div class="diff-empty">Paste text in both fields and click Compare</div>'; statsRow.style.display='none'; return; }
+  currentDiff = diff(a, b);
+  renderDiff(currentDiff, currentView);
+}
+
+function copyDiff() {
+  const lines = currentDiff.map(l => {
+    const sign = l.type==='added' ? '+' : l.type==='removed' ? '-' : ' ';
+    return sign + l.text;
+  });
+  const btn = document.getElementById('btnCopyDiff');
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+
+document.getElementById('btnCompare').addEventListener('click', run);
+document.getElementById('btnCopyDiff').addEventListener('click', copyDiff);
+document.getElementById('btnSwap').addEventListener('click', () => { const t = textA.value; textA.value = textB.value; textB.value = t; updateStats(); run(); });
+document.getElementById('btnClearA').addEventListener('click', () => { textA.value = ''; updateStats(); });
+document.getElementById('btnClearB').addEventListener('click', () => { textB.value = ''; updateStats(); });
+document.getElementById('btnSample').addEventListener('click', () => { textA.value = SAMPLE_A; textB.value = SAMPLE_B; updateStats(); run(); });
+
+document.querySelectorAll('.view-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentView = btn.dataset.view;
+    if (currentDiff.length) renderDiff(currentDiff, currentView);
+  });
+});
+
+function countLines(v) { return v ? v.split('\n').length : 0; }
+function updateStats() {
+  document.getElementById('statA').textContent = countLines(textA.value) + ' lines';
+  document.getElementById('statB').textContent = countLines(textB.value) + ' lines';
+}
+textA.addEventListener('input', updateStats);
+textB.addEventListener('input', updateStats);
+// Ctrl+Enter to compare
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) run(); });
+</script>
+</body>
+</html>

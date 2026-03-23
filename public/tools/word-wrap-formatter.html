@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Word Wrap Formatter Online | Simple ToolBox</title>
+  <meta name="description" content="Wrap long text at a custom column width. Set 80, 100, or any character limit per line. Preserve paragraphs and copy the formatted result instantly." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/word-wrap-formatter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/word-wrap-formatter.html" />
+  <meta property="og:title" content="Word Wrap Formatter Online | Simple ToolBox" />
+  <meta property="og:description" content="Wrap text at 80, 100, or any custom column width. Free browser-based formatter." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Word Wrap Formatter",
+  "description": "Wrap long lines at a custom column width. Preserves paragraphs and word boundaries. Runs entirely in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/word-wrap-formatter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does word wrap formatting do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It breaks long lines of text at a specified column width so each line stays within that limit. Words are kept intact."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What column width should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "80 characters is the most common standard. Use 72 for Git commit messages. Use 100 or 120 for wider modern displays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it break long URLs or file paths?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With hard-wrap disabled (default), words longer than the column width are placed on their own line but not broken. Enable hard-wrap to split them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it preserve paragraph breaks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, by default blank lines between paragraphs are preserved. Each paragraph is wrapped independently."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .ctrl-group { display: flex; align-items: center; gap: 8px; }
+    .ctrl-group label { font-size: 13px; color: var(--ds-color-text-secondary); }
+    .ctrl-number { width: 72px; padding: 8px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-primary); font-size: 14px; text-align: center; }
+    .ctrl-number:focus { outline: none; border-color: var(--ds-color-accent); }
+    .preset-row { display: flex; gap: 6px; }
+    .preset-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: 20px; background: transparent; color: var(--ds-color-text-secondary); font-size: 12px; cursor: pointer; transition: all 0.15s; }
+    .preset-btn:hover, .preset-btn.active { border-color: var(--ds-color-accent); color: var(--ds-color-accent); background: rgba(var(--ds-color-accent-rgb,99,102,241),0.08); }
+    .option-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .option-check { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; }
+    .option-check input { width: 15px; height: 15px; accent-color: var(--ds-color-accent); }
+    .stats-row { display: flex; gap: 20px; flex-wrap: wrap; }
+    .stat-pill { padding: 6px 14px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); font-size: 13px; color: var(--ds-color-text-muted); }
+    .stat-pill strong { color: var(--ds-color-text-primary); }
+    .io-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Word Wrap Formatter <span class="ds-tool-badge">text</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">↵</div><h1 class="ds-tool-header__title">Word Wrap Formatter</h1></div><p class="ds-tool-header__desc">Wrap long lines of text at a custom column width. Set 72, 80, 100, or any character limit — preserves paragraphs and words intact.</p><div class="ds-tool-tag-row"><span class="ds-tag">wrap text</span><span class="ds-tag">column width</span><span class="ds-tag">80 chars</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Input</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClearInput">Clear</button></div></div>
+    <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste long text here..." spellcheck="false"></textarea>
+    <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="inputStat">0 chars</span></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <label for="wrapWidth">Wrap at column:</label>
+      <input class="ctrl-number" type="number" id="wrapWidth" value="80" min="20" max="500" />
+    </div>
+    <div class="preset-row">
+      <button class="preset-btn" data-w="72">72</button>
+      <button class="preset-btn active" data-w="80">80</button>
+      <button class="preset-btn" data-w="100">100</button>
+      <button class="preset-btn" data-w="120">120</button>
+    </div>
+  </div>
+
+  <div class="option-row">
+    <label class="option-check"><input type="checkbox" id="optPreserveParagraphs" checked /> Preserve blank lines between paragraphs</label>
+    <label class="option-check"><input type="checkbox" id="optHardWrap" /> Hard-wrap (break long words if needed)</label>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-pill">Lines before: <strong id="linesBefore">0</strong></div>
+    <div class="stat-pill">Lines after: <strong id="linesAfter">0</strong></div>
+    <div class="stat-pill">Max line length: <strong id="maxLen">0</strong></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Result</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnCopyHeader">Copy</button></div></div>
+    <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Wrapped text will appear here..." readonly spellcheck="false"></textarea>
+    <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="outputStat">0 chars</span></div>
+  </div>
+
+  <div class="ds-tool-actions">
+    <button class="ds-tool-primary" id="btnRun">Wrap Text</button>
+    <button class="btn-ghost ds-tool-secondary" id="btnCopyResult">Copy Result</button>
+    <div class="ds-tool-actions-spacer"></div>
+    <button class="btn-ghost ds-tool-secondary" id="btnClearAll">Clear All</button>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Word Wrap Formatter?</h2>
+    <p>Word Wrap Formatter breaks long lines of text at a column boundary you choose. It respects word boundaries so no word is split in the middle. Paragraph spacing is preserved. Use it for terminal output, email formatting, commit messages, or any plain-text content that needs to fit a fixed width.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use Word Wrap Formatter</h2>
+    <ol>
+      <li>Paste your long-line text into the Input field.</li>
+      <li>Set the column width using the number field or a preset (72, 80, 100, 120).</li>
+      <li>Toggle Preserve blank lines and Hard-wrap options as needed.</li>
+      <li>Review the wrapped output and the max line length stat.</li>
+      <li>Copy the result with the Copy button.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="whitespace-trimmer.html" class="ds-related-card"><span class="ds-related-icon">✂️</span><div><div class="ds-related-name">Whitespace Trimmer</div><div class="ds-related-desc">Trim spaces and tabs from each line and clean blank rows</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+    <a href="duplicate-line-remover.html" class="ds-related-card"><span class="ds-related-icon">🗑️</span><div><div class="ds-related-name">Duplicate Line Remover</div><div class="ds-related-desc">Remove repeated lines while keeping the first occurrence</div></div></a>
+    <a href="line-sorter.html" class="ds-related-card"><span class="ds-related-icon">↕️</span><div><div class="ds-related-name">Line Sorter</div><div class="ds-related-desc">Sort one-item-per-line text lists A-Z or Z-A with natural order</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>About Column-Width Conventions</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">The quick brown fox jumps over the lazy dog and then runs away very quickly into the forest.</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Wrapped at 40: The quick brown fox jumps / over the lazy dog and then runs away...</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Format commit messages to 72 characters</li>
+          <li>Wrap documentation for terminal-width readability</li>
+          <li>Prepare email body text at 80 columns</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What does word wrap formatting do?</strong><p>It breaks long lines of text at a specified column width so each line stays within that limit. Words are kept intact.</p></div>
+        <div class="ds-seo-faq-item"><strong>What column width should I use?</strong><p>80 characters is the most common standard. Use 72 for Git commit messages. Use 100 or 120 for wider modern displays.</p></div>
+        <div class="ds-seo-faq-item"><strong>Will it break long URLs or file paths?</strong><p>With hard-wrap disabled (default), words longer than the column width are placed on their own line but not broken. Enable hard-wrap to split them.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it preserve paragraph breaks?</strong><p>Yes, by default blank lines between paragraphs are preserved. Each paragraph is wrapped independently.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+const inputText = document.getElementById('inputText');
+const outputText = document.getElementById('outputText');
+const wrapWidth = document.getElementById('wrapWidth');
+const optPreserveParagraphs = document.getElementById('optPreserveParagraphs');
+const optHardWrap = document.getElementById('optHardWrap');
+const inputStat = document.getElementById('inputStat');
+const outputStat = document.getElementById('outputStat');
+const linesBefore = document.getElementById('linesBefore');
+const linesAfter = document.getElementById('linesAfter');
+const maxLen = document.getElementById('maxLen');
+
+const SAMPLE = `The quick brown fox jumps over the lazy dog. This sentence is a classic pangram used in typography. It has been used for decades to test fonts and keyboards because it contains every letter of the English alphabet at least once.
+
+Word wrap formatting is essential when writing emails, commit messages, documentation, or any content that needs to fit within a fixed column width. Many style guides recommend wrapping at 72 or 80 characters per line for readability in terminal environments and code review tools.`;
+
+function wrapText(text, width, preserveParas, hardWrap) {
+  const sections = preserveParas ? text.split(/\n{2,}/) : [text.replace(/\n/g, ' ')];
+  return sections.map(section => {
+    // Each section: collapse internal newlines to space, then wrap
+    const words = section.replace(/\n/g, ' ').split(/\s+/).filter(w => w.length > 0);
+    const lines = [];
+    let current = '';
+    for (const word of words) {
+      if (hardWrap && word.length > width) {
+        // flush current line first
+        if (current) { lines.push(current); current = ''; }
+        // break the long word
+        let remaining = word;
+        while (remaining.length > width) {
+          lines.push(remaining.slice(0, width));
+          remaining = remaining.slice(width);
+        }
+        current = remaining;
+        continue;
+      }
+      const test = current ? current + ' ' + word : word;
+      if (test.length <= width) {
+        current = test;
+      } else {
+        if (current) lines.push(current);
+        current = word;
+      }
+    }
+    if (current) lines.push(current);
+    return lines.join('\n');
+  }).join('\n\n');
+}
+
+function run() {
+  const text = inputText.value;
+  const width = Math.max(20, parseInt(wrapWidth.value) || 80);
+  const result = wrapText(text, width, optPreserveParagraphs.checked, optHardWrap.checked);
+  outputText.value = result;
+
+  const inLines = text ? text.split('\n').length : 0;
+  const outLines = result ? result.split('\n') : [];
+  const longest = outLines.reduce((m, l) => Math.max(m, l.length), 0);
+
+  inputStat.textContent = text.length + ' chars';
+  outputStat.textContent = result.length + ' chars';
+  linesBefore.textContent = inLines;
+  linesAfter.textContent = outLines.length;
+  maxLen.textContent = longest;
+}
+
+function copy(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+  });
+}
+
+document.getElementById('btnRun').addEventListener('click', run);
+document.getElementById('btnCopyResult').addEventListener('click', () => copy(outputText.value, document.getElementById('btnCopyResult')));
+document.getElementById('btnCopyHeader').addEventListener('click', () => copy(outputText.value, document.getElementById('btnCopyHeader')));
+document.getElementById('btnClearInput').addEventListener('click', () => { inputText.value = ''; inputStat.textContent = '0 chars'; });
+document.getElementById('btnClearAll').addEventListener('click', () => { inputText.value = ''; outputText.value = ''; inputStat.textContent = '0 chars'; outputStat.textContent = '0 chars'; linesBefore.textContent = '0'; linesAfter.textContent = '0'; maxLen.textContent = '0'; });
+document.getElementById('btnPaste').addEventListener('click', () => navigator.clipboard.readText().then(t => { inputText.value = t; inputStat.textContent = t.length + ' chars'; run(); }));
+document.getElementById('btnSample').addEventListener('click', () => { inputText.value = SAMPLE; inputStat.textContent = SAMPLE.length + ' chars'; run(); });
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    wrapWidth.value = btn.dataset.w;
+    run();
+  });
+});
+
+wrapWidth.addEventListener('input', () => {
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  run();
+});
+
+[optPreserveParagraphs, optHardWrap].forEach(el => el.addEventListener('change', run));
+inputText.addEventListener('input', () => { inputStat.textContent = inputText.value.length + ' chars'; run(); });
+</script>
+</body>
+</html>

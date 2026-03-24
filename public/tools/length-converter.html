@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Length Converter — mm, cm, m, km, inches, feet, miles | Simple ToolBox</title>
+  <meta name="description" content="Convert length between millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles instantly. Type in any field to update all others." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/length-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/length-converter.html" />
+  <meta property="og:title" content="Length Converter — mm, cm, m, km, inches, feet, miles | Simple ToolBox" />
+  <meta property="og:description" content="Convert length between mm, cm, m, km, inches, feet, yards, and miles. Type in any field." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Length Converter — mm, cm, m, km, inches, feet, miles",
+  "description": "Convert length between millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles. Type in any field to update all others.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/length-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many centimeters are in an inch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 inch = 2.54 centimeters exactly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many feet are in a meter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 meter = 3.28084 feet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many kilometers in a mile?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 mile = 1.60934 kilometers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many inches in a foot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 foot = 12 inches."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .conv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 720px) { .conv-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 380px) { .conv-grid { grid-template-columns: 1fr; } }
+    .conv-card { padding: 14px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+    .conv-card.active { border-color: var(--ds-color-accent); }
+    .conv-label { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .conv-input { font-size: 22px; font-weight: 700; background: none; border: none; outline: none; color: var(--ds-color-text-primary); width: 100%; padding: 0; }
+    .conv-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; font-size: 18px; }
+    .conv-unit { font-size: 12px; color: var(--ds-color-text-muted); }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ref-table th { text-align: left; padding: 6px 12px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ds-color-border); }
+    .ref-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-name { font-weight: 600; color: var(--ds-color-text-primary); }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Length Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📏</div><h1 class="ds-tool-header__title">Length Converter</h1></div><p class="ds-tool-header__desc">Convert length between millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles. Type in any field to update all others instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">mm</span><span class="ds-tag">cm</span><span class="ds-tag">meters</span><span class="ds-tag">feet</span><span class="ds-tag">miles</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Length</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <div class="conv-grid">
+      <div class="conv-card" id="cardMm">
+        <div class="conv-label">Millimeters</div>
+        <input class="conv-input" id="inputMm" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">mm</div>
+      </div>
+      <div class="conv-card" id="cardCm">
+        <div class="conv-label">Centimeters</div>
+        <input class="conv-input" id="inputCm" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">cm</div>
+      </div>
+      <div class="conv-card" id="cardM">
+        <div class="conv-label">Meters</div>
+        <input class="conv-input" id="inputM" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">m</div>
+      </div>
+      <div class="conv-card" id="cardKm">
+        <div class="conv-label">Kilometers</div>
+        <input class="conv-input" id="inputKm" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">km</div>
+      </div>
+      <div class="conv-card" id="cardIn">
+        <div class="conv-label">Inches</div>
+        <input class="conv-input" id="inputIn" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">in</div>
+      </div>
+      <div class="conv-card" id="cardFt">
+        <div class="conv-label">Feet</div>
+        <input class="conv-input" id="inputFt" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">ft</div>
+      </div>
+      <div class="conv-card" id="cardYd">
+        <div class="conv-label">Yards</div>
+        <input class="conv-input" id="inputYd" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">yd</div>
+      </div>
+      <div class="conv-card" id="cardMi">
+        <div class="conv-label">Miles</div>
+        <input class="conv-input" id="inputMi" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">mi</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0"><div class="examples-row" id="examplesRow"></div></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Length reference</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead><tr><th>Reference</th><th>m</th><th>ft</th><th>miles</th></tr></thead>
+        <tbody>
+          <tr><td class="ref-name">Credit card width</td><td>0.0856</td><td>0.281</td><td>—</td></tr>
+          <tr><td class="ref-name">Average person height</td><td>1.75</td><td>5.74</td><td>—</td></tr>
+          <tr><td class="ref-name">Basketball court length</td><td>28</td><td>91.9</td><td>—</td></tr>
+          <tr><td class="ref-name">Eiffel Tower height</td><td>330</td><td>1083</td><td>—</td></tr>
+          <tr><td class="ref-name">1 km</td><td>1000</td><td>3281</td><td>0.621</td></tr>
+          <tr><td class="ref-name">Marathon distance</td><td>42195</td><td>138435</td><td>26.22</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Length Converter?</h2>
+    <p>A length converter translates a distance or size value between different measurement systems. The metric system uses millimeters, centimeters, meters, and kilometers. The imperial/US customary system uses inches, feet, yards, and miles. This tool converts between all eight units simultaneously.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Length</h2>
+    <ol>
+      <li>Type a value into any field (mm, cm, m, km, in, ft, yd, or mi).</li>
+      <li>All other fields update instantly.</li>
+      <li>Click a quick example button to load a common reference length.</li>
+      <li>Click Clear to reset all fields.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="area-converter.html" class="ds-related-card"><span class="ds-related-icon">🗺️</span><div><div class="ds-related-name">Area Converter</div><div class="ds-related-desc">Convert area between m², ft², km², square inches, acres, and hectares. Type in any field to update all others.</div></div></a>
+    <a href="volume-converter.html" class="ds-related-card"><span class="ds-related-icon">🧪</span><div><div class="ds-related-name">Volume Converter</div><div class="ds-related-desc">Convert volume between mL, liters, fluid oz, cups, pints, quarts, and gallons. Type in any field to update all others.</div></div></a>
+    <a href="weight-converter.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">Weight Converter</div><div class="ds-related-desc">Convert weight between kg, lbs, oz, grams, stone, and metric tons. Type in any field to update all others.</div></div></a>
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+    <a href="speed-converter.html" class="ds-related-card"><span class="ds-related-icon">💨</span><div><div class="ds-related-name">Speed Converter</div><div class="ds-related-desc">Convert speed between mph, km/h, m/s, knots, ft/s, and Mach. Type in any field to update all others.</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Metric vs Imperial Length</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">100 cm</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">3.28084 ft / 1 m / 39.3701 in</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Converting height between cm and feet/inches</li>
+          <li>Road distance conversion between km and miles</li>
+          <li>Engineering and construction unit conversion</li>
+          <li>Travel and international distance planning</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How many centimeters are in an inch?</strong><p>1 inch = 2.54 centimeters exactly.</p></div>
+        <div class="ds-seo-faq-item"><strong>How many feet are in a meter?</strong><p>1 meter = 3.28084 feet.</p></div>
+        <div class="ds-seo-faq-item"><strong>How many kilometers in a mile?</strong><p>1 mile = 1.60934 kilometers.</p></div>
+        <div class="ds-seo-faq-item"><strong>How many inches in a foot?</strong><p>1 foot = 12 inches.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+// All factors relative to meters
+const UNITS = {
+  Mm: { factor: 0.001,      label: 'mm' },
+  Cm: { factor: 0.01,       label: 'cm' },
+  M:  { factor: 1,          label: 'm' },
+  Km: { factor: 1000,       label: 'km' },
+  In: { factor: 0.0254,     label: 'in' },
+  Ft: { factor: 0.3048,     label: 'ft' },
+  Yd: { factor: 0.9144,     label: 'yd' },
+  Mi: { factor: 1609.344,   label: 'mi' },
+};
+
+const EXAMPLES = [
+  { unit: 'Cm', val: 100,  label: '100 cm' },
+  { unit: 'Ft', val: 6,    label: '6 ft' },
+  { unit: 'M',  val: 1,    label: '1 m' },
+  { unit: 'Km', val: 1,    label: '1 km' },
+  { unit: 'Mi', val: 1,    label: '1 mile' },
+  { unit: 'In', val: 12,   label: '12 in' },
+];
+
+const round = (n, dp = 6) => Math.round(n * 10**dp) / 10**dp;
+let updating = false;
+
+function setActive(key) {
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+  document.getElementById('card' + key).classList.add('active');
+}
+
+function update(source) {
+  if (updating) return;
+  updating = true;
+  const val = parseFloat(document.getElementById('input' + source).value);
+  if (isNaN(val)) {
+    Object.keys(UNITS).forEach(k => { if (k !== source) document.getElementById('input' + k).value = ''; });
+    updating = false; return;
+  }
+  const meters = val * UNITS[source].factor;
+  Object.keys(UNITS).forEach(k => {
+    if (k !== source) document.getElementById('input' + k).value = round(meters / UNITS[k].factor);
+  });
+  setActive(source);
+  updating = false;
+}
+
+Object.keys(UNITS).forEach(k => {
+  document.getElementById('input' + k).addEventListener('input', () => update(k));
+  document.getElementById('input' + k).addEventListener('focus', () => setActive(k));
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+});
+
+const row = document.getElementById('examplesRow');
+EXAMPLES.forEach(e => {
+  const btn = document.createElement('button');
+  btn.className = 'ex-btn'; btn.textContent = e.label;
+  btn.addEventListener('click', () => {
+    Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+    document.getElementById('input' + e.unit).value = e.val;
+    update(e.unit);
+  });
+  row.appendChild(btn);
+});
+</script>
+</body>
+</html>

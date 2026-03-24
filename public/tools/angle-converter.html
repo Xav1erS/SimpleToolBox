@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Angle Converter — Degrees, Radians, Gradians | Simple ToolBox</title>
+  <meta name="description" content="Convert angles between degrees, radians, gradians (grads), and turns. Type in any field for instant conversion. Free browser-based angle converter." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/angle-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/angle-converter.html" />
+  <meta property="og:title" content="Angle Converter — Degrees, Radians, Gradians | Simple ToolBox" />
+  <meta property="og:description" content="Convert angles between degrees, radians, gradians, and turns. Type in any field." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Angle Converter — Degrees, Radians, Gradians",
+  "description": "Convert angles between degrees, radians, gradians (grads), and turns. Type in any field for instant conversion.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/angle-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many radians in 180 degrees?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "180 degrees = pi radians (approximately 3.14159 rad)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a gradian?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A gradian (also called grad or gon) divides a right angle into 100 parts. 1 full circle = 400 gradians. Used in surveying."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert degrees to radians?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply degrees by pi/180. Example: 90 degrees x (pi/180) = 1.5708 radians."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a turn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 turn = 1 full rotation = 360 degrees = 2*pi radians = 400 gradians."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .conv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (max-width: 380px) { .conv-grid { grid-template-columns: 1fr; } }
+    .conv-card { padding: 14px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+    .conv-card.active { border-color: var(--ds-color-accent); }
+    .conv-label { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .conv-input { font-size: 22px; font-weight: 700; background: none; border: none; outline: none; color: var(--ds-color-text-primary); width: 100%; padding: 0; }
+    .conv-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; font-size: 18px; }
+    .conv-unit { font-size: 12px; color: var(--ds-color-text-muted); }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ref-table th { text-align: left; padding: 6px 12px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ds-color-border); }
+    .ref-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-name { font-weight: 600; color: var(--ds-color-text-primary); }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Angle Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📐</div><h1 class="ds-tool-header__title">Angle Converter</h1></div><p class="ds-tool-header__desc">Convert angles between degrees, radians, gradians (grads), and turns. Type in any field to update all others instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">degrees</span><span class="ds-tag">radians</span><span class="ds-tag">gradians</span><span class="ds-tag">turns</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Angle</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <div class="conv-grid">
+      <div class="conv-card" id="cardDeg">
+        <div class="conv-label">Degrees</div>
+        <input class="conv-input" id="inputDeg" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">°</div>
+      </div>
+      <div class="conv-card" id="cardRad">
+        <div class="conv-label">Radians</div>
+        <input class="conv-input" id="inputRad" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">rad</div>
+      </div>
+      <div class="conv-card" id="cardGrad">
+        <div class="conv-label">Gradians</div>
+        <input class="conv-input" id="inputGrad" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">grad</div>
+      </div>
+      <div class="conv-card" id="cardTurn">
+        <div class="conv-label">Turns</div>
+        <input class="conv-input" id="inputTurn" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">turn</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0"><div class="examples-row" id="examplesRow"></div></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Angle reference</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead><tr><th>Angle name</th><th>Degrees</th><th>Radians</th><th>Gradians</th></tr></thead>
+        <tbody>
+          <tr><td class="ref-name">Right angle</td><td>90°</td><td>π/2 ≈ 1.5708</td><td>100</td></tr>
+          <tr><td class="ref-name">Straight angle</td><td>180°</td><td>π ≈ 3.1416</td><td>200</td></tr>
+          <tr><td class="ref-name">Full rotation</td><td>360°</td><td>2π ≈ 6.2832</td><td>400</td></tr>
+          <tr><td class="ref-name">1 radian</td><td>≈ 57.296°</td><td>1</td><td>≈ 63.662</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is an Angle Converter?</h2>
+    <p>An angle converter translates a rotation measurement between different systems. Degrees (360 per circle) are the most familiar unit. Radians (2*pi per circle) are the standard in mathematics and most programming languages. Gradians divide a right angle into 100 equal parts (400 per circle) and are used in surveying. A turn represents one complete rotation.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Angles</h2>
+    <ol>
+      <li>Type an angle value into any field (degrees, radians, gradians, or turns).</li>
+      <li>All other fields update instantly.</li>
+      <li>Use quick example buttons for common reference angles.</li>
+      <li>Click Clear to reset all fields.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+    <a href="length-converter.html" class="ds-related-card"><span class="ds-related-icon">📏</span><div><div class="ds-related-name">Length Converter</div><div class="ds-related-desc">Convert length between mm, cm, m, km, inches, feet, yards, and miles. Type in any field to update all others.</div></div></a>
+    <a href="speed-converter.html" class="ds-related-card"><span class="ds-related-icon">💨</span><div><div class="ds-related-name">Speed Converter</div><div class="ds-related-desc">Convert speed between mph, km/h, m/s, knots, ft/s, and Mach. Type in any field to update all others.</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Degrees vs Radians</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">90 degrees</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">1.5708 rad / 100 grad / 0.25 turn</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Programming: converting between degrees and radians for trigonometry</li>
+          <li>Surveying: working with gradian-based instruments</li>
+          <li>Mathematics and physics homework</li>
+          <li>CAD and 3D modeling angle conversions</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How many radians in 180 degrees?</strong><p>180 degrees = pi radians (approximately 3.14159 rad).</p></div>
+        <div class="ds-seo-faq-item"><strong>What is a gradian?</strong><p>A gradian (also called grad or gon) divides a right angle into 100 parts. 1 full circle = 400 gradians. Used in surveying.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I convert degrees to radians?</strong><p>Multiply degrees by pi/180. Example: 90 degrees x (pi/180) = 1.5708 radians.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is a turn?</strong><p>1 turn = 1 full rotation = 360 degrees = 2*pi radians = 400 gradians.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+// All factors relative to degrees
+const UNITS = {
+  Deg:  { factor: 1,                  label: '°' },
+  Rad:  { factor: 180 / Math.PI,      label: 'rad' },
+  Grad: { factor: 0.9,                label: 'grad' },
+  Turn: { factor: 360,                label: 'turn' },
+};
+
+const EXAMPLES = [
+  { unit: 'Deg',  val: 90,       label: '90°' },
+  { unit: 'Deg',  val: 180,      label: '180°' },
+  { unit: 'Deg',  val: 360,      label: '360°' },
+  { unit: 'Rad',  val: Math.PI,  label: 'π rad' },
+  { unit: 'Rad',  val: 1,        label: '1 rad' },
+];
+
+const round = (n, dp = 8) => Math.round(n * 10**dp) / 10**dp;
+let updating = false;
+
+function setActive(key) {
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+  document.getElementById('card' + key).classList.add('active');
+}
+
+function update(source) {
+  if (updating) return;
+  updating = true;
+  const val = parseFloat(document.getElementById('input' + source).value);
+  if (isNaN(val)) {
+    Object.keys(UNITS).forEach(k => { if (k !== source) document.getElementById('input' + k).value = ''; });
+    updating = false; return;
+  }
+  const degrees = val * UNITS[source].factor;
+  Object.keys(UNITS).forEach(k => {
+    if (k !== source) document.getElementById('input' + k).value = round(degrees / UNITS[k].factor);
+  });
+  setActive(source);
+  updating = false;
+}
+
+Object.keys(UNITS).forEach(k => {
+  document.getElementById('input' + k).addEventListener('input', () => update(k));
+  document.getElementById('input' + k).addEventListener('focus', () => setActive(k));
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+});
+
+const row = document.getElementById('examplesRow');
+EXAMPLES.forEach(e => {
+  const btn = document.createElement('button');
+  btn.className = 'ex-btn'; btn.textContent = e.label;
+  btn.addEventListener('click', () => {
+    Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+    document.getElementById('input' + e.unit).value = e.val;
+    update(e.unit);
+  });
+  row.appendChild(btn);
+});
+</script>
+</body>
+</html>

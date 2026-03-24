@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Frequency Converter — Hz, kHz, MHz, GHz | Simple ToolBox</title>
+  <meta name="description" content="Convert frequency between hertz, kilohertz, megahertz, gigahertz, terahertz, and RPM. Type in any field for instant conversion." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/frequency-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/frequency-converter.html" />
+  <meta property="og:title" content="Frequency Converter — Hz, kHz, MHz, GHz | Simple ToolBox" />
+  <meta property="og:description" content="Convert frequency between Hz, kHz, MHz, GHz, THz, and RPM. Type in any field." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Frequency Converter — Hz, kHz, MHz, GHz, RPM",
+  "description": "Convert frequency between hertz, kilohertz, megahertz, gigahertz, terahertz, and RPM. Type in any field for instant conversion.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/frequency-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many Hz in 1 MHz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 MHz = 1,000,000 Hz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert RPM to Hz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide RPM by 60. For example, 3000 RPM = 50 Hz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the frequency of mains AC power?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In North America and some of Asia: 60 Hz. In Europe, Africa, Asia, and Australia: 50 Hz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What frequency is Wi-Fi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wi-Fi uses 2.4 GHz and 5 GHz bands. Newer Wi-Fi 6E also uses 6 GHz."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .conv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 620px) { .conv-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 380px) { .conv-grid { grid-template-columns: 1fr; } }
+    .conv-card { padding: 14px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+    .conv-card.active { border-color: var(--ds-color-accent); }
+    .conv-label { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .conv-input { font-size: 22px; font-weight: 700; background: none; border: none; outline: none; color: var(--ds-color-text-primary); width: 100%; padding: 0; }
+    .conv-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; font-size: 18px; }
+    .conv-unit { font-size: 12px; color: var(--ds-color-text-muted); }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ref-table th { text-align: left; padding: 6px 12px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ds-color-border); }
+    .ref-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-name { font-weight: 600; color: var(--ds-color-text-primary); }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Frequency Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📡</div><h1 class="ds-tool-header__title">Frequency Converter</h1></div><p class="ds-tool-header__desc">Convert frequency between hertz, kilohertz, megahertz, gigahertz, terahertz, and RPM. Type in any field to update all others instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">Hz</span><span class="ds-tag">kHz</span><span class="ds-tag">MHz</span><span class="ds-tag">GHz</span><span class="ds-tag">RPM</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Frequency</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <div class="conv-grid">
+      <div class="conv-card" id="cardHz">
+        <div class="conv-label">Hertz</div>
+        <input class="conv-input" id="inputHz" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">Hz</div>
+      </div>
+      <div class="conv-card" id="cardKhz">
+        <div class="conv-label">Kilohertz</div>
+        <input class="conv-input" id="inputKhz" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">kHz</div>
+      </div>
+      <div class="conv-card" id="cardMhz">
+        <div class="conv-label">Megahertz</div>
+        <input class="conv-input" id="inputMhz" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">MHz</div>
+      </div>
+      <div class="conv-card" id="cardGhz">
+        <div class="conv-label">Gigahertz</div>
+        <input class="conv-input" id="inputGhz" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">GHz</div>
+      </div>
+      <div class="conv-card" id="cardThz">
+        <div class="conv-label">Terahertz</div>
+        <input class="conv-input" id="inputThz" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">THz</div>
+      </div>
+      <div class="conv-card" id="cardRpm">
+        <div class="conv-label">RPM</div>
+        <input class="conv-input" id="inputRpm" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">rpm</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0"><div class="examples-row" id="examplesRow"></div></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Frequency reference</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead><tr><th>Reference</th><th>Hz</th><th>kHz</th><th>MHz</th></tr></thead>
+        <tbody>
+          <tr><td class="ref-name">Mains AC power (US)</td><td>60</td><td>0.06</td><td>0.00006</td></tr>
+          <tr><td class="ref-name">Middle C (musical note)</td><td>261.63</td><td>0.262</td><td>—</td></tr>
+          <tr><td class="ref-name">AM radio band</td><td>535000–1605000</td><td>535–1605</td><td>0.535–1.6</td></tr>
+          <tr><td class="ref-name">FM radio band</td><td>87500000–108000000</td><td>87500–108000</td><td>87.5–108</td></tr>
+          <tr><td class="ref-name">Wi-Fi 2.4 GHz</td><td>2400000000</td><td>2400000</td><td>2400</td></tr>
+          <tr><td class="ref-name">CPU 3 GHz</td><td>3000000000</td><td>3000000</td><td>3000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Frequency Converter?</h2>
+    <p>A frequency converter translates cycles-per-second (hertz) between metric prefixes and related units. Hertz (Hz) = one cycle per second. Kilohertz (kHz), megahertz (MHz), gigahertz (GHz), and terahertz (THz) are powers of 1000. RPM (revolutions per minute) is used in mechanical systems and converts to Hz by dividing by 60.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Frequency</h2>
+    <ol>
+      <li>Type a frequency value into any field (Hz, kHz, MHz, GHz, THz, or RPM).</li>
+      <li>All other fields update instantly.</li>
+      <li>Use quick example buttons for common reference frequencies.</li>
+      <li>Click Clear to reset all fields.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+    <a href="time-converter.html" class="ds-related-card"><span class="ds-related-icon">⏱️</span><div><div class="ds-related-name">Time Converter</div><div class="ds-related-desc">Convert time between milliseconds, seconds, minutes, hours, days, weeks, months, and years.</div></div></a>
+    <a href="angle-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Angle Converter</div><div class="ds-related-desc">Convert angles between degrees, radians, gradians, and turns. Type in any field to update all others.</div></div></a>
+    <a href="data-storage-converter.html" class="ds-related-card"><span class="ds-related-icon">💾</span><div><div class="ds-related-name">Data Storage Converter</div><div class="ds-related-desc">Convert data between bits, bytes, KB, MB, GB, TB, and PB. Supports both decimal (SI) and binary (IEC) prefixes.</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Frequency in Everyday Life</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">2.4 GHz</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">2,400,000,000 Hz / 2,400,000 kHz / 2400 MHz / 0.0024 THz</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Electronics: comparing signal frequencies</li>
+          <li>Audio: musical note frequency lookup</li>
+          <li>Computing: CPU and memory clock speed conversion</li>
+          <li>Radio: AM/FM/Wi-Fi frequency band reference</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How many Hz in 1 MHz?</strong><p>1 MHz = 1,000,000 Hz.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I convert RPM to Hz?</strong><p>Divide RPM by 60. For example, 3000 RPM = 50 Hz.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the frequency of mains AC power?</strong><p>In North America and some of Asia: 60 Hz. In Europe, Africa, Asia, and Australia: 50 Hz.</p></div>
+        <div class="ds-seo-faq-item"><strong>What frequency is Wi-Fi?</strong><p>Wi-Fi uses 2.4 GHz and 5 GHz bands. Newer Wi-Fi 6E also uses 6 GHz.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+// All factors relative to Hz
+const UNITS = {
+  Hz:  { factor: 1,             label: 'Hz' },
+  Khz: { factor: 1e3,           label: 'kHz' },
+  Mhz: { factor: 1e6,           label: 'MHz' },
+  Ghz: { factor: 1e9,           label: 'GHz' },
+  Thz: { factor: 1e12,          label: 'THz' },
+  Rpm: { factor: 1/60,          label: 'rpm' },
+};
+
+const EXAMPLES = [
+  { unit: 'Hz',  val: 440,   label: '440 Hz (A note)' },
+  { unit: 'Mhz', val: 100,   label: '100 MHz (FM)' },
+  { unit: 'Ghz', val: 2.4,   label: '2.4 GHz (Wi-Fi)' },
+  { unit: 'Ghz', val: 3,     label: '3 GHz (CPU)' },
+  { unit: 'Rpm', val: 3000,  label: '3000 RPM' },
+];
+
+const round = (n, dp = 6) => {
+  if (Math.abs(n) >= 1e9) return parseFloat(n.toPrecision(8));
+  return Math.round(n * 10**dp) / 10**dp;
+};
+let updating = false;
+
+function setActive(key) {
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+  document.getElementById('card' + key).classList.add('active');
+}
+
+function update(source) {
+  if (updating) return;
+  updating = true;
+  const val = parseFloat(document.getElementById('input' + source).value);
+  if (isNaN(val)) {
+    Object.keys(UNITS).forEach(k => { if (k !== source) document.getElementById('input' + k).value = ''; });
+    updating = false; return;
+  }
+  const hz = val * UNITS[source].factor;
+  Object.keys(UNITS).forEach(k => {
+    if (k !== source) document.getElementById('input' + k).value = round(hz / UNITS[k].factor);
+  });
+  setActive(source);
+  updating = false;
+}
+
+Object.keys(UNITS).forEach(k => {
+  document.getElementById('input' + k).addEventListener('input', () => update(k));
+  document.getElementById('input' + k).addEventListener('focus', () => setActive(k));
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+});
+
+const row = document.getElementById('examplesRow');
+EXAMPLES.forEach(e => {
+  const btn = document.createElement('button');
+  btn.className = 'ex-btn'; btn.textContent = e.label;
+  btn.addEventListener('click', () => {
+    Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+    document.getElementById('input' + e.unit).value = e.val;
+    update(e.unit);
+  });
+  row.appendChild(btn);
+});
+</script>
+</body>
+</html>

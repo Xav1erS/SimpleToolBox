@@ -7,15 +7,20 @@
 - Before commands, edits, or tests, briefly say what you are about to do.
 - Prefer the minimum necessary change.
 
-## Current Actual State (2026-03-23)
+## Current Actual State (2026-03-24)
 
-- Tool count: **139**
+- Tool count: **150**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
 - Hub pages live and data-driven:
   - `image-tools`
   - `developer-tools`
   - `text-tools`
-  - `calculator-tools`
+  - `calculator-tools` — 5 sections:
+    1. percentage / tip / discount / age
+    2. mortgage / loan / savings
+    3. bmi / calorie / calorie-burn / gpa
+    4. date / currency / temperature / time-zone
+    5. converters: speed / weight / length / area / volume / pressure / energy / power / force / angle / time / frequency / fuel / unit / roman-numeral / number-to-words
 - `public/tools-data.js` is the shared source for homepage, all-tools, and hub pages.
 - `public/tools-meta.js` is the shared source for JSON-LD, FAQ, learn-more, and related tools.
 - Latest preflight is fully green:
@@ -237,17 +242,21 @@ Run:
 
 Highest priority now:
 
-### continue building high-frequency Text tools, then move into Calculators
+### finish the 150-tool sprint with unit converters, then stabilize
 
-Recommended next batch:
+Current count: **149 / 150** — 1 remaining.
 
-1. `csv-column-extractor`
-2. `text-list-to-array`
-3. `word-frequency-counter`
+Recommended next batch (all follow same converter pattern):
+
+1. `pressure-converter` — Pa / kPa / bar / psi / atm / mmHg
+2. `energy-converter` — J / kJ / cal / kcal / Wh / kWh / BTU
+3. `angle-converter` — degrees / radians / gradians / turns
+4. `time-converter` — ms / s / min / h / day / week / month / year
 
 After that:
 
-- add a small calculator batch
+- run full preflight to confirm QA green at 146+
+- pick final 4 from: image tools, PDF tools, or remaining calculator gaps
 - only return to legacy-page cleanup if a real usability bug is reported
 
 ## Files To Read First

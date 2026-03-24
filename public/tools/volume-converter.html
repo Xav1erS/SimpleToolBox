@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Volume Converter — mL, L, cups, fl oz, gallons | Simple ToolBox</title>
+  <meta name="description" content="Convert volume between milliliters, liters, cubic meters, fluid ounces, cups, pints, quarts, and gallons. Type in any field for instant conversion." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/volume-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/volume-converter.html" />
+  <meta property="og:title" content="Volume Converter — mL, L, cups, fl oz, gallons | Simple ToolBox" />
+  <meta property="og:description" content="Convert volume between mL, L, fl oz, cups, pints, quarts, and gallons. Type in any field." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Volume Converter — mL, L, cups, fl oz, gallons",
+  "description": "Convert volume between milliliters, liters, cubic meters, fluid ounces, cups, pints, quarts, and gallons. Type in any field for instant conversion.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/volume-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many mL in a cup?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 US cup = 236.588 mL."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many fluid ounces in a pint?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 US pint = 16 fluid ounces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many cups in a gallon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 US gallon = 16 cups."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many mL in a tablespoon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 US tablespoon = 14.787 mL (3 teaspoons)."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .conv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 720px) { .conv-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 380px) { .conv-grid { grid-template-columns: 1fr; } }
+    .conv-card { padding: 14px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+    .conv-card.active { border-color: var(--ds-color-accent); }
+    .conv-label { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .conv-input { font-size: 22px; font-weight: 700; background: none; border: none; outline: none; color: var(--ds-color-text-primary); width: 100%; padding: 0; }
+    .conv-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; font-size: 18px; }
+    .conv-unit { font-size: 12px; color: var(--ds-color-text-muted); }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ref-table th { text-align: left; padding: 6px 12px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ds-color-border); }
+    .ref-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-name { font-weight: 600; color: var(--ds-color-text-primary); }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Volume Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🧪</div><h1 class="ds-tool-header__title">Volume Converter</h1></div><p class="ds-tool-header__desc">Convert volume between milliliters, liters, cubic meters, fluid ounces, cups, pints, quarts, and gallons. Type in any field to update all others instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">mL</span><span class="ds-tag">liters</span><span class="ds-tag">fl oz</span><span class="ds-tag">cups</span><span class="ds-tag">gallons</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Volume</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <div class="conv-grid">
+      <div class="conv-card" id="cardMl">
+        <div class="conv-label">Milliliters</div>
+        <input class="conv-input" id="inputMl" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">mL</div>
+      </div>
+      <div class="conv-card" id="cardL">
+        <div class="conv-label">Liters</div>
+        <input class="conv-input" id="inputL" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">L</div>
+      </div>
+      <div class="conv-card" id="cardM3">
+        <div class="conv-label">Cubic meters</div>
+        <input class="conv-input" id="inputM3" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">m³</div>
+      </div>
+      <div class="conv-card" id="cardFloz">
+        <div class="conv-label">Fluid oz (US)</div>
+        <input class="conv-input" id="inputFloz" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">fl oz</div>
+      </div>
+      <div class="conv-card" id="cardCup">
+        <div class="conv-label">Cups (US)</div>
+        <input class="conv-input" id="inputCup" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">cup</div>
+      </div>
+      <div class="conv-card" id="cardPt">
+        <div class="conv-label">Pints (US)</div>
+        <input class="conv-input" id="inputPt" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">pt</div>
+      </div>
+      <div class="conv-card" id="cardQt">
+        <div class="conv-label">Quarts (US)</div>
+        <input class="conv-input" id="inputQt" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">qt</div>
+      </div>
+      <div class="conv-card" id="cardGal">
+        <div class="conv-label">Gallons (US)</div>
+        <input class="conv-input" id="inputGal" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">gal</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0"><div class="examples-row" id="examplesRow"></div></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Volume reference</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead><tr><th>Reference</th><th>mL</th><th>fl oz</th><th>cups</th></tr></thead>
+        <tbody>
+          <tr><td class="ref-name">Teaspoon</td><td>4.93</td><td>0.167</td><td>0.021</td></tr>
+          <tr><td class="ref-name">Tablespoon</td><td>14.79</td><td>0.5</td><td>0.063</td></tr>
+          <tr><td class="ref-name">Shot (1.5 fl oz)</td><td>44.36</td><td>1.5</td><td>0.188</td></tr>
+          <tr><td class="ref-name">1 cup</td><td>236.59</td><td>8</td><td>1</td></tr>
+          <tr><td class="ref-name">1 liter</td><td>1000</td><td>33.81</td><td>4.227</td></tr>
+          <tr><td class="ref-name">1 gallon</td><td>3785.41</td><td>128</td><td>16</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Volume Converter?</h2>
+    <p>A volume converter translates a liquid or capacity measurement between different unit systems. Metric units include milliliters (mL), liters (L), and cubic meters (m3). US customary units include fluid ounces, cups, pints, quarts, and gallons. All values use US customary definitions (not UK Imperial).</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Volume</h2>
+    <ol>
+      <li>Type a value into any field (mL, L, m3, fl oz, cup, pt, qt, or gal).</li>
+      <li>All other fields update instantly.</li>
+      <li>Use quick example buttons for common cooking and serving sizes.</li>
+      <li>Click Clear to reset all fields.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="length-converter.html" class="ds-related-card"><span class="ds-related-icon">📏</span><div><div class="ds-related-name">Length Converter</div><div class="ds-related-desc">Convert length between mm, cm, m, km, inches, feet, yards, and miles. Type in any field to update all others.</div></div></a>
+    <a href="area-converter.html" class="ds-related-card"><span class="ds-related-icon">🗺️</span><div><div class="ds-related-name">Area Converter</div><div class="ds-related-desc">Convert area between m², ft², km², square inches, acres, and hectares. Type in any field to update all others.</div></div></a>
+    <a href="weight-converter.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">Weight Converter</div><div class="ds-related-desc">Convert weight between kg, lbs, oz, grams, stone, and metric tons. Type in any field to update all others.</div></div></a>
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>US vs UK Volume Units</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">1 cup</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">236.59 mL / 8 fl oz / 0.5 pt</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Cooking and baking recipe conversions</li>
+          <li>Converting drink volumes between metric and imperial</li>
+          <li>Laboratory liquid measurement conversion</li>
+          <li>International recipe adaptation</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How many mL in a cup?</strong><p>1 US cup = 236.588 mL.</p></div>
+        <div class="ds-seo-faq-item"><strong>How many fluid ounces in a pint?</strong><p>1 US pint = 16 fluid ounces.</p></div>
+        <div class="ds-seo-faq-item"><strong>How many cups in a gallon?</strong><p>1 US gallon = 16 cups.</p></div>
+        <div class="ds-seo-faq-item"><strong>How many mL in a tablespoon?</strong><p>1 US tablespoon = 14.787 mL (3 teaspoons).</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+// All factors relative to liters
+const UNITS = {
+  Ml:   { factor: 0.001,       label: 'mL' },
+  L:    { factor: 1,           label: 'L' },
+  M3:   { factor: 1000,        label: 'm³' },
+  Floz: { factor: 0.0295735,   label: 'fl oz' },
+  Cup:  { factor: 0.236588,    label: 'cup' },
+  Pt:   { factor: 0.473176,    label: 'pt' },
+  Qt:   { factor: 0.946353,    label: 'qt' },
+  Gal:  { factor: 3.78541,     label: 'gal' },
+};
+
+const EXAMPLES = [
+  { unit: 'Ml',  val: 250,  label: '250 mL' },
+  { unit: 'L',   val: 1,    label: '1 L' },
+  { unit: 'Cup', val: 2,    label: '2 cups' },
+  { unit: 'Gal', val: 1,    label: '1 gallon' },
+  { unit: 'Floz', val: 12,  label: '12 fl oz' },
+  { unit: 'Pt',  val: 1,    label: '1 pint' },
+];
+
+const round = (n, dp = 6) => Math.round(n * 10**dp) / 10**dp;
+let updating = false;
+
+function setActive(key) {
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+  document.getElementById('card' + key).classList.add('active');
+}
+
+function update(source) {
+  if (updating) return;
+  updating = true;
+  const val = parseFloat(document.getElementById('input' + source).value);
+  if (isNaN(val)) {
+    Object.keys(UNITS).forEach(k => { if (k !== source) document.getElementById('input' + k).value = ''; });
+    updating = false; return;
+  }
+  const liters = val * UNITS[source].factor;
+  Object.keys(UNITS).forEach(k => {
+    if (k !== source) document.getElementById('input' + k).value = round(liters / UNITS[k].factor);
+  });
+  setActive(source);
+  updating = false;
+}
+
+Object.keys(UNITS).forEach(k => {
+  document.getElementById('input' + k).addEventListener('input', () => update(k));
+  document.getElementById('input' + k).addEventListener('focus', () => setActive(k));
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+});
+
+const row = document.getElementById('examplesRow');
+EXAMPLES.forEach(e => {
+  const btn = document.createElement('button');
+  btn.className = 'ex-btn'; btn.textContent = e.label;
+  btn.addEventListener('click', () => {
+    Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+    document.getElementById('input' + e.unit).value = e.val;
+    update(e.unit);
+  });
+  row.appendChild(btn);
+});
+</script>
+</body>
+</html>

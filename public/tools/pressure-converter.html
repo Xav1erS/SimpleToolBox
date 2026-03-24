@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Pressure Converter — Pa, bar, psi, atm, mmHg | Simple ToolBox</title>
+  <meta name="description" content="Convert pressure between pascals, kilopascals, bar, psi, atmospheres, and mmHg (torr). Type in any field for instant conversion." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/pressure-converter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/pressure-converter.html" />
+  <meta property="og:title" content="Pressure Converter — Pa, bar, psi, atm, mmHg | Simple ToolBox" />
+  <meta property="og:description" content="Convert pressure between Pa, kPa, bar, psi, atm, and mmHg. Type in any field." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pressure Converter — Pa, bar, psi, atm, mmHg",
+  "description": "Convert pressure between pascals, kilopascals, bar, psi, atmospheres, and mmHg (torr). Type in any field for instant conversion.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/pressure-converter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many Pa in 1 bar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 bar = 100,000 Pa (exactly)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many psi is 1 atm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 atm = 14.696 psi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is standard atmospheric pressure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard atmospheric pressure is 101,325 Pa = 1 atm = 14.696 psi = 760 mmHg."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is mmHg used for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "mmHg (millimeters of mercury) is used in medicine for blood pressure and in meteorology for barometric pressure. 1 mmHg = 133.322 Pa."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .conv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 620px) { .conv-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 380px) { .conv-grid { grid-template-columns: 1fr; } }
+    .conv-card { padding: 14px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); background: var(--ds-color-surface); display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s; }
+    .conv-card.active { border-color: var(--ds-color-accent); }
+    .conv-label { font-size: 11px; font-weight: 700; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .conv-input { font-size: 22px; font-weight: 700; background: none; border: none; outline: none; color: var(--ds-color-text-primary); width: 100%; padding: 0; }
+    .conv-input::placeholder { color: var(--ds-color-text-muted); font-weight: 400; font-size: 18px; }
+    .conv-unit { font-size: 12px; color: var(--ds-color-text-muted); }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ref-table th { text-align: left; padding: 6px 12px; color: var(--ds-color-text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--ds-color-border); }
+    .ref-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-name { font-weight: 600; color: var(--ds-color-text-primary); }
+    .examples-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ex-btn { padding: 5px 12px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: var(--ds-color-surface); color: var(--ds-color-text-secondary); font-size: 13px; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .ex-btn:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">Pressure Converter <span class="ds-tool-badge">convert</span></div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+</nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔩</div><h1 class="ds-tool-header__title">Pressure Converter</h1></div><p class="ds-tool-header__desc">Convert pressure between pascals, kilopascals, bar, psi, atmospheres, and mmHg (torr). Type in any field to update all others instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">Pa</span><span class="ds-tag">bar</span><span class="ds-tag">psi</span><span class="ds-tag">atm</span><span class="ds-tag">mmHg</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Pressure</span>
+      <div class="ds-tool-pane__actions">
+        <button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button>
+      </div>
+    </div>
+    <div class="conv-grid">
+      <div class="conv-card" id="cardPa">
+        <div class="conv-label">Pascals</div>
+        <input class="conv-input" id="inputPa" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">Pa</div>
+      </div>
+      <div class="conv-card" id="cardKpa">
+        <div class="conv-label">Kilopascals</div>
+        <input class="conv-input" id="inputKpa" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">kPa</div>
+      </div>
+      <div class="conv-card" id="cardBar">
+        <div class="conv-label">Bar</div>
+        <input class="conv-input" id="inputBar" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">bar</div>
+      </div>
+      <div class="conv-card" id="cardPsi">
+        <div class="conv-label">PSI</div>
+        <input class="conv-input" id="inputPsi" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">psi</div>
+      </div>
+      <div class="conv-card" id="cardAtm">
+        <div class="conv-label">Atmospheres</div>
+        <input class="conv-input" id="inputAtm" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">atm</div>
+      </div>
+      <div class="conv-card" id="cardMmhg">
+        <div class="conv-label">mmHg (Torr)</div>
+        <input class="conv-input" id="inputMmhg" type="number" placeholder="0" step="any" />
+        <div class="conv-unit">mmHg</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Quick examples</span>
+    </div>
+    <div style="padding:4px 0"><div class="examples-row" id="examplesRow"></div></div>
+  </div>
+
+  <div class="ds-tool-pane">
+    <div class="ds-tool-pane__header">
+      <span class="ds-tool-pane__label">Pressure reference</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead><tr><th>Reference</th><th>Pa</th><th>psi</th><th>atm</th></tr></thead>
+        <tbody>
+          <tr><td class="ref-name">Atmospheric pressure (sea level)</td><td>101325</td><td>14.696</td><td>1</td></tr>
+          <tr><td class="ref-name">Car tyre (typical)</td><td>220632</td><td>32</td><td>2.18</td></tr>
+          <tr><td class="ref-name">Bicycle tyre (road)</td><td>689476</td><td>100</td><td>6.8</td></tr>
+          <tr><td class="ref-name">Scuba tank (full)</td><td>20684271</td><td>3000</td><td>204</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Pressure Converter?</h2>
+    <p>A pressure converter translates a force-per-area measurement between unit systems. The SI unit is the pascal (Pa = N/m2). Common derived units include kilopascal (kPa), bar (100,000 Pa), and standard atmosphere (101,325 Pa). PSI (pounds per square inch) is used in the US for tyres and industrial systems. mmHg (torr) is used in medicine and meteorology.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Convert Pressure</h2>
+    <ol>
+      <li>Type a pressure value into any field (Pa, kPa, bar, psi, atm, or mmHg).</li>
+      <li>All other fields update instantly.</li>
+      <li>Use quick example buttons to load common reference pressures.</li>
+      <li>Click Clear to reset all fields.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
+    <a href="temperature-converter.html" class="ds-related-card"><span class="ds-related-icon">🌡️</span><div><div class="ds-related-name">Temperature Converter</div><div class="ds-related-desc">Convert temperatures between Celsius, Fahrenheit, and Kelvin. Type in any field to update the others.</div></div></a>
+    <a href="energy-converter.html" class="ds-related-card"><span class="ds-related-icon">⚡</span><div><div class="ds-related-name">Energy Converter</div><div class="ds-related-desc">Convert energy between joules, kJ, calories, kcal, Wh, kWh, MJ, and BTU. Type in any field to update all others.</div></div></a>
+    <a href="speed-converter.html" class="ds-related-card"><span class="ds-related-icon">💨</span><div><div class="ds-related-name">Speed Converter</div><div class="ds-related-desc">Convert speed between mph, km/h, m/s, knots, ft/s, and Mach. Type in any field to update all others.</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Pressure Unit Systems</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">1 atm</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">101325 Pa / 1.01325 bar / 14.696 psi / 760 mmHg</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Tyre and bicycle pump pressure conversions</li>
+          <li>Weather barometric pressure reading</li>
+          <li>Medical blood pressure values</li>
+          <li>Engineering and industrial system pressures</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>How many Pa in 1 bar?</strong><p>1 bar = 100,000 Pa (exactly).</p></div>
+        <div class="ds-seo-faq-item"><strong>How many psi is 1 atm?</strong><p>1 atm = 14.696 psi.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is standard atmospheric pressure?</strong><p>Standard atmospheric pressure is 101,325 Pa = 1 atm = 14.696 psi = 760 mmHg.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is mmHg used for?</strong><p>mmHg (millimeters of mercury) is used in medicine for blood pressure and in meteorology for barometric pressure. 1 mmHg = 133.322 Pa.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+
+<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+
+<script>
+// All factors relative to Pa
+const UNITS = {
+  Pa:   { factor: 1,            label: 'Pa' },
+  Kpa:  { factor: 1000,         label: 'kPa' },
+  Bar:  { factor: 100000,       label: 'bar' },
+  Psi:  { factor: 6894.757,     label: 'psi' },
+  Atm:  { factor: 101325,       label: 'atm' },
+  Mmhg: { factor: 133.322,      label: 'mmHg' },
+};
+
+const EXAMPLES = [
+  { unit: 'Atm',  val: 1,     label: '1 atm' },
+  { unit: 'Bar',  val: 1,     label: '1 bar' },
+  { unit: 'Psi',  val: 14.7,  label: '14.7 psi' },
+  { unit: 'Kpa',  val: 101.3, label: '101.3 kPa' },
+  { unit: 'Mmhg', val: 760,   label: '760 mmHg' },
+];
+
+const round = (n, dp = 6) => Math.round(n * 10**dp) / 10**dp;
+let updating = false;
+
+function setActive(key) {
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+  document.getElementById('card' + key).classList.add('active');
+}
+
+function update(source) {
+  if (updating) return;
+  updating = true;
+  const val = parseFloat(document.getElementById('input' + source).value);
+  if (isNaN(val)) {
+    Object.keys(UNITS).forEach(k => { if (k !== source) document.getElementById('input' + k).value = ''; });
+    updating = false; return;
+  }
+  const pa = val * UNITS[source].factor;
+  Object.keys(UNITS).forEach(k => {
+    if (k !== source) document.getElementById('input' + k).value = round(pa / UNITS[k].factor);
+  });
+  setActive(source);
+  updating = false;
+}
+
+Object.keys(UNITS).forEach(k => {
+  document.getElementById('input' + k).addEventListener('input', () => update(k));
+  document.getElementById('input' + k).addEventListener('focus', () => setActive(k));
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+  Object.keys(UNITS).forEach(k => document.getElementById('card' + k).classList.remove('active'));
+});
+
+const row = document.getElementById('examplesRow');
+EXAMPLES.forEach(e => {
+  const btn = document.createElement('button');
+  btn.className = 'ex-btn'; btn.textContent = e.label;
+  btn.addEventListener('click', () => {
+    Object.keys(UNITS).forEach(k => document.getElementById('input' + k).value = '');
+    document.getElementById('input' + e.unit).value = e.val;
+    update(e.unit);
+  });
+  row.appendChild(btn);
+});
+</script>
+</body>
+</html>

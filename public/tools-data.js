@@ -140,6 +140,17 @@ const SITE_TOOLS = [
   { name: 'Weight Converter',         href: 'tools/weight-converter.html',         tag: 'convert',  icon: '⚖️', desc: 'Convert weight between kg, lbs, oz, grams, stone, and metric tons. Type in any field to update all others.' },
   { name: 'Data Storage Converter',   href: 'tools/data-storage-converter.html',   tag: 'convert',  icon: '💾', desc: 'Convert data between bits, bytes, KB, MB, GB, TB, and PB. Supports both decimal (SI) and binary (IEC) prefixes.' },
   { name: 'Fuel Consumption',         href: 'tools/fuel-consumption-calculator.html', tag: 'calculator', icon: '⛽', desc: 'Convert fuel efficiency between mpg, L/100km, and km/L. Calculate trip fuel cost from distance and price.' },
+  { name: 'Length Converter',         href: 'tools/length-converter.html',         tag: 'convert',  icon: '📏', desc: 'Convert length between mm, cm, m, km, inches, feet, yards, and miles. Type in any field to update all others.' },
+  { name: 'Area Converter',           href: 'tools/area-converter.html',           tag: 'convert',  icon: '🗺️', desc: 'Convert area between m², ft², km², square inches, acres, and hectares. Type in any field to update all others.' },
+  { name: 'Volume Converter',         href: 'tools/volume-converter.html',         tag: 'convert',  icon: '🧪', desc: 'Convert volume between mL, liters, fluid oz, cups, pints, quarts, and gallons. Type in any field to update all others.' },
+  { name: 'Pressure Converter',       href: 'tools/pressure-converter.html',       tag: 'convert',  icon: '🔩', desc: 'Convert pressure between Pa, kPa, bar, psi, atm, and mmHg. Type in any field to update all others.' },
+  { name: 'Energy Converter',         href: 'tools/energy-converter.html',         tag: 'convert',  icon: '⚡', desc: 'Convert energy between joules, kJ, calories, kcal, Wh, kWh, MJ, and BTU. Type in any field to update all others.' },
+  { name: 'Angle Converter',          href: 'tools/angle-converter.html',          tag: 'convert',  icon: '📐', desc: 'Convert angles between degrees, radians, gradians, and turns. Type in any field to update all others.' },
+  { name: 'Time Converter',           href: 'tools/time-converter.html',           tag: 'convert',  icon: '⏱️', desc: 'Convert time between milliseconds, seconds, minutes, hours, days, weeks, months, and years.' },
+  { name: 'Power Converter',          href: 'tools/power-converter.html',          tag: 'convert',  icon: '⚡', desc: 'Convert power between watts, kW, MW, horsepower, BTU/h, and kcal/h. Type in any field to update all others.' },
+  { name: 'Force Converter',          href: 'tools/force-converter.html',          tag: 'convert',  icon: '💪', desc: 'Convert force between newtons, kilonewtons, pound-force, kilogram-force, and dyne.' },
+  { name: 'Frequency Converter',      href: 'tools/frequency-converter.html',      tag: 'convert',  icon: '📡', desc: 'Convert frequency between Hz, kHz, MHz, GHz, THz, and RPM. Type in any field to update all others.' },
+  { name: 'Torque Converter',         href: 'tools/torque-converter.html',         tag: 'convert',  icon: '🔧', desc: 'Convert torque between N·m, kN·m, ft·lb, in·lb, kgf·m, and N·cm. Type in any field to update all others.' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -172,7 +183,7 @@ const HUB_PAGE_CONFIG = {
       ['mortgage-calculator', 'loan-calculator', 'savings-calculator'],
       ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator'],
       ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'],
-      ['speed-converter', 'weight-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words']
+      ['speed-converter', 'weight-converter', 'length-converter', 'area-converter', 'volume-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words']
     ]
   }
 };

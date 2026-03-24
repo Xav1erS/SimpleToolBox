@@ -14,6 +14,38 @@
   <meta property="og:site_name" content="SimpleToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    /* Input row */
+    .ua-input-row { display: flex; gap: 10px; align-items: flex-start; }
+    #uaInput { flex: 1; min-height: 72px; max-height: 160px; resize: vertical; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 10px 12px; font-size: 13px; font-family: var(--ds-font-mono); color: var(--ds-color-text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    #uaInput:focus { border-color: var(--ds-color-accent); box-shadow: var(--ds-shadow-focus); }
+    #uaInput::placeholder { color: var(--ds-color-text-muted); }
+    .ua-btn { min-height: 36px; padding: 0 16px; border-radius: var(--ds-radius-sm); font-size: 13px; font-weight: 600; font-family: var(--ds-font-sans); cursor: pointer; border: none; transition: background 0.15s, opacity 0.15s; }
+    .ua-btn--primary { background: var(--ds-color-accent); color: #fff; }
+    .ua-btn--primary:hover { opacity: 0.88; }
+
+    /* Results grid */
+    .ua-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .ua-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+    .ua-card--full { grid-column: 1 / -1; }
+    .ua-card__title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 4px; }
+    .ua-field { display: flex; align-items: baseline; gap: 8px; }
+    .ua-field__label { font-size: 12px; color: var(--ds-color-text-muted); min-width: 60px; flex-shrink: 0; }
+    .ua-field__value { font-size: 14px; font-weight: 500; color: var(--ds-color-text-primary); word-break: break-all; }
+    .ua-field__value--mono { font-family: var(--ds-font-mono); font-size: 12px; color: var(--ds-color-text-secondary); }
+
+    /* Device type badges */
+    .ua-badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .ua-badge--desktop { background: rgba(94,106,210,0.15); color: var(--ds-color-accent); }
+    .ua-badge--mobile  { background: rgba(236,72,153,0.15); color: #ec4899; }
+    .ua-badge--tablet  { background: rgba(251,146,60,0.15);  color: #f97316; }
+
+    @media (max-width: 640px) {
+      .ua-input-row { flex-direction: column; }
+      .ua-btn { width: 100%; }
+      .ua-results { grid-template-columns: 1fr; }
+    }
+  </style>
     <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {

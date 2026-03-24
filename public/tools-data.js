@@ -157,6 +157,8 @@ const SITE_TOOLS = [
   { name: 'Image Watermark',          href: 'tools/image-watermark.html',          tag: 'image',    icon: '💧', desc: 'Add custom text watermarks to images with adjustable position, font size, color, and opacity' },
   { name: 'Reverse Text',             href: 'tools/reverse-text.html',             tag: 'text',     icon: '🔁', desc: 'Flip text by reversing characters, word order, line order, or each line independently' },
   { name: 'CSS Gradient Generator',   href: 'tools/css-gradient-generator.html',   tag: 'generate', icon: '🌈', desc: 'Build linear and radial CSS gradients visually with color stops, live preview, and one-click copy' },
+  { name: 'PDF to Image',             href: 'tools/pdf-to-image.html',             tag: 'convert',  icon: '📄', desc: 'Convert PDF pages to PNG or JPEG images — no upload needed, runs in your browser' },
+  { name: 'Image to PDF',             href: 'tools/image-to-pdf.html',             tag: 'convert',  icon: '🖼️', desc: 'Combine multiple images into a single PDF file — set page size, orientation, and margins' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -197,7 +199,8 @@ const HUB_PAGE_CONFIG = {
       ['length-converter', 'area-converter', 'volume-converter', 'weight-converter', 'speed-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'temperature-converter', 'unit-converter'],
       ['number-base', 'roman-numeral-converter', 'number-to-words', 'number-format', 'binary-text', 'data-storage-converter'],
       ['timestamp', 'time-zone-converter', 'currency-exchange-rate', 'fuel-consumption-calculator'],
-      ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'markdown-to-html', 'url-encode', 'url-parser', 'color-picker']
+      ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'markdown-to-html', 'url-encode', 'url-parser', 'color-picker'],
+      ['pdf-to-image', 'image-to-pdf']
     ]
   },
   generator: {

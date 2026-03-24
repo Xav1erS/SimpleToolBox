@@ -9,18 +9,15 @@
 
 ## Current Actual State (2026-03-24)
 
-- Tool count: **156**
+- Tool count: **158**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
 - Hub pages live and data-driven:
   - `image-tools`
   - `developer-tools`
   - `text-tools`
-  - `calculator-tools` — 5 sections:
-    1. percentage / tip / discount / age
-    2. mortgage / loan / savings
-    3. bmi / calorie / calorie-burn / gpa
-    4. date / currency / temperature / time-zone
-    5. converters: speed / weight / length / area / volume / pressure / energy / power / force / angle / time / frequency / fuel / unit / roman-numeral / number-to-words
+  - `calculator-tools`
+  - `converter-tools`
+  - `generator-tools`
 - `public/tools-data.js` is the shared source for homepage, all-tools, and hub pages.
 - `public/tools-meta.js` is the shared source for JSON-LD, FAQ, learn-more, and related tools.
 - Latest preflight is fully green:
@@ -29,6 +26,17 @@
   - console errors: 0
   - smoke failures: 0
   - visual failures: 0
+
+### Recent changes (this session)
+
+- `all-tools.html` 重构：JS 渲染替代 156 条静态卡片，分组展示（All 模式），Popular / Recently Used 嵌入内容区，筛选栏层级修正
+- 全站定位从 "developer tools" 统一为 "everyday tasks"：index/about/all-tools meta、title、footer tagline、schema 全部更新
+- 首页 Popular Tools 重排：image/text 工具置顶，去掉 URL Encode / JWT，补入 BMI Calculator / Color Picker
+- 首页顺序调整：Popular Tools → New Tools（原反）
+- 首页 features：用 "No Upload Required" 替换 "Easy on the Eyes"
+- 首页 stats：0 "Sign-up Required" → 0 "Data Collected"
+- 首页 footer Tools 区：占位 `#` 链接 → 真实 hub 页链接
+- 所有 156 个工具页注入 `stb_recent` localStorage tracking snippet（跨页面记录 Recently Used）
 
 Reference:
 
@@ -242,22 +250,19 @@ Run:
 
 Highest priority now:
 
-### finish the 150-tool sprint with unit converters, then stabilize
+### PDF 工具增长（第一批）
 
-Current count: **149 / 150** — 1 remaining.
+当前 156 工具中无任何 PDF 工具，是明显覆盖空白。优先实现：
 
-Recommended next batch (all follow same converter pattern):
+1. `pdf-to-image` — 用 PDF.js 渲染页面到 canvas，下载为 PNG/JPEG（需求最高）
+2. `image-to-pdf` — 用 jsPDF 把多张图片合并为 PDF（高需求，互补）
 
-1. `pressure-converter` — Pa / kPa / bar / psi / atm / mmHg
-2. `energy-converter` — J / kJ / cal / kcal / Wh / kWh / BTU
-3. `angle-converter` — degrees / radians / gradians / turns
-4. `time-converter` — ms / s / min / h / day / week / month / year
-
-After that:
-
-- run full preflight to confirm QA green at 146+
-- pick final 4 from: image tools, PDF tools, or remaining calculator gaps
-- only return to legacy-page cleanup if a real usability bug is reported
+实现后：
+- 更新 `tools-data.js`（tag: `convert`）
+- 更新 `tools-meta.js`
+- 更新 `converter-tools.html` hub 页
+- 运行 `python scripts/validate-tools.py`
+- 运行完整 preflight
 
 ## Files To Read First
 

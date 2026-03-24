@@ -54,6 +54,23 @@
     .tool-card:hover .tool-arrow { color: var(--ds-color-accent); transform: translateX(3px); }
     .no-result { text-align: center; padding: 80px 24px; color: var(--ds-color-text-muted); grid-column: 1/-1; display: none; }
     .no-result.show { display: block; }
+    .nr-link { color: var(--ds-color-accent); text-decoration: none; }
+    .nr-link:hover { text-decoration: underline; }
+
+    /* Quick sections (Popular + Recently Used) */
+    .quick-section { max-width: 1100px; margin: 0 auto; padding: 0 24px 4px; }
+    .quick-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .quick-title { font-size: 13px; font-weight: 700; color: var(--ds-color-text-secondary); }
+    .quick-clear { font-size: 11px; color: var(--ds-color-text-muted); background: none; border: 1px solid var(--ds-color-border); cursor: pointer; padding: 2px 8px; border-radius: 999px; font-family: var(--ds-font-sans); transition: color 0.15s, border-color 0.15s; }
+    .quick-clear:hover { color: var(--ds-color-text-secondary); border-color: rgba(255,255,255,0.2); }
+    .tool-grid--quick { padding: 0 0 8px; }
+
+    /* Grouped display sections */
+    .tool-section-title { font-size: 13px; font-weight: 700; padding: 0 24px 8px; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; max-width: 1100px; margin: 16px auto 0; }
+    .tool-section-count { font-size: 11px; font-weight: 500; color: var(--ds-color-text-muted); background: var(--ds-color-surface-tint); padding: 1px 7px; border-radius: 999px; font-family: var(--ds-font-mono); text-transform: none; letter-spacing: 0; }
+    .tool-grid--section { padding-bottom: 4px; }
+    #toolGrid.tool-grid--grouped { display: block; padding: 0 0 80px; }
+    .tool-grid.tool-grid--section { max-width: 1100px; margin: 0 auto; padding: 0 24px 4px; }
 
     /* Footer */
     footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
@@ -117,6 +134,23 @@
   <a href="calculator-tools.html" class="hub-link">🧮 Calculator Tools</a>
   <a href="converter-tools.html" class="hub-link">📐 Converters</a>
   <a href="generator-tools.html" class="hub-link">⚙️ Generators</a>
+</div>
+
+<!-- Recently Used -->
+<div class="quick-section" id="recentSection" style="display:none">
+  <div class="quick-header">
+    <span class="quick-title">🕐 Recently Used</span>
+    <button id="clearRecent" class="quick-clear">Clear</button>
+  </div>
+  <div class="tool-grid tool-grid--quick" id="recentGrid"></div>
+</div>
+
+<!-- Popular Tools -->
+<div class="quick-section" id="popularSection">
+  <div class="quick-header">
+    <span class="quick-title">🔥 Popular</span>
+  </div>
+  <div class="tool-grid tool-grid--quick" id="popularGrid"></div>
 </div>
 
 <div class="filter-bar">
@@ -783,122 +817,165 @@
 
 <script src="tools-data.js"></script>
 <script>
-  const NAV_TOOLS = SITE_TOOLS;
   const ALL_TOOLS = SITE_TOOLS;
   const toolGrid = document.getElementById('toolGrid');
   const countBadge = document.getElementById('countBadge');
   const pageSub = document.querySelector('.page-sub');
 
+  // ── Constants ────────────────────────────────────────────────────────────
+
+  const POPULAR_SLUGS = [
+    'base64', 'json-formatter', 'password-generator', 'word-counter',
+    'image-compressor', 'qr-code-generator', 'image-resizer', 'timestamp'
+  ];
+
+  const CATEGORY_SECTIONS = [
+    { label: '🖼️ Image Tools',    tags: ['image'] },
+    { label: '📝 Text Tools',      tags: ['text'] },
+    { label: '🛠️ Developer Tools', tags: ['encode', 'format'] },
+    { label: '📐 Converters',      tags: ['convert'] },
+    { label: '⚙️ Generators',      tags: ['generate'] },
+    { label: '🧮 Calculators',     tags: ['calculator'] },
+    { label: '🎨 Design',          tags: ['design'] },
+    { label: '📚 Reference',       tags: ['reference'] },
+  ];
+
   const TAG_ICON_FALLBACKS = {
-    image: '▣',
-    text: '✎',
-    encode: '⌁',
-    format: '≡',
-    convert: '⇄',
-    generate: '✦',
-    design: '◉',
-    reference: '⌗',
-    calculator: '∑'
+    image: '▣', text: '✎', encode: '⌁', format: '≡', convert: '⇄',
+    generate: '✦', design: '◉', reference: '⌗', calculator: '∑'
   };
+
+  const MULTI_TAG = { developer: ['encode', 'format'] };
+  const CAT_ALIAS  = { encode: 'developer', format: 'developer' };
+  const LS_KEY     = 'stb_recent';
+  const MAX_RECENT = 6;
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
 
   function getToolIcon(tool) {
     const icon = (tool.icon || '').trim();
-    if (!icon || icon === '?' || icon === '??' || icon === '???') {
-      return TAG_ICON_FALLBACKS[tool.tag] || '•';
-    }
-    return icon;
+    return (!icon || icon === '?' || icon === '??' || icon === '???')
+      ? (TAG_ICON_FALLBACKS[tool.tag] || '•') : icon;
   }
 
   function renderToolCard(tool) {
     const searchName = `${tool.name} ${tool.tag} ${tool.desc}`.replace(/"/g, '&quot;');
     return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}" data-name="${searchName}">
-      <div class="tool-card-top">
-        <div class="tool-icon">${getToolIcon(tool)}</div>
-        <div class="tool-name">${tool.name}</div>
-      </div>
+      <div class="tool-card-top"><div class="tool-icon">${getToolIcon(tool)}</div><div class="tool-name">${tool.name}</div></div>
       <div class="tool-desc">${tool.desc}</div>
       <div class="tool-footer"><span class="tool-tag">${tool.tag}</span><span class="tool-arrow">→</span></div>
     </a>`;
   }
 
-  function renderAllTools() {
-    toolGrid.innerHTML = `${ALL_TOOLS.map(renderToolCard).join('')}<div class="no-result" id="noResult">No tools match your search.</div>`;
-    countBadge.textContent = `${ALL_TOOLS.length} tools`;
-    pageSub.textContent = `${ALL_TOOLS.length} browser-based tools across text, developer, image, design, calculator, and reference workflows.`;
+  // ── Popular & Recently Used ───────────────────────────────────────────────
+
+  function renderPopular() {
+    const grid = document.getElementById('popularGrid');
+    if (!grid) return;
+    const tools = POPULAR_SLUGS
+      .map(s => ALL_TOOLS.find(t => t.href.endsWith('/' + s + '.html') || t.href.endsWith(s + '.html')))
+      .filter(Boolean);
+    grid.innerHTML = tools.map(renderToolCard).join('');
   }
 
-  renderAllTools();
-
-  function navHighlightMatch(text, q) {
-    const idx = text.toLowerCase().indexOf(q.toLowerCase());
-    if (idx === -1) return text;
-    return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+  function renderRecent() {
+    const section = document.getElementById('recentSection');
+    const grid    = document.getElementById('recentGrid');
+    if (!section || !grid) return;
+    const list  = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    const tools = list.map(href => ALL_TOOLS.find(t => t.href === href)).filter(Boolean);
+    if (!tools.length) { section.style.display = 'none'; return; }
+    grid.innerHTML     = tools.map(renderToolCard).join('');
+    section.style.display = '';
   }
-  function buildNavDropdown(dropdownEl, query) {
-    const q = query.trim().toLowerCase();
-    if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
-    const results = ALL_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)).slice(0, 6);
-    if (!results.length) { dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>'; }
-    else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${getToolIcon(t)}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
-    dropdownEl.classList.add('open');
-  }
-  const navDropdown = document.getElementById('navSearchDropdown');
-  document.getElementById('navSearch').addEventListener('input', e => buildNavDropdown(navDropdown, e.target.value));
-  document.addEventListener('click', e => { if (!e.target.closest('.nav-search')) navDropdown.classList.remove('open'); });
-  document.getElementById('navSearch').addEventListener('keydown', e => {
-    const items = navDropdown.querySelectorAll('.search-suggestion');
-    let idx = [...items].findIndex(el => el.classList.contains('focused'));
-    if (e.key === 'ArrowDown') { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.min(idx + 1, items.length - 1); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.max(idx - 1, 0); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
-    else if (e.key === 'Enter') { e.preventDefault(); const f = navDropdown.querySelector('.search-suggestion.focused'); if (f) f.click(); else if (items.length) items[0].click(); }
-    else if (e.key === 'Escape') { navDropdown.classList.remove('open'); }
-  });
-  document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('navSearch').focus(); } });
-  window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 
-  let activeTag = 'all';
+  function recordRecent(href) {
+    let list = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    list = [href, ...list.filter(h => h !== href)].slice(0, MAX_RECENT);
+    localStorage.setItem(LS_KEY, JSON.stringify(list));
+  }
+
+  // ── Grid rendering ───────────────────────────────────────────────────────
+
+  let activeTag   = 'all';
   let searchQuery = '';
+  let gridMode    = ''; // 'grouped' | 'flat'
 
-  const MULTI_TAG = { developer: ['encode', 'format'] };
+  function renderGroupedHTML() {
+    const sections = CATEGORY_SECTIONS.map(sec => {
+      const tools = ALL_TOOLS.filter(t => sec.tags.includes(t.tag));
+      if (!tools.length) return '';
+      return `<div class="tool-section-title">${sec.label} <span class="tool-section-count">${tools.length}</span></div>
+<div class="tool-grid tool-grid--section">${tools.map(renderToolCard).join('')}</div>`;
+    }).join('');
+    return sections + '<div class="no-result" id="noResult"></div>';
+  }
+
+  function renderFlatHTML() {
+    return ALL_TOOLS.map(renderToolCard).join('') +
+      '<div class="no-result" id="noResult">No tools match your search.</div>';
+  }
+
+  function rebuildGrid() {
+    const needGrouped = activeTag === 'all' && !searchQuery;
+    const newMode = needGrouped ? 'grouped' : 'flat';
+
+    if (gridMode === newMode) {
+      // Mode unchanged — just re-run filters
+      applyFilters();
+      return;
+    }
+
+    gridMode = newMode;
+    if (needGrouped) {
+      toolGrid.classList.add('tool-grid--grouped');
+      toolGrid.innerHTML = renderGroupedHTML();
+      countBadge.textContent = ALL_TOOLS.length + ' tools';
+      pageSub.textContent = `${ALL_TOOLS.length} browser-based tools across text, developer, image, design, calculator, and reference workflows.`;
+    } else {
+      toolGrid.classList.remove('tool-grid--grouped');
+      toolGrid.innerHTML = renderFlatHTML();
+      applyFilters();
+    }
+  }
 
   function applyFilters() {
-    const cards = Array.from(document.querySelectorAll('.tool-card'));
-    const q = searchQuery.toLowerCase();
+    const cards       = Array.from(document.querySelectorAll('#toolGrid .tool-card'));
+    const q           = searchQuery.toLowerCase();
     const allowedTags = MULTI_TAG[activeTag] || null;
     let visible = 0;
+
     cards.forEach(card => {
-      const cardTag = card.dataset.tags;
-      const tagMatch = activeTag === 'all'
+      const cardTag   = card.dataset.tags;
+      const tagMatch  = activeTag === 'all'
         || (allowedTags ? allowedTags.includes(cardTag) : cardTag === activeTag);
-      const searchMatch = !q || card.dataset.name.toLowerCase().includes(q) || card.querySelector('.tool-desc').textContent.toLowerCase().includes(q);
-      const show = tagMatch && searchMatch;
+      const nameMatch = !q || card.dataset.name.toLowerCase().includes(q)
+        || card.querySelector('.tool-desc').textContent.toLowerCase().includes(q);
+      const show = tagMatch && nameMatch;
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     });
+
     countBadge.textContent = visible + ' tool' + (visible !== 1 ? 's' : '');
-    document.getElementById('noResult').classList.toggle('show', visible === 0);
+    const nr = document.getElementById('noResult');
+    if (nr) {
+      if (visible === 0) {
+        const label = q ? `"<strong>${q}</strong>"` : activeTag;
+        nr.innerHTML = `No tools found for ${label}. Try: `
+          + `<a href="?cat=image" class="nr-link">image</a>, `
+          + `<a href="?cat=text" class="nr-link">text</a>, `
+          + `<a href="?cat=developer" class="nr-link">developer</a>, `
+          + `<a href="?cat=convert" class="nr-link">convert</a>`;
+        nr.classList.add('show');
+      } else {
+        nr.classList.remove('show');
+      }
+    }
   }
 
-  document.querySelectorAll('.filter-tag').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeTag = btn.dataset.filter;
-      const url = new URL(window.location);
-      if (activeTag === 'all') { url.searchParams.delete('cat'); } else { url.searchParams.set('cat', activeTag); }
-      history.replaceState(null, '', url);
-      applyFilters();
-    });
-  });
+  // ── Init ─────────────────────────────────────────────────────────────────
 
-  document.getElementById('toolSearch').addEventListener('input', e => {
-    searchQuery = e.target.value;
-    applyFilters();
-  });
-
-  // Activate filter from URL param ?cat=xxx (linked from homepage category cards)
-  // Legacy: encode / format both map to developer
-  const CAT_ALIAS = { encode: 'developer', format: 'developer' };
+  // URL param → active tag
   let catParam = new URLSearchParams(window.location.search).get('cat');
   if (catParam) {
     catParam = CAT_ALIAS[catParam] || catParam;
@@ -910,8 +987,75 @@
     }
   }
 
-  // Always run on init to set accurate count from DOM
-  applyFilters();
+  renderPopular();
+  renderRecent();
+  rebuildGrid();
+
+  // ── Event Listeners ──────────────────────────────────────────────────────
+
+  // Record tool click → update recently used
+  document.addEventListener('click', e => {
+    const card = e.target.closest('#toolGrid .tool-card, #popularGrid .tool-card');
+    if (card) { recordRecent(card.getAttribute('href')); renderRecent(); }
+  });
+
+  document.getElementById('clearRecent').addEventListener('click', () => {
+    localStorage.removeItem(LS_KEY);
+    renderRecent();
+  });
+
+  document.querySelectorAll('.filter-tag').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTag   = btn.dataset.filter;
+      searchQuery = '';
+      document.getElementById('toolSearch').value = '';
+      const url = new URL(window.location);
+      if (activeTag === 'all') { url.searchParams.delete('cat'); } else { url.searchParams.set('cat', activeTag); }
+      history.replaceState(null, '', url);
+      rebuildGrid();
+    });
+  });
+
+  document.getElementById('toolSearch').addEventListener('input', e => {
+    searchQuery = e.target.value;
+    rebuildGrid();
+  });
+
+  // ── Nav search ───────────────────────────────────────────────────────────
+
+  function navHighlightMatch(text, q) {
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return text;
+    return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
+  }
+
+  function buildNavDropdown(dropdownEl, query) {
+    const q = query.trim().toLowerCase();
+    if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
+    const results = ALL_TOOLS.filter(t =>
+      t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)
+    ).slice(0, 6);
+    dropdownEl.innerHTML = results.length
+      ? results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${getToolIcon(t)}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join('')
+      : '<div class="search-no-result">No tools found</div>';
+    dropdownEl.classList.add('open');
+  }
+
+  const navDropdown = document.getElementById('navSearchDropdown');
+  document.getElementById('navSearch').addEventListener('input', e => buildNavDropdown(navDropdown, e.target.value));
+  document.addEventListener('click', e => { if (!e.target.closest('.nav-search')) navDropdown.classList.remove('open'); });
+  document.getElementById('navSearch').addEventListener('keydown', e => {
+    const items = navDropdown.querySelectorAll('.search-suggestion');
+    let idx = [...items].findIndex(el => el.classList.contains('focused'));
+    if (e.key === 'ArrowDown')  { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.min(idx + 1, items.length - 1); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
+    else if (e.key === 'ArrowUp')   { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.max(idx - 1, 0); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
+    else if (e.key === 'Enter')  { e.preventDefault(); const f = navDropdown.querySelector('.search-suggestion.focused'); if (f) f.click(); else if (items.length) items[0].click(); }
+    else if (e.key === 'Escape') { navDropdown.classList.remove('open'); }
+  });
+  document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('navSearch').focus(); } });
+  window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 </script>
 </body>
 </html>

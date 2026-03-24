@@ -9,7 +9,7 @@
 
 ## Current Actual State (2026-03-24)
 
-- Tool count: **158**
+- Tool count: **162**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
 - Hub pages live and data-driven:
   - `image-tools`
@@ -18,6 +18,7 @@
   - `calculator-tools`
   - `converter-tools`
   - `generator-tools`
+  - `pdf-tools` — 6 tools: pdf-to-image, image-to-pdf, pdf-page-counter, pdf-compress, pdf-merge, pdf-split
 - `public/tools-data.js` is the shared source for homepage, all-tools, and hub pages.
 - `public/tools-meta.js` is the shared source for JSON-LD, FAQ, learn-more, and related tools.
 - Latest preflight is fully green:
@@ -258,6 +259,7 @@ Highest priority now:
 2. `image-to-pdf` — 用 jsPDF 把多张图片合并为 PDF（高需求，互补）
 
 实现后：
+
 - 更新 `tools-data.js`（tag: `convert`）
 - 更新 `tools-meta.js`
 - 更新 `converter-tools.html` hub 页

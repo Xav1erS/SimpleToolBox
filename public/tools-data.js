@@ -161,6 +161,8 @@ const SITE_TOOLS = [
   { name: 'Image to PDF',             href: 'tools/image-to-pdf.html',             tag: 'pdf',      icon: '🖼️', desc: 'Combine multiple images into a single PDF file — set page size, orientation, and margins' },
   { name: 'PDF Page Counter',         href: 'tools/pdf-page-counter.html',         tag: 'pdf',      icon: '🔢', desc: 'Count PDF pages and view document metadata — title, author, dates — instantly in your browser' },
   { name: 'PDF Compressor',           href: 'tools/pdf-compress.html',             tag: 'pdf',      icon: '🗜️', desc: 'Reduce PDF file size with three quality presets — no upload, runs entirely in your browser' },
+  { name: 'PDF Merger',               href: 'tools/pdf-merge.html',               tag: 'pdf',      icon: '🔗', desc: 'Combine multiple PDF files into one — drag to reorder, instant download, no upload needed' },
+  { name: 'PDF Splitter',             href: 'tools/pdf-split.html',               tag: 'pdf',      icon: '✂️', desc: 'Split a PDF by page range or extract every page as a separate file — runs in your browser' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -212,7 +214,7 @@ const HUB_PAGE_CONFIG = {
   },
   pdf: {
     sections: [
-      ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress']
+      ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress', 'pdf-merge', 'pdf-split']
     ]
   }
 };

@@ -71,6 +71,13 @@
     footer a { color: var(--ds-color-text-secondary); text-decoration: none; }
     footer a:hover { color: var(--ds-color-text-primary); }
 
+    /* Action filter row */
+    .action-bar { max-width: 1100px; margin: 0 auto; padding: 0 24px 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .dim-label { font-size: 11px; font-weight: 600; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+    .action-tag { min-height: 28px; padding: 0 14px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 1px solid var(--ds-color-border); background: transparent; color: var(--ds-color-text-secondary); cursor: pointer; transition: all 0.15s; }
+    .action-tag:hover { color: var(--ds-color-text-primary); border-color: rgba(255,255,255,0.2); }
+    .action-tag.active { background: rgba(251,146,60,0.15); border-color: rgba(251,146,60,0.5); color: #f97316; }
+
     @media (max-width: 768px) { .nav-search { display: none; } }
     @media (max-width: 640px) {
       .nav-actions .nav-link { display: none; }
@@ -128,6 +135,7 @@
   <a href="calculator-tools.html" class="hub-link">🧮 Calculator Tools</a>
   <a href="converter-tools.html" class="hub-link">📐 Converters</a>
   <a href="generator-tools.html" class="hub-link">⚙️ Generators</a>
+  <a href="pdf-tools.html" class="hub-link">📄 PDF &amp; Document</a>
 </div>
 
 
@@ -146,8 +154,20 @@
     <button class="filter-tag ds-pill" data-filter="design">🎨 Design</button>
     <button class="filter-tag ds-pill" data-filter="reference">📚 Reference</button>
     <button class="filter-tag ds-pill" data-filter="calculator">🧮 Calculator</button>
+    <button class="filter-tag ds-pill" data-filter="pdf">📄 PDF</button>
   </div>
-  <span class="count-badge" id="countBadge">81 tools</span>
+  <span class="count-badge" id="countBadge">158 tools</span>
+</div>
+
+<div class="action-bar">
+  <span class="dim-label">By action:</span>
+  <button class="action-tag" data-action="convert">🔄 Convert</button>
+  <button class="action-tag" data-action="compress">🗜️ Compress</button>
+  <button class="action-tag" data-action="generate">✨ Generate</button>
+  <button class="action-tag" data-action="format">{ } Format</button>
+  <button class="action-tag" data-action="encode">🔐 Encode</button>
+  <button class="action-tag" data-action="decode">🔓 Decode</button>
+  <button class="action-tag" data-action="extract">🔍 Extract</button>
 </div>
 
 <div class="tool-grid" id="toolGrid">
@@ -808,15 +828,26 @@
   ];
 
   const CATEGORY_SECTIONS = [
-    { label: '🖼️ Image Tools',    tags: ['image'] },
-    { label: '📝 Text Tools',      tags: ['text'] },
-    { label: '🛠️ Developer Tools', tags: ['encode', 'format'] },
-    { label: '📐 Converters',      tags: ['convert'] },
-    { label: '⚙️ Generators',      tags: ['generate'] },
-    { label: '🧮 Calculators',     tags: ['calculator'] },
-    { label: '🎨 Design',          tags: ['design'] },
-    { label: '📚 Reference',       tags: ['reference'] },
+    { label: '🖼️ Image Tools',       tags: ['image'] },
+    { label: '📄 PDF & Document',    tags: ['pdf'] },
+    { label: '📝 Text Tools',        tags: ['text'] },
+    { label: '🛠️ Developer Tools',   tags: ['encode', 'format'] },
+    { label: '📐 Converters',        tags: ['convert'] },
+    { label: '⚙️ Generators',        tags: ['generate'] },
+    { label: '🧮 Calculators',       tags: ['calculator'] },
+    { label: '🎨 Design',            tags: ['design'] },
+    { label: '📚 Reference',         tags: ['reference'] },
   ];
+
+  const ACTION_SLUGS = {
+    convert:  new Set(['webp-converter','jpg-to-png','png-to-jpg','webp-to-jpg','png-to-webp','svg-to-png','bmp-to-png','pdf-to-image','image-to-pdf','unit-converter','length-converter','weight-converter','speed-converter','temperature-converter','area-converter','volume-converter','pressure-converter','energy-converter','power-converter','force-converter','torque-converter','angle-converter','time-converter','frequency-converter','roman-numeral-converter','number-to-words','number-format','data-storage-converter','number-base','timestamp','time-zone-converter','currency-exchange-rate','fuel-consumption-calculator','currency-converter','yaml-json','toml-json','xml-json','json-csv','markdown-to-html','url-encode','html-entities','string-escape','binary-text','base64','base32','base58','image-to-base64','base64-to-image','morse-code','text-case']),
+    compress: new Set(['image-compressor','compress-to-100kb','js-minifier','css-minifier']),
+    generate: new Set(['password-generator','uuid-generator','qr-code-generator','hash-generator','hmac','random-number-generator','lorem-ipsum-generator','cron-builder','css-gradient-generator','color-palette','favicon-generator','password-strength-checker','slug-generator','bcrypt','aes']),
+    format:   new Set(['json-formatter','css-formatter','js-formatter','sql-formatter','html-formatter','xml-formatter','word-wrap-formatter','find-and-replace','text-cleaner','markdown-preview']),
+    encode:   new Set(['base64','base32','base58','url-encode','html-entities','string-escape','binary-text','morse-code','image-to-base64','aes','bcrypt','hmac','jwt-builder']),
+    decode:   new Set(['base64','base32','base58','url-encode','html-entities','string-escape','binary-text','morse-code','base64-to-image','jwt-decoder','aes']),
+    extract:  new Set(['email-extractor','url-extractor','phone-extractor','number-extractor','keyword-density-checker','word-frequency-counter','csv-column-extractor','exif-viewer','image-metadata-editor','image-palette-extractor','ip-lookup']),
+  };
 
   const TAG_ICON_FALLBACKS = {
     image: '▣', text: '✎', encode: '⌁', format: '≡', convert: '⇄',
@@ -855,9 +886,10 @@
 
   // ── Grid rendering ───────────────────────────────────────────────────────
 
-  let activeTag   = 'all';
-  let searchQuery = '';
-  let gridMode    = ''; // 'grouped' | 'flat'
+  let activeTag    = 'all';
+  let activeAction = '';   // '' means no action filter active
+  let searchQuery  = '';
+  let gridMode     = ''; // 'grouped' | 'flat'
 
   function renderGroupedHTML() {
     // Recently Used (only when records exist)
@@ -892,7 +924,7 @@
   }
 
   function rebuildGrid() {
-    const needGrouped = activeTag === 'all' && !searchQuery;
+    const needGrouped = activeTag === 'all' && !activeAction && !searchQuery;
     const newMode = needGrouped ? 'grouped' : 'flat';
 
     if (gridMode === newMode) {
@@ -918,15 +950,18 @@
     const cards       = Array.from(document.querySelectorAll('#toolGrid .tool-card'));
     const q           = searchQuery.toLowerCase();
     const allowedTags = MULTI_TAG[activeTag] || null;
+    const actionSet   = activeAction ? (ACTION_SLUGS[activeAction] || new Set()) : null;
     let visible = 0;
 
     cards.forEach(card => {
       const cardTag   = card.dataset.tags;
+      const slug      = (card.getAttribute('href') || '').split('/').pop().replace('.html', '');
       const tagMatch  = activeTag === 'all'
         || (allowedTags ? allowedTags.includes(cardTag) : cardTag === activeTag);
+      const actionMatch = !actionSet || actionSet.has(slug);
       const nameMatch = !q || card.dataset.name.toLowerCase().includes(q)
         || card.querySelector('.tool-desc').textContent.toLowerCase().includes(q);
-      const show = tagMatch && nameMatch;
+      const show = tagMatch && actionMatch && nameMatch;
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     });
@@ -950,9 +985,17 @@
 
   // ── Init ─────────────────────────────────────────────────────────────────
 
-  // URL param → active tag
-  let catParam = new URLSearchParams(window.location.search).get('cat');
-  if (catParam) {
+  // URL param → active tag or action
+  const urlParams = new URLSearchParams(window.location.search);
+  let catParam = urlParams.get('cat');
+  const actParam = urlParams.get('act');
+
+  if (actParam && ACTION_SLUGS[actParam]) {
+    activeAction = actParam;
+    document.querySelectorAll('.action-tag').forEach(b => {
+      b.classList.toggle('active', b.dataset.action === actParam);
+    });
+  } else if (catParam) {
     catParam = CAT_ALIAS[catParam] || catParam;
     const btn = document.querySelector(`.filter-tag[data-filter="${catParam}"]`);
     if (btn) {
@@ -982,11 +1025,33 @@
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      activeTag   = btn.dataset.filter;
+      activeTag    = btn.dataset.filter;
+      activeAction = '';
+      document.querySelectorAll('.action-tag').forEach(b => b.classList.remove('active'));
+      searchQuery  = '';
+      document.getElementById('toolSearch').value = '';
+      const url = new URL(window.location);
+      url.searchParams.delete('act');
+      if (activeTag === 'all') { url.searchParams.delete('cat'); } else { url.searchParams.set('cat', activeTag); }
+      history.replaceState(null, '', url);
+      rebuildGrid();
+    });
+  });
+
+  document.querySelectorAll('.action-tag').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const same = btn.classList.contains('active');
+      document.querySelectorAll('.action-tag').forEach(b => b.classList.remove('active'));
+      activeAction = same ? '' : btn.dataset.action;
+      if (!same) btn.classList.add('active');
+      // clear object filter
+      activeTag = 'all';
+      document.querySelectorAll('.filter-tag').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
       searchQuery = '';
       document.getElementById('toolSearch').value = '';
       const url = new URL(window.location);
-      if (activeTag === 'all') { url.searchParams.delete('cat'); } else { url.searchParams.set('cat', activeTag); }
+      url.searchParams.delete('cat');
+      if (activeAction) { url.searchParams.set('act', activeAction); } else { url.searchParams.delete('act'); }
       history.replaceState(null, '', url);
       rebuildGrid();
     });

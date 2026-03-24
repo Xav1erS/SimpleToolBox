@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>PDF &amp; Document Tools — Simple ToolBox</title>
+  <meta name="description" content="Free browser-based PDF tools — convert PDF pages to images, merge images into PDF. No upload required, runs entirely in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/pdf-tools" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/pdf-tools" />
+  <meta property="og:title" content="PDF &amp; Document Tools — Simple ToolBox" />
+  <meta property="og:description" content="Free browser-based PDF tools — convert PDF pages to images, merge images into PDF. No upload required, runs entirely in your browser." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/design-system.css?v=20" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "PDF & Document Tools",
+    "description": "Free browser-based PDF tools — convert PDF pages to images, merge images into PDF. No upload required, runs entirely in your browser.",
+    "url": "https://simpletoolbox.dev/pdf-tools",
+    "isPartOf": { "@type": "WebSite", "name": "Simple ToolBox", "url": "https://simpletoolbox.dev" }
+  }
+  </script>
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--ds-font-sans); cursor: pointer; border: none; background: none; }
+    .hub-hero { max-width: 1100px; margin: 0 auto; padding: 56px 24px 40px; }
+    .hub-breadcrumb { font-size: 12px; color: var(--ds-color-text-muted); margin-bottom: 16px; }
+    .hub-breadcrumb a { color: var(--ds-color-text-muted); }
+    .hub-breadcrumb a:hover { color: var(--ds-color-text-secondary); }
+    .hub-title { font-size: var(--ds-font-size-h1); font-weight: 700; line-height: 1.1; letter-spacing: -0.045em; margin-bottom: 12px; }
+    .hub-desc { font-size: var(--ds-font-size-body-lg); color: var(--ds-color-text-secondary); line-height: 1.7; max-width: 640px; margin-bottom: 8px; }
+    .hub-count { font-size: 13px; color: var(--ds-color-text-muted); }
+    .tool-section { max-width: 1100px; margin: 0 auto; padding: 0 24px 12px; }
+    .tool-section h2 { font-size: var(--ds-font-size-h4); font-weight: 700; margin-bottom: 12px; color: var(--ds-color-text-secondary); letter-spacing: -0.01em; }
+    .tool-grid { max-width: 1100px; margin: 0 auto; padding: 0 24px 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .tool-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: var(--ds-space-5); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: var(--ds-space-3); transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast), transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast); }
+    .tool-card:hover { border-color: var(--ds-color-border-accent); background: var(--ds-color-surface-strong); transform: translateY(-1px); box-shadow: var(--ds-shadow-card); }
+    .tool-card-top { display: flex; align-items: center; gap: 12px; }
+    .tool-icon { font-size: 22px; width: 40px; height: 40px; background: var(--ds-color-surface-tint); border-radius: var(--ds-radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tool-name { font-size: var(--ds-font-size-h4); font-weight: 600; color: var(--ds-color-text-primary); line-height: 1.25; }
+    .tool-desc { font-size: var(--ds-font-size-body-sm); color: var(--ds-color-text-secondary); line-height: 1.6; flex: 1; }
+    .tool-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .tool-tag { display: inline-flex; align-items: center; min-height: 20px; padding: 0 8px; border-radius: var(--ds-radius-xs); background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.22); color: var(--ds-color-accent-soft); font-family: var(--ds-font-mono); font-size: var(--ds-font-size-micro); font-weight: 500; }
+    .tool-arrow { font-size: 16px; color: var(--ds-color-text-muted); transition: color 0.15s, transform 0.15s; }
+    .tool-card:hover .tool-arrow { color: var(--ds-color-accent); transform: translateX(3px); }
+    .more-cats { max-width: 1100px; margin: 0 auto; padding: 16px 24px 80px; }
+    .more-cats h2 { font-size: var(--ds-font-size-h3); font-weight: 700; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .cat-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 18px 20px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; transition: border-color 0.15s, background 0.15s; }
+    .cat-card:hover { border-color: var(--ds-color-border-accent); background: var(--ds-color-surface-strong); }
+    .cat-icon { font-size: 22px; }
+    .cat-info { display: flex; flex-direction: column; gap: 2px; }
+    .cat-name { font-size: 14px; font-weight: 600; }
+    .cat-n { font-size: 12px; color: var(--ds-color-text-muted); }
+    .hub-prose { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hub-prose-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 24px 28px; }
+    .hub-prose-card h2 { font-size: var(--ds-font-size-h4); font-weight: 700; margin-bottom: 12px; }
+    .hub-prose-card p { font-size: var(--ds-font-size-body-sm); color: var(--ds-color-text-secondary); line-height: 1.8; margin-bottom: 10px; }
+    .hub-prose-card p:last-child { margin-bottom: 0; }
+    footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
+    footer a { color: var(--ds-color-text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--ds-color-text-primary); }
+    @media (max-width: 768px) { .nav-search { display: none; } .hub-prose { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .nav-actions .nav-link { display: none; } .hub-hero { padding: 36px 16px 28px; } .tool-grid { padding: 0 16px 24px; grid-template-columns: 1fr; } .tool-section { padding: 0 16px 12px; } .more-cats, .hub-prose { padding-left: 16px; padding-right: 16px; } }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+
+<nav class="ds-nav" id="nav">
+  <a href="index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="navSearch" placeholder="Search tools… (⌘K)" autocomplete="off" />
+    <div class="nav-search-dropdown" id="navSearchDropdown"></div>
+  </div>
+  <div class="nav-actions">
+    <a href="https://github.com/Xav1erS/SimpleToolBox" target="_blank" rel="noopener" class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
+  </div>
+</nav>
+
+<div class="hub-hero">
+  <div class="hub-breadcrumb"><a href="index.html">Home</a> › PDF &amp; Document Tools</div>
+  <h1 class="hub-title">📄 PDF &amp; Document Tools</h1>
+  <p class="hub-desc">Convert, merge, and process PDF files without uploading them anywhere. Everything runs entirely in your browser — fast, free, and private.</p>
+  <div class="hub-count" id="hubCount">PDF tools · all free · privacy-first</div>
+</div>
+
+<!-- PDF Tools -->
+<div class="tool-section"><h2>PDF Tools</h2></div>
+<div class="tool-grid" id="gridPdf"></div>
+
+<div class="hub-prose">
+  <div class="hub-prose-card">
+    <h2>Why browser-based PDF tools?</h2>
+    <p>PDF files often contain sensitive information — contracts, invoices, personal documents. Uploading them to a server creates unnecessary risk. These tools run entirely in your browser using PDF.js and jsPDF, so your files never leave your device.</p>
+    <p>No account, no upload, no waiting. Open the tool, drop your file, get your result instantly.</p>
+  </div>
+  <div class="hub-prose-card">
+    <h2>Common PDF workflows</h2>
+    <p><strong>PDF to Image</strong> — extract individual pages from a PDF as PNG or JPEG images, useful for sharing a single page, creating thumbnails, or embedding content in presentations.</p>
+    <p><strong>Image to PDF</strong> — combine multiple photos or screenshots into a single PDF file, perfect for sending scanned documents, portfolios, or multi-page reports without any desktop software.</p>
+  </div>
+</div>
+
+<div class="more-cats">
+  <h2>More Tool Categories</h2>
+  <div class="cat-grid">
+    <a href="image-tools.html" class="cat-card">
+      <span class="cat-icon">🖼️</span>
+      <div class="cat-info"><span class="cat-name">Image Tools</span><span class="cat-n" id="catImageCount">27 tools</span></div>
+    </a>
+    <a href="text-tools.html" class="cat-card">
+      <span class="cat-icon">✍️</span>
+      <div class="cat-info"><span class="cat-name">Text Tools</span><span class="cat-n" id="catTextCount">28 tools</span></div>
+    </a>
+    <a href="converter-tools.html" class="cat-card">
+      <span class="cat-icon">📐</span>
+      <div class="cat-info"><span class="cat-name">Converters</span><span class="cat-n" id="catConvCount">30+ tools</span></div>
+    </a>
+    <a href="calculator-tools.html" class="cat-card">
+      <span class="cat-icon">🧮</span>
+      <div class="cat-info"><span class="cat-name">Calculators</span><span class="cat-n" id="catCalcCount">16 tools</span></div>
+    </a>
+    <a href="developer-tools.html" class="cat-card">
+      <span class="cat-icon">🛠️</span>
+      <div class="cat-info"><span class="cat-name">Developer Tools</span><span class="cat-n" id="catDevCount">40+ tools</span></div>
+    </a>
+    <a href="all-tools.html" class="cat-card">
+      <span class="cat-icon">🔧</span>
+      <div class="cat-info"><span class="cat-name">All Tools</span><span class="cat-n" id="catAllCount">158 tools</span></div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="about.html">About</a>
+</footer>
+
+<script src="tools-data.js"></script>
+<script>
+  const NAV_TOOLS = SITE_TOOLS;
+  const PDF_CONFIG = HUB_PAGE_CONFIG.pdf;
+
+  function slugFromHref(href) { return href.replace(/^tools\//, '').replace(/\.html$/, ''); }
+  function getToolBySlug(slug) { return SITE_TOOLS.find(t => slugFromHref(t.href) === slug) || null; }
+  function renderToolCard(tool) {
+    return `<a href="${tool.href}" class="tool-card">
+      <div class="tool-card-top"><div class="tool-icon">${tool.icon}</div><div class="tool-name">${tool.name}</div></div>
+      <div class="tool-desc">${tool.desc}</div>
+      <div class="tool-footer"><span class="tool-tag">${tool.tag}</span><span class="tool-arrow">→</span></div>
+    </a>`;
+  }
+
+  const gridEl = document.getElementById('gridPdf');
+  if (gridEl && PDF_CONFIG && PDF_CONFIG.sections[0]) {
+    gridEl.innerHTML = PDF_CONFIG.sections[0].map(getToolBySlug).filter(Boolean).map(renderToolCard).join('');
+  }
+
+  const total = hubToolCount('pdf');
+  const hubCountEl = document.getElementById('hubCount');
+  if (hubCountEl) hubCountEl.textContent = `${total} tools · all free · privacy-first`;
+  const catImageEl = document.getElementById('catImageCount');
+  if (catImageEl) catImageEl.textContent = `${hubToolCount('image')} tools`;
+  const catTextEl = document.getElementById('catTextCount');
+  if (catTextEl) catTextEl.textContent = `${hubToolCount('text')} tools`;
+  const catConvEl = document.getElementById('catConvCount');
+  if (catConvEl) catConvEl.textContent = `${hubToolCount('converter')} tools`;
+  const catCalcEl = document.getElementById('catCalcCount');
+  if (catCalcEl) catCalcEl.textContent = `${hubToolCount('calculator')} tools`;
+  const catDevEl = document.getElementById('catDevCount');
+  if (catDevEl) catDevEl.textContent = `${hubToolCount('developer')} tools`;
+  const catAllEl = document.getElementById('catAllCount');
+  if (catAllEl) catAllEl.textContent = `${SITE_TOOLS.length} tools`;
+
+  function navHighlightMatch(text, q) { const idx = text.toLowerCase().indexOf(q.toLowerCase()); if (idx === -1) return text; return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length); }
+  function buildNavDropdown(el, query) { const q = query.trim().toLowerCase(); if (!q) { el.classList.remove('open'); el.innerHTML = ''; return; } const r = NAV_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)).slice(0, 6); el.innerHTML = r.length ? r.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${t.desc}</div></div><span class="suggestion-tag">${t.tag}</span></a>`).join('') : '<div class="search-no-result">No tools found</div>'; el.classList.add('open'); }
+  const navSearchInput = document.getElementById('navSearch');
+  const navSearchDropdown = document.getElementById('navSearchDropdown');
+  if (navSearchInput) { navSearchInput.addEventListener('input', e => buildNavDropdown(navSearchDropdown, e.target.value)); navSearchInput.addEventListener('keydown', e => { if (e.key === 'Escape') { navSearchDropdown.classList.remove('open'); navSearchInput.blur(); } }); document.addEventListener('click', e => { if (!navSearchInput.contains(e.target) && !navSearchDropdown.contains(e.target)) navSearchDropdown.classList.remove('open'); }); }
+</script>
+
+<script>
+(function(){
+  var key='stb_recent';
+  var slug='pdf-tools';
+  try{
+    var list=JSON.parse(localStorage.getItem(key)||'[]');
+    list=list.filter(function(s){return s!==slug;});
+    list.unshift(slug);
+    if(list.length>20)list=list.slice(0,20);
+    localStorage.setItem(key,JSON.stringify(list));
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

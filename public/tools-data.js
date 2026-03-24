@@ -157,8 +157,8 @@ const SITE_TOOLS = [
   { name: 'Image Watermark',          href: 'tools/image-watermark.html',          tag: 'image',    icon: '💧', desc: 'Add custom text watermarks to images with adjustable position, font size, color, and opacity' },
   { name: 'Reverse Text',             href: 'tools/reverse-text.html',             tag: 'text',     icon: '🔁', desc: 'Flip text by reversing characters, word order, line order, or each line independently' },
   { name: 'CSS Gradient Generator',   href: 'tools/css-gradient-generator.html',   tag: 'generate', icon: '🌈', desc: 'Build linear and radial CSS gradients visually with color stops, live preview, and one-click copy' },
-  { name: 'PDF to Image',             href: 'tools/pdf-to-image.html',             tag: 'convert',  icon: '📄', desc: 'Convert PDF pages to PNG or JPEG images — no upload needed, runs in your browser' },
-  { name: 'Image to PDF',             href: 'tools/image-to-pdf.html',             tag: 'convert',  icon: '🖼️', desc: 'Combine multiple images into a single PDF file — set page size, orientation, and margins' },
+  { name: 'PDF to Image',             href: 'tools/pdf-to-image.html',             tag: 'pdf',      icon: '📄', desc: 'Convert PDF pages to PNG or JPEG images — no upload needed, runs in your browser' },
+  { name: 'Image to PDF',             href: 'tools/image-to-pdf.html',             tag: 'pdf',      icon: '🖼️', desc: 'Combine multiple images into a single PDF file — set page size, orientation, and margins' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -207,6 +207,11 @@ const HUB_PAGE_CONFIG = {
     sections: [
       ['password-generator', 'uuid-generator', 'qr-code-generator', 'hash-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder', 'css-gradient-generator', 'color-palette', 'favicon-generator', 'password-strength-checker']
     ]
+  },
+  pdf: {
+    sections: [
+      ['pdf-to-image', 'image-to-pdf']
+    ]
   }
 };
 
@@ -220,6 +225,7 @@ const CATEGORY_TAG_MAP = {
   generator:  ['generate'],
   reference:  ['reference'],
   design:     ['design'],
+  pdf:        ['pdf'],
 };
 
 function hubToolCount(key) {

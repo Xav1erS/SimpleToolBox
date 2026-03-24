@@ -169,9 +169,17 @@
       <span class="cat-icon">🛠️</span>
       <div class="cat-info"><span class="cat-name">Developer Tools</span><span class="cat-n" id="catDevCount">40+ tools</span></div>
     </a>
+    <a href="converter-tools.html" class="cat-card">
+      <span class="cat-icon">📐</span>
+      <div class="cat-info"><span class="cat-name">Converters</span><span class="cat-n" id="catConvCount">30+ tools</span></div>
+    </a>
+    <a href="generator-tools.html" class="cat-card">
+      <span class="cat-icon">⚙️</span>
+      <div class="cat-info"><span class="cat-name">Generators</span><span class="cat-n" id="catGenCount">11 tools</span></div>
+    </a>
     <a href="all-tools.html" class="cat-card">
       <span class="cat-icon">🔧</span>
-      <div class="cat-info"><span class="cat-name">All Tools</span><span class="cat-n" id="catAllCount">120 tools</span></div>
+      <div class="cat-info"><span class="cat-name">All Tools</span><span class="cat-n" id="catAllCount">156 tools</span></div>
     </a>
   </div>
 </div>
@@ -222,6 +230,10 @@
   if (catImageEl) catImageEl.textContent = `${hubToolCount('image')} tools`;
   const catDevEl = document.getElementById('catDevCount');
   if (catDevEl) catDevEl.textContent = `${hubToolCount('developer')} tools`;
+  const catConvEl = document.getElementById('catConvCount');
+  if (catConvEl) catConvEl.textContent = `${hubToolCount('converter')} tools`;
+  const catGenEl = document.getElementById('catGenCount');
+  if (catGenEl) catGenEl.textContent = `${hubToolCount('generator')} tools`;
   const catAllEl = document.getElementById('catAllCount');
   if (catAllEl) catAllEl.textContent = `${SITE_TOOLS.length} tools`;
 

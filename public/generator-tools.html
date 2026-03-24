@@ -120,6 +120,14 @@
 <div class="more-cats">
   <h2>More Tool Categories</h2>
   <div class="cat-grid">
+    <a href="image-tools.html" class="cat-card">
+      <span class="cat-icon">🖼️</span>
+      <div class="cat-info"><span class="cat-name">Image Tools</span><span class="cat-n" id="catImageCount">27 tools</span></div>
+    </a>
+    <a href="text-tools.html" class="cat-card">
+      <span class="cat-icon">✍️</span>
+      <div class="cat-info"><span class="cat-name">Text Tools</span><span class="cat-n" id="catTextCount">28 tools</span></div>
+    </a>
     <a href="converter-tools.html" class="cat-card">
       <span class="cat-icon">📐</span>
       <div class="cat-info"><span class="cat-name">Converters</span><span class="cat-n" id="catConvCount">30+ tools</span></div>
@@ -169,6 +177,10 @@
   const total = hubToolCount('generator');
   const hubCountEl = document.getElementById('hubCount');
   if (hubCountEl) hubCountEl.textContent = `${total} tools · all free · privacy-first`;
+  const catImageEl = document.getElementById('catImageCount');
+  if (catImageEl) catImageEl.textContent = `${hubToolCount('image')} tools`;
+  const catTextEl = document.getElementById('catTextCount');
+  if (catTextEl) catTextEl.textContent = `${hubToolCount('text')} tools`;
   const catConvEl = document.getElementById('catConvCount');
   if (catConvEl) catConvEl.textContent = `${hubToolCount('converter')} tools`;
   const catCalcEl = document.getElementById('catCalcCount');

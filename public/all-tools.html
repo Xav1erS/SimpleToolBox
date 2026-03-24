@@ -126,8 +126,7 @@
   </div>
   <div class="filter-tags">
     <button class="filter-tag ds-pill active" data-filter="all">All</button>
-    <button class="filter-tag ds-pill" data-filter="encode">🔐 Encode</button>
-    <button class="filter-tag ds-pill" data-filter="format">✨ Format</button>
+    <button class="filter-tag ds-pill" data-filter="developer">🛠️ Developer</button>
     <button class="filter-tag ds-pill" data-filter="convert">🔄 Convert</button>
     <button class="filter-tag ds-pill" data-filter="generate">⚙️ Generate</button>
     <button class="filter-tag ds-pill" data-filter="text">📝 Text</button>
@@ -860,12 +859,17 @@
   let activeTag = 'all';
   let searchQuery = '';
 
+  const MULTI_TAG = { developer: ['encode', 'format'] };
+
   function applyFilters() {
     const cards = Array.from(document.querySelectorAll('.tool-card'));
     const q = searchQuery.toLowerCase();
+    const allowedTags = MULTI_TAG[activeTag] || null;
     let visible = 0;
     cards.forEach(card => {
-      const tagMatch = activeTag === 'all' || card.dataset.tags === activeTag;
+      const cardTag = card.dataset.tags;
+      const tagMatch = activeTag === 'all'
+        || (allowedTags ? allowedTags.includes(cardTag) : cardTag === activeTag);
       const searchMatch = !q || card.dataset.name.toLowerCase().includes(q) || card.querySelector('.tool-desc').textContent.toLowerCase().includes(q);
       const show = tagMatch && searchMatch;
       card.style.display = show ? '' : 'none';
@@ -893,8 +897,11 @@
   });
 
   // Activate filter from URL param ?cat=xxx (linked from homepage category cards)
-  const catParam = new URLSearchParams(window.location.search).get('cat');
+  // Legacy: encode / format both map to developer
+  const CAT_ALIAS = { encode: 'developer', format: 'developer' };
+  let catParam = new URLSearchParams(window.location.search).get('cat');
   if (catParam) {
+    catParam = CAT_ALIAS[catParam] || catParam;
     const btn = document.querySelector(`.filter-tag[data-filter="${catParam}"]`);
     if (btn) {
       document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));

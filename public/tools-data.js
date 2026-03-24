@@ -154,6 +154,9 @@ const SITE_TOOLS = [
   { name: 'Force Converter',          href: 'tools/force-converter.html',          tag: 'convert',  icon: '💪', desc: 'Convert force between newtons, kilonewtons, pound-force, kilogram-force, and dyne.' },
   { name: 'Frequency Converter',      href: 'tools/frequency-converter.html',      tag: 'convert',  icon: '📡', desc: 'Convert frequency between Hz, kHz, MHz, GHz, THz, and RPM. Type in any field to update all others.' },
   { name: 'Torque Converter',         href: 'tools/torque-converter.html',         tag: 'convert',  icon: '🔧', desc: 'Convert torque between N·m, kN·m, ft·lb, in·lb, kgf·m, and N·cm. Type in any field to update all others.' },
+  { name: 'Image Watermark',          href: 'tools/image-watermark.html',          tag: 'image',    icon: '💧', desc: 'Add custom text watermarks to images with adjustable position, font size, color, and opacity' },
+  { name: 'Reverse Text',             href: 'tools/reverse-text.html',             tag: 'text',     icon: '🔁', desc: 'Flip text by reversing characters, word order, line order, or each line independently' },
+  { name: 'CSS Gradient Generator',   href: 'tools/css-gradient-generator.html',   tag: 'generate', icon: '🌈', desc: 'Build linear and radial CSS gradients visually with color stops, live preview, and one-click copy' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -163,7 +166,7 @@ const HUB_PAGE_CONFIG = {
       ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
       ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
       ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
-      ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor']
+      ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark']
     ]
   },
   developer: {
@@ -171,13 +174,13 @@ const HUB_PAGE_CONFIG = {
       ['json-formatter', 'css-formatter', 'css-minifier', 'js-formatter', 'js-minifier', 'sql-formatter', 'html-formatter', 'xml-formatter'],
       ['base64', 'base32', 'base58', 'hash-generator', 'hmac', 'aes', 'bcrypt', 'jwt-decoder', 'jwt-builder', 'html-entities', 'string-escape', 'morse-code', 'binary-text'],
       ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'number-base', 'markdown-to-html', 'url-encode', 'url-parser'],
-      ['password-generator', 'uuid-generator', 'qr-code-generator', 'cron-builder', 'random-number-generator', 'lorem-ipsum-generator'],
+      ['password-generator', 'uuid-generator', 'qr-code-generator', 'cron-builder', 'random-number-generator', 'lorem-ipsum-generator', 'css-gradient-generator'],
       ['regex-tester', 'jsonpath-tester', 'http-status', 'chmod-calculator', 'port-reference', 'mime-types', 'ip-lookup', 'user-agent', 'ascii-table', 'timestamp', 'data-storage-converter']
     ]
   },
   text: {
     sections: [
-      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech', 'number-extractor']
+      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech', 'number-extractor', 'reverse-text']
     ]
   },
   calculator: {

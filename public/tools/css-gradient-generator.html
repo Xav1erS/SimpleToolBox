@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>CSS Gradient Generator Online Free | Linear &amp; Radial | Simple ToolBox</title>
+  <meta name="description" content="Generate CSS linear and radial gradients visually. Add color stops, adjust positions, set angle, and copy the ready-to-use CSS code instantly. Free, browser-only." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/css-gradient-generator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/css-gradient-generator.html" />
+  <meta property="og:title" content="CSS Gradient Generator Online Free | Linear &amp; Radial | Simple ToolBox" />
+  <meta property="og:description" content="Build CSS linear and radial gradients visually with a live preview and one-click copy. Free and browser-only." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CSS Gradient Generator",
+  "description": "Build linear and radial CSS gradients visually with color stops, live preview, and one-click copy",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/css-gradient-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What gradient types are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Linear gradients with a custom angle (0–360°) and radial gradients (circle shape) are both supported."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add more than two color stops?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Click \"Add color stop\" to add as many stops as you need. Each stop has an independent color and position."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I control the direction of a linear gradient?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the Angle slider. 0° is top to bottom, 90° is left to right, and 135° runs diagonally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the output cross-browser compatible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tool outputs standard CSS using the linear-gradient() and radial-gradient() functions which are supported by all modern browsers."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body{font-family:var(--ds-font-sans);background:var(--ds-color-bg);color:var(--ds-color-text-primary);min-height:100vh}
+    .gg-layout{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start}
+    .gg-panel{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);overflow:hidden}
+    .gg-section{padding:16px 18px;border-bottom:1px solid var(--ds-color-border)}.gg-section:last-child{border-bottom:none}
+    .gg-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ds-color-text-muted);margin-bottom:12px}
+    .type-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .type-btn{padding:9px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);font-size:13px;font-weight:600;text-align:center;cursor:pointer;background:var(--ds-color-bg);color:var(--ds-color-text-secondary);transition:.15s}
+    .type-btn.active{border-color:var(--ds-color-accent);background:rgba(94,106,210,.15);color:var(--ds-color-text-primary)}
+    .field-row{display:grid;gap:5px;margin-bottom:10px}.field-row:last-child{margin-bottom:0}
+    .field-row label{font-size:12px;color:var(--ds-color-text-secondary)}
+    .field-row input[type="number"]{width:100%;padding:8px 10px;background:var(--ds-color-bg);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-primary);font-size:13px}
+    .stop-list{display:grid;gap:8px}
+    .stop-row{display:grid;grid-template-columns:36px 1fr 56px auto;gap:6px;align-items:center}
+    .stop-color{width:36px;height:36px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);cursor:pointer;padding:2px}
+    .stop-pos{padding:7px 8px;background:var(--ds-color-bg);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-primary);font-size:12px;font-family:var(--ds-font-mono);width:100%}
+    .stop-del{width:28px;height:28px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);font-size:14px;color:var(--ds-color-text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+    .stop-del:hover{border-color:#f87171;color:#f87171}
+    .add-stop-btn{width:100%;padding:8px;border:1px dashed var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-muted);font-size:12px;cursor:pointer;transition:.15s;margin-top:8px}
+    .add-stop-btn:hover{border-color:var(--ds-color-accent);color:var(--ds-color-accent)}
+    .preview-box{width:100%;height:180px;border-radius:var(--ds-radius-md);border:1px solid var(--ds-color-border);transition:.3s}
+    .css-output{background:var(--ds-color-bg);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:14px 16px;font-family:var(--ds-font-mono);font-size:13px;color:var(--ds-color-accent);word-break:break-all;line-height:1.6;user-select:all}
+    .copy-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ds-color-accent);color:#fff;font-size:14px;font-weight:600;padding:12px;border-radius:var(--ds-radius-md);transition:.2s;margin-top:12px}
+    .copy-btn:hover{opacity:.9}
+    .copy-btn.copied{background:#22c55e}
+    @media(max-width:800px){.gg-layout{grid-template-columns:1fr}}
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">CSS Gradient Generator <span class="ds-tool-badge">generate</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🌈</div><h1 class="ds-tool-header__title">CSS Gradient Generator</h1></div><p class="ds-tool-header__desc">Build linear and radial CSS gradients visually. Add color stops, adjust positions, set the angle, and copy the ready-to-use CSS in one click.</p><div class="ds-tool-tag-row"><span class="ds-tag">CSS gradient</span><span class="ds-tag">linear gradient</span><span class="ds-tag">radial gradient</span><span class="ds-tag">color stops</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="gg-layout">
+    <div class="gg-panel">
+      <div class="gg-section">
+        <div class="gg-label">Gradient Type</div>
+        <div class="type-row">
+          <button class="type-btn active" id="typeLinear">⟶ Linear</button>
+          <button class="type-btn" id="typeRadial">◎ Radial</button>
+        </div>
+      </div>
+      <div class="gg-section" id="angleSection">
+        <div class="gg-label">Angle</div>
+        <div class="field-row"><label>Direction: <strong id="angleVal">135</strong>°</label><input type="range" id="angleRange" min="0" max="360" step="1" value="135" /></div>
+      </div>
+      <div class="gg-section">
+        <div class="gg-label">Color Stops</div>
+        <div class="stop-list" id="stopList"></div>
+        <button class="add-stop-btn" id="addStop">+ Add color stop</button>
+      </div>
+    </div>
+    <div style="display:grid;gap:16px">
+      <div class="gg-panel">
+        <div class="gg-section"><div class="gg-label">Preview</div><div class="preview-box" id="previewBox"></div></div>
+      </div>
+      <div class="gg-panel">
+        <div class="gg-section">
+          <div class="gg-label">CSS Output</div>
+          <div class="css-output" id="cssOutput">background: linear-gradient(135deg, #7c6af7 0%, #06b6d4 100%);</div>
+          <button class="copy-btn" id="copyBtn">Copy CSS</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is CSS Gradient Generator?</h2>
+    <p>CSS Gradient Generator is a visual tool for building CSS linear and radial gradients. You add color stops, set their positions on a 0–100% scale, choose an angle for linear gradients, and see the result live. The final CSS property is ready to paste into any stylesheet.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use CSS Gradient Generator</h2>
+    <ol>
+      <li>Choose Linear or Radial gradient type.</li>
+      <li>For linear gradients, set the angle using the slider.</li>
+      <li>Edit the default color stops by clicking the color pickers and adjusting positions.</li>
+      <li>Add more color stops with the &quot;Add color stop&quot; button if needed.</li>
+      <li>Click &quot;Copy CSS&quot; to copy the gradient property to your clipboard.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="image-palette-extractor.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Image Palette Extractor</div><div class="ds-related-desc">Extract a compact palette of dominant HEX colors from an image</div></div></a>
+    <a href="image-brightness-contrast.html" class="ds-related-card"><span class="ds-related-icon">☀️</span><div><div class="ds-related-name">Image Brightness Contrast</div><div class="ds-related-desc">Adjust photo brightness and contrast with instant preview</div></div></a>
+    <a href="duotone-image.html" class="ds-related-card"><span class="ds-related-icon">🌓</span><div><div class="ds-related-name">Duotone Image</div><div class="ds-related-desc">Map image shadows and highlights to two custom colors</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>CSS Gradient Syntax</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">Linear, 135°, stop 1: #7c6af7 at 0%, stop 2: #06b6d4 at 100%</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">background: linear-gradient(135deg, #7c6af7 0%, #06b6d4 100%);</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Generate background gradients for landing pages and UI components</li>
+          <li>Create gradient overlays for hero sections</li>
+          <li>Build color-stop patterns for charts or dividers</li>
+          <li>Prototype gradient ideas before transferring to a design tool</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What gradient types are supported?</strong><p>Linear gradients with a custom angle (0–360°) and radial gradients (circle shape) are both supported.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I add more than two color stops?</strong><p>Yes. Click &quot;Add color stop&quot; to add as many stops as you need. Each stop has an independent color and position.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I control the direction of a linear gradient?</strong><p>Use the Angle slider. 0° is top to bottom, 90° is left to right, and 135° runs diagonally.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the output cross-browser compatible?</strong><p>Yes. The tool outputs standard CSS using the linear-gradient() and radial-gradient() functions which are supported by all modern browsers.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  let gradType='linear';
+  let stops=[{color:'#7c6af7',pos:0},{color:'#06b6d4',pos:100}];
+  const angleRange=document.getElementById('angleRange'),angleVal=document.getElementById('angleVal'),previewBox=document.getElementById('previewBox'),cssOutput=document.getElementById('cssOutput'),stopList=document.getElementById('stopList'),copyBtn=document.getElementById('copyBtn'),angleSection=document.getElementById('angleSection');
+
+  function buildCSS(){
+    const sorted=[...stops].sort((a,b)=>a.pos-b.pos);
+    const stopsStr=sorted.map(s=>`${s.color} ${s.pos}%`).join(', ');
+    if(gradType==='linear'){return `background: linear-gradient(${angleRange.value}deg, ${stopsStr});`;}
+    return `background: radial-gradient(circle, ${stopsStr});`;
+  }
+
+  function update(){
+    const css=buildCSS();
+    previewBox.style.cssText=css;
+    cssOutput.textContent=css;
+  }
+
+  function renderStops(){
+    stopList.innerHTML='';
+    stops.forEach((stop,i)=>{
+      const row=document.createElement('div');row.className='stop-row';
+      row.innerHTML=`<input type="color" class="stop-color" value="${stop.color}" /><input type="range" class="stop-pos" min="0" max="100" step="1" value="${stop.pos}" /><span style="font-size:11px;color:var(--ds-color-text-muted);font-family:var(--ds-font-mono)">${stop.pos}%</span><button class="stop-del" ${stops.length<=2?'disabled title="Need at least 2 stops"':''}>&times;</button>`;
+      row.querySelector('.stop-color').addEventListener('input',e=>{stops[i].color=e.target.value;update();});
+      row.querySelector('.stop-pos').addEventListener('input',e=>{stops[i].pos=Number(e.target.value);row.querySelectorAll('span')[0].textContent=`${stops[i].pos}%`;update();});
+      row.querySelector('.stop-del').addEventListener('click',()=>{if(stops.length>2){stops.splice(i,1);renderStops();update();}});
+      stopList.appendChild(row);
+    });
+  }
+
+  document.getElementById('typeLinear').addEventListener('click',()=>{gradType='linear';document.getElementById('typeLinear').classList.add('active');document.getElementById('typeRadial').classList.remove('active');angleSection.style.display='';update();});
+  document.getElementById('typeRadial').addEventListener('click',()=>{gradType='radial';document.getElementById('typeRadial').classList.add('active');document.getElementById('typeLinear').classList.remove('active');angleSection.style.display='none';update();});
+  angleRange.addEventListener('input',()=>{angleVal.textContent=angleRange.value;update();});
+  document.getElementById('addStop').addEventListener('click',()=>{stops.push({color:'#f59e0b',pos:Math.round((stops[stops.length-1].pos+100)/2)});renderStops();update();});
+  copyBtn.addEventListener('click',async()=>{await navigator.clipboard.writeText(cssOutput.textContent);copyBtn.textContent='Copied!';copyBtn.classList.add('copied');setTimeout(()=>{copyBtn.textContent='Copy CSS';copyBtn.classList.remove('copied');},1500);});
+  renderStops();update();
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+</body>
+</html>

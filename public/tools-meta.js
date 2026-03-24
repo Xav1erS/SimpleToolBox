@@ -7690,8 +7690,116 @@ const TOOLS_META = [
       title: 'Horizontal vs Vertical Flip',
       body: 'A horizontal flip (mirror) reverses the image along the vertical axis — left becomes right. A vertical flip reverses it along the horizontal axis — top becomes bottom. Combining both is equivalent to a 180° rotation. Flips are non-destructive: you can toggle them on and off without losing quality, since the tool re-renders from the original source each time.',
     },
-  }
-
+  },
+{
+  slug: 'image-watermark',
+  title: 'Image Watermark',
+  description: 'Add custom text watermarks to images with adjustable position, font size, color, and opacity',
+  category: 'image',
+  tags: ['watermark', 'text overlay', 'photo branding', 'PNG'],
+  relatedTools: ['image-brightness-contrast', 'remove-exif', 'image-resizer'],
+  faq: [
+    { q: 'What image formats are supported?', a: 'You can upload JPG, PNG, WebP, and GIF images. The result is always downloaded as a PNG.' },
+    { q: 'Can I change the watermark position?', a: 'Yes. There is a 3×3 position grid covering all nine corners and edges. Click any position to move the watermark.' },
+    { q: 'How do I make the watermark semi-transparent?', a: 'Use the Opacity slider. Lower values produce a more transparent watermark that blends into the image.' },
+    { q: 'Is the image uploaded to a server?', a: 'No. All watermark processing happens locally in your browser using the Canvas API.' },
+  ],
+  useCases: [
+    'Protect photos before sharing them online',
+    'Add copyright text to product or portfolio images',
+    'Brand social media photos with a name or handle',
+    'Mark draft images with status labels before review',
+  ],
+  example: { input: 'Upload a photo and type "© 2025 Jane" with opacity 60% at bottom-right', output: 'Download a PNG with a semi-transparent copyright text in the bottom-right corner' },
+  seoContent: {
+    whatIsTitle: 'What is Image Watermark?',
+    whatIsBody: 'Image Watermark lets you overlay custom text on any photo directly in your browser. You can control the font, size, style, color, opacity, and exact position of the watermark across a 3×3 position grid. This is useful for copyright protection, branding, and draft labeling without installing any software.',
+    howToTitle: 'How to Use Image Watermark',
+    howToSteps: [
+      'Upload the image you want to watermark.',
+      'Type your watermark text in the Text field.',
+      'Adjust font size, style, color, and opacity as needed.',
+      'Click a position button to place the watermark where you want it.',
+      'Download the watermarked PNG.',
+    ],
+  },
+  learnMore: {
+    title: 'Text Watermarks and Opacity',
+    body: 'A text watermark works by rendering the watermark string directly onto the image canvas with a set opacity. Lower opacity values (20–40%) create subtle watermarks that are visible but do not dominate the image. Higher values (70–100%) make the text clearly legible. Position padding keeps the watermark away from the edges so it does not get cropped. The result is always exported as PNG to preserve any transparency introduced by the opacity setting.',
+  },
+},
+{
+  slug: 'reverse-text',
+  title: 'Reverse Text',
+  description: 'Flip text by reversing characters, word order, line order, or each line independently',
+  category: 'text',
+  tags: ['reverse text', 'flip words', 'mirror text', 'text manipulation'],
+  relatedTools: ['text-case', 'text-cleaner', 'line-sorter'],
+  faq: [
+    { q: 'What does Reverse Characters do?', a: 'It reverses the entire string so the last character becomes the first. For example "Hello" becomes "olleH".' },
+    { q: 'What does Reverse Word Order do?', a: 'It reverses the order of words on each line while keeping the characters within each word intact.' },
+    { q: 'What does Reverse Line Order do?', a: 'It keeps each line intact but reverses the order of lines in the text, so the last line becomes the first.' },
+    { q: 'What does Reverse Each Line do?', a: 'It reverses the characters within each individual line, leaving line order unchanged.' },
+  ],
+  useCases: [
+    'Create mirror-text effects for social media captions',
+    'Reverse a list of lines to change processing order',
+    'Test text rendering direction in UI development',
+    'Generate reversed strings for simple obfuscation exercises',
+  ],
+  example: { input: '"Hello World" with Reverse Characters mode', output: '"dlroW olleH"' },
+  seoContent: {
+    whatIsTitle: 'What is Reverse Text?',
+    whatIsBody: 'Reverse Text is a browser tool that flips text in four different ways: reversing all characters, reversing word order per line, reversing line order, or reversing each line independently. The result updates instantly as you type so you can pick the mode that fits your use case.',
+    howToTitle: 'How to Use Reverse Text',
+    howToSteps: [
+      'Paste or type your text in the Input field.',
+      'Select the reversal mode you need: characters, words, lines, or each line.',
+      'Copy or download the reversed result.',
+    ],
+  },
+  learnMore: {
+    title: 'Reversal Modes Explained',
+    body: 'Character reversal treats the entire text as a single sequence and flips it end to end. Word reversal splits each line on whitespace and reverses the resulting tokens, preserving spaces. Line-order reversal splits on newlines and reverses that list. Per-line character reversal applies character reversal independently to each line, so multiline text retains its structure but each row is mirrored.',
+  },
+},
+{
+  slug: 'css-gradient-generator',
+  title: 'CSS Gradient Generator',
+  description: 'Build linear and radial CSS gradients visually with color stops, live preview, and one-click copy',
+  category: 'generate',
+  tags: ['CSS gradient', 'linear gradient', 'radial gradient', 'color stops', 'web design'],
+  relatedTools: ['image-palette-extractor', 'image-brightness-contrast', 'duotone-image'],
+  faq: [
+    { q: 'What gradient types are supported?', a: 'Linear gradients with a custom angle (0–360°) and radial gradients (circle shape) are both supported.' },
+    { q: 'Can I add more than two color stops?', a: 'Yes. Click "Add color stop" to add as many stops as you need. Each stop has an independent color and position.' },
+    { q: 'How do I control the direction of a linear gradient?', a: 'Use the Angle slider. 0° is top to bottom, 90° is left to right, and 135° runs diagonally.' },
+    { q: 'Is the output cross-browser compatible?', a: 'Yes. The tool outputs standard CSS using the linear-gradient() and radial-gradient() functions which are supported by all modern browsers.' },
+  ],
+  useCases: [
+    'Generate background gradients for landing pages and UI components',
+    'Create gradient overlays for hero sections',
+    'Build color-stop patterns for charts or dividers',
+    'Prototype gradient ideas before transferring to a design tool',
+  ],
+  example: { input: 'Linear, 135°, stop 1: #7c6af7 at 0%, stop 2: #06b6d4 at 100%', output: 'background: linear-gradient(135deg, #7c6af7 0%, #06b6d4 100%);' },
+  seoContent: {
+    whatIsTitle: 'What is CSS Gradient Generator?',
+    whatIsBody: 'CSS Gradient Generator is a visual tool for building CSS linear and radial gradients. You add color stops, set their positions on a 0–100% scale, choose an angle for linear gradients, and see the result live. The final CSS property is ready to paste into any stylesheet.',
+    howToTitle: 'How to Use CSS Gradient Generator',
+    howToSteps: [
+      'Choose Linear or Radial gradient type.',
+      'For linear gradients, set the angle using the slider.',
+      'Edit the default color stops by clicking the color pickers and adjusting positions.',
+      'Add more color stops with the "Add color stop" button if needed.',
+      'Click "Copy CSS" to copy the gradient property to your clipboard.',
+    ],
+  },
+  learnMore: {
+    title: 'CSS Gradient Syntax',
+    body: 'A linear gradient in CSS is written as linear-gradient(angle, color stop1, color stop2, ...). The angle defines the direction: 0deg is bottom to top, 90deg is left to right, and 180deg is top to bottom. Color stops define what color appears at what percentage of the gradient. Radial gradients use radial-gradient(shape, color stops) and radiate from a center point outward. Both are pure CSS and require no images, making them ideal for performance-sensitive designs.',
+  },
+}
 
 ];
 

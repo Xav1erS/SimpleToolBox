@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>PDF Page Counter &amp; Metadata Viewer – Free Online Tool | Simple ToolBox</title>
+  <meta name="description" content="Count PDF pages and view document metadata instantly. No upload required — runs entirely in your browser using PDF.js." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/pdf-page-counter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/pdf-page-counter" />
+  <meta property="og:title" content="PDF Page Counter &amp; Metadata Viewer – Free Online Tool | Simple ToolBox" />
+  <meta property="og:description" content="Count PDF pages and view document metadata instantly. No upload required — runs entirely in your browser using PDF.js." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF Page Counter & Metadata Viewer",
+  "description": "Count PDF pages and view document metadata instantly. No upload required — runs entirely in your browser using PDF.js.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/pdf-page-counter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The tool runs entirely inside your browser using PDF.js. Your file is never sent to any server and never leaves your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What metadata fields are shown?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool displays Title, Author, Subject, Creator, Producer, Creation Date, and Modification Date — all read from the PDF's internal document information dictionary. Fields not present in the file are shown as a dash."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with large PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tool only loads the document structure and metadata, not the full page rendering data, so even large PDFs are processed quickly with minimal memory use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What PDF versions are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDF.js supports the full range from PDF 1.x through PDF 2.0, including password-protected files (you will be prompted to enter the password)."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 64px; }
+
+    /* Drop zone */
+    .drop-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 60px 24px;
+      text-align: center;
+      border: 2px dashed var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-surface);
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+      min-height: 260px;
+    }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 48px; opacity: 0.4; }
+    .drop-title { font-size: 16px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 13px; color: var(--ds-color-text-muted); }
+
+    #fileInput { display: none; }
+
+    /* Result panel */
+    .result-panel {
+      display: none;
+    }
+    .result-panel.visible {
+      display: block;
+    }
+
+    /* Stat hero */
+    .stat-hero {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ds-color-text-muted);
+      margin-bottom: 8px;
+    }
+    .stat-number {
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--ds-color-accent);
+      font-family: var(--ds-font-sans);
+      margin-bottom: 6px;
+    }
+    .stat-unit {
+      font-size: 14px;
+      color: var(--ds-color-text-secondary);
+    }
+
+    /* Metadata grid */
+    .meta-card {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .meta-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ds-color-text-muted);
+      padding: 12px 16px 10px;
+      border-bottom: 1px solid var(--ds-color-border);
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .meta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--ds-color-border);
+      border-right: 1px solid var(--ds-color-border);
+    }
+    .meta-row:nth-child(even) {
+      border-right: none;
+    }
+    .meta-row:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+    .meta-key {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--ds-color-text-muted);
+    }
+    .meta-val {
+      font-size: 14px;
+      color: var(--ds-color-text-primary);
+      word-break: break-word;
+      font-family: var(--ds-font-mono);
+    }
+    .meta-val.empty {
+      color: var(--ds-color-text-muted);
+      font-style: italic;
+      font-family: var(--ds-font-sans);
+    }
+
+    /* Reset button */
+    .btn-reset {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--ds-color-text-secondary);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: var(--ds-radius-md);
+      border: 1px solid var(--ds-color-border);
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      font-family: var(--ds-font-sans);
+    }
+    .btn-reset:hover {
+      color: var(--ds-color-text-primary);
+      border-color: var(--ds-color-accent);
+      background: var(--ds-color-surface-tint);
+    }
+
+    /* Error */
+    .error-msg {
+      display: none;
+      background: var(--ds-color-surface);
+      border: 1px solid #e05a5a;
+      border-radius: var(--ds-radius-md);
+      padding: 16px 20px;
+      color: #e05a5a;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .error-msg.visible { display: block; }
+
+    @media (max-width: 600px) {
+      .main { padding: 16px 12px 48px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .meta-row { border-right: none !important; }
+      .meta-row:nth-last-child(-n+2) { border-bottom: 1px solid var(--ds-color-border); }
+      .meta-row:last-child { border-bottom: none; }
+      .stat-number { font-size: 48px; }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    PDF Page Counter
+    <span class="ds-tool-badge">pdf</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally — no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">📄</div>
+      <h1 class="ds-tool-header__title">PDF Page Counter</h1>
+    </div>
+    <p class="ds-tool-header__desc">Count PDF pages and view document metadata instantly. Drop any PDF to see the total page count, file size, and all embedded document properties — no uploads, everything runs in your browser.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">PDF</span>
+      <span class="ds-tag">page count</span>
+      <span class="ds-tag">metadata</span>
+      <span class="ds-tag">no upload</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Drop zone -->
+  <div class="drop-zone" id="dropZone">
+    <div class="drop-icon">📄</div>
+    <div class="drop-title">Drop PDF here</div>
+    <div class="drop-sub">or click to browse</div>
+  </div>
+
+  <input type="file" id="fileInput" accept=".pdf" />
+
+  <!-- Error -->
+  <div class="error-msg" id="errorMsg"></div>
+
+  <!-- Result panel -->
+  <div class="result-panel" id="resultPanel">
+
+    <!-- Page count stat -->
+    <div class="stat-hero">
+      <div class="stat-label">Total Pages</div>
+      <div class="stat-number" id="statPages">—</div>
+      <div class="stat-unit" id="statUnit">pages</div>
+    </div>
+
+    <!-- Metadata -->
+    <div class="meta-card">
+      <div class="meta-card-title">Document Info</div>
+      <div class="meta-grid">
+        <div class="meta-row">
+          <div class="meta-key">File Name</div>
+          <div class="meta-val" id="mFilename">—</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">File Size</div>
+          <div class="meta-val" id="mSize">—</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Title</div>
+          <div class="meta-val" id="mTitle">—</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Author</div>
+          <div class="meta-val" id="mAuthor">—</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Subject</div>
+          <div class="meta-val" id="mSubject">—</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Creator</div>
+          <div class="meta-val" id="mCreator">—</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Producer</div>
+          <div class="meta-val" id="mProducer">—</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Created</div>
+          <div class="meta-val" id="mCreated">—</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Modified</div>
+          <div class="meta-val" id="mModified">—</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-reset" id="btnReset">Count another file</button>
+  </div>
+
+<!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is PDF Page Counter?</h2>
+    <p>PDF Page Counter is a browser-based tool that instantly reads the page count and document metadata from any PDF file. It uses PDF.js to parse the file locally — your PDF is never sent to a server. In seconds you get the total page count displayed prominently, alongside all available document properties: title, author, subject, creator application, producer library, and both creation and modification timestamps.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use PDF Page Counter</h2>
+    <ol>
+      <li>Drop a PDF file onto the upload area or click to browse and select one.</li>
+      <li>The total page count is shown immediately as a large number.</li>
+      <li>Scroll down to see the full metadata grid: file name, size, title, author, subject, creator, producer, creation date, and modification date.</li>
+      <li>Click "Count another file" to reset and analyse a different PDF.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="pdf-to-image.html" class="ds-related-card"><span class="ds-related-icon">📄</span><div><div class="ds-related-name">PDF to Image</div><div class="ds-related-desc">Export PDF pages as PNG or JPEG images</div></div></a>
+    <a href="image-to-pdf.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image to PDF</div><div class="ds-related-desc">Combine images into a single PDF file</div></div></a>
+    <a href="file-size-converter.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">File Size Converter</div><div class="ds-related-desc">Convert between bytes, KB, MB, GB, and TB</div></div></a>
+    <a href="image-compressor.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">Image Compressor</div><div class="ds-related-desc">Reduce image file size with quality control</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand PDF Page Counting &amp; Metadata</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">A 24-page report PDF (1.8 MB) created in Microsoft Word</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Page count: 24 · Author: Jane Smith · Creator: Microsoft Word · Created: 2024-06-15</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Quickly verify a PDF has the expected number of pages before printing or sharing</li>
+          <li>Check the author and creation date of a received PDF document</li>
+          <li>Identify the software used to create or export a PDF (via Creator/Producer fields)</li>
+          <li>Confirm a PDF's file size before attaching it to an email</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is my PDF uploaded to a server?</strong><p>No. The tool runs entirely inside your browser using PDF.js. Your file is never sent to any server and never leaves your device.</p></div>
+        <div class="ds-seo-faq-item"><strong>What metadata fields are shown?</strong><p>The tool displays Title, Author, Subject, Creator, Producer, Creation Date, and Modification Date — all read from the PDF's internal document information dictionary. Fields not present in the file are shown as a dash.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it work with large PDFs?</strong><p>Yes. The tool only loads the document structure and metadata, not the full page rendering data, so even large PDFs are processed quickly with minimal memory use.</p></div>
+        <div class="ds-seo-faq-item"><strong>What PDF versions are supported?</strong><p>PDF.js supports the full range from PDF 1.x through PDF 2.0, including password-protected files (you will be prompted to enter the password).</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+
+</div>
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  const dropZone   = document.getElementById('dropZone');
+  const fileInput  = document.getElementById('fileInput');
+  const errorMsg   = document.getElementById('errorMsg');
+  const resultPanel = document.getElementById('resultPanel');
+
+  const statPages  = document.getElementById('statPages');
+  const statUnit   = document.getElementById('statUnit');
+
+  const mFilename  = document.getElementById('mFilename');
+  const mSize      = document.getElementById('mSize');
+  const mTitle     = document.getElementById('mTitle');
+  const mAuthor    = document.getElementById('mAuthor');
+  const mSubject   = document.getElementById('mSubject');
+  const mCreator   = document.getElementById('mCreator');
+  const mProducer  = document.getElementById('mProducer');
+  const mCreated   = document.getElementById('mCreated');
+  const mModified  = document.getElementById('mModified');
+
+  const btnReset   = document.getElementById('btnReset');
+
+  function formatSize(bytes) {
+    if (bytes >= 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    if (bytes >= 1024)        return (bytes / 1024).toFixed(1) + ' KB';
+    return bytes + ' B';
+  }
+
+  function formatDate(raw) {
+    if (!raw) return null;
+    // PDF date format: D:YYYYMMDDHHmmSSOHH'mm'
+    const m = raw.replace(/^D:/, '').match(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/);
+    if (m) {
+      try {
+        const d = new Date(`${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}`);
+        if (!isNaN(d)) return d.toLocaleString();
+      } catch (e) { /* fall through */ }
+    }
+    return raw;
+  }
+
+  function setMeta(el, value) {
+    if (value && value.trim()) {
+      el.textContent = value.trim();
+      el.classList.remove('empty');
+    } else {
+      el.textContent = '—';
+      el.classList.add('empty');
+    }
+  }
+
+  function showError(msg) {
+    errorMsg.textContent = msg;
+    errorMsg.classList.add('visible');
+  }
+
+  function clearError() {
+    errorMsg.textContent = '';
+    errorMsg.classList.remove('visible');
+  }
+
+  async function processPdf(file) {
+    clearError();
+    resultPanel.classList.remove('visible');
+
+    const arrayBuffer = await file.arrayBuffer();
+    let pdfDoc;
+    try {
+      pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    } catch (err) {
+      showError('Could not parse PDF. Make sure the file is a valid PDF document.');
+      return;
+    }
+
+    const numPages = pdfDoc.numPages;
+
+    // Page count
+    statPages.textContent = numPages;
+    statUnit.textContent  = numPages === 1 ? 'page' : 'pages';
+
+    // File info
+    mFilename.textContent = file.name;
+    mFilename.classList.remove('empty');
+    mSize.textContent = formatSize(file.size);
+    mSize.classList.remove('empty');
+
+    // Metadata
+    let info = {};
+    try {
+      const metaResult = await pdfDoc.getMetadata();
+      info = metaResult.info || {};
+    } catch (e) { /* metadata may be unavailable */ }
+
+    setMeta(mTitle,    info.Title);
+    setMeta(mAuthor,   info.Author);
+    setMeta(mSubject,  info.Subject);
+    setMeta(mCreator,  info.Creator);
+    setMeta(mProducer, info.Producer);
+
+    const createdFormatted  = formatDate(info.CreationDate);
+    const modifiedFormatted = formatDate(info.ModDate);
+    setMeta(mCreated,  createdFormatted);
+    setMeta(mModified, modifiedFormatted);
+
+    dropZone.style.display = 'none';
+    resultPanel.classList.add('visible');
+  }
+
+  function loadFile(file) {
+    if (!file) return;
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      showError('Please select a valid PDF file.');
+      return;
+    }
+    processPdf(file);
+  }
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    loadFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) loadFile(fileInput.files[0]); });
+
+  btnReset.addEventListener('click', () => {
+    resultPanel.classList.remove('visible');
+    clearError();
+    dropZone.style.display = '';
+    fileInput.value = '';
+  });
+</script>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

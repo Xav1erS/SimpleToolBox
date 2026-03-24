@@ -159,6 +159,8 @@ const SITE_TOOLS = [
   { name: 'CSS Gradient Generator',   href: 'tools/css-gradient-generator.html',   tag: 'generate', icon: '🌈', desc: 'Build linear and radial CSS gradients visually with color stops, live preview, and one-click copy' },
   { name: 'PDF to Image',             href: 'tools/pdf-to-image.html',             tag: 'pdf',      icon: '📄', desc: 'Convert PDF pages to PNG or JPEG images — no upload needed, runs in your browser' },
   { name: 'Image to PDF',             href: 'tools/image-to-pdf.html',             tag: 'pdf',      icon: '🖼️', desc: 'Combine multiple images into a single PDF file — set page size, orientation, and margins' },
+  { name: 'PDF Page Counter',         href: 'tools/pdf-page-counter.html',         tag: 'pdf',      icon: '🔢', desc: 'Count PDF pages and view document metadata — title, author, dates — instantly in your browser' },
+  { name: 'PDF Compressor',           href: 'tools/pdf-compress.html',             tag: 'pdf',      icon: '🗜️', desc: 'Reduce PDF file size with three quality presets — no upload, runs entirely in your browser' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -210,7 +212,7 @@ const HUB_PAGE_CONFIG = {
   },
   pdf: {
     sections: [
-      ['pdf-to-image', 'image-to-pdf']
+      ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress']
     ]
   }
 };

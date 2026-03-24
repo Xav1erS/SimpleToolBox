@@ -7801,6 +7801,41 @@ const TOOLS_META = [
   },
 },
 {
+  slug: 'pdf-page-counter',
+  title: 'PDF Page Counter & Metadata Viewer',
+  description: 'Count PDF pages and view document metadata — title, author, dates — instantly in your browser',
+  category: 'pdf',
+  tags: ['PDF page count', 'PDF metadata', 'count PDF pages', 'PDF info', 'PDF viewer'],
+  relatedTools: ['pdf-to-image', 'image-to-pdf', 'pdf-compress'],
+  faq: [
+    { q: 'Is my PDF uploaded to a server?', a: 'No. Everything runs in your browser using PDF.js. Your file never leaves your device.' },
+    { q: 'What metadata is shown?', a: 'Title, Author, Subject, Creator, Producer, Creation Date, and Modification Date are all displayed if present in the PDF.' },
+    { q: 'Does it work with large PDFs?', a: 'Yes. The tool only reads the document structure and metadata — it does not render every page — so even large files are counted quickly.' },
+    { q: 'What PDF versions are supported?', a: 'PDF 1.x through PDF 2.0 are all supported via PDF.js, which is the same engine used by Firefox.' },
+  ],
+  useCases: [
+    'Quickly check how many pages are in a document before printing',
+    'Verify PDF metadata before publishing or sharing',
+    'Confirm author and creation date on a received document',
+    'Check whether a PDF has been modified after creation',
+  ],
+  example: { input: 'Upload a 12-page report PDF', output: 'Page count: 12 · Title: "Q4 Report" · Author: "Jane Doe" · Created: Jan 5 2026' },
+  seoContent: {
+    whatIsTitle: 'What is PDF Page Counter?',
+    whatIsBody: 'PDF Page Counter is a browser tool that reads a PDF file locally and instantly displays the total page count along with embedded document metadata such as title, author, subject, creator application, producer, and creation and modification dates.',
+    howToTitle: 'How to Count PDF Pages',
+    howToSteps: [
+      'Click the drop zone or drag a PDF file onto it.',
+      'The page count and metadata appear immediately — no button press required.',
+      'Click "Count another file" to analyse a different document.',
+    ],
+  },
+  learnMore: {
+    title: 'What PDF Metadata Contains',
+    body: 'PDF documents embed a metadata dictionary in their structure. Common fields include Title (document name), Author (creator), Subject (topic), Creator (the application that created the source file, e.g. Word), Producer (the PDF renderer, e.g. Adobe Acrobat), CreationDate, and ModDate. These fields are optional and may be blank or spoofed, but when present they provide useful provenance information.',
+  },
+},
+{
   slug: 'pdf-to-image',
   title: 'PDF to Image Converter',
   description: 'Convert PDF pages to PNG or JPEG images — runs entirely in your browser with no file upload',
@@ -7834,6 +7869,42 @@ const TOOLS_META = [
   learnMore: {
     title: 'How Browser-Based PDF Rendering Works',
     body: 'PDF.js parses the PDF binary format in JavaScript, interprets each page\'s content stream, and renders it onto an HTML canvas element. The canvas is then exported as an image using the toDataURL() API. Because everything runs client-side, large files are handled without network latency and without privacy risk.',
+  },
+},
+{
+  slug: 'pdf-compress',
+  title: 'PDF Compressor — Reduce PDF File Size Online Free',
+  description: 'Reduce PDF file size with three quality presets — no upload, runs entirely in your browser',
+  category: 'pdf',
+  tags: ['PDF compressor', 'reduce PDF size', 'compress PDF', 'PDF optimizer', 'smaller PDF'],
+  relatedTools: ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'image-compressor'],
+  faq: [
+    { q: 'Is my PDF uploaded to a server?', a: 'No. Compression runs entirely in your browser using PDF.js and jsPDF. Your file never leaves your device.' },
+    { q: 'Why does the file size increase sometimes?', a: 'Very low-resolution or already-compressed PDFs cannot be reduced further. Try the High preset, which preserves more detail and often avoids size inflation.' },
+    { q: 'Does it preserve the text layer?', a: 'No. Each page is rasterized to a JPEG image and embedded in the new PDF. The text layer is lost. Use the High preset to keep text readable.' },
+    { q: 'What is the maximum file size?', a: 'There is no hard limit, but very large PDFs may take longer and use more browser memory. For best performance keep files under 50 MB.' },
+  ],
+  useCases: [
+    'Reduce a large PDF report before emailing it',
+    'Compress a scanned document to meet an upload size limit',
+    'Shrink presentation slides exported as PDF',
+    'Reduce storage footprint of archival documents',
+  ],
+  example: { input: '8 MB scanned PDF, Medium preset', output: 'Compressed PDF ~2.4 MB — 70% smaller' },
+  seoContent: {
+    whatIsTitle: 'What is PDF Compressor?',
+    whatIsBody: 'PDF Compressor re-renders each page of your PDF to a JPEG image at your chosen quality level and packages the result into a new PDF. Three presets let you balance file size against visual quality: High (150 DPI, best readability), Medium (96 DPI, balanced), and Low (72 DPI, smallest file).',
+    howToTitle: 'How to Compress a PDF',
+    howToSteps: [
+      'Click the drop zone or drag your PDF onto it.',
+      'Choose a quality preset: High, Medium, or Low.',
+      'Click "Compress PDF" and wait for all pages to render.',
+      'Review the size comparison, then click "Download" to save the compressed file.',
+    ],
+  },
+  learnMore: {
+    title: 'How Browser-Based PDF Compression Works',
+    body: 'The tool loads your PDF with PDF.js and renders each page onto an HTML canvas at the chosen resolution. The canvas is then exported as a JPEG using toDataURL() at the selected quality value (0–1). jsPDF collects each image and writes a new PDF binary. Because JPEG is a lossy format, the output file is significantly smaller at the cost of some visual fidelity — most noticeable in thin text at the Low preset.',
   },
 },
 {

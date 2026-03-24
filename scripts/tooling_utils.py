@@ -25,6 +25,7 @@ ALLOWED_TOOL_TAGS = {
     "calculator",
     "design",
     "reference",
+    "pdf",
 }
 
 

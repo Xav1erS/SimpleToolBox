@@ -14,6 +14,32 @@
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    /* Path bar */
+    .path-bar { display: flex; align-items: center; gap: 8px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 8px 12px; }
+    .path-prefix { font-size: 12px; font-weight: 600; color: var(--ds-color-text-muted); white-space: nowrap; }
+    .path-input { flex: 1; background: transparent; border: none; outline: none; font-size: 13px; font-family: var(--ds-font-mono); color: var(--ds-color-text-primary); padding: 0; }
+    .path-input::placeholder { color: var(--ds-color-text-muted); }
+    .path-run-btn { display: inline-flex; align-items: center; gap: 5px; min-height: 28px; padding: 0 12px; border-radius: var(--ds-radius-sm); background: var(--ds-color-accent); color: #fff; font-size: 12px; font-weight: 600; font-family: var(--ds-font-sans); border: none; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+    .path-run-btn:hover { opacity: 0.88; }
+
+    /* Example chips */
+    .example-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .example-chip { display: inline-flex; align-items: center; min-height: 24px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--ds-color-border); background: transparent; font-size: 11px; font-family: var(--ds-font-mono); color: var(--ds-color-text-secondary); cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+    .example-chip:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); background: rgba(94,106,210,0.06); }
+
+    /* Results panel */
+    .results-panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+    .results-header { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--ds-color-border); background: rgba(255,255,255,0.02); }
+    .results-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ds-color-text-muted); flex: 1; }
+    .results-badge { display: inline-flex; align-items: center; min-height: 20px; padding: 0 8px; border-radius: 999px; font-size: 11px; font-weight: 600; font-family: var(--ds-font-mono); background: rgba(94,106,210,0.15); color: var(--ds-color-accent); }
+    .results-badge.zero  { background: rgba(255,255,255,0.05); color: var(--ds-color-text-muted); }
+    .results-badge.error { background: rgba(239,68,68,0.15); color: #f87171; }
+    .results-output { font-family: var(--ds-font-mono); font-size: 13px; line-height: 1.7; padding: 14px 16px; min-height: 80px; max-height: 420px; overflow-y: auto; white-space: pre-wrap; word-break: break-all; color: var(--ds-color-text-secondary); }
+    .results-empty    { color: var(--ds-color-text-muted); font-size: 13px; padding: 16px 0; }
+    .results-no-match { color: var(--ds-color-text-muted); font-size: 13px; }
+    .results-error    { color: #f87171; font-size: 13px; }
+  </style>
     <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {

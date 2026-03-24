@@ -200,6 +200,83 @@ def c_meta_entry(content, fname):
         return f'Not in tools-meta.js — add rich metadata entry'
 
 
+@check('js_rendered_classes_need_styles', severity='warning')
+def c_js_rendered_styles(content, fname):
+    """Warn if JS renders HTML with custom class names but the page has no local <style> block.
+
+    This catches the pattern where DS migration stripped a tool's local <style> block
+    but the JS still renders innerHTML with tool-specific class names — leaving those
+    classes invisible/unstyled at runtime.
+    """
+    has_style_block = bool(re.search(r'<style\b', content))
+    if has_style_block:
+        return None  # Page defines its own styles — assumed to cover custom classes
+
+    # Strip non-runtime script blocks before scanning
+    clean = re.sub(r'<script\s+type="application/ld\+json">[\s\S]*?</script>', '', content)
+    clean = re.sub(r'<script[^>]+\bsrc=', '<script-src', clean)  # skip external src= scripts
+
+    script_blocks = re.findall(r'<script[^>]*>([\s\S]*?)</script>', clean)
+    if not script_blocks:
+        return None
+
+    # Collect class names used in JS-rendered HTML (template literals / string concatenation)
+    rendered_classes = set()
+    for block in script_blocks:
+        for m in re.finditer(r'class=["\`]([^"\`<>]+)["\`]', block):
+            for cls in m.group(1).split():
+                cls = cls.strip()
+                if cls:
+                    rendered_classes.add(cls)
+
+    if not rendered_classes:
+        return None
+
+    # Safe prefixes — either defined in design-system CSS or dual-named alongside a ds-* class
+    SAFE_PREFIXES = (
+        'ds-',          # design system components
+        'io-',          # legacy dual-names (paired with ds-tool-pane / ds-tool-pane__*)
+        'nav-',         # dual-names (paired with ds-nav*)
+        'tool-',        # dual-names (paired with ds-tool-header*)
+        'btn-',         # dual-names (paired with ds-tool-primary/secondary)
+        'info-',        # dual-names (paired with ds-tool-note*)
+        'options-',     # dual-names (paired with ds-tool-options)
+        'actions-',     # dual-names (paired with ds-tool-actions)
+        'panels-',      # dual-names (paired with ds-tool-workbench)
+        'arrow-',       # dual-names (paired with ds-tool-arrow)
+        'search-',      # defined in design-system nav search
+        'suggestion-',  # defined in design-system nav search
+        'footer-',      # defined in design-system footer section
+        'cat-',         # hub page category cards (defined in hub pages)
+        'hub-',         # hub page structural classes
+    )
+    SAFE_EXACT = {
+        'active', 'hidden', 'show', 'open', 'error', 'zero',
+        'copied', 'has-error',
+        'mark', 'scrolled', 'fade-in',
+        'badge-new', 'new-tools-label',
+        'tool-card', 'tool-icon', 'tool-name', 'tool-desc',
+        'tool-footer', 'tool-tag', 'tool-arrow', 'tool-card-top',
+    }
+
+    custom = set()
+    for cls in rendered_classes:
+        if cls in SAFE_EXACT:
+            continue
+        if any(cls.startswith(p) for p in SAFE_PREFIXES):
+            continue
+        if '-' in cls:  # only flag hyphenated structural component-style names
+            custom.add(cls)
+
+    if custom:
+        sample = sorted(custom)[:5]
+        suffix = '...' if len(custom) > 5 else ''
+        return (
+            f'No <style> block; JS renders custom classes without definitions: '
+            f'{", ".join(sample)}{suffix}'
+        )
+
+
 # ── Runner ──────────────────────────────────────────────────────────────────
 
 def validate_file(path, fname):

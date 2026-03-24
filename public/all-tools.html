@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>All Tools — Simple ToolBox</title>
-  <meta name="description" content="Browse all 156 free browser-based tools on Simple ToolBox. Search, filter by category, and jump between text, image, developer, calculator, design, and reference tools." />
+  <meta name="description" content="Browse all 156 free browser-based tools for everyday tasks on Simple ToolBox. Search and filter by category — image, text, developer, calculator, converter, generator, design, and reference." />
   <link rel="canonical" href="https://simpletoolbox.dev/all-tools" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/all-tools.html" />
@@ -57,16 +57,10 @@
     .nr-link { color: var(--ds-color-accent); text-decoration: none; }
     .nr-link:hover { text-decoration: underline; }
 
-    /* Quick sections (Popular + Recently Used) */
-    .quick-section { max-width: 1100px; margin: 0 auto; padding: 0 24px 4px; }
-    .quick-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-    .quick-title { font-size: 13px; font-weight: 700; color: var(--ds-color-text-secondary); }
+    /* Grouped display sections */
+    .tool-section-title { font-size: 13px; font-weight: 700; padding: 0 24px 10px; color: var(--ds-color-text-secondary); letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; max-width: 1100px; margin: 20px auto 0; }
     .quick-clear { font-size: 11px; color: var(--ds-color-text-muted); background: none; border: 1px solid var(--ds-color-border); cursor: pointer; padding: 2px 8px; border-radius: 999px; font-family: var(--ds-font-sans); transition: color 0.15s, border-color 0.15s; }
     .quick-clear:hover { color: var(--ds-color-text-secondary); border-color: rgba(255,255,255,0.2); }
-    .tool-grid--quick { padding: 0 0 8px; }
-
-    /* Grouped display sections */
-    .tool-section-title { font-size: 13px; font-weight: 700; padding: 0 24px 8px; color: var(--ds-color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; max-width: 1100px; margin: 16px auto 0; }
     .tool-section-count { font-size: 11px; font-weight: 500; color: var(--ds-color-text-muted); background: var(--ds-color-surface-tint); padding: 1px 7px; border-radius: 999px; font-family: var(--ds-font-mono); text-transform: none; letter-spacing: 0; }
     .tool-grid--section { padding-bottom: 4px; }
     #toolGrid.tool-grid--grouped { display: block; padding: 0 0 80px; }
@@ -136,22 +130,6 @@
   <a href="generator-tools.html" class="hub-link">⚙️ Generators</a>
 </div>
 
-<!-- Recently Used -->
-<div class="quick-section" id="recentSection" style="display:none">
-  <div class="quick-header">
-    <span class="quick-title">🕐 Recently Used</span>
-    <button id="clearRecent" class="quick-clear">Clear</button>
-  </div>
-  <div class="tool-grid tool-grid--quick" id="recentGrid"></div>
-</div>
-
-<!-- Popular Tools -->
-<div class="quick-section" id="popularSection">
-  <div class="quick-header">
-    <span class="quick-title">🔥 Popular</span>
-  </div>
-  <div class="tool-grid tool-grid--quick" id="popularGrid"></div>
-</div>
 
 <div class="filter-bar">
   <div class="filter-search">
@@ -867,27 +845,7 @@
     </a>`;
   }
 
-  // ── Popular & Recently Used ───────────────────────────────────────────────
-
-  function renderPopular() {
-    const grid = document.getElementById('popularGrid');
-    if (!grid) return;
-    const tools = POPULAR_SLUGS
-      .map(s => ALL_TOOLS.find(t => t.href.endsWith('/' + s + '.html') || t.href.endsWith(s + '.html')))
-      .filter(Boolean);
-    grid.innerHTML = tools.map(renderToolCard).join('');
-  }
-
-  function renderRecent() {
-    const section = document.getElementById('recentSection');
-    const grid    = document.getElementById('recentGrid');
-    if (!section || !grid) return;
-    const list  = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-    const tools = list.map(href => ALL_TOOLS.find(t => t.href === href)).filter(Boolean);
-    if (!tools.length) { section.style.display = 'none'; return; }
-    grid.innerHTML     = tools.map(renderToolCard).join('');
-    section.style.display = '';
-  }
+  // ── Recently Used helpers ─────────────────────────────────────────────────
 
   function recordRecent(href) {
     let list = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
@@ -902,13 +860,30 @@
   let gridMode    = ''; // 'grouped' | 'flat'
 
   function renderGroupedHTML() {
-    const sections = CATEGORY_SECTIONS.map(sec => {
+    // Recently Used (only when records exist)
+    const recentList  = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    const recentTools = recentList.map(href => ALL_TOOLS.find(t => t.href === href)).filter(Boolean);
+    const recentHtml  = recentTools.length
+      ? `<div class="tool-section-title">🕐 Recently Used <button id="clearRecent" class="quick-clear">Clear</button></div>
+<div class="tool-grid tool-grid--section">${recentTools.map(renderToolCard).join('')}</div>`
+      : '';
+
+    // Popular
+    const popularTools = POPULAR_SLUGS
+      .map(s => ALL_TOOLS.find(t => t.href.endsWith('/' + s + '.html') || t.href.endsWith(s + '.html')))
+      .filter(Boolean);
+    const popularHtml = `<div class="tool-section-title">🔥 Popular</div>
+<div class="tool-grid tool-grid--section">${popularTools.map(renderToolCard).join('')}</div>`;
+
+    // Category sections
+    const categoriesHtml = CATEGORY_SECTIONS.map(sec => {
       const tools = ALL_TOOLS.filter(t => sec.tags.includes(t.tag));
       if (!tools.length) return '';
       return `<div class="tool-section-title">${sec.label} <span class="tool-section-count">${tools.length}</span></div>
 <div class="tool-grid tool-grid--section">${tools.map(renderToolCard).join('')}</div>`;
     }).join('');
-    return sections + '<div class="no-result" id="noResult"></div>';
+
+    return recentHtml + popularHtml + categoriesHtml + '<div class="no-result" id="noResult"></div>';
   }
 
   function renderFlatHTML() {
@@ -987,21 +962,20 @@
     }
   }
 
-  renderPopular();
-  renderRecent();
   rebuildGrid();
 
   // ── Event Listeners ──────────────────────────────────────────────────────
 
-  // Record tool click → update recently used
+  // Record tool click + handle clearRecent (both dynamically rendered)
   document.addEventListener('click', e => {
-    const card = e.target.closest('#toolGrid .tool-card, #popularGrid .tool-card');
-    if (card) { recordRecent(card.getAttribute('href')); renderRecent(); }
-  });
-
-  document.getElementById('clearRecent').addEventListener('click', () => {
-    localStorage.removeItem(LS_KEY);
-    renderRecent();
+    if (e.target.id === 'clearRecent') {
+      localStorage.removeItem(LS_KEY);
+      gridMode = ''; // force grouped rebuild to re-render without Recent section
+      rebuildGrid();
+      return;
+    }
+    const card = e.target.closest('#toolGrid .tool-card');
+    if (card) recordRecent(card.getAttribute('href'));
   });
 
   document.querySelectorAll('.filter-tag').forEach(btn => {

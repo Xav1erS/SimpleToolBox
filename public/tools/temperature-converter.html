@@ -285,5 +285,6 @@ document.getElementById('btnClear').addEventListener('click', () => {
   ['cardC','cardF','cardK'].forEach(c => document.getElementById(c).classList.remove('active'));
 });
 </script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

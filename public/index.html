@@ -518,6 +518,8 @@
     #clearFilter:hover { border-color: var(--ds-color-accent); color: var(--ds-color-accent); }
     .no-result { text-align: center; padding: 48px; color: var(--ds-color-text-muted); font-size: 14px; display: none; }
     .no-result.show { display: block; }
+    .badge-new { display: inline-block; padding: 2px 6px; background: var(--accent, #7c6af7); color: #fff; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; vertical-align: middle; margin-left: 5px; line-height: 1.4; }
+    .new-tools-label { font-size: 12px; color: var(--accent, #7c6af7); border: 1px solid var(--accent, #7c6af7); border-radius: 999px; padding: 2px 10px; margin-left: 10px; vertical-align: middle; opacity: 0.85; }
   </style>
   <script type="application/ld+json">
   {
@@ -755,6 +757,18 @@
     </div>
   </div>
   <div class="no-result" id="noResult">No categories found. Try a different keyword.</div>
+</div>
+
+<!-- NEW TOOLS -->
+<div class="section fade-in" id="newToolsSection">
+  <div class="section-header">
+    <h2 class="section-title">New Tools</h2>
+    <span class="new-tools-label">Recently added</span>
+    <a href="all-tools.html" class="section-more">All tools →</a>
+  </div>
+  <div class="tool-grid" id="newToolGrid">
+    <!-- JS rendered -->
+  </div>
 </div>
 
 <!-- FEATURED TOOLS -->
@@ -1060,6 +1074,30 @@
     popularToolGrid.innerHTML = tools.map(renderToolCard).join('');
   }
 
+  // ── NEW TOOLS ────────────────────────────────────────────
+  const NEW_TOOLS_COUNT = 6;
+
+  function renderNewToolCard(tool) {
+    return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}">
+      <div class="tool-card-top">
+        <div class="tool-icon">${tool.icon}</div>
+        <div class="tool-name">${tool.name}<span class="badge-new">New</span></div>
+      </div>
+      <div class="tool-desc">${tool.desc}</div>
+      <div class="tool-footer">
+        <span class="tool-tag">${tool.tag}</span>
+        <span class="tool-arrow">→</span>
+      </div>
+    </a>`;
+  }
+
+  function renderNewTools() {
+    const grid = document.getElementById('newToolGrid');
+    if (!grid) return;
+    const tools = TOOLS.slice(-NEW_TOOLS_COUNT);
+    grid.innerHTML = tools.map(renderNewToolCard).join('');
+  }
+
   function syncHomepageCounts() {
     const total = TOOLS.length;
     const statEl = document.getElementById('statToolCount');
@@ -1079,6 +1117,7 @@
     });
   }
 
+  renderNewTools();
   renderPopularTools();
   syncHomepageCounts();
 

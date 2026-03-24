@@ -110,6 +110,9 @@ const SITE_TOOLS = [
   { name: 'Word Frequency Counter',    href: 'tools/word-frequency-counter.html',    tag: 'text',       icon: '📊', desc: 'Rank every word in pasted text by how often it appears' },
   { name: 'CSV Column Extractor',      href: 'tools/csv-column-extractor.html',      tag: 'text',       icon: '📋', desc: 'Extract a single column from CSV by name or index' },
   { name: 'Text List to Array',        href: 'tools/text-list-to-array.html',        tag: 'text',       icon: '🔤', desc: 'Convert a plain list to a JS, Python, PHP, Ruby, or JSON array' },
+  { name: 'Number Extractor',          href: 'tools/number-extractor.html',          tag: 'text',       icon: '🔢', desc: 'Extract all numbers from pasted text with sum, min, max, and average' },
+  { name: 'Image Flipper',             href: 'tools/image-flipper.html',             tag: 'image',      icon: '🔄', desc: 'Flip any image horizontally or vertically in your browser' },
+  { name: 'Compound Interest Calculator', href: 'tools/compound-interest-calculator.html', tag: 'calculator', icon: '📈', desc: 'Calculate compound interest with year-by-year growth table' },
   { name: 'Percentage Calculator',     href: 'tools/percentage-calculator.html',     tag: 'calculator', icon: '🔢', desc: 'Find X% of Y, what % X is of Y, or percentage change' },
   { name: 'Age Calculator',            href: 'tools/age-calculator.html',            tag: 'calculator', icon: '📅', desc: 'Calculate exact age in years, months, days and next birthday' },
   { name: 'Tip Calculator',           href: 'tools/tip-calculator.html',           tag: 'calculator', icon: '🍽️', desc: 'Calculate tip amount and split the bill among any number of people' },
@@ -158,7 +161,7 @@ const HUB_PAGE_CONFIG = {
     sections: [
       ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'png-to-webp', 'svg-to-png', 'bmp-to-png'],
       ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
-      ['image-rotate', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
+      ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
       ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
       ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor']
     ]
@@ -174,12 +177,12 @@ const HUB_PAGE_CONFIG = {
   },
   text: {
     sections: [
-      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech']
+      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech', 'number-extractor']
     ]
   },
   calculator: {
     sections: [
-      ['percentage-calculator', 'percentage-change-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator'],
+      ['percentage-calculator', 'percentage-change-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator', 'compound-interest-calculator'],
       ['mortgage-calculator', 'loan-calculator', 'savings-calculator'],
       ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator'],
       ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'],

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Compound Interest Calculator Online | Simple ToolBox</title>
+  <meta name="description" content="Calculate compound interest with principal, rate, time, and compounding frequency. See final balance, total interest earned, and a year-by-year growth table." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/compound-interest-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/compound-interest-calculator.html" />
+  <meta property="og:title" content="Compound Interest Calculator Online | Simple ToolBox" />
+  <meta property="og:description" content="Calculate compound interest and see year-by-year balance growth instantly." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Compound Interest Calculator",
+  "description": "Calculate compound interest with principal, rate, time, and compounding frequency. See final balance, total interest earned, and a year-by-year growth table.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/compound-interest-calculator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is compound interest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compound interest is interest calculated on both the initial principal and the accumulated interest. It grows faster than simple interest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does compounding frequency mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is how often interest is applied per year. Monthly compounding (12×/yr) grows faster than annual (1×/yr) at the same nominal rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is APY?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Annual Percentage Yield (APY) is the effective annual rate after compounding. APY = (1 + r/n)^n - 1. It lets you compare accounts with different compounding frequencies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this include monthly contributions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enter a monthly contribution amount and the calculator will include those deposits in the year-by-year growth table."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 13px; color: var(--ds-color-text-muted); font-weight: 500; }
+    .field input, .field select { padding: 11px 13px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-size: 15px; }
+    .result-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .result-card { padding: 18px 16px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); }
+    .result-card__label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ds-color-text-muted); margin-bottom: 6px; }
+    .result-card__value { font-size: 22px; font-weight: 700; }
+    .result-card--accent .result-card__value { color: var(--ds-color-accent, #7c6af7); }
+    .growth-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .growth-table th { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--ds-color-border); color: var(--ds-color-text-muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .growth-table td { padding: 8px 10px; border-bottom: 1px solid var(--ds-color-border); }
+    .growth-table tr:last-child td { border-bottom: none; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Compound Interest Calculator <span class="ds-tool-badge">calculator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📈</div><h1 class="ds-tool-header__title">Compound Interest Calculator</h1></div><p class="ds-tool-header__desc">Calculate final balance and total interest for any principal, annual rate, time period, and compounding frequency. Includes a full year-by-year growth table.</p><div class="ds-tool-tag-row"><span class="ds-tag">compound interest</span><span class="ds-tag">investment</span><span class="ds-tag">savings</span><span class="ds-tag">finance</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-card">
+    <div class="ds-card__body">
+      <div class="input-grid">
+        <div class="field">
+          <label for="principal">Principal ($)</label>
+          <input type="number" id="principal" value="10000" min="0" step="100" />
+        </div>
+        <div class="field">
+          <label for="rate">Annual Rate (%)</label>
+          <input type="number" id="rate" value="7" min="0" step="0.1" />
+        </div>
+        <div class="field">
+          <label for="years">Time (years)</label>
+          <input type="number" id="years" value="10" min="1" max="100" step="1" />
+        </div>
+        <div class="field">
+          <label for="freq">Compounding</label>
+          <select id="freq">
+            <option value="1">Annually (1×/yr)</option>
+            <option value="2">Semi-annually (2×/yr)</option>
+            <option value="4">Quarterly (4×/yr)</option>
+            <option value="12" selected>Monthly (12×/yr)</option>
+            <option value="52">Weekly (52×/yr)</option>
+            <option value="365">Daily (365×/yr)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="contribution">Monthly Contribution ($)</label>
+          <input type="number" id="contribution" value="0" min="0" step="50" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="result-row">
+    <div class="result-card result-card--accent"><div class="result-card__label">Final Balance</div><div class="result-card__value" id="rBalance">—</div></div>
+    <div class="result-card"><div class="result-card__label">Total Interest</div><div class="result-card__value" id="rInterest">—</div></div>
+    <div class="result-card"><div class="result-card__label">Total Contributed</div><div class="result-card__value" id="rContributed">—</div></div>
+    <div class="result-card"><div class="result-card__label">Effective Rate (APY)</div><div class="result-card__value" id="rApy">—</div></div>
+  </div>
+  <section class="ds-card">
+    <div class="ds-card__body">
+      <div style="overflow-x:auto">
+        <table class="growth-table" id="growthTable">
+          <thead><tr><th>Year</th><th>Balance</th><th>Interest Earned</th><th>Contributions</th></tr></thead>
+          <tbody id="growthBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is a Compound Interest Calculator?</h2>
+    <p>A compound interest calculator shows how money grows when interest is added to the principal regularly. Unlike simple interest, compound interest earns &quot;interest on interest,&quot; which causes exponential growth over time. The formula is A = P(1 + r/n)^(nt), where P is principal, r is the annual rate, n is compounding frequency per year, and t is time in years.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Calculate Compound Interest</h2>
+    <ol>
+      <li>Enter the starting principal amount.</li>
+      <li>Set the annual interest rate (%).</li>
+      <li>Enter the number of years.</li>
+      <li>Choose the compounding frequency (monthly is most common for savings accounts).</li>
+      <li>Optionally add a monthly contribution to include regular deposits.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="savings-calculator.html" class="ds-related-card"><span class="ds-related-icon">💰</span><div><div class="ds-related-name">Savings Calculator</div><div class="ds-related-desc">Project future savings with compound interest and monthly contributions</div></div></a>
+    <a href="loan-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏦</span><div><div class="ds-related-name">Loan Calculator</div><div class="ds-related-desc">Calculate monthly loan payments and amortization schedule</div></div></a>
+    <a href="mortgage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏠</span><div><div class="ds-related-name">Mortgage Calculator</div><div class="ds-related-desc">Calculate monthly mortgage payment, total interest, and amortization schedule</div></div></a>
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Compound Interest vs Simple Interest</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">$10,000 at 7% for 10 years (monthly)</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">$20,097.33 final balance · $10,097.33 interest</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Project savings account balance after N years</li>
+          <li>Compare annual vs monthly compounding</li>
+          <li>Estimate investment growth with regular contributions</li>
+          <li>Calculate how much a lump sum grows over time</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>What is compound interest?</strong><p>Compound interest is interest calculated on both the initial principal and the accumulated interest. It grows faster than simple interest.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does compounding frequency mean?</strong><p>It is how often interest is applied per year. Monthly compounding (12×/yr) grows faster than annual (1×/yr) at the same nominal rate.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is APY?</strong><p>Annual Percentage Yield (APY) is the effective annual rate after compounding. APY = (1 + r/n)^n - 1. It lets you compare accounts with different compounding frequencies.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does this include monthly contributions?</strong><p>Yes. Enter a monthly contribution amount and the calculator will include those deposits in the year-by-year growth table.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  const fmt = (n) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  function calc() {
+    const P = parseFloat(document.getElementById('principal').value) || 0;
+    const r = (parseFloat(document.getElementById('rate').value) || 0) / 100;
+    const t = Math.max(1, Math.min(100, parseInt(document.getElementById('years').value, 10) || 1));
+    const n = parseInt(document.getElementById('freq').value, 10);
+    const m = parseFloat(document.getElementById('contribution').value) || 0;
+
+    const apy = Math.pow(1 + r / n, n) - 1;
+    const rows = [];
+    let balance = P;
+    let totalContrib = P;
+    for (let y = 1; y <= t; y++) {
+      const startBalance = balance;
+      // compound for 12 months
+      for (let mo = 0; mo < 12; mo++) {
+        balance = balance * Math.pow(1 + r / n, n / 12) + m;
+      }
+      totalContrib += m * 12;
+      rows.push({ year: y, balance, interest: balance - totalContrib, contributions: totalContrib - P });
+    }
+    const finalBalance = balance;
+    const totalInterest = finalBalance - totalContrib;
+    document.getElementById('rBalance').textContent = fmt(finalBalance);
+    document.getElementById('rInterest').textContent = fmt(totalInterest);
+    document.getElementById('rContributed').textContent = fmt(totalContrib);
+    document.getElementById('rApy').textContent = (apy * 100).toFixed(3) + '%';
+    const tbody = document.getElementById('growthBody');
+    tbody.innerHTML = rows.map(row =>
+      `<tr><td>${row.year}</td><td>${fmt(row.balance)}</td><td>${fmt(Math.max(0, row.interest))}</td><td>${fmt(P + row.contributions)}</td></tr>`
+    ).join('');
+  }
+  ['principal','rate','years','freq','contribution'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+  calc();
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

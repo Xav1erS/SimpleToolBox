@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Number Extractor — Extract Numbers from Text | Simple ToolBox</title>
+  <meta name="description" content="Extract all numbers from pasted text instantly. Supports integers, decimals, negative numbers, and prices. Copy results as a list or comma-separated values." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/number-extractor" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/number-extractor.html" />
+  <meta property="og:title" content="Number Extractor — Extract Numbers from Text | Simple ToolBox" />
+  <meta property="og:description" content="Extract all numbers from pasted text. Supports integers, decimals, and negatives." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Number Extractor",
+  "description": "Extract all numbers from pasted text instantly. Supports integers, decimals, negative numbers, and prices. Copy results as a list or comma-separated values.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/number-extractor"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it extract decimal numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The \"Include decimals\" option is on by default and extracts numbers like 3.14, 0.5, and 99.99."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it extract negative numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The \"Include negatives\" option extracts numbers prefixed with a minus sign, like -10 or -3.5."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I remove duplicates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enable the \"Deduplicate\" option to keep only unique values in the results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it upload my text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All extraction runs in your browser. No text is sent to any server."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    .options-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .opt-label { display: flex; align-items: center; gap: 6px; font-size: 14px; cursor: pointer; }
+    .stats-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .stat-pill { padding: 6px 14px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: 999px; font-size: 13px; }
+    .stat-pill strong { color: var(--ds-color-text-primary); }
+    .number-chip { display: inline-block; padding: 4px 10px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: 6px; font-size: 14px; font-family: var(--ds-font-mono, monospace); margin: 3px; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Number Extractor <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔢</div><h1 class="ds-tool-header__title">Number Extractor</h1></div><p class="ds-tool-header__desc">Paste any text and instantly extract all numbers — integers, decimals, negatives, and prices. Copy results as a list or comma-separated values.</p><div class="ds-tool-tag-row"><span class="ds-tag">extract numbers</span><span class="ds-tag">parse text</span><span class="ds-tag">data extraction</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-main ds-tool-stack">
+  <div class="ds-tool-pane"><div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Input Text</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button></div></div><textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste text containing numbers, prices, data tables..." spellcheck="false"></textarea><div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="charStat">0 chars</span></div></div>
+  <div class="options-row">
+    <label class="opt-label"><input type="checkbox" id="optNeg" checked /> Include negatives</label>
+    <label class="opt-label"><input type="checkbox" id="optDec" checked /> Include decimals</label>
+    <label class="opt-label"><input type="checkbox" id="optDedup" /> Deduplicate</label>
+  </div>
+  <div class="stats-row">
+    <span class="stat-pill">Found: <strong id="statCount">0</strong></span>
+    <span class="stat-pill">Sum: <strong id="statSum">—</strong></span>
+    <span class="stat-pill">Min: <strong id="statMin">—</strong></span>
+    <span class="stat-pill">Max: <strong id="statMax">—</strong></span>
+    <span class="stat-pill">Avg: <strong id="statAvg">—</strong></span>
+  </div>
+  <div class="ds-card">
+    <div class="ds-card__body">
+      <div style="margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="io-btn" id="btnCopyList">Copy as List</button>
+        <button class="io-btn" id="btnCopyCSV">Copy as CSV</button>
+      </div>
+      <div id="resultArea" style="min-height:60px">
+        <span style="color:var(--ds-color-text-muted);font-size:14px">Paste text above to extract numbers.</span>
+      </div>
+    </div>
+  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is Number Extractor?</h2>
+    <p>Number Extractor scans pasted text and pulls out every numeric value — integers, decimals, and negatives. It is useful for quickly gathering data from reports, product listings, log files, or any text that contains mixed numeric content. The tool also computes instant statistics: count, sum, min, max, and average.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Extract Numbers from Text</h2>
+    <ol>
+      <li>Paste any text into the input area.</li>
+      <li>Choose options: include decimals, include negatives, or deduplicate.</li>
+      <li>All extracted numbers appear instantly with statistics.</li>
+      <li>Click &quot;Copy as List&quot; to copy one number per line, or &quot;Copy as CSV&quot; for a comma-separated format.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="email-extractor.html" class="ds-related-card"><span class="ds-related-icon">✉️</span><div><div class="ds-related-name">Email Extractor</div><div class="ds-related-desc">Extract email addresses from pasted text, logs, or exports</div></div></a>
+    <a href="url-extractor.html" class="ds-related-card"><span class="ds-related-icon">🔗</span><div><div class="ds-related-name">URL Extractor</div><div class="ds-related-desc">Extract links from pasted text and normalize plain www URLs</div></div></a>
+    <a href="phone-extractor.html" class="ds-related-card"><span class="ds-related-icon">📞</span><div><div class="ds-related-name">Phone Number Extractor</div><div class="ds-related-desc">Extract phone numbers from text, notes, or lead lists</div></div></a>
+    <a href="csv-column-extractor.html" class="ds-related-card"><span class="ds-related-icon">📋</span><div><div class="ds-related-name">CSV Column Extractor</div><div class="ds-related-desc">Extract a single column from CSV by name or index</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>When to Use Number Extractor</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">The package weighs 2.5 kg and costs $14.99. Shipping: -$3.00.</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">2.5, 14.99, -3.0 · Sum: 14.49</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Extract prices or quantities from product descriptions</li>
+          <li>Pull numeric data from reports or logs</li>
+          <li>Sum all numbers in a document</li>
+          <li>Extract measurements from technical specifications</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Does it extract decimal numbers?</strong><p>Yes. The &quot;Include decimals&quot; option is on by default and extracts numbers like 3.14, 0.5, and 99.99.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it extract negative numbers?</strong><p>Yes. The &quot;Include negatives&quot; option extracts numbers prefixed with a minus sign, like -10 or -3.5.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I remove duplicates?</strong><p>Yes. Enable the &quot;Deduplicate&quot; option to keep only unique values in the results.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it upload my text?</strong><p>No. All extraction runs in your browser. No text is sent to any server.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+  'use strict';
+  const SAMPLE = 'The package weighs 2.5 kg and costs $14.99. Shipping is -$3.00 off if you spend over 50 dollars. Order #1042 ships in 3-5 business days. Temperature range: -10 to 40°C.';
+  const inputText = document.getElementById('inputText');
+  function extract() {
+    const text = inputText.value;
+    document.getElementById('charStat').textContent = `${text.length.toLocaleString()} chars`;
+    const neg = document.getElementById('optNeg').checked;
+    const dec = document.getElementById('optDec').checked;
+    const dedup = document.getElementById('optDedup').checked;
+    let pattern;
+    if (neg && dec) pattern = /-?\d+(?:\.\d+)?/g;
+    else if (neg) pattern = /-?\d+/g;
+    else if (dec) pattern = /\d+(?:\.\d+)?/g;
+    else pattern = /\d+/g;
+    let nums = (text.match(pattern) || []).map(Number);
+    if (dedup) nums = [...new Set(nums)];
+    document.getElementById('statCount').textContent = nums.length;
+    if (nums.length) {
+      const sum = nums.reduce((a, b) => a + b, 0);
+      document.getElementById('statSum').textContent = parseFloat(sum.toFixed(6));
+      document.getElementById('statMin').textContent = Math.min(...nums);
+      document.getElementById('statMax').textContent = Math.max(...nums);
+      document.getElementById('statAvg').textContent = parseFloat((sum / nums.length).toFixed(4));
+      document.getElementById('resultArea').innerHTML = nums.map(n => `<span class="number-chip">${n}</span>`).join('');
+    } else {
+      ['statSum','statMin','statMax','statAvg'].forEach(id => document.getElementById(id).textContent = '—');
+      document.getElementById('resultArea').innerHTML = '<span style="color:var(--ds-color-text-muted);font-size:14px">No numbers found.</span>';
+    }
+    return nums;
+  }
+  let lastNums = [];
+  function run() { lastNums = extract(); }
+  inputText.addEventListener('input', run);
+  ['optNeg','optDec','optDedup'].forEach(id => document.getElementById(id).addEventListener('change', run));
+  document.getElementById('btnSample').addEventListener('click', () => { inputText.value = SAMPLE; run(); });
+  document.getElementById('btnClear').addEventListener('click', () => { inputText.value = ''; run(); });
+  document.getElementById('btnPaste').addEventListener('click', async () => { try { inputText.value = await navigator.clipboard.readText(); run(); } catch {} });
+  async function copyText(text) {
+    try { await navigator.clipboard.writeText(text); } catch {}
+  }
+  document.getElementById('btnCopyList').addEventListener('click', () => copyText(lastNums.join('\n')));
+  document.getElementById('btnCopyCSV').addEventListener('click', () => copyText(lastNums.join(',')));
+  run();
+</script>
+<footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+</body>
+</html>

@@ -7581,7 +7581,117 @@ const TOOLS_META = [
       title: 'Torque Units in Practice',
       body: 'Torque = Force x Distance. 1 N·m = a 1-newton force applied 1 meter from the pivot. Engine torque specs are given in N·m (metric) or ft·lb (US). Fastener torque specs use N·m or in·lb for smaller bolts. A typical car wheel lug nut is torqued to about 100–130 N·m (74–96 ft·lb). Always check whether a spec uses ft·lb or in·lb — confusing the two can cause over- or under-tightening by 12x.',
     },
+  },
+  {
+    slug: 'compound-interest-calculator',
+    title: 'Compound Interest Calculator',
+    description: 'Calculate compound interest with principal, rate, time, and compounding frequency. See final balance, total interest earned, and a year-by-year growth table.',
+    category: 'calculator',
+    tags: ['calculator'],
+    relatedTools: ['savings-calculator', 'loan-calculator', 'mortgage-calculator', 'percentage-calculator'],
+    faq: [
+      { q: 'What is compound interest?', a: 'Compound interest is interest calculated on both the initial principal and the accumulated interest. It grows faster than simple interest.' },
+      { q: 'What does compounding frequency mean?', a: 'It is how often interest is applied per year. Monthly compounding (12×/yr) grows faster than annual (1×/yr) at the same nominal rate.' },
+      { q: 'What is APY?', a: 'Annual Percentage Yield (APY) is the effective annual rate after compounding. APY = (1 + r/n)^n - 1. It lets you compare accounts with different compounding frequencies.' },
+      { q: 'Does this include monthly contributions?', a: 'Yes. Enter a monthly contribution amount and the calculator will include those deposits in the year-by-year growth table.' },
+    ],
+    useCases: [
+      'Project savings account balance after N years',
+      'Compare annual vs monthly compounding',
+      'Estimate investment growth with regular contributions',
+      'Calculate how much a lump sum grows over time',
+    ],
+    example: { input: '$10,000 at 7% for 10 years (monthly)', output: '$20,097.33 final balance · $10,097.33 interest' },
+    seoContent: {
+      whatIsTitle: 'What is a Compound Interest Calculator?',
+      whatIsBody: 'A compound interest calculator shows how money grows when interest is added to the principal regularly. Unlike simple interest, compound interest earns "interest on interest," which causes exponential growth over time. The formula is A = P(1 + r/n)^(nt), where P is principal, r is the annual rate, n is compounding frequency per year, and t is time in years.',
+      howToTitle: 'How to Calculate Compound Interest',
+      howToSteps: [
+        'Enter the starting principal amount.',
+        'Set the annual interest rate (%).',
+        'Enter the number of years.',
+        'Choose the compounding frequency (monthly is most common for savings accounts).',
+        'Optionally add a monthly contribution to include regular deposits.',
+      ],
+    },
+    learnMore: {
+      title: 'Compound Interest vs Simple Interest',
+      body: 'Simple interest grows linearly: $10,000 at 7% for 10 years = $17,000. Compound interest grows exponentially: $10,000 at 7% compounded monthly for 10 years = $20,097. The difference is the "interest on interest" effect. The Rule of 72 is a quick estimate: divide 72 by the annual rate to get the approximate number of years to double your money (72 / 7% ≈ 10.3 years).',
+    },
+  },
+  {
+    slug: 'number-extractor',
+    title: 'Number Extractor',
+    description: 'Extract all numbers from pasted text instantly. Supports integers, decimals, negative numbers, and prices. Copy results as a list or comma-separated values.',
+    category: 'text',
+    tags: ['text'],
+    relatedTools: ['email-extractor', 'url-extractor', 'phone-extractor', 'csv-column-extractor'],
+    faq: [
+      { q: 'Does it extract decimal numbers?', a: 'Yes. The "Include decimals" option is on by default and extracts numbers like 3.14, 0.5, and 99.99.' },
+      { q: 'Does it extract negative numbers?', a: 'Yes. The "Include negatives" option extracts numbers prefixed with a minus sign, like -10 or -3.5.' },
+      { q: 'Can I remove duplicates?', a: 'Yes. Enable the "Deduplicate" option to keep only unique values in the results.' },
+      { q: 'Does it upload my text?', a: 'No. All extraction runs in your browser. No text is sent to any server.' },
+    ],
+    useCases: [
+      'Extract prices or quantities from product descriptions',
+      'Pull numeric data from reports or logs',
+      'Sum all numbers in a document',
+      'Extract measurements from technical specifications',
+    ],
+    example: { input: 'The package weighs 2.5 kg and costs $14.99. Shipping: -$3.00.', output: '2.5, 14.99, -3.0 · Sum: 14.49' },
+    seoContent: {
+      whatIsTitle: 'What is Number Extractor?',
+      whatIsBody: 'Number Extractor scans pasted text and pulls out every numeric value — integers, decimals, and negatives. It is useful for quickly gathering data from reports, product listings, log files, or any text that contains mixed numeric content. The tool also computes instant statistics: count, sum, min, max, and average.',
+      howToTitle: 'How to Extract Numbers from Text',
+      howToSteps: [
+        'Paste any text into the input area.',
+        'Choose options: include decimals, include negatives, or deduplicate.',
+        'All extracted numbers appear instantly with statistics.',
+        'Click "Copy as List" to copy one number per line, or "Copy as CSV" for a comma-separated format.',
+      ],
+    },
+    learnMore: {
+      title: 'When to Use Number Extractor',
+      body: 'Common use cases include extracting prices from scraped product pages, pulling timestamps or IDs from log files, gathering measurements from specification documents, and summarizing numeric data from reports that are not in a spreadsheet format. The sum, min, max, and average statistics help you quickly sanity-check the extracted values.',
+    },
+  },
+  {
+    slug: 'image-flipper',
+    title: 'Image Flipper',
+    description: 'Flip any image horizontally (mirror) or vertically in your browser. No upload, no registration. Supports JPG, PNG, WebP, GIF. Download the result instantly.',
+    category: 'image',
+    tags: ['image'],
+    relatedTools: ['image-rotate', 'grayscale-image', 'image-resizer', 'invert-image'],
+    faq: [
+      { q: 'What does "flip horizontal" mean?', a: 'Flipping horizontally mirrors the image left-to-right, like reflecting it in a vertical mirror. It is also called a horizontal mirror flip.' },
+      { q: 'What does "flip vertical" mean?', a: 'Flipping vertically mirrors the image top-to-bottom, like reflecting it in a horizontal mirror.' },
+      { q: 'Is the original image uploaded or stored?', a: 'No. The flip is done entirely in your browser using the Canvas API. No data is sent to any server.' },
+      { q: 'What formats are supported?', a: 'Any image format your browser supports: JPG, PNG, WebP, GIF, BMP, and SVG.' },
+    ],
+    useCases: [
+      'Mirror a photo for symmetrical layouts',
+      'Correct mirrored text in screenshots',
+      'Create a reflection effect for design work',
+      'Flip a reference image for drawing practice',
+    ],
+    example: { input: 'Portrait photo facing left', output: 'Portrait photo facing right (horizontal flip)' },
+    seoContent: {
+      whatIsTitle: 'What is Image Flipper?',
+      whatIsBody: 'Image Flipper lets you mirror or flip any image horizontally or vertically directly in your browser. Flipping horizontally (left-right mirror) is common for social media, avatars, and design layouts. Flipping vertically (upside-down) is useful for creating reflection effects or correcting orientations. The tool uses the browser Canvas API so no image data is uploaded or stored.',
+      howToTitle: 'How to Flip an Image',
+      howToSteps: [
+        'Upload an image by clicking the upload area or dragging a file onto it.',
+        'Click "Flip Horizontal" to mirror left-to-right, or "Flip Vertical" to flip top-to-bottom.',
+        'Click "Flip Both" to apply both flips at once, or "Reset" to undo all flips.',
+        'Download the result as PNG or JPG.',
+      ],
+    },
+    learnMore: {
+      title: 'Horizontal vs Vertical Flip',
+      body: 'A horizontal flip (mirror) reverses the image along the vertical axis — left becomes right. A vertical flip reverses it along the horizontal axis — top becomes bottom. Combining both is equivalent to a 180° rotation. Flips are non-destructive: you can toggle them on and off without losing quality, since the tool re-renders from the original source each time.',
+    },
   }
+
 
 ];
 

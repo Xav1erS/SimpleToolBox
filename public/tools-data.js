@@ -191,7 +191,32 @@ const HUB_PAGE_CONFIG = {
       ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'],
       ['speed-converter', 'weight-converter', 'length-converter', 'area-converter', 'volume-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words']
     ]
+  },
+  converter: {
+    sections: [
+      ['length-converter', 'area-converter', 'volume-converter', 'weight-converter', 'speed-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'temperature-converter', 'unit-converter'],
+      ['number-base', 'roman-numeral-converter', 'number-to-words', 'number-format', 'binary-text', 'data-storage-converter'],
+      ['timestamp', 'time-zone-converter', 'currency-exchange-rate', 'fuel-consumption-calculator'],
+      ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'markdown-to-html', 'url-encode', 'url-parser', 'color-picker']
+    ]
+  },
+  generator: {
+    sections: [
+      ['password-generator', 'uuid-generator', 'qr-code-generator', 'hash-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder', 'css-gradient-generator', 'color-palette', 'favicon-generator', 'password-strength-checker']
+    ]
   }
+};
+
+// Layer-1 category → tag mapping (read-only, navigation / hub pages reference only)
+const CATEGORY_TAG_MAP = {
+  image:      ['image'],
+  text:       ['text'],
+  developer:  ['encode', 'format'],
+  converter:  ['convert'],
+  calculator: ['calculator'],
+  generator:  ['generate'],
+  reference:  ['reference'],
+  design:     ['design'],
 };
 
 function hubToolCount(key) {

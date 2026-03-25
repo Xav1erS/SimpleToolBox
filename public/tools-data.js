@@ -175,6 +175,14 @@ const SITE_TOOLS = [
   { name: 'PDF to Markdown',         href: 'tools/pdf-to-markdown.html',         tag: 'pdf',      icon: '📝', desc: 'Convert PDF text to Markdown format with automatic heading and list detection — download as .md' },
   { name: 'Image Sharpener',         href: 'tools/image-sharpen.html',           tag: 'image',    icon: '✨', desc: 'Sharpen blurry or soft images with an adjustable unsharp mask — live preview, instant download' },
   { name: 'AVIF to JPG Converter',   href: 'tools/avif-to-jpg.html',             tag: 'image',    icon: '🖼️', desc: 'Convert AVIF images to JPEG or PNG using your browser\'s native decoder — batch supported, no upload' },
+  { name: 'WebP to PNG Converter',   href: 'tools/webp-to-png.html',             tag: 'convert',  icon: '🖼️', desc: 'Convert WebP images to PNG or JPEG in your browser — batch convert, instant download, no upload' },
+  { name: 'Image Vignette',          href: 'tools/image-vignette.html',          tag: 'image',    icon: '🌑', desc: 'Add a vignette darkening effect to photos — adjust intensity and size with live preview, instant download' },
+  { name: 'Sepia Photo Effect',      href: 'tools/image-sepia.html',             tag: 'image',    icon: '🟤', desc: 'Apply a sepia tone to your photos with adjustable intensity — live preview, no upload needed' },
+  { name: 'Reading Time Estimator',  href: 'tools/reading-time-estimator.html',  tag: 'text',     icon: '⏱️', desc: 'Estimate reading and speaking time for any text — customizable WPM, instant results' },
+  { name: 'Text Repeater',           href: 'tools/text-repeater.html',           tag: 'text',     icon: '🔂', desc: 'Repeat any text multiple times with a custom separator — copy or download the result instantly' },
+  { name: 'Color Scheme Generator',  href: 'tools/color-scheme-generator.html',  tag: 'generate', icon: '🎨', desc: 'Generate complementary, analogous, triadic, and monochromatic color schemes from any base color' },
+  { name: 'CSS Box Shadow Generator',href: 'tools/css-box-shadow-generator.html',tag: 'generate', icon: '🪟', desc: 'Visually build CSS box shadows with real-time preview — add multiple layers, copy CSS instantly' },
+  { name: 'Tax Calculator',          href: 'tools/tax-calculator.html',          tag: 'calculate', icon: '🧾', desc: 'Calculate sales tax, reverse tax, or estimate US federal income tax by bracket — instant results' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -185,7 +193,7 @@ const HUB_PAGE_CONFIG = {
       ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
       ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
       ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark'],
-      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg']
+      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg', 'image-vignette', 'image-sepia']
     ]
   },
   developer: {
@@ -206,7 +214,7 @@ const HUB_PAGE_CONFIG = {
     sections: [
       ['percentage-calculator', 'percentage-change-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator', 'compound-interest-calculator'],
       ['mortgage-calculator', 'loan-calculator', 'savings-calculator'],
-      ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator'],
+      ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator', 'tax-calculator'],
       ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'],
       ['speed-converter', 'weight-converter', 'length-converter', 'area-converter', 'volume-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words']
     ]
@@ -222,7 +230,7 @@ const HUB_PAGE_CONFIG = {
   },
   generator: {
     sections: [
-      ['password-generator', 'uuid-generator', 'qr-code-generator', 'hash-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder', 'css-gradient-generator', 'color-palette', 'favicon-generator', 'password-strength-checker']
+      ['password-generator', 'uuid-generator', 'qr-code-generator', 'hash-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder', 'css-gradient-generator', 'color-palette', 'favicon-generator', 'password-strength-checker', 'color-scheme-generator', 'css-box-shadow-generator']
     ]
   },
   pdf: {

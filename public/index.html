@@ -28,8 +28,8 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
   <!-- Non-blocking CSS load -->
-  <link rel="preload" href="styles/design-system.css?v=21" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="styles/design-system.css?v=21" /></noscript>
+  <link rel="preload" href="styles/design-system.css?v=22" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="styles/design-system.css?v=22" /></noscript>
   <style>
     /* Critical — inlined to prevent FOUC before design-system.css loads */
     :root {
@@ -1054,6 +1054,8 @@
 
   // ── TOOL DATA ──────────────────────────────────────────
   const TOOLS = SITE_TOOLS;
+  const LS_KEY = 'stb_recent';
+  const MAX_RECENT = 6;
   const POPULAR_TOOL_SLUGS = [
     'base64',
     'json-formatter',
@@ -1076,6 +1078,15 @@
 
   function getToolBySlug(slug) {
     return TOOLS.find(tool => slugFromHref(tool.href) === slug) || null;
+  }
+
+  function getRecentTools() {
+    const list = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    return list.map(href => TOOLS.find(tool => tool.href === href)).filter(Boolean).slice(0, MAX_RECENT);
+  }
+
+  function getPopularTools() {
+    return POPULAR_TOOL_SLUGS.map(getToolBySlug).filter(Boolean).slice(0, 6);
   }
 
   function renderToolCard(tool) {
@@ -1194,9 +1205,38 @@
     return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length);
   }
 
+  function renderSearchGroup(label, tools, q) {
+    if (!tools.length) return '';
+    return `<div class="search-dropdown-group">
+      <div class="search-dropdown-label">${label}</div>
+      ${tools.map((t, i) =>
+        `<a href="${t.href}" class="search-suggestion" data-idx="${i}">
+          <span class="suggestion-icon">${t.icon}</span>
+          <div class="suggestion-text">
+            <div class="suggestion-name">${q ? highlightMatch(t.name, q) : t.name}</div>
+            <div class="suggestion-desc">${q ? t.desc : `Open ${t.name.toLowerCase()} instantly`}</div>
+          </div>
+          <span class="suggestion-tag">${t.tag}</span>
+        </a>`
+      ).join('')}
+    </div>`;
+  }
+
   function buildDropdown(dropdownEl, query) {
     const q = query.trim().toLowerCase();
-    if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
+    if (!q) {
+      const recentTools = getRecentTools();
+      const popularTools = getPopularTools();
+      dropdownEl.innerHTML =
+        renderSearchGroup('Recently Used', recentTools, '') +
+        renderSearchGroup('Popular Tools', popularTools.filter(t => !recentTools.includes(t)), '');
+      if (!dropdownEl.innerHTML) {
+        dropdownEl.classList.remove('open');
+        return;
+      }
+      dropdownEl.classList.add('open');
+      return;
+    }
     const results = TOOLS.filter(t =>
       t.name.toLowerCase().includes(q) ||
       t.desc.toLowerCase().includes(q) ||
@@ -1243,19 +1283,30 @@
 
   const heroDropdown = document.getElementById('heroSearchDropdown');
   const navDropdown  = document.getElementById('navSearchDropdown');
+  const heroSearchInput = document.getElementById('heroSearch');
+  const navSearchInput = document.getElementById('navSearch');
 
-  document.getElementById('heroSearch').addEventListener('input', e => {
+  function syncSearchInputs(value, source) {
+    if (source !== 'hero' && heroSearchInput.value !== value) heroSearchInput.value = value;
+    if (source !== 'nav' && navSearchInput.value !== value) navSearchInput.value = value;
+  }
+
+  heroSearchInput.addEventListener('input', e => {
     const query = e.target.value;
+    syncSearchInputs(query, 'hero');
     buildDropdown(heroDropdown, query);
     filterBySearch(query, false);
     if (!query.trim()) clearCategoryActive();
   });
-  document.getElementById('navSearch').addEventListener('input', e => {
+  navSearchInput.addEventListener('input', e => {
     const query = e.target.value;
+    syncSearchInputs(query, 'nav');
     buildDropdown(navDropdown, query);
     filterBySearch(query, false);
     if (!query.trim()) clearCategoryActive();
   });
+  heroSearchInput.addEventListener('focus', () => buildDropdown(heroDropdown, heroSearchInput.value));
+  navSearchInput.addEventListener('focus', () => buildDropdown(navDropdown, navSearchInput.value));
 
   // Close dropdowns on outside click
   document.addEventListener('click', e => {
@@ -1287,6 +1338,7 @@
         const focused = dd.querySelector('.search-suggestion.focused');
         if (focused) { focused.click(); }
         else if (items.length) { items[0].click(); }
+        else if (e.target.value.trim()) { document.getElementById('toolSection').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       } else if (e.key === 'Escape') {
         dd.classList.remove('open');
       }

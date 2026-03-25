@@ -13,7 +13,7 @@
   <meta property="og:description" content="30+ free converters for units, number formats, data formats, and time zones — all in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles/design-system.css?v=21" />
+  <link rel="stylesheet" href="styles/design-system.css?v=22" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -165,6 +165,8 @@
 <script src="tools-data.js"></script>
 <script>
   const NAV_TOOLS = SITE_TOOLS;
+  const LS_KEY = 'stb_recent';
+  const MAX_RECENT = 6;
   const CONV_CONFIG = HUB_PAGE_CONFIG.converter;
 
   function slugFromHref(href) { return href.replace(/^tools\//, '').replace(/\.html$/, ''); }
@@ -199,10 +201,13 @@
   if (catAllEl) catAllEl.textContent = `${SITE_TOOLS.length} tools`;
 
   function navHighlightMatch(text, q) { const idx = text.toLowerCase().indexOf(q.toLowerCase()); if (idx === -1) return text; return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + q.length) + '</mark>' + text.slice(idx + q.length); }
-  function buildNavDropdown(el, query) { const q = query.trim().toLowerCase(); if (!q) { el.classList.remove('open'); el.innerHTML = ''; return; } const r = NAV_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)).slice(0, 6); el.innerHTML = r.length ? r.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${t.desc}</div></div><span class="suggestion-tag">${t.tag}</span></a>`).join('') : '<div class="search-no-result">No tools found</div>'; el.classList.add('open'); }
+  function getRecentTools() { const list = JSON.parse(localStorage.getItem(LS_KEY) || '[]'); return list.map(href => NAV_TOOLS.find(tool => tool.href === href)).filter(Boolean).slice(0, MAX_RECENT); }
+  function getHubSuggestionTools() { return Array.from(document.querySelectorAll('.tool-grid .tool-card')).map(card => NAV_TOOLS.find(tool => tool.href === card.getAttribute('href'))).filter(Boolean).slice(0, 6); }
+  function renderSearchGroup(label, tools, q) { if (!tools.length) return ''; return `<div class="search-dropdown-group"><div class="search-dropdown-label">${label}</div>${tools.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${q ? navHighlightMatch(t.name, q) : t.name}</div><div class="suggestion-desc">${q ? navHighlightMatch(t.desc, q) : `Open ${t.name.toLowerCase()} instantly`}</div></div><span class="suggestion-tag">${t.tag}</span></a>`).join('')}</div>`; }
+  function buildNavDropdown(el, query) { const q = query.trim().toLowerCase(); if (!q) { const recentTools = getRecentTools(); const hubTools = getHubSuggestionTools().filter(t => !recentTools.includes(t)); el.innerHTML = renderSearchGroup('Recently Used', recentTools, '') + renderSearchGroup('Converters', hubTools, ''); if (!el.innerHTML) { el.classList.remove('open'); return; } el.classList.add('open'); return; } const r = NAV_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)).slice(0, 6); el.innerHTML = r.length ? r.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${t.desc}</div></div><span class="suggestion-tag">${t.tag}</span></a>`).join('') : '<div class="search-no-result">No tools found</div>'; el.classList.add('open'); }
   const navSearchInput = document.getElementById('navSearch');
   const navSearchDropdown = document.getElementById('navSearchDropdown');
-  if (navSearchInput) { navSearchInput.addEventListener('input', e => buildNavDropdown(navSearchDropdown, e.target.value)); navSearchInput.addEventListener('keydown', e => { if (e.key === 'Escape') { navSearchDropdown.classList.remove('open'); navSearchInput.blur(); } }); document.addEventListener('click', e => { if (!navSearchInput.contains(e.target) && !navSearchDropdown.contains(e.target)) navSearchDropdown.classList.remove('open'); }); }
+  if (navSearchInput) { navSearchInput.addEventListener('input', e => buildNavDropdown(navSearchDropdown, e.target.value)); navSearchInput.addEventListener('focus', e => buildNavDropdown(navSearchDropdown, e.target.value)); navSearchInput.addEventListener('keydown', e => { if (e.key === 'Escape') { navSearchDropdown.classList.remove('open'); navSearchInput.blur(); } }); document.addEventListener('click', e => { if (!navSearchInput.contains(e.target) && !navSearchDropdown.contains(e.target)) navSearchDropdown.classList.remove('open'); }); }
 </script>
 </body>
 </html>

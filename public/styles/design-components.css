@@ -236,6 +236,23 @@
   text-align: center;
 }
 
+.search-dropdown-group {
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.search-dropdown-group:last-child {
+  border-bottom: none;
+}
+
+.search-dropdown-label {
+  padding: 10px 14px 6px;
+  color: var(--ds-color-text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 768px) {
   .ds-nav {
     height: auto;

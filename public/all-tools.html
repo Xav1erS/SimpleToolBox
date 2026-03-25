@@ -13,7 +13,7 @@
   <meta property="og:description" content="Browse all 156 free browser-based tools. Search and filter by encode, format, convert, generate, text, image, design, reference, and calculator." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles/design-system.css?v=21" />
+  <link rel="stylesheet" href="styles/design-system.css?v=22" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
 
@@ -917,6 +917,32 @@
     localStorage.setItem(LS_KEY, JSON.stringify(list));
   }
 
+  function getRecentTools() {
+    const list = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    return list.map(href => ALL_TOOLS.find(t => t.href === href)).filter(Boolean).slice(0, MAX_RECENT);
+  }
+
+  function getPopularTools() {
+    return POPULAR_SLUGS
+      .map(s => ALL_TOOLS.find(t => t.href.endsWith('/' + s + '.html') || t.href.endsWith(s + '.html')))
+      .filter(Boolean)
+      .slice(0, 6);
+  }
+
+  function renderSearchGroup(label, tools, q) {
+    if (!tools.length) return '';
+    return `<div class="search-dropdown-group">
+      <div class="search-dropdown-label">${label}</div>
+      ${tools.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}">
+        <span class="suggestion-icon">${getToolIcon(t)}</span>
+        <div class="suggestion-text">
+          <div class="suggestion-name">${q ? navHighlightMatch(t.name, q) : t.name}</div>
+          <div class="suggestion-desc">${q ? navHighlightMatch(t.desc, q) : `Open ${t.name.toLowerCase()} instantly`}</div>
+        </div>
+      </a>`).join('')}
+    </div>`;
+  }
+
   // ── Grid rendering ───────────────────────────────────────────────────────
 
   let activeTag    = 'all';
@@ -1113,7 +1139,19 @@
 
   function buildNavDropdown(dropdownEl, query) {
     const q = query.trim().toLowerCase();
-    if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
+    if (!q) {
+      const recentTools = getRecentTools();
+      const popularTools = getPopularTools().filter(t => !recentTools.includes(t));
+      dropdownEl.innerHTML =
+        renderSearchGroup('Recently Used', recentTools, '') +
+        renderSearchGroup('Popular Tools', popularTools, '');
+      if (!dropdownEl.innerHTML) {
+        dropdownEl.classList.remove('open');
+        return;
+      }
+      dropdownEl.classList.add('open');
+      return;
+    }
     const results = ALL_TOOLS.filter(t =>
       t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)
     ).slice(0, 6);
@@ -1128,6 +1166,7 @@
     buildNavDropdown(navDropdown, e.target.value);
     setSearchQuery(e.target.value, 'nav');
   });
+  navSearchInput.addEventListener('focus', () => buildNavDropdown(navDropdown, navSearchInput.value));
   document.addEventListener('click', e => { if (!e.target.closest('.nav-search')) navDropdown.classList.remove('open'); });
   navSearchInput.addEventListener('keydown', e => {
     const items = navDropdown.querySelectorAll('.search-suggestion');

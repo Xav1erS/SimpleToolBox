@@ -1071,6 +1071,7 @@
   ];
   const popularToolGrid = document.getElementById('popularToolGrid');
   const heroBrowseCta = document.getElementById('heroBrowseCta');
+  const TOOL_BY_HREF = new Map(TOOLS.map(tool => [tool.href, tool]));
 
   function slugFromHref(href) {
     return href.replace(/^tools\//, '').replace(/\.html$/, '');
@@ -1237,11 +1238,7 @@
       dropdownEl.classList.add('open');
       return;
     }
-    const results = TOOLS.filter(t =>
-      t.name.toLowerCase().includes(q) ||
-      t.desc.toLowerCase().includes(q) ||
-      t.tag.toLowerCase().includes(q)
-    ).slice(0, 6);
+    const results = searchTools(TOOLS, q, 6);
     if (!results.length) {
       dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>';
     } else {
@@ -1263,10 +1260,8 @@
     const q = query.trim().toLowerCase();
     toolCards.forEach(card => {
       if (!q) { card.style.display = ''; return; }
-      const name = (card.querySelector('.tool-name')?.textContent || '').toLowerCase();
-      const desc = (card.querySelector('.tool-desc')?.textContent || '').toLowerCase();
-      const tag  = (card.dataset.tags || '').toLowerCase();
-      card.style.display = (name.includes(q) || desc.includes(q) || tag.includes(q)) ? '' : 'none';
+      const tool = TOOL_BY_HREF.get(card.getAttribute('href'));
+      card.style.display = toolMatchesQuery(tool, q) ? '' : 'none';
     });
     clearFilterBtn.style.display = q ? 'flex' : 'none';
     if (q && shouldScroll) document.getElementById('toolSection').scrollIntoView({ behavior: 'smooth', block: 'start' });

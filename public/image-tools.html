@@ -317,7 +317,7 @@
       dropdownEl.classList.add('open');
       return;
     }
-    const results = NAV_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)).slice(0, 6);
+    const results = searchTools(NAV_TOOLS, q, 6);
     if (!results.length) { dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>'; }
     else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
     dropdownEl.classList.add('open');

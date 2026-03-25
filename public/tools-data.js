@@ -253,6 +253,148 @@ const CATEGORY_TAG_MAP = {
   pdf:        ['pdf'],
 };
 
+const TAG_SEARCH_ALIASES = {
+  image: ['image', 'photo', 'picture', 'screenshot', 'png', 'jpg'],
+  text: ['text', 'words', 'lines', 'string', 'copy'],
+  encode: ['encode', 'decode', 'converter', 'parser', 'token', 'hash', 'crypto'],
+  format: ['formatter', 'beautifier', 'prettify', 'minify', 'validator'],
+  convert: ['convert', 'converter', 'change', 'transform', 'units'],
+  generate: ['generator', 'create', 'random', 'make'],
+  calculator: ['calculator', 'calculate', 'math', 'formula'],
+  design: ['design', 'color', 'palette', 'gradient', 'accessibility'],
+  reference: ['reference', 'lookup', 'table', 'cheatsheet'],
+  pdf: ['pdf', 'document', 'pages', 'extract', 'merge', 'split']
+};
+
+const TOOL_SEARCH_OVERRIDES = {
+  'json-formatter': {
+    aliases: ['json beautifier', 'json prettifier', 'json validator'],
+    intents: ['format json', 'pretty print json', 'minify json', 'validate json']
+  },
+  'password-generator': {
+    aliases: ['random password', 'secure password maker'],
+    intents: ['generate password', 'make password', 'strong password']
+  },
+  'word-counter': {
+    aliases: ['character counter', 'reading time checker'],
+    intents: ['count words', 'count characters', 'estimate reading time']
+  },
+  'image-resizer': {
+    aliases: ['photo resizer', 'resize picture'],
+    intents: ['resize image', 'change image dimensions', 'reduce image dimensions']
+  },
+  'image-compressor': {
+    aliases: ['photo compressor', 'compress picture'],
+    intents: ['compress image', 'reduce image size', 'shrink photo']
+  },
+  'qr-code-generator': {
+    aliases: ['qr maker', 'qr creator'],
+    intents: ['make qr code', 'generate qr', 'create wifi qr']
+  },
+  'uuid-generator': {
+    aliases: ['guid generator', 'uuid creator'],
+    intents: ['generate uuid', 'generate guid', 'bulk uuid']
+  },
+  'regex-tester': {
+    aliases: ['regular expression tester', 'regex playground'],
+    intents: ['test regex', 'check regex', 'match pattern']
+  },
+  'text-case': {
+    aliases: ['case converter', 'uppercase lowercase converter'],
+    intents: ['convert case', 'camel case converter', 'snake case converter']
+  },
+  'csv-column-extractor': {
+    aliases: ['csv field extractor', 'csv column picker'],
+    intents: ['extract csv column', 'get csv column', 'copy one csv column']
+  },
+  'text-list-to-array': {
+    aliases: ['list to json array', 'list to javascript array'],
+    intents: ['convert list to array', 'comma list to array', 'text to array']
+  },
+  'word-frequency-counter': {
+    aliases: ['word occurrence counter', 'term frequency counter'],
+    intents: ['count word frequency', 'find repeated words', 'rank words']
+  },
+  'percentage-calculator': {
+    aliases: ['percent calculator', 'percentage finder'],
+    intents: ['calculate percentage', 'x percent of y', 'percentage difference']
+  },
+  'currency-converter': {
+    aliases: ['money converter', 'exchange calculator'],
+    intents: ['convert currency', 'usd to eur', 'exchange amount']
+  },
+  'tax-calculator': {
+    aliases: ['sales tax calculator', 'income tax estimator'],
+    intents: ['calculate tax', 'reverse sales tax', 'tax amount']
+  },
+  'pdf-merge': {
+    aliases: ['pdf merger', 'combine pdf'],
+    intents: ['merge pdf', 'join pdf files', 'combine pdf pages']
+  },
+  'pdf-split': {
+    aliases: ['pdf splitter', 'extract pdf pages'],
+    intents: ['split pdf', 'separate pdf pages', 'extract pages from pdf']
+  },
+  'pdf-compress': {
+    aliases: ['pdf compressor', 'reduce pdf size'],
+    intents: ['compress pdf', 'shrink pdf', 'make pdf smaller']
+  },
+  'pdf-to-image': {
+    aliases: ['pdf to png', 'pdf to jpg'],
+    intents: ['convert pdf to image', 'export pdf pages as images']
+  }
+};
+
+function slugFromToolHref(href) {
+  return String(href || '').replace(/^tools\//, '').replace(/\.html$/, '');
+}
+
+function normalizeSearchText(value) {
+  return String(value || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+function getToolSearchTerms(tool) {
+  if (!tool) return [];
+  const slug = slugFromToolHref(tool.href);
+  const override = TOOL_SEARCH_OVERRIDES[slug] || {};
+  const slugWords = slug.split('-').filter(Boolean);
+  return [
+    tool.name,
+    tool.desc,
+    tool.tag,
+    slug,
+    slugWords.join(' '),
+    ...(TAG_SEARCH_ALIASES[tool.tag] || []),
+    ...(override.aliases || []),
+    ...(override.intents || []),
+  ].filter(Boolean);
+}
+
+function getToolSearchText(tool) {
+  if (!tool) return '';
+  if (!tool.__searchText) {
+    tool.__searchText = normalizeSearchText(getToolSearchTerms(tool).join(' '));
+  }
+  return tool.__searchText;
+}
+
+function toolMatchesQuery(tool, query) {
+  const normalizedQuery = normalizeSearchText(query);
+  if (!normalizedQuery) return true;
+  const haystack = getToolSearchText(tool);
+  return normalizedQuery.split(' ').every(token => haystack.includes(token));
+}
+
+function searchTools(tools, query, limit) {
+  const matched = (tools || []).filter(tool => toolMatchesQuery(tool, query));
+  return typeof limit === 'number' ? matched.slice(0, limit) : matched;
+}
+
 function hubToolCount(key) {
   const config = HUB_PAGE_CONFIG[key];
   if (!config) return 0;

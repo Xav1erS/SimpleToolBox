@@ -847,6 +847,7 @@
 <script src="tools-data.js"></script>
 <script>
   const ALL_TOOLS = SITE_TOOLS;
+  const TOOL_BY_HREF = new Map(ALL_TOOLS.map(tool => [tool.href, tool]));
   const toolGrid = document.getElementById('toolGrid');
   const countBadge = document.getElementById('countBadge');
   const pageSub = document.querySelector('.page-sub');
@@ -1029,8 +1030,8 @@
       const tagMatch  = activeTag === 'all'
         || (allowedTags ? allowedTags.includes(cardTag) : cardTag === activeTag);
       const actionMatch = !actionSet || actionSet.has(slug);
-      const nameMatch = !q || card.dataset.name.toLowerCase().includes(q)
-        || card.querySelector('.tool-desc').textContent.toLowerCase().includes(q);
+      const tool = TOOL_BY_HREF.get(card.getAttribute('href'));
+      const nameMatch = !q || toolMatchesQuery(tool, q);
       const show = tagMatch && actionMatch && nameMatch;
       card.style.display = show ? '' : 'none';
       if (show) visible++;
@@ -1152,9 +1153,7 @@
       dropdownEl.classList.add('open');
       return;
     }
-    const results = ALL_TOOLS.filter(t =>
-      t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)
-    ).slice(0, 6);
+    const results = searchTools(ALL_TOOLS, q, 6);
     dropdownEl.innerHTML = results.length
       ? results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${getToolIcon(t)}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join('')
       : '<div class="search-no-result">No tools found</div>';

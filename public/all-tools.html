@@ -22,10 +22,15 @@
     .page-title { font-size: var(--ds-font-size-h1); font-weight: 700; line-height: 1.1; letter-spacing: -0.045em; margin-bottom: 8px; }
     .page-sub { font-size: var(--ds-font-size-body-lg); color: var(--ds-color-text-secondary); line-height: var(--ds-line-height-relaxed); margin-bottom: 32px; }
 
-    /* Hub links row */
-    .hub-links { max-width: 1100px; margin: 0 auto; padding: 0 24px 20px; display: flex; gap: 8px; flex-wrap: wrap; }
-    .hub-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border: 1px solid var(--ds-color-border); border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--ds-color-text-secondary); text-decoration: none; transition: border-color 0.15s, color 0.15s, background 0.15s; }
-    .hub-link:hover { border-color: rgba(255,255,255,0.25); color: var(--ds-color-text-primary); background: var(--ds-color-surface); }
+    /* Section labels */
+    .section-label { max-width: 1100px; margin: 0 auto; padding: 0 24px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ds-color-text-muted); }
+
+    /* Hub links row — navigation pills (larger than filter chips) */
+    .hub-links { max-width: 1100px; margin: 0 auto; padding: 0 24px 28px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .hub-link { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); font-size: 14px; font-weight: 600; color: var(--ds-color-text-secondary); text-decoration: none; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+    .hub-link:hover { border-color: rgba(255,255,255,0.3); color: var(--ds-color-text-primary); background: var(--ds-color-surface); }
+    .hub-link::after { content: '→'; font-size: 12px; color: var(--ds-color-text-muted); transition: transform 0.15s, color 0.15s; }
+    .hub-link:hover::after { transform: translateX(3px); color: var(--ds-color-accent); }
 
     /* Filter bar */
     .filter-bar { max-width: 1100px; margin: 0 auto; padding: 0 24px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -128,17 +133,18 @@
   <p class="page-sub">Search across all browser-based tools, jump by category, and find the right utility fast. Everything runs locally on your device.</p>
 </div>
 
+<p class="section-label">Explore category hubs</p>
 <div class="hub-links">
   <a href="image-tools.html" class="hub-link">🖼️ Image Tools</a>
   <a href="developer-tools.html" class="hub-link">🛠️ Developer Tools</a>
   <a href="text-tools.html" class="hub-link">✍️ Text Tools</a>
   <a href="calculator-tools.html" class="hub-link">🧮 Calculator Tools</a>
-  <a href="converter-tools.html" class="hub-link">📐 Converters</a>
+  <a href="converter-tools.html" class="hub-link">📐 Conversion Tools</a>
   <a href="generator-tools.html" class="hub-link">⚙️ Generators</a>
   <a href="pdf-tools.html" class="hub-link">📄 PDF &amp; Document</a>
 </div>
 
-
+<p class="section-label">Search all tools</p>
 <div class="filter-bar">
   <div class="filter-search">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -159,8 +165,8 @@
   <span class="count-badge" id="countBadge">158 tools</span>
 </div>
 
+<p class="section-label" style="padding-bottom:8px;">Filter by action</p>
 <div class="action-bar">
-  <span class="dim-label">By action:</span>
   <button class="action-tag" data-action="convert">🔄 Convert</button>
   <button class="action-tag" data-action="compress">🗜️ Compress</button>
   <button class="action-tag" data-action="generate">✨ Generate</button>

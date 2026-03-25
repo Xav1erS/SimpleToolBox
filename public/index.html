@@ -18,10 +18,22 @@
   <meta name="twitter:title" content="Simple ToolBox — Free Browser-Based Tools for Everyday Tasks" />
   <meta name="twitter:description" content="156 free tools for everyday tasks — image resizer, word counter, JSON formatter, password generator, unit converter, and more. Privacy-first, no sign-up." />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles/design-system.css?v=20" />
+  <!-- Resource hints -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <!-- Non-blocking CSS load -->
+  <link rel="preload" href="styles/design-system.css?v=20" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="styles/design-system.css?v=20" /></noscript>
   <style>
+    /* Critical — inlined to prevent FOUC before design-system.css loads */
+    :root {
+      --ds-color-bg: #0d0d0f;
+      --ds-color-text-primary: #f0f0f3;
+      --ds-color-accent: #5e6ad2;
+    }
     body {
       background: var(--ds-color-bg);
+      color: var(--ds-color-text-primary);
       overflow-x: hidden;
     }
 
@@ -579,7 +591,11 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-8SBCZ6DT1R');
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ gtag('config', 'G-8SBCZ6DT1R'); });
+    } else {
+      gtag('config', 'G-8SBCZ6DT1R');
+    }
   </script>
 </head>
 <body class="ds-page">
@@ -1033,7 +1049,7 @@
   </div>
 </div>
 
-<script src="tools-data.js"></script>
+<script src="tools-data.js" defer></script>
 <script>
   // Nav scroll shadow
   const nav = document.getElementById('nav');

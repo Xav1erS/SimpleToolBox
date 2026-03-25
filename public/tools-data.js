@@ -163,6 +163,14 @@ const SITE_TOOLS = [
   { name: 'PDF Compressor',           href: 'tools/pdf-compress.html',             tag: 'pdf',      icon: '🗜️', desc: 'Reduce PDF file size with three quality presets — no upload, runs entirely in your browser' },
   { name: 'PDF Merger',               href: 'tools/pdf-merge.html',               tag: 'pdf',      icon: '🔗', desc: 'Combine multiple PDF files into one — drag to reorder, instant download, no upload needed' },
   { name: 'PDF Splitter',             href: 'tools/pdf-split.html',               tag: 'pdf',      icon: '✂️', desc: 'Split a PDF by page range or extract every page as a separate file — runs in your browser' },
+  { name: 'PDF Page Rotator',         href: 'tools/pdf-rotate-pages.html',        tag: 'pdf',      icon: '🔃', desc: 'Rotate individual pages or the entire PDF — choose 90°, 180°, or 270° per page, no upload needed' },
+  { name: 'PDF Text Extractor',       href: 'tools/pdf-extract-text.html',        tag: 'pdf',      icon: '📋', desc: 'Extract all text content from a PDF — copy to clipboard or download as .txt, runs in your browser' },
+  { name: 'HEIC to JPG Converter',   href: 'tools/heic-to-jpg.html',             tag: 'image',    icon: '📱', desc: 'Convert iPhone HEIC/HEIF photos to JPEG or PNG in your browser — batch supported, no upload needed' },
+  { name: 'Hue & Saturation',        href: 'tools/image-hue-saturation.html',    tag: 'image',    icon: '🎨', desc: 'Rotate hue, adjust saturation and lightness of images with live preview — no upload, instant download' },
+  { name: 'PNG to ICO Converter',    href: 'tools/png-to-ico.html',              tag: 'image',    icon: '🖼️', desc: 'Create favicon .ico files from PNG/JPG/WebP — choose sizes 16×16 to 256×256, instant download' },
+  { name: 'Image Color Extractor',   href: 'tools/image-color-extractor.html',   tag: 'image',    icon: '🔬', desc: 'Click anywhere on an image to extract exact color values — HEX, RGB, HSL with copy button and history' },
+  { name: 'PDF Metadata Viewer',     href: 'tools/pdf-metadata-viewer.html',     tag: 'pdf',      icon: '🔎', desc: 'View title, author, creation date, page size, and all metadata inside a PDF — no upload needed' },
+  { name: 'PDF Watermark',           href: 'tools/pdf-add-watermark.html',       tag: 'pdf',      icon: '🔏', desc: 'Add custom text watermarks to PDF pages — diagonal or corner position, adjustable opacity and size' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -172,7 +180,8 @@ const HUB_PAGE_CONFIG = {
       ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
       ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
       ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
-      ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark']
+      ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark'],
+      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor']
     ]
   },
   developer: {
@@ -214,7 +223,7 @@ const HUB_PAGE_CONFIG = {
   },
   pdf: {
     sections: [
-      ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress', 'pdf-merge', 'pdf-split']
+      ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress', 'pdf-merge', 'pdf-split', 'pdf-rotate-pages', 'pdf-extract-text', 'pdf-metadata-viewer', 'pdf-add-watermark']
     ]
   }
 };

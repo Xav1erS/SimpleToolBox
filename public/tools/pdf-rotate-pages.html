@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>PDF Page Rotator — Rotate PDF Pages Online Free | Simple ToolBox</title>
+  <meta name="description" content="Rotate individual PDF pages or the entire document. Choose 90°, 180°, or 270° per page. No upload, runs in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/pdf-rotate-pages" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/pdf-rotate-pages" />
+  <meta property="og:title" content="PDF Page Rotator — Rotate PDF Pages Online Free | Simple ToolBox" />
+  <meta property="og:description" content="Rotate individual PDF pages or the entire document. Choose 90°, 180°, or 270° per page. No upload, runs in your browser." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF Page Rotator",
+  "description": "Rotate individual PDF pages or the entire document online for free. Choose 90°, 180°, or 270° rotation per page. Runs entirely in your browser — no file uploads.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/pdf-rotate-pages"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs inside your browser using PDF.js and jsPDF. Your file never leaves your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I rotate only specific pages instead of all pages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each page has its own rotation selector. Use the Quick Rotate buttons to set all pages at once, then adjust individual pages as needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What rotation angles are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can rotate each page by 0° (no change), 90° clockwise, 180°, or 270° clockwise (equivalent to 90° counter-clockwise)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a page limit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no hard limit. However, very large PDFs may take longer to process and use more browser memory. For best performance keep files under 50 MB."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
+
+    /* Drop zone */
+    .drop-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 60px 24px;
+      text-align: center;
+      border: 2px dashed var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-surface);
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+      min-height: 260px;
+      margin-bottom: 20px;
+    }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 48px; opacity: 0.4; }
+    .drop-title { font-size: 16px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 13px; color: var(--ds-color-text-muted); }
+
+    /* Info bar */
+    .info-bar {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--ds-color-text-secondary);
+    }
+    .info-bar.visible { display: flex; flex-wrap: wrap; }
+    .info-badge { font-family: var(--ds-font-mono); font-weight: 700; color: var(--ds-color-text-primary); }
+    .btn-change-pdf { margin-left: auto; font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: transparent; cursor: pointer; transition: color 0.15s, background 0.15s; font-family: var(--ds-font-sans); }
+    .btn-change-pdf:hover { color: var(--ds-color-text-primary); background: var(--ds-color-surface-strong); }
+
+    /* Progress */
+    .progress-bar-wrap {
+      display: none;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .progress-bar-wrap.visible { display: block; }
+    .progress-label { font-size: 13px; color: var(--ds-color-text-secondary); margin-bottom: 10px; }
+    .progress-track { background: var(--ds-color-bg); border-radius: 4px; height: 8px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--ds-color-accent); border-radius: 4px; transition: width 0.2s; width: 0%; }
+
+    /* Quick rotate row */
+    .quick-rotate-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .btn-quick {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-color-text-secondary);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+      font-family: var(--ds-font-sans);
+    }
+    .btn-quick:hover { background: var(--ds-color-surface-tint); color: var(--ds-color-text-primary); border-color: var(--ds-color-accent); }
+
+    /* Page grid */
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .page-thumb {
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-sm);
+      padding: 8px;
+      text-align: center;
+    }
+    .page-thumb canvas {
+      display: block;
+      margin: 0 auto 8px;
+      max-width: 100%;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .page-num { font-size: 11px; color: var(--ds-color-text-muted); margin-bottom: 6px; }
+    .rot-select {
+      width: 100%;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-xs);
+      padding: 3px 6px;
+      color: var(--ds-color-text-secondary);
+      font-size: 12px;
+      font-family: var(--ds-font-sans);
+      cursor: pointer;
+    }
+    .rot-select:focus { outline: none; border-color: var(--ds-color-accent); }
+
+    /* Apply & Download button */
+    .action-row { display: flex; justify-content: flex-end; margin-bottom: 24px; }
+    .btn-apply {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ds-color-accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--ds-radius-md);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      font-family: var(--ds-font-sans);
+    }
+    .btn-apply:hover { background: var(--ds-color-accent-hover); transform: translateY(-1px); }
+    .btn-apply:active { transform: translateY(0); }
+    .btn-apply:disabled { background: var(--ds-color-surface-strong); color: var(--ds-color-text-muted); cursor: not-allowed; transform: none; }
+
+    #fileInput { display: none; }
+
+    @media (max-width: 700px) {
+      .main { padding: 16px 12px 48px; }
+      .quick-rotate-row { gap: 6px; }
+      .btn-quick { padding: 7px 10px; font-size: 12px; }
+      .page-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
+      .btn-apply { width: 100%; justify-content: center; }
+      .action-row { justify-content: stretch; }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    PDF Page Rotator
+    <span class="ds-tool-badge">pdf</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally — no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🔃</div>
+      <h1 class="ds-tool-header__title">PDF Page Rotator</h1>
+    </div>
+    <p class="ds-tool-header__desc">Rotate individual pages or the entire PDF. Choose 90°, 180°, or 270° per page, then download the updated file — no uploads, runs entirely in your browser.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">PDF</span>
+      <span class="ds-tag">rotate pages</span>
+      <span class="ds-tag">per-page control</span>
+      <span class="ds-tag">no upload</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Drop zone -->
+  <div class="drop-zone" id="dropZone">
+    <div class="drop-icon">🔃</div>
+    <div class="drop-title">Drop PDF here</div>
+    <div class="drop-sub">or click to browse</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-bar-wrap" id="progressWrap">
+    <div class="progress-label" id="progressLabel">Loading PDF…</div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Info bar (shown after load) -->
+  <div class="info-bar" id="infoBar">
+    <span>PDF loaded:</span>
+    <span class="info-badge" id="infoFilename">—</span>
+    <span>·</span>
+    <span class="info-badge" id="infoPages">—</span>
+    <span>pages</span>
+    <button class="btn-change-pdf" id="btnChangePdf">Change PDF</button>
+  </div>
+
+  <!-- Quick rotate buttons -->
+  <div class="quick-rotate-row" id="quickRotateRow" style="display:none">
+    <button class="btn-quick" id="btnAllCCW">↺ All −90°</button>
+    <button class="btn-quick" id="btnAllCW">↻ All +90°</button>
+    <button class="btn-quick" id="btnAll180">↩ All 180°</button>
+    <button class="btn-quick" id="btnAllReset">✕ Reset All</button>
+  </div>
+
+  <!-- Thumbnail page grid -->
+  <div class="page-grid" id="pageGrid"></div>
+
+  <!-- Apply & Download -->
+  <div class="action-row" id="actionRow" style="display:none">
+    <button class="btn-apply" id="btnApply">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Apply &amp; Download
+    </button>
+  </div>
+
+  <input type="file" id="fileInput" accept=".pdf" />
+
+<!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is PDF Page Rotator?</h2>
+    <p>PDF Page Rotator is a browser-based tool that lets you rotate any page in a PDF file by 90°, 180°, or 270°. You can apply a single rotation to every page at once using the Quick Rotate buttons, or fine-tune each page individually with per-page selectors. When you are ready, click Apply &amp; Download to receive a corrected PDF — all processing happens inside your browser using PDF.js and jsPDF, so no file is ever sent to a server.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use PDF Page Rotator</h2>
+    <ol>
+      <li>Drop a PDF file onto the upload area or click to browse and select one.</li>
+      <li>Wait for all page thumbnails to appear.</li>
+      <li>Use the Quick Rotate buttons to rotate all pages at once, or change the rotation selector under each thumbnail individually.</li>
+      <li>Click Apply &amp; Download — the rotated PDF will be saved to your device.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="pdf-merge.html" class="ds-related-card"><span class="ds-related-icon">📎</span><div><div class="ds-related-name">PDF Merger</div><div class="ds-related-desc">Combine multiple PDF files into one document</div></div></a>
+    <a href="pdf-split.html" class="ds-related-card"><span class="ds-related-icon">✂️</span><div><div class="ds-related-name">PDF Splitter</div><div class="ds-related-desc">Split a PDF into individual pages or ranges</div></div></a>
+    <a href="pdf-to-image.html" class="ds-related-card"><span class="ds-related-icon">📄</span><div><div class="ds-related-name">PDF to Image</div><div class="ds-related-desc">Export PDF pages as PNG or JPEG images</div></div></a>
+    <a href="image-to-pdf.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image to PDF</div><div class="ds-related-desc">Combine images into a single PDF file</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand PDF Page Rotation</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">A 4-page scanned PDF where pages 2 and 3 are sideways (landscape instead of portrait)</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">Same PDF with pages 2 and 3 rotated 90° — all pages now in the correct orientation</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Fix scanned documents where some pages were fed sideways</li>
+          <li>Correct phone-captured PDFs that are in portrait instead of landscape</li>
+          <li>Rotate a single cover page or appendix without re-exporting from Word</li>
+          <li>Prepare PDFs for printing by aligning all pages to the same orientation</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is my PDF uploaded to a server?</strong><p>No. Everything runs inside your browser using PDF.js and jsPDF. Your file never leaves your device.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I rotate only specific pages instead of all pages?</strong><p>Yes. Each page has its own rotation selector. Use the Quick Rotate buttons to set all pages at once, then adjust individual pages as needed.</p></div>
+        <div class="ds-seo-faq-item"><strong>What rotation angles are supported?</strong><p>You can rotate each page by 0° (no change), 90° clockwise, 180°, or 270° clockwise (equivalent to 90° counter-clockwise).</p></div>
+        <div class="ds-seo-faq-item"><strong>Is there a page limit?</strong><p>There is no hard limit. However, very large PDFs may take longer to process and use more browser memory. For best performance keep files under 50 MB.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+
+</div>
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  const { jsPDF } = window.jspdf;
+
+  const dropZone       = document.getElementById('dropZone');
+  const fileInput      = document.getElementById('fileInput');
+  const pageGrid       = document.getElementById('pageGrid');
+  const progressWrap   = document.getElementById('progressWrap');
+  const progressFill   = document.getElementById('progressFill');
+  const progressLabel  = document.getElementById('progressLabel');
+  const infoBar        = document.getElementById('infoBar');
+  const infoFilename   = document.getElementById('infoFilename');
+  const infoPages      = document.getElementById('infoPages');
+  const btnChangePdf   = document.getElementById('btnChangePdf');
+  const quickRotateRow = document.getElementById('quickRotateRow');
+  const actionRow      = document.getElementById('actionRow');
+  const btnApply       = document.getElementById('btnApply');
+  const btnAllCCW      = document.getElementById('btnAllCCW');
+  const btnAllCW       = document.getElementById('btnAllCW');
+  const btnAll180      = document.getElementById('btnAll180');
+  const btnAllReset    = document.getElementById('btnAllReset');
+
+  let pdfDoc       = null;
+  let rotations    = [];   // degrees per page index (0-based)
+  let numPages     = 0;
+  let currentFile  = null;
+  let pdfArrayBuffer = null;
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
+
+  function normalise(deg) {
+    return ((deg % 360) + 360) % 360;
+  }
+
+  function setAllRotations(deltaDeg) {
+    rotations = rotations.map(r => normalise(r + deltaDeg));
+    syncSelects();
+  }
+
+  function syncSelects() {
+    document.querySelectorAll('.rot-select').forEach((sel, i) => {
+      sel.value = String(rotations[i]);
+    });
+  }
+
+  // ── Load PDF ──────────────────────────────────────────────────────────────
+
+  async function loadPdf(file) {
+    currentFile = file;
+    pageGrid.innerHTML = '';
+    rotations = [];
+    quickRotateRow.style.display = 'none';
+    actionRow.style.display = 'none';
+    infoBar.classList.remove('visible');
+
+    progressWrap.classList.add('visible');
+    progressFill.style.width = '0%';
+    progressLabel.textContent = 'Loading PDF…';
+
+    pdfArrayBuffer = await file.arrayBuffer();
+
+    try {
+      pdfDoc = await pdfjsLib.getDocument({ data: pdfArrayBuffer.slice(0) }).promise;
+    } catch (err) {
+      progressLabel.textContent = 'Error: Could not parse PDF. Make sure the file is a valid PDF.';
+      progressFill.style.width = '0%';
+      return;
+    }
+
+    numPages = pdfDoc.numPages;
+    rotations = new Array(numPages).fill(0);
+
+    progressLabel.textContent = `Rendering thumbnails…`;
+
+    for (let i = 1; i <= numPages; i++) {
+      progressLabel.textContent = `Rendering page ${i} of ${numPages}…`;
+      progressFill.style.width = ((i - 1) / numPages * 100) + '%';
+
+      const page     = await pdfDoc.getPage(i);
+      const viewport = page.getViewport({ scale: 0.3 });
+
+      const canvas   = document.createElement('canvas');
+      canvas.width   = Math.round(viewport.width);
+      canvas.height  = Math.round(viewport.height);
+      const ctx      = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      // Card
+      const card = document.createElement('div');
+      card.className = 'page-thumb';
+
+      const numLabel = document.createElement('div');
+      numLabel.className = 'page-num';
+      numLabel.textContent = `Page ${i}`;
+
+      const sel = document.createElement('select');
+      sel.className = 'rot-select';
+      [['0°', 0], ['90° CW', 90], ['180°', 180], ['270° CW', 270]].forEach(([label, val]) => {
+        const opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = label;
+        sel.appendChild(opt);
+      });
+      sel.value = '0';
+      const pageIndex = i - 1;
+      sel.addEventListener('change', () => {
+        rotations[pageIndex] = parseInt(sel.value, 10);
+      });
+
+      card.appendChild(canvas);
+      card.appendChild(numLabel);
+      card.appendChild(sel);
+      pageGrid.appendChild(card);
+
+      progressFill.style.width = (i / numPages * 100) + '%';
+    }
+
+    progressLabel.textContent = `Done — ${numPages} page${numPages > 1 ? 's' : ''} loaded.`;
+    setTimeout(() => { progressWrap.classList.remove('visible'); }, 1500);
+
+    infoFilename.textContent = file.name;
+    infoPages.textContent    = numPages;
+    infoBar.classList.add('visible');
+
+    dropZone.style.display = 'none';
+    quickRotateRow.style.display = 'flex';
+    actionRow.style.display = 'flex';
+  }
+
+  // ── Quick rotate buttons ──────────────────────────────────────────────────
+
+  btnAllCCW.addEventListener('click',   () => setAllRotations(-90));
+  btnAllCW.addEventListener('click',    () => setAllRotations(90));
+  btnAll180.addEventListener('click',   () => setAllRotations(180));
+  btnAllReset.addEventListener('click', () => {
+    rotations = new Array(numPages).fill(0);
+    syncSelects();
+  });
+
+  // ── Apply & Download ──────────────────────────────────────────────────────
+
+  btnApply.addEventListener('click', async () => {
+    if (!pdfDoc) return;
+    btnApply.disabled = true;
+    btnApply.textContent = 'Processing…';
+
+    progressWrap.classList.add('visible');
+    progressFill.style.width = '0%';
+    progressLabel.textContent = 'Building rotated PDF…';
+
+    try {
+      // Re-open the PDF from buffer so we can render at higher quality
+      const freshDoc = await pdfjsLib.getDocument({ data: pdfArrayBuffer.slice(0) }).promise;
+
+      // We need first page dimensions to initialise jsPDF orientation
+      const firstPage = await freshDoc.getPage(1);
+      const firstRot  = rotations[0];
+      const fvp       = firstPage.getViewport({ scale: 1.5 });
+      const fW = (firstRot === 90 || firstRot === 270) ? fvp.height : fvp.width;
+      const fH = (firstRot === 90 || firstRot === 270) ? fvp.width  : fvp.height;
+
+      const pdf = new jsPDF({
+        orientation: fW >= fH ? 'landscape' : 'portrait',
+        unit: 'pt',
+        format: [fW, fH]
+      });
+
+      for (let i = 1; i <= numPages; i++) {
+        progressLabel.textContent = `Processing page ${i} of ${numPages}…`;
+        progressFill.style.width  = ((i - 1) / numPages * 100) + '%';
+
+        const page     = await freshDoc.getPage(i);
+        const scale    = 1.5;
+        const viewport = page.getViewport({ scale });
+        const pW       = viewport.width;
+        const pH       = viewport.height;
+        const rot      = rotations[i - 1];
+
+        // Determine output dimensions after rotation
+        const outW = (rot === 90 || rot === 270) ? pH : pW;
+        const outH = (rot === 90 || rot === 270) ? pW : pH;
+
+        // Render page to canvas
+        const srcCanvas   = document.createElement('canvas');
+        srcCanvas.width   = pW;
+        srcCanvas.height  = pH;
+        const srcCtx      = srcCanvas.getContext('2d');
+        await page.render({ canvasContext: srcCtx, viewport }).promise;
+
+        // Rotate onto output canvas
+        const outCanvas   = document.createElement('canvas');
+        outCanvas.width   = Math.round(outW);
+        outCanvas.height  = Math.round(outH);
+        const outCtx      = outCanvas.getContext('2d');
+
+        outCtx.save();
+        if (rot === 90) {
+          outCtx.translate(outW, 0);
+          outCtx.rotate(Math.PI / 2);
+        } else if (rot === 180) {
+          outCtx.translate(outW, outH);
+          outCtx.rotate(Math.PI);
+        } else if (rot === 270) {
+          outCtx.translate(0, outH);
+          outCtx.rotate(-Math.PI / 2);
+        }
+        outCtx.drawImage(srcCanvas, 0, 0);
+        outCtx.restore();
+
+        const imgData = outCanvas.toDataURL('image/jpeg', 0.92);
+
+        if (i === 1) {
+          // First page already added during jsPDF init — set its size
+          pdf.internal.pageSize.width  = outW;
+          pdf.internal.pageSize.height = outH;
+          pdf.addImage(imgData, 'JPEG', 0, 0, outW, outH);
+        } else {
+          pdf.addPage([outW, outH], outW >= outH ? 'landscape' : 'portrait');
+          pdf.addImage(imgData, 'JPEG', 0, 0, outW, outH);
+        }
+
+        progressFill.style.width = (i / numPages * 100) + '%';
+
+        // Yield to keep UI responsive
+        await new Promise(r => setTimeout(r, 0));
+      }
+
+      const baseName = (currentFile.name || 'document').replace(/\.pdf$/i, '');
+      pdf.save(baseName + '-rotated.pdf');
+
+      progressLabel.textContent = 'Done — PDF saved.';
+      setTimeout(() => { progressWrap.classList.remove('visible'); }, 1800);
+
+    } catch (err) {
+      progressLabel.textContent = 'Error building PDF: ' + err.message;
+      console.error(err);
+    }
+
+    btnApply.disabled = false;
+    btnApply.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Apply &amp; Download';
+  });
+
+  // ── File load helpers ─────────────────────────────────────────────────────
+
+  function loadFile(file) {
+    if (!file || file.type !== 'application/pdf') {
+      alert('Please select a valid PDF file.');
+      return;
+    }
+    loadPdf(file);
+  }
+
+  dropZone.addEventListener('click',    () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave',  () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    loadFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+
+  btnChangePdf.addEventListener('click', () => {
+    dropZone.style.display = '';
+    pageGrid.innerHTML     = '';
+    rotations              = [];
+    pdfDoc                 = null;
+    infoBar.classList.remove('visible');
+    quickRotateRow.style.display = 'none';
+    actionRow.style.display      = 'none';
+    fileInput.value = '';
+    fileInput.click();
+  });
+</script>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

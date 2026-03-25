@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>PNG to ICO Converter — Create Favicon .ico Files Free | Simple ToolBox</title>
+  <meta name="description" content="Convert PNG, JPG, or WebP images to .ico favicon files. Choose sizes 16×16 to 256×256. No upload, instant download in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/png-to-ico" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/png-to-ico" />
+  <meta property="og:title" content="PNG to ICO Converter — Create Favicon .ico Files Free | Simple ToolBox" />
+  <meta property="og:description" content="Convert PNG, JPG, or WebP images to .ico favicon files. Choose sizes 16×16 to 256×256. No upload, instant download in your browser." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PNG to ICO Converter",
+  "description": "Convert PNG, JPG, or WebP images to .ico favicon files. Choose sizes 16×16 to 256×256. No upload, instant download in your browser.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/png-to-ico"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my image uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs entirely in your browser using the Canvas API. Your image never leaves your device — there is no server upload at any stage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which sizes should I include in a favicon ICO file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a modern favicon, 16×16 and 32×32 are the minimum. Including 48×48 ensures sharp display in Windows taskbars. Adding 64×64 and higher covers high-DPI displays and application icons. Most sites include 16, 32, and 48 at minimum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the ICO file support transparency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each size inside the ICO is stored as a PNG with full alpha channel support. Transparent backgrounds in your source image are preserved at every size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the ICO format still supported across browsers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ICO remains the most universally supported favicon format. All major browsers — Chrome, Firefox, Safari, and Edge — load favicon.ico correctly. It is the safest choice for the root-level favicon.ico file."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    .main { max-width: 780px; margin: 0 auto; padding: 28px 24px 64px; }
+
+    .tool-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+
+    .panel-section { padding: 20px 24px; border-bottom: 1px solid var(--ds-color-border); }
+    .panel-section:last-child { border-bottom: none; }
+    .panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-color-text-muted); margin-bottom: 14px; }
+
+    /* Drop zone */
+    .drop-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 24px; text-align: center; border: 2px dashed var(--ds-color-border); border-radius: var(--ds-radius-md); transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 40px; opacity: 0.4; }
+    .drop-title { font-size: 15px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 13px; color: var(--ds-color-text-muted); }
+    .drop-formats { font-family: var(--ds-font-mono); font-size: 11px; color: var(--ds-color-text-muted); }
+
+    /* Preview row */
+    .preview-row { display: flex; align-items: center; gap: 16px; }
+    .preview-thumb { width: 48px; height: 48px; object-fit: contain; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-xs); background: repeating-conic-gradient(#1a1a1f 0% 25%, #141418 0% 50%) 0 0 / 12px 12px; flex-shrink: 0; }
+    .preview-info { flex: 1; min-width: 0; }
+    .preview-name { font-size: 13px; font-weight: 600; color: var(--ds-color-text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .preview-dims { font-size: 12px; color: var(--ds-color-text-muted); font-family: var(--ds-font-mono); margin-top: 2px; }
+    .btn-change { font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); transition: color 0.15s, background 0.15s; white-space: nowrap; }
+    .btn-change:hover { color: var(--ds-color-text-primary); background: var(--ds-color-surface-strong); }
+
+    /* Size checkboxes */
+    .size-grid { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0; }
+    .size-option { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ds-color-text-secondary); cursor: pointer; padding: 6px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); transition: border-color 0.15s, background 0.15s; user-select: none; }
+    .size-option:hover { border-color: rgba(94,106,210,0.4); background: var(--ds-color-surface-tint); }
+    .size-option input[type=checkbox] { accent-color: var(--ds-color-accent); width: 14px; height: 14px; cursor: pointer; }
+    .size-option.checked { border-color: rgba(94,106,210,0.5); background: var(--ds-color-surface-tint); color: var(--ds-color-text-primary); }
+
+    /* Generate button */
+    .btn-generate { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--ds-color-accent); color: #fff; font-size: 14px; font-weight: 600; padding: 13px 28px; border-radius: var(--ds-radius-md); transition: background 0.2s, transform 0.15s; }
+    .btn-generate:hover { background: var(--ds-color-accent-hover); transform: translateY(-1px); }
+    .btn-generate:active { transform: translateY(0); }
+    .btn-generate:disabled { background: var(--ds-color-surface-strong); color: var(--ds-color-text-muted); cursor: not-allowed; transform: none; }
+
+    /* Download result */
+    .result-row { display: flex; align-items: center; gap: 14px; }
+    .result-icon { font-size: 32px; flex-shrink: 0; }
+    .result-info { flex: 1; }
+    .result-label { font-size: 13px; color: var(--ds-color-text-secondary); }
+    .result-sizes { font-size: 12px; color: var(--ds-color-text-muted); font-family: var(--ds-font-mono); margin-top: 2px; }
+    .btn-download { display: flex; align-items: center; gap: 8px; background: var(--ds-color-accent); color: #fff; font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: var(--ds-radius-md); transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+    .btn-download:hover { background: var(--ds-color-accent-hover); transform: translateY(-1px); }
+    .btn-download:active { transform: translateY(0); }
+
+    /* Status messages */
+    .status-msg { font-size: 13px; color: var(--ds-color-text-muted); text-align: center; padding: 4px 0; }
+    .status-msg.error { color: #f87171; }
+
+    @media (max-width: 600px) {
+      .main { padding: 16px 14px 48px; }
+      .panel-section { padding: 16px 16px; }
+      .size-grid { gap: 8px; }
+      .result-row { flex-wrap: wrap; }
+      .btn-generate { width: 100%; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    PNG to ICO Converter
+    <span class="ds-tool-badge">image</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally — no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🖼️</div>
+      <h1 class="ds-tool-header__title">PNG to ICO Converter</h1>
+    </div>
+    <p class="ds-tool-header__desc">Create favicon .ico files from any image — choose sizes and download instantly. No upload required, everything runs in your browser.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">ICO</span>
+      <span class="ds-tag">favicon</span>
+      <span class="ds-tag">PNG</span>
+      <span class="ds-tag">convert</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="tool-card">
+
+    <!-- UPLOAD SECTION -->
+    <div class="panel-section" id="uploadSection">
+      <div class="panel-label">Source Image</div>
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">🖼️</div>
+        <div class="drop-title">Drop image here</div>
+        <div class="drop-sub">or click to browse</div>
+        <div class="drop-formats">PNG · JPG · WebP · GIF · BMP</div>
+      </div>
+    </div>
+
+    <!-- PREVIEW SECTION (hidden until file loaded) -->
+    <div class="panel-section" id="previewSection" style="display:none">
+      <div class="panel-label">Source Image</div>
+      <div class="preview-row">
+        <img id="previewThumb" class="preview-thumb" alt="Preview" />
+        <div class="preview-info">
+          <div class="preview-name" id="previewName">—</div>
+          <div class="preview-dims" id="previewDims">—</div>
+        </div>
+        <button class="btn-change" id="btnChange">Change</button>
+      </div>
+    </div>
+
+    <!-- SIZE SELECTION -->
+    <div class="panel-section">
+      <div class="panel-label">Sizes to Include</div>
+      <div class="size-grid" id="sizeGrid">
+        <label class="size-option checked"><input type="checkbox" value="16" checked /> 16×16</label>
+        <label class="size-option checked"><input type="checkbox" value="32" checked /> 32×32</label>
+        <label class="size-option checked"><input type="checkbox" value="48" checked /> 48×48</label>
+        <label class="size-option checked"><input type="checkbox" value="64" checked /> 64×64</label>
+        <label class="size-option"><input type="checkbox" value="128" /> 128×128</label>
+        <label class="size-option"><input type="checkbox" value="256" /> 256×256</label>
+      </div>
+      <div class="status-msg" id="sizeHint" style="margin-top:8px;text-align:left">Tip: 16, 32, and 48 cover most browser and OS favicon needs.</div>
+    </div>
+
+    <!-- GENERATE BUTTON -->
+    <div class="panel-section" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <button class="btn-generate" id="btnGenerate" disabled>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Generate .ico
+      </button>
+      <div class="status-msg" id="statusMsg"></div>
+    </div>
+
+    <!-- DOWNLOAD RESULT (hidden until generated) -->
+    <div class="panel-section" id="resultSection" style="display:none">
+      <div class="panel-label">Result</div>
+      <div class="result-row">
+        <div class="result-icon">✅</div>
+        <div class="result-info">
+          <div class="result-label" id="resultLabel">favicon.ico ready</div>
+          <div class="result-sizes" id="resultSizes"></div>
+        </div>
+        <a class="btn-download" id="btnDownload" href="#" download="favicon.ico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .ico
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /.tool-card -->
+
+  <input type="file" id="fileInput" accept="image/*" style="display:none" />
+
+<!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is PNG to ICO Converter?</h2>
+    <p>This tool converts PNG, JPG, WebP, or any browser-readable image into a multi-size <code>.ico</code> file suitable for use as a website favicon. The ICO binary is assembled directly in JavaScript using the Canvas API — no server, no upload, no third-party library.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Create a Favicon ICO File</h2>
+    <ol>
+      <li>Drop or select your source image (PNG, JPG, or WebP recommended).</li>
+      <li>Check the sizes you want included — 16×16, 32×32, and 48×48 cover most needs.</li>
+      <li>Click <strong>Generate .ico</strong> to assemble the multi-size ICO binary.</li>
+      <li>Download <strong>favicon.ico</strong> and place it at the root of your website.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images client-side with preset dimensions</div></div></a>
+    <a href="webp-converter.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">WebP Converter</div><div class="ds-related-desc">Convert images to WebP, PNG, or JPEG format</div></div></a>
+    <a href="image-compressor.html" class="ds-related-card"><span class="ds-related-icon">🗜️</span><div><div class="ds-related-name">Image Compressor</div><div class="ds-related-desc">Reduce image file size with quality control</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand ICO Favicon Files</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">A 512×512 PNG logo with transparent background, sizes 16, 32, 48 selected.</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value">A single favicon.ico containing all three PNG-encoded layers, transparency preserved in every size.</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Generate favicon.ico for a new website or web app</li>
+          <li>Rebuild a favicon from an updated logo PNG</li>
+          <li>Create multi-size ICOs for Windows desktop application icons</li>
+          <li>Package a brand icon for browser extension manifests</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is my image uploaded to a server?</strong><p>No. Everything runs entirely in your browser using the Canvas API. Your image never leaves your device — there is no server upload at any stage.</p></div>
+        <div class="ds-seo-faq-item"><strong>Which sizes should I include in a favicon ICO file?</strong><p>For a modern favicon, 16×16 and 32×32 are the minimum. Including 48×48 ensures sharp display in Windows taskbars. Adding 64×64 and higher covers high-DPI displays and application icons. Most sites include 16, 32, and 48 at minimum.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does the ICO file support transparency?</strong><p>Yes. Each size inside the ICO is stored as a PNG with full alpha channel support. Transparent backgrounds in your source image are preserved at every size.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is the ICO format still supported across browsers?</strong><p>Yes. ICO remains the most universally supported favicon format. All major browsers — Chrome, Firefox, Safari, and Edge — load favicon.ico correctly. It is the safest choice for the root-level favicon.ico file.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+
+</div><!-- /.main -->
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>
+// ── ICO assembly ──────────────────────────────────────────────────────────────
+async function createIco(imgElement, sizes) {
+  const blobs = await Promise.all(sizes.map(size => {
+    const c = document.createElement('canvas');
+    c.width = c.height = size;
+    c.getContext('2d').drawImage(imgElement, 0, 0, size, size);
+    return new Promise(res => c.toBlob(res, 'image/png'));
+  }));
+
+  const buffers = await Promise.all(blobs.map(b => b.arrayBuffer()));
+
+  const headerSize = 6;
+  const dirSize    = 16 * sizes.length;
+  const totalSize  = headerSize + dirSize + buffers.reduce((s, b) => s + b.byteLength, 0);
+
+  const out = new DataView(new ArrayBuffer(totalSize));
+  out.setUint16(0, 0, true);            // reserved
+  out.setUint16(2, 1, true);            // type = ICO
+  out.setUint16(4, sizes.length, true); // image count
+
+  let offset = headerSize + dirSize;
+  sizes.forEach((size, i) => {
+    const base = headerSize + i * 16;
+    out.setUint8(base,     size === 256 ? 0 : size); // width  (0 = 256)
+    out.setUint8(base + 1, size === 256 ? 0 : size); // height (0 = 256)
+    out.setUint8(base + 2, 0);                       // color count
+    out.setUint8(base + 3, 0);                       // reserved
+    out.setUint16(base + 4, 1,  true);               // planes
+    out.setUint16(base + 6, 32, true);               // bit depth
+    out.setUint32(base + 8,  buffers[i].byteLength, true); // data size
+    out.setUint32(base + 12, offset,                 true); // data offset
+    new Uint8Array(out.buffer).set(new Uint8Array(buffers[i]), offset);
+    offset += buffers[i].byteLength;
+  });
+
+  return new Blob([out.buffer], { type: 'image/x-icon' });
+}
+
+// ── UI state ──────────────────────────────────────────────────────────────────
+const dropZone      = document.getElementById('dropZone');
+const fileInput     = document.getElementById('fileInput');
+const uploadSection = document.getElementById('uploadSection');
+const previewSection= document.getElementById('previewSection');
+const previewThumb  = document.getElementById('previewThumb');
+const previewName   = document.getElementById('previewName');
+const previewDims   = document.getElementById('previewDims');
+const btnChange     = document.getElementById('btnChange');
+const sizeGrid      = document.getElementById('sizeGrid');
+const btnGenerate   = document.getElementById('btnGenerate');
+const statusMsg     = document.getElementById('statusMsg');
+const resultSection = document.getElementById('resultSection');
+const resultLabel   = document.getElementById('resultLabel');
+const resultSizes   = document.getElementById('resultSizes');
+const btnDownload   = document.getElementById('btnDownload');
+
+let srcImage  = null;
+let srcName   = 'favicon';
+let lastObjUrl = null;
+
+// Update size-option highlight when checkbox changes
+sizeGrid.querySelectorAll('input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    cb.closest('.size-option').classList.toggle('checked', cb.checked);
+    validateForm();
+  });
+});
+
+function getSelectedSizes() {
+  return Array.from(sizeGrid.querySelectorAll('input[type=checkbox]:checked'))
+    .map(cb => parseInt(cb.value, 10))
+    .sort((a, b) => a - b);
+}
+
+function validateForm() {
+  btnGenerate.disabled = !srcImage || getSelectedSizes().length === 0;
+}
+
+function loadFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  srcName = file.name.replace(/\.[^.]+$/, '') || 'favicon';
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      srcImage = img;
+      previewThumb.src = e.target.result;
+      previewName.textContent = file.name;
+      previewDims.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
+      uploadSection.style.display = 'none';
+      previewSection.style.display = '';
+      resultSection.style.display = 'none';
+      statusMsg.textContent = '';
+      statusMsg.className = 'status-msg';
+      if (lastObjUrl) { URL.revokeObjectURL(lastObjUrl); lastObjUrl = null; }
+      validateForm();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Drop zone
+dropZone.addEventListener('click', () => fileInput.click());
+dropZone.addEventListener('dragover',  e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  loadFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', () => { loadFile(fileInput.files[0]); fileInput.value = ''; });
+btnChange.addEventListener('click', () => fileInput.click());
+
+// Generate
+btnGenerate.addEventListener('click', async () => {
+  if (!srcImage) return;
+  const sizes = getSelectedSizes();
+  if (sizes.length === 0) {
+    statusMsg.textContent = 'Select at least one size.';
+    statusMsg.className = 'status-msg error';
+    return;
+  }
+
+  btnGenerate.disabled = true;
+  statusMsg.textContent = 'Generating…';
+  statusMsg.className = 'status-msg';
+
+  try {
+    const icoBlob = await createIco(srcImage, sizes);
+
+    if (lastObjUrl) URL.revokeObjectURL(lastObjUrl);
+    lastObjUrl = URL.createObjectURL(icoBlob);
+
+    const filename = srcName + '.ico';
+    btnDownload.href     = lastObjUrl;
+    btnDownload.download = filename;
+
+    const sizeLabel = sizes.map(s => `${s}×${s}`).join(', ');
+    resultLabel.textContent = filename + ' — ' + (icoBlob.size / 1024).toFixed(1) + ' KB';
+    resultSizes.textContent = 'Contains: ' + sizeLabel;
+
+    resultSection.style.display = '';
+    statusMsg.textContent = '';
+  } catch (err) {
+    statusMsg.textContent = 'Error: ' + err.message;
+    statusMsg.className = 'status-msg error';
+  } finally {
+    validateForm();
+  }
+});
+</script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

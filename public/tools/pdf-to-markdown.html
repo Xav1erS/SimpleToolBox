@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>PDF to Markdown Converter — Extract PDF as Markdown Free | Simple ToolBox</title>
+  <meta name="description" content="Convert PDF text to Markdown format. Automatically detects headings and lists. Copy or download as .md file. No upload, runs in your browser." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/pdf-to-markdown" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/pdf-to-markdown" />
+  <meta property="og:title" content="PDF to Markdown Converter — Extract PDF as Markdown Free | Simple ToolBox" />
+  <meta property="og:description" content="Convert PDF text to Markdown format. Automatically detects headings and lists. Copy or download as .md file. No upload, runs in your browser." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF to Markdown Converter",
+  "description": "Convert PDF text to Markdown format. Automatically detects headings and lists. Copy or download as .md file. No upload, runs in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://simpletoolbox.dev/tools/pdf-to-markdown"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The entire conversion runs inside your browser using PDF.js. Your file never leaves your device and no data is sent to any server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the heading detection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Heading detection is heuristic-based: it compares each line's font size to the median font size on the page. Lines that are significantly larger are promoted to H1 or H2 headings. This works well for PDFs with clear visual hierarchy but may misclassify decorative large text or footers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work with scanned PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This tool converts embedded text from PDFs. Scanned PDFs are images of text and contain no embedded text data. You would need OCR software to first extract text from scanned documents before converting to Markdown."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best use cases for PDF to Markdown?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool works best on text-heavy PDFs such as reports, documentation, articles, and e-books with consistent heading styles. The output is ideal for pasting into Markdown editors, static site generators, note-taking apps like Obsidian or Notion, or version-controlled documentation repositories."
+      }
+    }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <style>
+    .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 64px; }
+
+    /* Drop zone */
+    .drop-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 60px 24px;
+      text-align: center;
+      border: 2px dashed var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      background: var(--ds-color-surface);
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+      min-height: 220px;
+    }
+    .drop-zone.drag-over { border-color: var(--ds-color-accent); background: var(--ds-color-surface-tint); }
+    .drop-icon { font-size: 48px; opacity: 0.4; }
+    .drop-title { font-size: 16px; font-weight: 600; color: var(--ds-color-text-secondary); }
+    .drop-sub { font-size: 13px; color: var(--ds-color-text-muted); }
+
+    /* Progress */
+    .progress-bar-wrap {
+      display: none;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .progress-bar-wrap.visible { display: block; }
+    .progress-label { font-size: 13px; color: var(--ds-color-text-secondary); margin-bottom: 10px; }
+    .progress-track { background: var(--ds-color-bg); border-radius: 4px; height: 8px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--ds-color-accent); border-radius: 4px; transition: width 0.2s; width: 0%; }
+
+    /* Info bar */
+    .info-bar {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--ds-color-surface);
+      border: 1px solid var(--ds-color-border);
+      border-radius: var(--ds-radius-md);
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--ds-color-text-secondary);
+    }
+    .info-bar.visible { display: flex; flex-wrap: wrap; }
+    .info-badge { font-family: var(--ds-font-mono); font-weight: 700; color: var(--ds-color-text-primary); }
+    .btn-change-pdf { margin-left: auto; font-size: 12px; color: var(--ds-color-text-muted); padding: 5px 10px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); background: transparent; cursor: pointer; transition: color 0.15s, background 0.15s; font-family: var(--ds-font-sans); }
+    .btn-change-pdf:hover { color: var(--ds-color-text-primary); background: var(--ds-color-surface-strong); }
+
+    /* Tab bar */
+    .tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--ds-color-border); margin-bottom: 12px; }
+    .tab-btn { padding: 8px 16px; font-size: 13px; background: none; border: none; color: var(--ds-color-text-muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; font-family: var(--ds-font-sans); }
+    .tab-btn.active { color: var(--ds-color-accent); border-bottom-color: var(--ds-color-accent); }
+
+    /* Markdown textarea */
+    .md-textarea { width: 100%; min-height: 320px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 12px; font-family: var(--ds-font-mono); font-size: 13px; color: var(--ds-color-text-primary); resize: vertical; line-height: 1.6; box-sizing: border-box; }
+
+    /* Markdown preview */
+    .md-preview { min-height: 320px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); padding: 16px 20px; color: var(--ds-color-text-primary); line-height: 1.7; font-size: 14px; display: none; overflow: auto; }
+    .md-preview h1, .md-preview h2, .md-preview h3 { color: var(--ds-color-text-primary); margin: 1em 0 0.4em; }
+    .md-preview ul { padding-left: 20px; }
+    .md-preview p { margin: 0.5em 0; }
+
+    /* Action buttons */
+    .extract-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .btn-primary { display: flex; align-items: center; gap: 7px; background: var(--ds-color-accent); color: #fff; font-size: 14px; font-weight: 600; padding: 9px 18px; border-radius: var(--ds-radius-md); border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; white-space: nowrap; font-family: var(--ds-font-sans); }
+    .btn-primary:hover { background: var(--ds-color-accent-hover); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-secondary { display: flex; align-items: center; gap: 7px; background: transparent; color: var(--ds-color-text-secondary); font-size: 14px; font-weight: 500; padding: 9px 16px; border-radius: var(--ds-radius-md); border: 1px solid var(--ds-color-border); cursor: pointer; transition: color 0.15s, background 0.15s; white-space: nowrap; font-family: var(--ds-font-sans); }
+    .btn-secondary:hover { color: var(--ds-color-text-primary); background: var(--ds-color-surface-strong); }
+
+    /* Conversion stats */
+    .convert-info { display: flex; gap: 20px; padding: 10px 0; font-size: 13px; color: var(--ds-color-text-secondary); flex-wrap: wrap; margin-bottom: 4px; }
+    .convert-info span { font-weight: 600; color: var(--ds-color-text-primary); }
+
+    /* Disclaimer */
+    .disclaimer { font-size: 12px; color: var(--ds-color-text-muted); background: var(--ds-color-surface-tint); border-left: 3px solid var(--ds-color-border); padding: 8px 12px; border-radius: 0 var(--ds-radius-xs) var(--ds-radius-xs) 0; margin-bottom: 12px; }
+
+    /* Result section */
+    .result-section { display: none; }
+    .result-section.visible { display: block; }
+
+    #fileInput { display: none; }
+
+    @media (max-width: 600px) {
+      .main { padding: 16px 12px 48px; }
+      .extract-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+<nav class="ds-tool-nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="ds-tool-nav-divider"></div>
+  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
+  <div class="ds-tool-nav-divider"></div>
+  <div class="ds-tool-nav-name">
+    PDF to Markdown
+    <span class="ds-tool-badge">pdf</span>
+  </div>
+  <div class="ds-tool-spacer"></div>
+  <div class="ds-tool-privacy">
+    <span class="ds-tool-privacy-dot"></span>
+    Runs locally — no data sent
+  </div>
+</nav>
+
+<div class="ds-tool-header">
+  <div class="ds-tool-header__inner">
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">📝</div>
+      <h1 class="ds-tool-header__title">PDF to Markdown</h1>
+    </div>
+    <p class="ds-tool-header__desc">Convert PDF text content to Markdown format — detects headings and lists automatically. Copy or download as .md file. No uploads, everything runs in your browser.</p>
+    <div class="ds-tool-tag-row">
+      <span class="ds-tag">PDF</span>
+      <span class="ds-tag">Markdown</span>
+      <span class="ds-tag">convert</span>
+      <span class="ds-tag">heading detection</span>
+      <span class="ds-tag">download .md</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Drop zone -->
+  <div class="drop-zone" id="dropZone">
+    <div class="drop-icon">📝</div>
+    <div class="drop-title">Drop PDF here</div>
+    <div class="drop-sub">or click to browse</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-bar-wrap" id="progressWrap">
+    <div class="progress-label" id="progressLabel">Converting to Markdown…</div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Info bar (shown after load) -->
+  <div class="info-bar" id="infoBar">
+    <span>File:</span>
+    <span class="info-badge" id="infoFilename">—</span>
+    <span>·</span>
+    <span class="info-badge" id="infoPages">—</span>
+    <span>pages</span>
+    <button class="btn-change-pdf" id="btnChangePdf">Change PDF</button>
+  </div>
+
+  <!-- Result section -->
+  <div class="result-section" id="resultSection">
+
+    <!-- Conversion stats -->
+    <div class="convert-info" id="convertInfo">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      Heuristic conversion — works best on text-heavy PDFs with clear heading sizes. Complex layouts and scanned PDFs are not supported.
+    </div>
+
+    <!-- Tab switcher -->
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tabSource" aria-selected="true">Markdown Source</button>
+      <button class="tab-btn" id="tabPreview" aria-selected="false">Preview</button>
+    </div>
+
+    <!-- Markdown textarea -->
+    <textarea class="md-textarea" id="mdTextarea" readonly spellcheck="false" aria-label="Markdown output"></textarea>
+
+    <!-- Preview pane -->
+    <div class="md-preview" id="mdPreview" aria-label="Markdown preview"></div>
+
+    <!-- Action buttons -->
+    <div class="extract-actions">
+      <button class="btn-primary" id="btnCopy">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Markdown
+      </button>
+      <button class="btn-secondary" id="btnDownload">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download .md
+      </button>
+    </div>
+  </div>
+
+  <input type="file" id="fileInput" accept=".pdf" />
+
+<!-- AUTO-SEO-SECTIONS:START -->
+<div class="ds-seo-content">
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">What is PDF to Markdown Converter?</h2>
+    <p>PDF to Markdown Converter is a browser-based tool that reads embedded text from a PDF file and converts it to Markdown format using heuristic analysis. It uses PDF.js to process the file entirely on your device — no file is ever sent to a server. Font size comparisons are used to detect headings (H1, H2), and common list patterns are automatically converted to Markdown bullet points or numbered lists.</p>
+  </section>
+  <section class="ds-seo-section">
+    <h2 class="ds-seo-section__title">How to Use PDF to Markdown</h2>
+    <ol>
+      <li>Drop a PDF file onto the upload area or click to browse and select one.</li>
+      <li>Wait for conversion to complete — a progress bar shows the current page.</li>
+      <li>Review the Markdown output in the "Markdown Source" tab.</li>
+      <li>Switch to the "Preview" tab to see a rendered HTML preview of the Markdown.</li>
+      <li>Click "Copy Markdown" to copy to clipboard, or "Download .md" to save as a file.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="ds-related-tools">
+  <h2 class="ds-related-title">Related Tools</h2>
+  <div class="ds-related-grid">
+    <a href="pdf-extract-text.html" class="ds-related-card"><span class="ds-related-icon">📋</span><div><div class="ds-related-name">PDF Text Extractor</div><div class="ds-related-desc">Extract all text content from a PDF as plain text</div></div></a>
+    <a href="pdf-to-image.html" class="ds-related-card"><span class="ds-related-icon">📄</span><div><div class="ds-related-name">PDF to Image</div><div class="ds-related-desc">Convert PDF pages to PNG or JPEG images</div></div></a>
+    <a href="markdown-preview.html" class="ds-related-card"><span class="ds-related-icon">👁️</span><div><div class="ds-related-name">Markdown Preview</div><div class="ds-related-desc">Preview and edit Markdown with live rendering</div></div></a>
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and sentences</div></div></a>
+  </div>
+</div>
+
+<details class="ds-seo-more">
+  <summary class="ds-seo-more__toggle">
+    <span>Understand PDF to Markdown Conversion</span>
+    <span class="ds-seo-more__arrow">&#9662;</span>
+  </summary>
+  <div class="ds-seo-more__body">
+    <details class="ds-seo-collapse">
+      <summary>Example</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-example">
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Input</span>
+            <span class="ds-seo-example__value">A PDF report with large title text, section headings, and bullet list items</span>
+          </div>
+          <div class="ds-seo-example__row">
+            <span class="ds-seo-example__label">Output</span>
+            <span class="ds-seo-example__value"># Report Title<br>## Section Heading<br>- Bullet point item<br><br>Body paragraph text…</span>
+          </div>
+        </div>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Common Use Cases</summary>
+      <div class="ds-seo-collapse__body">
+        <ul>
+          <li>Convert a PDF article or report into Markdown for a static site generator</li>
+          <li>Import PDF documentation into Obsidian, Notion, or other Markdown-based tools</li>
+          <li>Migrate PDF content into a version-controlled docs repository</li>
+          <li>Extract structured content from a PDF for further editing in a Markdown editor</li>
+        </ul>
+      </div>
+    </details>
+    <details class="ds-seo-collapse">
+      <summary>Frequently Asked Questions</summary>
+      <div class="ds-seo-collapse__body">
+        <div class="ds-seo-faq-item"><strong>Is my PDF uploaded to a server?</strong><p>No. The entire conversion runs inside your browser using PDF.js. Your file never leaves your device and no data is sent to any server.</p></div>
+        <div class="ds-seo-faq-item"><strong>How accurate is the heading detection?</strong><p>Heading detection is heuristic-based: it compares each line's font size to the median font size on the page. Lines that are significantly larger are promoted to H1 or H2 headings. This works well for PDFs with clear visual hierarchy but may misclassify decorative large text or footers.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does this work with scanned PDFs?</strong><p>No. This tool converts embedded text from PDFs. Scanned PDFs are images of text and contain no embedded text data. You would need OCR software to first extract text from scanned documents before converting to Markdown.</p></div>
+        <div class="ds-seo-faq-item"><strong>What are the best use cases for PDF to Markdown?</strong><p>This tool works best on text-heavy PDFs such as reports, documentation, articles, and e-books with consistent heading styles. The output is ideal for pasting into Markdown editors, static site generators, note-taking apps like Obsidian or Notion, or version-controlled documentation repositories.</p></div>
+      </div>
+    </details>
+  </div>
+</details>
+<!-- AUTO-SEO-SECTIONS:END -->
+
+</div>
+
+<footer>
+  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../about.html">About</a>
+</footer>
+
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  const dropZone      = document.getElementById('dropZone');
+  const fileInput     = document.getElementById('fileInput');
+  const progressWrap  = document.getElementById('progressWrap');
+  const progressFill  = document.getElementById('progressFill');
+  const progressLabel = document.getElementById('progressLabel');
+  const infoBar       = document.getElementById('infoBar');
+  const infoFilename  = document.getElementById('infoFilename');
+  const infoPages     = document.getElementById('infoPages');
+  const btnChangePdf  = document.getElementById('btnChangePdf');
+  const resultSection = document.getElementById('resultSection');
+  const convertInfo   = document.getElementById('convertInfo');
+  const mdTextarea    = document.getElementById('mdTextarea');
+  const mdPreview     = document.getElementById('mdPreview');
+  const tabSource     = document.getElementById('tabSource');
+  const tabPreview    = document.getElementById('tabPreview');
+  const btnCopy       = document.getElementById('btnCopy');
+  const btnDownload   = document.getElementById('btnDownload');
+
+  let currentPdfDoc   = null;
+  let currentFilename = '';
+  let totalPages      = 0;
+
+  // ── Minimal Markdown preview renderer ────────────────────────────────────
+  function renderMarkdown(md) {
+    // Escape HTML entities first to prevent injection
+    let html = md
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Headings
+    html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+    html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+    html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+
+    // List items — collect consecutive <li> into <ul>
+    html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>[\s\S]*?<\/li>)(\n(?!<li>)|$)/g, '<ul>$1</ul>$2');
+
+    // Paragraphs for non-tag lines
+    html = html.replace(/^(?!<[hupl\/])(.+)$/gm, function(match) {
+      return match.trim() ? '<p>' + match + '</p>' : '';
+    });
+
+    return html;
+  }
+
+  // ── Heuristic PDF → Markdown conversion ──────────────────────────────────
+  async function pdfToMarkdown(pdfDoc) {
+    const lines = [];
+
+    for (let p = 1; p <= pdfDoc.numPages; p++) {
+      progressLabel.textContent = 'Converting page ' + p + ' of ' + pdfDoc.numPages + '…';
+      progressFill.style.width = ((p - 1) / pdfDoc.numPages * 100) + '%';
+
+      const page = await pdfDoc.getPage(p);
+      const content = await page.getTextContent();
+
+      // Group items into lines by Y position (within 2pt tolerance)
+      const lineMap = new Map();
+      for (const item of content.items) {
+        if (!item.str) continue;
+        const y = Math.round(item.transform[5]);
+        const bucket = [...lineMap.keys()].find(k => Math.abs(k - y) <= 2);
+        if (bucket !== undefined) {
+          lineMap.get(bucket).push(item);
+        } else {
+          lineMap.set(y, [item]);
+        }
+      }
+
+      // Sort lines top-to-bottom (descending Y in PDF coords)
+      const sortedLines = [...lineMap.entries()]
+        .sort((a, b) => b[0] - a[0])
+        .map(([y, items]) => {
+          // Sort items within the line by X position
+          items.sort((a, b) => a.transform[4] - b.transform[4]);
+          // Use transform[0] as approximate font size (scale factor)
+          const fontSize = Math.abs(Math.round(items[0].transform[0]));
+          return {
+            y,
+            text: items.map(i => i.str).join(' ').replace(/\s+/g, ' ').trim(),
+            fontSize: fontSize > 0 ? fontSize : 12
+          };
+        })
+        .filter(l => l.text.length > 0);
+
+      if (sortedLines.length === 0) {
+        lines.push('');
+        continue;
+      }
+
+      // Detect median font size for this page
+      const sizes = sortedLines.map(l => l.fontSize).sort((a, b) => a - b);
+      const medianSize = sizes[Math.floor(sizes.length / 2)] || 12;
+
+      for (const line of sortedLines) {
+        const { text, fontSize } = line;
+
+        if (fontSize >= medianSize * 1.5) {
+          lines.push('# ' + text);
+        } else if (fontSize >= medianSize * 1.25) {
+          lines.push('## ' + text);
+        } else if (/^[\u2022\-\*]\s/.test(text)) {
+          lines.push(text.replace(/^[\u2022]\s/, '- '));
+        } else if (/^\d+\.\s/.test(text)) {
+          lines.push(text);
+        } else {
+          lines.push(text);
+        }
+      }
+
+      lines.push(''); // blank line between pages
+    }
+
+    return lines.join('\n');
+  }
+
+  // ── Load and convert PDF ──────────────────────────────────────────────────
+  async function loadFile(file) {
+    if (!file || file.type !== 'application/pdf') {
+      alert('Please select a valid PDF file.');
+      return;
+    }
+
+    currentFilename = file.name.replace(/\.pdf$/i, '');
+    resultSection.classList.remove('visible');
+    infoBar.classList.remove('visible');
+
+    progressWrap.classList.add('visible');
+    progressFill.style.width = '0%';
+    progressLabel.textContent = 'Loading PDF…';
+
+    const arrayBuffer = await file.arrayBuffer();
+    try {
+      currentPdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    } catch (err) {
+      progressLabel.textContent = 'Error: Could not parse PDF. Make sure the file is a valid PDF.';
+      progressFill.style.width = '0%';
+      return;
+    }
+
+    totalPages = currentPdfDoc.numPages;
+    infoFilename.textContent = file.name;
+    infoPages.textContent    = totalPages;
+    infoBar.classList.add('visible');
+    dropZone.style.display   = 'none';
+
+    let markdown;
+    try {
+      markdown = await pdfToMarkdown(currentPdfDoc);
+    } catch (err) {
+      progressLabel.textContent = 'Error: Conversion failed. ' + err.message;
+      return;
+    }
+
+    // Stats
+    const wordCount = markdown.trim() ? markdown.trim().split(/\s+/).length : 0;
+    convertInfo.innerHTML =
+      '<span>' + totalPages + '</span> page' + (totalPages !== 1 ? 's' : '') + ' &nbsp;·&nbsp; ' +
+      '~<span>' + wordCount.toLocaleString() + '</span> words';
+
+    mdTextarea.value = markdown;
+    mdPreview.innerHTML = renderMarkdown(markdown);
+
+    // Show source tab by default
+    showTab('source');
+    resultSection.classList.add('visible');
+
+    progressFill.style.width = '100%';
+    progressLabel.textContent = 'Done — ' + totalPages + ' page' + (totalPages !== 1 ? 's' : '') + ' converted.';
+    setTimeout(() => { progressWrap.classList.remove('visible'); }, 1600);
+  }
+
+  // ── Tab switcher ──────────────────────────────────────────────────────────
+  function showTab(tab) {
+    if (tab === 'source') {
+      mdTextarea.style.display = '';
+      mdPreview.style.display  = 'none';
+      tabSource.classList.add('active');
+      tabPreview.classList.remove('active');
+      tabSource.setAttribute('aria-selected', 'true');
+      tabPreview.setAttribute('aria-selected', 'false');
+    } else {
+      mdTextarea.style.display = 'none';
+      mdPreview.style.display  = '';
+      tabSource.classList.remove('active');
+      tabPreview.classList.add('active');
+      tabSource.setAttribute('aria-selected', 'false');
+      tabPreview.setAttribute('aria-selected', 'true');
+    }
+  }
+
+  tabSource.addEventListener('click', () => showTab('source'));
+  tabPreview.addEventListener('click', () => showTab('preview'));
+
+  // ── Copy Markdown ─────────────────────────────────────────────────────────
+  btnCopy.addEventListener('click', async () => {
+    const text = mdTextarea.value;
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      const orig = btnCopy.innerHTML;
+      btnCopy.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+      setTimeout(() => { btnCopy.innerHTML = orig; }, 1800);
+    } catch {
+      mdTextarea.select();
+      document.execCommand('copy');
+    }
+  });
+
+  // ── Download .md ──────────────────────────────────────────────────────────
+  btnDownload.addEventListener('click', () => {
+    const text = mdTextarea.value;
+    if (!text) return;
+    const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = Object.assign(document.createElement('a'), {
+      href: url,
+      download: (currentFilename || 'converted') + '.md'
+    });
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+
+  // ── Drop zone interactions ────────────────────────────────────────────────
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    loadFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+
+  // ── Change PDF ────────────────────────────────────────────────────────────
+  btnChangePdf.addEventListener('click', () => {
+    dropZone.style.display = '';
+    resultSection.classList.remove('visible');
+    infoBar.classList.remove('visible');
+    currentPdfDoc = null;
+    totalPages = 0;
+    mdTextarea.value = '';
+    mdPreview.innerHTML = '';
+    fileInput.value = '';
+    fileInput.click();
+  });
+</script>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

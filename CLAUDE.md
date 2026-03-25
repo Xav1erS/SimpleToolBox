@@ -7,9 +7,9 @@
 - Before commands, edits, or tests, briefly say what you are about to do.
 - Prefer the minimum necessary change.
 
-## Current Actual State (2026-03-24)
+## Current Actual State (2026-03-25)
 
-- Tool count: **162**
+- Tool count: **174**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
 - Hub pages live and data-driven:
   - `image-tools`
@@ -18,7 +18,7 @@
   - `calculator-tools`
   - `converter-tools`
   - `generator-tools`
-  - `pdf-tools` — 6 tools: pdf-to-image, image-to-pdf, pdf-page-counter, pdf-compress, pdf-merge, pdf-split
+  - `pdf-tools` — 11 tools: pdf-to-image, image-to-pdf, pdf-page-counter, pdf-compress, pdf-merge, pdf-split, pdf-rotate-pages, pdf-extract-text, pdf-metadata-viewer, pdf-add-watermark, pdf-to-markdown
 - `public/tools-data.js` is the shared source for homepage, all-tools, and hub pages.
 - `public/tools-meta.js` is the shared source for JSON-LD, FAQ, learn-more, and related tools.
 - Latest preflight is fully green:

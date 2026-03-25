@@ -171,6 +171,10 @@ const SITE_TOOLS = [
   { name: 'Image Color Extractor',   href: 'tools/image-color-extractor.html',   tag: 'image',    icon: '🔬', desc: 'Click anywhere on an image to extract exact color values — HEX, RGB, HSL with copy button and history' },
   { name: 'PDF Metadata Viewer',     href: 'tools/pdf-metadata-viewer.html',     tag: 'pdf',      icon: '🔎', desc: 'View title, author, creation date, page size, and all metadata inside a PDF — no upload needed' },
   { name: 'PDF Watermark',           href: 'tools/pdf-add-watermark.html',       tag: 'pdf',      icon: '🔏', desc: 'Add custom text watermarks to PDF pages — diagonal or corner position, adjustable opacity and size' },
+  { name: 'JPG to PDF',              href: 'tools/jpg-to-pdf.html',              tag: 'convert',  icon: '📄', desc: 'Convert JPG photos to a PDF file instantly — one or multiple images, choose page size and margins' },
+  { name: 'PDF to Markdown',         href: 'tools/pdf-to-markdown.html',         tag: 'pdf',      icon: '📝', desc: 'Convert PDF text to Markdown format with automatic heading and list detection — download as .md' },
+  { name: 'Image Sharpener',         href: 'tools/image-sharpen.html',           tag: 'image',    icon: '✨', desc: 'Sharpen blurry or soft images with an adjustable unsharp mask — live preview, instant download' },
+  { name: 'AVIF to JPG Converter',   href: 'tools/avif-to-jpg.html',             tag: 'image',    icon: '🖼️', desc: 'Convert AVIF images to JPEG or PNG using your browser\'s native decoder — batch supported, no upload' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -181,7 +185,7 @@ const HUB_PAGE_CONFIG = {
       ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
       ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
       ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark'],
-      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor']
+      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg']
     ]
   },
   developer: {
@@ -223,7 +227,7 @@ const HUB_PAGE_CONFIG = {
   },
   pdf: {
     sections: [
-      ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress', 'pdf-merge', 'pdf-split', 'pdf-rotate-pages', 'pdf-extract-text', 'pdf-metadata-viewer', 'pdf-add-watermark']
+      ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress', 'pdf-merge', 'pdf-split', 'pdf-rotate-pages', 'pdf-extract-text', 'pdf-metadata-viewer', 'pdf-add-watermark', 'pdf-to-markdown']
     ]
   }
 };

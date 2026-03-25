@@ -13,7 +13,7 @@
   <meta property="og:description" content="Browse all 156 free browser-based tools. Search and filter by encode, format, convert, generate, text, image, design, reference, and calculator." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles/design-system.css?v=20" />
+  <link rel="stylesheet" href="styles/design-system.css?v=21" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
 
@@ -83,10 +83,35 @@
     .action-tag:hover { color: var(--ds-color-text-primary); border-color: rgba(255,255,255,0.2); }
     .action-tag.active { background: rgba(251,146,60,0.15); border-color: rgba(251,146,60,0.5); color: #f97316; }
 
-    @media (max-width: 768px) { .nav-search { display: none; } }
+    @media (max-width: 768px) {
+      .page-header { padding: 32px 16px 0; }
+      .page-title { font-size: clamp(30px, 10vw, 42px); }
+      .page-sub { margin-bottom: 24px; font-size: 15px; }
+      .section-label { padding: 0 16px 10px; }
+      .hub-links,
+      .filter-tags,
+      .action-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .hub-links::-webkit-scrollbar,
+      .filter-tags::-webkit-scrollbar,
+      .action-bar::-webkit-scrollbar { display: none; }
+      .hub-links { padding: 0 16px 20px; }
+      .hub-link,
+      .filter-tag,
+      .action-tag { flex: 0 0 auto; }
+      .filter-bar { padding: 0 16px 16px; gap: 10px; }
+      .filter-search { flex: 1 0 100%; max-width: none; }
+      .filter-search input { min-height: 46px; font-size: 14px; }
+      .count-badge { width: 100%; margin-left: 0; font-size: 11px; }
+      .tool-section-title { padding: 0 16px 10px; margin-top: 16px; }
+      .tool-grid.tool-grid--section { padding: 0 16px 4px; }
+      .tool-grid#toolGrid.tool-grid--grouped { padding: 0 0 56px; }
+    }
     @media (max-width: 640px) {
       .nav-actions .nav-link { display: none; }
-      .page-header { padding: 32px 16px 0; }
       .filter-bar { padding: 0 16px 20px; }
       .tool-grid { padding: 0 16px 60px; grid-template-columns: 1fr; }
     }
@@ -825,6 +850,8 @@
   const toolGrid = document.getElementById('toolGrid');
   const countBadge = document.getElementById('countBadge');
   const pageSub = document.querySelector('.page-sub');
+  const toolSearchInput = document.getElementById('toolSearch');
+  const navSearchInput = document.getElementById('navSearch');
 
   // ── Constants ────────────────────────────────────────────────────────────
 
@@ -896,6 +923,17 @@
   let activeAction = '';   // '' means no action filter active
   let searchQuery  = '';
   let gridMode     = ''; // 'grouped' | 'flat'
+
+  function syncSearchInputs(value, source) {
+    if (source !== 'tool' && toolSearchInput.value !== value) toolSearchInput.value = value;
+    if (source !== 'nav' && navSearchInput.value !== value) navSearchInput.value = value;
+  }
+
+  function setSearchQuery(value, source) {
+    searchQuery = value;
+    syncSearchInputs(value, source);
+    rebuildGrid();
+  }
 
   function renderGroupedHTML() {
     // Recently Used (only when records exist)
@@ -1035,7 +1073,7 @@
       activeAction = '';
       document.querySelectorAll('.action-tag').forEach(b => b.classList.remove('active'));
       searchQuery  = '';
-      document.getElementById('toolSearch').value = '';
+      syncSearchInputs('', 'tool');
       const url = new URL(window.location);
       url.searchParams.delete('act');
       if (activeTag === 'all') { url.searchParams.delete('cat'); } else { url.searchParams.set('cat', activeTag); }
@@ -1054,7 +1092,7 @@
       activeTag = 'all';
       document.querySelectorAll('.filter-tag').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
       searchQuery = '';
-      document.getElementById('toolSearch').value = '';
+      syncSearchInputs('', 'tool');
       const url = new URL(window.location);
       url.searchParams.delete('cat');
       if (activeAction) { url.searchParams.set('act', activeAction); } else { url.searchParams.delete('act'); }
@@ -1063,10 +1101,7 @@
     });
   });
 
-  document.getElementById('toolSearch').addEventListener('input', e => {
-    searchQuery = e.target.value;
-    rebuildGrid();
-  });
+  toolSearchInput.addEventListener('input', e => setSearchQuery(e.target.value, 'tool'));
 
   // ── Nav search ───────────────────────────────────────────────────────────
 
@@ -1089,17 +1124,31 @@
   }
 
   const navDropdown = document.getElementById('navSearchDropdown');
-  document.getElementById('navSearch').addEventListener('input', e => buildNavDropdown(navDropdown, e.target.value));
+  navSearchInput.addEventListener('input', e => {
+    buildNavDropdown(navDropdown, e.target.value);
+    setSearchQuery(e.target.value, 'nav');
+  });
   document.addEventListener('click', e => { if (!e.target.closest('.nav-search')) navDropdown.classList.remove('open'); });
-  document.getElementById('navSearch').addEventListener('keydown', e => {
+  navSearchInput.addEventListener('keydown', e => {
     const items = navDropdown.querySelectorAll('.search-suggestion');
     let idx = [...items].findIndex(el => el.classList.contains('focused'));
     if (e.key === 'ArrowDown')  { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.min(idx + 1, items.length - 1); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
     else if (e.key === 'ArrowUp')   { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.max(idx - 1, 0); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
-    else if (e.key === 'Enter')  { e.preventDefault(); const f = navDropdown.querySelector('.search-suggestion.focused'); if (f) f.click(); else if (items.length) items[0].click(); }
+    else if (e.key === 'Enter')  {
+      e.preventDefault();
+      const f = navDropdown.querySelector('.search-suggestion.focused');
+      if (f) {
+        f.click();
+      } else if (items.length) {
+        items[0].click();
+      } else if (searchQuery.trim()) {
+        navDropdown.classList.remove('open');
+        document.getElementById('toolGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
     else if (e.key === 'Escape') { navDropdown.classList.remove('open'); }
   });
-  document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('navSearch').focus(); } });
+  document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); navSearchInput.focus(); } });
   window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 </script>
 </body>

@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=20" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=21" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -168,6 +168,39 @@
     @media (max-width: 720px) {
       .csv-panels { min-height: auto; }
       .csv-actions-col { min-height: 36px; }
+      .toolbar {
+        align-items: stretch;
+        gap: 8px;
+      }
+      .btn-action {
+        justify-content: center;
+        min-height: 42px;
+        flex: 1 1 calc(50% - 8px);
+      }
+      .toolbar-sep,
+      .toolbar-spacer {
+        display: none;
+      }
+      .mode-tabs {
+        width: 100%;
+      }
+      .mode-tab {
+        flex: 1;
+        text-align: center;
+      }
+      .sql-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .sql-label {
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .btn-action {
+        flex-basis: 100%;
+      }
     }
   </style>
   <!-- Google tag (gtag.js) -->

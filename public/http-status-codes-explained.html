@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>HTTP Status Codes Explained | Simple ToolBox</title>
+  <meta name="description" content="A quick HTTP status code reference covering 1xx through 5xx, what common responses mean, and when to use related debugging tools." />
+  <link rel="canonical" href="https://simpletoolbox.dev/http-status-codes-explained" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://simpletoolbox.dev/http-status-codes-explained" />
+  <meta property="og:title" content="HTTP Status Codes Explained | Simple ToolBox" />
+  <meta property="og:description" content="Understand 200, 301, 404, 429, 500, and other HTTP status codes quickly." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/design-system.css?v=22" />
+  <link rel="stylesheet" href="styles/reference-guides.css?v=1" />
+</head>
+<body class="ds-page">
+<nav class="ds-nav" id="nav">
+  <a href="index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
+  <div class="nav-search"><svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg><input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" /><kbd>Ctrl K</kbd><div class="search-dropdown" id="navSearchDropdown"></div></div>
+  <div class="nav-actions"><a href="all-tools.html" class="nav-link">All Tools</a><a href="contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a></div>
+</nav>
+<section class="guide-hero">
+  <div class="guide-breadcrumb"><a href="index.html">Home</a> / <a href="developer-tools.html">Developer Tools</a> / HTTP Status Codes</div>
+  <div class="guide-badge">Reference</div>
+  <h1 class="guide-title">HTTP Status Codes Explained</h1>
+  <p class="guide-sub">Use this page to quickly understand what a response code means, whether the issue is on the client or server side, and which codes matter most in debugging and API work.</p>
+  <div class="guide-meta"><span class="guide-chip">Best for API debugging and web response triage</span><span class="guide-chip">Pairs with HTTP Status Codes Reference</span></div>
+</section>
+<div class="guide-shell">
+  <aside class="guide-toc"><div class="guide-toc__title">On this page</div><div class="guide-toc__list"><a href="#groups">Status groups</a><a href="#common">Common codes</a><a href="#debug">Debug checklist</a><a href="#tools">Use with tools</a></div></aside>
+  <main class="guide-content">
+    <section class="guide-panel" id="groups">
+      <h2>Status code groups</h2>
+      <div class="guide-grid">
+        <div class="guide-card"><h3>1xx informational</h3><p>The request is still in progress. These are uncommon in normal browser debugging.</p></div>
+        <div class="guide-card"><h3>2xx success</h3><p>The request succeeded. <span class="guide-code">200</span>, <span class="guide-code">201</span>, and <span class="guide-code">204</span> show up most often.</p></div>
+        <div class="guide-card"><h3>3xx redirection</h3><p>The client needs to follow another URL or use cached content.</p></div>
+        <div class="guide-card"><h3>4xx client error</h3><p>The request was invalid, unauthorized, missing, or rate-limited.</p></div>
+        <div class="guide-card"><h3>5xx server error</h3><p>The server failed while trying to handle a valid request.</p></div>
+      </div>
+    </section>
+    <section class="guide-panel guide-note" id="common">
+      <h2>Common codes you actually use</h2>
+      <div class="guide-table-wrap">
+        <table class="guide-table">
+          <thead><tr><th>Code</th><th>Meaning</th><th>Typical case</th></tr></thead>
+          <tbody>
+            <tr><td>200</td><td>OK</td><td>Normal successful GET or POST response</td></tr>
+            <tr><td>201</td><td>Created</td><td>Resource created successfully after POST</td></tr>
+            <tr><td>301</td><td>Moved Permanently</td><td>URL changed permanently, update links and canonical targets</td></tr>
+            <tr><td>302</td><td>Found</td><td>Temporary redirect, often login or short-term routing</td></tr>
+            <tr><td>400</td><td>Bad Request</td><td>Malformed payload or missing required parameter</td></tr>
+            <tr><td>401</td><td>Unauthorized</td><td>Missing or invalid authentication</td></tr>
+            <tr><td>403</td><td>Forbidden</td><td>Authenticated but not allowed to access this resource</td></tr>
+            <tr><td>404</td><td>Not Found</td><td>Route, file, or resource does not exist</td></tr>
+            <tr><td>429</td><td>Too Many Requests</td><td>Rate limit exceeded</td></tr>
+            <tr><td>500</td><td>Internal Server Error</td><td>Unhandled server-side failure</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="guide-panel" id="debug">
+      <h2>Fast debug checklist</h2>
+      <ul>
+        <li>If the code is 4xx, check the request first: auth, payload shape, URL, headers.</li>
+        <li>If the code is 5xx, check the server and logs first.</li>
+        <li>If the code is 301 or 302, verify where the redirect lands and whether that behavior is intended.</li>
+        <li>If the code is 429, add retry logic or backoff instead of hammering the endpoint.</li>
+      </ul>
+    </section>
+    <section class="guide-panel" id="tools">
+      <h2>Use this reference with the right tool</h2>
+      <div class="guide-tools"><div class="guide-tools__title">Related tools</div><div class="guide-tools__grid" id="relatedToolGrid"></div></div>
+    </section>
+  </main>
+</div>
+<footer class="guide-footer"><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="all-tools.html">All Tools</a> &nbsp;|&nbsp; <a href="developer-tools.html">Developer Tools</a></footer>
+<script src="tools-data.js"></script>
+<script src="scripts/reference-guides.js"></script>
+<script>window.GUIDE_RELATED_TOOL_SLUGS=['http-status','url-parser','jwt-decoder'];initGuidePage();</script>
+</body>
+</html>

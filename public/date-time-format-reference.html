@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Date &amp; Time Format Reference | Simple ToolBox</title>
+  <meta name="description" content="A quick date and time format reference covering ISO 8601, Unix timestamps, common token patterns, and timezone notation. Jump into Timestamp Converter and Time Zone Converter." />
+  <link rel="canonical" href="https://simpletoolbox.dev/date-time-format-reference" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://simpletoolbox.dev/date-time-format-reference" />
+  <meta property="og:title" content="Date &amp; Time Format Reference | Simple ToolBox" />
+  <meta property="og:description" content="Use this page to compare ISO 8601, Unix timestamps, timezone offsets, and common date formatting tokens." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/design-system.css?v=22" />
+  <link rel="stylesheet" href="styles/reference-guides.css?v=1" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Date & Time Format Reference",
+    "description": "A quick date and time format reference covering ISO 8601, Unix timestamps, common token patterns, and timezone notation.",
+    "url": "https://simpletoolbox.dev/date-time-format-reference",
+    "author": { "@type": "Organization", "name": "Simple ToolBox" },
+    "publisher": { "@type": "Organization", "name": "Simple ToolBox", "url": "https://simpletoolbox.dev" }
+  }
+  </script>
+</head>
+<body class="ds-page">
+<nav class="ds-nav" id="nav">
+  <a href="index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" />
+    <kbd>Ctrl K</kbd>
+    <div class="search-dropdown" id="navSearchDropdown"></div>
+  </div>
+  <div class="nav-actions">
+    <a href="all-tools.html" class="nav-link">All Tools</a>
+    <a href="contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
+  </div>
+</nav>
+
+<section class="guide-hero">
+  <div class="guide-breadcrumb"><a href="index.html">Home</a> / <a href="converter-tools.html">Converter Tools</a> / Date &amp; Time Formats</div>
+  <div class="guide-badge">Format Reference</div>
+  <h1 class="guide-title">Date &amp; Time Format Reference</h1>
+  <p class="guide-sub">Use this page when you need to recognize a timestamp, convert between machine and human-readable formats, or remember how timezone offsets are written.</p>
+  <div class="guide-meta">
+    <span class="guide-chip">Best for ISO 8601, Unix timestamps, and timezone notation</span>
+    <span class="guide-chip">Pairs with Timestamp Converter and Time Zone Converter</span>
+  </div>
+</section>
+
+<div class="guide-shell">
+  <aside class="guide-toc">
+    <div class="guide-toc__title">On this page</div>
+    <div class="guide-toc__list">
+      <a href="#formats">Common formats</a>
+      <a href="#tokens">Useful tokens</a>
+      <a href="#timezone">Timezone notes</a>
+      <a href="#tools">Use with tools</a>
+    </div>
+  </aside>
+
+  <main class="guide-content">
+    <section class="guide-panel" id="formats">
+      <h2>Common date and time formats</h2>
+      <div class="guide-table-wrap">
+        <table class="guide-table">
+          <thead>
+            <tr><th>Format</th><th>Example</th><th>Best for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>ISO 8601</td><td><span class="guide-code">2026-03-27T14:30:00Z</span></td><td>APIs, logs, databases, cross-system exchange</td></tr>
+            <tr><td>Unix timestamp</td><td><span class="guide-code">1774621800</span></td><td>Compact machine storage and event tracking</td></tr>
+            <tr><td>Readable local date</td><td><span class="guide-code">2026-03-27 14:30</span></td><td>Dashboards, exports, user-facing views</td></tr>
+            <tr><td>US style</td><td><span class="guide-code">03/27/2026</span></td><td>US office workflows and older systems</td></tr>
+            <tr><td>Day-first style</td><td><span class="guide-code">27/03/2026</span></td><td>Many international user-facing documents</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guide-panel guide-note" id="tokens">
+      <h2>Useful formatting tokens</h2>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h3><span class="guide-code">YYYY</span></h3>
+          <p>Four-digit year, such as 2026.</p>
+        </div>
+        <div class="guide-card">
+          <h3><span class="guide-code">MM</span></h3>
+          <p>Two-digit month, from 01 to 12.</p>
+        </div>
+        <div class="guide-card">
+          <h3><span class="guide-code">DD</span></h3>
+          <p>Two-digit day of month.</p>
+        </div>
+        <div class="guide-card">
+          <h3><span class="guide-code">HH:mm:ss</span></h3>
+          <p>24-hour time with hours, minutes, and seconds.</p>
+        </div>
+      </div>
+      <p>If you work across multiple libraries, remember token syntax is not universal. For example, one formatter may use lowercase and another uppercase for months and minutes.</p>
+    </section>
+
+    <section class="guide-panel" id="timezone">
+      <h2>Timezone notes that avoid mistakes</h2>
+      <ul>
+        <li><span class="guide-code">Z</span> means UTC.</li>
+        <li><span class="guide-code">+08:00</span> and <span class="guide-code">-05:00</span> are fixed offsets, not daylight-saving aware location names.</li>
+        <li>Store timestamps in UTC when possible, then display them in the user's timezone.</li>
+        <li>Never assume <span class="guide-code">03/04/2026</span> is unambiguous. Prefer ISO 8601 for system exchange.</li>
+      </ul>
+    </section>
+
+    <section class="guide-panel" id="tools">
+      <h2>Use this reference with the right tool</h2>
+      <div class="guide-tools">
+        <div class="guide-tools__title">Related tools</div>
+        <div class="guide-tools__grid" id="relatedToolGrid"></div>
+      </div>
+      <h3>Related guides</h3>
+      <div class="guide-cross-links">
+        <a href="json-formatting-guide.html" class="guide-link-card"><div><strong>JSON Formatting Guide</strong><span>Useful when timestamps are embedded inside JSON payloads.</span></div><span>Open</span></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="guide-footer">
+  <a href="index.html">Home</a> &nbsp;|&nbsp;
+  <a href="all-tools.html">All Tools</a> &nbsp;|&nbsp;
+  <a href="converter-tools.html">Converter Tools</a>
+</footer>
+
+<script src="tools-data.js"></script>
+<script src="scripts/reference-guides.js"></script>
+<script>
+  window.GUIDE_RELATED_TOOL_SLUGS = ['timestamp', 'time-zone-converter', 'date-calculator', 'countdown'];
+  initGuidePage();
+</script>
+</body>
+</html>

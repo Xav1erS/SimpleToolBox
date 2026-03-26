@@ -31,6 +31,11 @@
     .hub-link:hover { border-color: rgba(255,255,255,0.3); color: var(--ds-color-text-primary); background: var(--ds-color-surface); }
     .hub-link::after { content: '→'; font-size: 12px; color: var(--ds-color-text-muted); transition: transform 0.15s, color 0.15s; }
     .hub-link:hover::after { transform: translateX(3px); color: var(--ds-color-accent); }
+    .guide-links { max-width: 1100px; margin: 0 auto; padding: 0 24px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+    .guide-link { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s, background 0.15s; }
+    .guide-link:hover { border-color: var(--ds-color-border-accent); background: var(--ds-color-surface-strong); }
+    .guide-link__title { font-size: 14px; font-weight: 600; color: var(--ds-color-text-primary); }
+    .guide-link__meta { font-size: 12px; color: var(--ds-color-text-secondary); line-height: 1.6; }
 
     /* Filter bar */
     .filter-bar { max-width: 1100px; margin: 0 auto; padding: 0 24px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -99,6 +104,7 @@
       .filter-tags::-webkit-scrollbar,
       .action-bar::-webkit-scrollbar { display: none; }
       .hub-links { padding: 0 16px 20px; }
+      .guide-links { padding: 0 16px 20px; grid-template-columns: 1fr; }
       .hub-link,
       .filter-tag,
       .action-tag { flex: 0 0 auto; }
@@ -167,6 +173,18 @@
   <a href="converter-tools.html" class="hub-link">📐 Conversion Tools</a>
   <a href="generator-tools.html" class="hub-link">⚙️ Generators</a>
   <a href="pdf-tools.html" class="hub-link">📄 PDF &amp; Document</a>
+</div>
+
+<p class="section-label">Reference &amp; quick guides</p>
+<div class="guide-links">
+  <a href="regex-patterns.html" class="guide-link"><span class="guide-link__title">Regex Patterns</span><span class="guide-link__meta">Common patterns, flags, and matching tips.</span></a>
+  <a href="json-formatting-guide.html" class="guide-link"><span class="guide-link__title">JSON Formatting Guide</span><span class="guide-link__meta">Prettify, minify, validate, and escape JSON.</span></a>
+  <a href="image-formats-guide.html" class="guide-link"><span class="guide-link__title">Image Formats Guide</span><span class="guide-link__meta">PNG vs JPG vs WebP and when each format fits.</span></a>
+  <a href="pdf-page-sizes.html" class="guide-link"><span class="guide-link__title">PDF Page Sizes</span><span class="guide-link__meta">A4, Letter, Legal, and common print-ready sizes.</span></a>
+  <a href="date-time-format-reference.html" class="guide-link"><span class="guide-link__title">Date &amp; Time Formats</span><span class="guide-link__meta">ISO 8601, Unix timestamps, and timezone notation.</span></a>
+  <a href="http-status-codes-explained.html" class="guide-link"><span class="guide-link__title">HTTP Status Codes</span><span class="guide-link__meta">Understand 200, 404, 429, 500, and other common responses.</span></a>
+  <a href="mime-types-guide.html" class="guide-link"><span class="guide-link__title">MIME Types Guide</span><span class="guide-link__meta">Pick the right Content-Type header for files and APIs.</span></a>
+  <a href="color-format-reference.html" class="guide-link"><span class="guide-link__title">Color Format Reference</span><span class="guide-link__meta">HEX, RGB, HSL, and CMYK in one quick reference.</span></a>
 </div>
 
 <p class="section-label">Search all tools</p>

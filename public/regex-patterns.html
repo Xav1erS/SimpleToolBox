@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Regex Patterns Quick Reference | Simple ToolBox</title>
+  <meta name="description" content="A practical regex quick reference with common patterns, flags, examples, and escape rules. Jump straight into Regex Tester and Find & Replace." />
+  <link rel="canonical" href="https://simpletoolbox.dev/regex-patterns" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://simpletoolbox.dev/regex-patterns" />
+  <meta property="og:title" content="Regex Patterns Quick Reference | Simple ToolBox" />
+  <meta property="og:description" content="Common regex patterns, flags, and examples for emails, URLs, numbers, whitespace, and more." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/design-system.css?v=22" />
+  <link rel="stylesheet" href="styles/reference-guides.css?v=1" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Regex Patterns Quick Reference",
+    "description": "A practical regex quick reference with common patterns, flags, examples, and escape rules.",
+    "url": "https://simpletoolbox.dev/regex-patterns",
+    "author": { "@type": "Organization", "name": "Simple ToolBox" },
+    "publisher": { "@type": "Organization", "name": "Simple ToolBox", "url": "https://simpletoolbox.dev" }
+  }
+  </script>
+</head>
+<body class="ds-page">
+<nav class="ds-nav" id="nav">
+  <a href="index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" />
+    <kbd>Ctrl K</kbd>
+    <div class="search-dropdown" id="navSearchDropdown"></div>
+  </div>
+  <div class="nav-actions">
+    <a href="all-tools.html" class="nav-link">All Tools</a>
+    <a href="contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
+  </div>
+</nav>
+
+<section class="guide-hero">
+  <div class="guide-breadcrumb"><a href="index.html">Home</a> / <a href="developer-tools.html">Developer Tools</a> / Regex Patterns</div>
+  <div class="guide-badge">Quick Reference</div>
+  <h1 class="guide-title">Regex Patterns Quick Reference</h1>
+  <p class="guide-sub">Use this page to look up common regular expression patterns fast, remember what the main flags do, and avoid the most common escaping mistakes before you jump into live testing.</p>
+  <div class="guide-meta">
+    <span class="guide-chip">Best for email, URL, number, and whitespace matching</span>
+    <span class="guide-chip">Pairs with Regex Tester and Find &amp; Replace</span>
+  </div>
+</section>
+
+<div class="guide-shell">
+  <aside class="guide-toc">
+    <div class="guide-toc__title">On this page</div>
+    <div class="guide-toc__list">
+      <a href="#basics">Regex basics</a>
+      <a href="#patterns">Common patterns</a>
+      <a href="#flags">Flags</a>
+      <a href="#pitfalls">Pitfalls</a>
+      <a href="#tools">Use with tools</a>
+    </div>
+  </aside>
+
+  <main class="guide-content">
+    <section class="guide-panel guide-note" id="basics">
+      <h2>Regex basics</h2>
+      <p>A regex pattern is just a compact way to describe text you want to match. Start simple: match one thing, test it, then add groups, anchors, or quantifiers only when needed.</p>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h3>Anchors</h3>
+          <p><span class="guide-code">^</span> means start of input and <span class="guide-code">$</span> means end of input.</p>
+        </div>
+        <div class="guide-card">
+          <h3>Character classes</h3>
+          <p><span class="guide-code">[0-9]</span>, <span class="guide-code">[A-Z]</span>, and <span class="guide-code">[a-z]</span> match ranges.</p>
+        </div>
+        <div class="guide-card">
+          <h3>Quantifiers</h3>
+          <p><span class="guide-code">*</span> = zero or more, <span class="guide-code">+</span> = one or more, <span class="guide-code">?</span> = optional.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-panel" id="patterns">
+      <h2>Common patterns</h2>
+      <div class="guide-table-wrap">
+        <table class="guide-table">
+          <thead>
+            <tr><th>Use case</th><th>Pattern</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Email</td><td><span class="guide-code">^[^\s@]+@[^\s@]+\.[^\s@]+$</span></td><td>Good general-purpose validation, not a full RFC parser.</td></tr>
+            <tr><td>URL</td><td><span class="guide-code">https?:\/\/[^\s]+</span></td><td>Matches basic HTTP and HTTPS links.</td></tr>
+            <tr><td>Whole number</td><td><span class="guide-code">^-?\d+$</span></td><td>Supports optional negative sign.</td></tr>
+            <tr><td>Decimal number</td><td><span class="guide-code">^-?\d+(\.\d+)?$</span></td><td>Matches integers and decimals.</td></tr>
+            <tr><td>Whitespace</td><td><span class="guide-code">\s+</span></td><td>Useful for collapsing repeated spaces and line breaks.</td></tr>
+            <tr><td>Hex color</td><td><span class="guide-code">^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$</span></td><td>Supports 3-digit and 6-digit colors.</td></tr>
+            <tr><td>IPv4</td><td><span class="guide-code">\b(?:\d{1,3}\.){3}\d{1,3}\b</span></td><td>Matches IPv4-like text, not strict 0-255 validation.</td></tr>
+            <tr><td>Blank lines</td><td><span class="guide-code">^\s*$</span></td><td>Use with multiline mode to target empty rows.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guide-panel" id="flags">
+      <h2>Flags you use most often</h2>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h3><span class="guide-code">g</span> global</h3>
+          <p>Find all matches instead of stopping after the first match.</p>
+        </div>
+        <div class="guide-card">
+          <h3><span class="guide-code">i</span> ignore case</h3>
+          <p>Makes matching case-insensitive, useful for keywords and user input.</p>
+        </div>
+        <div class="guide-card">
+          <h3><span class="guide-code">m</span> multiline</h3>
+          <p>Makes <span class="guide-code">^</span> and <span class="guide-code">$</span> work line by line.</p>
+        </div>
+        <div class="guide-card">
+          <h3><span class="guide-code">s</span> dotall</h3>
+          <p>Lets <span class="guide-code">.</span> match line breaks as well as normal characters.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-panel" id="pitfalls">
+      <h2>Common regex pitfalls</h2>
+      <ul>
+        <li>Do not start with a giant all-in-one pattern. Build incrementally and test each part.</li>
+        <li>Remember to escape special characters like <span class="guide-code">.</span>, <span class="guide-code">?</span>, <span class="guide-code">+</span>, and <span class="guide-code">[</span> when you mean the literal character.</li>
+        <li>If you only want whole words, add boundaries like <span class="guide-code">\bword\b</span>.</li>
+        <li>Be careful with greedy matching. <span class="guide-code">.*</span> often captures more than you expect.</li>
+      </ul>
+    </section>
+
+    <section class="guide-panel" id="tools">
+      <h2>Use this reference with the right tool</h2>
+      <p>Look up a pattern here, then test it live, apply it to real text, or use it in a replacement workflow.</p>
+      <div class="guide-tools">
+        <div class="guide-tools__title">Related tools</div>
+        <div class="guide-tools__grid" id="relatedToolGrid"></div>
+      </div>
+      <h3>Related guides</h3>
+      <div class="guide-cross-links">
+        <a href="json-formatting-guide.html" class="guide-link-card"><div><strong>JSON Formatting Guide</strong><span>Clean JSON before writing extraction patterns.</span></div><span>Open</span></a>
+        <a href="date-time-format-reference.html" class="guide-link-card"><div><strong>Date &amp; Time Formats</strong><span>Helpful when matching timestamps and date strings.</span></div><span>Open</span></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="guide-footer">
+  <a href="index.html">Home</a> &nbsp;|&nbsp;
+  <a href="all-tools.html">All Tools</a> &nbsp;|&nbsp;
+  <a href="developer-tools.html">Developer Tools</a> &nbsp;|&nbsp;
+  <a href="text-tools.html">Text Tools</a>
+</footer>
+
+<script src="tools-data.js"></script>
+<script src="scripts/reference-guides.js"></script>
+<script>
+  window.GUIDE_RELATED_TOOL_SLUGS = ['regex-tester', 'find-and-replace', 'text-cleaner', 'url-extractor'];
+  initGuidePage();
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>JSON Formatting Guide | Simple ToolBox</title>
+  <meta name="description" content="A practical JSON formatting guide covering pretty-printing, minifying, escaping, validation mistakes, and when to convert JSON to CSV or SQL." />
+  <link rel="canonical" href="https://simpletoolbox.dev/json-formatting-guide" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://simpletoolbox.dev/json-formatting-guide" />
+  <meta property="og:title" content="JSON Formatting Guide | Simple ToolBox" />
+  <meta property="og:description" content="Learn when to prettify or minify JSON, how to avoid invalid syntax, and which tool to use for JSON conversion and escaping." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/design-system.css?v=22" />
+  <link rel="stylesheet" href="styles/reference-guides.css?v=1" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "JSON Formatting Guide",
+    "description": "A practical JSON formatting guide covering pretty-printing, minifying, escaping, validation mistakes, and when to convert JSON to CSV or SQL.",
+    "url": "https://simpletoolbox.dev/json-formatting-guide",
+    "author": { "@type": "Organization", "name": "Simple ToolBox" },
+    "publisher": { "@type": "Organization", "name": "Simple ToolBox", "url": "https://simpletoolbox.dev" }
+  }
+  </script>
+</head>
+<body class="ds-page">
+<nav class="ds-nav" id="nav">
+  <a href="index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" />
+    <kbd>Ctrl K</kbd>
+    <div class="search-dropdown" id="navSearchDropdown"></div>
+  </div>
+  <div class="nav-actions">
+    <a href="all-tools.html" class="nav-link">All Tools</a>
+    <a href="contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
+  </div>
+</nav>
+
+<section class="guide-hero">
+  <div class="guide-breadcrumb"><a href="index.html">Home</a> / <a href="developer-tools.html">Developer Tools</a> / JSON Formatting Guide</div>
+  <div class="guide-badge">Formatting Guide</div>
+  <h1 class="guide-title">JSON Formatting Guide</h1>
+  <p class="guide-sub">Use this page when you need to prettify a payload for debugging, minify it for transport, escape it safely inside a string, or convert it into a more analysis-friendly format.</p>
+  <div class="guide-meta">
+    <span class="guide-chip">Best for formatting, validation, and escaping</span>
+    <span class="guide-chip">Pairs with JSON Formatter and JSON to CSV</span>
+  </div>
+</section>
+
+<div class="guide-shell">
+  <aside class="guide-toc">
+    <div class="guide-toc__title">On this page</div>
+    <div class="guide-toc__list">
+      <a href="#pretty">Prettify vs minify</a>
+      <a href="#invalid">Invalid JSON mistakes</a>
+      <a href="#escape">Escaping rules</a>
+      <a href="#tools">Use with tools</a>
+    </div>
+  </aside>
+
+  <main class="guide-content">
+    <section class="guide-panel" id="pretty">
+      <h2>Prettify vs minify</h2>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h3>Prettify JSON</h3>
+          <p>Use this when reading API payloads, debugging nested data, or reviewing files in Git.</p>
+        </div>
+        <div class="guide-card">
+          <h3>Minify JSON</h3>
+          <p>Use this when embedding JSON in compact configs or reducing payload size for transport.</p>
+        </div>
+      </div>
+      <p>Prettifying changes whitespace, not the meaning of the data. If the structure changes, you are not just formatting anymore.</p>
+    </section>
+
+    <section class="guide-panel guide-note" id="invalid">
+      <h2>Common invalid JSON mistakes</h2>
+      <ul>
+        <li>Using single quotes instead of double quotes for keys or string values.</li>
+        <li>Leaving trailing commas after the last property or array item.</li>
+        <li>Putting comments inside the JSON.</li>
+        <li>Forgetting to escape line breaks or quotes inside a string.</li>
+      </ul>
+      <p>If you see JSON parse errors, validate the smallest possible snippet first, then expand outward.</p>
+    </section>
+
+    <section class="guide-panel" id="escape">
+      <h2>Escaping rules worth remembering</h2>
+      <div class="guide-table-wrap">
+        <table class="guide-table">
+          <thead>
+            <tr><th>Meaning</th><th>Escape</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Double quote</td><td><span class="guide-code">\"</span></td><td><span class="guide-code">"name":"A \"quoted\" value"</span></td></tr>
+            <tr><td>Backslash</td><td><span class="guide-code">\\</span></td><td><span class="guide-code">"path":"C:\\temp\\file.txt"</span></td></tr>
+            <tr><td>New line</td><td><span class="guide-code">\n</span></td><td><span class="guide-code">"body":"line 1\nline 2"</span></td></tr>
+            <tr><td>Tab</td><td><span class="guide-code">\t</span></td><td><span class="guide-code">"indent":"\tvalue"</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guide-panel" id="tools">
+      <h2>Use this guide with the right tool</h2>
+      <div class="guide-tools">
+        <div class="guide-tools__title">Related tools</div>
+        <div class="guide-tools__grid" id="relatedToolGrid"></div>
+      </div>
+      <h3>Related guides</h3>
+      <div class="guide-cross-links">
+        <a href="regex-patterns.html" class="guide-link-card"><div><strong>Regex Patterns</strong><span>Helpful when you need quick pattern matching around JSON text.</span></div><span>Open</span></a>
+        <a href="date-time-format-reference.html" class="guide-link-card"><div><strong>Date &amp; Time Formats</strong><span>Useful when cleaning or reading timestamp fields inside JSON.</span></div><span>Open</span></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="guide-footer">
+  <a href="index.html">Home</a> &nbsp;|&nbsp;
+  <a href="all-tools.html">All Tools</a> &nbsp;|&nbsp;
+  <a href="developer-tools.html">Developer Tools</a>
+</footer>
+
+<script src="tools-data.js"></script>
+<script src="scripts/reference-guides.js"></script>
+<script>
+  window.GUIDE_RELATED_TOOL_SLUGS = ['json-formatter', 'json-csv', 'string-escape', 'yaml-json'];
+  initGuidePage();
+</script>
+</body>
+</html>

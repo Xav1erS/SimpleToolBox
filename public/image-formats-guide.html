@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Image Formats Guide: PNG vs JPG vs WebP | Simple ToolBox</title>
+  <meta name="description" content="Compare PNG, JPG, WebP, SVG, and GIF formats. Learn when to use each image format and jump directly into the matching converters and compressors." />
+  <link rel="canonical" href="https://simpletoolbox.dev/image-formats-guide" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://simpletoolbox.dev/image-formats-guide" />
+  <meta property="og:title" content="Image Formats Guide: PNG vs JPG vs WebP | Simple ToolBox" />
+  <meta property="og:description" content="When to use PNG, JPG, WebP, SVG, and GIF for photos, screenshots, graphics, and web delivery." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/design-system.css?v=22" />
+  <link rel="stylesheet" href="styles/reference-guides.css?v=1" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Image Formats Guide: PNG vs JPG vs WebP",
+    "description": "Compare PNG, JPG, WebP, SVG, and GIF formats and learn when to use each one.",
+    "url": "https://simpletoolbox.dev/image-formats-guide",
+    "author": { "@type": "Organization", "name": "Simple ToolBox" },
+    "publisher": { "@type": "Organization", "name": "Simple ToolBox", "url": "https://simpletoolbox.dev" }
+  }
+  </script>
+</head>
+<body class="ds-page">
+<nav class="ds-nav" id="nav">
+  <a href="index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" />
+    <kbd>Ctrl K</kbd>
+    <div class="search-dropdown" id="navSearchDropdown"></div>
+  </div>
+  <div class="nav-actions">
+    <a href="all-tools.html" class="nav-link">All Tools</a>
+    <a href="contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
+  </div>
+</nav>
+
+<section class="guide-hero">
+  <div class="guide-breadcrumb"><a href="index.html">Home</a> / <a href="image-tools.html">Image Tools</a> / Image Formats Guide</div>
+  <div class="guide-badge">Format Guide</div>
+  <h1 class="guide-title">PNG vs JPG vs WebP: Which image format should you use?</h1>
+  <p class="guide-sub">Pick the right image format based on transparency, compression, compatibility, and whether your image is a photo, screenshot, icon, or illustration.</p>
+  <div class="guide-meta">
+    <span class="guide-chip">Best for web delivery and image conversion decisions</span>
+    <span class="guide-chip">Pairs with Image Compressor and WebP Converter</span>
+  </div>
+</section>
+
+<div class="guide-shell">
+  <aside class="guide-toc">
+    <div class="guide-toc__title">On this page</div>
+    <div class="guide-toc__list">
+      <a href="#compare">Format comparison</a>
+      <a href="#use-cases">Best use cases</a>
+      <a href="#workflow">A fast decision workflow</a>
+      <a href="#tools">Use with tools</a>
+    </div>
+  </aside>
+
+  <main class="guide-content">
+    <section class="guide-panel" id="compare">
+      <h2>Format comparison at a glance</h2>
+      <div class="guide-table-wrap">
+        <table class="guide-table">
+          <thead>
+            <tr><th>Format</th><th>Best for</th><th>Strength</th><th>Watch out for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>JPG / JPEG</td><td>Photos and complex images</td><td>Small file sizes with broad compatibility</td><td>Lossy compression and no transparency</td></tr>
+            <tr><td>PNG</td><td>Logos, screenshots, UI graphics</td><td>Lossless quality and transparency support</td><td>Larger files than JPG and WebP</td></tr>
+            <tr><td>WebP</td><td>Modern websites and mixed assets</td><td>Smaller files than PNG and JPG in many cases</td><td>Older workflows and apps may not support it well</td></tr>
+            <tr><td>SVG</td><td>Icons, logos, charts</td><td>Infinite scaling with tiny file sizes for simple graphics</td><td>Not for photos</td></tr>
+            <tr><td>GIF</td><td>Simple short animations</td><td>Easy animation support</td><td>Poor compression and limited colors</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guide-panel guide-note" id="use-cases">
+      <h2>Best use cases</h2>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h3>Use JPG for photos</h3>
+          <p>Travel photos, product photos, and camera images usually benefit most from JPG compression.</p>
+        </div>
+        <div class="guide-card">
+          <h3>Use PNG for sharp UI assets</h3>
+          <p>Screenshots, logos, app UI, and images with text stay sharper in PNG, especially if you need transparency.</p>
+        </div>
+        <div class="guide-card">
+          <h3>Use WebP for the web</h3>
+          <p>When browser compatibility is acceptable, WebP often gives the best balance of quality and file size.</p>
+        </div>
+        <div class="guide-card">
+          <h3>Use SVG for vector art</h3>
+          <p>Icons, brand marks, and simple illustrations scale cleanly without raster artifacts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-panel" id="workflow">
+      <h2>A fast decision workflow</h2>
+      <ol>
+        <li>If it is a photo, start with JPG or WebP.</li>
+        <li>If it needs transparency, use PNG or WebP.</li>
+        <li>If it is a simple icon or logo, prefer SVG if possible.</li>
+        <li>If the file is too heavy, compress first before changing dimensions.</li>
+      </ol>
+      <p>For many real workflows the answer is not one format forever. You may keep a PNG master, export WebP for the site, and generate JPG copies for sharing.</p>
+    </section>
+
+    <section class="guide-panel" id="tools">
+      <h2>Use this guide with the right tool</h2>
+      <div class="guide-tools">
+        <div class="guide-tools__title">Related tools</div>
+        <div class="guide-tools__grid" id="relatedToolGrid"></div>
+      </div>
+      <h3>Related guides</h3>
+      <div class="guide-cross-links">
+        <a href="pdf-page-sizes.html" class="guide-link-card"><div><strong>PDF Page Sizes</strong><span>Useful when exporting images into a print-ready PDF.</span></div><span>Open</span></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="guide-footer">
+  <a href="index.html">Home</a> &nbsp;|&nbsp;
+  <a href="all-tools.html">All Tools</a> &nbsp;|&nbsp;
+  <a href="image-tools.html">Image Tools</a>
+</footer>
+
+<script src="tools-data.js"></script>
+<script src="scripts/reference-guides.js"></script>
+<script>
+  window.GUIDE_RELATED_TOOL_SLUGS = ['image-compressor', 'webp-converter', 'jpg-to-png', 'png-to-jpg'];
+  initGuidePage();
+</script>
+</body>
+</html>

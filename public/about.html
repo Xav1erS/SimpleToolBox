@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>About Us — Simple ToolBox</title>
+  <title>About Simple ToolBox — Privacy-First Browser Tools for Everyday Tasks</title>
   <meta name="description" content="Learn about Simple ToolBox — 201 free browser-based tools for everyday tasks. No sign-up, no tracking, all processing in your browser." />
   <link rel="canonical" href="https://simpletoolbox.dev/about" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
@@ -40,6 +40,14 @@
     /* CTA */
     .cta-btn { display: flex; align-items: center; gap: 7px; background: var(--ds-color-accent); color: #fff; font-size: 13px; font-weight: 500; padding: 10px 18px; border-radius: var(--ds-radius-sm); transition: background 0.2s; white-space: nowrap; }
     .cta-btn:hover { background: var(--ds-color-accent-hover); }
+
+    /* FAQ */
+    .faq-section { max-width: 720px; margin: 0 auto; padding: 56px 24px 16px; }
+    .faq-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 28px; text-align: center; }
+    .faq-item { border-bottom: 1px solid var(--ds-color-border); padding: 18px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 15px; font-weight: 600; color: var(--ds-color-text-primary); margin-bottom: 8px; }
+    .faq-a { font-size: 14px; color: var(--ds-color-text-secondary); line-height: 1.7; }
 
     @media (max-width: 640px) {
       .marketing-hero { padding: 56px 20px 48px; }
@@ -166,6 +174,25 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       Contact Us
     </a>
+  </div>
+
+  <!-- FAQ -->
+  <div style="border-top:1px solid var(--ds-color-border)">
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Is Simple ToolBox really free?</div>
+        <div class="faq-a">Yes. All tools are completely free to use. There is no subscription, no paywall, and no sign-up required.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do the tools upload my data to a server?</div>
+        <div class="faq-a">No. Your text, files, and tool input are processed in your browser. We do not send what you enter in tools to our servers.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who is Simple ToolBox built for?</div>
+        <div class="faq-a">Simple ToolBox is built for developers, designers, creators, students, and anyone who needs fast, reliable browser tools without ads or privacy concerns.</div>
+      </div>
+    </section>
   </div>
 
 </div>

@@ -507,6 +507,14 @@
     .footer-bottom-links a { font-size: 12px; color: var(--ds-color-text-muted); transition: color 0.2s; }
     .footer-bottom-links a:hover { color: var(--ds-color-text-secondary); }
 
+    /* ── FAQ ── */
+    .faq-section { max-width: 720px; margin: 0 auto; padding: 56px 24px; }
+    .faq-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 28px; text-align: center; }
+    .faq-item { border-bottom: 1px solid var(--ds-color-border); padding: 18px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 15px; font-weight: 600; color: var(--ds-color-text-primary); margin-bottom: 8px; }
+    .faq-a { font-size: 14px; color: var(--ds-color-text-secondary); line-height: 1.7; }
+
     /* ── FADE IN ── */
     .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -591,6 +599,46 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do these tools upload my files or text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Tool input is processed locally in your browser. We do not send the data you enter into tools to our servers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the tools free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All tools on Simple ToolBox are free to use with no sign-up required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do the tools work on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Most tools are designed to work on both desktop and mobile browsers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is Simple ToolBox for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Simple ToolBox is built for developers, designers, creators, students, and anyone who needs fast browser tools without ads or privacy concerns."
+        }
+      }
+    ]
+  }
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
   <script>
@@ -672,7 +720,7 @@
   </div>
   <div class="stat-item">
     <div class="stat-number"><span>0</span></div>
-    <div class="stat-label">Data Collected</div>
+    <div class="stat-label">No server-side tool processing</div>
   </div>
   <div class="stat-item">
     <div class="stat-number"><span>100</span>%</div>
@@ -686,7 +734,7 @@
     <div class="feature-item fade-in">
       <div class="feature-icon">🔒</div>
       <div class="feature-title">Data Stays in Your Browser</div>
-      <div class="feature-desc">All processing happens locally. Nothing is ever sent to a server.</div>
+      <div class="feature-desc">Your text, files, and tool input are processed in your browser. We do not send what you enter in tools to our servers.</div>
     </div>
     <div class="feature-item fade-in">
       <div class="feature-icon">⚡</div>
@@ -1001,6 +1049,29 @@
   <div class="tool-grid" id="newToolGrid">
     <!-- JS rendered -->
   </div>
+</div>
+
+<!-- FAQ -->
+<div style="border-top:1px solid var(--ds-color-border)">
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Do these tools upload my files or text?</div>
+      <div class="faq-a">No. Tool input is processed locally in your browser. We do not send the data you enter into tools to our servers.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Are the tools free to use?</div>
+      <div class="faq-a">Yes. All tools on Simple ToolBox are free to use with no sign-up required.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do the tools work on mobile?</div>
+      <div class="faq-a">Yes. Most tools are designed to work on both desktop and mobile browsers.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Who is Simple ToolBox for?</div>
+      <div class="faq-a">Simple ToolBox is built for developers, designers, creators, students, and anyone who needs fast browser tools without ads or privacy concerns.</div>
+    </div>
+  </section>
 </div>
 
 <!-- FOOTER -->

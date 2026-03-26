@@ -88,37 +88,282 @@
     .action-tag:hover { color: var(--ds-color-text-primary); border-color: rgba(255,255,255,0.2); }
     .action-tag.active { background: rgba(251,146,60,0.15); border-color: rgba(251,146,60,0.5); color: #f97316; }
 
+    /* All tools page redesign */
+    .page-header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 44px 24px 24px;
+      position: relative;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0 24px auto;
+      height: 100%;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(94,106,210,0.14) 0%, transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+      border: 1px solid rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+    .page-header > * { position: relative; }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 10px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(94,106,210,0.28);
+      background: rgba(94,106,210,0.08);
+      color: var(--ds-color-accent-soft);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .page-title { font-size: clamp(44px, 7vw, 72px); margin-bottom: 14px; }
+    .page-sub { max-width: 760px; margin-bottom: 18px; }
+    .page-highlights { display: flex; flex-wrap: wrap; gap: 10px; }
+    .page-highlight {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--ds-color-border);
+      color: var(--ds-color-text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .section-label {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 12px;
+      letter-spacing: 0.09em;
+    }
+    .hub-links,
+    .guide-links,
+    .filter-bar,
+    .action-bar,
+    .results-head,
+    .tool-section-title,
+    .tool-grid.tool-grid--section,
+    .tool-grid {
+      max-width: 1200px;
+    }
+    .hub-links,
+    .guide-links,
+    .filter-bar,
+    .action-bar,
+    .results-head,
+    .tool-grid {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hub-links,
+    .guide-links {
+      padding: 0 24px 20px;
+    }
+    .hub-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .hub-link {
+      min-height: 56px;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+    }
+    .guide-links {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      padding-bottom: 28px;
+    }
+    .guide-link {
+      min-height: 132px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%);
+    }
+
+    .filter-bar,
+    .action-bar {
+      padding: 16px 24px 0;
+    }
+    .filter-bar {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--ds-color-border);
+      border-radius: 22px 22px 0 0;
+      gap: 16px;
+    }
+    .filter-search {
+      max-width: none;
+      min-width: 320px;
+      flex: 1 1 100%;
+    }
+    .filter-search input {
+      min-height: 52px;
+      font-size: 15px;
+      border-radius: 16px;
+      padding-left: 42px;
+    }
+    .filter-search svg {
+      left: 14px;
+      width: 18px;
+      height: 18px;
+    }
+    .filter-tags { gap: 8px; }
+    .filter-tag,
+    .action-tag {
+      min-height: 32px;
+      padding: 0 16px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    .action-bar {
+      padding-top: 14px;
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--ds-color-border);
+      border-top: none;
+      border-radius: 0 0 22px 22px;
+    }
+
+    .results-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 0 24px 18px;
+    }
+    .results-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ds-color-text-muted);
+      margin-bottom: 8px;
+    }
+    .results-title {
+      font-size: 26px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      color: var(--ds-color-text-primary);
+    }
+    .results-copy {
+      max-width: 700px;
+      font-size: 14px;
+      color: var(--ds-color-text-secondary);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .count-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      margin-left: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(94,106,210,0.22);
+      background: rgba(94,106,210,0.08);
+      color: var(--ds-color-accent-soft);
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .tool-grid {
+      padding: 0 24px 88px;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    }
+    .tool-card {
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.018) 100%);
+      gap: 10px;
+    }
+    .tool-card-top { align-items: flex-start; }
+    .tool-icon {
+      width: 38px;
+      height: 38px;
+      font-size: 18px;
+      border: 1px solid rgba(94,106,210,0.16);
+    }
+    .tool-name {
+      font-size: 16px;
+      line-height: 1.25;
+    }
+    .tool-desc { font-size: 13px; }
+    .tool-tag {
+      min-height: 24px;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+
+    .tool-section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ds-color-text-primary);
+    }
+    .tool-grid.tool-grid--section {
+      padding: 18px;
+      margin: 0 auto 18px;
+      border: 1px solid var(--ds-color-border);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    #toolGrid.tool-grid--grouped {
+      display: block;
+      padding: 0 0 88px;
+    }
+
     @media (max-width: 768px) {
-      .page-header { padding: 32px 16px 0; }
+      .page-header { padding: 32px 16px 18px; }
       .page-title { font-size: clamp(30px, 10vw, 42px); }
       .page-sub { margin-bottom: 24px; font-size: 15px; }
-      .section-label { padding: 0 16px 10px; }
       .hub-links,
-      .filter-tags,
-      .action-bar {
+      .filter-tags {
         flex-wrap: nowrap;
         overflow-x: auto;
         scrollbar-width: none;
       }
       .hub-links::-webkit-scrollbar,
-      .filter-tags::-webkit-scrollbar,
-      .action-bar::-webkit-scrollbar { display: none; }
-      .hub-links { padding: 0 16px 20px; }
-      .guide-links { padding: 0 16px 20px; grid-template-columns: 1fr; }
+      .filter-tags::-webkit-scrollbar { display: none; }
+      .hub-links { padding: 0 16px 18px; grid-template-columns: none; display: flex; }
+      .guide-links { padding: 0 16px 22px; grid-template-columns: 1fr; }
       .hub-link,
-      .filter-tag,
-      .action-tag { flex: 0 0 auto; }
-      .filter-bar { padding: 0 16px 16px; gap: 10px; }
+      .filter-tag { flex: 0 0 auto; }
+      .filter-bar { padding: 16px; gap: 12px; border-radius: 18px 18px 0 0; }
+      .action-bar { padding: 12px 16px 16px; margin-bottom: 22px; border-radius: 0 0 18px 18px; }
       .filter-search { flex: 1 0 100%; max-width: none; }
       .filter-search input { min-height: 46px; font-size: 14px; }
-      .count-badge { width: 100%; margin-left: 0; font-size: 11px; }
-      .tool-section-title { padding: 0 16px 10px; margin-top: 16px; }
-      .tool-grid.tool-grid--section { padding: 0 16px 4px; }
+      .results-head { padding: 0 16px 16px; display: block; }
+      .results-title { font-size: 22px; }
+      .results-copy { margin-bottom: 12px; }
+      .count-badge { font-size: 11px; }
+      .tool-section-title { padding: 0 16px 12px; }
+      .tool-grid.tool-grid--section { margin: 0 16px 14px; padding: 16px; border-radius: 18px; grid-template-columns: 1fr; }
       .tool-grid#toolGrid.tool-grid--grouped { padding: 0 0 56px; }
     }
     @media (max-width: 640px) {
       .nav-actions .nav-link { display: none; }
-      .filter-bar { padding: 0 16px 20px; }
+      .filter-bar { padding: 16px; }
       .tool-grid { padding: 0 16px 60px; grid-template-columns: 1fr; }
     }
   </style>
@@ -160,8 +405,14 @@
 </nav>
 
 <div class="page-header">
+  <div class="hero-kicker">Tool Explorer</div>
   <h1 class="page-title">All Tools</h1>
-  <p class="page-sub">Search across all browser-based tools, jump by category, and find the right utility fast. Everything runs locally on your device.</p>
+  <p class="page-sub">Search across all browser-based tools, jump by workflow, and narrow fast when you know the task but not the exact utility.</p>
+  <div class="page-highlights">
+    <span class="page-highlight">201 tools</span>
+    <span class="page-highlight">8 hubs</span>
+    <span class="page-highlight">Local-first</span>
+  </div>
 </div>
 
 <p class="section-label">Explore category hubs</p>
@@ -205,7 +456,6 @@
     <button class="filter-tag ds-pill" data-filter="calculator">🧮 Calculator</button>
     <button class="filter-tag ds-pill" data-filter="pdf">📄 PDF</button>
   </div>
-  <span class="count-badge" id="countBadge">158 tools</span>
 </div>
 
 <p class="section-label" style="padding-bottom:8px;">Filter by action</p>
@@ -217,6 +467,15 @@
   <button class="action-tag" data-action="encode">🔐 Encode</button>
   <button class="action-tag" data-action="decode">🔓 Decode</button>
   <button class="action-tag" data-action="extract">🔍 Extract</button>
+</div>
+
+<div class="results-head">
+  <div>
+    <div class="results-kicker">Browse the catalog</div>
+    <h2 class="results-title">Popular picks, recent tools, and every category in one place</h2>
+    <p class="results-copy">Grouped by default for discovery. As soon as you search or filter, the page switches into direct results.</p>
+  </div>
+  <span class="count-badge" id="countBadge">158 tools</span>
 </div>
 
 <div class="tool-grid" id="toolGrid">

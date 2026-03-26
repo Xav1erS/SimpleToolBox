@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>About Us — Simple ToolBox</title>
-  <meta name="description" content="Learn about Simple ToolBox — 156 free browser-based tools for everyday tasks. No sign-up, no tracking, all processing in your browser." />
+  <meta name="description" content="Learn about Simple ToolBox — 201 free browser-based tools for everyday tasks. No sign-up, no tracking, all processing in your browser." />
   <link rel="canonical" href="https://simpletoolbox.dev/about" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles/design-system.css?v=22" />
@@ -96,7 +96,7 @@
   <!-- Stats -->
   <div class="stats-row stats-grid">
     <div class="stat-item stats-grid__item">
-      <div class="stat-number stats-grid__value">50+</div>
+      <div class="stat-number stats-grid__value" id="aboutToolCount">201</div>
       <div class="stat-label stats-grid__label">Tools available</div>
     </div>
     <div class="stat-item stats-grid__item">
@@ -236,6 +236,13 @@
   });
   document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('navSearch').focus(); } });
   window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+</script>
+<script src="tools-data.js"></script>
+<script>
+  (function() {
+    const el = document.getElementById('aboutToolCount');
+    if (el && typeof SITE_TOOLS !== 'undefined') el.textContent = SITE_TOOLS.length;
+  })();
 </script>
 </body>
 </html>

@@ -7,9 +7,9 @@
 - Before commands, edits, or tests, briefly say what you are about to do.
 - Prefer the minimum necessary change.
 
-## Current Actual State (2026-03-25)
+## Current Actual State (2026-03-26)
 
-- Tool count: **174**
+- Tool count: **201**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
 - Hub pages live and data-driven:
   - `image-tools`

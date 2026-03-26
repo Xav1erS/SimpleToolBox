@@ -94,6 +94,17 @@
       flex-direction: column;
     }
     #nav { order: 0; }
+    .page-header,
+    .section-label,
+    .hub-links,
+    .guide-links,
+    .filter-bar,
+    .action-bar,
+    .results-head,
+    #toolGrid,
+    footer {
+      width: 100%;
+    }
     .page-header {
       max-width: 1200px;
       margin: 0 auto;
@@ -104,7 +115,8 @@
     .page-header::before {
       content: '';
       position: absolute;
-      inset: 0 24px auto;
+      inset: 0 auto auto 24px;
+      width: min(860px, calc(100% - 48px));
       height: calc(100% - 2px);
       border-radius: 24px;
       background:
@@ -148,7 +160,7 @@
     .section-label {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px 12px;
+      padding: 0 24px 10px;
       letter-spacing: 0.09em;
     }
     .section-label--search { order: 2; }
@@ -156,10 +168,10 @@
     .action-bar { order: 4; }
     .section-label--hubs { order: 5; }
     .hub-links { order: 6; }
-    .section-label--guides { order: 7; }
-    .guide-links { order: 8; }
-    .results-head { order: 9; }
-    #toolGrid { order: 10; }
+    .results-head { order: 7; }
+    #toolGrid { order: 8; }
+    .section-label--guides { order: 9; }
+    .guide-links { order: 10; }
     footer { order: 11; }
     .hub-links,
     .guide-links,
@@ -202,8 +214,8 @@
       padding-bottom: 18px;
     }
     .guide-link {
-      min-height: 108px;
-      padding: 14px 16px;
+      min-height: 92px;
+      padding: 12px 14px;
       border-radius: 16px;
       background: linear-gradient(180deg, rgba(255,255,255,0.024) 0%, rgba(255,255,255,0.012) 100%);
     }
@@ -257,7 +269,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 4px 24px 14px;
+      padding: 10px 24px 14px;
     }
     .results-kicker {
       font-size: 11px;
@@ -360,7 +372,8 @@
       border: none;
       border-radius: 0;
       background: transparent;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+      justify-content: start;
       gap: 12px;
     }
     #toolGrid.tool-grid--grouped {
@@ -370,6 +383,10 @@
 
     @media (max-width: 768px) {
       .page-header { padding: 24px 16px 14px; }
+      .page-header::before {
+        inset: 0 16px auto;
+        width: auto;
+      }
       .page-title { font-size: clamp(30px, 10vw, 42px); }
       .page-sub { margin-bottom: 16px; font-size: 15px; }
       .hub-links,

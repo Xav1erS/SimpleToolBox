@@ -89,22 +89,28 @@
     .action-tag.active { background: rgba(251,146,60,0.15); border-color: rgba(251,146,60,0.5); color: #f97316; }
 
     /* All tools page redesign */
+    body.ds-page {
+      display: flex;
+      flex-direction: column;
+    }
+    #nav { order: 0; }
     .page-header {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 44px 24px 24px;
+      padding: 26px 24px 14px;
       position: relative;
+      order: 1;
     }
     .page-header::before {
       content: '';
       position: absolute;
       inset: 0 24px auto;
-      height: 100%;
-      border-radius: 28px;
+      height: calc(100% - 2px);
+      border-radius: 24px;
       background:
-        radial-gradient(circle at 0% 0%, rgba(94,106,210,0.14) 0%, transparent 40%),
-        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
-      border: 1px solid rgba(255,255,255,0.05);
+        radial-gradient(circle at 0% 0%, rgba(94,106,210,0.11) 0%, transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 48%, rgba(255,255,255,0) 100%);
+      border: 1px solid rgba(255,255,255,0.045);
       pointer-events: none;
     }
     .page-header > * { position: relative; }
@@ -123,8 +129,8 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .page-title { font-size: clamp(44px, 7vw, 72px); margin-bottom: 14px; }
-    .page-sub { max-width: 760px; margin-bottom: 18px; }
+    .page-title { font-size: clamp(36px, 5.6vw, 58px); margin-bottom: 10px; }
+    .page-sub { max-width: 720px; margin-bottom: 14px; font-size: 16px; line-height: 1.6; }
     .page-highlights { display: flex; flex-wrap: wrap; gap: 10px; }
     .page-highlight {
       display: inline-flex;
@@ -145,6 +151,16 @@
       padding: 0 24px 12px;
       letter-spacing: 0.09em;
     }
+    .section-label--search { order: 2; }
+    .filter-bar { order: 3; }
+    .action-bar { order: 4; }
+    .section-label--hubs { order: 5; }
+    .hub-links { order: 6; }
+    .section-label--guides { order: 7; }
+    .guide-links { order: 8; }
+    .results-head { order: 9; }
+    #toolGrid { order: 10; }
+    footer { order: 11; }
     .hub-links,
     .guide-links,
     .filter-bar,
@@ -166,7 +182,7 @@
     }
     .hub-links,
     .guide-links {
-      padding: 0 24px 20px;
+      padding: 0 24px 16px;
     }
     .hub-links {
       display: grid;
@@ -174,22 +190,22 @@
       gap: 10px;
     }
     .hub-link {
-      min-height: 56px;
+      min-height: 52px;
       justify-content: space-between;
-      padding: 0 18px;
+      padding: 0 16px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.018);
     }
     .guide-links {
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      padding-bottom: 28px;
+      gap: 10px;
+      padding-bottom: 18px;
     }
     .guide-link {
-      min-height: 132px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%);
+      min-height: 108px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.024) 0%, rgba(255,255,255,0.012) 100%);
     }
 
     .filter-bar,
@@ -199,7 +215,7 @@
     .filter-bar {
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--ds-color-border);
-      border-radius: 22px 22px 0 0;
+      border-radius: 20px 20px 0 0;
       gap: 16px;
     }
     .filter-search {
@@ -227,21 +243,21 @@
       font-size: 13px;
     }
     .action-bar {
-      padding-top: 14px;
+      padding-top: 12px;
       padding-bottom: 18px;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--ds-color-border);
       border-top: none;
-      border-radius: 0 0 22px 22px;
+      border-radius: 0 0 20px 20px;
     }
 
     .results-head {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 0 24px 18px;
+      padding: 4px 24px 14px;
     }
     .results-kicker {
       font-size: 11px;
@@ -252,17 +268,17 @@
       margin-bottom: 8px;
     }
     .results-title {
-      font-size: 26px;
-      line-height: 1.15;
+      font-size: 22px;
+      line-height: 1.2;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: var(--ds-color-text-primary);
     }
     .results-copy {
-      max-width: 700px;
-      font-size: 14px;
+      max-width: 620px;
+      font-size: 13px;
       color: var(--ds-color-text-secondary);
-      line-height: 1.7;
+      line-height: 1.6;
       margin: 0;
     }
     .count-badge {
@@ -315,8 +331,8 @@
       gap: 8px;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px 14px;
-      font-size: 15px;
+      padding: 0 24px 8px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--ds-color-text-primary);
     }
@@ -339,23 +355,23 @@
       transform: translateX(2px);
     }
     .tool-grid.tool-grid--section {
-      padding: 18px;
+      padding: 0 24px 2px;
       margin: 0 auto 18px;
-      border: 1px solid var(--ds-color-border);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%);
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 12px;
     }
     #toolGrid.tool-grid--grouped {
       display: block;
-      padding: 0 0 88px;
+      padding: 0 0 72px;
     }
 
     @media (max-width: 768px) {
-      .page-header { padding: 32px 16px 18px; }
+      .page-header { padding: 24px 16px 14px; }
       .page-title { font-size: clamp(30px, 10vw, 42px); }
-      .page-sub { margin-bottom: 24px; font-size: 15px; }
+      .page-sub { margin-bottom: 16px; font-size: 15px; }
       .hub-links,
       .filter-tags {
         flex-wrap: nowrap;
@@ -365,7 +381,7 @@
       .hub-links::-webkit-scrollbar,
       .filter-tags::-webkit-scrollbar { display: none; }
       .hub-links { padding: 0 16px 18px; grid-template-columns: none; display: flex; }
-      .guide-links { padding: 0 16px 22px; grid-template-columns: 1fr; }
+      .guide-links { padding: 0 16px 18px; grid-template-columns: 1fr; }
       .hub-link,
       .filter-tag { flex: 0 0 auto; }
       .filter-bar { padding: 16px; gap: 12px; border-radius: 18px 18px 0 0; }
@@ -373,11 +389,11 @@
       .filter-search { flex: 1 0 100%; max-width: none; }
       .filter-search input { min-height: 46px; font-size: 14px; }
       .results-head { padding: 0 16px 16px; display: block; }
-      .results-title { font-size: 22px; }
+      .results-title { font-size: 20px; }
       .results-copy { margin-bottom: 12px; }
       .count-badge { font-size: 11px; }
       .tool-section-title { padding: 0 16px 12px; }
-      .tool-grid.tool-grid--section { margin: 0 16px 14px; padding: 16px; border-radius: 18px; grid-template-columns: 1fr; }
+      .tool-grid.tool-grid--section { margin: 0 auto 14px; padding: 0 16px 2px; border-radius: 0; grid-template-columns: 1fr; }
       .tool-grid#toolGrid.tool-grid--grouped { padding: 0 0 56px; }
     }
     @media (max-width: 640px) {
@@ -426,7 +442,7 @@
 <div class="page-header">
   <div class="hero-kicker">Tool Explorer</div>
   <h1 class="page-title">All Tools</h1>
-  <p class="page-sub">Search across all browser-based tools, jump by workflow, and narrow fast when you know the task but not the exact utility.</p>
+  <p class="page-sub">Search across 201 browser tools, filter by task, or jump straight into a category hub when you already know the workflow.</p>
   <div class="page-highlights">
     <span class="page-highlight">201 tools</span>
     <span class="page-highlight">8 hubs</span>
@@ -434,7 +450,7 @@
   </div>
 </div>
 
-<p class="section-label">Explore category hubs</p>
+<p class="section-label section-label--hubs">Explore category hubs</p>
 <div class="hub-links">
   <a href="image-tools.html" class="hub-link">🖼️ Image Tools</a>
   <a href="developer-tools.html" class="hub-link">🛠️ Developer Tools</a>
@@ -445,7 +461,7 @@
   <a href="pdf-tools.html" class="hub-link">📄 PDF &amp; Document</a>
 </div>
 
-<p class="section-label">Reference &amp; quick guides</p>
+<p class="section-label section-label--guides">Reference &amp; quick guides</p>
 <div class="guide-links">
   <a href="regex-patterns.html" class="guide-link"><span class="guide-link__title">Regex Patterns</span><span class="guide-link__meta">Common patterns, flags, and matching tips.</span></a>
   <a href="json-formatting-guide.html" class="guide-link"><span class="guide-link__title">JSON Formatting Guide</span><span class="guide-link__meta">Prettify, minify, validate, and escape JSON.</span></a>
@@ -457,7 +473,7 @@
   <a href="color-format-reference.html" class="guide-link"><span class="guide-link__title">Color Format Reference</span><span class="guide-link__meta">HEX, RGB, HSL, and CMYK in one quick reference.</span></a>
 </div>
 
-<p class="section-label">Search all tools</p>
+<p class="section-label section-label--search">Search all tools</p>
 <div class="filter-bar">
   <div class="filter-search">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -477,8 +493,8 @@
   </div>
 </div>
 
-<p class="section-label" style="padding-bottom:8px;">Filter by action</p>
 <div class="action-bar">
+  <span class="dim-label">Actions</span>
   <button class="action-tag" data-action="convert">🔄 Convert</button>
   <button class="action-tag" data-action="compress">🗜️ Compress</button>
   <button class="action-tag" data-action="generate">✨ Generate</button>
@@ -491,10 +507,10 @@
 <div class="results-head">
   <div>
     <div class="results-kicker">Browse the catalog</div>
-    <h2 class="results-title">Popular picks, recent tools, and every category in one place</h2>
-    <p class="results-copy">Grouped by default for discovery. As soon as you search or filter, the page switches into direct results.</p>
+    <h2 class="results-title">Browse by recent, popular, or category</h2>
+    <p class="results-copy">Default view is trimmed for discovery. Search or filter any term to switch into direct results.</p>
   </div>
-  <span class="count-badge" id="countBadge">158 tools</span>
+  <span class="count-badge" id="countBadge">201 tools</span>
 </div>
 
 <div class="tool-grid" id="toolGrid">
@@ -1150,6 +1166,9 @@
   const toolSearchInput = document.getElementById('toolSearch');
   const navSearchInput = document.getElementById('navSearch');
 
+  toolSearchInput.placeholder = 'Search tools...';
+  navSearchInput.placeholder = 'Search tools...';
+
   // ── Constants ────────────────────────────────────────────────────────────
 
   const POPULAR_SLUGS = [
@@ -1299,6 +1318,17 @@
   function renderFlatHTML() {
     return ALL_TOOLS.map(renderToolCard).join('') +
       '<div class="no-result" id="noResult">No tools match your search.</div>';
+  }
+
+  function renderSectionBlock(label, tools, options = {}) {
+    const limit = options.limit || tools.length;
+    const visibleTools = tools.slice(0, limit);
+    const actionHtml = options.href
+      ? `<a href="${options.href}" class="tool-section-link">${options.actionLabel || 'View all'} &rarr;</a>`
+      : (options.actionHtml || '');
+
+    return `<div class="tool-section-title"><span class="tool-section-title__main">${label}${options.showCount === false ? '' : ` <span class="tool-section-count">${tools.length}</span>`}</span>${actionHtml}</div>
+<div class="tool-grid tool-grid--section">${visibleTools.map(renderToolCard).join('')}</div>`;
   }
 
   function renderGroupedHTML() {

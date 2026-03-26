@@ -103,7 +103,7 @@
     .results-head,
     .tool-grid,
     #toolGrid {
-      width: min(1200px, calc(100% - 48px));
+      width: min(1152px, calc(100% - 96px));
       max-width: none;
       box-sizing: border-box;
       margin-left: auto;
@@ -119,7 +119,7 @@
     }
     .page-header {
       width: min(1152px, calc(100% - 96px));
-      padding: 22px 24px 10px;
+      padding: 26px 24px 18px;
       position: relative;
       order: 1;
       border: 1px solid var(--ds-color-border);
@@ -147,8 +147,8 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .page-title { font-size: clamp(34px, 5vw, 52px); margin-bottom: 8px; }
-    .page-sub { max-width: 760px; margin-bottom: 12px; font-size: 15px; line-height: 1.6; }
+    .page-title { font-size: clamp(34px, 5vw, 52px); margin-bottom: 12px; }
+    .page-sub { max-width: 760px; margin-bottom: 16px; font-size: 15px; line-height: 1.6; }
     .page-highlights { display: flex; flex-wrap: wrap; gap: 8px; }
     .page-highlight {
       display: inline-flex;
@@ -179,7 +179,7 @@
     footer { order: 11; }
     .hub-links,
     .guide-links {
-      padding: 0 24px 16px;
+      padding: 0 24px 22px;
     }
     .hub-links {
       display: grid;
@@ -207,7 +207,7 @@
 
     .filter-bar,
     .action-bar {
-      padding: 16px 24px 0;
+      padding: 18px 24px 0;
     }
     .filter-bar {
       background: rgba(255,255,255,0.02);
@@ -219,7 +219,7 @@
       max-width: none;
       min-width: 320px;
       flex: 1 1 100%;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .filter-search input {
       min-height: 54px;
@@ -243,7 +243,7 @@
     }
     .action-bar {
       padding-bottom: 18px;
-      margin-bottom: 22px;
+      margin-bottom: 30px;
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--ds-color-border);
       border-top: none;
@@ -252,7 +252,7 @@
 
     .results-head {
       display: block;
-      padding: 8px 24px 12px;
+      padding: 6px 24px 18px;
     }
     .results-kicker {
       font-size: 11px;
@@ -260,13 +260,13 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--ds-color-text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .results-title {
-      font-size: 20px;
+      font-size: 22px;
       line-height: 1.2;
       letter-spacing: -0.03em;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       color: var(--ds-color-text-primary);
       max-width: 560px;
     }
@@ -326,8 +326,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding: 0 24px 8px;
-      font-size: 14px;
+      padding: 0 24px 10px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--ds-color-text-primary);
     }
@@ -351,22 +351,22 @@
     }
     .tool-grid.tool-grid--section {
       padding: 0 24px 2px;
-      margin: 0 auto 14px;
+      margin: 0 auto 22px;
       border: none;
       border-radius: 0;
       background: transparent;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 12px;
     }
     #toolGrid.tool-grid--grouped {
       display: block;
-      padding: 0 0 72px;
+      padding: 0 0 80px;
     }
 
     @media (max-width: 768px) {
       .page-header {
         width: calc(100% - 32px);
-        padding: 20px 16px 10px;
+        padding: 22px 16px 14px;
         border-radius: 18px;
       }
       .page-header,
@@ -389,7 +389,7 @@
         width: auto;
       }
       .page-title { font-size: clamp(30px, 10vw, 42px); }
-      .page-sub { margin-bottom: 12px; font-size: 15px; }
+      .page-sub { margin-bottom: 14px; font-size: 15px; }
       .hub-links,
       .filter-tags {
         flex-wrap: nowrap;
@@ -406,12 +406,12 @@
       .action-bar { padding: 0 16px 16px; margin-bottom: 22px; border-radius: 0 0 18px 18px; }
       .filter-search { flex: 1 0 100%; max-width: none; }
       .filter-search input { min-height: 46px; font-size: 14px; }
-      .results-head { padding: 0 16px 14px; display: block; }
-      .results-title { font-size: 18px; }
+      .results-head { padding: 0 16px 16px; display: block; }
+      .results-title { font-size: 20px; }
       .results-copy { margin-bottom: 12px; }
       .count-badge { font-size: 11px; }
-      .tool-section-title { padding: 0 16px 12px; }
-      .tool-grid.tool-grid--section { margin: 0 auto 14px; padding: 0 16px 2px; border-radius: 0; grid-template-columns: 1fr; }
+      .tool-section-title { padding: 0 16px 12px; font-size: 14px; }
+      .tool-grid.tool-grid--section { margin: 0 auto 18px; padding: 0 16px 2px; border-radius: 0; grid-template-columns: 1fr; }
       .tool-grid#toolGrid.tool-grid--grouped { padding: 0 0 56px; }
     }
     @media (max-width: 640px) {
@@ -1186,6 +1186,29 @@
 
   toolSearchInput.placeholder = 'Search tools...';
   navSearchInput.placeholder = 'Search tools...';
+  document.querySelector('.nav-search kbd').textContent = 'Ctrl K';
+
+  const STATIC_LABEL_FIXES = {
+    hubs: ['Image Tools', 'Developer Tools', 'Text Tools', 'Calculator Tools', 'Conversion Tools', 'Generators', 'PDF & Document'],
+    filters: ['All', 'Developer', 'Convert', 'Generate', 'Text', 'Image', 'Design', 'Reference', 'Calculator', 'PDF'],
+    actions: ['Convert', 'Compress', 'Generate', '{ } Format', 'Encode', 'Decode', 'Extract']
+  };
+
+  function normalizeStaticLabels() {
+    document.querySelectorAll('.hub-link').forEach((node, index) => {
+      if (STATIC_LABEL_FIXES.hubs[index]) node.textContent = STATIC_LABEL_FIXES.hubs[index];
+    });
+    document.querySelectorAll('.filter-tag').forEach((node, index) => {
+      if (STATIC_LABEL_FIXES.filters[index]) node.textContent = STATIC_LABEL_FIXES.filters[index];
+    });
+    document.querySelectorAll('.action-tag').forEach((node, index) => {
+      if (STATIC_LABEL_FIXES.actions[index]) node.textContent = STATIC_LABEL_FIXES.actions[index];
+    });
+    const footerHome = document.querySelector('footer a[href="index.html"]');
+    if (footerHome) footerHome.textContent = 'Back to Home';
+  }
+
+  normalizeStaticLabels();
 
   // ── Constants ────────────────────────────────────────────────────────────
 
@@ -1206,6 +1229,18 @@
     { label: '📚 Reference',         tags: ['reference'] },
   ];
 
+  CATEGORY_SECTIONS.splice(0, CATEGORY_SECTIONS.length,
+    { label: 'Image Tools', tags: ['image'] },
+    { label: 'PDF & Document', tags: ['pdf'] },
+    { label: 'Text Tools', tags: ['text'] },
+    { label: 'Developer Tools', tags: ['encode', 'format'] },
+    { label: 'Converters', tags: ['convert'] },
+    { label: 'Generators', tags: ['generate'] },
+    { label: 'Calculators', tags: ['calculator'] },
+    { label: 'Design', tags: ['design'] },
+    { label: 'Reference', tags: ['reference'] }
+  );
+
   const ACTION_SLUGS = {
     convert:  new Set(['webp-converter','jpg-to-png','png-to-jpg','webp-to-jpg','png-to-webp','svg-to-png','bmp-to-png','pdf-to-image','image-to-pdf','unit-converter','length-converter','weight-converter','speed-converter','temperature-converter','area-converter','volume-converter','pressure-converter','energy-converter','power-converter','force-converter','torque-converter','angle-converter','time-converter','frequency-converter','roman-numeral-converter','number-to-words','number-format','data-storage-converter','number-base','timestamp','time-zone-converter','currency-exchange-rate','fuel-consumption-calculator','currency-converter','yaml-json','toml-json','xml-json','json-csv','markdown-to-html','url-encode','html-entities','string-escape','binary-text','base64','base32','base58','image-to-base64','base64-to-image','morse-code','text-case']),
     compress: new Set(['image-compressor','compress-to-100kb','js-minifier','css-minifier']),
@@ -1220,6 +1255,19 @@
     image: '▣', text: '✎', encode: '⌁', format: '≡', convert: '⇄',
     generate: '✦', design: '◉', reference: '⌗', calculator: '∑'
   };
+
+  Object.assign(TAG_ICON_FALLBACKS, {
+    image: '🖼️',
+    text: '✏️',
+    encode: '🛠️',
+    format: '🧩',
+    convert: '↔️',
+    generate: '✨',
+    design: '🎨',
+    reference: '📚',
+    calculator: '🧮',
+    pdf: '📄'
+  });
 
   const MULTI_TAG = { developer: ['encode', 'format'] };
   const CAT_ALIAS  = { encode: 'developer', format: 'developer' };
@@ -1244,6 +1292,15 @@
   }
 
   // ── Recently Used helpers ─────────────────────────────────────────────────
+
+  function renderToolCard(tool) {
+    const searchName = `${tool.name} ${tool.tag} ${tool.desc}`.replace(/"/g, '&quot;');
+    return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}" data-name="${searchName}">
+      <div class="tool-card-top"><div class="tool-icon">${getToolIcon(tool)}</div><div class="tool-name">${tool.name}</div></div>
+      <div class="tool-desc">${tool.desc}</div>
+      <div class="tool-footer"><span class="tool-tag">${tool.tag}</span><span class="tool-arrow">&rarr;</span></div>
+    </a>`;
+  }
 
   function recordRecent(href) {
     let list = JSON.parse(localStorage.getItem(LS_KEY) || '[]');

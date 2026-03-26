@@ -501,17 +501,18 @@
       margin: 0 auto;
       padding: 44px 24px 30px;
       display: grid;
-      grid-template-columns: minmax(280px, 1.35fr) repeat(2, minmax(180px, 1fr));
-      gap: 48px;
+      grid-template-columns: minmax(240px, 1.15fr) minmax(320px, 1.2fr) minmax(180px, 0.9fr);
+      gap: 40px;
     }
     .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      padding: 18px 18px 20px;
+      gap: 10px;
+      padding: 16px 16px 18px;
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--ds-color-border);
       border-radius: 18px;
+      align-self: start;
     }
     .footer-logo {
       display: flex;
@@ -522,37 +523,18 @@
       letter-spacing: -0.02em;
     }
     .footer-tagline {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--ds-color-text-secondary);
-      line-height: 1.7;
-      max-width: 280px;
+      line-height: 1.6;
+      max-width: 250px;
       margin: 0;
     }
-    .footer-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .footer-pill {
-      display: inline-flex;
-      align-items: center;
-      min-height: 24px;
-      padding: 0 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(94,106,210,0.22);
-      background: rgba(94,106,210,0.08);
-      color: var(--ds-color-accent-soft);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .footer-note {
+    .footer-meta {
       font-size: 12px;
       color: var(--ds-color-text-muted);
-      line-height: 1.7;
-      max-width: 320px;
+      line-height: 1.55;
       margin: 0;
+      max-width: 250px;
     }
     .footer-col h4 {
       font-size: 11px;
@@ -566,6 +548,13 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+    }
+    .footer-links--tools {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 24px;
+      row-gap: 12px;
+      align-items: start;
     }
     .footer-links a {
       font-size: 14px;
@@ -612,6 +601,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .footer { grid-template-columns: 1fr 1fr; }
+      .footer-col:first-of-type { grid-column: 1 / -1; }
     }
     @media (max-width: 768px) {
       .hero { padding: 64px 20px 56px; }
@@ -630,6 +620,7 @@
       .footer { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .footer-bottom-links { justify-content: center; }
+      .footer-links--tools { grid-template-columns: 1fr; }
       .nav-actions .nav-link { display: none; }
     }
 
@@ -1197,16 +1188,11 @@
         Simple ToolBox
       </div>
       <p class="footer-tagline">Fast, privacy-first online tools for everyday tasks.</p>
-      <div class="footer-pills">
-        <span class="footer-pill">201 tools</span>
-        <span class="footer-pill">Local-first</span>
-        <span class="footer-pill">No sign-up</span>
-      </div>
-      <p class="footer-note">Updated regularly for quick everyday tasks, with privacy-first tools that run directly in your browser.</p>
+      <p class="footer-meta">201 browser tools. Local-first processing. No sign-up required.</p>
     </div>
     <div class="footer-col">
       <h4>Tools</h4>
-      <div class="footer-links">
+      <div class="footer-links footer-links--tools">
         <a href="all-tools.html">All Tools</a>
         <a href="image-tools.html">Image Tools</a>
         <a href="text-tools.html">Text Tools</a>

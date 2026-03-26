@@ -187,6 +187,21 @@ const SITE_TOOLS = [
   { name: 'Text Statistics',         href: 'tools/text-statistics.html',         tag: 'text',      icon: '📊', desc: 'Detailed text analysis: words, sentences, paragraphs, characters, reading time, unique words, and more' },
   { name: 'Remove Line Breaks',      href: 'tools/remove-line-breaks.html',      tag: 'text',      icon: '↩️', desc: 'Remove or replace line breaks from text — join lines into a paragraph or add a custom separator' },
   { name: 'Body Fat Calculator',     href: 'tools/body-fat-calculator.html',     tag: 'calculate', icon: '💪', desc: 'Estimate body fat percentage using the US Navy circumference method — metric and imperial, instant result' },
+  { name: 'Image Noise Effect',          href: 'tools/image-noise.html',                tag: 'image',     icon: '🌫️', desc: 'Add film grain or color noise to photos — adjust intensity with live preview, download instantly' },
+  { name: 'Scientific Calculator',       href: 'tools/scientific-calculator.html',       tag: 'calculate', icon: '🧮', desc: 'Full scientific calculator with trig, log, powers, memory, and keyboard support' },
+  { name: 'Retirement Calculator',       href: 'tools/retirement-calculator.html',       tag: 'calculate', icon: '🏦', desc: 'Estimate retirement savings from current balance, monthly contributions, years, and return rate' },
+  { name: 'Placeholder Image Generator', href: 'tools/placeholder-image-generator.html', tag: 'generate',  icon: '🖼️', desc: 'Create custom placeholder images for mockups — set size, colors, and label, download as PNG' },
+  { name: 'Random Color Generator',      href: 'tools/random-color-generator.html',      tag: 'generate',  icon: '🎲', desc: 'Generate random colors with HEX, RGB, and HSL values — lock favorites and regenerate the rest' },
+  { name: 'Remove Duplicate Words',      href: 'tools/remove-duplicate-words.html',      tag: 'text',      icon: '🗑️', desc: 'Remove repeated words from any text — case-insensitive option, preserves first occurrence' },
+  { name: 'Time Duration Calculator',    href: 'tools/time-duration-calculator.html',    tag: 'calculate', icon: '⏱️', desc: 'Add or subtract multiple time durations — enter hours, minutes, seconds for instant total' },
+  { name: 'Aspect Ratio Calculator',     href: 'tools/aspect-ratio-calculator.html',     tag: 'calculate', icon: '📐', desc: 'Calculate missing width, height, or aspect ratio — lock ratio and scale dimensions freely' },
+  { name: 'Pace Calculator',             href: 'tools/pace-calculator.html',             tag: 'calculate', icon: '🏃', desc: 'Calculate running pace, finish time, or distance — supports km and miles with race presets' },
+  { name: 'Tip Splitter',                href: 'tools/tip-splitter.html',                tag: 'calculate', icon: '🍽️', desc: 'Calculate tip and split a bill between any number of people — choose percentage or custom amount' },
+  { name: 'Age in Days',                 href: 'tools/age-in-days.html',                 tag: 'calculate', icon: '🎂', desc: 'Find out exactly how many days, weeks, hours old you are — with upcoming milestone dates' },
+  { name: 'Gradient Text Generator',     href: 'tools/gradient-text-generator.html',     tag: 'generate',  icon: '✨', desc: 'Create CSS gradient text effects — pick colors, direction, and copy the ready-to-use CSS code' },
+  { name: 'Binary Calculator',           href: 'tools/binary-calculator.html',           tag: 'encode',    icon: '💾', desc: 'Add, subtract, multiply, and divide binary numbers — results in binary, decimal, hex, and octal' },
+  { name: 'Word Scrambler',              href: 'tools/word-scrambler.html',              tag: 'text',      icon: '🔀', desc: 'Scramble letters within words, shuffle word order, or randomize all characters — copy instantly' },
+  { name: 'Loan Amortization Calculator', href: 'tools/loan-amortization-calculator.html', tag: 'calculate', icon: '📊', desc: 'Generate a full loan amortization schedule — monthly principal, interest, and balance breakdown' },
 ];
 
 const HUB_PAGE_CONFIG = {
@@ -197,7 +212,7 @@ const HUB_PAGE_CONFIG = {
       ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
       ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
       ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark'],
-      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg', 'image-vignette', 'image-sepia', 'image-tint']
+      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg', 'image-vignette', 'image-sepia', 'image-tint', 'image-noise']
     ]
   },
   developer: {
@@ -211,14 +226,14 @@ const HUB_PAGE_CONFIG = {
   },
   text: {
     sections: [
-      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech', 'number-extractor', 'reverse-text', 'reading-time-estimator', 'text-repeater', 'text-statistics', 'remove-line-breaks']
+      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech', 'number-extractor', 'reverse-text', 'reading-time-estimator', 'text-repeater', 'text-statistics', 'remove-line-breaks', 'remove-duplicate-words', 'word-scrambler']
     ]
   },
   calculator: {
     sections: [
       ['percentage-calculator', 'percentage-change-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator', 'compound-interest-calculator'],
       ['mortgage-calculator', 'loan-calculator', 'savings-calculator'],
-      ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator', 'tax-calculator', 'body-fat-calculator'],
+      ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator', 'tax-calculator', 'body-fat-calculator', 'scientific-calculator', 'retirement-calculator', 'time-duration-calculator', 'aspect-ratio-calculator', 'pace-calculator', 'tip-splitter', 'age-in-days', 'loan-amortization-calculator'],
       ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'],
       ['speed-converter', 'weight-converter', 'length-converter', 'area-converter', 'volume-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words']
     ]
@@ -234,7 +249,7 @@ const HUB_PAGE_CONFIG = {
   },
   generator: {
     sections: [
-      ['password-generator', 'uuid-generator', 'qr-code-generator', 'hash-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder', 'css-gradient-generator', 'color-palette', 'favicon-generator', 'password-strength-checker', 'color-scheme-generator', 'css-box-shadow-generator']
+      ['password-generator', 'uuid-generator', 'qr-code-generator', 'hash-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder', 'css-gradient-generator', 'color-palette', 'favicon-generator', 'password-strength-checker', 'color-scheme-generator', 'css-box-shadow-generator', 'placeholder-image-generator', 'random-color-generator', 'gradient-text-generator']
     ]
   },
   pdf: {

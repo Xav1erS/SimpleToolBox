@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Placeholder Image Generator — Create Custom Placeholder Images Free | Simple ToolBox</title>
+  <meta name="description" content="Generate custom placeholder images online free. Set width, height, background color, text color, and label. Download as PNG instantly. No sign-up." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/placeholder-image-generator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/placeholder-image-generator.html" />
+  <meta property="og:title" content="Placeholder Image Generator — Create Custom Placeholder Images Free | Simple ToolBox" />
+  <meta property="og:description" content="Generate custom placeholder images. Set size, colors, and label. Download as PNG instantly. No sign-up." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Placeholder Image Generator",
+  "description": "Generate custom placeholder images with configurable size, background color, text color, and label. Download as PNG.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "url": "https://simpletoolbox.dev/tools/placeholder-image-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What formats can I download?", "acceptedAnswer": { "@type": "Answer", "text": "PNG is the default download format. You can also copy the image directly to clipboard." } },
+    { "@type": "Question", "name": "What is the maximum image size?", "acceptedAnswer": { "@type": "Answer", "text": "You can generate images up to 4096×4096 pixels. Very large images may be slow to render in some browsers." } },
+    { "@type": "Question", "name": "Can I use this in my designs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Placeholder images are commonly used in wireframes, mockups, and prototypes to represent image content before the real assets are available." } },
+    { "@type": "Question", "name": "Is there a URL-based API?", "acceptedAnswer": { "@type": "Answer", "text": "This tool generates images client-side for direct download. For URL-based placeholders in HTML, services like placehold.co are commonly used." } }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=22" />
+  <style>
+    .main{max-width:800px;margin:0 auto;padding:28px 24px 64px}
+    .controls{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:22px;margin-bottom:20px}
+    .fields-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;align-items:flex-end}
+    .field{display:flex;flex-direction:column;gap:6px;min-width:80px}
+    .field label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ds-color-text-muted)}
+    .field input[type="number"],.field input[type="text"]{background:var(--ds-color-surface-strong);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-primary);padding:8px 10px;font-size:14px;width:100%;box-sizing:border-box}
+    .field input:focus{outline:none;border-color:var(--ds-color-accent)}
+    .color-field{display:flex;align-items:center;gap:8px}
+    .color-field input[type="color"]{width:40px;height:34px;border:none;border-radius:var(--ds-radius-sm);cursor:pointer;padding:0;background:none}
+    .color-field input[type="text"]{flex:1;font-family:var(--ds-font-mono);font-size:13px;min-width:70px}
+    .presets-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+    .preset-label{font-size:12px;color:var(--ds-color-text-muted)}
+    .preset-btn{padding:5px 12px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);font-size:12px;color:var(--ds-color-text-muted);cursor:pointer;background:none;transition:.15s}
+    .preset-btn:hover{border-color:var(--ds-color-accent);color:var(--ds-color-accent)}
+    .preview-area{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:24px;display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:20px}
+    #previewCanvas{max-width:100%;max-height:380px;border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+    .canvas-info{font-size:12px;color:var(--ds-color-text-muted);font-family:var(--ds-font-mono)}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn-primary{padding:10px 24px;background:var(--ds-color-accent);color:#fff;font-size:14px;font-weight:600;border-radius:var(--ds-radius-md);cursor:pointer;border:none;transition:.2s}
+    .btn-primary:hover{background:var(--ds-color-accent-hover)}
+    .btn-secondary{padding:10px 20px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);color:var(--ds-color-text-secondary);font-size:14px;font-weight:600;cursor:pointer;background:none;transition:.15s}
+    .btn-secondary:hover{border-color:var(--ds-color-accent);color:var(--ds-color-accent)}
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Placeholder Image Generator <span class="ds-tool-badge">generator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally - no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🖼️</div><h1 class="ds-tool-header__title">Placeholder Image Generator</h1></div><p class="ds-tool-header__desc">Generate custom placeholder images for wireframes and mockups. Set any size, background color, text color, and label. Download as PNG instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">placeholder</span><span class="ds-tag">mockup</span><span class="ds-tag">wireframe</span><span class="ds-tag">image</span></div></div></div>
+<div class="main">
+  <div class="controls">
+    <div class="fields-row">
+      <div class="field" style="min-width:90px"><label>Width (px)</label><input type="number" id="imgW" min="1" max="4096" value="800" /></div>
+      <div class="field" style="min-width:90px"><label>Height (px)</label><input type="number" id="imgH" min="1" max="4096" value="450" /></div>
+      <div class="field" style="flex:1;min-width:140px"><label>Label Text</label><input type="text" id="imgLabel" placeholder="800 × 450" maxlength="60" /></div>
+    </div>
+    <div class="fields-row">
+      <div class="field"><label>Background</label><div class="color-field"><input type="color" id="bgColor" value="#2d2d35" /><input type="text" id="bgHex" value="#2d2d35" maxlength="7" /></div></div>
+      <div class="field"><label>Text Color</label><div class="color-field"><input type="color" id="textColor" value="#888899" /><input type="text" id="textHex" value="#888899" maxlength="7" /></div></div>
+      <div class="field"><label>Font Size</label><input type="number" id="fontSize" min="8" max="200" value="0" placeholder="Auto" style="max-width:80px" /></div>
+    </div>
+    <div class="presets-row">
+      <span class="preset-label">Presets:</span>
+      <button class="preset-btn" data-w="1920" data-h="1080">1920×1080</button>
+      <button class="preset-btn" data-w="1200" data-h="630">OG Image</button>
+      <button class="preset-btn" data-w="800" data-h="450">16:9</button>
+      <button class="preset-btn" data-w="400" data-h="400">Square</button>
+      <button class="preset-btn" data-w="300" data-h="250">Ad 300×250</button>
+      <button class="preset-btn" data-w="160" data-h="600">Skyscraper</button>
+    </div>
+  </div>
+  <div class="preview-area">
+    <canvas id="previewCanvas"></canvas>
+    <span class="canvas-info" id="canvasInfo"></span>
+  </div>
+  <div class="btn-row">
+    <button class="btn-primary" id="btnDownload">Download PNG</button>
+    <button class="btn-secondary" id="btnCopy">Copy to Clipboard</button>
+  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+  <div class="ds-seo-content" style="margin-top:24px">
+    <section class="ds-seo-section"><h2 class="ds-seo-section__title">How to Generate a Placeholder Image</h2><ol><li>Enter width and height in pixels.</li><li>Optionally customize background color, text color, and label.</li><li>Download as PNG or copy directly to clipboard.</li></ol></section>
+  </div>
+  <div class="ds-related-tools"><h2 class="ds-related-title">Related Tools</h2><div class="ds-related-grid"><a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">↔️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images to exact dimensions</div></div></a><a href="favicon-generator.html" class="ds-related-card"><span class="ds-related-icon">⭐</span><div><div class="ds-related-name">Favicon Generator</div><div class="ds-related-desc">Create favicon from any image</div></div></a><a href="color-scheme-generator.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Scheme Generator</div><div class="ds-related-desc">Generate harmonious color palettes</div></div></a></div></div>
+  <details class="ds-seo-more"><summary class="ds-seo-more__toggle"><span>Learn More</span><span class="ds-seo-more__arrow">&#9662;</span></summary><div class="ds-seo-more__body"><details class="ds-seo-collapse"><summary>Common Use Cases</summary><div class="ds-seo-collapse__body"><ul><li>Wireframe and prototype mockups</li><li>Test image layouts before real assets are ready</li><li>Responsive design testing at specific aspect ratios</li><li>Generate correctly-sized social media image templates</li></ul></div></details><details class="ds-seo-collapse"><summary>Frequently Asked Questions</summary><div class="ds-seo-collapse__body"><div class="ds-seo-faq-item"><strong>What is the max size?</strong><p>Up to 4096×4096 px. Very large images may render slowly in some browsers.</p></div><div class="ds-seo-faq-item"><strong>Can I use a custom label?</strong><p>Yes. Leave blank to auto-display the dimensions (e.g. "800 × 450"), or enter any custom text.</p></div></div></details></div></details>
+  <!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+'use strict';
+const canvas=document.getElementById('previewCanvas'),ctx=canvas.getContext('2d'),canvasInfo=document.getElementById('canvasInfo');
+const imgW=document.getElementById('imgW'),imgH=document.getElementById('imgH'),imgLabel=document.getElementById('imgLabel'),bgColor=document.getElementById('bgColor'),bgHex=document.getElementById('bgHex'),textColor=document.getElementById('textColor'),textHex=document.getElementById('textHex'),fontSize=document.getElementById('fontSize');
+function render(){
+  const w=Math.max(1,Math.min(4096,parseInt(imgW.value)||800));
+  const h=Math.max(1,Math.min(4096,parseInt(imgH.value)||450));
+  canvas.width=w;canvas.height=h;
+  ctx.fillStyle=bgColor.value;ctx.fillRect(0,0,w,h);
+  ctx.strokeStyle=textColor.value;ctx.globalAlpha=0.3;
+  ctx.lineWidth=Math.max(1,Math.min(w,h)*0.003);
+  ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(w,h);ctx.moveTo(w,0);ctx.lineTo(0,h);ctx.stroke();
+  ctx.globalAlpha=1;
+  const label=imgLabel.value||`${w} × ${h}`;
+  const autoSize=Math.max(12,Math.min(Math.floor(Math.min(w,h)*0.1),80));
+  const fs=parseInt(fontSize.value)||autoSize;
+  ctx.fillStyle=textColor.value;ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font=`600 ${fs}px system-ui,sans-serif`;
+  ctx.fillText(label,w/2,h/2);
+  canvasInfo.textContent=`${w} × ${h} px`;
+}
+bgColor.addEventListener('input',()=>{bgHex.value=bgColor.value;render();});
+bgHex.addEventListener('input',()=>{if(/^#[0-9a-f]{6}$/i.test(bgHex.value)){bgColor.value=bgHex.value;render();}});
+textColor.addEventListener('input',()=>{textHex.value=textColor.value;render();});
+textHex.addEventListener('input',()=>{if(/^#[0-9a-f]{6}$/i.test(textHex.value)){textColor.value=textHex.value;render();}});
+[imgW,imgH,imgLabel,fontSize].forEach(el=>el.addEventListener('input',render));
+document.querySelectorAll('.preset-btn').forEach(btn=>{btn.addEventListener('click',()=>{imgW.value=btn.dataset.w;imgH.value=btn.dataset.h;render();});});
+document.getElementById('btnDownload').addEventListener('click',()=>{const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=`placeholder-${canvas.width}x${canvas.height}.png`;a.click();});
+document.getElementById('btnCopy').addEventListener('click',()=>{canvas.toBlob(b=>{navigator.clipboard.write([new ClipboardItem({'image/png':b})]).then(()=>{const btn=document.getElementById('btnCopy');const o=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=o,1500);}).catch(()=>alert('Clipboard access denied'));});});
+render();
+</script>
+<footer><a href="../index.html">← Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

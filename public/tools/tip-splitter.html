@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Tip Splitter — Split Bill & Calculate Tip Free | Simple ToolBox</title>
+  <meta name="description" content="Calculate tip amount and split a bill between any number of people. Choose tip percentage or enter a custom amount. Free, instant, no sign-up." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/tip-splitter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/tip-splitter.html" />
+  <meta property="og:title" content="Tip Splitter — Split Bill & Calculate Tip Free | Simple ToolBox" />
+  <meta property="og:description" content="Calculate tip and split the bill between any number of people. Free, instant." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Tip Splitter",
+  "description": "Calculate tip amount and split a restaurant bill between any number of people.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "url": "https://simpletoolbox.dev/tools/tip-splitter"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Can I enter a custom tip percentage?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click Custom and enter any tip percentage you like." } },
+    { "@type": "Question", "name": "Can I split unequally?", "acceptedAnswer": { "@type": "Answer", "text": "This tool splits the total equally. For unequal splits, use the number of people field to find the per-person amount." } },
+    { "@type": "Question", "name": "Is my data sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run in your browser." } }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=22" />
+  <style>
+    .main{max-width:580px;margin:0 auto;padding:28px 24px 64px}
+    .card{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:24px;margin-bottom:16px}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+    .field label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ds-color-text-muted)}
+    .input-wrap{position:relative;display:flex;align-items:center}
+    .input-prefix{position:absolute;left:12px;color:var(--ds-color-text-muted);font-size:14px;pointer-events:none}
+    .field input{width:100%;background:var(--ds-color-surface-strong);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-primary);padding:10px 12px;font-size:15px;box-sizing:border-box}
+    .field input.has-prefix{padding-left:26px}
+    .field input:focus{outline:none;border-color:var(--ds-color-accent)}
+    .tip-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}
+    .tip-btn{padding:10px 0;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);font-size:13px;font-weight:600;color:var(--ds-color-text-secondary);cursor:pointer;background:none;transition:.15s;text-align:center}
+    .tip-btn:hover,.tip-btn.active{border-color:var(--ds-color-accent);color:var(--ds-color-accent);background:rgba(94,106,210,.08)}
+    .custom-tip{display:none;margin-bottom:16px}
+    .custom-tip.show{display:block}
+    .result-hero{background:linear-gradient(135deg,rgba(94,106,210,.15),rgba(94,106,210,.05));border:1px solid rgba(94,106,210,.3);border-radius:var(--ds-radius-md);padding:24px;text-align:center;margin-bottom:16px}
+    .result-main{font-size:44px;font-weight:800;font-family:var(--ds-font-mono);color:var(--ds-color-accent);line-height:1}
+    .result-sub{font-size:13px;color:var(--ds-color-text-muted);margin-top:6px}
+    .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .result-item{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);padding:14px;text-align:center}
+    .result-val{font-size:20px;font-weight:700;font-family:var(--ds-font-mono);color:var(--ds-color-text-primary)}
+    .result-lbl{font-size:11px;color:var(--ds-color-text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Tip Splitter <span class="ds-tool-badge">calculator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally - no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🍽️</div><h1 class="ds-tool-header__title">Tip Splitter</h1></div><p class="ds-tool-header__desc">Calculate tip and split the bill between any number of people. Choose a tip percentage or enter a custom amount — see per-person totals instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">tip</span><span class="ds-tag">bill split</span><span class="ds-tag">restaurant</span><span class="ds-tag">calculator</span></div></div></div>
+<div class="main">
+  <div class="card">
+    <div class="field">
+      <label>Bill Amount</label>
+      <div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="bill" class="has-prefix" min="0" step="0.01" placeholder="0.00" /></div>
+    </div>
+    <div class="field"><label>Tip Percentage</label></div>
+    <div class="tip-grid" id="tipGrid">
+      <button class="tip-btn" data-v="10">10%</button>
+      <button class="tip-btn" data-v="15">15%</button>
+      <button class="tip-btn active" data-v="18">18%</button>
+      <button class="tip-btn" data-v="20">20%</button>
+      <button class="tip-btn" data-v="custom">Custom</button>
+    </div>
+    <div class="custom-tip" id="customWrap">
+      <div class="field">
+        <label>Custom Tip %</label>
+        <input type="number" id="customTip" min="0" step="0.5" placeholder="e.g. 22" />
+      </div>
+    </div>
+    <div class="field">
+      <label>Number of People</label>
+      <input type="number" id="people" min="1" step="1" value="2" />
+    </div>
+  </div>
+  <div id="results">
+    <div class="result-hero">
+      <div class="result-main" id="rPerPerson">$0.00</div>
+      <div class="result-sub">Per Person</div>
+    </div>
+    <div class="result-grid">
+      <div class="result-item"><div class="result-val" id="rTip">$0.00</div><div class="result-lbl">Tip Total</div></div>
+      <div class="result-item"><div class="result-val" id="rTotal">$0.00</div><div class="result-lbl">Bill + Tip</div></div>
+      <div class="result-item"><div class="result-val" id="rTipPer">$0.00</div><div class="result-lbl">Tip / Person</div></div>
+    </div>
+  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+  <div class="ds-seo-content" style="margin-top:24px">
+    <section class="ds-seo-section"><h2 class="ds-seo-section__title">How to Split a Bill with Tip</h2><ol><li>Enter the total bill amount.</li><li>Select a tip percentage or enter a custom one.</li><li>Set the number of people — results update instantly.</li></ol></section>
+  </div>
+  <div class="ds-related-tools"><h2 class="ds-related-title">Related Tools</h2><div class="ds-related-grid"><a href="discount-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏷️</span><div><div class="ds-related-name">Discount Calculator</div><div class="ds-related-desc">Calculate sale price after discount</div></div></a><a href="tax-calculator.html" class="ds-related-card"><span class="ds-related-icon">🧾</span><div><div class="ds-related-name">Tax Calculator</div><div class="ds-related-desc">Calculate sales tax and income tax</div></div></a><a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">%</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Calculate percentages instantly</div></div></a></div></div>
+  <details class="ds-seo-more"><summary class="ds-seo-more__toggle"><span>Learn More</span><span class="ds-seo-more__arrow">&#9662;</span></summary><div class="ds-seo-more__body"><details class="ds-seo-collapse"><summary>Tip Etiquette Guide</summary><div class="ds-seo-collapse__body"><ul><li>10–12% — below average or poor service</li><li>15–18% — standard or good service</li><li>20%+ — excellent service or fine dining</li><li>25%+ — exceptional service or celebration</li></ul></div></details><details class="ds-seo-collapse"><summary>Frequently Asked Questions</summary><div class="ds-seo-collapse__body"><div class="ds-seo-faq-item"><strong>Is the tip calculated before or after tax?</strong><p>This calculator applies the tip to the bill amount you enter. If you include tax in the bill amount, the tip is calculated on the after-tax total.</p></div></div></details></div></details>
+  <!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+'use strict';
+let tipPct=18;
+function fmt(n){return'$'+n.toFixed(2);}
+function calc(){
+  const bill=parseFloat(document.getElementById('bill').value)||0;
+  const people=Math.max(1,parseInt(document.getElementById('people').value)||1);
+  const tip=bill*tipPct/100;
+  const total=bill+tip;
+  document.getElementById('rTip').textContent=fmt(tip);
+  document.getElementById('rTotal').textContent=fmt(total);
+  document.getElementById('rPerPerson').textContent=fmt(total/people);
+  document.getElementById('rTipPer').textContent=fmt(tip/people);
+}
+document.getElementById('tipGrid').addEventListener('click',e=>{
+  const btn=e.target.closest('.tip-btn');if(!btn)return;
+  document.querySelectorAll('.tip-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const v=btn.dataset.v;
+  if(v==='custom'){document.getElementById('customWrap').classList.add('show');tipPct=parseFloat(document.getElementById('customTip').value)||0;}
+  else{document.getElementById('customWrap').classList.remove('show');tipPct=parseFloat(v);calc();}
+});
+document.getElementById('customTip').addEventListener('input',()=>{tipPct=parseFloat(document.getElementById('customTip').value)||0;calc();});
+document.getElementById('bill').addEventListener('input',calc);
+document.getElementById('people').addEventListener('input',calc);
+calc();
+</script>
+<footer><a href="../index.html">← Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

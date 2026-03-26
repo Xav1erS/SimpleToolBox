@@ -8447,7 +8447,767 @@ const TOOLS_META = [
     title: 'How Browsers Decode AVIF Natively',
     body: 'Modern browsers ship with a built-in AV1 decoder. The tool passes the AVIF Blob to createImageBitmap(), which decodes it using the browser\'s native codec into a bitmap. The bitmap is drawn onto an HTML canvas, and canvas.toBlob() re-encodes it to the chosen output format. The entire process runs in the browser\'s rendering engine — no WebAssembly or external library needed.',
   },
-}
+},
+
+{
+  slug: 'webp-to-png',
+  title: 'WebP to PNG Converter Online',
+  description: 'Convert WebP images to PNG format instantly in your browser. Batch convert multiple files at once — no upload, no sign-up, download as ZIP.',
+  category: 'image',
+  relatedTools: ['webp-converter', 'image-resizer', 'jpg-to-png'],
+  useCases: [
+    'Convert WebP screenshots to PNG for use in documents',
+    'Batch convert design assets exported as WebP to PNG',
+    'Prepare WebP files for tools that only accept PNG',
+    'Preserve transparency when converting from WebP'
+  ],
+  faq: [
+    { q: 'Does it preserve transparency?', a: 'Yes. PNG supports full alpha transparency, so transparent areas in the original WebP are preserved.' },
+    { q: 'Can I convert multiple files?', a: 'Yes. Drop multiple WebP files at once and download them all as a ZIP archive.' },
+    { q: 'Is my data sent to a server?', a: 'No. Conversion runs entirely in your browser using the Canvas API.' }
+  ],
+  shortTitle: 'WebP to PNG',
+  seoContent: {
+    howToTitle: 'How to Convert WebP to PNG',
+    howToSteps: [
+      'Drop one or more WebP files onto the upload area.',
+      'Preview the converted images — conversion is automatic.',
+      'Click Download All to save as a ZIP, or download each file individually.'
+    ]
+  }
+},
+
+{
+  slug: 'image-sepia',
+  title: 'Sepia Photo Effect Online',
+  description: 'Apply a vintage sepia tone to any photo instantly. Adjust intensity with a slider, preview in real time, and download the result as PNG.',
+  category: 'image',
+  relatedTools: ['image-vignette', 'image-tint', 'grayscale-image'],
+  useCases: [
+    'Give photos a vintage or antique look',
+    'Create warm-toned images for social media',
+    'Add a nostalgic feel to portraits or landscapes',
+    'Match old-photo aesthetics in design projects'
+  ],
+  faq: [
+    { q: 'How does the sepia effect work?', a: 'It converts each pixel to a warm brownish tone using a standard sepia color matrix applied per pixel on an HTML canvas.' },
+    { q: 'Can I adjust the intensity?', a: 'Yes. The intensity slider controls how strongly the sepia tone is applied — 0% is the original image, 100% is full sepia.' },
+    { q: 'Is my image uploaded?', a: 'No. Processing happens entirely in your browser. Your image never leaves your device.' }
+  ],
+  shortTitle: 'Sepia Photo Effect',
+  seoContent: {
+    howToTitle: 'How to Apply a Sepia Effect',
+    howToSteps: [
+      'Upload or drop any image file.',
+      'Adjust the intensity slider to control the sepia strength.',
+      'Download the result as PNG.'
+    ]
+  }
+},
+
+{
+  slug: 'image-vignette',
+  title: 'Image Vignette Effect Online',
+  description: 'Add a vignette darkening effect to any photo. Control strength and size with sliders, preview instantly, and download as PNG.',
+  category: 'image',
+  relatedTools: ['image-sepia', 'image-tint', 'blur-image'],
+  useCases: [
+    'Draw focus to the center of portrait photos',
+    'Add cinematic framing to landscape shots',
+    'Create moody darkroom-style edits',
+    'Enhance product photography with subtle edge darkening'
+  ],
+  faq: [
+    { q: 'What is a vignette?', a: 'A vignette is a darkening or fading effect applied toward the edges of an image, drawing the viewer\'s eye toward the center.' },
+    { q: 'Can I control the size and strength?', a: 'Yes. The strength slider controls how dark the edges get, and the size slider controls how far the effect extends from the edges.' },
+    { q: 'Is my image uploaded?', a: 'No. The effect is applied using a canvas radial gradient in your browser.' }
+  ],
+  shortTitle: 'Image Vignette',
+  seoContent: {
+    howToTitle: 'How to Add a Vignette Effect',
+    howToSteps: [
+      'Upload any image file.',
+      'Adjust the strength and size sliders to control the vignette.',
+      'Download the result as PNG.'
+    ]
+  }
+},
+
+{
+  slug: 'image-tint',
+  title: 'Image Tint Effect Online',
+  description: 'Apply a color tint overlay to any photo. Choose any color, adjust opacity, pick from presets, and download as PNG — all in your browser.',
+  category: 'image',
+  relatedTools: ['image-sepia', 'image-vignette', 'color-picker'],
+  useCases: [
+    'Add brand color overlays to product images',
+    'Create duotone-style photo effects',
+    'Apply warm or cool color grading to photos',
+    'Generate social media images with consistent color tones'
+  ],
+  faq: [
+    { q: 'Can I use any color for the tint?', a: 'Yes. Use the color picker or enter any HEX color code. Preset swatches are also available for quick selection.' },
+    { q: 'How do I control intensity?', a: 'The opacity slider controls how strongly the tint color is applied over the original image.' },
+    { q: 'Is my image uploaded?', a: 'No. The overlay is composited using the Canvas API entirely in your browser.' }
+  ],
+  shortTitle: 'Image Tint',
+  seoContent: {
+    howToTitle: 'How to Tint an Image',
+    howToSteps: [
+      'Upload any image file.',
+      'Choose a tint color from the presets or enter a custom HEX code.',
+      'Adjust opacity to control the effect strength.',
+      'Download the result as PNG.'
+    ]
+  }
+},
+
+{
+  slug: 'image-noise',
+  title: 'Image Noise / Film Grain Effect Online',
+  description: 'Add film grain or noise texture to photos. Toggle between monochrome and color noise, adjust intensity, and download as PNG.',
+  category: 'image',
+  relatedTools: ['image-vignette', 'image-sepia', 'image-tint'],
+  useCases: [
+    'Give digital photos a film photography aesthetic',
+    'Add texture to flat design images',
+    'Create vintage or lo-fi photo effects',
+    'Simulate grainy low-light photography'
+  ],
+  faq: [
+    { q: 'What is the difference between mono and color noise?', a: 'Monochrome noise adds uniform gray grain. Color noise adds random color variations to each pixel, similar to high-ISO digital camera noise.' },
+    { q: 'Can I control how much grain is added?', a: 'Yes. The intensity slider controls the strength of the noise effect from subtle grain to heavy texture.' },
+    { q: 'Is my image uploaded?', a: 'No. Noise is generated and applied entirely in your browser using the Canvas API.' }
+  ],
+  shortTitle: 'Image Noise Effect',
+  seoContent: {
+    howToTitle: 'How to Add Film Grain to an Image',
+    howToSteps: [
+      'Upload any image file.',
+      'Choose monochrome or color noise mode.',
+      'Adjust the intensity slider.',
+      'Download the result as PNG.'
+    ]
+  }
+},
+
+{
+  slug: 'reading-time-estimator',
+  title: 'Reading Time Estimator Online',
+  description: 'Estimate how long it takes to read any text. Adjust reading speed (WPM), see word and character counts, and get a breakdown instantly.',
+  category: 'text',
+  relatedTools: ['word-counter', 'text-statistics', 'char-counter'],
+  useCases: [
+    'Estimate blog post or article reading time before publishing',
+    'Check if a document fits within a presentation time slot',
+    'Adjust content length to target a specific reading duration',
+    'Gauge reading time for newsletters or emails'
+  ],
+  faq: [
+    { q: 'What reading speed does this use?', a: 'The default is 200 WPM (words per minute), which is average for adults. Use the slider to adjust between 100–400 WPM.' },
+    { q: 'How is reading time calculated?', a: 'Reading time = word count ÷ reading speed (WPM). The result is shown in minutes and seconds.' },
+    { q: 'Is my text sent to a server?', a: 'No. All calculations run in your browser.' }
+  ],
+  shortTitle: 'Reading Time Estimator',
+  seoContent: {
+    howToTitle: 'How to Estimate Reading Time',
+    howToSteps: [
+      'Paste or type your text into the input area.',
+      'Adjust the WPM slider to match your audience\'s reading speed.',
+      'Read the estimated time and word count from the stats cards.'
+    ]
+  }
+},
+
+{
+  slug: 'text-repeater',
+  title: 'Text Repeater Online',
+  description: 'Repeat any text a specified number of times with a custom separator. Copy or download the result instantly.',
+  category: 'text',
+  relatedTools: ['lorem-ipsum-generator', 'text-statistics', 'word-counter'],
+  useCases: [
+    'Generate repeated test data for development',
+    'Create placeholder content with repeated patterns',
+    'Repeat list items or strings for scripts',
+    'Fill templates with repeated sample text'
+  ],
+  faq: [
+    { q: 'Can I use a custom separator between repetitions?', a: 'Yes. Enter any text as the separator — comma, newline (\\n), space, or any custom string.' },
+    { q: 'Is there a repeat limit?', a: 'The tool supports up to 10,000 repetitions to prevent browser slowdowns.' },
+    { q: 'Can I download the result?', a: 'Yes. Click Download to save the repeated text as a .txt file.' }
+  ],
+  shortTitle: 'Text Repeater',
+  seoContent: {
+    howToTitle: 'How to Repeat Text',
+    howToSteps: [
+      'Enter the text you want to repeat.',
+      'Set the number of repetitions.',
+      'Choose a separator (optional) and copy or download the result.'
+    ]
+  }
+},
+
+{
+  slug: 'text-statistics',
+  title: 'Text Statistics Analyzer Online',
+  description: 'Get detailed statistics for any text: word count, character count, sentence count, paragraphs, reading time, unique words, average lengths, and more.',
+  category: 'text',
+  relatedTools: ['word-counter', 'reading-time-estimator', 'keyword-density-checker'],
+  useCases: [
+    'Analyze writing complexity before publishing',
+    'Check document statistics for academic submissions',
+    'Measure content depth with unique word ratio',
+    'Compare text versions with before/after stats'
+  ],
+  faq: [
+    { q: 'What statistics does this tool show?', a: 'Words, characters (with and without spaces), sentences, paragraphs, reading time, unique words, lines, average word length, and average sentence length.' },
+    { q: 'How is reading time calculated?', a: 'Based on 200 WPM average reading speed. The stat updates live as you type.' },
+    { q: 'Is my text sent anywhere?', a: 'No. All processing runs in your browser.' }
+  ],
+  shortTitle: 'Text Statistics',
+  seoContent: {
+    howToTitle: 'How to Analyze Text Statistics',
+    howToSteps: [
+      'Paste or type your text into the input area.',
+      'All statistics update instantly as you type.',
+      'Review the 10 stats cards for a full breakdown of your text.'
+    ]
+  }
+},
+
+{
+  slug: 'remove-line-breaks',
+  title: 'Remove Line Breaks Online',
+  description: 'Remove or replace line breaks in any text. Join lines into a single paragraph, keep paragraph breaks, or add a custom separator.',
+  category: 'text',
+  relatedTools: ['text-cleaner', 'whitespace-trimmer', 'duplicate-line-remover'],
+  useCases: [
+    'Convert copied PDF text with broken line breaks into flowing paragraphs',
+    'Prepare text for data entry fields that don\'t accept newlines',
+    'Clean up copied code or log output into a single line',
+    'Join multi-line list items with a comma separator'
+  ],
+  faq: [
+    { q: 'Can I keep paragraph breaks while removing single line breaks?', a: 'Yes. Toggle the "Keep paragraph breaks" option to preserve double line breaks (paragraph separators) while joining single line breaks.' },
+    { q: 'Can I replace line breaks with a custom character?', a: 'Yes. Enter any replacement string — space, comma, pipe, or any custom text.' },
+    { q: 'Is my text uploaded?', a: 'No. Everything runs in your browser.' }
+  ],
+  shortTitle: 'Remove Line Breaks',
+  seoContent: {
+    howToTitle: 'How to Remove Line Breaks',
+    howToSteps: [
+      'Paste your text into the input area.',
+      'Choose whether to keep paragraph breaks and set a replacement character.',
+      'Click Process and copy the result.'
+    ]
+  }
+},
+
+{
+  slug: 'remove-duplicate-words',
+  title: 'Remove Duplicate Words Online',
+  description: 'Remove repeated words from any text, keeping only the first occurrence. Case-insensitive option, preserves word order. Instant result.',
+  category: 'text',
+  relatedTools: ['duplicate-line-remover', 'list-deduplicator', 'text-cleaner'],
+  useCases: [
+    'Clean up keyword lists with repeated terms',
+    'Remove accidental word repetitions from drafts',
+    'Deduplicate tag clouds or word lists',
+    'Normalize text before processing'
+  ],
+  faq: [
+    { q: 'Does it preserve word order?', a: 'Yes. The first occurrence of each word is kept and the original word order is preserved.' },
+    { q: 'Is comparison case-sensitive?', a: 'By default comparison is case-insensitive, so "The" and "the" count as duplicates. Toggle to case-sensitive mode if needed.' },
+    { q: 'Is my text sent to a server?', a: 'No. All processing runs in your browser.' }
+  ],
+  shortTitle: 'Remove Duplicate Words',
+  seoContent: {
+    howToTitle: 'How to Remove Duplicate Words',
+    howToSteps: [
+      'Paste your text into the input area.',
+      'Choose case-sensitivity and punctuation options.',
+      'Click Remove Duplicates and copy the result.'
+    ]
+  }
+},
+
+{
+  slug: 'color-scheme-generator',
+  title: 'Color Scheme Generator Online',
+  description: 'Generate harmonious color schemes from any base color. Choose from complementary, analogous, triadic, and more. Export as CSS variables or JSON.',
+  category: 'design',
+  relatedTools: ['color-picker', 'random-color-generator', 'color-palette'],
+  useCases: [
+    'Generate a brand color palette from a primary color',
+    'Create accessible color schemes for UI design',
+    'Export CSS variables for a design system',
+    'Explore color harmonies for illustration projects'
+  ],
+  faq: [
+    { q: 'What harmony types are available?', a: 'Complementary, analogous, triadic, split-complementary, tetradic (square), and monochromatic.' },
+    { q: 'Can I export the colors?', a: 'Yes. Export as CSS custom properties (--color-1, etc.) or as a JSON array of HEX values.' },
+    { q: 'Is data sent to a server?', a: 'No. All color calculations run in your browser.' }
+  ],
+  shortTitle: 'Color Scheme Generator',
+  seoContent: {
+    howToTitle: 'How to Generate a Color Scheme',
+    howToSteps: [
+      'Pick a base color using the color picker or enter a HEX code.',
+      'Choose a harmony type (complementary, analogous, triadic, etc.).',
+      'Copy individual colors or export the full scheme as CSS variables or JSON.'
+    ]
+  }
+},
+
+{
+  slug: 'css-box-shadow-generator',
+  title: 'CSS Box Shadow Generator Online',
+  description: 'Build CSS box shadows visually. Add multiple layers, adjust offsets, blur, spread, color, and inset. Copy the final CSS with one click.',
+  category: 'design',
+  relatedTools: ['css-gradient-generator', 'color-picker', 'css-minifier'],
+  useCases: [
+    'Design card shadows for UI components',
+    'Create layered shadow effects for depth',
+    'Generate inset shadows for pressed button states',
+    'Copy ready-to-use box-shadow CSS for any project'
+  ],
+  faq: [
+    { q: 'Can I add multiple shadow layers?', a: 'Yes. Click "Add Layer" to stack multiple box-shadow values — each with independent offset, blur, spread, and color settings.' },
+    { q: 'What is an inset shadow?', a: 'An inset shadow is drawn inside the element border rather than outside, creating a sunken or pressed appearance.' },
+    { q: 'Does the output work in all browsers?', a: 'Yes. The generated box-shadow CSS is standard and works in all modern browsers.' }
+  ],
+  shortTitle: 'CSS Box Shadow Generator',
+  seoContent: {
+    howToTitle: 'How to Generate a CSS Box Shadow',
+    howToSteps: [
+      'Adjust the offset, blur, spread, and color sliders to shape the shadow.',
+      'Add multiple layers for complex effects.',
+      'Click Copy CSS to use the result in your project.'
+    ]
+  }
+},
+
+{
+  slug: 'tax-calculator',
+  title: 'Tax Calculator Online',
+  description: 'Calculate sales tax, reverse-compute pre-tax price, or estimate US federal income tax by bracket. Instant results, no sign-up.',
+  category: 'calculator',
+  relatedTools: ['tip-calculator', 'discount-calculator', 'percentage-calculator'],
+  useCases: [
+    'Calculate total price with sales tax added',
+    'Find the pre-tax price from a tax-inclusive total',
+    'Estimate US federal income tax liability by bracket',
+    'Quick tax math for invoices and receipts'
+  ],
+  faq: [
+    { q: 'How is sales tax calculated?', a: 'Tax amount = price × (rate ÷ 100). Total = price + tax.' },
+    { q: 'How does reverse tax work?', a: 'Pre-tax price = total ÷ (1 + rate ÷ 100). Useful when you have the final price but need to back out the tax.' },
+    { q: 'Are the US income tax brackets up to date?', a: 'The 2024 federal tax brackets (single and married filing jointly) are built in. This is an estimate — consult a tax professional for filing.' }
+  ],
+  shortTitle: 'Tax Calculator',
+  seoContent: {
+    howToTitle: 'How to Calculate Tax',
+    howToSteps: [
+      'Choose Sales Tax or Income Tax mode.',
+      'Enter the price (or income) and the tax rate.',
+      'Read the tax amount and total from the result card.'
+    ]
+  }
+},
+
+{
+  slug: 'body-fat-calculator',
+  title: 'Body Fat Calculator Online',
+  description: 'Estimate body fat percentage using the US Navy circumference method. Supports male and female, metric and imperial — instant result with category.',
+  category: 'calculator',
+  relatedTools: ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator'],
+  useCases: [
+    'Track body composition changes over time',
+    'Estimate body fat without expensive equipment',
+    'Get a fitness category baseline for health tracking',
+    'Compare metric and imperial body measurements'
+  ],
+  faq: [
+    { q: 'What method is used?', a: 'The US Navy circumference method uses neck, waist, and hip measurements to estimate body fat — no calipers needed.' },
+    { q: 'How accurate is it?', a: 'It is an estimate with a ±3–4% margin of error. DEXA scans and hydrostatic weighing are more accurate but require equipment.' },
+    { q: 'Is my data sent anywhere?', a: 'No. All calculations run in your browser.' }
+  ],
+  shortTitle: 'Body Fat Calculator',
+  seoContent: {
+    howToTitle: 'How to Calculate Body Fat Percentage',
+    howToSteps: [
+      'Select your gender and measurement system.',
+      'Enter your height, weight, neck, waist, and hip measurements.',
+      'Read your estimated body fat percentage and fitness category.'
+    ]
+  }
+},
+
+{
+  slug: 'scientific-calculator',
+  title: 'Scientific Calculator Online',
+  description: 'Full-featured scientific calculator with trig, logarithms, powers, roots, memory, and keyboard support. Calculation history included.',
+  category: 'calculator',
+  relatedTools: ['percentage-calculator', 'compound-interest-calculator', 'retirement-calculator'],
+  useCases: [
+    'Solve trigonometric equations in DEG or RAD mode',
+    'Calculate logarithms and natural logs',
+    'Perform power, root, and factorial operations',
+    'Use memory functions for multi-step calculations'
+  ],
+  faq: [
+    { q: 'Can I use the keyboard?', a: 'Yes. Number keys, operators, Enter (=), Backspace, and Escape (AC) are all supported.' },
+    { q: 'What trig functions are available?', a: 'sin, cos, tan, and their inverses (sin⁻¹, cos⁻¹, tan⁻¹). Toggle between Degrees and Radians mode.' },
+    { q: 'Does it have a calculation history?', a: 'Yes. The last 20 calculations are shown in the history panel.' }
+  ],
+  shortTitle: 'Scientific Calculator',
+  seoContent: {
+    howToTitle: 'How to Use the Scientific Calculator',
+    howToSteps: [
+      'Use the on-screen buttons or your keyboard to enter a calculation.',
+      'Toggle DEG/RAD mode before using trigonometric functions.',
+      'Use MC/MR/M+/M- buttons to store and recall memory values.'
+    ]
+  }
+},
+
+{
+  slug: 'retirement-calculator',
+  title: 'Retirement Calculator Online',
+  description: 'Estimate your retirement savings based on current balance, monthly contributions, years until retirement, and expected annual return rate.',
+  category: 'calculator',
+  relatedTools: ['compound-interest-calculator', 'savings-calculator', 'loan-calculator'],
+  useCases: [
+    'Plan how much to save each month for a retirement goal',
+    'Compare outcomes at different return rates',
+    'Estimate monthly income under the 4% withdrawal rule',
+    'Visualize how investment growth outpaces contributions over time'
+  ],
+  faq: [
+    { q: 'How is the estimate calculated?', a: 'Current savings compound annually at the return rate. Monthly contributions compound monthly. Both are summed for the retirement total.' },
+    { q: 'What is the 4% rule?', a: 'A widely cited guideline that suggests withdrawing 4% of savings annually is sustainable. Monthly estimate = total ÷ 300.' },
+    { q: 'Is my data sent anywhere?', a: 'No. All calculations run in your browser.' }
+  ],
+  shortTitle: 'Retirement Calculator',
+  seoContent: {
+    howToTitle: 'How to Estimate Retirement Savings',
+    howToSteps: [
+      'Enter your current savings balance.',
+      'Set monthly contributions and years until retirement.',
+      'Enter an expected annual return rate (7% is a common long-term estimate).',
+      'Review the estimated total, breakdown chart, and monthly income estimate.'
+    ]
+  }
+},
+
+{
+  slug: 'placeholder-image-generator',
+  title: 'Placeholder Image Generator Online',
+  description: 'Generate custom placeholder images for wireframes and mockups. Set width, height, background, text color, and label. Download as PNG instantly.',
+  category: 'design',
+  relatedTools: ['image-resizer', 'favicon-generator', 'color-scheme-generator'],
+  useCases: [
+    'Create placeholder images for wireframes and prototypes',
+    'Generate correctly-sized social media image templates',
+    'Test responsive image layouts at specific aspect ratios',
+    'Replace missing assets in development environments'
+  ],
+  faq: [
+    { q: 'What is the maximum size?', a: 'Up to 4096×4096 px. Very large images may render slowly in some browsers.' },
+    { q: 'Can I set a custom label?', a: 'Yes. Leave the label blank to auto-display the dimensions, or enter any custom text.' },
+    { q: 'What download formats are available?', a: 'PNG is the download format. You can also copy the image directly to clipboard.' }
+  ],
+  shortTitle: 'Placeholder Image Generator',
+  seoContent: {
+    howToTitle: 'How to Generate a Placeholder Image',
+    howToSteps: [
+      'Enter the width and height in pixels, or choose a preset size.',
+      'Customize the background color, text color, and label.',
+      'Click Download PNG or Copy to Clipboard.'
+    ]
+  }
+},
+
+{
+  slug: 'random-color-generator',
+  title: 'Random Color Generator Online',
+  description: 'Generate 1–10 random colors with HEX, RGB, and HSL values. Lock your favorites and regenerate the rest. Press Space for a new batch.',
+  category: 'design',
+  relatedTools: ['color-scheme-generator', 'color-picker', 'color-palette'],
+  useCases: [
+    'Get random color inspiration for design projects',
+    'Explore unexpected color combinations',
+    'Generate random colors for data visualization',
+    'Quickly find a palette starting point by locking good colors'
+  ],
+  faq: [
+    { q: 'How do I lock a color?', a: 'Click the lock icon on any color card. Locked colors stay fixed when you generate new ones.' },
+    { q: 'Can I press a key to generate?', a: 'Yes. Press Spacebar to regenerate all unlocked colors instantly.' },
+    { q: 'How do I copy a color value?', a: 'Click the HEX, RGB, or HSL value on any card to copy it to clipboard.' }
+  ],
+  shortTitle: 'Random Color Generator',
+  seoContent: {
+    howToTitle: 'How to Generate Random Colors',
+    howToSteps: [
+      'Set the number of colors (1–10) using the slider.',
+      'Click Generate or press Space for a new batch.',
+      'Lock colors you want to keep, then regenerate the rest.',
+      'Click any color value to copy it to clipboard.'
+    ]
+  }
+},
+
+{
+  slug: 'time-duration-calculator',
+  title: 'Time Duration Calculator Online',
+  description: 'Add or subtract multiple time durations. Enter hours, minutes, and seconds — toggle + / − per row — and get the total instantly.',
+  category: 'calculator',
+  relatedTools: ['time-converter', 'date-calculator', 'age-calculator'],
+  useCases: [
+    'Add up video clip durations for a total runtime',
+    'Calculate total work hours from individual session times',
+    'Find remaining time after subtracting completed segments',
+    'Sum workout or activity durations across multiple sets'
+  ],
+  faq: [
+    { q: 'Can I add more than two durations?', a: 'Yes. Click Add Row to add as many time entries as needed.' },
+    { q: 'How does subtraction work?', a: 'Toggle the sign on any row to − to subtract that duration from the running total.' },
+    { q: 'What format is the result shown in?', a: 'HH:MM:SS and also as total hours, minutes, and seconds separately.' }
+  ],
+  shortTitle: 'Time Duration Calculator',
+  seoContent: {
+    howToTitle: 'How to Calculate Time Durations',
+    howToSteps: [
+      'Enter hours, minutes, and seconds in each row.',
+      'Toggle the +/− sign to add or subtract that duration.',
+      'Click Add Row for more entries — the total updates instantly.'
+    ]
+  }
+},
+
+{
+  slug: 'aspect-ratio-calculator',
+  title: 'Aspect Ratio Calculator Online',
+  description: 'Calculate missing width, height, or aspect ratio for any image or video. Enter two values to get the third. Common ratio presets included.',
+  category: 'calculator',
+  relatedTools: ['image-resizer', 'placeholder-image-generator', 'image-compressor'],
+  useCases: [
+    'Scale images to 16:9 for YouTube thumbnails',
+    'Find the height for a given width at a fixed ratio',
+    'Check the aspect ratio of an existing image',
+    'Prepare images at exact social media dimensions'
+  ],
+  faq: [
+    { q: 'How do I find the missing dimension?', a: 'Enter width and height to get the ratio. Or enter one dimension plus the ratio to calculate the other.' },
+    { q: 'What ratio presets are available?', a: '16:9, 4:3, 1:1, 3:2, 21:9, 9:16, and 4:5.' },
+    { q: 'Is my data sent anywhere?', a: 'No. All calculations run in your browser.' }
+  ],
+  shortTitle: 'Aspect Ratio Calculator',
+  seoContent: {
+    howToTitle: 'How to Calculate Aspect Ratio',
+    howToSteps: [
+      'Enter width and height to get the ratio, or enter one dimension and the ratio to find the other.',
+      'Use presets (16:9, 4:3, etc.) for common video and image formats.',
+      'Click Calculate to see width, height, and simplified ratio.'
+    ]
+  }
+},
+
+{
+  slug: 'pace-calculator',
+  title: 'Running Pace Calculator Online',
+  description: 'Calculate running pace, finish time, or distance from any two values. Supports km and miles with 5K, 10K, half marathon, and full marathon presets.',
+  category: 'calculator',
+  relatedTools: ['calorie-burn-calculator', 'bmi-calculator', 'age-calculator'],
+  useCases: [
+    'Find required pace to finish a 5K in a target time',
+    'Calculate marathon finish time at a given pace',
+    'Convert running pace between km and miles',
+    'Plan training runs with a target pace'
+  ],
+  faq: [
+    { q: 'What can this calculate?', a: 'Enter any two of: distance, time, or pace — the third is calculated automatically.' },
+    { q: 'What race presets are available?', a: '5K, 10K, Half Marathon, and Full Marathon.' },
+    { q: 'Does it support miles?', a: 'Yes. Toggle between km and miles with the unit selector.' }
+  ],
+  shortTitle: 'Pace Calculator',
+  seoContent: {
+    howToTitle: 'How to Calculate Running Pace',
+    howToSteps: [
+      'Select km or miles.',
+      'Enter any two values: distance, finish time, or pace.',
+      'Click Calculate — the missing value appears instantly.'
+    ]
+  }
+},
+
+{
+  slug: 'tip-splitter',
+  title: 'Tip Calculator & Bill Splitter Online',
+  description: 'Calculate tip amount and split a restaurant bill between any number of people. Choose tip percentage or enter a custom amount — instant per-person totals.',
+  category: 'calculator',
+  relatedTools: ['discount-calculator', 'tax-calculator', 'percentage-calculator'],
+  useCases: [
+    'Split a restaurant bill evenly at the table',
+    'Calculate how much tip to add for good service',
+    'Find per-person amount for group outings',
+    'Quick tip math for cafes and delivery orders'
+  ],
+  faq: [
+    { q: 'Can I use a custom tip percentage?', a: 'Yes. Click Custom and enter any percentage.' },
+    { q: 'How does the split work?', a: 'Total (bill + tip) is divided equally by the number of people.' },
+    { q: 'Is my data sent anywhere?', a: 'No. All calculations run in your browser.' }
+  ],
+  shortTitle: 'Tip Splitter',
+  seoContent: {
+    howToTitle: 'How to Split a Bill with Tip',
+    howToSteps: [
+      'Enter the total bill amount.',
+      'Select a tip percentage or enter a custom one.',
+      'Set the number of people — results update instantly.'
+    ]
+  }
+},
+
+{
+  slug: 'age-in-days',
+  title: 'Age in Days Calculator Online',
+  description: 'Find out exactly how many days, weeks, months, and hours old you are. Enter your birthdate to see your precise age plus upcoming milestones.',
+  category: 'calculator',
+  relatedTools: ['age-calculator', 'date-calculator', 'time-duration-calculator'],
+  useCases: [
+    'Find your exact age in days for a birthday',
+    'Calculate 1000-day milestones for a baby',
+    'Track days until a special anniversary',
+    'Compute exact age for horoscopes or biorhythm charts'
+  ],
+  faq: [
+    { q: 'What milestones does it show?', a: 'Upcoming 1,000-day, 5,000-day, 10,000-day, and birthday milestones from the selected date.' },
+    { q: 'Can I calculate age as of a different date?', a: 'Yes. Change the "As of date" field to any past or future date.' },
+    { q: 'Is my data sent anywhere?', a: 'No. All calculations run in your browser.' }
+  ],
+  shortTitle: 'Age in Days',
+  seoContent: {
+    howToTitle: 'How to Calculate Age in Days',
+    howToSteps: [
+      'Enter your birth date.',
+      'The "As of" date defaults to today — change it if needed.',
+      'Read your age in days, weeks, months, and hours plus upcoming milestones.'
+    ]
+  }
+},
+
+{
+  slug: 'gradient-text-generator',
+  title: 'CSS Gradient Text Generator Online',
+  description: 'Create CSS gradient text effects with customizable colors, direction, and font size. Live preview and one-click CSS copy.',
+  category: 'design',
+  relatedTools: ['css-gradient-generator', 'css-box-shadow-generator', 'color-scheme-generator'],
+  useCases: [
+    'Generate gradient headings for landing pages',
+    'Create colorful text effects for social media graphics',
+    'Add multi-color gradients to CSS typography',
+    'Export ready-to-use CSS for any web project'
+  ],
+  faq: [
+    { q: 'How does CSS gradient text work?', a: 'It uses background-clip: text and -webkit-text-fill-color: transparent to mask a gradient through the text shape.' },
+    { q: 'Can I add more than two colors?', a: 'Yes. Click Add Color Stop to add up to 5 color stops for multi-color gradients.' },
+    { q: 'Does the output work in all browsers?', a: 'Yes. The -webkit prefix is included for broad compatibility.' }
+  ],
+  shortTitle: 'Gradient Text Generator',
+  seoContent: {
+    howToTitle: 'How to Create CSS Gradient Text',
+    howToSteps: [
+      'Enter your text and choose gradient colors.',
+      'Select a direction and adjust the font size.',
+      'Copy the CSS and paste it into your stylesheet.'
+    ]
+  }
+},
+
+{
+  slug: 'binary-calculator',
+  title: 'Binary Calculator Online',
+  description: 'Perform binary arithmetic: add, subtract, multiply, and divide binary numbers. Results shown in binary, decimal, hexadecimal, and octal.',
+  category: 'encode',
+  relatedTools: ['number-base', 'binary-text', 'scientific-calculator'],
+  useCases: [
+    'Solve binary math problems for computer science coursework',
+    'Verify binary arithmetic results',
+    'Convert binary operation results to hex or decimal',
+    'Practice bitwise arithmetic concepts'
+  ],
+  faq: [
+    { q: 'What operations are supported?', a: 'Addition, subtraction, multiplication, and division.' },
+    { q: 'What format must inputs be in?', a: 'Binary — only 0 and 1 characters. Non-binary input is automatically rejected.' },
+    { q: 'Does it support negative results?', a: 'Yes. A negative result is shown with a − prefix in all output formats.' }
+  ],
+  shortTitle: 'Binary Calculator',
+  seoContent: {
+    howToTitle: 'How to Use the Binary Calculator',
+    howToSteps: [
+      'Enter two binary numbers using only 0s and 1s.',
+      'Choose the operation: +, −, ×, or ÷.',
+      'Click Calculate — results appear in binary, decimal, hex, and octal.'
+    ]
+  }
+},
+
+{
+  slug: 'word-scrambler',
+  title: 'Word Scrambler Online',
+  description: 'Scramble letters within words, shuffle word order, or fully randomize text. Option to keep first and last letters in place. Copy the result instantly.',
+  category: 'text',
+  relatedTools: ['reverse-text', 'text-case', 'random-number-generator'],
+  useCases: [
+    'Create word puzzle or anagram game content',
+    'Generate scrambled text for educational exercises',
+    'Make fun scrambled messages for friends',
+    'Anonymize text structure for demos'
+  ],
+  faq: [
+    { q: 'What scramble modes are available?', a: 'Scramble letters within words, shuffle word order, or fully randomize all characters.' },
+    { q: 'What does keeping first and last letters do?', a: 'Text stays surprisingly readable when only middle letters are scrambled — this is a well-known cognitive phenomenon.' },
+    { q: 'Is my text sent anywhere?', a: 'No. All scrambling runs in your browser.' }
+  ],
+  shortTitle: 'Word Scrambler',
+  seoContent: {
+    howToTitle: 'How to Scramble Words',
+    howToSteps: [
+      'Paste your text into the input area.',
+      'Choose a scramble mode and options.',
+      'Click Scramble and copy the result.'
+    ]
+  }
+},
+
+{
+  slug: 'loan-amortization-calculator',
+  title: 'Loan Amortization Calculator Online',
+  description: 'Generate a complete loan amortization schedule. See every monthly payment split into principal and interest with remaining balance — free, instant.',
+  category: 'calculator',
+  relatedTools: ['loan-calculator', 'mortgage-calculator', 'compound-interest-calculator'],
+  useCases: [
+    'See how much interest you pay over a loan lifetime',
+    'Compare short vs long loan terms',
+    'Understand how early payments reduce total interest',
+    'Plan car loan or personal loan repayments'
+  ],
+  faq: [
+    { q: 'What is an amortization schedule?', a: 'A month-by-month table showing each payment split into principal and interest, plus the remaining balance after each payment.' },
+    { q: 'Can I use this for a mortgage?', a: 'Yes. Enter the mortgage amount, annual rate, and term in months (e.g. 360 for 30 years).' },
+    { q: 'Is my data sent anywhere?', a: 'No. All calculations run in your browser.' }
+  ],
+  shortTitle: 'Loan Amortization',
+  seoContent: {
+    howToTitle: 'How to Generate an Amortization Schedule',
+    howToSteps: [
+      'Enter the loan amount, annual interest rate, and term in months.',
+      'Optionally set a start month to display real calendar dates.',
+      'View the full schedule — click "Show all payments" to see every row.'
+    ]
+  }
+},
 
 ];
 

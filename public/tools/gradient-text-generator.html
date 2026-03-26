@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Gradient Text Generator — CSS Gradient Text Free | Simple ToolBox</title>
+  <meta name="description" content="Create beautiful gradient text with CSS. Pick colors, direction, and preview live. Copy the CSS code instantly. Free, no sign-up." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/gradient-text-generator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/gradient-text-generator.html" />
+  <meta property="og:title" content="Gradient Text Generator — CSS Gradient Text Free | Simple ToolBox" />
+  <meta property="og:description" content="Create CSS gradient text. Pick colors, direction, preview live, copy the code. Free, no sign-up." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Gradient Text Generator",
+  "description": "Generate CSS gradient text effects with customizable colors and direction. Live preview and one-click CSS copy.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "url": "https://simpletoolbox.dev/tools/gradient-text-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How does CSS gradient text work?", "acceptedAnswer": { "@type": "Answer", "text": "It uses background-clip: text and -webkit-text-fill-color: transparent to mask a gradient background through the text shape." } },
+    { "@type": "Question", "name": "Can I add more than two colors?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click Add Color Stop to add up to 5 color stops for multi-color gradients." } },
+    { "@type": "Question", "name": "Does this work in all browsers?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The -webkit-background-clip prefix ensures compatibility with Chrome, Firefox, Safari, and Edge." } }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=22" />
+  <style>
+    .main{max-width:720px;margin:0 auto;padding:28px 24px 64px}
+    .card{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:24px;margin-bottom:16px}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+    .field label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ds-color-text-muted)}
+    .field input[type="text"],.field input[type="number"]{width:100%;background:var(--ds-color-surface-strong);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-primary);padding:10px 12px;font-size:15px;box-sizing:border-box}
+    .field input:focus{outline:none;border-color:var(--ds-color-accent)}
+    .stops-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+    .stop-row{display:flex;align-items:center;gap:10px}
+    .stop-row input[type="color"]{width:40px;height:34px;border:none;border-radius:var(--ds-radius-sm);cursor:pointer;padding:0;background:none;flex-shrink:0}
+    .stop-row input[type="text"]{flex:1;background:var(--ds-color-surface-strong);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-primary);padding:8px 10px;font-size:13px;font-family:var(--ds-font-mono);box-sizing:border-box}
+    .stop-row input:focus{outline:none;border-color:var(--ds-color-accent)}
+    .rm-btn{width:28px;height:28px;border:none;background:none;cursor:pointer;color:var(--ds-color-text-muted);font-size:18px;flex-shrink:0}
+    .rm-btn:hover{color:#f87171}
+    .dir-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+    .dir-btn{padding:8px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);font-size:12px;font-weight:600;color:var(--ds-color-text-muted);cursor:pointer;background:none;transition:.15s;text-align:center}
+    .dir-btn:hover,.dir-btn.active{border-color:var(--ds-color-accent);color:var(--ds-color-accent);background:rgba(94,106,210,.08)}
+    .preview-area{background:var(--ds-color-bg);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:32px;text-align:center;margin-bottom:16px;min-height:100px;display:flex;align-items:center;justify-content:center}
+    .preview-text{font-weight:800;line-height:1.2;word-break:break-word;max-width:100%}
+    .size-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .size-row label{font-size:12px;color:var(--ds-color-text-muted);flex-shrink:0}
+    .size-row input{flex:1}
+    .size-val{font-size:13px;font-weight:600;color:var(--ds-color-text-primary);min-width:36px}
+    .code-block{background:var(--ds-color-surface-strong);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:16px;font-family:var(--ds-font-mono);font-size:12px;color:var(--ds-color-text-secondary);white-space:pre-wrap;word-break:break-all;margin-bottom:12px}
+    .btn-row{display:flex;gap:10px}
+    .btn-primary{padding:10px 24px;background:var(--ds-color-accent);color:#fff;font-size:14px;font-weight:600;border-radius:var(--ds-radius-md);cursor:pointer;border:none;transition:.2s}
+    .btn-primary:hover{background:var(--ds-color-accent-hover)}
+    .btn-secondary{padding:10px 18px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);color:var(--ds-color-text-secondary);font-size:14px;font-weight:600;cursor:pointer;background:none;transition:.15s}
+    .btn-secondary:hover{border-color:var(--ds-color-accent);color:var(--ds-color-accent)}
+    .presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .preset-swatch{width:32px;height:32px;border-radius:var(--ds-radius-sm);cursor:pointer;border:2px solid transparent;transition:.15s}
+    .preset-swatch:hover{border-color:var(--ds-color-accent);transform:scale(1.1)}
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Gradient Text Generator <span class="ds-tool-badge">generator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally - no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">✨</div><h1 class="ds-tool-header__title">Gradient Text Generator</h1></div><p class="ds-tool-header__desc">Create stunning CSS gradient text effects. Customize colors, direction, and font size — preview live and copy the ready-to-use CSS code.</p><div class="ds-tool-tag-row"><span class="ds-tag">gradient</span><span class="ds-tag">CSS</span><span class="ds-tag">text effect</span><span class="ds-tag">generator</span></div></div></div>
+<div class="main">
+  <div class="card">
+    <div class="field">
+      <label>Text</label>
+      <input type="text" id="textInput" value="Gradient Text" maxlength="100" />
+    </div>
+    <div class="field"><label>Gradient Colors</label></div>
+    <div class="stops-list" id="stopsList"></div>
+    <button class="btn-secondary" id="btnAddStop" style="margin-bottom:16px;padding:6px 14px;font-size:12px">+ Add Color Stop</button>
+    <div class="field"><label>Direction</label></div>
+    <div class="dir-grid" id="dirGrid">
+      <button class="dir-btn active" data-d="to right">→ Right</button>
+      <button class="dir-btn" data-d="to left">← Left</button>
+      <button class="dir-btn" data-d="to bottom">↓ Down</button>
+      <button class="dir-btn" data-d="to top">↑ Up</button>
+      <button class="dir-btn" data-d="to bottom right">↘ BR</button>
+      <button class="dir-btn" data-d="to bottom left">↙ BL</button>
+      <button class="dir-btn" data-d="to top right">↗ TR</button>
+      <button class="dir-btn" data-d="135deg">135°</button>
+    </div>
+    <div class="size-row">
+      <label>Font Size</label>
+      <input type="range" id="fontSize" min="16" max="120" value="56" />
+      <span class="size-val" id="fontSizeVal">56px</span>
+    </div>
+    <div style="margin-bottom:8px"><label style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ds-color-text-muted)">Presets</label></div>
+    <div class="presets" id="presets"></div>
+  </div>
+  <div class="preview-area">
+    <div class="preview-text" id="preview">Gradient Text</div>
+  </div>
+  <div class="code-block" id="codeBlock"></div>
+  <div class="btn-row">
+    <button class="btn-primary" id="btnCopy">Copy CSS</button>
+  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+  <div class="ds-seo-content" style="margin-top:24px">
+    <section class="ds-seo-section"><h2 class="ds-seo-section__title">How to Create CSS Gradient Text</h2><ol><li>Enter your text and choose gradient colors.</li><li>Select a direction and adjust the font size.</li><li>Copy the CSS and paste it into your stylesheet.</li></ol></section>
+  </div>
+  <div class="ds-related-tools"><h2 class="ds-related-title">Related Tools</h2><div class="ds-related-grid"><a href="css-gradient-generator.html" class="ds-related-card"><span class="ds-related-icon">🌈</span><div><div class="ds-related-name">CSS Gradient Generator</div><div class="ds-related-desc">Generate background gradients</div></div></a><a href="css-box-shadow-generator.html" class="ds-related-card"><span class="ds-related-icon">🪟</span><div><div class="ds-related-name">CSS Box Shadow Generator</div><div class="ds-related-desc">Build layered box shadow effects</div></div></a><a href="color-scheme-generator.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Color Scheme Generator</div><div class="ds-related-desc">Generate harmonious color schemes</div></div></a></div></div>
+  <details class="ds-seo-more"><summary class="ds-seo-more__toggle"><span>Learn More</span><span class="ds-seo-more__arrow">&#9662;</span></summary><div class="ds-seo-more__body"><details class="ds-seo-collapse"><summary>How CSS Gradient Text Works</summary><div class="ds-seo-collapse__body"><p>CSS gradient text uses <code>background: linear-gradient(...)</code> combined with <code>-webkit-background-clip: text</code> and <code>-webkit-text-fill-color: transparent</code>. This clips the gradient to the text shape, making the letters appear filled with the gradient colors.</p></div></details><details class="ds-seo-collapse"><summary>Frequently Asked Questions</summary><div class="ds-seo-collapse__body"><div class="ds-seo-faq-item"><strong>Does this work in all browsers?</strong><p>Yes. The -webkit prefix is included for broad compatibility.</p></div></div></details></div></details>
+  <!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+'use strict';
+let stops=[{color:'#5e6ad2'},{color:'#22d3ee'}];
+let direction='to right';
+const PRESETS=[
+  ['#5e6ad2','#22d3ee'],['#f472b6','#f97316'],['#22c55e','#06b6d4'],
+  ['#a78bfa','#ec4899'],['#fbbf24','#ef4444'],['#10b981','#3b82f6'],
+];
+function updateStopsList(){
+  const list=document.getElementById('stopsList');list.innerHTML='';
+  stops.forEach((s,i)=>{
+    const row=document.createElement('div');row.className='stop-row';
+    row.innerHTML=`<input type="color" value="${s.color}" data-i="${i}" /><input type="text" value="${s.color}" data-i="${i}" maxlength="7" />${stops.length>2?`<button class="rm-btn" data-i="${i}">×</button>`:''}`;
+    list.appendChild(row);
+  });
+  list.querySelectorAll('input[type="color"]').forEach(inp=>{inp.addEventListener('input',()=>{stops[+inp.dataset.i].color=inp.value;list.querySelectorAll('input[type="text"]')[+inp.dataset.i].value=inp.value;render();});});
+  list.querySelectorAll('input[type="text"]').forEach(inp=>{inp.addEventListener('input',()=>{if(/^#[0-9a-f]{6}$/i.test(inp.value)){stops[+inp.dataset.i].color=inp.value;list.querySelectorAll('input[type="color"]')[+inp.dataset.i].value=inp.value;render();}});});
+  list.querySelectorAll('.rm-btn').forEach(btn=>{btn.addEventListener('click',()=>{stops.splice(+btn.dataset.i,1);updateStopsList();render();});});
+}
+function buildGradient(){return`linear-gradient(${direction}, ${stops.map(s=>s.color).join(', ')})`;}
+function render(){
+  const txt=document.getElementById('textInput').value||'Gradient Text';
+  const fs=document.getElementById('fontSize').value+'px';
+  const grad=buildGradient();
+  const el=document.getElementById('preview');
+  el.textContent=txt;
+  el.style.fontSize=fs;
+  el.style.background=grad;
+  el.style.webkitBackgroundClip='text';
+  el.style.webkitTextFillColor='transparent';
+  el.style.backgroundClip='text';
+  const css=`.gradient-text {\n  background: ${grad};\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  background-clip: text;\n  font-size: ${fs};\n  font-weight: 800;\n  display: inline-block;\n}`;
+  document.getElementById('codeBlock').textContent=css;
+}
+document.getElementById('textInput').addEventListener('input',render);
+document.getElementById('btnAddStop').addEventListener('click',()=>{if(stops.length<5){stops.push({color:'#ffffff'});updateStopsList();render();}});
+document.getElementById('dirGrid').addEventListener('click',e=>{const btn=e.target.closest('.dir-btn');if(!btn)return;document.querySelectorAll('.dir-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');direction=btn.dataset.d;render();});
+document.getElementById('fontSize').addEventListener('input',()=>{document.getElementById('fontSizeVal').textContent=document.getElementById('fontSize').value+'px';render();});
+document.getElementById('btnCopy').addEventListener('click',()=>{navigator.clipboard.writeText(document.getElementById('codeBlock').textContent).then(()=>{const btn=document.getElementById('btnCopy');const o=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=o,1500);});});
+// presets
+const presetsEl=document.getElementById('presets');
+PRESETS.forEach(p=>{const sw=document.createElement('div');sw.className='preset-swatch';sw.style.background=`linear-gradient(to right,${p[0]},${p[1]})`;sw.title=p.join(' → ');sw.addEventListener('click',()=>{stops=[{color:p[0]},{color:p[1]}];updateStopsList();render();});presetsEl.appendChild(sw);});
+updateStopsList();render();
+</script>
+<footer><a href="../index.html">← Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Word Scrambler — Scramble Words & Letters Free | Simple ToolBox</title>
+  <meta name="description" content="Scramble words or individual letters in any text. Keep first/last letter in place or fully randomize. Copy the result instantly. Free, no sign-up." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/word-scrambler" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/word-scrambler.html" />
+  <meta property="og:title" content="Word Scrambler — Scramble Words & Letters Free | Simple ToolBox" />
+  <meta property="og:description" content="Scramble words or letters in text. Keep first/last letters or fully randomize. Copy instantly. Free." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Word Scrambler",
+  "description": "Scramble words or individual letters. Options to keep first/last letter, scramble whole words, or fully randomize all characters.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "url": "https://simpletoolbox.dev/tools/word-scrambler"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What scramble modes are available?", "acceptedAnswer": { "@type": "Answer", "text": "Scramble letters within each word (keeping first/last), scramble whole word order, or fully randomize all characters." } },
+    { "@type": "Question", "name": "Can I re-scramble to get a different result?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click Scramble again for a new random arrangement." } },
+    { "@type": "Question", "name": "Is my text sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All scrambling runs in your browser." } }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=22" />
+  <style>
+    .main{max-width:760px;margin:0 auto;padding:28px 24px 64px}
+    .options-bar{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:14px 18px;display:flex;align-items:center;gap:20px;margin-bottom:14px;flex-wrap:wrap}
+    .radio-label{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ds-color-text-secondary);cursor:pointer}
+    .toggle-label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ds-color-text-secondary);cursor:pointer}
+    textarea{width:100%;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);color:var(--ds-color-text-primary);font-size:14px;line-height:1.6;padding:14px;resize:vertical;font-family:var(--ds-font-sans);box-sizing:border-box}
+    textarea:focus{outline:none;border-color:var(--ds-color-accent)}
+    #inputText{min-height:150px;margin-bottom:12px}
+    #outputText{min-height:130px;font-family:var(--ds-font-mono);font-size:13px}
+    .btn-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+    .btn-primary{padding:10px 24px;background:var(--ds-color-accent);color:#fff;font-size:14px;font-weight:600;border-radius:var(--ds-radius-md);cursor:pointer;border:none;transition:.2s}
+    .btn-primary:hover{background:var(--ds-color-accent-hover)}
+    .btn-secondary{padding:10px 18px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);color:var(--ds-color-text-secondary);font-size:14px;font-weight:600;cursor:pointer;background:none;transition:.15s}
+    .btn-secondary:hover{border-color:var(--ds-color-accent);color:var(--ds-color-accent)}
+    .btn-secondary:disabled{opacity:.4;cursor:not-allowed}
+    .output-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ds-color-text-muted);margin-bottom:6px}
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Word Scrambler <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally - no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔀</div><h1 class="ds-tool-header__title">Word Scrambler</h1></div><p class="ds-tool-header__desc">Scramble letters within words, shuffle word order, or fully randomize text. Keep first and last letters in place for readable scrambles. Copy or download results.</p><div class="ds-tool-tag-row"><span class="ds-tag">scramble</span><span class="ds-tag">shuffle</span><span class="ds-tag">text</span><span class="ds-tag">words</span></div></div></div>
+<div class="main">
+  <div class="options-bar">
+    <label class="radio-label"><input type="radio" name="mode" value="letters" checked /> Scramble letters in words</label>
+    <label class="radio-label"><input type="radio" name="mode" value="words" /> Shuffle word order</label>
+    <label class="radio-label"><input type="radio" name="mode" value="all" /> Scramble all characters</label>
+    <label class="toggle-label"><input type="checkbox" id="keepEnds" checked /> Keep first &amp; last letter</label>
+  </div>
+  <textarea id="inputText" placeholder="Paste or type text here to scramble…" spellcheck="false"></textarea>
+  <div class="btn-row">
+    <button class="btn-primary" id="btnScramble">Scramble</button>
+    <button class="btn-secondary" id="btnCopy" disabled>Copy</button>
+    <button class="btn-secondary" id="btnClear">Clear</button>
+  </div>
+  <div class="output-label">Result</div>
+  <textarea id="outputText" readonly placeholder="Scrambled text will appear here…"></textarea>
+  <!-- AUTO-SEO-SECTIONS:START -->
+  <div class="ds-seo-content" style="margin-top:24px">
+    <section class="ds-seo-section"><h2 class="ds-seo-section__title">How to Scramble Words</h2><ol><li>Paste your text into the input area.</li><li>Choose a scramble mode: letters within words, word order, or all characters.</li><li>Click Scramble and copy the result.</li></ol></section>
+  </div>
+  <div class="ds-related-tools"><h2 class="ds-related-title">Related Tools</h2><div class="ds-related-grid"><a href="reverse-text.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">Reverse Text</div><div class="ds-related-desc">Reverse letters, words, or lines</div></div></a><a href="text-case.html" class="ds-related-card"><span class="ds-related-icon">Aa</span><div><div class="ds-related-name">Text Case Converter</div><div class="ds-related-desc">Convert text to any case style</div></div></a><a href="random-number-generator.html" class="ds-related-card"><span class="ds-related-icon">🎲</span><div><div class="ds-related-name">Random Number Generator</div><div class="ds-related-desc">Generate random numbers and shuffle lists</div></div></a></div></div>
+  <details class="ds-seo-more"><summary class="ds-seo-more__toggle"><span>Learn More</span><span class="ds-seo-more__arrow">&#9662;</span></summary><div class="ds-seo-more__body"><details class="ds-seo-collapse"><summary>Common Use Cases</summary><div class="ds-seo-collapse__body"><ul><li>Create word puzzle or anagram games</li><li>Generate scrambled text for educational exercises</li><li>Anonymize text structure for demos</li><li>Create fun scrambled messages for friends</li></ul></div></details><details class="ds-seo-collapse"><summary>Frequently Asked Questions</summary><div class="ds-seo-collapse__body"><div class="ds-seo-faq-item"><strong>What does "keep first and last letter" mean?</strong><p>Research shows that text remains readable when the first and last letters of each word stay in place while middle letters are scrambled. This option enables that effect.</p></div></div></details></div></details>
+  <!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+'use strict';
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function scrambleWord(w,keepEnds){
+  if(w.length<=3)return keepEnds?w:shuffle(w.split('')).join('');
+  if(keepEnds){const mid=shuffle(w.slice(1,-1).split('')).join('');return w[0]+mid+w[w.length-1];}
+  return shuffle(w.split('')).join('');
+}
+function getMode(){return document.querySelector('input[name="mode"]:checked').value;}
+document.getElementById('btnScramble').addEventListener('click',()=>{
+  const text=document.getElementById('inputText').value;if(!text)return;
+  const mode=getMode();const keepEnds=document.getElementById('keepEnds').checked;
+  let result;
+  if(mode==='letters'){
+    result=text.replace(/\b[a-zA-Z]+\b/g,w=>scrambleWord(w,keepEnds));
+  }else if(mode==='words'){
+    const tokens=text.match(/\S+|\s+/g)||[];
+    const words=tokens.filter(t=>/\S/.test(t));const spaces=tokens.filter(t=>/^\s+$/.test(t));
+    shuffle(words);let wi=0,si=0;result=tokens.map(t=>/\S/.test(t)?words[wi++]:spaces[si++]).join('');
+  }else{
+    const chars=text.split('');shuffle(chars);result=chars.join('');}
+  document.getElementById('outputText').value=result;
+  document.getElementById('btnCopy').disabled=false;
+});
+document.getElementById('btnCopy').addEventListener('click',()=>{navigator.clipboard.writeText(document.getElementById('outputText').value).then(()=>{const btn=document.getElementById('btnCopy');const o=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=o,1500);});});
+document.getElementById('btnClear').addEventListener('click',()=>{document.getElementById('inputText').value='';document.getElementById('outputText').value='';document.getElementById('btnCopy').disabled=true;});
+</script>
+<footer><a href="../index.html">← Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

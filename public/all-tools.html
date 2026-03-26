@@ -311,6 +311,7 @@
     .tool-section-title {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
       max-width: 1200px;
       margin: 0 auto;
@@ -318,6 +319,24 @@
       font-size: 15px;
       font-weight: 700;
       color: var(--ds-color-text-primary);
+    }
+    .tool-section-title__main {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .tool-section-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-text-secondary);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .tool-section-link:hover {
+      color: var(--ds-color-text-primary);
+      transform: translateX(2px);
     }
     .tool-grid.tool-grid--section {
       padding: 18px;
@@ -1239,6 +1258,17 @@
     rebuildGrid();
   }
 
+  function renderSectionBlock(label, tools, options = {}) {
+    const limit = options.limit || tools.length;
+    const visibleTools = tools.slice(0, limit);
+    const actionHtml = options.href
+      ? `<a href="${options.href}" class="tool-section-link">${options.actionLabel || 'View all'} 鈫?</a>`
+      : (options.actionHtml || '');
+
+    return `<div class="tool-section-title"><span class="tool-section-title__main">${label}${options.showCount === false ? '' : ` <span class="tool-section-count">${tools.length}</span>`}</span>${actionHtml}</div>
+<div class="tool-grid tool-grid--section">${visibleTools.map(renderToolCard).join('')}</div>`;
+  }
+
   function renderGroupedHTML() {
     // Recently Used (only when records exist)
     const recentList  = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
@@ -1269,6 +1299,54 @@
   function renderFlatHTML() {
     return ALL_TOOLS.map(renderToolCard).join('') +
       '<div class="no-result" id="noResult">No tools match your search.</div>';
+  }
+
+  function renderGroupedHTML() {
+    const recentList = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    const recentTools = recentList.map(href => ALL_TOOLS.find(t => t.href === href)).filter(Boolean);
+    const recentHtml = recentTools.length
+      ? renderSectionBlock('Recently Used', recentTools, {
+          showCount: false,
+          limit: 4,
+          actionHtml: '<button id="clearRecent" class="quick-clear">Clear</button>'
+        })
+      : '';
+
+    const popularTools = POPULAR_SLUGS
+      .map(slug => ALL_TOOLS.find(t => t.href.endsWith('/' + slug + '.html') || t.href.endsWith(slug + '.html')))
+      .filter(Boolean);
+    const popularHtml = renderSectionBlock('Popular', popularTools, {
+      showCount: false,
+      limit: 6,
+      href: '#top',
+      actionLabel: 'Refine filters'
+    });
+
+    const hrefMap = {
+      image: 'image-tools.html',
+      pdf: 'pdf-tools.html',
+      text: 'text-tools.html',
+      encode: 'developer-tools.html',
+      format: 'developer-tools.html',
+      convert: 'converter-tools.html',
+      generate: 'generator-tools.html',
+      calculator: 'calculator-tools.html',
+      design: 'all-tools.html?cat=design',
+      reference: 'all-tools.html?cat=reference'
+    };
+
+    const categoriesHtml = CATEGORY_SECTIONS.map(section => {
+      const tools = ALL_TOOLS.filter(tool => section.tags.includes(tool.tag));
+      if (!tools.length) return '';
+      const primaryTag = section.tags[0];
+      return renderSectionBlock(section.label, tools, {
+        limit: 4,
+        href: hrefMap[primaryTag],
+        actionLabel: primaryTag === 'design' || primaryTag === 'reference' ? 'Filter here' : 'Open hub'
+      });
+    }).join('');
+
+    return recentHtml + popularHtml + categoriesHtml + '<div class="no-result" id="noResult"></div>';
   }
 
   function rebuildGrid() {

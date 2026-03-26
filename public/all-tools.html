@@ -210,6 +210,7 @@
       padding: 18px 24px 0;
     }
     .filter-bar {
+      padding-bottom: 12px;
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--ds-color-border);
       border-radius: 20px 20px 0 0;
@@ -233,7 +234,10 @@
       width: 18px;
       height: 18px;
     }
-    .filter-tags { gap: 8px; }
+    .filter-tags {
+      gap: 8px;
+      margin-bottom: 2px;
+    }
     .filter-tag,
     .action-tag {
       min-height: 32px;
@@ -403,7 +407,7 @@
       .guide-links { padding: 0 0 18px; grid-template-columns: 1fr; }
       .hub-link,
       .filter-tag { flex: 0 0 auto; }
-      .filter-bar { padding: 16px; gap: 10px; border-radius: 18px 18px 0 0; }
+      .filter-bar { padding: 16px 16px 12px; gap: 10px; border-radius: 18px 18px 0 0; }
       .action-bar { padding: 0 16px 16px; margin-bottom: 22px; border-radius: 0 0 18px 18px; }
       .filter-search { flex: 1 0 100%; max-width: none; }
       .filter-search input { min-height: 46px; font-size: 14px; }
@@ -1461,6 +1465,13 @@
 
     if (gridMode === newMode) {
       // Mode unchanged — just re-run filters
+      if (needGrouped) {
+        toolGrid.classList.add('tool-grid--grouped');
+        toolGrid.innerHTML = renderGroupedHTML();
+        countBadge.textContent = ALL_TOOLS.length + ' tools';
+        pageSub.textContent = `${ALL_TOOLS.length} browser-based tools across text, developer, image, design, calculator, and reference workflows.`;
+        return;
+      }
       applyFilters();
       return;
     }

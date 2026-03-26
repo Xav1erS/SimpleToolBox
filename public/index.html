@@ -564,10 +564,15 @@
       align-items: start;
     }
     .footer-links a {
+      display: block;
       font-size: 14px;
       color: var(--ds-color-text-secondary);
       line-height: 1.45;
+      text-align: left;
       transition: color 0.2s, transform 0.2s;
+    }
+    .footer-links--tools a {
+      justify-self: start;
     }
     .footer-links a:hover {
       color: var(--ds-color-text-primary);

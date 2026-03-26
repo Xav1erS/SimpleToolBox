@@ -338,23 +338,24 @@
     }
     .category-body { flex: 1; min-width: 0; }
     .category-name {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--ds-color-text-primary);
-      margin-bottom: 4px;
-      letter-spacing: -0.2px;
+      line-height: 1.25;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
     }
     .category-desc {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--ds-color-text-secondary);
-      line-height: 1.5;
+      line-height: 1.6;
       margin-bottom: 10px;
     }
     .category-count {
       display: inline-flex;
       align-items: center;
       font-family: var(--ds-font-mono);
-      font-size: 11px;
+      font-size: 12px;
       color: var(--ds-color-text-muted);
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--ds-color-border);
@@ -403,14 +404,14 @@
       flex-shrink: 0;
     }
     .tool-name {
-      font-size: var(--ds-font-size-h4);
+      font-size: 16px;
       font-weight: 600;
       color: var(--ds-color-text-primary);
       line-height: 1.25;
-      letter-spacing: var(--ds-letter-normal);
+      letter-spacing: -0.02em;
     }
     .tool-desc {
-      font-size: var(--ds-font-size-body-sm);
+      font-size: 13px;
       color: var(--ds-color-text-secondary);
       line-height: 1.6;
       flex: 1;
@@ -431,7 +432,7 @@
       background: var(--ds-color-surface-tint);
       color: var(--ds-color-accent-soft);
       font-family: var(--ds-font-mono);
-      font-size: var(--ds-font-size-micro);
+      font-size: 12px;
       letter-spacing: 0.02em;
     }
     .tool-arrow {
@@ -447,15 +448,8 @@
       height: 1px;
       background: var(--ds-color-border);
       width: calc(100% - 48px);
-      max-width: 1248px;
+      max-width: 1200px;
       margin: 0 auto;
-    }
-
-    .section-rule {
-      width: calc(100% - 48px);
-      max-width: 1248px;
-      margin: 0 auto;
-      border-top: 1px solid var(--ds-color-border);
     }
 
     /* ── FEATURE STRIP ── */
@@ -849,6 +843,8 @@
   <div class="no-result" id="noResult">No categories found. Try a different keyword.</div>
 </div>
 
+<div class="divider"></div>
+
 <!-- FEATURED TOOLS -->
 <div class="section fade-in" id="toolSection">
   <div class="section-header">
@@ -1073,7 +1069,8 @@
 </div>
 
 <!-- FAQ -->
-<div class="section-rule">
+<div class="divider"></div>
+<div>
   <section class="faq-wrap">
     <div class="faq-shell">
       <div class="faq-heading">

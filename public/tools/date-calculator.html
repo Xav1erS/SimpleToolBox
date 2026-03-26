@@ -102,10 +102,13 @@
     .op-btn:hover  { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
     .op-btn.active { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
 
-    .result-box { background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.2); border-radius: var(--ds-radius-sm); padding: 14px 16px; margin-top: 4px; display: none; }
+    .result-box { background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.2); border-radius: var(--ds-radius-sm); padding: 14px 16px; margin-top: 4px; display: none; position: relative; }
     .result-box.show { display: block; }
     .result-main { font-size: 28px; font-weight: 700; color: var(--ds-color-text-primary); letter-spacing: -0.02em; margin-bottom: 6px; }
     .result-sub { font-size: 13px; color: var(--ds-color-text-secondary); line-height: 1.7; }
+    .result-copy-btn { position: absolute; top: 10px; right: 10px; font-size: 11px; font-weight: 500; color: var(--ds-color-text-muted); background: none; border: 1px solid transparent; border-radius: var(--ds-radius-sm); padding: 3px 9px; cursor: pointer; font-family: var(--ds-font-sans); transition: color 0.15s, background 0.15s, border-color 0.15s; }
+    .result-copy-btn:hover { color: var(--ds-color-accent); background: rgba(94,106,210,0.08); border-color: rgba(94,106,210,0.3); }
+    .result-copy-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
     .result-sub span { color: var(--ds-color-text-primary); font-weight: 500; }
 
     footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
@@ -177,6 +180,7 @@
         </div>
       </div>
       <div class="result-box" id="diffResult">
+        <button class="result-copy-btn" data-copy="diff">Copy</button>
         <div class="result-main" id="diffDays"></div>
         <div class="result-sub" id="diffSub"></div>
       </div>
@@ -204,6 +208,7 @@
         </div>
       </div>
       <div class="result-box" id="addResult">
+        <button class="result-copy-btn" data-copy="add">Copy</button>
         <div class="result-main" id="addResultDate"></div>
         <div class="result-sub" id="addResultSub"></div>
       </div>
@@ -227,6 +232,7 @@
         </div>
       </div>
       <div class="result-box" id="bizResult">
+        <button class="result-copy-btn" data-copy="biz">Copy</button>
         <div class="result-main" id="bizDays"></div>
         <div class="result-sub" id="bizSub"></div>
       </div>
@@ -250,6 +256,7 @@
         </div>
       </div>
       <div class="result-box" id="ageResult">
+        <button class="result-copy-btn" data-copy="age">Copy</button>
         <div class="result-main" id="ageYears"></div>
         <div class="result-sub" id="ageSub"></div>
       </div>
@@ -472,6 +479,24 @@
   }
   document.getElementById('ageDob').addEventListener('input', calcAge);
   document.getElementById('ageAsOf').addEventListener('input', calcAge);
+
+  // Copy buttons
+  const copyMap = {
+    diff: ['diffDays', 'diffSub'],
+    add:  ['addResultDate', 'addResultSub'],
+    biz:  ['bizDays', 'bizSub'],
+    age:  ['ageYears', 'ageSub'],
+  };
+  document.querySelectorAll('.result-copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ids = copyMap[btn.dataset.copy];
+      const text = ids.map(id => document.getElementById(id).textContent.trim()).filter(Boolean).join(' · ');
+      navigator.clipboard.writeText(text).catch(() => {});
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+    });
+  });
 </script>
 <script src="../tools-data.js"></script>
 <script src="../tool-page-icon.js"></script>

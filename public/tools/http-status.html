@@ -61,6 +61,8 @@
     .search-input:focus { border-color: var(--ds-color-accent); }
     .search-input::placeholder { color: var(--ds-color-text-muted); }
 
+    .export-btn { padding: 6px 14px; font-size: 12px; font-weight: 600; border-radius: var(--ds-radius-sm); border: 1px solid var(--ds-color-border); color: var(--ds-color-text-secondary); background: none; cursor: pointer; transition: color 0.15s, background 0.15s, border-color 0.15s; white-space: nowrap; font-family: var(--ds-font-sans); }
+    .export-btn:hover { color: var(--ds-color-accent); background: var(--ds-color-surface-tint); border-color: rgba(94,106,210,0.3); }
     .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
     .filter-btn {
       padding: 6px 14px;
@@ -247,6 +249,7 @@
       <button class="filter-btn" data-cat="4xx">4xx</button>
       <button class="filter-btn" data-cat="5xx">5xx</button>
     </div>
+    <button class="export-btn" id="exportJsonBtn">Export JSON</button>
   </div>
 
   <div class="status-grid" id="statusGrid"></div>
@@ -473,6 +476,23 @@
       btn.classList.add('active');
       applyFilter();
     });
+  });
+
+  document.getElementById('exportJsonBtn').addEventListener('click', () => {
+    const q = search.value.toLowerCase().trim();
+    const visible = CODES.filter(c => {
+      const cat = codeCat(c.code);
+      const catMatch = activeCat === 'all' || cat === activeCat;
+      const qMatch = !q || String(c.code).includes(q) || c.name.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q);
+      return catMatch && qMatch;
+    });
+    const json = JSON.stringify(visible, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = activeCat === 'all' ? 'http-status-codes.json' : `http-status-${activeCat}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
   });
 </script>
 </div>

@@ -8453,7 +8453,7 @@ const TOOLS_META = [
   slug: 'webp-to-png',
   title: 'WebP to PNG Converter Online',
   description: 'Convert WebP images to PNG format instantly in your browser. Batch convert multiple files at once — no upload, no sign-up, download as ZIP.',
-  category: 'image',
+  category: 'convert',
   relatedTools: ['webp-converter', 'image-resizer', 'jpg-to-png'],
   useCases: [
     'Convert WebP screenshots to PNG for use in documents',
@@ -8735,7 +8735,7 @@ const TOOLS_META = [
   slug: 'color-scheme-generator',
   title: 'Color Scheme Generator Online',
   description: 'Generate harmonious color schemes from any base color. Choose from complementary, analogous, triadic, and more. Export as CSS variables or JSON.',
-  category: 'design',
+  category: 'generate',
   relatedTools: ['color-picker', 'random-color-generator', 'color-palette'],
   useCases: [
     'Generate a brand color palette from a primary color',
@@ -8763,7 +8763,7 @@ const TOOLS_META = [
   slug: 'css-box-shadow-generator',
   title: 'CSS Box Shadow Generator Online',
   description: 'Build CSS box shadows visually. Add multiple layers, adjust offsets, blur, spread, color, and inset. Copy the final CSS with one click.',
-  category: 'design',
+  category: 'generate',
   relatedTools: ['css-gradient-generator', 'color-picker', 'css-minifier'],
   useCases: [
     'Design card shadows for UI components',
@@ -8904,7 +8904,7 @@ const TOOLS_META = [
   slug: 'placeholder-image-generator',
   title: 'Placeholder Image Generator Online',
   description: 'Generate custom placeholder images for wireframes and mockups. Set width, height, background, text color, and label. Download as PNG instantly.',
-  category: 'design',
+  category: 'generate',
   relatedTools: ['image-resizer', 'favicon-generator', 'color-scheme-generator'],
   useCases: [
     'Create placeholder images for wireframes and prototypes',
@@ -8932,7 +8932,7 @@ const TOOLS_META = [
   slug: 'random-color-generator',
   title: 'Random Color Generator Online',
   description: 'Generate 1–10 random colors with HEX, RGB, and HSL values. Lock your favorites and regenerate the rest. Press Space for a new batch.',
-  category: 'design',
+  category: 'generate',
   relatedTools: ['color-scheme-generator', 'color-picker', 'color-palette'],
   useCases: [
     'Get random color inspiration for design projects',
@@ -9101,7 +9101,7 @@ const TOOLS_META = [
   slug: 'gradient-text-generator',
   title: 'CSS Gradient Text Generator Online',
   description: 'Create CSS gradient text effects with customizable colors, direction, and font size. Live preview and one-click CSS copy.',
-  category: 'design',
+  category: 'generate',
   relatedTools: ['css-gradient-generator', 'css-box-shadow-generator', 'color-scheme-generator'],
   useCases: [
     'Generate gradient headings for landing pages',

@@ -1286,21 +1286,14 @@
   const heroSearchInput = document.getElementById('heroSearch');
   const navSearchInput = document.getElementById('navSearch');
 
-  function syncSearchInputs(value, source) {
-    if (source !== 'hero' && heroSearchInput.value !== value) heroSearchInput.value = value;
-    if (source !== 'nav' && navSearchInput.value !== value) navSearchInput.value = value;
-  }
-
   heroSearchInput.addEventListener('input', e => {
     const query = e.target.value;
-    syncSearchInputs(query, 'hero');
     buildDropdown(heroDropdown, query);
     filterBySearch(query, false);
     if (!query.trim()) clearCategoryActive();
   });
   navSearchInput.addEventListener('input', e => {
     const query = e.target.value;
-    syncSearchInputs(query, 'nav');
     buildDropdown(navDropdown, query);
     filterBySearch(query, false);
     if (!query.trim()) clearCategoryActive();

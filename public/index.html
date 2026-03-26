@@ -61,6 +61,7 @@
       text-align: center;
       overflow: hidden;
     }
+    .hero.search-open { overflow: visible; }
     .hero::before {
       content: '';
       position: absolute;
@@ -1234,9 +1235,11 @@
         renderSearchGroup('Popular Tools', popularTools.filter(t => !recentTools.includes(t)), '');
       if (!dropdownEl.innerHTML) {
         dropdownEl.classList.remove('open');
+        if (dropdownEl === heroDropdown && heroSection) heroSection.classList.remove('search-open');
         return;
       }
       dropdownEl.classList.add('open');
+      if (dropdownEl === heroDropdown && heroSection) heroSection.classList.add('search-open');
       return;
     }
     const results = searchTools(TOOLS, q, 6);
@@ -1255,6 +1258,7 @@
       ).join('');
     }
     dropdownEl.classList.add('open');
+    if (dropdownEl === heroDropdown && heroSection) heroSection.classList.add('search-open');
   }
 
   function filterBySearch(query, shouldScroll) {
@@ -1304,11 +1308,14 @@
   heroSearchInput.addEventListener('focus', () => buildDropdown(heroDropdown, heroSearchInput.value));
   navSearchInput.addEventListener('focus', () => buildDropdown(navDropdown, navSearchInput.value));
 
+  const heroSection = document.querySelector('.hero');
+
   // Close dropdowns on outside click
   document.addEventListener('click', e => {
     if (!e.target.closest('.hero-search') && !e.target.closest('.nav-search')) {
       heroDropdown.classList.remove('open');
       navDropdown.classList.remove('open');
+      if (heroSection) heroSection.classList.remove('search-open');
     }
   });
 

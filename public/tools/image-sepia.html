@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Sepia Photo Effect — Add Sepia Tone to Images Free Online | Simple ToolBox</title>
+  <meta name="description" content="Apply a classic sepia tone effect to any photo online free. Adjustable intensity, live preview, instant download. No upload required." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/image-sepia" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/image-sepia.html" />
+  <meta property="og:title" content="Sepia Photo Effect — Add Sepia Tone to Images Free Online | Simple ToolBox" />
+  <meta property="og:description" content="Apply a classic sepia tone effect to any photo online free. Adjustable intensity, live preview, instant download. No upload required." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Sepia Photo Effect",
+  "description": "Apply a classic sepia tone effect to any photo. Adjustable intensity, live preview, instant download. Runs in your browser.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "url": "https://simpletoolbox.dev/tools/image-sepia"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is my photo uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The sepia effect is applied using the Canvas API entirely in your browser. Your image never leaves your device." } },
+    { "@type": "Question", "name": "Which image formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any format your browser can display: JPG, PNG, WebP, GIF, BMP. Output is PNG or JPEG depending on the original." } },
+    { "@type": "Question", "name": "What is the sepia effect?", "acceptedAnswer": { "@type": "Answer", "text": "Sepia is a warm brownish tone applied to photos to mimic the look of old photographs. It first converts the image to grayscale then applies a warm amber tint." } },
+    { "@type": "Question", "name": "Can I control the intensity?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the Intensity slider to blend from 0% (original) to 100% (full sepia)." } }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=22" />
+  <style>
+    .main{max-width:1100px;margin:0 auto;padding:28px 24px 64px;display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+    .panel,.preview-panel{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);overflow:hidden}
+    .panel-section{padding:18px 20px;border-bottom:1px solid var(--ds-color-border)}.panel-section:last-child{border-bottom:none}
+    .panel-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ds-color-text-muted);margin-bottom:14px}
+    .range-field{display:grid;gap:8px}.range-head{display:flex;justify-content:space-between;font-size:12px;color:var(--ds-color-text-secondary)}
+    .range-field input[type="range"]{width:100%}
+    .action-btn{padding:9px 10px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-secondary);font-size:12px;font-weight:600;transition:.15s}
+    .action-btn:hover{color:var(--ds-color-accent);background:var(--ds-color-surface-tint);border-color:rgba(94,106,210,.3)}
+    .status-note{min-height:20px;padding:0 18px 10px;font-size:12px;color:var(--ds-color-text-muted)}.status-note.is-error{color:#f87171}
+    .preview-panel{display:flex;flex-direction:column;min-height:480px}
+    .preview-header{padding:14px 18px;border-bottom:1px solid var(--ds-color-border);display:flex;align-items:center;justify-content:space-between}
+    .preview-title{font-size:13px;font-weight:600;color:var(--ds-color-text-secondary)}
+    .drop-zone{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:40px 24px;text-align:center;border:2px dashed var(--ds-color-border);margin:16px;border-radius:var(--ds-radius-md);transition:.2s;cursor:pointer}
+    .drop-zone.drag-over{border-color:var(--ds-color-accent);background:var(--ds-color-surface-tint)}
+    .drop-icon{font-size:40px;opacity:.4}.drop-title{font-size:15px;font-weight:600;color:var(--ds-color-text-secondary)}.drop-sub{color:var(--ds-color-text-muted);font-size:13px}
+    .canvas-wrap{flex:1;display:none;align-items:center;justify-content:center;padding:16px;background:repeating-conic-gradient(#1a1a1f 0% 25%,#141418 0% 50%) 0 0/16px 16px}
+    #previewCanvas{max-width:100%;max-height:420px;object-fit:contain}
+    .btn-download{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ds-color-accent);color:#fff;font-size:14px;font-weight:600;padding:13px;border-radius:var(--ds-radius-md);transition:.2s}
+    .btn-download:hover{background:var(--ds-color-accent-hover);transform:translateY(-1px)}.btn-download:disabled{background:var(--ds-color-surface-strong);color:var(--ds-color-text-muted);cursor:not-allowed;transform:none}
+    #fileInput,#sourceCanvas{display:none}
+    @media(max-width:800px){.main{grid-template-columns:1fr;padding:16px 16px 48px}}
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Sepia Effect <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally - no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🟤</div><h1 class="ds-tool-header__title">Sepia Photo Effect</h1></div><p class="ds-tool-header__desc">Apply a warm sepia tone to any photo. Adjust intensity with a live preview. Download instantly — no upload required.</p><div class="ds-tool-tag-row"><span class="ds-tag">sepia</span><span class="ds-tag">vintage</span><span class="ds-tag">photo effect</span><span class="ds-tag">image editing</span></div></div></div>
+<div class="main">
+  <div class="panel">
+    <div class="panel-section"><div class="panel-label">Intensity</div><div class="range-field"><div class="range-head"><span>Sepia</span><strong id="intensityValue">80</strong>%</div><input id="intensityRange" type="range" min="0" max="100" step="1" value="80" /></div></div>
+    <div class="panel-section"><button class="action-btn" id="btnReset">Reset</button></div>
+    <div class="panel-section"><button class="btn-download" id="btnDownload" disabled>Download Image</button></div>
+  </div>
+  <div class="preview-panel">
+    <div class="preview-header"><span class="preview-title">Preview</span><button class="action-btn" id="btnChange" style="display:none">Change image</button></div>
+    <div class="status-note" id="statusNote"></div>
+    <div class="drop-zone" id="dropZone"><div class="drop-icon">🟤</div><div class="drop-title">Drop image here</div><div class="drop-sub">or click to browse — JPG, PNG, WebP</div></div>
+    <div class="canvas-wrap" id="canvasWrap"><canvas id="previewCanvas"></canvas></div>
+  </div>
+  <!-- AUTO-SEO-SECTIONS:START -->
+  <div class="ds-seo-content" style="grid-column:1/-1">
+    <section class="ds-seo-section"><h2 class="ds-seo-section__title">How to Use Sepia Effect</h2><ol><li>Upload any photo by dragging or clicking the drop zone.</li><li>Adjust the Intensity slider — 0% keeps original colors, 100% is full sepia.</li><li>Click Download to save your vintage-looking photo.</li></ol></section>
+  </div>
+  <div class="ds-related-tools" style="grid-column:1/-1"><h2 class="ds-related-title">Related Tools</h2><div class="ds-related-grid"><a href="grayscale-image.html" class="ds-related-card"><span class="ds-related-icon">⬛</span><div><div class="ds-related-name">Grayscale Converter</div><div class="ds-related-desc">Convert photo to black and white</div></div></a><a href="image-brightness-contrast.html" class="ds-related-card"><span class="ds-related-icon">☀️</span><div><div class="ds-related-name">Brightness &amp; Contrast</div><div class="ds-related-desc">Adjust photo brightness and contrast</div></div></a><a href="duotone-image.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Duotone Effect</div><div class="ds-related-desc">Apply two-color duotone filter to images</div></div></a></div></div>
+  <details class="ds-seo-more" style="grid-column:1/-1"><summary class="ds-seo-more__toggle"><span>Learn More</span><span class="ds-seo-more__arrow">&#9662;</span></summary><div class="ds-seo-more__body"><details class="ds-seo-collapse"><summary>Common Use Cases</summary><div class="ds-seo-collapse__body"><ul><li>Give portrait photos a vintage, timeless look</li><li>Create consistent retro-style filters for a photo set</li><li>Warm up landscape shots without full editing software</li></ul></div></details><details class="ds-seo-collapse"><summary>Frequently Asked Questions</summary><div class="ds-seo-collapse__body"><div class="ds-seo-faq-item"><strong>Is my photo uploaded to a server?</strong><p>No. The sepia effect runs entirely in your browser. Your image never leaves your device.</p></div><div class="ds-seo-faq-item"><strong>Can I control the intensity?</strong><p>Yes. Use the Intensity slider to blend from 0% (original colors) to 100% (full sepia).</p></div><div class="ds-seo-faq-item"><strong>What is the sepia effect?</strong><p>Sepia converts the image to grayscale then applies a warm amber/brown tint, mimicking old photographs.</p></div></div></details></div></details>
+  <!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<input type="file" id="fileInput" accept="image/*" /><canvas id="sourceCanvas"></canvas>
+<script>
+'use strict';
+const fileInput=document.getElementById('fileInput'),dropZone=document.getElementById('dropZone'),btnChange=document.getElementById('btnChange'),btnReset=document.getElementById('btnReset'),btnDownload=document.getElementById('btnDownload'),intensityRange=document.getElementById('intensityRange'),intensityValue=document.getElementById('intensityValue'),statusNote=document.getElementById('statusNote'),canvasWrap=document.getElementById('canvasWrap'),previewCanvas=document.getElementById('previewCanvas'),previewCtx=previewCanvas.getContext('2d'),sourceCanvas=document.getElementById('sourceCanvas'),sourceCtx=sourceCanvas.getContext('2d');
+let currentName='sepia-image',currentIsJpeg=false,originalImageData=null,rafId=null;
+function setStatus(m,e=false){statusNote.textContent=m;statusNote.classList.toggle('is-error',e);}
+function applySepia(imageData,intensity){
+  const d=imageData.data,t=intensity/100;
+  for(let i=0;i<d.length;i+=4){
+    const r=d[i],g=d[i+1],b=d[i+2];
+    const sr=Math.min(255,(r*0.393+g*0.769+b*0.189));
+    const sg=Math.min(255,(r*0.349+g*0.686+b*0.168));
+    const sb=Math.min(255,(r*0.272+g*0.534+b*0.131));
+    d[i]=r+t*(sr-r);d[i+1]=g+t*(sg-g);d[i+2]=b+t*(sb-b);
+  }
+  return imageData;
+}
+function scheduleRender(){if(rafId)cancelAnimationFrame(rafId);rafId=requestAnimationFrame(render);}
+function render(){
+  if(!originalImageData)return;
+  const id=new ImageData(new Uint8ClampedArray(originalImageData.data),originalImageData.width,originalImageData.height);
+  applySepia(id,parseInt(intensityRange.value));
+  previewCanvas.width=id.width;previewCanvas.height=id.height;
+  previewCtx.putImageData(id,0,0);
+  intensityValue.textContent=intensityRange.value;
+}
+function handleFile(file){
+  if(!file||!file.type.startsWith('image/'))return setStatus('Please upload a valid image file.',true);
+  currentName=file.name.replace(/\.[^.]+$/,'');
+  currentIsJpeg=/jpe?g/i.test(file.type);
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const MAX=700;const scale=img.naturalWidth>MAX?MAX/img.naturalWidth:1;
+      sourceCanvas.width=Math.round(img.naturalWidth*scale);sourceCanvas.height=Math.round(img.naturalHeight*scale);
+      sourceCtx.drawImage(img,0,0,sourceCanvas.width,sourceCanvas.height);
+      originalImageData=sourceCtx.getImageData(0,0,sourceCanvas.width,sourceCanvas.height);
+      dropZone.style.display='none';canvasWrap.style.display='flex';btnChange.style.display='';btnDownload.disabled=false;
+      setStatus('');render();
+    };
+    img.onerror=()=>setStatus('Could not read image.',true);
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function downloadImage(){
+  previewCanvas.toBlob(b=>{if(!b)return;const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`${currentName}_sepia.${currentIsJpeg?'jpg':'png'}`;a.click();URL.revokeObjectURL(u);},currentIsJpeg?'image/jpeg':'image/png',currentIsJpeg?0.92:undefined);
+}
+function resetTool(){originalImageData=null;previewCanvas.width=0;previewCanvas.height=0;dropZone.style.display='';canvasWrap.style.display='none';btnChange.style.display='none';btnDownload.disabled=true;intensityRange.value=80;intensityValue.textContent=80;setStatus('');fileInput.value='';}
+intensityRange.addEventListener('input',scheduleRender);
+btnDownload.addEventListener('click',downloadImage);
+btnReset.addEventListener('click',resetTool);
+dropZone.addEventListener('click',()=>fileInput.click());
+btnChange.addEventListener('click',()=>fileInput.click());
+fileInput.addEventListener('change',e=>handleFile(e.target.files[0]));
+['dragenter','dragover'].forEach(t=>dropZone.addEventListener(t,e=>{e.preventDefault();dropZone.classList.add('drag-over');}));
+['dragleave','drop'].forEach(t=>dropZone.addEventListener(t,e=>{e.preventDefault();dropZone.classList.remove('drag-over');}));
+dropZone.addEventListener('drop',e=>handleFile(e.dataTransfer.files[0]));
+resetTool();
+</script>
+<footer><a href="../index.html">← Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

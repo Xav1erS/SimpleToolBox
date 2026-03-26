@@ -183,17 +183,21 @@ const SITE_TOOLS = [
   { name: 'Color Scheme Generator',  href: 'tools/color-scheme-generator.html',  tag: 'generate', icon: '🎨', desc: 'Generate complementary, analogous, triadic, and monochromatic color schemes from any base color' },
   { name: 'CSS Box Shadow Generator',href: 'tools/css-box-shadow-generator.html',tag: 'generate', icon: '🪟', desc: 'Visually build CSS box shadows with real-time preview — add multiple layers, copy CSS instantly' },
   { name: 'Tax Calculator',          href: 'tools/tax-calculator.html',          tag: 'calculate', icon: '🧾', desc: 'Calculate sales tax, reverse tax, or estimate US federal income tax by bracket — instant results' },
+  { name: 'Image Tint',              href: 'tools/image-tint.html',              tag: 'image',     icon: '🎨', desc: 'Apply a color tint overlay to photos — choose any color, adjust opacity with live preview, instant download' },
+  { name: 'Text Statistics',         href: 'tools/text-statistics.html',         tag: 'text',      icon: '📊', desc: 'Detailed text analysis: words, sentences, paragraphs, characters, reading time, unique words, and more' },
+  { name: 'Remove Line Breaks',      href: 'tools/remove-line-breaks.html',      tag: 'text',      icon: '↩️', desc: 'Remove or replace line breaks from text — join lines into a paragraph or add a custom separator' },
+  { name: 'Body Fat Calculator',     href: 'tools/body-fat-calculator.html',     tag: 'calculate', icon: '💪', desc: 'Estimate body fat percentage using the US Navy circumference method — metric and imperial, instant result' },
 ];
 
 const HUB_PAGE_CONFIG = {
   image: {
     sections: [
-      ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'png-to-webp', 'svg-to-png', 'bmp-to-png'],
+      ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'png-to-webp', 'webp-to-png', 'svg-to-png', 'bmp-to-png'],
       ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
       ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
       ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
       ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark'],
-      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg', 'image-vignette', 'image-sepia']
+      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg', 'image-vignette', 'image-sepia', 'image-tint']
     ]
   },
   developer: {
@@ -207,14 +211,14 @@ const HUB_PAGE_CONFIG = {
   },
   text: {
     sections: [
-      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech', 'number-extractor', 'reverse-text']
+      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech', 'number-extractor', 'reverse-text', 'reading-time-estimator', 'text-repeater', 'text-statistics', 'remove-line-breaks']
     ]
   },
   calculator: {
     sections: [
       ['percentage-calculator', 'percentage-change-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator', 'compound-interest-calculator'],
       ['mortgage-calculator', 'loan-calculator', 'savings-calculator'],
-      ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator', 'tax-calculator'],
+      ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator', 'tax-calculator', 'body-fat-calculator'],
       ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'],
       ['speed-converter', 'weight-converter', 'length-converter', 'area-converter', 'volume-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words']
     ]

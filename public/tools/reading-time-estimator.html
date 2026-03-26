@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Reading Time Estimator — How Long to Read Text | Simple ToolBox</title>
+  <meta name="description" content="Estimate reading time for any text or article. Paste your content and instantly see reading time, word count, and character count. Free, no sign-up." />
+  <link rel="canonical" href="https://simpletoolbox.dev/tools/reading-time-estimator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/tools/reading-time-estimator.html" />
+  <meta property="og:title" content="Reading Time Estimator — How Long to Read Text | Simple ToolBox" />
+  <meta property="og:description" content="Estimate reading time for any text or article. Paste your content and instantly see reading time, word count, and character count." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <!-- AUTO-STRUCTURED-DATA:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Reading Time Estimator",
+  "description": "Estimate reading time for any text. Paste content and instantly see reading time, word count, and character count.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "url": "https://simpletoolbox.dev/tools/reading-time-estimator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What reading speed does this use?", "acceptedAnswer": { "@type": "Answer", "text": "The default is 200 words per minute (WPM), which is the average adult reading speed. You can adjust it using the WPM slider." } },
+    { "@type": "Question", "name": "Is my text stored or sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. Your text is never sent to any server." } },
+    { "@type": "Question", "name": "How is reading time calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Reading time = total word count ÷ reading speed (WPM). For example, a 1000-word article at 200 WPM takes about 5 minutes." } },
+    { "@type": "Question", "name": "What counts as a word?", "acceptedAnswer": { "@type": "Answer", "text": "Any sequence of non-whitespace characters separated by spaces or line breaks is counted as a word." } }
+  ]
+}
+</script>
+<!-- AUTO-STRUCTURED-DATA:END -->
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=22" />
+  <style>
+    .main{max-width:800px;margin:0 auto;padding:28px 24px 64px}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+    .stat-card{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:18px 16px;text-align:center}
+    .stat-value{font-size:28px;font-weight:700;color:var(--ds-color-accent);line-height:1;margin-bottom:6px}
+    .stat-label{font-size:12px;color:var(--ds-color-text-muted);font-weight:500}
+    .wpm-bar{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:16px 20px;display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+    .wpm-bar label{font-size:13px;font-weight:600;color:var(--ds-color-text-secondary);white-space:nowrap}
+    .wpm-bar input[type="range"]{flex:1;min-width:120px}
+    .wpm-val{font-size:13px;font-weight:700;color:var(--ds-color-text-primary);min-width:60px}
+    .textarea-wrap{position:relative}
+    #inputText{width:100%;min-height:280px;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);color:var(--ds-color-text-primary);font-size:14px;line-height:1.6;padding:16px;resize:vertical;font-family:var(--ds-font-sans);box-sizing:border-box}
+    #inputText:focus{outline:none;border-color:var(--ds-color-accent)}
+    .clear-btn{margin-top:10px;padding:8px 16px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-sm);color:var(--ds-color-text-muted);font-size:13px;cursor:pointer;background:none;transition:.15s}
+    .clear-btn:hover{color:var(--ds-color-text-primary);border-color:var(--ds-color-text-muted)}
+    @media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+<nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Reading Time <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally - no data sent</div></nav>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">⏱️</div><h1 class="ds-tool-header__title">Reading Time Estimator</h1></div><p class="ds-tool-header__desc">Paste any text to instantly see estimated reading time, word count, sentence count, and character count. Adjust reading speed to match your audience.</p><div class="ds-tool-tag-row"><span class="ds-tag">reading time</span><span class="ds-tag">word count</span><span class="ds-tag">content</span><span class="ds-tag">writing</span></div></div></div>
+<div class="main">
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-value" id="statTime">0 min</div><div class="stat-label">Reading Time</div></div>
+    <div class="stat-card"><div class="stat-value" id="statWords">0</div><div class="stat-label">Words</div></div>
+    <div class="stat-card"><div class="stat-value" id="statSentences">0</div><div class="stat-label">Sentences</div></div>
+    <div class="stat-card"><div class="stat-value" id="statChars">0</div><div class="stat-label">Characters</div></div>
+  </div>
+  <div class="wpm-bar">
+    <label>Reading Speed:</label>
+    <input type="range" id="wpmRange" min="100" max="400" step="10" value="200" />
+    <span class="wpm-val"><span id="wpmVal">200</span> WPM</span>
+  </div>
+  <div class="textarea-wrap">
+    <textarea id="inputText" placeholder="Paste your article, blog post, or any text here…" spellcheck="false"></textarea>
+  </div>
+  <button class="clear-btn" id="clearBtn">Clear</button>
+  <!-- AUTO-SEO-SECTIONS:START -->
+  <div class="ds-seo-content">
+    <section class="ds-seo-section"><h2 class="ds-seo-section__title">How to Estimate Reading Time</h2><p>Paste your text into the box above. The tool counts words and divides by your chosen reading speed (default 200 WPM). Adjust the slider to match fast readers (350+ WPM) or slow/educational content (100–150 WPM).</p></section>
+  </div>
+  <div class="ds-related-tools"><h2 class="ds-related-title">Related Tools</h2><div class="ds-related-grid"><a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">📝</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and lines</div></div></a><a href="sentence-counter.html" class="ds-related-card"><span class="ds-related-icon">📊</span><div><div class="ds-related-name">Sentence Counter</div><div class="ds-related-desc">Count sentences in any text</div></div></a><a href="keyword-density-checker.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">Keyword Density</div><div class="ds-related-desc">Analyze keyword frequency in your content</div></div></a></div></div>
+  <details class="ds-seo-more"><summary class="ds-seo-more__toggle"><span>Learn More</span><span class="ds-seo-more__arrow">&#9662;</span></summary><div class="ds-seo-more__body"><details class="ds-seo-collapse"><summary>Common Use Cases</summary><div class="ds-seo-collapse__body"><ul><li>Estimate the reading time for a blog post before publishing</li><li>Check if an article fits within a target length for readers</li><li>Use speaking time for presentations and scripts (use 130 WPM for speaking)</li></ul></div></details><details class="ds-seo-collapse"><summary>Frequently Asked Questions</summary><div class="ds-seo-collapse__body"><div class="ds-seo-faq-item"><strong>What WPM should I use?</strong><p>200 WPM is average adult reading. Adjust to 150 for technical content, 250–350 for fast readers, or 130 for speaking time.</p></div><div class="ds-seo-faq-item"><strong>Is my text stored?</strong><p>No. Everything runs in your browser. Your text never leaves your device.</p></div></div></details></div></details>
+  <!-- AUTO-SEO-SECTIONS:END -->
+</div>
+<script>
+'use strict';
+const inputText=document.getElementById('inputText'),wpmRange=document.getElementById('wpmRange'),wpmVal=document.getElementById('wpmVal'),statTime=document.getElementById('statTime'),statWords=document.getElementById('statWords'),statSentences=document.getElementById('statSentences'),statChars=document.getElementById('statChars'),clearBtn=document.getElementById('clearBtn');
+function update(){
+  const text=inputText.value;
+  const wpm=parseInt(wpmRange.value);
+  const words=text.trim()===''?0:text.trim().split(/\s+/).length;
+  const sentences=text.trim()===''?0:(text.match(/[.!?]+/g)||[]).length||0;
+  const chars=text.length;
+  const mins=wpm>0?words/wpm:0;
+  let timeStr;
+  if(mins<1)timeStr='< 1 min';
+  else if(mins<60)timeStr=Math.round(mins)+' min';
+  else{const h=Math.floor(mins/60);const m=Math.round(mins%60);timeStr=h+'h '+(m?m+'m':'');}
+  statTime.textContent=timeStr;
+  statWords.textContent=words.toLocaleString();
+  statSentences.textContent=sentences.toLocaleString();
+  statChars.textContent=chars.toLocaleString();
+  wpmVal.textContent=wpm;
+}
+inputText.addEventListener('input',update);
+wpmRange.addEventListener('input',update);
+clearBtn.addEventListener('click',()=>{inputText.value='';update();});
+update();
+</script>
+<footer><a href="../index.html">← Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
+<script src="../tools-data.js"></script>
+<script src="../tool-page-icon.js"></script>
+<script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
+</body>
+</html>

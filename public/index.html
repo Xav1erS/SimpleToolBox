@@ -237,7 +237,7 @@
     /* ── STATS ── */
     .stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: var(--ds-color-border);
       border-top: 1px solid var(--ds-color-border);
@@ -715,16 +715,20 @@
 <!-- STATS -->
 <div class="stats">
   <div class="stat-item">
-    <div class="stat-number"><span id="statToolCount">201</span></div>
-    <div class="stat-label">Online Tools</div>
+    <div class="stat-number"><span id="statToolCount">201</span>+</div>
+    <div class="stat-label">Tools</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number"><span>0</span></div>
-    <div class="stat-label">No server-side tool processing</div>
+    <div class="stat-number">Free</div>
+    <div class="stat-label">Forever</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number"><span>100</span>%</div>
-    <div class="stat-label">Free Forever</div>
+    <div class="stat-number">Local</div>
+    <div class="stat-label">Runs in your browser</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">0</div>
+    <div class="stat-label">Sign-up required</div>
   </div>
 </div>
 
@@ -760,6 +764,7 @@
     <h2 class="section-title">Categories</h2>
     <a href="all-tools.html" class="section-more">Browse all →</a>
   </div>
+  <p style="font-size:14px;color:var(--ds-color-text-secondary);margin:0 0 20px;line-height:1.6">Find the right tool by task — pick a category to filter, or search above.</p>
   <div class="category-grid" id="categoryGrid">
     <div class="category-card" style="--card-color:rgba(234,179,8,0.08)" data-name="image compress resize crop convert watermark" data-filter="image" data-href="image-tools.html">
       <div class="category-icon">🖼️</div>
@@ -836,6 +841,7 @@
     <button id="clearFilter">✕ Clear filter</button>
     <a href="all-tools.html" class="section-more">All tools →</a>
   </div>
+  <p style="font-size:14px;color:var(--ds-color-text-secondary);margin:0 0 20px;line-height:1.6">The tools people reach for most — quick, reliable utilities for everyday tasks.</p>
   <div class="tool-grid" id="popularToolGrid">
     <a href="tools/image-resizer.html" class="tool-card" data-tags="image">
       <div class="tool-card-top">

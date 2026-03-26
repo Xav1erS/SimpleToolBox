@@ -502,7 +502,8 @@
       padding: 44px 24px 30px;
       display: grid;
       grid-template-columns: minmax(240px, 1.15fr) minmax(320px, 1.2fr) minmax(180px, 0.9fr);
-      gap: 40px;
+      gap: 56px;
+      align-items: start;
     }
     .footer-brand {
       display: flex;
@@ -543,12 +544,13 @@
       color: var(--ds-color-text-muted);
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      margin-bottom: 16px;
+      margin: 0 0 16px;
     }
     .footer-col {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      align-self: start;
     }
     .footer-links {
       display: flex;
@@ -618,7 +620,7 @@
     }
     @media (max-width: 768px) {
       .hero { padding: 64px 20px 56px; }
-      .footer { grid-template-columns: 1fr 1fr; padding: 36px 20px 28px; gap: 28px; }
+      .footer { grid-template-columns: 1fr 1fr; padding: 36px 20px 28px; gap: 32px; }
       .section { padding: 48px 20px; }
       .section-header { margin-bottom: 14px; }
       .section-intro { margin-bottom: 20px; }

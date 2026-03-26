@@ -195,24 +195,26 @@
 
     .filter-bar,
     .action-bar {
-      padding: 16px 24px 0;
+      padding: 0 24px;
     }
     .filter-bar {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--ds-color-border);
-      border-radius: 20px 20px 0 0;
-      gap: 16px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      gap: 12px;
     }
     .filter-search {
       max-width: none;
       min-width: 320px;
       flex: 1 1 100%;
+      margin-bottom: 10px;
     }
     .filter-search input {
-      min-height: 52px;
+      min-height: 54px;
       font-size: 15px;
-      border-radius: 16px;
+      border-radius: 18px;
       padding-left: 42px;
+      background: rgba(255,255,255,0.02);
     }
     .filter-search svg {
       left: 14px;
@@ -228,13 +230,11 @@
       font-size: 13px;
     }
     .action-bar {
-      padding-top: 12px;
       padding-bottom: 18px;
       margin-bottom: 22px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--ds-color-border);
-      border-top: none;
-      border-radius: 0 0 20px 20px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
     }
 
     .results-head {
@@ -342,8 +342,7 @@
       border: none;
       border-radius: 0;
       background: transparent;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
-      justify-content: start;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 12px;
     }
     #toolGrid.tool-grid--grouped {
@@ -384,8 +383,8 @@
       .guide-links { padding: 0 16px 18px; grid-template-columns: 1fr; }
       .hub-link,
       .filter-tag { flex: 0 0 auto; }
-      .filter-bar { padding: 16px; gap: 12px; border-radius: 18px 18px 0 0; }
-      .action-bar { padding: 12px 16px 16px; margin-bottom: 22px; border-radius: 0 0 18px 18px; }
+      .filter-bar { padding: 0 16px; gap: 10px; border-radius: 0; }
+      .action-bar { padding: 0 16px 16px; margin-bottom: 22px; border-radius: 0; }
       .filter-search { flex: 1 0 100%; max-width: none; }
       .filter-search input { min-height: 46px; font-size: 14px; }
       .results-head { padding: 0 16px 14px; display: block; }
@@ -398,7 +397,7 @@
     }
     @media (max-width: 640px) {
       .nav-actions .nav-link { display: none; }
-      .filter-bar { padding: 16px; }
+      .filter-bar { padding: 0 16px; }
       .tool-grid { padding: 0 16px 60px; grid-template-columns: 1fr; }
     }
   </style>

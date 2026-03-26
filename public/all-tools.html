@@ -98,14 +98,20 @@
     .section-label,
     .hub-links,
     .guide-links,
-    .filter-bar,
-    .action-bar,
     .tool-section-title,
     .tool-grid.tool-grid--section,
     .results-head,
     .tool-grid,
     #toolGrid {
       width: min(1200px, calc(100% - 48px));
+      max-width: none;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .filter-bar,
+    .action-bar {
+      width: min(1152px, calc(100% - 96px));
       max-width: none;
       box-sizing: border-box;
       margin-left: auto;
@@ -195,12 +201,12 @@
 
     .filter-bar,
     .action-bar {
-      padding: 0 24px;
+      padding: 16px 24px 0;
     }
     .filter-bar {
-      background: transparent;
-      border: none;
-      border-radius: 0;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--ds-color-border);
+      border-radius: 20px 20px 0 0;
       gap: 12px;
     }
     .filter-search {
@@ -232,9 +238,10 @@
     .action-bar {
       padding-bottom: 18px;
       margin-bottom: 22px;
-      background: transparent;
-      border: none;
-      border-radius: 0;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--ds-color-border);
+      border-top: none;
+      border-radius: 0 0 20px 20px;
     }
 
     .results-head {
@@ -356,13 +363,15 @@
       .section-label,
       .hub-links,
       .guide-links,
-      .filter-bar,
-      .action-bar,
       .tool-section-title,
       .tool-grid.tool-grid--section,
       .results-head,
       .tool-grid,
       #toolGrid {
+        width: calc(100% - 32px);
+      }
+      .filter-bar,
+      .action-bar {
         width: calc(100% - 32px);
       }
       .page-header::before {
@@ -383,8 +392,8 @@
       .guide-links { padding: 0 16px 18px; grid-template-columns: 1fr; }
       .hub-link,
       .filter-tag { flex: 0 0 auto; }
-      .filter-bar { padding: 0 16px; gap: 10px; border-radius: 0; }
-      .action-bar { padding: 0 16px 16px; margin-bottom: 22px; border-radius: 0; }
+      .filter-bar { padding: 16px; gap: 10px; border-radius: 18px 18px 0 0; }
+      .action-bar { padding: 0 16px 16px; margin-bottom: 22px; border-radius: 0 0 18px 18px; }
       .filter-search { flex: 1 0 100%; max-width: none; }
       .filter-search input { min-height: 46px; font-size: 14px; }
       .results-head { padding: 0 16px 14px; display: block; }
@@ -397,7 +406,7 @@
     }
     @media (max-width: 640px) {
       .nav-actions .nav-link { display: none; }
-      .filter-bar { padding: 0 16px; }
+      .filter-bar { padding: 16px; }
       .tool-grid { padding: 0 16px 60px; grid-template-columns: 1fr; }
     }
   </style>

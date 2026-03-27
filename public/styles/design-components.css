@@ -2448,12 +2448,14 @@ body > .ds-seo-more {
   justify-content: space-between;
   gap: 10px;
   min-height: 42px;
+  min-width: 0;
   padding: 0 12px;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.03);
   color: var(--ds-color-text-secondary);
   text-decoration: none;
   background: rgba(255, 255, 255, 0.018);
+  overflow: hidden;
   transition: background var(--ds-duration-fast) var(--ds-ease-standard), color var(--ds-duration-fast) var(--ds-ease-standard), border-color var(--ds-duration-fast) var(--ds-ease-standard), transform var(--ds-duration-fast) var(--ds-ease-standard);
 }
 
@@ -2474,6 +2476,7 @@ body > .ds-seo-more {
 
 .ds-directory-link__main {
   display: flex;
+  flex: 1 1 auto;
   align-items: center;
   gap: 10px;
   min-width: 0;
@@ -2493,6 +2496,7 @@ body > .ds-seo-more {
 }
 
 .ds-directory-link__label {
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2501,11 +2505,16 @@ body > .ds-seo-more {
 }
 
 .ds-directory-link__meta {
-  flex-shrink: 0;
+  flex: 0 1 68px;
+  min-width: 0;
   color: var(--ds-color-text-muted);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
 }
 
 .ds-directory-empty {
@@ -2898,6 +2907,7 @@ body > .ds-seo-more {
 .ds-directory-rail__body,
 .ds-directory-drawer .ds-directory-rail__body {
   min-height: 0;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: rgba(124, 133, 223, 0.42) rgba(255, 255, 255, 0.03);
   scrollbar-gutter: stable;

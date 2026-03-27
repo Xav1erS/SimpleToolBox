@@ -1,14 +1,14 @@
 (function (global) {
   const HIERARCHY_HUBS = [
-    { key: 'image', slug: 'image-tools', title: 'Image Tools', href: 'image-tools.html', icon: '🖼️', order: 1, tags: ['image'] },
-    { key: 'developer', slug: 'developer-tools', title: 'Developer Tools', href: 'developer-tools.html', icon: '🛠️', order: 2, tags: ['encode', 'format'] },
-    { key: 'text', slug: 'text-tools', title: 'Text Tools', href: 'text-tools.html', icon: '✍️', order: 3, tags: ['text'] },
-    { key: 'calculator', slug: 'calculator-tools', title: 'Calculator Tools', href: 'calculator-tools.html', icon: '🧮', order: 4, tags: ['calculator'] },
-    { key: 'converter', slug: 'converter-tools', title: 'Converter Tools', href: 'converter-tools.html', icon: '📐', order: 5, tags: ['convert'] },
-    { key: 'generator', slug: 'generator-tools', title: 'Generator Tools', href: 'generator-tools.html', icon: '⚙️', order: 6, tags: ['generate'] },
-    { key: 'pdf', slug: 'pdf-tools', title: 'PDF Tools', href: 'pdf-tools.html', icon: '📄', order: 7, tags: ['pdf'] },
-    { key: 'design', slug: 'design-tools', title: 'Design Tools', href: 'design-tools.html', icon: '🎨', order: 8, tags: ['design'] },
-    { key: 'reference', slug: 'reference-tools', title: 'Reference Tools', href: 'reference-tools.html', icon: '📚', order: 9, tags: ['reference'] }
+    { key: 'image', slug: 'image-tools', title: 'Image Tools', href: 'image-tools.html', icon: '\uD83D\uDDBC\uFE0F', order: 1, tags: ['image'] },
+    { key: 'developer', slug: 'developer-tools', title: 'Developer Tools', href: 'developer-tools.html', icon: '\uD83D\uDEE0\uFE0F', order: 2, tags: ['encode', 'format'] },
+    { key: 'text', slug: 'text-tools', title: 'Text Tools', href: 'text-tools.html', icon: '\u270D\uFE0F', order: 3, tags: ['text'] },
+    { key: 'calculator', slug: 'calculator-tools', title: 'Calculator Tools', href: 'calculator-tools.html', icon: '\uD83E\uDDEE', order: 4, tags: ['calculator'] },
+    { key: 'converter', slug: 'converter-tools', title: 'Converter Tools', href: 'converter-tools.html', icon: '\uD83D\uDCD0', order: 5, tags: ['convert'] },
+    { key: 'generator', slug: 'generator-tools', title: 'Generator Tools', href: 'generator-tools.html', icon: '\u2699\uFE0F', order: 6, tags: ['generate'] },
+    { key: 'pdf', slug: 'pdf-tools', title: 'PDF Tools', href: 'pdf-tools.html', icon: '\uD83D\uDCC4', order: 7, tags: ['pdf'] },
+    { key: 'design', slug: 'design-tools', title: 'Design Tools', href: 'design-tools.html', icon: '\uD83C\uDFA8', order: 8, tags: ['design'] },
+    { key: 'reference', slug: 'reference-tools', title: 'Reference Tools', href: 'reference-tools.html', icon: '\uD83D\uDCDA', order: 9, tags: ['reference'] }
   ];
 
   const HUB_TAG_TO_KEY = {
@@ -119,7 +119,7 @@
     if (Array.isArray(sections) && sections.length) {
       const seen = new Set();
       return sections
-        .flat()
+        .flatMap((section) => Array.isArray(section) ? section : (section.slugs || []))
         .map((slug) => getToolBySlug(slug))
         .filter((tool) => {
           if (!tool) return false;

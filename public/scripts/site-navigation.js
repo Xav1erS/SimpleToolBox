@@ -524,6 +524,41 @@
     });
   }
 
+  function getSearchContextHub(context) {
+    if (context.pageType === 'tool') {
+      const currentTool = global.getToolBySlug && global.getToolBySlug(context.slug);
+      return currentTool && global.getHubForTool ? global.getHubForTool(currentTool) : null;
+    }
+
+    if (context.pageType === 'hub') {
+      return global.getHubByKey ? global.getHubByKey(context.slug) : null;
+    }
+
+    if (context.pageType === 'guide') {
+      const guide = global.getGuideMeta && global.getGuideMeta(context.slug);
+      return guide && global.getHubByKey ? global.getHubByKey(guide.hub) : null;
+    }
+
+    return null;
+  }
+
+  function getSearchSuggestionTools(context, currentHub, currentTool) {
+    if (currentHub && global.getToolsForHub) {
+      return global.getToolsForHub(currentHub.key).filter(function (tool) {
+        return !currentTool || tool.href !== currentTool.href;
+      }).slice(0, 6);
+    }
+
+    if (context.pageType === 'all-tools' && Array.isArray(global.POPULAR_TOOL_SLUGS) && global.getToolBySlug) {
+      return global.POPULAR_TOOL_SLUGS
+        .map(function (slug) { return global.getToolBySlug(slug); })
+        .filter(Boolean)
+        .slice(0, 6);
+    }
+
+    return [];
+  }
+
   function buildToolSearchMarkup(context, query) {
     const trimmed = String(query || '').trim();
 
@@ -537,16 +572,14 @@
       return renderToolSearchGroup('Matching tools', results, trimmed, context);
     }
 
-    const currentTool = global.getToolBySlug && global.getToolBySlug(context.slug);
-    const currentHub = currentTool && global.getHubForTool && global.getHubForTool(currentTool);
+    const currentTool = context.pageType === 'tool' && global.getToolBySlug
+      ? global.getToolBySlug(context.slug)
+      : null;
+    const currentHub = getSearchContextHub(context);
     const recentTools = getRecentTools(4).filter(function (tool) {
       return tool && (!currentTool || tool.href !== currentTool.href);
     });
-    const siblingTools = currentHub && global.getToolsForHub
-      ? global.getToolsForHub(currentHub.key).filter(function (tool) {
-        return currentTool && tool.href !== currentTool.href;
-      }).slice(0, 6)
-      : [];
+    const siblingTools = getSearchSuggestionTools(context, currentHub, currentTool);
 
     const recentMarkup = renderToolSearchGroup('Recently used', uniqueTools(recentTools), '', context);
     const hubMarkup = renderToolSearchGroup(
@@ -560,12 +593,10 @@
   }
 
   function bindToolSearch(context) {
-    if (context.pageType !== 'tool') return;
-
     const input = document.getElementById('navSearch');
     const dropdown = document.getElementById('navSearchDropdown');
-    if (!input || !dropdown || input.dataset.stbToolSearchBound === '1') return;
-    input.dataset.stbToolSearchBound = '1';
+    if (!input || !dropdown || input.dataset.stbNavSearchBound === '1') return;
+    input.dataset.stbNavSearchBound = '1';
 
     let focusedIndex = -1;
 

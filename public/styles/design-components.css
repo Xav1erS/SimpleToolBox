@@ -3236,6 +3236,324 @@ body > .ds-seo-more {
   margin-top: 12px;
 }
 
+.hub-shell {
+  width: 100%;
+  padding: 0 24px 80px;
+}
+
+.hub-hero {
+  width: 100%;
+  margin: 0 0 28px;
+  padding: 30px 30px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 30px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(94, 106, 210, 0.12) 0%, transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.028) 0%, rgba(255, 255, 255, 0.012) 44%, rgba(255, 255, 255, 0) 100%);
+}
+
+.hub-breadcrumb {
+  min-height: 20px;
+  margin-bottom: 22px;
+}
+
+.hub-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+}
+
+.hub-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  flex: 0 0 84px;
+  font-size: 54px;
+  line-height: 1;
+}
+
+.hub-title-copy {
+  min-width: 0;
+}
+
+.hub-title {
+  font-size: clamp(44px, 5vw, 60px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+  margin: 0 0 14px;
+  max-width: 880px;
+}
+
+.hub-desc {
+  max-width: 780px;
+  font-size: 17px;
+  line-height: 1.72;
+  color: var(--ds-color-text-secondary);
+  margin: 0 0 16px;
+}
+
+.hub-count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ds-color-text-muted);
+  font-size: 13px;
+}
+
+.hub-shell > section {
+  width: 100%;
+}
+
+.hub-shell > section + section {
+  margin-top: 8px;
+}
+
+.hub-section__title {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-color-text-muted);
+}
+
+.hub-section .tool-grid {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.hub-section .tool-card {
+  background: var(--ds-color-surface);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  padding: var(--ds-space-5);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-3);
+  transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast), transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast);
+}
+
+.hub-section .tool-card:hover {
+  border-color: var(--ds-color-border-accent);
+  background: var(--ds-color-surface-strong);
+  transform: translateY(-1px);
+  box-shadow: var(--ds-shadow-card);
+}
+
+.hub-section .tool-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hub-section .tool-icon {
+  font-size: 22px;
+  width: 40px;
+  height: 40px;
+  background: var(--ds-color-surface-tint);
+  border-radius: var(--ds-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hub-section .tool-name {
+  font-size: var(--ds-font-size-h4);
+  font-weight: 600;
+  color: var(--ds-color-text-primary);
+  line-height: 1.25;
+}
+
+.hub-section .tool-desc {
+  font-size: var(--ds-font-size-body-sm);
+  color: var(--ds-color-text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.hub-section .tool-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.hub-section .tool-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 0 8px;
+  border-radius: var(--ds-radius-xs);
+  background: var(--ds-color-surface-tint);
+  border: 1px solid rgba(94, 106, 210, 0.22);
+  color: var(--ds-color-accent-soft);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-font-size-micro);
+  font-weight: 500;
+}
+
+.hub-section .tool-arrow {
+  font-size: 16px;
+  color: var(--ds-color-text-muted);
+  transition: color 0.15s, transform 0.15s;
+}
+
+.hub-section .tool-card:hover .tool-arrow {
+  color: var(--ds-color-accent);
+  transform: translateX(3px);
+}
+
+.hub-guides__grid,
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.hub-seo__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.hub-seo-card {
+  padding: 24px 26px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.028) 0%, rgba(255, 255, 255, 0.014) 100%);
+}
+
+.hub-seo-card__title {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.hub-seo-card__body {
+  margin: 0 0 10px;
+  color: var(--ds-color-text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.hub-seo-card__body:last-child {
+  margin-bottom: 0;
+}
+
+.hub-seo-card__body a {
+  color: var(--ds-color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.22);
+  text-underline-offset: 3px;
+}
+
+.hub-seo-card__body strong {
+  color: var(--ds-color-text-primary);
+}
+
+.guide-card-link,
+.cat-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.028) 0%, rgba(255, 255, 255, 0.014) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 22px;
+  padding: 18px 20px;
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast), transform var(--ds-duration-fast);
+}
+
+.guide-card-link:hover,
+.cat-card:hover {
+  border-color: rgba(94, 106, 210, 0.34);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.022) 100%);
+  transform: translateY(-1px);
+}
+
+.guide-card-link__icon,
+.cat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--ds-color-surface-tint);
+  color: var(--ds-color-accent-soft);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.guide-card-link__content,
+.cat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.guide-card-link__title,
+.cat-name {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.guide-card-link__summary,
+.cat-n {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ds-color-text-secondary);
+}
+
+.ds-has-directory .ds-shell__content > .hub-shell {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.ds-has-directory.ds-directory-page--hub .hub-shell {
+  width: min(1100px, calc(100% - (var(--stb-directory-edge) * 2) - var(--stb-directory-current-width) - var(--stb-directory-gap)));
+  margin-left: calc(var(--stb-directory-edge) + var(--stb-directory-current-width) + var(--stb-directory-gap));
+  margin-right: var(--stb-directory-edge);
+}
+
+.ds-has-directory.ds-directory-page--hub .hub-shell .hub-hero,
+.ds-has-directory.ds-directory-page--hub .hub-shell .hub-section,
+.ds-has-directory.ds-directory-page--hub .hub-shell .hub-seo,
+.ds-has-directory.ds-directory-page--hub .hub-shell .hub-guides,
+.ds-has-directory.ds-directory-page--hub .hub-shell .more-cats,
+.ds-has-directory.ds-directory-page--hub .hub-shell .tool-grid {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 @media (max-width: 1024px) {
   .ds-shell {
     width: calc(100% - 32px);
@@ -3258,6 +3576,42 @@ body > .ds-seo-more {
 }
 
 @media (max-width: 640px) {
+  .hub-shell {
+    padding: 0 16px 56px;
+  }
+
+  .hub-hero {
+    padding: 28px 20px 24px;
+    border-radius: 26px;
+  }
+
+  .hub-title-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .hub-icon {
+    width: 56px;
+    height: 56px;
+    flex-basis: 56px;
+    font-size: 38px;
+  }
+
+  .hub-title {
+    font-size: clamp(38px, 8vw, 52px);
+  }
+
+  .hub-desc {
+    font-size: 16px;
+  }
+
+  .hub-section .tool-grid,
+  .hub-seo__grid,
+  .hub-guides__grid,
+  .cat-grid {
+    grid-template-columns: 1fr;
+  }
+
   .ds-tool-shell-ready .ds-tool-header,
   .ds-tool-shell-ready .tool-header {
     margin-top: 0 !important;

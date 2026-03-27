@@ -206,65 +206,271 @@ const SITE_TOOLS = [
 
 const HUB_PAGE_CONFIG = {
   image: {
+    hero: {
+      icon: '\uD83D\uDDBC\uFE0F',
+      title: 'Free Online Image Tools',
+      description: 'Resize, compress, convert, and edit images entirely in your browser. No uploads, no account, no limits - your files never leave your device.'
+    },
+    seoCards: [
+      {
+        title: 'Why use browser-based image tools?',
+        body: [
+          'Traditional image editors require installation and often charge for basic features. Browser-based tools process files locally, so your images never leave your device.',
+          'That means faster results, no upload limits, and a safer workflow for screenshots, client assets, and personal photos.'
+        ]
+      },
+      {
+        title: 'Which image format should you use?',
+        body: [
+          '<strong>WebP</strong> is best for modern web delivery when you want smaller file sizes. <strong>JPEG</strong> is still the safest choice for broad compatibility and photo sharing.',
+          '<strong>PNG</strong> is the right fit for transparency, logos, screenshots, and graphics with text where sharp edges matter.'
+        ]
+      }
+    ],
     sections: [
-      ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'png-to-webp', 'webp-to-png', 'svg-to-png', 'bmp-to-png'],
-      ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'],
-      ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'],
-      ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'],
-      ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark'],
-      ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg', 'image-vignette', 'image-sepia', 'image-tint', 'image-noise']
+      { title: 'Format Conversion', slugs: ['webp-converter', 'jpg-to-png', 'png-to-jpg', 'webp-to-jpg', 'png-to-webp', 'webp-to-png', 'svg-to-png', 'bmp-to-png'] },
+      { title: 'Resize & Compress', slugs: ['image-resizer', 'image-compressor', 'compress-to-100kb', 'resize-for-instagram'] },
+      { title: 'Quick Edits', slugs: ['image-rotate', 'image-flipper', 'grayscale-image', 'blur-image', 'remove-exif', 'youtube-thumbnail', 'crop-image', 'pixelate-image'] },
+      { title: 'Creative & Layout', slugs: ['merge-images', 'image-palette-extractor', 'circle-crop-image', 'invert-image', 'add-image-border', 'rounded-corners-image', 'posterize-image', 'duotone-image', 'image-brightness-contrast'] },
+      { title: 'Metadata & Utility', slugs: ['exif-viewer', 'image-to-base64', 'base64-to-image', 'image-metadata-editor', 'image-watermark'] },
+      { title: 'Specialty Formats & Color', slugs: ['heic-to-jpg', 'image-hue-saturation', 'png-to-ico', 'image-color-extractor', 'image-sharpen', 'avif-to-jpg', 'image-vignette', 'image-sepia', 'image-tint', 'image-noise'] }
     ]
   },
   developer: {
+    hero: {
+      icon: '\uD83D\uDEE0\uFE0F',
+      title: 'Free Online Developer Tools',
+      description: 'Format, encode, decode, generate, and inspect - all the utilities developers reach for daily. Everything runs in your browser with no data sent to any server.'
+    },
+    seoCards: [
+      {
+        title: 'Why use browser-based developer tools?',
+        body: [
+          'Server-side utilities ask you to upload config files, JWTs, hashes, payloads, and snippets. Browser-based tools keep that data on your machine while still giving you instant formatting, parsing, and generation workflows.',
+          'There are no account requirements, no throttling, and no risk of sensitive debugging data ending up in a third-party request log.'
+        ]
+      },
+      {
+        title: 'Common developer workflows',
+        body: [
+          '<strong>API debugging</strong> often means decoding JWTs, checking headers, formatting JSON, and testing patterns against response bodies in one sitting.',
+          '<strong>Build and security work</strong> usually combines minifiers, formatters, UUID generation, hashing, HMAC signing, and quick reference lookups for ports, MIME types, and status codes.'
+        ]
+      }
+    ],
     sections: [
-      ['json-formatter', 'css-formatter', 'css-minifier', 'js-formatter', 'js-minifier', 'sql-formatter', 'html-formatter', 'xml-formatter'],
-      ['base64', 'base32', 'base58', 'hash-generator', 'hmac', 'aes', 'bcrypt', 'jwt-decoder', 'jwt-builder', 'html-entities', 'string-escape', 'morse-code', 'binary-text'],
-      ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'number-base', 'markdown-to-html', 'url-encode', 'url-parser'],
-      ['password-generator', 'uuid-generator', 'qr-code-generator', 'cron-builder', 'random-number-generator', 'lorem-ipsum-generator', 'css-gradient-generator'],
-      ['regex-tester', 'jsonpath-tester', 'http-status', 'chmod-calculator', 'port-reference', 'mime-types', 'ip-lookup', 'user-agent', 'ascii-table', 'timestamp', 'data-storage-converter']
+      { title: 'Format & Prettify', slugs: ['json-formatter', 'css-formatter', 'css-minifier', 'js-formatter', 'js-minifier', 'sql-formatter', 'html-formatter', 'xml-formatter'] },
+      { title: 'Encode & Security', slugs: ['base64', 'base32', 'base58', 'hash-generator', 'hmac', 'aes', 'bcrypt', 'jwt-decoder', 'jwt-builder', 'html-entities', 'string-escape', 'morse-code', 'binary-text'] },
+      { title: 'Convert & Parse', slugs: ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'number-base', 'markdown-to-html', 'url-encode', 'url-parser'] },
+      { title: 'Generate', slugs: ['password-generator', 'uuid-generator', 'qr-code-generator', 'cron-builder', 'random-number-generator', 'lorem-ipsum-generator', 'css-gradient-generator'] },
+      { title: 'Reference & Inspect', slugs: ['regex-tester', 'jsonpath-tester', 'http-status', 'chmod-calculator', 'port-reference', 'mime-types', 'ip-lookup', 'user-agent', 'ascii-table', 'timestamp', 'data-storage-converter'] }
     ]
   },
   text: {
+    hero: {
+      icon: '\u270D\uFE0F',
+      title: 'Free Online Text Tools',
+      description: 'Count words, convert cases, clean whitespace, compare text, test regex, and write Markdown - all in your browser with instant results and no data sent anywhere.'
+    },
+    seoCards: [
+      {
+        title: 'Who uses these text tools?',
+        body: [
+          'Writers use them to clean drafts, count words, and prepare copy. Developers use them to compare changes, test regex, and reshape strings during migration work.',
+          'Everything runs locally in the browser, which matters when the text contains private messages, client content, or proprietary code.'
+        ]
+      },
+      {
+        title: 'Common text workflows',
+        body: [
+          '<strong>Content editing</strong> starts with removing messy whitespace, duplicate lines, and pasted formatting before publishing or sharing.',
+          '<strong>Documentation and cleanup</strong> often combine Markdown preview, case conversion, extraction tools, and diffing to move faster through repetitive text work.'
+        ]
+      },
+      {
+        title: 'Related reading',
+        body: [
+          '<a href="regex-patterns.html">Regex Patterns Quick Reference</a> helps you move from a rough matching idea to a working expression faster.',
+          '<a href="date-time-format-reference.html">Date &amp; Time Format Reference</a> is useful when cleaning exports that include timestamps or mixed date strings.'
+        ]
+      }
+    ],
     sections: [
-      ['word-counter', 'char-counter', 'text-case', 'text-cleaner', 'line-tools', 'diff-viewer', 'regex-tester', 'markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'jsonpath-tester', 'string-escape', 'email-extractor', 'url-extractor', 'phone-extractor', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-diff', 'find-and-replace', 'text-to-speech', 'number-extractor', 'reverse-text', 'reading-time-estimator', 'text-repeater', 'text-statistics', 'remove-line-breaks', 'remove-duplicate-words', 'word-scrambler']
+      { title: 'Count & Analyze', slugs: ['word-counter', 'char-counter', 'sentence-counter', 'keyword-density-checker', 'word-frequency-counter', 'reading-time-estimator', 'text-statistics'] },
+      { title: 'Clean & Transform', slugs: ['text-case', 'text-cleaner', 'duplicate-line-remover', 'line-sorter', 'list-deduplicator', 'whitespace-trimmer', 'text-repeater', 'remove-line-breaks', 'remove-duplicate-words', 'reverse-text', 'word-scrambler'] },
+      { title: 'Extract & Compare', slugs: ['line-tools', 'diff-viewer', 'regex-tester', 'jsonpath-tester', 'email-extractor', 'url-extractor', 'phone-extractor', 'number-extractor', 'text-diff', 'find-and-replace'] },
+      { title: 'Write & Structure', slugs: ['markdown-preview', 'slug-generator', 'lorem-ipsum-generator', 'string-escape', 'csv-column-extractor', 'text-list-to-array', 'word-wrap-formatter', 'text-to-speech'] }
     ]
   },
   calculator: {
+    hero: {
+      icon: '\uD83E\uDDEE',
+      title: 'Free Online Calculator Tools',
+      description: 'Handle percentages, loans, dates, unit conversions, health metrics, and everyday math with fast browser-based calculators.'
+    },
+    seoCards: [
+      {
+        title: 'Who uses these calculators?',
+        body: [
+          'People use these calculators for real decisions: comparing loans, splitting bills, planning retirement, estimating taxes, and checking health metrics without opening a spreadsheet.',
+          'All calculations run locally in the browser, so no financial or personal inputs need to leave your device.'
+        ]
+      },
+      {
+        title: 'Common calculator workflows',
+        body: [
+          '<strong>Personal finance</strong> usually starts with loan, mortgage, savings, discount, and tax calculations to compare scenarios quickly.',
+          '<strong>Planning and daily math</strong> often mixes date math, pace, aspect ratio, calorie, BMI, and unit conversion tools when you need a fast answer with no setup.'
+        ]
+      }
+    ],
     sections: [
-      ['percentage-calculator', 'percentage-change-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator', 'compound-interest-calculator'],
-      ['mortgage-calculator', 'loan-calculator', 'savings-calculator'],
-      ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator', 'tax-calculator', 'body-fat-calculator', 'scientific-calculator', 'retirement-calculator', 'time-duration-calculator', 'aspect-ratio-calculator', 'pace-calculator', 'tip-splitter', 'age-in-days', 'loan-amortization-calculator'],
-      ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'],
-      ['speed-converter', 'weight-converter', 'length-converter', 'area-converter', 'volume-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words']
+      { title: 'Everyday Math', slugs: ['percentage-calculator', 'percentage-change-calculator', 'tip-calculator', 'discount-calculator', 'age-calculator', 'compound-interest-calculator'] },
+      { title: 'Finance', slugs: ['mortgage-calculator', 'loan-calculator', 'savings-calculator'] },
+      { title: 'Health & Planning', slugs: ['bmi-calculator', 'calorie-calculator', 'calorie-burn-calculator', 'gpa-calculator', 'tax-calculator', 'body-fat-calculator', 'scientific-calculator', 'retirement-calculator', 'time-duration-calculator', 'aspect-ratio-calculator', 'pace-calculator', 'tip-splitter', 'age-in-days', 'loan-amortization-calculator'] },
+      { title: 'Date & Time', slugs: ['date-calculator', 'currency-converter', 'temperature-converter', 'time-zone-converter'] },
+      { title: 'Units & Conversion', slugs: ['speed-converter', 'weight-converter', 'length-converter', 'area-converter', 'volume-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'fuel-consumption-calculator', 'unit-converter', 'roman-numeral-converter', 'number-to-words'] }
     ]
   },
   converter: {
+    hero: {
+      icon: '\uD83D\uDCD0',
+      title: 'Free Online Converter Tools',
+      description: 'Convert units, numbers, dates, time zones, markup, and file formats entirely in your browser. Fast results, no uploads, no sign-up.'
+    },
+    seoCards: [
+      {
+        title: 'When do you need a converter?',
+        body: [
+          'Converters remove manual calculation mistakes when you are switching units, transforming data formats, or moving between time, number, and notation systems.',
+          'Because everything updates instantly in the browser, you can compare values side by side without bouncing between different sites or tools.'
+        ]
+      },
+      {
+        title: 'Common converter workflows',
+        body: [
+          '<strong>Engineering and science</strong> work often means moving between metric and imperial units for distance, weight, pressure, energy, and force.',
+          '<strong>Development and data</strong> work usually mixes YAML, TOML, XML, CSV, Markdown, URL encoding, timestamps, and time zone conversions.'
+        ]
+      }
+    ],
     sections: [
-      ['length-converter', 'area-converter', 'volume-converter', 'weight-converter', 'speed-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'temperature-converter', 'unit-converter'],
-      ['number-base', 'roman-numeral-converter', 'number-to-words', 'number-format', 'binary-text', 'data-storage-converter'],
-      ['timestamp', 'time-zone-converter', 'currency-exchange-rate', 'fuel-consumption-calculator'],
-      ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'markdown-to-html', 'url-encode', 'url-parser', 'color-picker'],
-      ['pdf-to-image', 'image-to-pdf']
+      { title: 'Physical Units', slugs: ['length-converter', 'area-converter', 'volume-converter', 'weight-converter', 'speed-converter', 'pressure-converter', 'energy-converter', 'power-converter', 'force-converter', 'torque-converter', 'angle-converter', 'time-converter', 'frequency-converter', 'temperature-converter', 'unit-converter'] },
+      { title: 'Numbers & Notation', slugs: ['number-base', 'roman-numeral-converter', 'number-to-words', 'number-format', 'binary-text', 'data-storage-converter'] },
+      { title: 'Time & Rates', slugs: ['timestamp', 'time-zone-converter', 'currency-exchange-rate', 'fuel-consumption-calculator'] },
+      { title: 'Data & Format', slugs: ['yaml-json', 'toml-json', 'xml-json', 'json-csv', 'markdown-to-html', 'url-encode', 'url-parser', 'color-picker'] },
+      { title: 'PDF & Images', slugs: ['pdf-to-image', 'image-to-pdf'] }
     ]
   },
   generator: {
+    hero: {
+      icon: '\u2699\uFE0F',
+      title: 'Free Online Generator Tools',
+      description: 'Generate passwords, UUIDs, QR codes, gradients, placeholders, and other everyday assets instantly in your browser.'
+    },
+    seoCards: [
+      {
+        title: 'Why use browser-based generators?',
+        body: [
+          'Sensitive outputs like passwords, UUIDs, hashes, and tokens should not pass through a remote server. These generators run locally so results are produced on your device, not somewhere else.',
+          'That gives you fast output, fewer privacy concerns, and a simpler workflow when you need to generate something quickly and move on.'
+        ]
+      },
+      {
+        title: 'Common generator workflows',
+        body: [
+          '<strong>Security and identity</strong> tasks often need strong passwords, UUIDs, hashes, and quick validation before values are pasted into a product or config.',
+          '<strong>Design and prototyping</strong> work often combines QR codes, gradients, palettes, placeholder images, and favicon generation without leaving the browser.'
+        ]
+      }
+    ],
     sections: [
-      ['password-generator', 'uuid-generator', 'qr-code-generator', 'hash-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder', 'css-gradient-generator', 'color-palette', 'favicon-generator', 'password-strength-checker', 'color-scheme-generator', 'css-box-shadow-generator', 'placeholder-image-generator', 'random-color-generator', 'gradient-text-generator']
+      { title: 'Identity & Security', slugs: ['password-generator', 'uuid-generator', 'hash-generator', 'password-strength-checker'] },
+      { title: 'Random & Content', slugs: ['qr-code-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder'] },
+      { title: 'CSS & Color', slugs: ['css-gradient-generator', 'color-palette', 'color-scheme-generator', 'css-box-shadow-generator', 'random-color-generator', 'gradient-text-generator'] },
+      { title: 'Brand & Assets', slugs: ['favicon-generator', 'placeholder-image-generator'] }
     ]
   },
   design: {
+    hero: {
+      icon: '\uD83C\uDFA8',
+      title: 'Free Online Design Tools',
+      description: 'Check contrast, build palettes, generate gradients, and create small design assets without leaving your browser.'
+    },
+    seoCards: [
+      {
+        title: 'What belongs in design workflows?',
+        body: [
+          'These tools cover the operational side of design work: converting color values, validating accessibility, generating gradients, extracting colors from assets, and packaging small brand files.',
+          'Because they run locally in the browser, you can test screenshots, palettes, and image assets without uploading them anywhere.'
+        ]
+      },
+      {
+        title: 'Typical workflow',
+        body: [
+          'Start by extracting or converting values, then validate combinations with a contrast checker before turning them into gradients, palettes, or favicon assets.',
+          'For accessibility review, pair contrast tools with color blindness simulation so issues show up before handoff or implementation.'
+        ]
+      }
+    ],
     sections: [
-      ['color-blindness', 'color-contrast-aa', 'contrast-checker', 'color-converter', 'color-palette', 'gradient-generator', 'favicon-generator', 'color-picker-from-image']
+      { title: 'Color Accessibility', slugs: ['color-blindness', 'color-contrast-aa', 'contrast-checker', 'color-converter'] },
+      { title: 'Palettes & Assets', slugs: ['color-palette', 'gradient-generator', 'favicon-generator', 'color-picker-from-image'] }
     ]
   },
   reference: {
+    hero: {
+      icon: '\uD83D\uDCDA',
+      title: 'Free Online Reference Tools',
+      description: 'Look up status codes, MIME types, ports, user agents, and other everyday web references in one place.'
+    },
+    seoCards: [
+      {
+        title: 'What makes a good reference tool?',
+        body: [
+          'Reference tools should answer one focused question quickly: which port is this, what MIME type do I need, what does this HTTP status mean, or what value matches this character.',
+          'The best version of that workflow is local, immediate, and easy to scan, with no setup and no extra navigation overhead.'
+        ]
+      },
+      {
+        title: 'Typical workflow',
+        body: [
+          'Use a reference tool to confirm the fact, then jump straight into a related formatter, parser, or converter while the context is still fresh.',
+          'Hub-level navigation keeps those next steps visible so lookup work does not turn into a dead end.'
+        ]
+      }
+    ],
     sections: [
-      ['ascii-table', 'port-reference', 'mime-types', 'chmod-calculator', 'http-status', 'ip-lookup', 'user-agent', 'currency-exchange-rate']
+      { title: 'Protocol & Web', slugs: ['mime-types', 'http-status', 'user-agent', 'currency-exchange-rate'] },
+      { title: 'System & Lookup', slugs: ['ascii-table', 'port-reference', 'chmod-calculator', 'ip-lookup'] }
     ]
   },
   pdf: {
+    hero: {
+      icon: '\uD83D\uDCC4',
+      title: 'Free Online PDF Tools',
+      description: 'Convert, merge, split, rotate, compress, watermark, and inspect PDF files entirely in your browser. No uploads, no account, no waiting.'
+    },
+    seoCards: [
+      {
+        title: 'Why use browser-based PDF tools?',
+        body: [
+          'PDF files often contain invoices, contracts, reports, and personal documents. Running those workflows in the browser removes the need to upload files to a third-party server.',
+          'That means less waiting, fewer privacy concerns, and a faster path from file input to finished output.'
+        ]
+      },
+      {
+        title: 'Common PDF workflows',
+        body: [
+          '<strong>Convert and extract</strong> tasks include turning PDFs into images or markdown, pulling out text, and checking metadata before reuse.',
+          '<strong>Organize and prepare</strong> tasks usually mean merging, splitting, rotating, compressing, counting pages, or adding a watermark before sharing.'
+        ]
+      }
+    ],
     sections: [
-      ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress', 'pdf-merge', 'pdf-split', 'pdf-rotate-pages', 'pdf-extract-text', 'pdf-metadata-viewer', 'pdf-add-watermark', 'pdf-to-markdown']
+      { title: 'Convert', slugs: ['pdf-to-image', 'image-to-pdf', 'pdf-to-markdown'] },
+      { title: 'Organize Pages', slugs: ['pdf-merge', 'pdf-split', 'pdf-rotate-pages', 'pdf-compress'] },
+      { title: 'Review & Extract', slugs: ['pdf-page-counter', 'pdf-extract-text', 'pdf-metadata-viewer', 'pdf-add-watermark'] }
     ]
   }
 };
@@ -427,7 +633,8 @@ function searchTools(tools, query, limit) {
 function hubToolCount(key) {
   const config = HUB_PAGE_CONFIG[key];
   if (!config) return 0;
-  return [...new Set(config.sections.flat())].length;
+  const slugs = (config.sections || []).flatMap(section => Array.isArray(section) ? section : (section.slugs || []));
+  return [...new Set(slugs)].length;
 }
 
 // Returns tools matching a given tag, with matching tools listed first.
@@ -437,3 +644,9 @@ function siteToolsByTag(tag) {
   const rest  = SITE_TOOLS.filter(t => t.tag !== tag);
   return [...match, ...rest];
 }
+
+window.SITE_TOOLS = SITE_TOOLS;
+window.HUB_PAGE_CONFIG = HUB_PAGE_CONFIG;
+window.searchTools = searchTools;
+window.hubToolCount = hubToolCount;
+window.siteToolsByTag = siteToolsByTag;

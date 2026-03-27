@@ -73,7 +73,7 @@
 <!-- AUTO-STRUCTURED-DATA:END -->
 
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=42" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=46" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -162,6 +162,8 @@
     .info-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
     .info-text strong { color: var(--text-primary); font-weight: 600; }
     .info-text code { font-family: var(--mono); font-size: 11px; background: rgba(255,255,255,0.06); padding: 1px 4px; border-radius: 3px; }
+    .tool-noscript { text-align: center; padding: 40px; color: #8b8b9a; font-family: sans-serif; }
+    .drop-zone-icon { font-size: 15px; line-height: 1; }
 
   </style>
   <!-- Google tag (gtag.js) -->
@@ -174,9 +176,9 @@
   </script>
 </head>
 <body class="ds-page ds-tool-shell-ready">
-<noscript><div style="text-align:center;padding:40px;color:#8B8B9A;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<noscript><div class="tool-noscript">This tool requires JavaScript to run.</div></noscript>
 
-<!-- NAV -->
+<!-- TOOL SHELL: NAV -->
 <nav class="ds-nav" id="nav">
   <a href="../index.html" class="ds-nav__brand">
     <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
@@ -203,7 +205,7 @@
   </div>
 </nav>
 
-<!-- TOOL HEADER -->
+<!-- TOOL SHELL: HEADER -->
 <div class="tool-header ds-tool-header">
   <div class="tool-header-inner ds-tool-header__inner">
     <div class="tool-title-row ds-tool-header__row">
@@ -226,7 +228,7 @@
   </div>
 </div>
 
-<!-- MAIN -->
+<!-- TOOL SHELL: MAIN -->
 <div class="main ds-tool-main ds-tool-stack">
 
   <!-- Mode toggle -->
@@ -245,11 +247,11 @@
   <!-- Options -->
   <div class="options-bar ds-tool-options">
     <label class="option-item ds-tool-option">
-      <label class="toggle-switch ds-tool-toggle">
+      <span class="toggle-switch ds-tool-toggle">
         <input type="checkbox" id="urlSafeToggle" />
         <span class="toggle-track ds-tool-toggle__track"></span>
         <span class="toggle-thumb ds-tool-toggle__thumb"></span>
-      </label>
+      </span>
       URL-safe mode
       <span class="option-hint ds-tool-option-hint">(+/= → -/_)</span>
     </label>
@@ -279,7 +281,7 @@
         </div>
       </div>
       <div class="drop-zone ds-tool-pane__dropzone" id="dropZone">
-        <span style="font-size:15px">📂</span>
+        <span class="drop-zone-icon">📂</span>
         <span class="drop-zone-text ds-tool-pane__droptext"><strong>Drop a file</strong> or click to browse — encodes any binary or text file</span>
         <input type="file" id="fileInput" />
       </div>
@@ -672,28 +674,23 @@
   })();
 </script>
 </div>
+<!-- TOOL SHELL: FOOTER -->
 <footer>
   <a href="../index.html">Home</a> &nbsp;&middot;&nbsp;
   <a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;
   <a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;
   <a href="../about.html">About</a>
 </footer>
+<!-- TOOL SHELL: SHARED DATA -->
 <script src="../tools-data.js"></script>
-<script>
-  window.SITE_TOOLS = SITE_TOOLS;
-  window.HUB_PAGE_CONFIG = HUB_PAGE_CONFIG;
-  window.searchTools = searchTools;
-  window.hubToolCount = hubToolCount;
-  window.siteToolsByTag = siteToolsByTag;
-</script>
-  <script src="../site-hierarchy.js?v=3"></script>
+  <script src="../site-hierarchy.js?v=6"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'base64'
   };
 </script>
-  <script src="../scripts/site-navigation.js?v=5"></script>
+  <script src="../scripts/site-navigation.js?v=8"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

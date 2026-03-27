@@ -120,7 +120,7 @@
     }
     .page-header {
       width: min(1152px, calc(100% - 96px));
-      padding: 26px 24px 18px;
+      padding: 22px 24px 14px;
       position: relative;
       order: 1;
       border: 1px solid var(--ds-color-border);
@@ -148,9 +148,9 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .page-title { font-size: clamp(34px, 5vw, 52px); margin-bottom: 12px; }
-    .page-sub { max-width: 760px; margin-bottom: 16px; font-size: 15px; line-height: 1.6; }
-    .page-highlights { display: flex; flex-wrap: wrap; gap: 8px; }
+    .page-title { font-size: clamp(34px, 5vw, 52px); margin-bottom: 10px; }
+    .page-sub { max-width: 760px; margin-bottom: 0; font-size: 15px; line-height: 1.6; }
+    .page-highlights { display: none; }
     .page-highlight {
       display: inline-flex;
       align-items: center;
@@ -165,19 +165,19 @@
     }
 
     .section-label {
-      padding: 0 0 10px;
+      padding: 0 0 8px;
       letter-spacing: 0.09em;
     }
     .section-label--search { order: 2; }
     .filter-bar { order: 3; }
-    .action-bar { order: 4; }
-    .section-label--hubs { order: 5; }
-    .hub-links { order: 6; }
-    .results-head { order: 7; }
-    .assist-deck { order: 8; }
-    #toolGrid { order: 9; }
-    .section-label--guides { order: 10; }
-    .guide-links { order: 11; }
+    .results-head { order: 4; }
+    #toolGrid { order: 5; }
+    .action-bar { order: 6; }
+    .section-label--hubs { order: 7; }
+    .hub-links { order: 8; }
+    .section-label--guides { order: 9; }
+    .guide-links { order: 10; }
+    .assist-deck { order: 11; }
     footer { order: 12; }
     .hub-links,
     .guide-links,
@@ -210,10 +210,10 @@
 
     .filter-bar,
     .action-bar {
-      padding: 18px 24px 0;
+      padding: 16px 24px 0;
     }
     .filter-bar {
-      padding-bottom: 12px;
+      padding-bottom: 10px;
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--ds-color-border);
       border-radius: 20px 20px 0 0;
@@ -223,7 +223,7 @@
       max-width: none;
       min-width: 320px;
       flex: 1 1 100%;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .filter-search input {
       min-height: 54px;
@@ -239,7 +239,7 @@
     }
     .filter-tags {
       gap: 8px;
-      margin-bottom: 2px;
+      margin-bottom: 10px;
     }
     .filter-tag,
     .action-tag {
@@ -249,18 +249,17 @@
       font-size: 13px;
     }
     .action-bar {
-      padding-top: 10px;
-      padding-bottom: 18px;
-      margin-bottom: 30px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--ds-color-border);
-      border-top: none;
-      border-radius: 0 0 20px 20px;
+      padding-top: 6px;
+      padding-bottom: 0;
+      margin-bottom: 18px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
     }
 
     .results-head {
       display: block;
-      padding: 6px 0 18px;
+      padding: 0 0 8px;
     }
     .results-kicker {
       font-size: 11px;
@@ -268,27 +267,21 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--ds-color-text-muted);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .results-title {
       font-size: 22px;
       line-height: 1.2;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       color: var(--ds-color-text-primary);
       max-width: 560px;
     }
     .results-copy {
-      max-width: 620px;
-      font-size: 13px;
-      color: var(--ds-color-text-secondary);
-      line-height: 1.6;
-      margin: 0;
+      display: none;
     }
     .assist-deck {
-      display: grid;
-      gap: 14px;
-      align-content: start;
+      display: none !important;
     }
     .assist-deck[hidden] {
       display: none !important;
@@ -422,7 +415,7 @@
     @media (max-width: 768px) {
       .page-header {
         width: calc(100% - 32px);
-        padding: 22px 16px 14px;
+        padding: 18px 16px 12px;
         border-radius: 18px;
       }
       .page-header,
@@ -446,7 +439,7 @@
         width: auto;
       }
       .page-title { font-size: clamp(30px, 10vw, 42px); }
-      .page-sub { margin-bottom: 14px; font-size: 15px; }
+      .page-sub { margin-bottom: 0; font-size: 15px; }
       .hub-links,
       .filter-tags {
         flex-wrap: nowrap;
@@ -460,16 +453,13 @@
       .assist-deck { padding: 0 0 18px; gap: 12px; }
       .hub-link,
       .filter-tag { flex: 0 0 auto; }
-      .filter-bar { padding: 16px 16px 12px; gap: 10px; border-radius: 18px 18px 0 0; }
-      .action-bar { padding: 0 16px 16px; margin-bottom: 22px; border-radius: 0 0 18px 18px; }
+      .filter-bar { padding: 16px 16px 10px; gap: 10px; border-radius: 18px 18px 0 0; }
+      .action-bar { padding: 6px 0 0; margin-bottom: 18px; border-radius: 0; }
       .filter-search { flex: 1 0 100%; max-width: none; }
       .filter-search input { min-height: 46px; font-size: 14px; }
-      .results-head { padding: 0 0 16px; display: block; }
+      .results-head { padding: 0 0 10px; display: block; }
       .results-title { font-size: 20px; }
-      .results-copy { margin-bottom: 12px; }
       .count-badge { font-size: 11px; }
-      .assist-grid { grid-template-columns: 1fr; }
-      .assist-grid .tool-card { padding: 16px; }
       .tool-section-title { padding: 0 0 12px; font-size: 14px; }
       .tool-grid.tool-grid--section { margin: 0 auto 18px; padding: 0 0 2px; border-radius: 0; grid-template-columns: 1fr; }
       .tool-grid#toolGrid.tool-grid--grouped { padding: 0 0 56px; }
@@ -556,6 +546,7 @@
   <div class="filter-search">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <input type="text" id="toolSearch" class="ds-input" placeholder="Search tools…" autocomplete="off" />
+    <div class="search-dropdown" id="toolSearchDropdown"></div>
   </div>
   <div class="filter-tags">
     <button class="filter-tag ds-pill active" data-filter="all">All</button>
@@ -572,7 +563,7 @@
 </div>
 
 <div class="action-bar">
-  <span class="dim-label">Actions</span>
+  <span class="dim-label">Action filters</span>
   <button class="action-tag" data-action="convert">🔄 Convert</button>
   <button class="action-tag" data-action="compress">🗜️ Compress</button>
   <button class="action-tag" data-action="generate">✨ Generate</button>
@@ -584,9 +575,9 @@
 
 <div class="results-head">
   <div>
-    <div class="results-kicker">Browse the catalog</div>
-    <h2 class="results-title">Browse every tool from one grid</h2>
-    <p class="results-copy">Popular picks and recently used tools stay visible as lightweight helpers, while the main results grid stays consistent across every filter.</p>
+    <div class="results-kicker">Results</div>
+    <h2 class="results-title">Search and filter all tools from one grid</h2>
+    <p class="results-copy">Pick a category or type a task to narrow the catalog instantly.</p>
   </div>
   <span class="count-badge" id="countBadge">201 tools</span>
 </div>
@@ -1246,6 +1237,8 @@
   const pageSub = document.querySelector('.page-sub');
   const toolSearchInput = document.getElementById('toolSearch');
   const navSearchInput = document.getElementById('navSearch');
+  const toolDropdown = document.getElementById('toolSearchDropdown');
+  const navDropdown = document.getElementById('navSearchDropdown');
 
   toolSearchInput.placeholder = 'Search tools...';
   navSearchInput.placeholder = 'Search tools...';
@@ -1493,15 +1486,8 @@
   }
 
   function updateAssistDeck() {
-    const shouldShow = activeTag === 'all' && !activeAction && !searchQuery;
-    if (!shouldShow) {
-      assistDeck.hidden = true;
-      assistDeck.innerHTML = '';
-      return;
-    }
-
-    assistDeck.innerHTML = renderAssistHTML();
-    assistDeck.hidden = !assistDeck.innerHTML.trim();
+    assistDeck.hidden = true;
+    assistDeck.innerHTML = '';
   }
 
   function renderSectionBlock(label, tools, options = {}) {
@@ -1643,7 +1629,6 @@
   document.addEventListener('click', e => {
     if (e.target.id === 'clearRecent') {
       localStorage.removeItem(LS_KEY);
-      gridMode = ''; // force grouped rebuild to re-render without Recent section
       rebuildGrid();
       return;
     }
@@ -1660,6 +1645,8 @@
       document.querySelectorAll('.action-tag').forEach(b => b.classList.remove('active'));
       searchQuery  = '';
       syncSearchInputs('', 'tool');
+      toolDropdown.classList.remove('open');
+      navDropdown.classList.remove('open');
       const url = new URL(window.location);
       url.searchParams.delete('act');
       if (activeTag === 'all') { url.searchParams.delete('cat'); } else { url.searchParams.set('cat', activeTag); }
@@ -1679,6 +1666,8 @@
       document.querySelectorAll('.filter-tag').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
       searchQuery = '';
       syncSearchInputs('', 'tool');
+      toolDropdown.classList.remove('open');
+      navDropdown.classList.remove('open');
       const url = new URL(window.location);
       url.searchParams.delete('cat');
       if (activeAction) { url.searchParams.set('act', activeAction); } else { url.searchParams.delete('act'); }
@@ -1686,8 +1675,6 @@
       rebuildGrid();
     });
   });
-
-  toolSearchInput.addEventListener('input', e => setSearchQuery(e.target.value, 'tool'));
 
   // ── Nav search ───────────────────────────────────────────────────────────
 
@@ -1719,32 +1706,53 @@
     dropdownEl.classList.add('open');
   }
 
-  const navDropdown = document.getElementById('navSearchDropdown');
-  navSearchInput.addEventListener('input', e => {
-    buildNavDropdown(navDropdown, e.target.value);
-    setSearchQuery(e.target.value, 'nav');
-  });
-  navSearchInput.addEventListener('focus', () => buildNavDropdown(navDropdown, navSearchInput.value));
-  document.addEventListener('click', e => { if (!e.target.closest('.nav-search')) navDropdown.classList.remove('open'); });
-  navSearchInput.addEventListener('keydown', e => {
-    const items = navDropdown.querySelectorAll('.search-suggestion');
-    let idx = [...items].findIndex(el => el.classList.contains('focused'));
-    if (e.key === 'ArrowDown')  { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.min(idx + 1, items.length - 1); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
-    else if (e.key === 'ArrowUp')   { e.preventDefault(); items[idx]?.classList.remove('focused'); idx = Math.max(idx - 1, 0); items[idx]?.classList.add('focused'); items[idx]?.scrollIntoView({ block: 'nearest' }); }
-    else if (e.key === 'Enter')  {
-      e.preventDefault();
-      const f = navDropdown.querySelector('.search-suggestion.focused');
-      if (f) {
-        f.click();
-      } else if (items.length) {
-        items[0].click();
-      } else if (searchQuery.trim()) {
-        navDropdown.classList.remove('open');
-        document.getElementById('toolGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  function bindSearchDropdown(inputEl, dropdownEl, source, wrapperSelector) {
+    inputEl.addEventListener('input', e => {
+      buildNavDropdown(dropdownEl, e.target.value);
+      setSearchQuery(e.target.value, source);
+    });
+    inputEl.addEventListener('focus', () => buildNavDropdown(dropdownEl, inputEl.value));
+    inputEl.addEventListener('keydown', e => {
+      const items = dropdownEl.querySelectorAll('.search-suggestion');
+      let idx = [...items].findIndex(el => el.classList.contains('focused'));
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        items[idx]?.classList.remove('focused');
+        idx = Math.min(idx + 1, items.length - 1);
+        items[idx]?.classList.add('focused');
+        items[idx]?.scrollIntoView({ block: 'nearest' });
       }
-    }
-    else if (e.key === 'Escape') { navDropdown.classList.remove('open'); }
-  });
+      else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        items[idx]?.classList.remove('focused');
+        idx = Math.max(idx - 1, 0);
+        items[idx]?.classList.add('focused');
+        items[idx]?.scrollIntoView({ block: 'nearest' });
+      }
+      else if (e.key === 'Enter') {
+        e.preventDefault();
+        const focused = dropdownEl.querySelector('.search-suggestion.focused');
+        if (focused) {
+          focused.click();
+        } else if (items.length) {
+          items[0].click();
+        } else if (searchQuery.trim()) {
+          dropdownEl.classList.remove('open');
+          document.getElementById('toolGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+      else if (e.key === 'Escape') {
+        dropdownEl.classList.remove('open');
+      }
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest(wrapperSelector)) dropdownEl.classList.remove('open');
+    });
+  }
+
+  bindSearchDropdown(toolSearchInput, toolDropdown, 'tool', '.filter-search');
+  bindSearchDropdown(navSearchInput, navDropdown, 'nav', '.nav-search');
   document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); navSearchInput.focus(); } });
   window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 </script>

@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Cron Expression Builder Online – Generate & Explain Cron Jobs | Simple ToolBox</title>
+  <title>Cron Expression Builder Online 鈥?Generate & Explain Cron Jobs | Simple ToolBox</title>
   <meta name="description" content="Build and validate cron expressions visually. Set minute, hour, day, month, and weekday fields with instant human-readable descriptions and next 5 run time previews. Free, browser-based." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/cron-builder" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/cron-builder.html" />
-  <meta property="og:title" content="Cron Expression Builder Online – Generate &amp; Explain Cron Jobs | Simple ToolBox" />
+  <meta property="og:title" content="Cron Expression Builder Online 鈥?Generate &amp; Explain Cron Jobs | Simple ToolBox" />
   <meta property="og:description" content="Build and validate cron expressions visually. Set minute, hour, day, month, and weekday fields with instant human-readable descriptions and next 5 run time previews. Free, browser-based." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <!-- AUTO-STRUCTURED-DATA:START -->
@@ -56,7 +56,7 @@
       "name": "What does */5 * * * * mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It means \"every 5 minutes\". The */n syntax means \"every n units starting from 0\". So */5 in the minutes field fires at 0, 5, 10, 15, 20 … 55."
+        "text": "It means \"every 5 minutes\". The */n syntax means \"every n units starting from 0\". So */5 in the minutes field fires at 0, 5, 10, 15, 20 鈥?55."
       }
     },
     {
@@ -64,7 +64,7 @@
       "name": "Can I run a job on the last day of the month?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Standard cron doesn't have an \"L\" (last) modifier — that's a Quartz extension. For standard cron, a common workaround is to schedule for the 28th–31st and check the date inside your script."
+        "text": "Standard cron doesn't have an \"L\" (last) modifier 鈥?that's a Quartz extension. For standard cron, a common workaround is to schedule for the 28th鈥?1st and check the date inside your script."
       }
     }
   ]
@@ -72,10 +72,10 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does cron support seconds?","acceptedAnswer":{"@type":"Answer","text":"Standard Unix cron uses five fields (no seconds). Some systems like Spring Scheduler and Quartz add a sixth field for seconds. This builder uses the standard five-field format compatible with Linux crontab, GitHub Actions, and most cloud schedulers."}},{"@type":"Question","name":"What timezone does cron use?","acceptedAnswer":{"@type":"Answer","text":"By default, cron uses the server's local timezone. GitHub Actions schedules use UTC. Always confirm the timezone of the system running your cron job to avoid off-by-one-hour errors."}},{"@type":"Question","name":"What does */5 * * * * mean?","acceptedAnswer":{"@type":"Answer","text":"It means every 5 minutes. The */n syntax means every n units starting from 0. So */5 in the minutes field fires at 0, 5, 10, 15, 20 ... 55."}},{"@type":"Question","name":"Can I run a job on the last day of the month?","acceptedAnswer":{"@type":"Answer","text":"Standard cron does not have an L (last) modifier — that is a Quartz extension. For standard cron, a common workaround is to schedule for the 28th-31st and check the date inside your script."}}]}
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does cron support seconds?","acceptedAnswer":{"@type":"Answer","text":"Standard Unix cron uses five fields (no seconds). Some systems like Spring Scheduler and Quartz add a sixth field for seconds. This builder uses the standard five-field format compatible with Linux crontab, GitHub Actions, and most cloud schedulers."}},{"@type":"Question","name":"What timezone does cron use?","acceptedAnswer":{"@type":"Answer","text":"By default, cron uses the server's local timezone. GitHub Actions schedules use UTC. Always confirm the timezone of the system running your cron job to avoid off-by-one-hour errors."}},{"@type":"Question","name":"What does */5 * * * * mean?","acceptedAnswer":{"@type":"Answer","text":"It means every 5 minutes. The */n syntax means every n units starting from 0. So */5 in the minutes field fires at 0, 5, 10, 15, 20 ... 55."}},{"@type":"Question","name":"Can I run a job on the last day of the month?","acceptedAnswer":{"@type":"Answer","text":"Standard cron does not have an L (last) modifier 鈥?that is a Quartz extension. For standard cron, a common workaround is to schedule for the 28th-31st and check the date inside your script."}}]}
   </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -117,7 +117,7 @@
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 
-    /* ── MAIN ── */
+    /* 鈹€鈹€ MAIN 鈹€鈹€ */
     .main {
       max-width: 900px;
       margin: 0 auto;
@@ -128,7 +128,7 @@
     }
 
 
-    /* ── EXPRESSION BAR ── */
+    /* 鈹€鈹€ EXPRESSION BAR 鈹€鈹€ */
     .expr-bar {
       padding: 20px 24px;
       display: flex;
@@ -173,7 +173,7 @@
       padding: 0;
     }
 
-    /* ── FIELD CARDS ── */
+    /* 鈹€鈹€ FIELD CARDS 鈹€鈹€ */
     .fields-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -253,7 +253,7 @@
       padding: 4px 0;
     }
 
-    /* ── NEXT RUNS ── */
+    /* 鈹€鈹€ NEXT RUNS 鈹€鈹€ */
     .runs-list {
       padding: 4px 0;
     }
@@ -280,7 +280,7 @@
       font-size: 13px; color: var(--red); text-align: center;
     }
 
-    /* ── PRESETS ── */
+    /* 鈹€鈹€ PRESETS 鈹€鈹€ */
     .presets-wrap {
       padding: 14px 16px;
       display: flex; flex-wrap: wrap; gap: 8px;
@@ -313,7 +313,7 @@
       color: var(--text-muted);
     }
 
-    /* ── MANUAL INPUT ── */
+    /* 鈹€鈹€ MANUAL INPUT 鈹€鈹€ */
     .manual-wrap {
       padding: 14px 16px;
       display: flex; align-items: center; gap: 10px;
@@ -375,14 +375,14 @@
   <div class="ds-tool-spacer"></div>
   <div class="ds-tool-privacy">
     <span class="ds-tool-privacy-dot"></span>
-    Runs locally — no data sent
+    Runs locally 鈥?no data sent
   </div>
 </nav>
 
 <div class="ds-tool-header">
   <div class="ds-tool-header__inner">
     <div class="ds-tool-header__row">
-      <div class="ds-tool-header__icon">⏰</div>
+      <div class="ds-tool-header__icon">鈴?/div>
       <h1 class="ds-tool-header__title">Cron Builder</h1>
     </div>
     <p class="ds-tool-header__desc">Build, decode, and preview cron expressions visually. See a human-readable description and the next scheduled run times instantly.</p>
@@ -449,7 +449,7 @@
         autocomplete="off"
         spellcheck="false"
       />
-      <span class="manual-hint">min · hr · dom · mon · dow</span>
+      <span class="manual-hint">min 路 hr 路 dom 路 mon 路 dow</span>
     </div>
   </div>
 
@@ -473,9 +473,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="timestamp.html" class="ds-related-card"><span class="ds-related-icon">⏱️</span><div><div class="ds-related-name">Timestamp Converter</div><div class="ds-related-desc">Convert Unix timestamps to readable dates</div></div></a>
-    <a href="regex-tester.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">Regex Tester</div><div class="ds-related-desc">Test regular expressions with live match highlighting</div></div></a>
-    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
+    <a href="timestamp.html" class="ds-related-card"><span class="ds-related-icon">鈴憋笍</span><div><div class="ds-related-name">Timestamp Converter</div><div class="ds-related-desc">Convert Unix timestamps to readable dates</div></div></a>
+    <a href="regex-tester.html" class="ds-related-card"><span class="ds-related-icon">馃攳</span><div><div class="ds-related-name">Regex Tester</div><div class="ds-related-desc">Test regular expressions with live match highlighting</div></div></a>
+    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">馃帹</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
   </div>
 </div>
 
@@ -501,17 +501,17 @@
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Does cron support seconds?</strong><p>Standard Unix cron uses five fields (no seconds). Some systems like Spring Scheduler and Quartz add a sixth field for seconds. This builder uses the standard five-field format compatible with Linux crontab, GitHub Actions, and most cloud schedulers.</p></div>
         <div class="ds-seo-faq-item"><strong>What timezone does cron use?</strong><p>By default, cron uses the server&#x27;s local timezone. GitHub Actions schedules use UTC. Always confirm the timezone of the system running your cron job to avoid off-by-one-hour errors.</p></div>
-        <div class="ds-seo-faq-item"><strong>What does */5 * * * * mean?</strong><p>It means &quot;every 5 minutes&quot;. The */n syntax means &quot;every n units starting from 0&quot;. So */5 in the minutes field fires at 0, 5, 10, 15, 20 … 55.</p></div>
-        <div class="ds-seo-faq-item"><strong>Can I run a job on the last day of the month?</strong><p>Standard cron doesn&#x27;t have an &quot;L&quot; (last) modifier — that&#x27;s a Quartz extension. For standard cron, a common workaround is to schedule for the 28th–31st and check the date inside your script.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does */5 * * * * mean?</strong><p>It means &quot;every 5 minutes&quot;. The */n syntax means &quot;every n units starting from 0&quot;. So */5 in the minutes field fires at 0, 5, 10, 15, 20 鈥?55.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I run a job on the last day of the month?</strong><p>Standard cron doesn&#x27;t have an &quot;L&quot; (last) modifier 鈥?that&#x27;s a Quartz extension. For standard cron, a common workaround is to schedule for the 28th鈥?1st and check the date inside your script.</p></div>
       </div>
     </details>
   </div>
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
 <script>
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      FIELD DEFINITIONS
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   const FIELDS = [
     { id: 'minute', name: 'Minute',       min: 0, max: 59 },
     { id: 'hour',   name: 'Hour',         min: 0, max: 23 },
@@ -533,9 +533,9 @@
     { label: 'First day of month',   expr: '0 0 1 * *' },
   ];
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      STATE
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   // Each field has: { type: 'every'|'at'|'range'|'step', at, rangeFrom, rangeTo, stepEvery, stepFrom }
   const state = FIELDS.map(f => ({
     type: 'every',
@@ -546,9 +546,9 @@
     stepFrom: f.min,
   }));
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      EXPRESSION BUILDER
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   function fieldExpr(i) {
     const s = state[i];
     const f = FIELDS[i];
@@ -575,9 +575,9 @@
     return Math.min(Math.max(v, min), max);
   }
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      HUMAN-READABLE DESCRIPTION
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   const FIELD_NAMES = ['minute', 'hour', 'day of month', 'month', 'day of week'];
 
   function describeField(expr, name) {
@@ -619,9 +619,9 @@
     return sentence.charAt(0).toUpperCase() + sentence.slice(1);
   }
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      PARSE EXPRESSION INTO STATE
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   function parseFieldIntoState(expr, i) {
     const f = FIELDS[i];
     const s = state[i];
@@ -663,9 +663,9 @@
     return true;
   }
 
-  /* ─────────────────────────────────────────
-     CRON EVALUATOR — next N run times
-  ───────────────────────────────────────── */
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+     CRON EVALUATOR 鈥?next N run times
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   function matchesCronField(value, expr) {
     if (expr === '*') return true;
     const stepMatch = expr.match(/^(\*|(\d+))\/(\d+)$/);
@@ -744,9 +744,9 @@
     return `in ${diffDay}d`;
   }
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      RENDER UI
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   function renderExprBar() {
     const expr = buildExpr();
     const parts = expr.split(' ');
@@ -794,15 +794,15 @@
       html = `<span style="font-family:var(--mono);font-size:20px;color:var(--text-muted);padding-top:4px;">*</span>`;
     } else if (s.type === 'at') {
       html = `
-        <label>Value (${f.min}–${f.max})</label>
+        <label>Value (${f.min}鈥?{f.max})</label>
         <input type="number" min="${f.min}" max="${f.max}" value="${clamp(s.at, f.min, f.max)}" data-role="at">
       `;
     } else if (s.type === 'range') {
       html = `
-        <label>From – To</label>
+        <label>From 鈥?To</label>
         <div class="ctrl-row">
           <input type="number" min="${f.min}" max="${f.max}" value="${clamp(s.rangeFrom, f.min, f.max)}" data-role="rangeFrom" title="From">
-          <span class="ctrl-sep">–</span>
+          <span class="ctrl-sep">鈥?/span>
           <input type="number" min="${f.min}" max="${f.max}" value="${clamp(s.rangeTo, f.min, f.max)}" data-role="rangeTo" title="To">
         </div>
       `;
@@ -833,16 +833,16 @@
     highlightActivePreset();
   }
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      BUILD FIELD CARDS DOM
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   function buildFieldsGrid() {
     const grid = document.getElementById('fieldsGrid');
     grid.innerHTML = FIELDS.map((f, i) => `
       <div class="field-card" id="field-card-${i}">
         <div>
           <div class="field-name">${f.name}</div>
-          <div class="field-range">${f.min} – ${f.max}${f.hint ? ' · ' + f.hint : ''}</div>
+          <div class="field-range">${f.min} 鈥?${f.max}${f.hint ? ' 路 ' + f.hint : ''}</div>
         </div>
         <div class="field-seg">
           ${TYPES.map(t => `<button class="field-seg-btn" data-type="${t.toLowerCase()}">${t}</button>`).join('')}
@@ -880,9 +880,9 @@
     });
   }
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      PRESETS
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   function buildPresets() {
     const wrap = document.getElementById('presetsWrap');
     wrap.innerHTML = PRESETS.map((p, i) => `
@@ -908,9 +908,9 @@
     });
   }
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      MANUAL INPUT
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   document.getElementById('manualInput').addEventListener('input', e => {
     const raw = e.target.value.trim();
     const ok  = loadExpr(raw);
@@ -920,9 +920,9 @@
     }
   });
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      COPY BUTTON
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   document.getElementById('btnCopyExpr').addEventListener('click', async () => {
     const expr = buildExpr();
     try {
@@ -934,18 +934,18 @@
     } catch {}
   });
 
-  /* ─────────────────────────────────────────
+  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
      INIT
-  ───────────────────────────────────────── */
+  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   buildFieldsGrid();
   buildPresets();
   refreshAll();
 </script>
 </div>
 <footer>
-  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
-  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
-  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../index.html">鈫?Home</a> &nbsp;路&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;路&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;路&nbsp;
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>

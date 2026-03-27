@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>chmod Calculator Online – Linux File Permission Generator | Simple ToolBox</title>
+  <title>chmod Calculator Online 鈥?Linux File Permission Generator | Simple ToolBox</title>
   <meta name="description" content="Free online chmod calculator. Select Unix file permissions visually, get octal and symbolic notation instantly. Supports owner, group, and others read/write/execute." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/chmod-calculator" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/chmod-calculator.html" />
-  <meta property="og:title" content="chmod Calculator Online – Linux File Permission Generator | Simple ToolBox" />
+  <meta property="og:title" content="chmod Calculator Online 鈥?Linux File Permission Generator | Simple ToolBox" />
   <meta property="og:description" content="Select Unix file permissions visually and get octal and symbolic notation instantly. Supports owner, group, and others read/write/execute." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <!-- AUTO-STRUCTURED-DATA:START -->
@@ -39,7 +39,7 @@
       "name": "Does it support special bits (setuid, sticky)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — setuid (4000), setgid (2000), and sticky bit (1000) can be toggled."
+        "text": "Yes 鈥?setuid (4000), setgid (2000), and sticky bit (1000) can be toggled."
       }
     },
     {
@@ -52,15 +52,15 @@
     },
     {
       "@type": "Question",
-      "name": "What does chmod Calculator Online – Linux File Permission Generator do?",
+      "name": "What does chmod Calculator Online 鈥?Linux File Permission Generator do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "chmod Calculator Online – Linux File Permission Generator runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "chmod Calculator Online 鈥?Linux File Permission Generator runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is chmod Calculator Online – Linux File Permission Generator free to use?",
+      "name": "Is chmod Calculator Online 鈥?Linux File Permission Generator free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -82,7 +82,7 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
-    /* ── CARDS ── */
+    /* 鈹€鈹€ CARDS 鈹€鈹€ */
     .card {
       background: var(--ds-color-surface);
       border: 1px solid var(--ds-color-border);
@@ -105,7 +105,7 @@
     }
     .card-body { padding: 20px 16px; }
 
-    /* ── OCTAL INPUT ── */
+    /* 鈹€鈹€ OCTAL INPUT 鈹€鈹€ */
     .octal-input-row {
       display: flex;
       align-items: center;
@@ -133,7 +133,7 @@
     .octal-input:focus { border-color: var(--ds-color-accent); }
     .octal-hint { font-size: 12px; color: var(--ds-color-text-muted); }
 
-    /* ── PRESETS ── */
+    /* 鈹€鈹€ PRESETS 鈹€鈹€ */
     .preset-row {
       display: flex;
       flex-wrap: wrap;
@@ -158,7 +158,7 @@
       border-color: rgba(94,106,210,0.3);
     }
 
-    /* ── PERMISSION MATRIX ── */
+    /* 鈹€鈹€ PERMISSION MATRIX 鈹€鈹€ */
     .perm-matrix {
       margin-top: 20px;
       overflow-x: auto;
@@ -202,7 +202,7 @@
     }
     .perm-cell { padding: 8px 0 !important; }
 
-    /* ── CUSTOM CHECKBOX ── */
+    /* 鈹€鈹€ CUSTOM CHECKBOX 鈹€鈹€ */
     .perm-check-wrap {
       display: inline-flex;
       align-items: center;
@@ -250,7 +250,7 @@
     .col-head-w { color: #fb923c !important; }
     .col-head-x { color: #4ade80 !important; }
 
-    /* ── OUTPUT CARD ── */
+    /* 鈹€鈹€ OUTPUT CARD 鈹€鈹€ */
     .output-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -284,7 +284,7 @@
     .output-item-value.medium { font-size: 15px; }
     .output-item-value.small { font-size: 12px; color: var(--ds-color-text-secondary); }
 
-    /* ── COMMAND ROW ── */
+    /* 鈹€鈹€ COMMAND ROW 鈹€鈹€ */
     .cmd-row {
       margin-top: 12px;
       display: flex;
@@ -337,7 +337,7 @@
     .btn-copy:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.08); }
     .btn-copy.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
 
-    /* ── LS PREVIEW ── */
+    /* 鈹€鈹€ LS PREVIEW 鈹€鈹€ */
     .ls-preview {
       margin-top: 12px;
       background: var(--ds-color-bg);
@@ -361,7 +361,7 @@
     }
     .ls-perm { color: var(--ds-color-text-primary); }
 
-    /* ── NOTE ── */
+    /* 鈹€鈹€ NOTE 鈹€鈹€ */
     .note-box {
       background: var(--ds-color-surface);
       border: 1px solid var(--ds-color-border);
@@ -411,7 +411,7 @@
       margin-bottom: 10px;
     }
 
-    /* ── RELATED TOOLS ── */
+    /* 鈹€鈹€ RELATED TOOLS 鈹€鈹€ */
     .related-tools { }
     .related-title {
       font-size: 13px;
@@ -440,7 +440,7 @@
     }
     .related-link:hover { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
 
-    /* ── MOBILE ── */
+    /* 鈹€鈹€ MOBILE 鈹€鈹€ */
     @media (max-width: 480px) {
       .card-header { padding: 10px 12px; }
       .card-body { padding: 14px 12px; }
@@ -472,13 +472,13 @@
   <div class="ds-tool-nav-divider"></div>
   <div class="ds-tool-nav-name">chmod Calculator <span class="ds-tool-badge">reference</span></div>
   <div class="ds-tool-spacer"></div>
-  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally — no data sent</div>
+  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally 鈥?no data sent</div>
 </nav>
 
 <div class="ds-tool-header">
   <div class="ds-tool-header__inner">
     <div class="ds-tool-header__row">
-      <div class="ds-tool-header__icon">🔐</div>
+      <div class="ds-tool-header__icon">馃攼</div>
       <h1 class="ds-tool-header__title">chmod Calculator</h1>
     </div>
     <p class="ds-tool-header__desc">Select Unix file permissions visually and get octal notation, symbolic notation, and the ready-to-run chmod command instantly.</p>
@@ -495,7 +495,7 @@
 
 <div class="ds-tool-main ds-tool-stack">
 
-  <!-- ── Permission Matrix Card ── -->
+  <!-- 鈹€鈹€ Permission Matrix Card 鈹€鈹€ -->
   <div class="card">
     <div class="card-header">
       <span class="card-title">Permissions</span>
@@ -506,19 +506,19 @@
       <div class="octal-input-row">
         <span class="octal-label">Octal:</span>
         <input type="text" id="octalInput" class="octal-input" maxlength="4" placeholder="755" autocomplete="off" spellcheck="false" />
-        <span class="octal-hint">Enter 0–777 to set checkboxes</span>
+        <span class="octal-hint">Enter 0鈥?77 to set checkboxes</span>
       </div>
 
       <div class="preset-row" id="presetRow">
-        <button class="preset-btn" data-val="755" title="rwxr-xr-x — common dir / executable">755</button>
-        <button class="preset-btn" data-val="644" title="rw-r--r-- — common file">644</button>
-        <button class="preset-btn" data-val="777" title="rwxrwxrwx — full access">777</button>
-        <button class="preset-btn" data-val="600" title="rw------- — private key">600</button>
-        <button class="preset-btn" data-val="400" title="r-------- — read-only">400</button>
-        <button class="preset-btn" data-val="700" title="rwx------ — owner only">700</button>
+        <button class="preset-btn" data-val="755" title="rwxr-xr-x 鈥?common dir / executable">755</button>
+        <button class="preset-btn" data-val="644" title="rw-r--r-- 鈥?common file">644</button>
+        <button class="preset-btn" data-val="777" title="rwxrwxrwx 鈥?full access">777</button>
+        <button class="preset-btn" data-val="600" title="rw------- 鈥?private key">600</button>
+        <button class="preset-btn" data-val="400" title="r-------- 鈥?read-only">400</button>
+        <button class="preset-btn" data-val="700" title="rwx------ 鈥?owner only">700</button>
       </div>
 
-      <!-- 3×3 Matrix -->
+      <!-- 3脳3 Matrix -->
       <div class="perm-matrix">
         <table class="perm-table">
           <thead>
@@ -570,7 +570,7 @@
     </div>
   </div>
 
-  <!-- ── Output Card ── -->
+  <!-- 鈹€鈹€ Output Card 鈹€鈹€ -->
   <div class="card">
     <div class="card-header">
       <span class="card-title">Result</span>
@@ -607,7 +607,7 @@
     </div>
   </div>
 
-  <!-- ── Note ── -->
+  <!-- 鈹€鈹€ Note 鈹€鈹€ -->
   <div class="note-box">
     <div class="note-title">How chmod octal notation works</div>
     <p class="note-text">Each of the three digits represents one class (owner / group / others). The digit is the <strong>sum</strong> of r=4, w=2, x=1 for that class.</p>
@@ -623,7 +623,7 @@
     </div>
   </div>
 
-  <!-- ── Related Tools ── -->
+  <!-- 鈹€鈹€ Related Tools 鈹€鈹€ -->
   
 <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
@@ -645,9 +645,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">⌗</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
-    <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate strong random passwords locally</div></div></a>
-    <a href="aes.html" class="ds-related-card"><span class="ds-related-icon">🔒</span><div><div class="ds-related-name">AES Encrypt / Decrypt</div><div class="ds-related-desc">Encrypt and decrypt text with AES-256-GCM — runs entirely in browser</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">鈱?/span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
+    <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">馃攽</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate strong random passwords locally</div></div></a>
+    <a href="aes.html" class="ds-related-card"><span class="ds-related-icon">馃敀</span><div><div class="ds-related-name">AES Encrypt / Decrypt</div><div class="ds-related-desc">Encrypt and decrypt text with AES-256-GCM 鈥?runs entirely in browser</div></div></a>
   </div>
 </div>
 
@@ -663,7 +663,7 @@
         <div class="ds-seo-example">
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Input</span>
-            <span class="ds-seo-example__value">Checked: Owner rwx, Group r-x, Others r-x → 755 (rwxr-xr-x)</span>
+            <span class="ds-seo-example__value">Checked: Owner rwx, Group r-x, Others r-x 鈫?755 (rwxr-xr-x)</span>
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
@@ -696,10 +696,10 @@
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>Does it support special bits (setuid, sticky)?</strong><p>Yes — setuid (4000), setgid (2000), and sticky bit (1000) can be toggled.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it support special bits (setuid, sticky)?</strong><p>Yes 鈥?setuid (4000), setgid (2000), and sticky bit (1000) can be toggled.</p></div>
         <div class="ds-seo-faq-item"><strong>What does execute permission mean for a directory?</strong><p>Execute on a directory means the ability to cd into it and access its contents.</p></div>
-        <div class="ds-seo-faq-item"><strong>What does chmod Calculator Online – Linux File Permission Generator do?</strong><p>chmod Calculator Online – Linux File Permission Generator runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
-        <div class="ds-seo-faq-item"><strong>Is chmod Calculator Online – Linux File Permission Generator free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does chmod Calculator Online 鈥?Linux File Permission Generator do?</strong><p>chmod Calculator Online 鈥?Linux File Permission Generator runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is chmod Calculator Online 鈥?Linux File Permission Generator free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
       </div>
     </details>
   </div>
@@ -713,7 +713,7 @@
 (function () {
   'use strict';
 
-  // ── State ──────────────────────────────────────────
+  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   const checks = Array.from(document.querySelectorAll('.perm-check'));
   const octalInput  = document.getElementById('octalInput');
   const outOctal    = document.getElementById('outOctal');
@@ -725,7 +725,7 @@
   const copyBtn     = document.getElementById('copyBtn');
   const presetBtns  = document.querySelectorAll('.preset-btn');
 
-  // ── Core calculation ──────────────────────────────
+  // 鈹€鈹€ Core calculation 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   function getBits() {
     return checks.map(c => c.checked ? 1 : 0);
   }
@@ -745,7 +745,7 @@
            triplet(bits[6], bits[7], bits[8]);
   }
 
-  // ── Update UI ─────────────────────────────────────
+  // 鈹€鈹€ Update UI 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   function update() {
     const bits    = getBits();
     const [o,g,x] = calcOctal(bits);
@@ -770,7 +770,7 @@
     });
   }
 
-  // ── Apply octal → checkboxes ──────────────────────
+  // 鈹€鈹€ Apply octal 鈫?checkboxes 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   function applyOctal(valStr) {
     // Accept 3-digit (755) or 4-digit with leading zero (0755)
     const s = valStr.replace(/^0+/, '') || '0';
@@ -784,7 +784,7 @@
     return true;
   }
 
-  // ── Event Listeners ───────────────────────────────
+  // 鈹€鈹€ Event Listeners 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   checks.forEach(c => c.addEventListener('change', update));
 
   octalInput.addEventListener('input', function () {
@@ -808,7 +808,7 @@
     const [o,g,x] = calcOctal(bits);
     const cmd    = 'chmod ' + o + g + x + ' ' + fname;
     navigator.clipboard.writeText(cmd).then(() => {
-      copyBtn.textContent = '✓ Copied';
+      copyBtn.textContent = '鉁?Copied';
       copyBtn.classList.add('copied');
       setTimeout(() => {
         copyBtn.textContent = 'Copy Command';
@@ -824,7 +824,7 @@
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      copyBtn.textContent = '✓ Copied';
+      copyBtn.textContent = '鉁?Copied';
       copyBtn.classList.add('copied');
       setTimeout(() => {
         copyBtn.textContent = 'Copy Command';
@@ -833,16 +833,16 @@
     });
   });
 
-  // ── Init with 644 ─────────────────────────────────
+  // 鈹€鈹€ Init with 644 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   applyOctal('644');
   update();
 
 })();
 </script>
 <footer>
-  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
-  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
-  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../index.html">鈫?Home</a> &nbsp;路&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;路&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;路&nbsp;
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>

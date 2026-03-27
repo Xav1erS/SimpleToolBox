@@ -80,7 +80,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -286,7 +286,7 @@
     <button class="mode-tab" data-mode="csv-json">CSV to JSON</button>
   </div>
 
-  <!-- 鈺愨晲 FORMAT MODE 鈺愨晲 -->
+  <!-- 閳烘劏鏅?FORMAT MODE 閳烘劏鏅?-->
   <div id="modeFormat">
 
   <!-- Toolbar -->
@@ -387,7 +387,7 @@
 
   </div><!-- end #modeFormat -->
 
-  <!-- 鈺愨晲 JSON to CSV MODE 鈺愨晲 -->
+  <!-- 閳烘劏鏅?JSON to CSV MODE 閳烘劏鏅?-->
   <div id="modeJsonCsv" style="display:none">
     <div class="toolbar">
       <button class="btn-action primary" id="btnConvertToCsv">
@@ -450,7 +450,7 @@
     </div>
   </div><!-- end #modeJsonCsv -->
 
-  <!-- 鈺愨晲 CSV to JSON MODE 鈺愨晲 -->
+  <!-- 閳烘劏鏅?CSV to JSON MODE 閳烘劏鏅?-->
   <div id="modeCsvJson" style="display:none">
     <div class="toolbar">
       <button class="btn-action primary" id="btnConvertToJson">
@@ -584,14 +584,14 @@
 
 <script src="../scripts/tool-persist.js"></script>
 <script>
-  // 鈹€鈹€ STATE 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 閳光偓閳光偓 STATE 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   let indentValue  = 4;
   let currentMode  = 'format'; // 'format' | 'json-csv' | 'csv-json'
   const HISTORY_KEY = 'stb_json_history';
   const PERSIST_ID  = 'json-formatter';
   const EXAMPLE_JSON = `[\n  { "id": 1, "name": "Alice", "role": "engineer", "active": true },\n  { "id": 2, "name": "Bob",   "role": "designer",  "active": false },\n  { "id": 3, "name": "Carol","role": "manager",   "active": true }\n]`;
 
-  // 鈹€鈹€ ELEMENT REFS 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 閳光偓閳光偓 ELEMENT REFS 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   const inputText     = document.getElementById('inputText');
   const outputText    = document.getElementById('outputText');
   const inputStat     = document.getElementById('inputStat');
@@ -631,7 +631,7 @@
   const csvJsonInputStat= document.getElementById('csvJsonInputStat');
   const jsonFromCsvStat= document.getElementById('jsonFromCsvStat');
 
-  // 鈹€鈹€ MODE SWITCHING 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 閳光偓閳光偓 MODE SWITCHING 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   document.querySelectorAll('.mode-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       currentMode = tab.dataset.mode;
@@ -643,7 +643,7 @@
     });
   });
 
-  // 鈹€鈹€ FORMAT MODE 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 閳光偓閳光偓 FORMAT MODE 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   [[document.getElementById('ind2'), 2], [document.getElementById('ind4'), 4], [document.getElementById('indTab'), '\t']].forEach(([btn, val]) => {
     btn.addEventListener('click', () => {
       indentValue = val;
@@ -749,7 +749,7 @@
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && currentMode === 'format') prettify();
   });
 
-  // 鈹€鈹€ HISTORY 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 閳光偓閳光偓 HISTORY 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   function loadHistory() { try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch { return []; } }
   function saveHistory(text) {
     const h = loadHistory().filter(e => e.text !== text);
@@ -783,7 +783,7 @@
     if (!e.target.closest('.history-wrap')) historyDropdown.classList.remove('open');
   });
 
-  // 鈹€鈹€ JSON to CSV 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 閳光偓閳光偓 JSON to CSV 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   function csvEscape(v) {
     const s = (v === null || v === undefined) ? '' : typeof v === 'object' ? JSON.stringify(v) : String(v);
     return (s.includes(',') || s.includes('"') || s.includes('\n')) ? `"${s.replace(/"/g, '""')}"` : s;
@@ -838,7 +838,7 @@
   });
   btnCopySql.addEventListener('click', () => copyText(sqlOutput.value, btnCopySql));
 
-  // 鈹€鈹€ CSV to JSON 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 閳光偓閳光偓 CSV to JSON 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   function parseCsvRow(line) {
     const result = []; let cur = '', inQ = false;
     for (let i = 0; i < line.length; i++) {
@@ -882,7 +882,7 @@
     if (e.key === 'Escape') { e.preventDefault(); clearAll(); }
   });
 
-  // 鈹€鈹€ INIT 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 閳光偓閳光偓 INIT 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   (function () {
     const s = ToolPersist.load(PERSIST_ID);
     if (s && s.input) { inputText.value = s.input; prettify(); }
@@ -897,7 +897,7 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=6"></script>
+<script src="../site-hierarchy.js?v=7"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',

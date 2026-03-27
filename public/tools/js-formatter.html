@@ -13,13 +13,21 @@
   <meta property="og:description" content="Format and beautify JavaScript code for readability or minify for production. Configurable indent. Free, browser-based." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     .tool-noscript {
       text-align: center;
       padding: 40px;
       color: #8b8b9a;
       font-family: sans-serif;
+    }
+
+    body.ds-tool-shell-ready .ds-tool-header__title,
+    body.ds-tool-shell-ready .tool-title {
+      max-width: 13ch;
+      font-size: clamp(32px, 4.2vw, 46px);
+      line-height: 1.04;
+      text-wrap: balance;
     }
   </style>
     <!-- AUTO-STRUCTURED-DATA:START -->
@@ -539,7 +547,7 @@ const arr = [1, 2, 3].map(f);</span>
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=6"></script>
+<script src="../site-hierarchy.js?v=7"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',

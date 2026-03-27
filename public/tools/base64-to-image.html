@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Base64 to Image Converter — Decode & Preview | Simple ToolBox</title>
-  <meta name="description" content="Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF, SVG and more. Runs locally — nothing is sent." />
+  <title>Base64 to Image Converter 鈥?Decode & Preview | Simple ToolBox</title>
+  <meta name="description" content="Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF, SVG and more. Runs locally 鈥?nothing is sent." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/base64-to-image" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/base64-to-image.html" />
-  <meta property="og:title" content="Base64 to Image Converter — Decode & Preview | Simple ToolBox" />
+  <meta property="og:title" content="Base64 to Image Converter 鈥?Decode & Preview | Simple ToolBox" />
   <meta property="og:description" content="Paste a Base64 string or data URI to preview and download the image. 100% local." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <!-- AUTO-STRUCTURED-DATA:START -->
@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Base64 to Image Converter",
-  "description": "Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF and more. Runs locally — nothing is sent.",
+  "description": "Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF and more. Runs locally 鈥?nothing is sent.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .input-area { width: 100%; box-sizing: border-box; padding: 14px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-family: var(--ds-font-mono, monospace); font-size: 12px; resize: vertical; min-height: 130px; word-break: break-all; white-space: pre-wrap; }
@@ -105,13 +105,13 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Base64 to Image <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔓</div><h1 class="ds-tool-header__title">Base64 to Image</h1></div><p class="ds-tool-header__desc">Paste a Base64-encoded image string or a full data URI to instantly preview the image and download it as a file. Everything runs in your browser — nothing is sent anywhere.</p><div class="ds-tool-tag-row"><span class="ds-tag">Base64</span><span class="ds-tag">decode</span><span class="ds-tag">data URI</span><span class="ds-tag">image</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃敁</div><h1 class="ds-tool-header__title">Base64 to Image</h1></div><p class="ds-tool-header__desc">Paste a Base64-encoded image string or a full data URI to instantly preview the image and download it as a file. Everything runs in your browser 鈥?nothing is sent anywhere.</p><div class="ds-tool-tag-row"><span class="ds-tag">Base64</span><span class="ds-tag">decode</span><span class="ds-tag">data URI</span><span class="ds-tag">image</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
 
   <div class="ds-tool-pane">
     <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Input</span></div>
     <div style="padding: 20px 0; display: flex; flex-direction: column; gap: 14px;">
-      <textarea class="input-area" id="inputArea" placeholder="Paste a Base64 string or data URI here…&#10;&#10;Examples:&#10;  data:image/png;base64,iVBORw0KGgo...&#10;  /9j/4AAQSkZJRgAB... (raw JPEG Base64)&#10;  iVBORw0KGgo... (raw PNG Base64)" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
+      <textarea class="input-area" id="inputArea" placeholder="Paste a Base64 string or data URI here鈥?#10;&#10;Examples:&#10;  data:image/png;base64,iVBORw0KGgo...&#10;  /9j/4AAQSkZJRgAB... (raw JPEG Base64)&#10;  iVBORw0KGgo... (raw PNG Base64)" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
       <div class="action-row">
         <button class="btn-primary" id="decodeBtn">Decode & Preview</button>
         <button class="btn-clear" id="clearBtn">Clear</button>
@@ -129,8 +129,8 @@
         </div>
         <div class="preview-meta" id="previewMeta"></div>
         <div class="download-row">
-          <a class="dl-btn" id="dlPng">⬇ Download as PNG</a>
-          <a class="dl-btn" id="dlOrig">⬇ Download original format</a>
+          <a class="dl-btn" id="dlPng">猬?Download as PNG</a>
+          <a class="dl-btn" id="dlOrig">猬?Download original format</a>
         </div>
       </div>
     </div>
@@ -140,7 +140,7 @@
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is Base64 to Image?</h2>
-    <p>Base64 to Image decodes a Base64-encoded string or data URI back into a viewable image. It renders the image directly in the browser using an img element, displays dimensions and size, and provides download buttons for the original format and as PNG. Everything runs locally — no string or image is sent to a server.</p>
+    <p>Base64 to Image decodes a Base64-encoded string or data URI back into a viewable image. It renders the image directly in the browser using an img element, displays dimensions and size, and provides download buttons for the original format and as PNG. Everything runs locally 鈥?no string or image is sent to a server.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use Base64 to Image</h2>
@@ -156,9 +156,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
-    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
-    <a href="exif-viewer.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">EXIF Viewer</div><div class="ds-related-desc">Read camera model, GPS, exposure, and full EXIF metadata from any image</div></div></a>
+    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">馃摝</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="exif-viewer.html" class="ds-related-card"><span class="ds-related-icon">馃攳</span><div><div class="ds-related-name">EXIF Viewer</div><div class="ds-related-desc">Read camera model, GPS, exposure, and full EXIF metadata from any image</div></div></a>
   </div>
 </div>
 
@@ -199,9 +199,9 @@
       <div class="ds-seo-collapse__body">
         <ul>
           <li>Auto-detects whether input is a data URI or raw Base64.</li>
-          <li>Detects MIME type from magic bytes — no manual format selection needed.</li>
+          <li>Detects MIME type from magic bytes 鈥?no manual format selection needed.</li>
           <li>Provides both original-format and PNG download options.</li>
-          <li>100% local — your data never leaves your browser.</li>
+          <li>100% local 鈥?your data never leaves your browser.</li>
         </ul>
       </div>
     </details>
@@ -255,7 +255,7 @@
         b64 = raw.slice(comma + 1);
         dataUri = raw;
       } else {
-        // Raw base64 — strip whitespace
+        // Raw base64 鈥?strip whitespace
         b64 = raw.replace(/\s/g, '');
         mime = detectMime(b64);
         dataUri = `data:${mime};base64,${b64}`;
@@ -272,7 +272,7 @@
     img.onload = () => {
       document.getElementById('previewMeta').innerHTML = `
         <span>Format: ${mime}</span>
-        <span>Dimensions: ${img.naturalWidth} × ${img.naturalHeight}px</span>
+        <span>Dimensions: ${img.naturalWidth} 脳 ${img.naturalHeight}px</span>
         <span>Base64 size: ${(b64.length / 1024).toFixed(1)} KB</span>
         <span>Approx original: ${(b64.length * 0.75 / 1024).toFixed(1)} KB</span>
       `;
@@ -281,7 +281,7 @@
       const dlPng = document.getElementById('dlPng');
       dlOrig.href = dataUri;
       dlOrig.download = `image.${ext}`;
-      dlOrig.textContent = `⬇ Download as ${ext.toUpperCase()}`;
+      dlOrig.textContent = `猬?Download as ${ext.toUpperCase()}`;
 
       // PNG download: draw on canvas
       if (mime !== 'image/svg+xml') {

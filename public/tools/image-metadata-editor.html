@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Image Metadata Editor — Edit Title, Description & Copyright | Simple ToolBox</title>
+  <title>Image Metadata Editor 鈥?Edit Title, Description & Copyright | Simple ToolBox</title>
   <meta name="description" content="Edit image metadata fields: title, description, author, copyright, and keywords. Reads EXIF date and basic info, lets you write clean IPTC-style fields to a new JPEG. Runs locally." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/image-metadata-editor" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/image-metadata-editor.html" />
-  <meta property="og:title" content="Image Metadata Editor — Edit Title, Author & Copyright | Simple ToolBox" />
-  <meta property="og:description" content="View and edit image metadata fields and download the updated file. 100% local — no upload." />
+  <meta property="og:title" content="Image Metadata Editor 鈥?Edit Title, Author & Copyright | Simple ToolBox" />
+  <meta property="og:description" content="View and edit image metadata fields and download the updated file. 100% local 鈥?no upload." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .drop-zone { border: 2px dashed var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 48px 24px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
@@ -111,16 +111,16 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Image Metadata Editor <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no image uploaded</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">✏️</div><h1 class="ds-tool-header__title">Image Metadata Editor</h1></div><p class="ds-tool-header__desc">Open a JPEG to read its EXIF date and dimensions. Add or edit title, description, author, copyright, and keywords, then download the updated JPEG with the new fields embedded. Runs entirely in your browser.</p><div class="ds-tool-tag-row"><span class="ds-tag">EXIF</span><span class="ds-tag">metadata</span><span class="ds-tag">copyright</span><span class="ds-tag">image</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">鉁忥笍</div><h1 class="ds-tool-header__title">Image Metadata Editor</h1></div><p class="ds-tool-header__desc">Open a JPEG to read its EXIF date and dimensions. Add or edit title, description, author, copyright, and keywords, then download the updated JPEG with the new fields embedded. Runs entirely in your browser.</p><div class="ds-tool-tag-row"><span class="ds-tag">EXIF</span><span class="ds-tag">metadata</span><span class="ds-tag">copyright</span><span class="ds-tag">image</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
 
   <div class="ds-tool-pane">
     <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Image File</span></div>
     <div style="padding: 20px 0; display: flex; flex-direction: column; gap: 14px;">
       <div class="drop-zone" id="dropZone">
-        <div class="drop-icon">🖼️</div>
+        <div class="drop-icon">馃柤锔?/div>
         <div class="drop-text">Drop a JPEG here or click to browse</div>
-        <div class="drop-sub">JPEG only — metadata writing requires JFIF/EXIF segment support</div>
+        <div class="drop-sub">JPEG only 鈥?metadata writing requires JFIF/EXIF segment support</div>
         <input type="file" class="drop-input" id="fileInput" accept="image/jpeg,.jpg,.jpeg" />
       </div>
       <div class="preview-row" id="previewRow" style="display:none">
@@ -152,7 +152,7 @@
           </div>
           <div class="field">
             <label>Copyright</label>
-            <input type="text" id="mCopyright" placeholder="e.g. © 2024 Jane Smith" />
+            <input type="text" id="mCopyright" placeholder="e.g. 漏 2024 Jane Smith" />
           </div>
           <div class="field">
             <label>Keywords</label>
@@ -162,11 +162,11 @@
         </div>
         <div class="field">
           <label>Description / Caption</label>
-          <textarea id="mDesc" placeholder="Add a description or caption…"></textarea>
+          <textarea id="mDesc" placeholder="Add a description or caption鈥?></textarea>
         </div>
         <hr class="section-sep" />
         <div class="notice">
-          ⚠ The new metadata is written into a fresh JPEG copy using Comment (COM) segments. Original EXIF camera data (aperture, GPS, etc.) is preserved as-is. IPTC fields require dedicated software for full IPTC/XMP embedding.
+          鈿?The new metadata is written into a fresh JPEG copy using Comment (COM) segments. Original EXIF camera data (aperture, GPS, etc.) is preserved as-is. IPTC fields require dedicated software for full IPTC/XMP embedding.
         </div>
         <button class="save-btn" id="saveBtn">Download Updated JPEG</button>
       </div>
@@ -193,9 +193,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="exif-viewer.html" class="ds-related-card"><span class="ds-related-icon">🔍</span><div><div class="ds-related-name">EXIF Viewer</div><div class="ds-related-desc">Read camera model, GPS, exposure, and full EXIF metadata from any image</div></div></a>
-    <a href="remove-exif.html" class="ds-related-card"><span class="ds-related-icon">🛡️</span><div><div class="ds-related-name">Remove EXIF Data</div><div class="ds-related-desc">Strip GPS location and EXIF metadata from photos</div></div></a>
-    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
+    <a href="exif-viewer.html" class="ds-related-card"><span class="ds-related-icon">馃攳</span><div><div class="ds-related-name">EXIF Viewer</div><div class="ds-related-desc">Read camera model, GPS, exposure, and full EXIF metadata from any image</div></div></a>
+    <a href="remove-exif.html" class="ds-related-card"><span class="ds-related-icon">馃洝锔?/span><div><div class="ds-related-name">Remove EXIF Data</div><div class="ds-related-desc">Strip GPS location and EXIF metadata from photos</div></div></a>
+    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
   </div>
 </div>
 
@@ -237,8 +237,8 @@
         <ul>
           <li>Add copyright and author info before publishing photos.</li>
           <li>Pre-fills Author field from existing EXIF Artist tag if present.</li>
-          <li>Non-destructive — creates a new file, never overwrites the original.</li>
-          <li>100% local — no image is ever uploaded.</li>
+          <li>Non-destructive 鈥?creates a new file, never overwrites the original.</li>
+          <li>100% local 鈥?no image is ever uploaded.</li>
         </ul>
       </div>
     </details>
@@ -342,11 +342,11 @@
     const parts = [];
     if (fields.Make || fields.Model) parts.push(`<strong>Camera:</strong> ${[fields.Make, fields.Model].filter(Boolean).join(' ')}`);
     if (fields.DateTime) parts.push(`<strong>Date:</strong> ${fields.DateTime}`);
-    if (fields.Width && fields.Height) parts.push(`<strong>Dimensions:</strong> ${fields.Width} × ${fields.Height}`);
+    if (fields.Width && fields.Height) parts.push(`<strong>Dimensions:</strong> ${fields.Width} 脳 ${fields.Height}`);
     if (fields.Artist) { parts.push(`<strong>Artist:</strong> ${fields.Artist}`); document.getElementById('mAuthor').value = fields.Artist; }
 
     document.getElementById('exifReadout').innerHTML = parts.length
-      ? parts.join(' &nbsp;·&nbsp; ')
+      ? parts.join(' &nbsp;路&nbsp; ')
       : 'No readable EXIF fields found. You can still add metadata fields below.';
   }
 

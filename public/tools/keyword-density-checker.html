@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .control-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
@@ -95,7 +95,7 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Keyword Density Checker <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🎯</div><h1 class="ds-tool-header__title">Keyword Density Checker</h1></div><p class="ds-tool-header__desc">Measure how often a keyword appears in pasted text. Check total mentions, exact-match density, and the most repeated words or phrases instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">seo text</span><span class="ds-tag">keyword count</span><span class="ds-tag">density</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃幆</div><h1 class="ds-tool-header__title">Keyword Density Checker</h1></div><p class="ds-tool-header__desc">Measure how often a keyword appears in pasted text. Check total mentions, exact-match density, and the most repeated words or phrases instantly.</p><div class="ds-tool-tag-row"><span class="ds-tag">seo text</span><span class="ds-tag">keyword count</span><span class="ds-tag">density</span><span class="ds-tag">browser only</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
   <div class="ds-tool-pane"><div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Text</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button></div></div><textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste article text, landing page copy, or product description..." spellcheck="false"></textarea><div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="charStat">0 chars</span></div></div>
   <div class="control-grid">
@@ -129,9 +129,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
-    <a href="sentence-counter.html" class="ds-related-card"><span class="ds-related-icon">💬</span><div><div class="ds-related-name">Sentence Counter</div><div class="ds-related-desc">Count sentences and estimate average words per sentence</div></div></a>
-    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
+    <a href="sentence-counter.html" class="ds-related-card"><span class="ds-related-icon">馃挰</span><div><div class="ds-related-name">Sentence Counter</div><div class="ds-related-desc">Count sentences and estimate average words per sentence</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">馃Ч</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
   </div>
 </div>
 
@@ -151,7 +151,7 @@
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
-            <span class="ds-seo-example__value">keyword · 3 mentions · 20.00% density</span>
+            <span class="ds-seo-example__value">keyword 路 3 mentions 路 20.00% density</span>
           </div>
         </div>
       </div>
@@ -198,7 +198,7 @@
   const phraseSize = document.getElementById('phraseSize');
   const topTerms = document.getElementById('topTerms');
   function tokens(text){ return (text.toLowerCase().match(/\\b[a-z0-9'-]+\\b/g) || []); }
-  function analyze(){ const raw=inputText.value; const words=tokens(raw); const keyword=keywordInput.value.trim().toLowerCase(); const densityBase=words.length||1; const mentions=keyword ? ((raw.toLowerCase().match(new RegExp(keyword.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&'),'g'))||[]).length) : 0; document.getElementById('charStat').textContent=`${raw.length.toLocaleString()} chars`; document.getElementById('wordCount').textContent=`${words.length}`; document.getElementById('mentionCount').textContent=`${mentions}`; document.getElementById('densityValue').textContent=`${((mentions/densityBase)*100).toFixed(2)}%`; const size=parseInt(phraseSize.value,10); const map=new Map(); for(let i=0;i<=words.length-size;i++){ const phrase=words.slice(i,i+size).join(' '); map.set(phrase,(map.get(phrase)||0)+1); } const top=[...map.entries()].sort((a,b)=>b[1]-a[1]).slice(0,8).filter((item)=>item[0].trim()!==''); document.getElementById('uniqueTerms').textContent=`${map.size}`; if(!top.length){ topTerms.innerHTML='<div class=\"result-card\"><div class=\"result-card__meta\">No data yet</div><div>Paste text and enter a keyword to see density and frequent terms.</div></div>'; return; } topTerms.innerHTML=top.map(([term,count],index)=>`<div class=\"result-card\"><div class=\"result-card__meta\">#${index+1} · ${count} match${count===1?'':'es'}</div><div>${term.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`).join(''); }
+  function analyze(){ const raw=inputText.value; const words=tokens(raw); const keyword=keywordInput.value.trim().toLowerCase(); const densityBase=words.length||1; const mentions=keyword ? ((raw.toLowerCase().match(new RegExp(keyword.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&'),'g'))||[]).length) : 0; document.getElementById('charStat').textContent=`${raw.length.toLocaleString()} chars`; document.getElementById('wordCount').textContent=`${words.length}`; document.getElementById('mentionCount').textContent=`${mentions}`; document.getElementById('densityValue').textContent=`${((mentions/densityBase)*100).toFixed(2)}%`; const size=parseInt(phraseSize.value,10); const map=new Map(); for(let i=0;i<=words.length-size;i++){ const phrase=words.slice(i,i+size).join(' '); map.set(phrase,(map.get(phrase)||0)+1); } const top=[...map.entries()].sort((a,b)=>b[1]-a[1]).slice(0,8).filter((item)=>item[0].trim()!==''); document.getElementById('uniqueTerms').textContent=`${map.size}`; if(!top.length){ topTerms.innerHTML='<div class=\"result-card\"><div class=\"result-card__meta\">No data yet</div><div>Paste text and enter a keyword to see density and frequent terms.</div></div>'; return; } topTerms.innerHTML=top.map(([term,count],index)=>`<div class=\"result-card\"><div class=\"result-card__meta\">#${index+1} 路 ${count} match${count===1?'':'es'}</div><div>${term.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`).join(''); }
   [inputText, keywordInput, phraseSize].forEach((el)=>el.addEventListener('input', analyze));
   document.getElementById('btnSample').addEventListener('click',()=>{inputText.value=SAMPLE;keywordInput.value='keyword';analyze();});
   document.getElementById('btnClear').addEventListener('click',()=>{inputText.value='';keywordInput.value='';analyze();});

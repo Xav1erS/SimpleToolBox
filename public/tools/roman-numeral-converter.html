@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>Roman Numeral Converter Online | Simple ToolBox</title>
-  <meta name="description" content="Convert between Arabic numbers and Roman numerals instantly. Supports 1–3999. Free browser-based Roman numeral converter." />
+  <meta name="description" content="Convert between Arabic numbers and Roman numerals instantly. Supports 1鈥?999. Free browser-based Roman numeral converter." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/roman-numeral-converter" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/roman-numeral-converter.html" />
   <meta property="og:title" content="Roman Numeral Converter Online | Simple ToolBox" />
-  <meta property="og:description" content="Convert numbers to Roman numerals and back. Supports 1–3999. Free, instant, no ads." />
+  <meta property="og:description" content="Convert numbers to Roman numerals and back. Supports 1鈥?999. Free, instant, no ads." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Roman Numeral Converter Online",
-  "description": "Convert between Arabic numbers and Roman numerals instantly. Supports 1–3999, works both ways. Free browser-based Roman numeral converter.",
+  "description": "Convert between Arabic numbers and Roman numerals instantly. Supports 1鈥?999, works both ways. Free browser-based Roman numeral converter.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -55,7 +55,7 @@
       "name": "Can I convert Roman numerals back to numbers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Switch to \"Roman → Number\" mode, enter a Roman numeral like MMXXIV, and the tool returns the Arabic equivalent (2024)."
+        "text": "Yes. Switch to \"Roman 鈫?Number\" mode, enter a Roman numeral like MMXXIV, and the tool returns the Arabic equivalent (2024)."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "Is zero a Roman numeral?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. The Roman numeral system has no symbol for zero. It was a later invention. This tool only supports 1–3999."
+        "text": "No. The Roman numeral system has no symbol for zero. It was a later invention. This tool only supports 1鈥?999."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .mode-tabs { display: flex; gap: 8px; }
@@ -111,7 +111,7 @@
   <div class="ds-tool-spacer"></div>
   <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
 </nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🏛️</div><h1 class="ds-tool-header__title">Roman Numeral Converter</h1></div><p class="ds-tool-header__desc">Convert between Arabic numbers (1–3999) and Roman numerals instantly. Works both ways.</p><div class="ds-tool-tag-row"><span class="ds-tag">roman numerals</span><span class="ds-tag">converter</span><span class="ds-tag">numbers</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃彌锔?/div><h1 class="ds-tool-header__title">Roman Numeral Converter</h1></div><p class="ds-tool-header__desc">Convert between Arabic numbers (1鈥?999) and Roman numerals instantly. Works both ways.</p><div class="ds-tool-tag-row"><span class="ds-tag">roman numerals</span><span class="ds-tag">converter</span><span class="ds-tag">numbers</span><span class="ds-tag">browser only</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
 
   <div class="ds-tool-pane">
@@ -120,15 +120,15 @@
     </div>
     <div style="padding:0 0 4px 0">
       <div class="mode-tabs">
-        <button class="mode-tab active" id="tabToRoman">Number → Roman</button>
-        <button class="mode-tab" id="tabToArabic">Roman → Number</button>
+        <button class="mode-tab active" id="tabToRoman">Number 鈫?Roman</button>
+        <button class="mode-tab" id="tabToArabic">Roman 鈫?Number</button>
       </div>
     </div>
   </div>
 
   <div class="ds-tool-pane">
     <div class="ds-tool-pane__header">
-      <span class="ds-tool-pane__label" id="inputLabel">Enter a number (1 – 3999)</span>
+      <span class="ds-tool-pane__label" id="inputLabel">Enter a number (1 鈥?3999)</span>
     </div>
     <div style="padding:4px 0 8px">
       <input class="field-input" type="text" id="inputVal" placeholder="e.g. 2024" autocomplete="off" spellcheck="false" />
@@ -144,7 +144,7 @@
       </div>
     </div>
     <div class="result-box">
-      <div class="result-value" id="resultVal">—</div>
+      <div class="result-value" id="resultVal">鈥?/div>
       <div class="result-hint" id="resultHint"></div>
     </div>
   </div>
@@ -172,7 +172,7 @@
           <tr><td class="roman-sym">IX</td><td>9</td><td class="roman-sym">CD</td><td>400</td></tr>
           <tr><td class="roman-sym">X</td><td>10</td><td class="roman-sym">D</td><td>500</td></tr>
           <tr><td class="roman-sym">XL</td><td>40</td><td class="roman-sym">CM</td><td>900</td></tr>
-          <tr><td class="roman-sym">—</td><td>—</td><td class="roman-sym">M</td><td>1000</td></tr>
+          <tr><td class="roman-sym">鈥?/td><td>鈥?/td><td class="roman-sym">M</td><td>1000</td></tr>
         </tbody>
       </table>
     </div>
@@ -187,7 +187,7 @@
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Convert Roman Numerals</h2>
     <ol>
-      <li>Choose a mode: &quot;Number → Roman&quot; or &quot;Roman → Number&quot;.</li>
+      <li>Choose a mode: &quot;Number 鈫?Roman&quot; or &quot;Roman 鈫?Number&quot;.</li>
       <li>Type your value into the input field, or click a quick example.</li>
       <li>The result appears instantly below.</li>
       <li>Click Copy to copy the result to your clipboard.</li>
@@ -198,11 +198,11 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="number-to-words.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Number to Words</div><div class="ds-related-desc">Convert numbers to English words — plain, currency, ordinal, or year format</div></div></a>
-    <a href="binary-text.html" class="ds-related-card"><span class="ds-related-icon">💾</span><div><div class="ds-related-name">Binary to Text Converter</div><div class="ds-related-desc">Convert text to binary and binary back to text</div></div></a>
-    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">📦</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
-    <a href="number-base.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Number Base Converter</div><div class="ds-related-desc">Convert numbers between binary, octal, decimal and hex</div></div></a>
-    <a href="ascii-table.html" class="ds-related-card"><span class="ds-related-icon">🔣</span><div><div class="ds-related-name">ASCII Table</div><div class="ds-related-desc">Full ASCII 0-127 reference with Dec, Hex, Oct, Binary values</div></div></a>
+    <a href="number-to-words.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Number to Words</div><div class="ds-related-desc">Convert numbers to English words 鈥?plain, currency, ordinal, or year format</div></div></a>
+    <a href="binary-text.html" class="ds-related-card"><span class="ds-related-icon">馃捑</span><div><div class="ds-related-name">Binary to Text Converter</div><div class="ds-related-desc">Convert text to binary and binary back to text</div></div></a>
+    <a href="base64.html" class="ds-related-card"><span class="ds-related-icon">馃摝</span><div><div class="ds-related-name">Base64 Encode / Decode</div><div class="ds-related-desc">Encode or decode text and files to Base64</div></div></a>
+    <a href="number-base.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Number Base Converter</div><div class="ds-related-desc">Convert numbers between binary, octal, decimal and hex</div></div></a>
+    <a href="ascii-table.html" class="ds-related-card"><span class="ds-related-icon">馃敚</span><div><div class="ds-related-name">ASCII Table</div><div class="ds-related-desc">Full ASCII 0-127 reference with Dec, Hex, Oct, Binary values</div></div></a>
   </div>
 </div>
 
@@ -243,8 +243,8 @@
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>What is the largest number supported?</strong><p>The standard Roman numeral system supports 1 to 3999 (MMMCMXCIX). Numbers outside this range cannot be represented in classical Roman numerals.</p></div>
         <div class="ds-seo-faq-item"><strong>How does subtractive notation work?</strong><p>Instead of writing IIII for 4, Romans wrote IV (5 minus 1). Similarly, IX = 9, XL = 40, XC = 90, CD = 400, and CM = 900. This tool uses standard subtractive notation.</p></div>
-        <div class="ds-seo-faq-item"><strong>Can I convert Roman numerals back to numbers?</strong><p>Yes. Switch to &quot;Roman → Number&quot; mode, enter a Roman numeral like MMXXIV, and the tool returns the Arabic equivalent (2024).</p></div>
-        <div class="ds-seo-faq-item"><strong>Is zero a Roman numeral?</strong><p>No. The Roman numeral system has no symbol for zero. It was a later invention. This tool only supports 1–3999.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I convert Roman numerals back to numbers?</strong><p>Yes. Switch to &quot;Roman 鈫?Number&quot; mode, enter a Roman numeral like MMXXIV, and the tool returns the Arabic equivalent (2024).</p></div>
+        <div class="ds-seo-faq-item"><strong>Is zero a Roman numeral?</strong><p>No. The Roman numeral system has no symbol for zero. It was a later invention. This tool only supports 1鈥?999.</p></div>
       </div>
     </details>
   </div>
@@ -252,7 +252,7 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 </div>
 
-<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+<footer class="ds-footer"><div class="ds-footer__inner"><span>漏 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
 
 <script>
 // Roman numeral conversion tables
@@ -298,11 +298,11 @@ function setMode(m) {
   const toRoman = m === 'toRoman';
   document.getElementById('tabToRoman').classList.toggle('active', toRoman);
   document.getElementById('tabToArabic').classList.toggle('active', !toRoman);
-  document.getElementById('inputLabel').textContent = toRoman ? 'Enter a number (1 – 3999)' : 'Enter a Roman numeral';
+  document.getElementById('inputLabel').textContent = toRoman ? 'Enter a number (1 鈥?3999)' : 'Enter a Roman numeral';
   document.getElementById('inputVal').placeholder = toRoman ? 'e.g. 2024' : 'e.g. MMXXIV';
   document.getElementById('resultLabel').textContent = toRoman ? 'Roman numeral' : 'Arabic number';
   document.getElementById('inputVal').value = '';
-  document.getElementById('resultVal').textContent = '—';
+  document.getElementById('resultVal').textContent = '鈥?;
   document.getElementById('resultHint').textContent = '';
   document.getElementById('errorMsg').textContent = '';
   renderExamples();
@@ -327,7 +327,7 @@ function convert() {
   const hintEl = document.getElementById('resultHint');
 
   if (!raw) {
-    resultEl.textContent = '—';
+    resultEl.textContent = '鈥?;
     hintEl.textContent = '';
     errorEl.textContent = '';
     return;
@@ -337,7 +337,7 @@ function convert() {
     const n = parseInt(raw, 10);
     if (isNaN(n) || String(n) !== raw || n < 1 || n > 3999) {
       errorEl.textContent = 'Enter a whole number between 1 and 3999';
-      resultEl.textContent = '—';
+      resultEl.textContent = '鈥?;
       hintEl.textContent = '';
       document.getElementById('inputVal').classList.add('error');
       return;
@@ -346,13 +346,13 @@ function convert() {
     errorEl.textContent = '';
     const roman = toRoman(n);
     resultEl.textContent = roman;
-    hintEl.textContent = `${n} → ${roman} (${roman.length} characters)`;
+    hintEl.textContent = `${n} 鈫?${roman} (${roman.length} characters)`;
   } else {
     const roman = raw.toUpperCase();
     const n = fromRoman(roman);
     if (n === null) {
-      errorEl.textContent = 'Invalid Roman numeral — use I, V, X, L, C, D, M only (standard form)';
-      resultEl.textContent = '—';
+      errorEl.textContent = 'Invalid Roman numeral 鈥?use I, V, X, L, C, D, M only (standard form)';
+      resultEl.textContent = '鈥?;
       hintEl.textContent = '';
       document.getElementById('inputVal').classList.add('error');
       return;
@@ -360,7 +360,7 @@ function convert() {
     document.getElementById('inputVal').classList.remove('error');
     errorEl.textContent = '';
     resultEl.textContent = n;
-    hintEl.textContent = `${roman} → ${n}`;
+    hintEl.textContent = `${roman} 鈫?${n}`;
   }
 }
 
@@ -369,7 +369,7 @@ document.getElementById('tabToArabic').addEventListener('click', () => setMode('
 document.getElementById('inputVal').addEventListener('input', convert);
 document.getElementById('btnCopy').addEventListener('click', () => {
   const val = document.getElementById('resultVal').textContent;
-  if (val && val !== '—') {
+  if (val && val !== '鈥?) {
     navigator.clipboard.writeText(val).then(() => {
       const btn = document.getElementById('btnCopy');
       btn.textContent = 'Copied!';

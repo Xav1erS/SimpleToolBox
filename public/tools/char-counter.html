@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Character Counter — Count Letters, Digits, Emoji and Unicode | Simple ToolBox</title>
+  <title>Character Counter 鈥?Count Letters, Digits, Emoji and Unicode | Simple ToolBox</title>
   <meta name="description" content="Count characters in pasted text with a detailed breakdown: letters, digits, punctuation, spaces, emoji, and Unicode code points. Instant, browser-only." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/char-counter" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/char-counter.html" />
-  <meta property="og:title" content="Character Counter — Count Letters, Digits, Emoji and Unicode | Simple ToolBox" />
+  <meta property="og:title" content="Character Counter 鈥?Count Letters, Digits, Emoji and Unicode | Simple ToolBox" />
   <meta property="og:description" content="Detailed character breakdown: letters, digits, punctuation, spaces, emoji, Unicode. Paste and see instantly." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <!-- AUTO-STRUCTURED-DATA:START -->
@@ -55,7 +55,7 @@
       "name": "What are Unicode code points beyond BMP?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Characters outside the Basic Multilingual Plane (code points above U+FFFF) include most emoji and some rare scripts. JavaScript strings store these as two 'surrogate pair' code units, so naïve .length counts them as 2. This tool correctly counts them as 1."
+        "text": "Characters outside the Basic Multilingual Plane (code points above U+FFFF) include most emoji and some rare scripts. JavaScript strings store these as two 'surrogate pair' code units, so na茂ve .length counts them as 2. This tool correctly counts them as 1."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
@@ -96,7 +96,7 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Character Counter <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔡</div><h1 class="ds-tool-header__title">Character Counter</h1></div><p class="ds-tool-header__desc">Paste any text for a full character breakdown — total characters, letters, digits, punctuation, spaces, emoji, and Unicode code points. Set a character limit to track Twitter, LinkedIn, or SMS constraints.</p><div class="ds-tool-tag-row"><span class="ds-tag">character count</span><span class="ds-tag">unicode</span><span class="ds-tag">emoji count</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃敗</div><h1 class="ds-tool-header__title">Character Counter</h1></div><p class="ds-tool-header__desc">Paste any text for a full character breakdown 鈥?total characters, letters, digits, punctuation, spaces, emoji, and Unicode code points. Set a character limit to track Twitter, LinkedIn, or SMS constraints.</p><div class="ds-tool-tag-row"><span class="ds-tag">character count</span><span class="ds-tag">unicode</span><span class="ds-tag">emoji count</span><span class="ds-tag">browser only</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
   <div class="ds-tool-pane">
     <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Text Input</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button></div></div>
@@ -143,7 +143,7 @@
     <ol>
       <li>Paste or type text into the input area.</li>
       <li>Read the stats cards for the character breakdown.</li>
-      <li>Optionally set a character limit — use the preset buttons for Twitter, SMS, or LinkedIn, or enter a custom value.</li>
+      <li>Optionally set a character limit 鈥?use the preset buttons for Twitter, SMS, or LinkedIn, or enter a custom value.</li>
       <li>The progress bar turns yellow at 85% and red when you exceed the limit.</li>
     </ol>
   </section>
@@ -152,9 +152,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
-    <a href="word-frequency-counter.html" class="ds-related-card"><span class="ds-related-icon">📊</span><div><div class="ds-related-name">Word Frequency Counter</div><div class="ds-related-desc">Rank every word in pasted text by how often it appears</div></div></a>
-    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
+    <a href="word-frequency-counter.html" class="ds-related-card"><span class="ds-related-icon">馃搳</span><div><div class="ds-related-name">Word Frequency Counter</div><div class="ds-related-desc">Rank every word in pasted text by how often it appears</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">馃Ч</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
   </div>
 </div>
 
@@ -170,7 +170,7 @@
         <div class="ds-seo-example">
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Input</span>
-            <span class="ds-seo-example__value">Hello 🌍! Café.</span>
+            <span class="ds-seo-example__value">Hello 馃實! Caf茅.</span>
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
@@ -194,10 +194,10 @@
       <summary>Why Use This Tool</summary>
       <div class="ds-seo-collapse__body">
         <ul>
-          <li>Goes beyond total count — shows letters, digits, punctuation, spaces, and emoji separately.</li>
+          <li>Goes beyond total count 鈥?shows letters, digits, punctuation, spaces, and emoji separately.</li>
           <li>Correctly handles multi-byte Unicode characters and emoji using code point iteration.</li>
           <li>Built-in presets for Twitter (280), SMS (160), and LinkedIn (700) limits.</li>
-          <li>Runs entirely in your browser — no text is sent anywhere.</li>
+          <li>Runs entirely in your browser 鈥?no text is sent anywhere.</li>
         </ul>
       </div>
     </details>
@@ -206,7 +206,7 @@
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>How does this differ from Word Counter?</strong><p>Word Counter focuses on words, sentences, and reading time. Character Counter gives a deeper character-level breakdown: letters, digits, punctuation, spaces, emoji, and Unicode code points.</p></div>
         <div class="ds-seo-faq-item"><strong>Does it count emoji as one character?</strong><p>Yes. Each emoji is counted as one character using Unicode code point iteration, which correctly handles multi-byte emoji.</p></div>
-        <div class="ds-seo-faq-item"><strong>What are Unicode code points beyond BMP?</strong><p>Characters outside the Basic Multilingual Plane (code points above U+FFFF) include most emoji and some rare scripts. JavaScript strings store these as two &#x27;surrogate pair&#x27; code units, so naïve .length counts them as 2. This tool correctly counts them as 1.</p></div>
+        <div class="ds-seo-faq-item"><strong>What are Unicode code points beyond BMP?</strong><p>Characters outside the Basic Multilingual Plane (code points above U+FFFF) include most emoji and some rare scripts. JavaScript strings store these as two &#x27;surrogate pair&#x27; code units, so na茂ve .length counts them as 2. This tool correctly counts them as 1.</p></div>
         <div class="ds-seo-faq-item"><strong>Is the text uploaded anywhere?</strong><p>No. All analysis runs in your browser.</p></div>
       </div>
     </details>
@@ -216,12 +216,12 @@
 </div>
 <script>
   'use strict';
-  const SAMPLE = 'Hello, World! 🌍\nThis tool counts every character: letters (Ää), digits (123), punctuation (!?,), spaces, and emoji 🎉🔥.\nUnicode: café, naïve, résumé.';
+  const SAMPLE = 'Hello, World! 馃實\nThis tool counts every character: letters (脛盲), digits (123), punctuation (!?,), spaces, and emoji 馃帀馃敟.\nUnicode: caf茅, na茂ve, r茅sum茅.';
 
   const inputText = document.getElementById('inputText');
   const limitInput = document.getElementById('limitInput');
 
-  // Emoji regex (Unicode property escapes — modern browsers)
+  // Emoji regex (Unicode property escapes 鈥?modern browsers)
   let emojiRe;
   try { emojiRe = /\p{Emoji_Presentation}|\p{Extended_Pictographic}/gu; } catch(e) { emojiRe = null; }
 
@@ -268,7 +268,7 @@
       bar.style.width = pct + '%';
       bar.style.background = pct >= 100 ? '#e06c6c' : pct >= 85 ? '#e0c36c' : '#7fd17f';
       const rem = lim - total;
-      document.getElementById('limitInfo').textContent = rem >= 0 ? `${total} / ${lim} — ${rem} remaining` : `${Math.abs(rem)} over limit`;
+      document.getElementById('limitInfo').textContent = rem >= 0 ? `${total} / ${lim} 鈥?${rem} remaining` : `${Math.abs(rem)} over limit`;
     } else {
       barArea.style.display = 'none';
     }

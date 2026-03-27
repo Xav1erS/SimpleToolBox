@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>YAML to JSON Converter Online – Parse & Convert YAML Free | Simple ToolBox</title>
+  <title>YAML to JSON Converter Online 鈥?Parse & Convert YAML Free | Simple ToolBox</title>
   <meta
     name="description"
     content="Convert YAML to JSON and JSON to YAML instantly. Supports nested objects, arrays, comments, and multi-line strings. Free, browser-based, no data sent."
@@ -12,14 +12,14 @@
   <link rel="canonical" href="https://simpletoolbox.dev/tools/yaml-json" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/yaml-json.html" />
-  <meta property="og:title" content="YAML to JSON Converter Online – Parse &amp; Convert YAML Free | Simple ToolBox" />
+  <meta property="og:title" content="YAML to JSON Converter Online 鈥?Parse &amp; Convert YAML Free | Simple ToolBox" />
   <meta
     property="og:description"
     content="Convert YAML to JSON and JSON to YAML instantly. Supports nested objects, arrays, comments, and multi-line strings. Free, browser-based, no data sent."
   />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
     <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {
@@ -97,7 +97,7 @@
   <a href="../all-tools.html" class="nav-tools-link ds-tool-nav-link">All Tools</a>
   <div class="nav-divider ds-tool-nav-divider"></div>
   <div class="nav-tool-name ds-tool-nav-name">
-    YAML ↔ JSON
+    YAML 鈫?JSON
     <span class="nav-tool-badge ds-tool-badge">convert</span>
   </div>
   <div class="nav-spacer ds-tool-spacer"></div>
@@ -110,8 +110,8 @@
 <div class="tool-header ds-tool-header">
   <div class="tool-header-inner ds-tool-header__inner">
     <div class="ds-tool-header__row">
-      <div class="ds-tool-header__icon">🔄</div>
-      <h1 class="ds-tool-header__title">YAML ↔ JSON Converter</h1>
+      <div class="ds-tool-header__icon">馃攧</div>
+      <h1 class="ds-tool-header__title">YAML 鈫?JSON Converter</h1>
     </div>
     <p class="ds-tool-header__desc">
       Convert between YAML and JSON instantly. Supports nested objects, arrays, multi-line strings,
@@ -131,12 +131,12 @@
   <div class="ds-tool-modebar">
     <button class="mode-btn ds-tool-modebtn active" id="btnYamlToJson">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-      YAML → JSON
+      YAML 鈫?JSON
     </button>
     <div class="ds-tool-modeseparator"></div>
     <button class="mode-btn ds-tool-modebtn" id="btnJsonToYaml">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-      JSON → YAML
+      JSON 鈫?YAML
     </button>
   </div>
 
@@ -168,14 +168,14 @@
           </button>
         </div>
       </div>
-      <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste YAML here…" spellcheck="false" autocomplete="off"></textarea>
+      <textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste YAML here鈥? spellcheck="false" autocomplete="off"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat" id="inputStat">0 chars</span>
       </div>
     </div>
 
     <div class="panels-arrow ds-tool-arrow">
-      <div class="arrow-circle ds-tool-arrow__circle">→</div>
+      <div class="arrow-circle ds-tool-arrow__circle">鈫?/div>
     </div>
 
     <div class="io-panel ds-tool-pane" id="outputPanel">
@@ -188,7 +188,7 @@
           </button>
         </div>
       </div>
-      <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Output will appear here…" readonly spellcheck="false"></textarea>
+      <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Output will appear here鈥? readonly spellcheck="false"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat" id="outputStat">0 chars</span>
         <span class="ds-tool-error" id="errorMsg">Parse error</span>
@@ -213,10 +213,10 @@
   </div>
 
   <div class="ds-tool-note">
-    <span class="ds-tool-note__icon">💡</span>
+    <span class="ds-tool-note__icon">馃挕</span>
     <div class="info-text ds-tool-note__text">
-      <strong>YAML → JSON</strong>: parses any valid YAML (including anchors &amp; aliases) and outputs pretty-printed JSON.
-      <strong>JSON → YAML</strong>: converts any valid JSON into clean, readable YAML.
+      <strong>YAML 鈫?JSON</strong>: parses any valid YAML (including anchors &amp; aliases) and outputs pretty-printed JSON.
+      <strong>JSON 鈫?YAML</strong>: converts any valid JSON into clean, readable YAML.
       YAML comments are stripped during conversion as JSON has no comment syntax.
     </div>
   </div>
@@ -248,7 +248,7 @@
   const outputPanel   = document.getElementById('outputPanel');
   const errorMsg      = document.getElementById('errorMsg');
 
-  // ── Conversion ─────────────────────────────────────────────
+  // 鈹€鈹€ Conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   function run() {
     const input = inputText.value.trim();
     outputPanel.classList.remove('has-error');
@@ -285,7 +285,7 @@
     outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
   }
 
-  // ── Mode switching ─────────────────────────────────────────
+  // 鈹€鈹€ Mode switching 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   function setMode(nextMode) {
     mode = nextMode;
     const isY2J = nextMode === 'yaml2json';
@@ -293,7 +293,7 @@
     btnJsonToYaml.classList.toggle('active', !isY2J);
     inputLabel.textContent       = isY2J ? 'YAML' : 'JSON';
     outputLabel.textContent      = isY2J ? 'JSON' : 'YAML';
-    inputText.placeholder        = isY2J ? 'Paste YAML here…' : 'Paste JSON here…';
+    inputText.placeholder        = isY2J ? 'Paste YAML here鈥? : 'Paste JSON here鈥?;
     indentLabel.style.display    = isY2J ? '' : 'none';
     indentCtrl.style.display     = isY2J ? '' : 'none';
     outputPanel.classList.remove('has-error');
@@ -303,7 +303,7 @@
   btnYamlToJson.addEventListener('click', () => setMode('yaml2json'));
   btnJsonToYaml.addEventListener('click', () => setMode('json2yaml'));
 
-  // ── Indent control ─────────────────────────────────────────
+  // 鈹€鈹€ Indent control 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   indentCtrl.querySelectorAll('.seg-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       indent = parseInt(btn.dataset.indent);
@@ -313,7 +313,7 @@
     });
   });
 
-  // ── Swap ───────────────────────────────────────────────────
+  // 鈹€鈹€ Swap 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   btnSwap.addEventListener('click', () => {
     const output = outputText.value;
     if (!output) return;
@@ -321,11 +321,11 @@
     setMode(mode === 'yaml2json' ? 'json2yaml' : 'yaml2json');
   });
 
-  // ── Live conversion ────────────────────────────────────────
+  // 鈹€鈹€ Live conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   inputText.addEventListener('input', run);
   btnRun.addEventListener('click', run);
 
-  // ── Copy helpers ───────────────────────────────────────────
+  // 鈹€鈹€ Copy helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   async function copyText(text, button) {
     if (!text) return;
     const originalHtml = button.innerHTML;
@@ -387,9 +387,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
-    <a href="toml-json.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">TOML ↔ JSON Converter</div><div class="ds-related-desc">Convert between TOML and JSON format instantly</div></div></a>
-    <a href="xml-json.html" class="ds-related-card"><span class="ds-related-icon">🔄</span><div><div class="ds-related-name">XML ↔ JSON Converter</div><div class="ds-related-desc">Convert between XML and JSON format instantly</div></div></a>
+    <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">馃帹</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
+    <a href="toml-json.html" class="ds-related-card"><span class="ds-related-icon">馃攧</span><div><div class="ds-related-name">TOML 鈫?JSON Converter</div><div class="ds-related-desc">Convert between TOML and JSON format instantly</div></div></a>
+    <a href="xml-json.html" class="ds-related-card"><span class="ds-related-icon">馃攧</span><div><div class="ds-related-name">XML 鈫?JSON Converter</div><div class="ds-related-desc">Convert between XML and JSON format instantly</div></div></a>
   </div>
 </div>
 
@@ -457,9 +457,9 @@ env:
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
 <footer>
-  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
-  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
-  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../index.html">鈫?Home</a> &nbsp;路&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;路&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;路&nbsp;
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>

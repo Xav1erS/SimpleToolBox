@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Hash Generator Online – MD5, SHA-256, SHA-512 & More Free | Simple ToolBox</title>
+  <title>Hash Generator Online 鈥?MD5, SHA-256, SHA-512 & More Free | Simple ToolBox</title>
   <meta name="description" content="Free online hash generator. Compute MD5, SHA-1, SHA-256, SHA-512 hashes from text or file. All algorithms run in parallel. Runs entirely in your browser." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/hash-generator" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/hash-generator.html" />
-  <meta property="og:title" content="Hash Generator Online – MD5, SHA-256, SHA-512 &amp; More Free | Simple ToolBox" />
+  <meta property="og:title" content="Hash Generator Online 鈥?MD5, SHA-256, SHA-512 &amp; More Free | Simple ToolBox" />
   <meta property="og:description" content="Generate MD5, SHA-1, SHA-256, SHA-512 hashes from text or files. Runs entirely in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -32,7 +32,7 @@
       --mono:          var(--ds-font-mono);
     }
 
-    /* ── LOGO OVERRIDE ── */
+    /* 鈹€鈹€ LOGO OVERRIDE 鈹€鈹€ */
 
     /* PANEL outer wrappers */
     .panel, .results-panel {
@@ -40,7 +40,7 @@
       border-radius: var(--radius-md); overflow: hidden;
     }
 
-    /* TABS (underline style — different from ds-tool-modebar pill style) */
+    /* TABS (underline style 鈥?different from ds-tool-modebar pill style) */
     .tabs-bar { display: flex; gap: 2px; padding: 6px 16px 0; border-bottom: 1px solid var(--border); }
     .tab-btn { padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--text-muted); border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; margin-bottom: -1px; }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -170,14 +170,14 @@
   <div class="ds-tool-spacer"></div>
   <div class="ds-tool-privacy">
     <span class="ds-tool-privacy-dot"></span>
-    Runs locally — no data sent
+    Runs locally 鈥?no data sent
   </div>
 </nav>
 
 <div class="ds-tool-header">
   <div class="ds-tool-header__inner">
     <div class="ds-tool-header__row">
-      <div class="ds-tool-header__icon">#️⃣</div>
+      <div class="ds-tool-header__icon">#锔忊儯</div>
       <h1 class="ds-tool-header__title">Hash Generator</h1>
     </div>
     <p class="ds-tool-header__desc">Compute MD5, SHA-1, SHA-256, and SHA-512 hashes from text or files. All algorithms run in parallel. Uppercase/lowercase output toggle.</p>
@@ -213,21 +213,21 @@
           <button class="ds-tool-pane__btn" id="btnSample">Sample</button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea" id="textInput" placeholder="Type or paste text to hash…" spellcheck="false" style="min-height:120px; resize:vertical;"></textarea>
-      <div class="ds-tool-pane__footer"><span id="inputStat" class="ds-tool-stat">0 chars · 0 bytes</span></div>
+      <textarea class="ds-tool-textarea" id="textInput" placeholder="Type or paste text to hash鈥? spellcheck="false" style="min-height:120px; resize:vertical;"></textarea>
+      <div class="ds-tool-pane__footer"><span id="inputStat" class="ds-tool-stat">0 chars 路 0 bytes</span></div>
     </div>
 
     <!-- File tab -->
     <div id="paneFile" style="display:none">
       <input type="file" id="fileInput" />
       <div class="drop-zone" id="dropZone">
-        <div class="drop-zone-icon">📂</div>
+        <div class="drop-zone-icon">馃搨</div>
         <div class="drop-zone-text"><strong>Drop a file here</strong> or click to browse</div>
-        <div class="drop-zone-hint">Any file type · Processed locally</div>
+        <div class="drop-zone-hint">Any file type 路 Processed locally</div>
       </div>
       <div class="file-info" id="fileInfo">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        <span class="file-name" id="fileName">—</span>
+        <span class="file-name" id="fileName">鈥?/span>
         <span class="file-size" id="fileSize"></span>
         <button class="ds-tool-pane__btn" id="btnRemoveFile" style="margin-left:auto">Remove</button>
       </div>
@@ -248,22 +248,22 @@
     </div>
     <div class="hash-row">
       <span class="hash-algo"><span class="algo-dot dot-md5"></span>MD5</span>
-      <span class="hash-value empty" id="valMd5">Awaiting input…</span>
+      <span class="hash-value empty" id="valMd5">Awaiting input鈥?/span>
       <button class="btn-copy-hash" data-id="valMd5">Copy</button>
     </div>
     <div class="hash-row">
       <span class="hash-algo"><span class="algo-dot dot-sha1"></span>SHA-1</span>
-      <span class="hash-value empty" id="valSha1">Awaiting input…</span>
+      <span class="hash-value empty" id="valSha1">Awaiting input鈥?/span>
       <button class="btn-copy-hash" data-id="valSha1">Copy</button>
     </div>
     <div class="hash-row">
       <span class="hash-algo"><span class="algo-dot dot-sha256"></span>SHA-256</span>
-      <span class="hash-value empty" id="valSha256">Awaiting input…</span>
+      <span class="hash-value empty" id="valSha256">Awaiting input鈥?/span>
       <button class="btn-copy-hash" data-id="valSha256">Copy</button>
     </div>
     <div class="hash-row">
       <span class="hash-algo"><span class="algo-dot dot-sha512"></span>SHA-512</span>
-      <span class="hash-value empty" id="valSha512">Awaiting input…</span>
+      <span class="hash-value empty" id="valSha512">Awaiting input鈥?/span>
       <button class="btn-copy-hash" data-id="valSha512">Copy</button>
     </div>
   </div>
@@ -288,9 +288,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="bcrypt.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">Bcrypt Hash Generator</div><div class="ds-related-desc">Generate and verify bcrypt password hashes in browser</div></div></a>
-    <a href="hmac.html" class="ds-related-card"><span class="ds-related-icon">🔐</span><div><div class="ds-related-name">HMAC Generator</div><div class="ds-related-desc">Generate HMAC signatures with SHA-256, SHA-512 and more</div></div></a>
-    <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">🔑</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate strong random passwords locally</div></div></a>
+    <a href="bcrypt.html" class="ds-related-card"><span class="ds-related-icon">馃攼</span><div><div class="ds-related-name">Bcrypt Hash Generator</div><div class="ds-related-desc">Generate and verify bcrypt password hashes in browser</div></div></a>
+    <a href="hmac.html" class="ds-related-card"><span class="ds-related-icon">馃攼</span><div><div class="ds-related-name">HMAC Generator</div><div class="ds-related-desc">Generate HMAC signatures with SHA-256, SHA-512 and more</div></div></a>
+    <a href="password-generator.html" class="ds-related-card"><span class="ds-related-icon">馃攽</span><div><div class="ds-related-name">Password Generator</div><div class="ds-related-desc">Generate strong random passwords locally</div></div></a>
   </div>
 </div>
 
@@ -350,7 +350,7 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
-  // ── MD5 pure-JS implementation ─────────────────────────────────────────────
+  // 鈹€鈹€ MD5 pure-JS implementation 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   // Based on the canonical RSA Data Security MD5 algorithm, public domain
   function md5(input) {
     function safeAdd(x, y) { const lsw = (x & 0xFFFF) + (y & 0xFFFF); const msw = (x >> 16) + (y >> 16) + (lsw >> 16); return (msw << 16) | (lsw & 0xFFFF); }
@@ -397,13 +397,13 @@
     }).join('');
   }
 
-  // ── Web Crypto SHA helpers ─────────────────────────────────────────────────
+  // 鈹€鈹€ Web Crypto SHA helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   async function sha(algo, buffer) {
     const hashBuffer = await crypto.subtle.digest(algo, buffer);
     return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-  // ── State ──────────────────────────────────────────────────────────────────
+  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   let currentBuffer = null;
   let caseMode = 'lower';
   let currentTab = 'text';
@@ -415,7 +415,7 @@
 
   function setHashDisplay(id, value) {
     const el = document.getElementById(id);
-    el.textContent = value ? applyCase(value) : 'Awaiting input…';
+    el.textContent = value ? applyCase(value) : 'Awaiting input鈥?;
     el.className = 'hash-value' + (value ? '' : ' empty');
   }
 
@@ -429,7 +429,7 @@
   function setLoading() {
     ['valMd5','valSha1','valSha256','valSha512'].forEach(id => {
       const el = document.getElementById(id);
-      el.textContent = 'Computing…';
+      el.textContent = 'Computing鈥?;
       el.className = 'hash-value loading';
     });
   }
@@ -503,7 +503,7 @@
     await computeFromBuffer(buffer);
   }
 
-  // ── Tabs ────────────────────────────────────────────────────────────────────
+  // 鈹€鈹€ Tabs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   document.getElementById('tabText').addEventListener('click', () => {
     currentTab = 'text';
     document.getElementById('tabText').classList.add('active');
@@ -522,11 +522,11 @@
     else { hashes.md5 = hashes.sha1 = hashes.sha256 = hashes.sha512 = ''; refreshDisplay(); }
   });
 
-  // ── Text input ──────────────────────────────────────────────────────────────
+  // 鈹€鈹€ Text input 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   function updateInputStat(val) {
     const chars = val.length;
     const bytes = new TextEncoder().encode(val).length;
-    document.getElementById('inputStat').textContent = `${chars.toLocaleString()} char${chars !== 1 ? 's' : ''} · ${bytes.toLocaleString()} byte${bytes !== 1 ? 's' : ''}`;
+    document.getElementById('inputStat').textContent = `${chars.toLocaleString()} char${chars !== 1 ? 's' : ''} 路 ${bytes.toLocaleString()} byte${bytes !== 1 ? 's' : ''}`;
   }
 
   let debounceTimer;
@@ -550,7 +550,7 @@
     computeFromText(s);
   });
 
-  // ── File drop ───────────────────────────────────────────────────────────────
+  // 鈹€鈹€ File drop 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
 
@@ -590,7 +590,7 @@
     reader.readAsArrayBuffer(file);
   }
 
-  // ── Case toggle ─────────────────────────────────────────────────────────────
+  // 鈹€鈹€ Case toggle 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   document.getElementById('caseLower').addEventListener('click', () => {
     caseMode = 'lower';
     document.getElementById('caseLower').classList.add('active');
@@ -604,15 +604,15 @@
     refreshDisplay();
   });
 
-  // ── Copy buttons ────────────────────────────────────────────────────────────
+  // 鈹€鈹€ Copy buttons 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   document.querySelectorAll('.btn-copy-hash').forEach(btn => {
     btn.addEventListener('click', () => {
       const val = document.getElementById(btn.dataset.id)?.textContent;
-      if (!val || val === 'Awaiting input…' || val === 'Computing…') return;
+      if (!val || val === 'Awaiting input鈥? || val === 'Computing鈥?) return;
       navigator.clipboard.writeText(val).then(() => {
         btn.classList.add('copied');
         const orig = btn.textContent;
-        btn.textContent = '✓';
+        btn.textContent = '鉁?;
         setTimeout(() => { btn.classList.remove('copied'); btn.textContent = orig; }, 1500);
       });
     });
@@ -638,16 +638,16 @@
     navigator.clipboard.writeText(vals).then(() => {
       const btn = document.getElementById('copyAll');
       btn.classList.add('copied');
-      btn.textContent = '✓ Copied';
+      btn.textContent = '鉁?Copied';
       setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copy All'; }, 1500);
     });
   });
 </script>
 </div>
 <footer>
-  <a href="../index.html">← Home</a> &nbsp;·&nbsp;
-  <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp;
-  <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="../index.html">鈫?Home</a> &nbsp;路&nbsp;
+  <a href="../all-tools.html">All Tools</a> &nbsp;路&nbsp;
+  <a href="../privacy.html">Privacy</a> &nbsp;路&nbsp;
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>

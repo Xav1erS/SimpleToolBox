@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
@@ -93,7 +93,7 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Sentence Counter <span class="ds-tool-badge">text</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📑</div><h1 class="ds-tool-header__title">Sentence Counter</h1></div><p class="ds-tool-header__desc">Count sentences in pasted text instantly and inspect rough sentence length, paragraph count, and per-sentence breakdown.</p><div class="ds-tool-tag-row"><span class="ds-tag">sentence count</span><span class="ds-tag">writing stats</span><span class="ds-tag">paragraphs</span><span class="ds-tag">browser only</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃搼</div><h1 class="ds-tool-header__title">Sentence Counter</h1></div><p class="ds-tool-header__desc">Count sentences in pasted text instantly and inspect rough sentence length, paragraph count, and per-sentence breakdown.</p><div class="ds-tool-tag-row"><span class="ds-tag">sentence count</span><span class="ds-tag">writing stats</span><span class="ds-tag">paragraphs</span><span class="ds-tag">browser only</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
   <div class="ds-tool-pane"><div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Text</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnPaste">Paste</button><button class="io-btn ds-tool-pane__btn" id="btnSample">Sample</button><button class="io-btn ds-tool-pane__btn" id="btnClear">Clear</button></div></div><textarea class="io-textarea ds-tool-textarea" id="inputText" placeholder="Paste text or an article excerpt..." spellcheck="false"></textarea><div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="charStat">0 chars</span></div></div>
   <div class="stats-grid">
@@ -123,9 +123,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
-    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
-    <a href="keyword-density-checker.html" class="ds-related-card"><span class="ds-related-icon">🎯</span><div><div class="ds-related-name">Keyword Density Checker</div><div class="ds-related-desc">Measure keyword frequency and density in pasted text</div></div></a>
+    <a href="word-counter.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Word Counter</div><div class="ds-related-desc">Count words, characters, and estimate reading time</div></div></a>
+    <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">馃Ч</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
+    <a href="keyword-density-checker.html" class="ds-related-card"><span class="ds-related-icon">馃幆</span><div><div class="ds-related-name">Keyword Density Checker</div><div class="ds-related-desc">Measure keyword frequency and density in pasted text</div></div></a>
   </div>
 </div>
 
@@ -145,7 +145,7 @@
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
-            <span class="ds-seo-example__value">2 sentences · 15 words · 8 avg words/sentence</span>
+            <span class="ds-seo-example__value">2 sentences 路 15 words 路 8 avg words/sentence</span>
           </div>
         </div>
       </div>
@@ -189,7 +189,7 @@
   const SAMPLE = 'Simple ToolBox helps you finish small tasks quickly. It runs in your browser, so pasted text stays local. Sentence counting is useful when you are editing an article or checking readability.';
   const inputText = document.getElementById('inputText');
   const sentenceList = document.getElementById('sentenceList');
-  function analyze(){ const text=inputText.value.trim(); const sentences=text?text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []:[]; const cleaned=sentences.map((s)=>s.trim()).filter(Boolean); const words=text?((text.match(/\\b[\\w'-]+\\b/g)||[]).length):0; const paragraphs=text?text.split(/\\n\\s*\\n/).filter((p)=>p.trim()!=='').length:0; document.getElementById('charStat').textContent=`${inputText.value.length.toLocaleString()} chars`; document.getElementById('sentenceCount').textContent=`${cleaned.length}`; document.getElementById('wordCount').textContent=`${words}`; document.getElementById('avgWords').textContent=`${cleaned.length?Math.round(words/cleaned.length):0}`; document.getElementById('paragraphCount').textContent=`${paragraphs}`; if(!cleaned.length){ sentenceList.innerHTML='<div class=\"sentence-item\"><div class=\"sentence-item__meta\">No sentences yet</div><div>Paste text to see the breakdown.</div></div>'; return; } sentenceList.innerHTML=cleaned.map((sentence,index)=>{ const count=(sentence.match(/\\b[\\w\\'-]+\\b/g)||[]).length; return `<div class=\"sentence-item\"><div class=\"sentence-item__meta\">Sentence ${index+1} · ${count} words</div><div>${sentence.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`; }).join(''); }
+  function analyze(){ const text=inputText.value.trim(); const sentences=text?text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []:[]; const cleaned=sentences.map((s)=>s.trim()).filter(Boolean); const words=text?((text.match(/\\b[\\w'-]+\\b/g)||[]).length):0; const paragraphs=text?text.split(/\\n\\s*\\n/).filter((p)=>p.trim()!=='').length:0; document.getElementById('charStat').textContent=`${inputText.value.length.toLocaleString()} chars`; document.getElementById('sentenceCount').textContent=`${cleaned.length}`; document.getElementById('wordCount').textContent=`${words}`; document.getElementById('avgWords').textContent=`${cleaned.length?Math.round(words/cleaned.length):0}`; document.getElementById('paragraphCount').textContent=`${paragraphs}`; if(!cleaned.length){ sentenceList.innerHTML='<div class=\"sentence-item\"><div class=\"sentence-item__meta\">No sentences yet</div><div>Paste text to see the breakdown.</div></div>'; return; } sentenceList.innerHTML=cleaned.map((sentence,index)=>{ const count=(sentence.match(/\\b[\\w\\'-]+\\b/g)||[]).length; return `<div class=\"sentence-item\"><div class=\"sentence-item__meta\">Sentence ${index+1} 路 ${count} words</div><div>${sentence.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`; }).join(''); }
   inputText.addEventListener('input', analyze);
   document.getElementById('btnSample').addEventListener('click',()=>{inputText.value=SAMPLE;analyze();});
   document.getElementById('btnClear').addEventListener('click',()=>{inputText.value='';analyze();});

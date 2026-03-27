@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>EXIF Data Viewer — Read Image Metadata Online | Simple ToolBox</title>
-  <meta name="description" content="View full EXIF metadata from any image file: camera model, GPS coordinates, exposure, aperture, ISO, date taken, and more. Runs locally — no image is uploaded." />
+  <title>EXIF Data Viewer 鈥?Read Image Metadata Online | Simple ToolBox</title>
+  <meta name="description" content="View full EXIF metadata from any image file: camera model, GPS coordinates, exposure, aperture, ISO, date taken, and more. Runs locally 鈥?no image is uploaded." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/exif-viewer" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/exif-viewer.html" />
-  <meta property="og:title" content="EXIF Data Viewer — Read Image Metadata | Simple ToolBox" />
-  <meta property="og:description" content="Read camera model, GPS, exposure, and all EXIF metadata from any image. 100% local — your image never leaves your device." />
+  <meta property="og:title" content="EXIF Data Viewer 鈥?Read Image Metadata | Simple ToolBox" />
+  <meta property="og:description" content="Read camera model, GPS, exposure, and all EXIF metadata from any image. 100% local 鈥?your image never leaves your device." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "EXIF Data Viewer",
-  "description": "Read camera model, GPS coordinates, exposure settings, and full EXIF metadata from any image file. Runs entirely in your browser — no image is uploaded.",
+  "description": "Read camera model, GPS coordinates, exposure settings, and full EXIF metadata from any image file. Runs entirely in your browser 鈥?no image is uploaded.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .drop-zone { border: 2px dashed var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 48px 24px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
@@ -110,16 +110,16 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">EXIF Viewer <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no image uploaded</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🔍</div><h1 class="ds-tool-header__title">EXIF Data Viewer</h1></div><p class="ds-tool-header__desc">Drop any JPEG, TIFF, HEIC, or RAW image to read its full EXIF metadata: camera model, lens, exposure, GPS coordinates, date taken, and more. Your image never leaves your device.</p><div class="ds-tool-tag-row"><span class="ds-tag">EXIF</span><span class="ds-tag">metadata</span><span class="ds-tag">GPS</span><span class="ds-tag">image</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃攳</div><h1 class="ds-tool-header__title">EXIF Data Viewer</h1></div><p class="ds-tool-header__desc">Drop any JPEG, TIFF, HEIC, or RAW image to read its full EXIF metadata: camera model, lens, exposure, GPS coordinates, date taken, and more. Your image never leaves your device.</p><div class="ds-tool-tag-row"><span class="ds-tag">EXIF</span><span class="ds-tag">metadata</span><span class="ds-tag">GPS</span><span class="ds-tag">image</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
 
   <div class="ds-tool-pane">
     <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Image File</span></div>
     <div style="padding: 20px 0;">
       <div class="drop-zone" id="dropZone">
-        <div class="drop-icon">🖼️</div>
+        <div class="drop-icon">馃柤锔?/div>
         <div class="drop-text">Drop an image here or click to browse</div>
-        <div class="drop-sub">JPEG, TIFF, PNG, WebP, HEIC, RAW — processed locally</div>
+        <div class="drop-sub">JPEG, TIFF, PNG, WebP, HEIC, RAW 鈥?processed locally</div>
         <input type="file" class="drop-input" id="fileInput" accept="image/*,.heic,.heif,.cr2,.nef,.arw,.dng" />
       </div>
       <div class="preview-wrap" id="previewWrap">
@@ -139,7 +139,7 @@
         <div id="exifContent"></div>
       </div>
       <div id="gpsActions" style="padding: 0 12px 12px; display:none">
-        <a id="mapLink" href="#" target="_blank" rel="noopener" class="map-link">📍 View on Google Maps</a>
+        <a id="mapLink" href="#" target="_blank" rel="noopener" class="map-link">馃搷 View on Google Maps</a>
       </div>
     </div>
   </div>
@@ -148,7 +148,7 @@
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is EXIF Viewer?</h2>
-    <p>EXIF Viewer reads the Exchangeable Image File Format (EXIF) metadata embedded inside JPEG, TIFF, and other image files. It extracts camera and lens information, exposure parameters, color space, orientation, GPS coordinates, and timestamps — all grouped into readable sections. Since everything runs locally, you can inspect private or confidential images without uploading them anywhere.</p>
+    <p>EXIF Viewer reads the Exchangeable Image File Format (EXIF) metadata embedded inside JPEG, TIFF, and other image files. It extracts camera and lens information, exposure parameters, color space, orientation, GPS coordinates, and timestamps 鈥?all grouped into readable sections. Since everything runs locally, you can inspect private or confidential images without uploading them anywhere.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use EXIF Viewer</h2>
@@ -165,9 +165,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="remove-exif.html" class="ds-related-card"><span class="ds-related-icon">🛡️</span><div><div class="ds-related-name">Remove EXIF Data</div><div class="ds-related-desc">Strip GPS location and EXIF metadata from photos</div></div></a>
-    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
-    <a href="image-rotate.html" class="ds-related-card"><span class="ds-related-icon">🔃</span><div><div class="ds-related-name">Image Rotate &amp; Flip</div><div class="ds-related-desc">Rotate or flip images 90°, 180°, 270° in browser</div></div></a>
+    <a href="remove-exif.html" class="ds-related-card"><span class="ds-related-icon">馃洝锔?/span><div><div class="ds-related-name">Remove EXIF Data</div><div class="ds-related-desc">Strip GPS location and EXIF metadata from photos</div></div></a>
+    <a href="image-to-base64.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Image to Base64</div><div class="ds-related-desc">Convert any image to a Base64 string or data URI for embedding in HTML/CSS</div></div></a>
+    <a href="image-rotate.html" class="ds-related-card"><span class="ds-related-icon">馃攦</span><div><div class="ds-related-name">Image Rotate &amp; Flip</div><div class="ds-related-desc">Rotate or flip images 90掳, 180掳, 270掳 in browser</div></div></a>
   </div>
 </div>
 
@@ -187,7 +187,7 @@
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
-            <span class="ds-seo-example__value">Make: Apple | Model: iPhone 15 Pro | GPS: 37.4219°N 122.0840°W | ISO: 64 | f/1.8 | 1/2000s</span>
+            <span class="ds-seo-example__value">Make: Apple | Model: iPhone 15 Pro | GPS: 37.4219掳N 122.0840掳W | ISO: 64 | f/1.8 | 1/2000s</span>
           </div>
         </div>
       </div>
@@ -207,11 +207,11 @@
       <summary>Why Use This Tool</summary>
       <div class="ds-seo-collapse__body">
         <ul>
-          <li>Inspect GPS location before sharing — avoid accidentally revealing private locations.</li>
+          <li>Inspect GPS location before sharing 鈥?avoid accidentally revealing private locations.</li>
           <li>Shows all EXIF fields without installing software.</li>
           <li>GPS to Google Maps link for instant location check.</li>
           <li>Copy as JSON for programmatic use or logging.</li>
-          <li>100% local — no image is ever uploaded.</li>
+          <li>100% local 鈥?no image is ever uploaded.</li>
         </ul>
       </div>
     </details>
@@ -231,7 +231,7 @@
 <script>
   'use strict';
 
-  // Minimal EXIF parser — reads Exif IFD from JPEG / TIFF ArrayBuffer
+  // Minimal EXIF parser 鈥?reads Exif IFD from JPEG / TIFF ArrayBuffer
   // Supports the most common tags without external dependencies
 
   const EXIF_TAGS = {
@@ -261,7 +261,7 @@
     0x001D: 'GPSDateStamp'
   };
 
-  const ORIENTATION_MAP = { 1:'Normal',2:'Mirror H',3:'180°',4:'Mirror V',5:'Mirror H + 90° CW',6:'90° CW',7:'Mirror H + 90° CCW',8:'90° CCW' };
+  const ORIENTATION_MAP = { 1:'Normal',2:'Mirror H',3:'180掳',4:'Mirror V',5:'Mirror H + 90掳 CW',6:'90掳 CW',7:'Mirror H + 90掳 CCW',8:'90掳 CCW' };
   const EXPOSURE_PROG = { 0:'Not defined',1:'Manual',2:'Program AE',3:'Aperture priority',4:'Shutter priority',5:'Creative',6:'Action',7:'Portrait',8:'Landscape' };
   const METERING = { 0:'Unknown',1:'Average',2:'Center-weighted',3:'Spot',4:'Multi-spot',5:'Pattern',6:'Partial' };
   const FLASH_MAP = { 0:'No flash',1:'Flash fired',5:'Strobe,no detection',7:'Flash+strobe',9:'Flash compulsory',13:'Flash compulsory+strobe',15:'Flash compulsory+strobe+no ret.',16:'Flash suppressed',24:'No flash,auto mode',25:'Flash,auto',29:'Flash+no detection,auto',31:'Flash+no detection+strobe,auto',32:'No flash,unavailable',65:'Flash,red-eye',69:'Flash+strobe,red-eye',71:'Flash+strobe+no ret,red-eye',73:'Flash compulsory,red-eye',77:'Flash compulsory+no ret,red-eye',79:'Flash compulsory+strobe+no ret,red-eye',89:'Flash auto,red-eye',93:'Flash auto+no ret,red-eye',95:'Flash auto+strobe+no ret,red-eye' };
@@ -323,9 +323,9 @@
         } else if (type === 7) { // UNDEFINED
           value = numValues <= 4 ? '0x' + Array.from(new Uint8Array(buf, dataOffset, numValues)).map(b => b.toString(16).padStart(2,'0')).join('') : `[${numValues} bytes]`;
         } else {
-          value = '—';
+          value = '鈥?;
         }
-      } catch { value = '—'; }
+      } catch { value = '鈥?; }
 
       entries[tag] = value;
     }
@@ -385,7 +385,7 @@
     if (tag === 'ISOSpeedRatings') return val;
     if (tag === 'ExposureBiasValue') return (val >= 0 ? '+' : '') + val.toFixed(2) + ' EV';
     if (Array.isArray(val)) return val.map(v => typeof v === 'number' ? v.toFixed(4) : v).join(', ');
-    if (typeof val === 'number') return isNaN(val) ? '—' : (Number.isInteger(val) ? val : val.toFixed(6));
+    if (typeof val === 'number') return isNaN(val) ? '鈥? : (Number.isInteger(val) ? val : val.toFixed(6));
     return String(val);
   }
 
@@ -457,7 +457,7 @@
       img.src = URL.createObjectURL(file);
       document.getElementById('previewInfo').innerHTML = `
         <strong>${file.name}</strong><br>
-        ${(file.size/1024).toFixed(1)} KB · ${file.type || 'unknown type'}
+        ${(file.size/1024).toFixed(1)} KB 路 ${file.type || 'unknown type'}
       `;
       document.getElementById('previewWrap').classList.add('show');
 

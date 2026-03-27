@@ -39,7 +39,7 @@
       "name": "What gradient types are supported?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Linear gradients with a custom angle (0–360°) and radial gradients (circle shape) are both supported."
+        "text": "Linear gradients with a custom angle (0鈥?60掳) and radial gradients (circle shape) are both supported."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "How do I control the direction of a linear gradient?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use the Angle slider. 0° is top to bottom, 90° is left to right, and 135° runs diagonally."
+        "text": "Use the Angle slider. 0掳 is top to bottom, 90掳 is left to right, and 135掳 runs diagonally."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body{font-family:var(--ds-font-sans);background:var(--ds-color-bg);color:var(--ds-color-text-primary);min-height:100vh}
     .gg-layout{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start}
@@ -105,20 +105,20 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">CSS Gradient Generator <span class="ds-tool-badge">generate</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🌈</div><h1 class="ds-tool-header__title">CSS Gradient Generator</h1></div><p class="ds-tool-header__desc">Build linear and radial CSS gradients visually. Add color stops, adjust positions, set the angle, and copy the ready-to-use CSS in one click.</p><div class="ds-tool-tag-row"><span class="ds-tag">CSS gradient</span><span class="ds-tag">linear gradient</span><span class="ds-tag">radial gradient</span><span class="ds-tag">color stops</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃寛</div><h1 class="ds-tool-header__title">CSS Gradient Generator</h1></div><p class="ds-tool-header__desc">Build linear and radial CSS gradients visually. Add color stops, adjust positions, set the angle, and copy the ready-to-use CSS in one click.</p><div class="ds-tool-tag-row"><span class="ds-tag">CSS gradient</span><span class="ds-tag">linear gradient</span><span class="ds-tag">radial gradient</span><span class="ds-tag">color stops</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
   <div class="gg-layout">
     <div class="gg-panel">
       <div class="gg-section">
         <div class="gg-label">Gradient Type</div>
         <div class="type-row">
-          <button class="type-btn active" id="typeLinear">⟶ Linear</button>
-          <button class="type-btn" id="typeRadial">◎ Radial</button>
+          <button class="type-btn active" id="typeLinear">鉄?Linear</button>
+          <button class="type-btn" id="typeRadial">鈼?Radial</button>
         </div>
       </div>
       <div class="gg-section" id="angleSection">
         <div class="gg-label">Angle</div>
-        <div class="field-row"><label>Direction: <strong id="angleVal">135</strong>°</label><input type="range" id="angleRange" min="0" max="360" step="1" value="135" /></div>
+        <div class="field-row"><label>Direction: <strong id="angleVal">135</strong>掳</label><input type="range" id="angleRange" min="0" max="360" step="1" value="135" /></div>
       </div>
       <div class="gg-section">
         <div class="gg-label">Color Stops</div>
@@ -143,7 +143,7 @@
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is CSS Gradient Generator?</h2>
-    <p>CSS Gradient Generator is a visual tool for building CSS linear and radial gradients. You add color stops, set their positions on a 0–100% scale, choose an angle for linear gradients, and see the result live. The final CSS property is ready to paste into any stylesheet.</p>
+    <p>CSS Gradient Generator is a visual tool for building CSS linear and radial gradients. You add color stops, set their positions on a 0鈥?00% scale, choose an angle for linear gradients, and see the result live. The final CSS property is ready to paste into any stylesheet.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use CSS Gradient Generator</h2>
@@ -160,9 +160,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="image-palette-extractor.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">Image Palette Extractor</div><div class="ds-related-desc">Extract a compact palette of dominant HEX colors from an image</div></div></a>
-    <a href="image-brightness-contrast.html" class="ds-related-card"><span class="ds-related-icon">☀️</span><div><div class="ds-related-name">Image Brightness Contrast</div><div class="ds-related-desc">Adjust photo brightness and contrast with instant preview</div></div></a>
-    <a href="duotone-image.html" class="ds-related-card"><span class="ds-related-icon">🌓</span><div><div class="ds-related-name">Duotone Image</div><div class="ds-related-desc">Map image shadows and highlights to two custom colors</div></div></a>
+    <a href="image-palette-extractor.html" class="ds-related-card"><span class="ds-related-icon">馃帹</span><div><div class="ds-related-name">Image Palette Extractor</div><div class="ds-related-desc">Extract a compact palette of dominant HEX colors from an image</div></div></a>
+    <a href="image-brightness-contrast.html" class="ds-related-card"><span class="ds-related-icon">鈽€锔?/span><div><div class="ds-related-name">Image Brightness Contrast</div><div class="ds-related-desc">Adjust photo brightness and contrast with instant preview</div></div></a>
+    <a href="duotone-image.html" class="ds-related-card"><span class="ds-related-icon">馃寭</span><div><div class="ds-related-name">Duotone Image</div><div class="ds-related-desc">Map image shadows and highlights to two custom colors</div></div></a>
   </div>
 </div>
 
@@ -178,7 +178,7 @@
         <div class="ds-seo-example">
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Input</span>
-            <span class="ds-seo-example__value">Linear, 135°, stop 1: #7c6af7 at 0%, stop 2: #06b6d4 at 100%</span>
+            <span class="ds-seo-example__value">Linear, 135掳, stop 1: #7c6af7 at 0%, stop 2: #06b6d4 at 100%</span>
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
@@ -201,9 +201,9 @@
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>What gradient types are supported?</strong><p>Linear gradients with a custom angle (0–360°) and radial gradients (circle shape) are both supported.</p></div>
+        <div class="ds-seo-faq-item"><strong>What gradient types are supported?</strong><p>Linear gradients with a custom angle (0鈥?60掳) and radial gradients (circle shape) are both supported.</p></div>
         <div class="ds-seo-faq-item"><strong>Can I add more than two color stops?</strong><p>Yes. Click &quot;Add color stop&quot; to add as many stops as you need. Each stop has an independent color and position.</p></div>
-        <div class="ds-seo-faq-item"><strong>How do I control the direction of a linear gradient?</strong><p>Use the Angle slider. 0° is top to bottom, 90° is left to right, and 135° runs diagonally.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I control the direction of a linear gradient?</strong><p>Use the Angle slider. 0掳 is top to bottom, 90掳 is left to right, and 135掳 runs diagonally.</p></div>
         <div class="ds-seo-faq-item"><strong>Is the output cross-browser compatible?</strong><p>Yes. The tool outputs standard CSS using the linear-gradient() and radial-gradient() functions which are supported by all modern browsers.</p></div>
       </div>
     </details>

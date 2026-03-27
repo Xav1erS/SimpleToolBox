@@ -39,7 +39,7 @@
       "name": "What is percentage change?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new − old) ÷ |old| × 100."
+        "text": "Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new 鈭?old) 梅 |old| 脳 100."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "What is the difference between percentage change and percentage difference?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Percentage change uses the original value as the base and indicates direction (increase/decrease). Percentage difference uses the average of both values and has no direction — it just measures gap size."
+        "text": "Percentage change uses the original value as the base and indicates direction (increase/decrease). Percentage difference uses the average of both values and has no direction 鈥?it just measures gap size."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "What does a negative percentage change mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A negative result means the value decreased. For example, −25% means the new value is 25% lower than the original."
+        "text": "A negative result means the value decreased. For example, 鈭?5% means the new value is 25% lower than the original."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "What is the multiplier?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The multiplier shows how many times larger the new value is compared to the original. A multiplier of 1.5 means the value grew to 1.5× its original size (a 50% increase)."
+        "text": "The multiplier shows how many times larger the new value is compared to the original. A multiplier of 1.5 means the value grew to 1.5脳 its original size (a 50% increase)."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .input-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; }
@@ -111,7 +111,7 @@
   <div class="ds-tool-spacer"></div>
   <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
 </nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">📈</div><h1 class="ds-tool-header__title">Percentage Change Calculator</h1></div><p class="ds-tool-header__desc">Calculate the percentage increase or decrease between two values. Shows direction, absolute difference, and the formula used.</p><div class="ds-tool-tag-row"><span class="ds-tag">percentage increase</span><span class="ds-tag">percentage decrease</span><span class="ds-tag">calculator</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃搱</div><h1 class="ds-tool-header__title">Percentage Change Calculator</h1></div><p class="ds-tool-header__desc">Calculate the percentage increase or decrease between two values. Shows direction, absolute difference, and the formula used.</p><div class="ds-tool-tag-row"><span class="ds-tag">percentage increase</span><span class="ds-tag">percentage decrease</span><span class="ds-tag">calculator</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
 
   <div class="ds-tool-pane">
@@ -127,7 +127,7 @@
         <label class="field-label" for="inputFrom">Original value</label>
         <input class="field-input" id="inputFrom" type="number" placeholder="100" step="any" />
       </div>
-      <div class="arrow-mid">→</div>
+      <div class="arrow-mid">鈫?/div>
       <div class="field-group">
         <label class="field-label" for="inputTo">New value</label>
         <input class="field-input" id="inputTo" type="number" placeholder="150" step="any" />
@@ -136,15 +136,15 @@
   </div>
 
   <div class="result-card" id="resultCard">
-    <div class="result-pct neutral" id="resultPct">—</div>
+    <div class="result-pct neutral" id="resultPct">鈥?/div>
     <div class="result-label" id="resultLabel">Enter both values to calculate</div>
     <div class="result-formula" id="resultFormula"></div>
   </div>
 
   <div class="stats-row" id="statsRow" style="display:none">
-    <div class="stat-box"><div class="stat-val" id="statAbsDiff">—</div><div class="stat-lbl">Absolute difference</div></div>
-    <div class="stat-box"><div class="stat-val" id="statMultiplier">—</div><div class="stat-lbl">Multiplier</div></div>
-    <div class="stat-box"><div class="stat-val" id="statReverse">—</div><div class="stat-lbl">Reverse change</div></div>
+    <div class="stat-box"><div class="stat-val" id="statAbsDiff">鈥?/div><div class="stat-lbl">Absolute difference</div></div>
+    <div class="stat-box"><div class="stat-val" id="statMultiplier">鈥?/div><div class="stat-lbl">Multiplier</div></div>
+    <div class="stat-box"><div class="stat-val" id="statReverse">鈥?/div><div class="stat-lbl">Reverse change</div></div>
   </div>
 
   <div class="ds-tool-pane">
@@ -160,7 +160,7 @@
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is Percentage Change?</h2>
-    <p>Percentage change expresses the relative difference between an old and a new value as a percentage. A positive result is an increase; a negative result is a decrease. The formula is: (new value − original value) ÷ |original value| × 100. It is widely used in finance, statistics, and everyday comparisons.</p>
+    <p>Percentage change expresses the relative difference between an old and a new value as a percentage. A positive result is an increase; a negative result is a decrease. The formula is: (new value 鈭?original value) 梅 |original value| 脳 100. It is widely used in finance, statistics, and everyday comparisons.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Calculate Percentage Change</h2>
@@ -177,11 +177,11 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
-    <a href="discount-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏷️</span><div><div class="ds-related-name">Discount Calculator</div><div class="ds-related-desc">Calculate sale price and savings from a discount percentage</div></div></a>
-    <a href="tip-calculator.html" class="ds-related-card"><span class="ds-related-icon">🍽️</span><div><div class="ds-related-name">Tip Calculator</div><div class="ds-related-desc">Calculate tip amount and split the bill among any number of people</div></div></a>
-    <a href="savings-calculator.html" class="ds-related-card"><span class="ds-related-icon">💰</span><div><div class="ds-related-name">Savings Calculator</div><div class="ds-related-desc">Project future savings with compound interest and monthly contributions</div></div></a>
-    <a href="loan-calculator.html" class="ds-related-card"><span class="ds-related-icon">🏦</span><div><div class="ds-related-name">Loan Calculator</div><div class="ds-related-desc">Calculate monthly loan payments and amortization schedule</div></div></a>
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+    <a href="discount-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃彿锔?/span><div><div class="ds-related-name">Discount Calculator</div><div class="ds-related-desc">Calculate sale price and savings from a discount percentage</div></div></a>
+    <a href="tip-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃嵔锔?/span><div><div class="ds-related-name">Tip Calculator</div><div class="ds-related-desc">Calculate tip amount and split the bill among any number of people</div></div></a>
+    <a href="savings-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃挵</span><div><div class="ds-related-name">Savings Calculator</div><div class="ds-related-desc">Project future savings with compound interest and monthly contributions</div></div></a>
+    <a href="loan-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃彟</span><div><div class="ds-related-name">Loan Calculator</div><div class="ds-related-desc">Calculate monthly loan payments and amortization schedule</div></div></a>
   </div>
 </div>
 
@@ -220,10 +220,10 @@
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>What is percentage change?</strong><p>Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new − old) ÷ |old| × 100.</p></div>
-        <div class="ds-seo-faq-item"><strong>What is the difference between percentage change and percentage difference?</strong><p>Percentage change uses the original value as the base and indicates direction (increase/decrease). Percentage difference uses the average of both values and has no direction — it just measures gap size.</p></div>
-        <div class="ds-seo-faq-item"><strong>What does a negative percentage change mean?</strong><p>A negative result means the value decreased. For example, −25% means the new value is 25% lower than the original.</p></div>
-        <div class="ds-seo-faq-item"><strong>What is the multiplier?</strong><p>The multiplier shows how many times larger the new value is compared to the original. A multiplier of 1.5 means the value grew to 1.5× its original size (a 50% increase).</p></div>
+        <div class="ds-seo-faq-item"><strong>What is percentage change?</strong><p>Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new 鈭?old) 梅 |old| 脳 100.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the difference between percentage change and percentage difference?</strong><p>Percentage change uses the original value as the base and indicates direction (increase/decrease). Percentage difference uses the average of both values and has no direction 鈥?it just measures gap size.</p></div>
+        <div class="ds-seo-faq-item"><strong>What does a negative percentage change mean?</strong><p>A negative result means the value decreased. For example, 鈭?5% means the new value is 25% lower than the original.</p></div>
+        <div class="ds-seo-faq-item"><strong>What is the multiplier?</strong><p>The multiplier shows how many times larger the new value is compared to the original. A multiplier of 1.5 means the value grew to 1.5脳 its original size (a 50% increase).</p></div>
       </div>
     </details>
   </div>
@@ -231,15 +231,15 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 </div>
 
-<footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
+<footer class="ds-footer"><div class="ds-footer__inner"><span>漏 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
 
 <script>
 const EXAMPLES = [
-  { from: 100, to: 150, label: '100→150' },
-  { from: 200, to: 180, label: '200→180' },
-  { from: 50,  to: 75,  label: '50→75' },
-  { from: 1000, to: 850, label: '1000→850' },
-  { from: 25, to: 100, label: '25→100' },
+  { from: 100, to: 150, label: '100鈫?50' },
+  { from: 200, to: 180, label: '200鈫?80' },
+  { from: 50,  to: 75,  label: '50鈫?5' },
+  { from: 1000, to: 850, label: '1000鈫?50' },
+  { from: 25, to: 100, label: '25鈫?00' },
 ];
 
 function fmt(n) {
@@ -255,7 +255,7 @@ function calc() {
   const statsEl = document.getElementById('statsRow');
 
   if (isNaN(from) || isNaN(to)) {
-    pctEl.textContent = '—';
+    pctEl.textContent = '鈥?;
     pctEl.className = 'result-pct neutral';
     lblEl.textContent = 'Enter both values to calculate';
     fmlEl.textContent = '';
@@ -263,7 +263,7 @@ function calc() {
     return;
   }
   if (from === 0) {
-    pctEl.textContent = '∞';
+    pctEl.textContent = '鈭?;
     pctEl.className = 'result-pct neutral';
     lblEl.textContent = 'Original value cannot be zero';
     fmlEl.textContent = '';
@@ -279,7 +279,7 @@ function calc() {
   pctEl.textContent = (isIncrease ? '+' : '') + fmt(rounded) + '%';
   pctEl.className = 'result-pct ' + (isZero ? 'neutral' : isIncrease ? 'increase' : 'decrease');
   lblEl.textContent = isZero ? 'No change' : (isIncrease ? 'Increase' : 'Decrease') + ` from ${fmt(from)} to ${fmt(to)}`;
-  fmlEl.textContent = `Formula: (${fmt(to)} − ${fmt(from)}) ÷ |${fmt(from)}| × 100 = ${fmt(rounded)}%`;
+  fmlEl.textContent = `Formula: (${fmt(to)} 鈭?${fmt(from)}) 梅 |${fmt(from)}| 脳 100 = ${fmt(rounded)}%`;
 
   // Stats
   const absDiff = Math.abs(to - from);
@@ -287,8 +287,8 @@ function calc() {
   const rev = from !== 0 && to !== 0 ? ((from - to) / Math.abs(to) * 100) : null;
 
   document.getElementById('statAbsDiff').textContent = fmt(Math.round(absDiff * 10000) / 10000);
-  document.getElementById('statMultiplier').textContent = fmt(Math.round(mult * 10000) / 10000) + '×';
-  document.getElementById('statReverse').textContent = rev !== null ? (rev > 0 ? '+' : '') + fmt(Math.round(rev * 10000) / 10000) + '%' : '—';
+  document.getElementById('statMultiplier').textContent = fmt(Math.round(mult * 10000) / 10000) + '脳';
+  document.getElementById('statReverse').textContent = rev !== null ? (rev > 0 ? '+' : '') + fmt(Math.round(rev * 10000) / 10000) + '%' : '鈥?;
   statsEl.style.display = 'grid';
 }
 

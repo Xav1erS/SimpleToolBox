@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Discount Calculator — Sale Price and Savings Amount | Simple ToolBox</title>
+  <title>Discount Calculator 鈥?Sale Price and Savings Amount | Simple ToolBox</title>
   <meta name="description" content="Calculate the sale price after a discount instantly. Enter original price and discount percentage to get final price, amount saved, and effective discount rate. Browser-only." />
   <link rel="canonical" href="https://simpletoolbox.dev/tools/discount-calculator" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/tools/discount-calculator.html" />
-  <meta property="og:title" content="Discount Calculator — Sale Price and Savings Amount | Simple ToolBox" />
+  <meta property="og:title" content="Discount Calculator 鈥?Sale Price and Savings Amount | Simple ToolBox" />
   <meta property="og:description" content="Enter original price and discount % to get final price and savings. Also works in reverse: enter sale price to find original." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <!-- AUTO-STRUCTURED-DATA:START -->
@@ -39,7 +39,7 @@
       "name": "How is the sale price calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sale price = original price × (1 − discount% / 100). For example, a $100 item at 20% off costs $80."
+        "text": "Sale price = original price 脳 (1 鈭?discount% / 100). For example, a $100 item at 20% off costs $80."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "How do I find the discount % between two prices?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use the second calculator: enter the original price and the sale price. The tool calculates (original − sale) / original × 100."
+        "text": "Use the second calculator: enter the original price and the sale price. The tool calculates (original 鈭?sale) / original 脳 100."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "Is there a currency option?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The tool uses $ as a placeholder. The math works for any currency — just treat the numbers as your local currency."
+        "text": "The tool uses $ as a placeholder. The math works for any currency 鈥?just treat the numbers as your local currency."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .calc-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
@@ -98,25 +98,25 @@
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Discount Calculator <span class="ds-tool-badge">calculator</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">🏷️</div><h1 class="ds-tool-header__title">Discount Calculator</h1></div><p class="ds-tool-header__desc">Two calculators in one: find the sale price from an original price and discount %, or work in reverse to find what discount was applied between an original and sale price.</p><div class="ds-tool-tag-row"><span class="ds-tag">discount</span><span class="ds-tag">sale price</span><span class="ds-tag">savings</span><span class="ds-tag">calculator</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃彿锔?/div><h1 class="ds-tool-header__title">Discount Calculator</h1></div><p class="ds-tool-header__desc">Two calculators in one: find the sale price from an original price and discount %, or work in reverse to find what discount was applied between an original and sale price.</p><div class="ds-tool-tag-row"><span class="ds-tag">discount</span><span class="ds-tag">sale price</span><span class="ds-tag">savings</span><span class="ds-tag">calculator</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
 
-  <!-- Calculator 1: Original → Sale -->
+  <!-- Calculator 1: Original 鈫?Sale -->
   <div class="calc-card">
-    <p class="calc-card__title">Original price → Sale price</p>
+    <p class="calc-card__title">Original price 鈫?Sale price</p>
     <div class="field-row">
       <div class="field"><label>Original price ($)</label><input type="number" id="origPrice" placeholder="100.00" min="0" step="0.01" /></div>
       <div class="field"><label>Discount (%)</label><input type="number" id="discPct" placeholder="20" min="0" max="100" step="0.5" /></div>
     </div>
     <hr class="sep" />
     <div class="result-row">
-      <div class="result-pill result-pill--green"><div class="result-pill__label">Sale price</div><div class="result-pill__value" id="r1Sale">—</div></div>
-      <div class="result-pill"><div class="result-pill__label">You save</div><div class="result-pill__value" id="r1Save">—</div></div>
-      <div class="result-pill"><div class="result-pill__label">Pay</div><div class="result-pill__value" id="r1Pct">—</div></div>
+      <div class="result-pill result-pill--green"><div class="result-pill__label">Sale price</div><div class="result-pill__value" id="r1Sale">鈥?/div></div>
+      <div class="result-pill"><div class="result-pill__label">You save</div><div class="result-pill__value" id="r1Save">鈥?/div></div>
+      <div class="result-pill"><div class="result-pill__label">Pay</div><div class="result-pill__value" id="r1Pct">鈥?/div></div>
     </div>
   </div>
 
-  <!-- Calculator 2: Reverse — find discount % -->
+  <!-- Calculator 2: Reverse 鈥?find discount % -->
   <div class="calc-card">
     <p class="calc-card__title">Find the discount % between two prices</p>
     <div class="field-row">
@@ -125,8 +125,8 @@
     </div>
     <hr class="sep" />
     <div class="result-row">
-      <div class="result-pill result-pill--green"><div class="result-pill__label">Discount</div><div class="result-pill__value" id="r2Pct">—</div></div>
-      <div class="result-pill"><div class="result-pill__label">Saved</div><div class="result-pill__value" id="r2Save">—</div></div>
+      <div class="result-pill result-pill--green"><div class="result-pill__label">Discount</div><div class="result-pill__value" id="r2Pct">鈥?/div></div>
+      <div class="result-pill"><div class="result-pill__label">Saved</div><div class="result-pill__value" id="r2Save">鈥?/div></div>
     </div>
   </div>
 
@@ -134,7 +134,7 @@
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is Discount Calculator?</h2>
-    <p>Discount Calculator provides two calculators: the first finds the sale price and savings from an original price and a discount percentage; the second works in reverse — given the original and sale price, it calculates what discount was applied.</p>
+    <p>Discount Calculator provides two calculators: the first finds the sale price and savings from an original price and a discount percentage; the second works in reverse 鈥?given the original and sale price, it calculates what discount was applied.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use Discount Calculator</h2>
@@ -150,9 +150,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">🔢</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
-    <a href="tip-calculator.html" class="ds-related-card"><span class="ds-related-icon">🍽️</span><div><div class="ds-related-name">Tip Calculator</div><div class="ds-related-desc">Calculate tip amount and split the bill among any number of people</div></div></a>
-    <a href="bmi-calculator.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">BMI Calculator</div><div class="ds-related-desc">Calculate Body Mass Index with Metric or Imperial units</div></div></a>
+    <a href="percentage-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃敘</span><div><div class="ds-related-name">Percentage Calculator</div><div class="ds-related-desc">Find X% of Y, what % X is of Y, or percentage change</div></div></a>
+    <a href="tip-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃嵔锔?/span><div><div class="ds-related-name">Tip Calculator</div><div class="ds-related-desc">Calculate tip amount and split the bill among any number of people</div></div></a>
+    <a href="bmi-calculator.html" class="ds-related-card"><span class="ds-related-icon">鈿栵笍</span><div><div class="ds-related-name">BMI Calculator</div><div class="ds-related-desc">Calculate Body Mass Index with Metric or Imperial units</div></div></a>
   </div>
 </div>
 
@@ -192,8 +192,8 @@
       <summary>Why Use This Tool</summary>
       <div class="ds-seo-collapse__body">
         <ul>
-          <li>Two calculators in one: forward (price → sale) and reverse (sale → discount %).</li>
-          <li>Instant results — updates as you type.</li>
+          <li>Two calculators in one: forward (price 鈫?sale) and reverse (sale 鈫?discount %).</li>
+          <li>Instant results 鈥?updates as you type.</li>
           <li>Useful for shopping, budgeting, and price comparisons.</li>
           <li>Runs entirely in your browser.</li>
         </ul>
@@ -202,10 +202,10 @@
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>How is the sale price calculated?</strong><p>Sale price = original price × (1 − discount% / 100). For example, a $100 item at 20% off costs $80.</p></div>
-        <div class="ds-seo-faq-item"><strong>How do I find the discount % between two prices?</strong><p>Use the second calculator: enter the original price and the sale price. The tool calculates (original − sale) / original × 100.</p></div>
+        <div class="ds-seo-faq-item"><strong>How is the sale price calculated?</strong><p>Sale price = original price 脳 (1 鈭?discount% / 100). For example, a $100 item at 20% off costs $80.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I find the discount % between two prices?</strong><p>Use the second calculator: enter the original price and the sale price. The tool calculates (original 鈭?sale) / original 脳 100.</p></div>
         <div class="ds-seo-faq-item"><strong>Can I calculate a discount greater than 100%?</strong><p>No. A discount over 100% would imply a negative price, so the tool caps the input at 100%.</p></div>
-        <div class="ds-seo-faq-item"><strong>Is there a currency option?</strong><p>The tool uses $ as a placeholder. The math works for any currency — just treat the numbers as your local currency.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is there a currency option?</strong><p>The tool uses $ as a placeholder. The math works for any currency 鈥?just treat the numbers as your local currency.</p></div>
       </div>
     </details>
   </div>
@@ -221,7 +221,7 @@
     const orig = parseFloat(document.getElementById('origPrice').value);
     const pct = parseFloat(document.getElementById('discPct').value);
     if (isNaN(orig) || isNaN(pct) || orig < 0 || pct < 0 || pct > 100) {
-      ['r1Sale','r1Save','r1Pct'].forEach(id => document.getElementById(id).textContent = '—'); return;
+      ['r1Sale','r1Save','r1Pct'].forEach(id => document.getElementById(id).textContent = '鈥?); return;
     }
     const save = orig * pct / 100;
     const sale = orig - save;
@@ -234,7 +234,7 @@
     const orig = parseFloat(document.getElementById('revOrig').value);
     const sale = parseFloat(document.getElementById('revSale').value);
     if (isNaN(orig) || isNaN(sale) || orig <= 0 || sale < 0) {
-      ['r2Pct','r2Save'].forEach(id => document.getElementById(id).textContent = '—'); return;
+      ['r2Pct','r2Save'].forEach(id => document.getElementById(id).textContent = '鈥?); return;
     }
     const save = orig - sale;
     const pct = save / orig * 100;

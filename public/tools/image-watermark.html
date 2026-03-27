@@ -47,7 +47,7 @@
       "name": "Can I change the watermark position?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. There is a 3×3 position grid covering all nine corners and edges. Click any position to move the watermark."
+        "text": "Yes. There is a 3脳3 position grid covering all nine corners and edges. Click any position to move the watermark."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=45" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
   <style>
     .main{max-width:1100px;margin:0 auto;padding:28px 24px 64px;display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
     .panel,.preview-panel{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);overflow:hidden}
@@ -112,12 +112,12 @@
 <body>
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
 <nav class="ds-tool-nav"><a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a><div class="ds-tool-nav-divider"></div><a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a><div class="ds-tool-nav-divider"></div><div class="ds-tool-nav-name">Image Watermark <span class="ds-tool-badge">image</span></div><div class="ds-tool-spacer"></div><div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div></nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">💧</div><h1 class="ds-tool-header__title">Image Watermark</h1></div><p class="ds-tool-header__desc">Add a custom text watermark to any image. Choose the position, font size, color, and opacity, then download the watermarked PNG directly in your browser.</p><div class="ds-tool-tag-row"><span class="ds-tag">watermark</span><span class="ds-tag">text overlay</span><span class="ds-tag">photo branding</span><span class="ds-tag">PNG</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃挧</div><h1 class="ds-tool-header__title">Image Watermark</h1></div><p class="ds-tool-header__desc">Add a custom text watermark to any image. Choose the position, font size, color, and opacity, then download the watermarked PNG directly in your browser.</p><div class="ds-tool-tag-row"><span class="ds-tag">watermark</span><span class="ds-tag">text overlay</span><span class="ds-tag">photo branding</span><span class="ds-tag">PNG</span></div></div></div>
 <div class="main">
   <div class="panel">
     <div class="panel-section">
       <div class="panel-label">Watermark Text</div>
-      <div class="field-row"><input type="text" id="wmText" placeholder="© Your Name 2025" value="© Your Name" /></div>
+      <div class="field-row"><input type="text" id="wmText" placeholder="漏 Your Name 2025" value="漏 Your Name" /></div>
     </div>
     <div class="panel-section">
       <div class="panel-label">Font</div>
@@ -133,15 +133,15 @@
     <div class="panel-section">
       <div class="panel-label">Position</div>
       <div class="pos-grid" id="posGrid">
-        <button class="pos-btn" data-pos="top-left">↖</button>
-        <button class="pos-btn" data-pos="top-center">↑</button>
-        <button class="pos-btn" data-pos="top-right">↗</button>
-        <button class="pos-btn" data-pos="middle-left">←</button>
-        <button class="pos-btn" data-pos="center">✛</button>
-        <button class="pos-btn" data-pos="middle-right">→</button>
-        <button class="pos-btn active" data-pos="bottom-left">↙</button>
-        <button class="pos-btn" data-pos="bottom-center">↓</button>
-        <button class="pos-btn" data-pos="bottom-right">↘</button>
+        <button class="pos-btn" data-pos="top-left">鈫?/button>
+        <button class="pos-btn" data-pos="top-center">鈫?/button>
+        <button class="pos-btn" data-pos="top-right">鈫?/button>
+        <button class="pos-btn" data-pos="middle-left">鈫?/button>
+        <button class="pos-btn" data-pos="center">鉁?/button>
+        <button class="pos-btn" data-pos="middle-right">鈫?/button>
+        <button class="pos-btn active" data-pos="bottom-left">鈫?/button>
+        <button class="pos-btn" data-pos="bottom-center">鈫?/button>
+        <button class="pos-btn" data-pos="bottom-right">鈫?/button>
       </div>
     </div>
     <div class="panel-section"><button class="action-btn" id="btnReset">Reset</button></div>
@@ -150,14 +150,14 @@
   <div class="preview-panel">
     <div class="preview-header"><span class="preview-title">Preview</span><button class="action-btn" id="btnChange" style="display:none;width:auto;padding:5px 12px">Change image</button></div>
     <div class="status-note" id="statusNote">Upload an image to start.</div>
-    <div class="drop-zone" id="dropZone"><div class="drop-icon">💧</div><div class="drop-title">Drop image here</div><div class="drop-sub">or click to browse</div><div class="drop-formats">JPG · PNG · WebP · GIF</div></div>
+    <div class="drop-zone" id="dropZone"><div class="drop-icon">馃挧</div><div class="drop-title">Drop image here</div><div class="drop-sub">or click to browse</div><div class="drop-formats">JPG 路 PNG 路 WebP 路 GIF</div></div>
     <div class="canvas-wrap" id="canvasWrap"><canvas id="previewCanvas"></canvas></div>
   </div>
   <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">What is Image Watermark?</h2>
-    <p>Image Watermark lets you overlay custom text on any photo directly in your browser. You can control the font, size, style, color, opacity, and exact position of the watermark across a 3×3 position grid. This is useful for copyright protection, branding, and draft labeling without installing any software.</p>
+    <p>Image Watermark lets you overlay custom text on any photo directly in your browser. You can control the font, size, style, color, opacity, and exact position of the watermark across a 3脳3 position grid. This is useful for copyright protection, branding, and draft labeling without installing any software.</p>
   </section>
   <section class="ds-seo-section">
     <h2 class="ds-seo-section__title">How to Use Image Watermark</h2>
@@ -174,9 +174,9 @@
 <div class="ds-related-tools">
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
-    <a href="image-brightness-contrast.html" class="ds-related-card"><span class="ds-related-icon">☀️</span><div><div class="ds-related-name">Image Brightness Contrast</div><div class="ds-related-desc">Adjust photo brightness and contrast with instant preview</div></div></a>
-    <a href="remove-exif.html" class="ds-related-card"><span class="ds-related-icon">🛡️</span><div><div class="ds-related-name">Remove EXIF Data</div><div class="ds-related-desc">Strip GPS location and EXIF metadata from photos</div></div></a>
-    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">🖼️</span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images client-side with preset dimensions</div></div></a>
+    <a href="image-brightness-contrast.html" class="ds-related-card"><span class="ds-related-icon">鈽€锔?/span><div><div class="ds-related-name">Image Brightness Contrast</div><div class="ds-related-desc">Adjust photo brightness and contrast with instant preview</div></div></a>
+    <a href="remove-exif.html" class="ds-related-card"><span class="ds-related-icon">馃洝锔?/span><div><div class="ds-related-name">Remove EXIF Data</div><div class="ds-related-desc">Strip GPS location and EXIF metadata from photos</div></div></a>
+    <a href="image-resizer.html" class="ds-related-card"><span class="ds-related-icon">馃柤锔?/span><div><div class="ds-related-name">Image Resizer</div><div class="ds-related-desc">Resize images client-side with preset dimensions</div></div></a>
   </div>
 </div>
 
@@ -192,7 +192,7 @@
         <div class="ds-seo-example">
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Input</span>
-            <span class="ds-seo-example__value">Upload a photo and type &quot;© 2025 Jane&quot; with opacity 60% at bottom-right</span>
+            <span class="ds-seo-example__value">Upload a photo and type &quot;漏 2025 Jane&quot; with opacity 60% at bottom-right</span>
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
@@ -216,7 +216,7 @@
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>What image formats are supported?</strong><p>You can upload JPG, PNG, WebP, and GIF images. The result is always downloaded as a PNG.</p></div>
-        <div class="ds-seo-faq-item"><strong>Can I change the watermark position?</strong><p>Yes. There is a 3×3 position grid covering all nine corners and edges. Click any position to move the watermark.</p></div>
+        <div class="ds-seo-faq-item"><strong>Can I change the watermark position?</strong><p>Yes. There is a 3脳3 position grid covering all nine corners and edges. Click any position to move the watermark.</p></div>
         <div class="ds-seo-faq-item"><strong>How do I make the watermark semi-transparent?</strong><p>Use the Opacity slider. Lower values produce a more transparent watermark that blends into the image.</p></div>
         <div class="ds-seo-faq-item"><strong>Is the image uploaded to a server?</strong><p>No. All watermark processing happens locally in your browser using the Canvas API.</p></div>
       </div>

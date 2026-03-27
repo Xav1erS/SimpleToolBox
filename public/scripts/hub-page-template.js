@@ -91,13 +91,8 @@
       '<section class="page-header hub-page-header">' +
         '<div class="hub-breadcrumb"></div>' +
         '<div class="hero-kicker">' + escapeHtml(hubLabel) + '</div>' +
-        '<div class="hub-page-header__main">' +
-          '<span class="hub-page-header__icon">' + escapeHtml(hero.icon || hub.icon) + '</span>' +
-          '<div class="hub-page-header__copy">' +
-            '<h1 class="page-title hub-page-header__title">' + escapeHtml(hero.title || hub.title) + '</h1>' +
-            '<p class="page-sub hub-page-header__sub">' + escapeHtml(hero.description || '') + '</p>' +
-          '</div>' +
-        '</div>' +
+        '<h1 class="page-title hub-page-header__title">' + escapeHtml(hero.title || hub.title) + '</h1>' +
+        '<p class="page-sub hub-page-header__sub">' + escapeHtml(hero.description || '') + '</p>' +
         '<div class="page-highlights">' +
           '<span class="page-highlight">' + escapeHtml(String(count)) + ' tools</span>' +
           '<span class="page-highlight">' + escapeHtml(String(sectionCount)) + ' sections</span>' +
@@ -115,7 +110,13 @@
 
     return (
       '<section class="filter-bar hub-toolbar">' +
-        '<div class="hub-toolbar__meta">Jump to a section</div>' +
+        '<div class="hub-toolbar__summary">' +
+          '<span class="hub-toolbar__summary-icon">&sect;</span>' +
+          '<span class="hub-toolbar__summary-copy">' +
+            '<strong class="hub-toolbar__summary-label">Section directory</strong>' +
+            '<span class="hub-toolbar__summary-text">Jump between workflow groups without leaving this hub.</span>' +
+          '</span>' +
+        '</div>' +
         '<div class="filter-tags hub-toolbar__pills">' +
           sections.map(function (section, index) {
             var sectionId = getSectionId(section, index);
@@ -133,17 +134,14 @@
 
   function renderResultsHead(hub, config) {
     var count = typeof global.hubToolCount === 'function' ? global.hubToolCount(hub.key) : 0;
-    var sectionCount = (config.sections || []).filter(function (section) {
-      return getSectionSlugs(section).length > 0;
-    }).length;
     return (
       '<div class="results-head hub-results-head">' +
         '<div>' +
-          '<div class="results-kicker">Sections</div>' +
+          '<div class="results-kicker">Results</div>' +
           '<h2 class="results-title">Browse tools by workflow cluster</h2>' +
-          '<p class="results-copy">This hub keeps related tasks grouped together so users can jump straight to the right tool set.</p>' +
+          '<p class="results-copy">Each section mirrors a task path inside this hub so related tools stay visually grouped.</p>' +
         '</div>' +
-        '<span class="count-badge">' + escapeHtml(String(count)) + ' tools / ' + escapeHtml(String(sectionCount)) + ' sections</span>' +
+        '<span class="count-badge">' + escapeHtml(String(count)) + ' tools</span>' +
       '</div>'
     );
   }

@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>All Tools �?Simple ToolBox</title>
-  <meta name="description" content="Browse all 201 free browser-based tools for everyday tasks on Simple ToolBox. Search and filter by category �?image, text, developer, calculator, converter, generator, design, and reference." />
+  <title>All Tools  - Simple ToolBox</title>
+  <meta name="description" content="Browse all 201 free browser-based tools for everyday tasks on Simple ToolBox. Search and filter by category  - image, text, developer, calculator, converter, generator, design, and reference." />
   <link rel="canonical" href="https://simpletoolbox.dev/all-tools" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://simpletoolbox.dev/all-tools.html" />
-  <meta property="og:title" content="All Tools �?Simple ToolBox" />
+  <meta property="og:title" content="All Tools  - Simple ToolBox" />
   <meta property="og:description" content="Browse all 201 free browser-based tools. Search and filter by encode, format, convert, generate, text, image, design, reference, and calculator." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
@@ -25,11 +25,11 @@
     /* Section labels */
     .section-label { max-width: 1100px; margin: 0 auto; padding: 0 24px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ds-color-text-muted); }
 
-    /* Hub links row �?navigation pills (larger than filter chips) */
+    /* Hub links row  - navigation pills (larger than filter chips) */
     .hub-links { max-width: 1100px; margin: 0 auto; padding: 0 24px 28px; display: flex; gap: 8px; flex-wrap: wrap; }
     .hub-link { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-sm); font-size: 14px; font-weight: 600; color: var(--ds-color-text-secondary); text-decoration: none; transition: border-color 0.15s, color 0.15s, background 0.15s; }
     .hub-link:hover { border-color: rgba(255,255,255,0.3); color: var(--ds-color-text-primary); background: var(--ds-color-surface); }
-    .hub-link::after { content: '�?; font-size: 12px; color: var(--ds-color-text-muted); transition: transform 0.15s, color 0.15s; }
+    .hub-link::after { content: '&rarr;; font-size: 12px; color: var(--ds-color-text-muted); transition: transform 0.15s, color 0.15s; }
     .hub-link:hover::after { transform: translateX(3px); color: var(--ds-color-accent); }
     .guide-links { max-width: 1100px; margin: 0 auto; padding: 0 24px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
     .guide-link { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s, background 0.15s; }
@@ -481,8 +481,8 @@
     <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
-    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools�? autocomplete="off" />
-    <kbd>⌘K</kbd>
+    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" />
+    <kbd>Ctrl K</kbd>
     <div class="search-dropdown" id="navSearchDropdown"></div>
   </div>
 
@@ -510,13 +510,13 @@
 
 <p class="section-label section-label--hubs">Explore category hubs</p>
 <div class="hub-links">
-  <a href="image-tools.html" class="hub-link">🖼�?Image Tools</a>
-  <a href="developer-tools.html" class="hub-link">🛠�?Developer Tools</a>
-  <a href="text-tools.html" class="hub-link">✍️ Text Tools</a>
-  <a href="calculator-tools.html" class="hub-link">🧮 Calculator Tools</a>
-  <a href="converter-tools.html" class="hub-link">📐 Conversion Tools</a>
-  <a href="generator-tools.html" class="hub-link">⚙️ Generators</a>
-  <a href="pdf-tools.html" class="hub-link">📄 PDF &amp; Document</a>
+  <a href="image-tools.html" class="hub-link">ð¼ï¸Image Tools</a>
+  <a href="developer-tools.html" class="hub-link">ð ï¸Developer Tools</a>
+  <a href="text-tools.html" class="hub-link">âï¸ Text Tools</a>
+  <a href="calculator-tools.html" class="hub-link">ð§® Calculator Tools</a>
+  <a href="converter-tools.html" class="hub-link">ð Conversion Tools</a>
+  <a href="generator-tools.html" class="hub-link">âï¸ Generators</a>
+  <a href="pdf-tools.html" class="hub-link">ð PDF &amp; Document</a>
 </div>
 
 <p class="section-label section-label--guides">Reference &amp; quick guides</p>
@@ -535,32 +535,32 @@
 <div class="filter-bar">
   <div class="filter-search">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" id="toolSearch" class="ds-input" placeholder="Search tools�? autocomplete="off" />
+    <input type="text" id="toolSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" />
     <div class="search-dropdown" id="toolSearchDropdown"></div>
   </div>
   <div class="filter-tags">
     <button class="filter-tag ds-pill active" data-filter="all">All</button>
-    <button class="filter-tag ds-pill" data-filter="developer">🛠�?Developer</button>
-    <button class="filter-tag ds-pill" data-filter="convert">🔄 Convert</button>
-    <button class="filter-tag ds-pill" data-filter="generate">⚙️ Generate</button>
-    <button class="filter-tag ds-pill" data-filter="text">📝 Text</button>
-    <button class="filter-tag ds-pill" data-filter="image">🖼�?Image</button>
-    <button class="filter-tag ds-pill" data-filter="design">🎨 Design</button>
-    <button class="filter-tag ds-pill" data-filter="reference">📚 Reference</button>
-    <button class="filter-tag ds-pill" data-filter="calculator">🧮 Calculator</button>
-    <button class="filter-tag ds-pill" data-filter="pdf">📄 PDF</button>
+    <button class="filter-tag ds-pill" data-filter="developer">ð ï¸Developer</button>
+    <button class="filter-tag ds-pill" data-filter="convert">ð Convert</button>
+    <button class="filter-tag ds-pill" data-filter="generate">âï¸ Generate</button>
+    <button class="filter-tag ds-pill" data-filter="text">ð Text</button>
+    <button class="filter-tag ds-pill" data-filter="image">ð¼ï¸Image</button>
+    <button class="filter-tag ds-pill" data-filter="design">ð¨ Design</button>
+    <button class="filter-tag ds-pill" data-filter="reference">ð Reference</button>
+    <button class="filter-tag ds-pill" data-filter="calculator">ð§® Calculator</button>
+    <button class="filter-tag ds-pill" data-filter="pdf">ð PDF</button>
   </div>
 </div>
 
 <div class="action-bar">
   <span class="dim-label">Action filters</span>
-  <button class="action-tag" data-action="convert">🔄 Convert</button>
-  <button class="action-tag" data-action="compress">🗜�?Compress</button>
-  <button class="action-tag" data-action="generate">�?Generate</button>
+  <button class="action-tag" data-action="convert">ð Convert</button>
+  <button class="action-tag" data-action="compress">ðï¸Compress</button>
+  <button class="action-tag" data-action="generate">? Generate</button>
   <button class="action-tag" data-action="format">{ } Format</button>
-  <button class="action-tag" data-action="encode">🔐 Encode</button>
-  <button class="action-tag" data-action="decode">🔓 Decode</button>
-  <button class="action-tag" data-action="extract">🔍 Extract</button>
+  <button class="action-tag" data-action="encode">ð Encode</button>
+  <button class="action-tag" data-action="decode">ð Decode</button>
+  <button class="action-tag" data-action="extract">ð Extract</button>
 </div>
 
 <div class="results-head">
@@ -577,259 +577,259 @@
 <div class="tool-grid" id="toolGrid">
   <a href="tools/base64.html" class="tool-card" data-tags="encode" data-name="Base64 Encode Decode">
     <div class="tool-card-top">
-      <div class="tool-icon">📦</div>
+      <div class="tool-icon">ð¦</div>
       <div class="tool-name">Base64 Encode / Decode</div>
     </div>
     <div class="tool-desc">Convert text or file contents to and from Base64. URL-safe mode, one-click copy and download.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/base58.html" class="tool-card" data-tags="encode" data-name="Base58 Encode Decode Bitcoin Ripple Flickr">
     <div class="tool-card-top">
-      <div class="tool-icon">🔢</div>
+      <div class="tool-icon">ð¢</div>
       <div class="tool-name">Base58 Encode / Decode</div>
     </div>
     <div class="tool-desc">Encode text to Base58 or decode Base58 strings. Supports Bitcoin, Flickr, and Ripple alphabets.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/json-formatter.html" class="tool-card" data-tags="format" data-name="JSON Formatter Validator Minify Prettify">
     <div class="tool-card-top">
-      <div class="tool-icon">🎨</div>
+      <div class="tool-icon">ð¨</div>
       <div class="tool-name">JSON Formatter</div>
     </div>
     <div class="tool-desc">Prettify or minify JSON with syntax validation, CSV/SQL export, and input history.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/password-generator.html" class="tool-card" data-tags="generate" data-name="Password Generator Strong Secure">
     <div class="tool-card-top">
-      <div class="tool-icon">🔑</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Password Generator</div>
     </div>
     <div class="tool-desc">Customize length and character sets to generate strong random passwords locally.</div>
-    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/timestamp.html" class="tool-card" data-tags="convert" data-name="Timestamp Converter Unix Epoch Date">
     <div class="tool-card-top">
-      <div class="tool-icon">⏱️</div>
+      <div class="tool-icon">â±ï¸</div>
       <div class="tool-name">Timestamp Converter</div>
     </div>
     <div class="tool-desc">Convert Unix timestamps to human-readable dates and back, with timezone support.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/url-encode.html" class="tool-card" data-tags="encode" data-name="URL Encode Decode Percent Encoding">
     <div class="tool-card-top">
-      <div class="tool-icon">🔗</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">URL Encode / Decode</div>
     </div>
     <div class="tool-desc">Encode or decode URL parameters at the full or component level.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/uuid-generator.html" class="tool-card" data-tags="generate" data-name="UUID Generator v4 GUID">
     <div class="tool-card-top">
-      <div class="tool-icon">🆔</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">UUID Generator</div>
     </div>
     <div class="tool-desc">Bulk-generate UUID v4 with options for case, hyphens, and braces.</div>
-    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/word-counter.html" class="tool-card" data-tags="text" data-name="Word Counter Character Count Reading Time">
     <div class="tool-card-top">
-      <div class="tool-icon">📝</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Word Counter</div>
     </div>
     <div class="tool-desc">Count words, characters, sentences, and estimate reading time in real time.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/random-number-generator.html" class="tool-card" data-tags="generate" data-name="Random Number Generator Dice Coin Shuffle">
     <div class="tool-card-top">
-      <div class="tool-icon">🎲</div>
+      <div class="tool-icon">ð²</div>
       <div class="tool-name">Random Number Generator</div>
     </div>
     <div class="tool-desc">Generate random numbers, shuffle lists, roll dice, and flip coins.</div>
-    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/unit-converter.html" class="tool-card" data-tags="convert" data-name="Unit Converter Length Weight Temperature">
     <div class="tool-card-top">
-      <div class="tool-icon">📐</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Unit Converter</div>
     </div>
     <div class="tool-desc">Convert length, weight, temperature, area, volume, speed, data, and time.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/image-resizer.html" class="tool-card" data-tags="image" data-name="Image Resizer Crop Scale Format Convert">
     <div class="tool-card-top">
-      <div class="tool-icon">🖼�?/div>
+      <div class="tool-icon">ð¼ï¸/div>
       <div class="tool-name">Image Resizer</div>
     </div>
-    <div class="tool-desc">Resize images to any dimensions, change format and quality �?no upload needed.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Resize images to any dimensions, change format and quality  - no upload needed.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/image-compressor.html" class="tool-card" data-tags="image" data-name="Image Compressor Reduce File Size JPEG PNG WebP Quality">
     <div class="tool-card-top">
-      <div class="tool-icon">🗜�?/div>
+      <div class="tool-icon">ðï¸/div>
       <div class="tool-name">Image Compressor</div>
     </div>
-    <div class="tool-desc">Reduce image file size by adjusting quality. JPEG, PNG, WebP output �?no upload needed.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Reduce image file size by adjusting quality. JPEG, PNG, WebP output  - no upload needed.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/webp-converter.html" class="tool-card" data-tags="image" data-name="WebP Converter Convert Image WebP PNG JPEG Format">
     <div class="tool-card-top">
-      <div class="tool-icon">🔄</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">WebP Converter</div>
     </div>
     <div class="tool-desc">Convert any image to WebP, PNG, or JPEG. Compare file sizes and download instantly.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/youtube-thumbnail.html" class="tool-card" data-tags="image" data-name="YouTube Thumbnail Downloader HD">
     <div class="tool-card-top">
-      <div class="tool-icon">📺</div>
+      <div class="tool-icon">ðº</div>
       <div class="tool-name">YouTube Thumbnail Downloader</div>
     </div>
     <div class="tool-desc">Download YouTube thumbnails in all resolutions from any video URL.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/jpg-to-png.html" class="tool-card" data-tags="image" data-name="JPG to PNG Converter JPEG Lossless">
     <div class="tool-card-top">
-      <div class="tool-icon">🖼�?/div>
+      <div class="tool-icon">ð¼ï¸/div>
       <div class="tool-name">JPG to PNG</div>
     </div>
     <div class="tool-desc">Convert JPEG images to lossless PNG format instantly in your browser.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/png-to-jpg.html" class="tool-card" data-tags="image" data-name="PNG to JPG Converter JPEG Quality">
     <div class="tool-card-top">
-      <div class="tool-icon">🔄</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">PNG to JPG</div>
     </div>
     <div class="tool-desc">Convert PNG images to JPEG with adjustable quality and background fill.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/webp-to-jpg.html" class="tool-card" data-tags="image" data-name="WebP to JPG Converter JPEG PNG">
     <div class="tool-card-top">
-      <div class="tool-icon">🔄</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">WebP to JPG</div>
     </div>
     <div class="tool-desc">Convert WebP images to JPEG or PNG for universal compatibility.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/image-rotate.html" class="tool-card" data-tags="image" data-name="Rotate Flip Image 90 180 270 Degrees">
     <div class="tool-card-top">
-      <div class="tool-icon">🔃</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Rotate &amp; Flip Image</div>
     </div>
-    <div class="tool-desc">Rotate images 90°, 180°, 270° and flip horizontally or vertically.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Rotate images 90Â°, 180Â°, 270Â° and flip horizontally or vertically.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/grayscale-image.html" class="tool-card" data-tags="image" data-name="Grayscale Image Black White Converter">
     <div class="tool-card-top">
-      <div class="tool-icon">�?/div>
+      <div class="tool-icon">?</div>
       <div class="tool-name">Grayscale Image</div>
     </div>
     <div class="tool-desc">Convert color images to grayscale or pure black and white.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/blur-image.html" class="tool-card" data-tags="image" data-name="Blur Image Online Gaussian Privacy">
     <div class="tool-card-top">
-      <div class="tool-icon">🌫�?/div>
+      <div class="tool-icon">ð«ï¸/div>
       <div class="tool-name">Blur Image</div>
     </div>
     <div class="tool-desc">Apply Gaussian blur to images for privacy, artistic, or soft-focus effects.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/remove-exif.html" class="tool-card" data-tags="image" data-name="Remove EXIF Data Metadata GPS Strip">
     <div class="tool-card-top">
-      <div class="tool-icon">🛡�?/div>
+      <div class="tool-icon">ð¡ï¸/div>
       <div class="tool-name">Remove EXIF Data</div>
     </div>
     <div class="tool-desc">Strip GPS location, camera info, and all EXIF metadata from photos.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/resize-for-instagram.html" class="tool-card" data-tags="image" data-name="Resize Image Instagram Feed Story Reels Square Portrait">
     <div class="tool-card-top">
-      <div class="tool-icon">📸</div>
+      <div class="tool-icon">ð¸</div>
       <div class="tool-name">Resize for Instagram</div>
     </div>
-    <div class="tool-desc">Resize images to exact Instagram dimensions �?Feed, Story, Reels, and more.</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Resize images to exact Instagram dimensions  - Feed, Story, Reels, and more.</div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/compress-to-100kb.html" class="tool-card" data-tags="image" data-name="Compress Image 100KB 50KB 200KB Target File Size">
     <div class="tool-card-top">
-      <div class="tool-icon">🎯</div>
+      <div class="tool-icon">ð¯</div>
       <div class="tool-name">Compress to Target Size</div>
     </div>
     <div class="tool-desc">Compress images to a specific file size (100KB, 50KB, 200KB, or custom).</div>
-    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">image</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/qr-code-generator.html" class="tool-card" data-tags="generate" data-name="QR Code Generator WiFi vCard URL">
     <div class="tool-card-top">
-      <div class="tool-icon">📷</div>
+      <div class="tool-icon">ð·</div>
       <div class="tool-name">QR Code Generator</div>
     </div>
     <div class="tool-desc">Create custom QR codes for URLs, WiFi, contacts, and email. Add colors and logo.</div>
-    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/slug-generator.html" class="tool-card" data-tags="text" data-name="URL Slug Generator SEO Pinyin">
     <div class="tool-card-top">
-      <div class="tool-icon">🔗</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">URL Slug Generator</div>
     </div>
     <div class="tool-desc">Convert titles to clean SEO-friendly URL slugs. Supports Chinese to pinyin.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/lorem-ipsum-generator.html" class="tool-card" data-tags="text" data-name="Lorem Ipsum Placeholder Text Generator">
     <div class="tool-card-top">
-      <div class="tool-icon">📄</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Lorem Ipsum Generator</div>
     </div>
     <div class="tool-desc">Generate placeholder text in Classic Lorem, Chinese, Tech, or Business themes.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/color-picker.html" class="tool-card" data-tags="convert" data-name="Color Picker HEX RGB HSL CMYK Converter">
     <div class="tool-card-top">
-      <div class="tool-icon">🎨</div>
+      <div class="tool-icon">ð¨</div>
       <div class="tool-name">Color Picker</div>
     </div>
     <div class="tool-desc">Convert colors between HEX, RGB, HSL, and CMYK. Pick, copy, and save to history.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/regex-tester.html" class="tool-card" data-tags="text" data-name="Regex Tester Regular Expression Matcher">
     <div class="tool-card-top">
-      <div class="tool-icon">🔍</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Regex Tester</div>
     </div>
     <div class="tool-desc">Test regular expressions with real-time match highlighting, group capture, and replace mode.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/markdown-preview.html" class="tool-card" data-tags="text" data-name="Markdown Preview Editor Live">
     <div class="tool-card-top">
-      <div class="tool-icon">📝</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Markdown Preview</div>
     </div>
     <div class="tool-desc">Write Markdown and see a live rendered preview. Copy HTML or download the source file.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/cron-builder.html" class="tool-card" data-tags="generate" data-name="Cron Expression Builder Schedule">
     <div class="tool-card-top">
-      <div class="tool-icon">�?/div>
+      <div class="tool-icon">??</div>
       <div class="tool-name">Cron Expression Builder</div>
     </div>
     <div class="tool-desc">Build cron expressions visually with human-readable descriptions and next run time preview.</div>
-    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/yaml-json.html" class="tool-card" data-tags="convert" data-name="YAML JSON Converter Format">
     <div class="tool-card-top">
-      <div class="tool-icon">�?/div>
-      <div class="tool-name">YAML �?JSON Converter</div>
+      <div class="tool-icon">?</div>
+      <div class="tool-name">YAML &rarr;JSON Converter</div>
     </div>
     <div class="tool-desc">Convert YAML to JSON and JSON to YAML instantly. Supports nested objects, arrays, and anchors.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/number-base.html" class="tool-card" data-tags="convert" data-name="Number Base Converter Binary Octal Decimal Hex Hexadecimal">
     <div class="tool-card-top">
-      <div class="tool-icon">🔢</div>
+      <div class="tool-icon">ð¢</div>
       <div class="tool-name">Number Base Converter</div>
     </div>
     <div class="tool-desc">Convert numbers between binary, octal, decimal, and hexadecimal with bit info.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/text-case.html" class="tool-card" data-tags="text" data-name="Text Case Converter camelCase snake_case PascalCase kebab Title">
     <div class="tool-card-top">
@@ -837,390 +837,390 @@
       <div class="tool-name">Text Case Converter</div>
     </div>
     <div class="tool-desc">Convert text to camelCase, PascalCase, snake_case, kebab-case, Title Case, and more.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/http-status.html" class="tool-card" data-tags="reference" data-name="HTTP Status Code Reference 404 200 301 500 REST API">
     <div class="tool-card-top">
-      <div class="tool-icon">📡</div>
+      <div class="tool-icon">ð¡</div>
       <div class="tool-name">HTTP Status Codes</div>
     </div>
-    <div class="tool-desc">Complete HTTP status code reference �?1xx through 5xx. Search by code or keyword.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Complete HTTP status code reference  - 1xx through 5xx. Search by code or keyword.</div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/string-escape.html" class="tool-card" data-tags="encode" data-name="String Escape Unescape JSON JavaScript HTML SQL">
     <div class="tool-card-top">
-      <div class="tool-icon">✏️</div>
+      <div class="tool-icon">âï¸</div>
       <div class="tool-name">String Escape / Unescape</div>
     </div>
     <div class="tool-desc">Escape or unescape strings for JSON, JavaScript, HTML entities, and SQL.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/jwt-decoder.html" class="tool-card" data-tags="encode" data-name="JWT Decoder Inspector Token Claims">
     <div class="tool-card-top">
-      <div class="tool-icon">🔑</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">JWT Decoder / Inspector</div>
     </div>
     <div class="tool-desc">Decode JWT header, payload, and signature. Inspect claims and check expiration at a glance.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/html-entities.html" class="tool-card" data-tags="encode" data-name="HTML Entity Encode Decode Named Numeric">
     <div class="tool-card-top">
-      <div class="tool-icon">🏷�?/div>
+      <div class="tool-icon">ð·ï¸/div>
       <div class="tool-name">HTML Entity Encode / Decode</div>
     </div>
-    <div class="tool-desc">Encode or decode HTML entities �?named (&amp;amp;) and numeric (&#38;#38;) formats.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Encode or decode HTML entities  - named (&amp;amp;) and numeric (&#38;#38;) formats.</div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/hash-generator.html" class="tool-card" data-tags="generate" data-name="Hash Generator MD5 SHA-1 SHA-256 SHA-512">
     <div class="tool-card-top">
-      <div class="tool-icon">#️⃣</div>
+      <div class="tool-icon">#ï¸â£</div>
       <div class="tool-name">Hash Generator</div>
     </div>
     <div class="tool-desc">Generate MD5, SHA-1, SHA-256, SHA-512 hashes from text or file. Case toggle included.</div>
-    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/css-formatter.html" class="tool-card" data-tags="format" data-name="CSS Formatter Minifier Beautifier">
     <div class="tool-card-top">
-      <div class="tool-icon">🎨</div>
+      <div class="tool-icon">ð¨</div>
       <div class="tool-name">CSS Formatter &amp; Minifier</div>
     </div>
     <div class="tool-desc">Beautify compressed CSS for readability or minify for production. Configurable indent.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/sql-formatter.html" class="tool-card" data-tags="format" data-name="SQL Formatter Beautifier MySQL PostgreSQL SQLite">
     <div class="tool-card-top">
-      <div class="tool-icon">🗄�?/div>
+      <div class="tool-icon">ðï¸/div>
       <div class="tool-name">SQL Formatter</div>
     </div>
     <div class="tool-desc">Format SQL queries for MySQL, PostgreSQL, SQLite and more. Keyword case options.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/diff-viewer.html" class="tool-card" data-tags="text" data-name="Diff Viewer Text Compare Difference">
     <div class="tool-card-top">
-      <div class="tool-icon">📊</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Diff Viewer</div>
     </div>
     <div class="tool-desc">Compare two texts side by side. Highlights added, removed, and changed lines.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/jsonpath-tester.html" class="tool-card" data-tags="text" data-name="JSONPath Tester JSON Query Filter">
     <div class="tool-card-top">
-      <div class="tool-icon">🔎</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">JSONPath Tester</div>
     </div>
     <div class="tool-desc">Query JSON data with JSONPath expressions. Real-time results, wildcard and filter support.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/xml-formatter.html" class="tool-card" data-tags="format" data-name="XML Formatter Beautifier Minifier Validator">
     <div class="tool-card-top">
-      <div class="tool-icon">🗒�?/div>
+      <div class="tool-icon">ðï¸/div>
       <div class="tool-name">XML Formatter</div>
     </div>
     <div class="tool-desc">Beautify or minify XML with validation. Supports configurable indent and error reporting.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/markdown-to-html.html" class="tool-card" data-tags="convert" data-name="Markdown to HTML Converter GFM Preview">
     <div class="tool-card-top">
-      <div class="tool-icon">📄</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Markdown to HTML</div>
     </div>
     <div class="tool-desc">Convert Markdown to HTML source or preview instantly. Supports GFM tables, fenced code blocks.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/url-parser.html" class="tool-card" data-tags="encode" data-name="URL Parser Builder Inspector Query String">
     <div class="tool-card-top">
-      <div class="tool-icon">🔗</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">URL Parser / Builder</div>
     </div>
     <div class="tool-desc">Parse any URL into components or build one from parts. Inspect and edit query parameters.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/bcrypt.html" class="tool-card" data-tags="encode" data-name="Bcrypt Hash Password Verify Salt Rounds">
     <div class="tool-card-top">
-      <div class="tool-icon">🔒</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Bcrypt Hash / Verify</div>
     </div>
     <div class="tool-desc">Generate bcrypt password hashes with configurable salt rounds and verify passwords locally.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/ip-lookup.html" class="tool-card" data-tags="reference" data-name="IP Address Lookup Geolocation ASN Country">
     <div class="tool-card-top">
-      <div class="tool-icon">🌐</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">IP Address Lookup</div>
     </div>
     <div class="tool-desc">Look up geolocation, ISP, ASN, and country for any IP address. Auto-detects your own IP.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/js-formatter.html" class="tool-card" data-tags="format" data-name="JavaScript Formatter Minifier Beautifier JS">
     <div class="tool-card-top">
-      <div class="tool-icon">⚙️</div>
+      <div class="tool-icon">âï¸</div>
       <div class="tool-name">JS Formatter &amp; Minifier</div>
     </div>
     <div class="tool-desc">Beautify or minify JavaScript code. Configurable indent, string-safe minifier. No data sent.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/line-tools.html" class="tool-card" data-tags="text" data-name="Line Tools Sort Deduplicate Reverse Remove Duplicates Trim Lines">
     <div class="tool-card-top">
-      <div class="tool-icon">�?/div>
+       <div class="tool-icon">?</div>
       <div class="tool-name">Line Tools</div>
     </div>
     <div class="tool-desc">Sort, deduplicate, reverse, remove empty lines, and trim each line instantly.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/base32.html" class="tool-card" data-tags="encode" data-name="Base32 Encode Decode RFC 4648 Extended Hex">
     <div class="tool-card-top">
-      <div class="tool-icon">🔡</div>
+      <div class="tool-icon">ð¡</div>
       <div class="tool-name">Base32 Encode / Decode</div>
     </div>
     <div class="tool-desc">Encode text to Base32 or decode Base32 strings. Supports RFC 4648 and Extended Hex alphabets.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/hmac.html" class="tool-card" data-tags="encode" data-name="HMAC Generator SHA-256 SHA-512 Secret Key Signature">
     <div class="tool-card-top">
-      <div class="tool-icon">🔐</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">HMAC Generator</div>
     </div>
     <div class="tool-desc">Generate HMAC-SHA-256/512 signatures with a secret key. HEX or Base64 output. Web Crypto API.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/timezone-converter.html" class="tool-card" data-tags="convert" data-name="Timezone Converter Time Zone UTC Offset Date Time">
     <div class="tool-card-top">
-      <div class="tool-icon">🌐</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Timezone Converter</div>
     </div>
     <div class="tool-desc">Convert date and time between 80+ global timezones. Auto-detects local timezone.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/html-formatter.html" class="tool-card" data-tags="format" data-name="HTML Formatter Minifier Beautifier">
     <div class="tool-card-top">
-      <div class="tool-icon">🌐</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">HTML Formatter / Minifier</div>
     </div>
     <div class="tool-desc">Format and minify HTML code with customizable indentation options.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/aes.html" class="tool-card" data-tags="encode" data-name="AES Encrypt Decrypt AES-256-GCM Password">
     <div class="tool-card-top">
-      <div class="tool-icon">🔐</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">AES Encrypt / Decrypt</div>
     </div>
     <div class="tool-desc">Encrypt and decrypt text using AES-256-GCM with a passphrase. Runs in browser.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/color-palette.html" class="tool-card" data-tags="convert" data-name="Color Palette Generator Complementary Analogous Triadic Monochromatic">
     <div class="tool-card-top">
-      <div class="tool-icon">🎨</div>
+      <div class="tool-icon">ð¨</div>
       <div class="tool-name">Color Palette Generator</div>
     </div>
     <div class="tool-desc">Generate complementary, analogous, triadic, and monochromatic color palettes.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/gradient-generator.html" class="tool-card" data-tags="convert" data-name="CSS Gradient Generator Linear Radial Color Stops">
     <div class="tool-card-top">
-      <div class="tool-icon">🌈</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">CSS Gradient Generator</div>
     </div>
     <div class="tool-desc">Create and preview CSS linear and radial gradients. Copy ready-to-use CSS code.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/contrast-checker.html" class="tool-card" data-tags="convert" data-name="WCAG Contrast Checker Accessibility Color Ratio AA AAA">
     <div class="tool-card-top">
-      <div class="tool-icon">�?/div>
+      <div class="tool-icon">?</div>
       <div class="tool-name">WCAG Contrast Checker</div>
     </div>
     <div class="tool-desc">Check color contrast ratio for WCAG AA and AAA accessibility compliance.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/url-builder.html" class="tool-card" data-tags="encode" data-name="URL Builder Parser Query Params Scheme Host Path Fragment">
     <div class="tool-card-top">
-      <div class="tool-icon">🔗</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">URL Builder</div>
     </div>
     <div class="tool-desc">Build and parse URLs with scheme, host, path, and query parameters.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/user-agent.html" class="tool-card" data-tags="reference" data-name="User Agent Parser Browser OS Device Engine UA String">
     <div class="tool-card-top">
-      <div class="tool-icon">🌐</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">User Agent Parser</div>
     </div>
     <div class="tool-desc">Parse User Agent strings to identify browser, OS, device, and engine details.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/json-csv.html" class="tool-card" data-tags="convert" data-name="JSON CSV Converter Array Table Delimiter">
     <div class="tool-card-top">
-      <div class="tool-icon">🔄</div>
-      <div class="tool-name">JSON �?CSV Converter</div>
+      <div class="tool-icon">ð</div>
+      <div class="tool-name">JSON &rarr;CSV Converter</div>
     </div>
     <div class="tool-desc">Convert between JSON arrays and CSV format with custom delimiter support.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/countdown.html" class="tool-card" data-tags="generate" data-name="Countdown Timer Date Time New Year Christmas Halloween">
     <div class="tool-card-top">
-      <div class="tool-icon">⏱️</div>
+      <div class="tool-icon">â±ï¸</div>
       <div class="tool-name">Countdown Timer</div>
     </div>
     <div class="tool-desc">Create countdown timers to any future date and time. Includes quick presets.</div>
-    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">generate</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/roman-numerals.html" class="tool-card" data-tags="convert" data-name="Roman Numeral Converter Arabic Number I V X L C D M">
     <div class="tool-card-top">
-      <div class="tool-icon">🏛�?/div>
+      <div class="tool-icon">ðï¸/div>
       <div class="tool-name">Roman Numeral Converter</div>
     </div>
-    <div class="tool-desc">Convert between Arabic numbers and Roman numerals. Supports 1�?999.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Convert between Arabic numbers and Roman numerals. Supports 1 - 999.</div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/morse-code.html" class="tool-card" data-tags="encode" data-name="Morse Code Encoder Decoder dots dashes telegraph">
     <div class="tool-card-top">
-      <div class="tool-icon">📡</div>
+      <div class="tool-icon">ð¡</div>
       <div class="tool-name">Morse Code Encoder / Decoder</div>
     </div>
-    <div class="tool-desc">Encode text to Morse code or decode Morse code back to text. Supports A–Z, 0�?, and common punctuation.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Encode text to Morse code or decode Morse code back to text. Supports AâZ, 0 - , and common punctuation.</div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/chmod-calculator.html" class="tool-card" data-tags="reference" data-name="chmod Calculator Unix File Permissions Octal rwx owner group others">
     <div class="tool-card-top">
-      <div class="tool-icon">🔐</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">chmod Calculator</div>
     </div>
     <div class="tool-desc">Calculate Unix file permissions visually. Get octal and symbolic notation, chmod command, and ls -la preview instantly.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/binary-text.html" class="tool-card" data-tags="encode" data-name="Binary Text Converter encode decode bits bytes 01">
     <div class="tool-card-top">
-      <div class="tool-icon">💾</div>
+      <div class="tool-icon">ð¾</div>
       <div class="tool-name">Binary / Text Converter</div>
     </div>
     <div class="tool-desc">Convert text to binary (0s and 1s) and binary back to text. Supports space, newline, and no-delimiter formats.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/color-converter.html" class="tool-card" data-tags="convert" data-name="Color Format Converter HEX RGB HSL CMYK color picker">
     <div class="tool-card-top">
-      <div class="tool-icon">🎨</div>
+      <div class="tool-icon">ð¨</div>
       <div class="tool-name">Color Format Converter</div>
     </div>
     <div class="tool-desc">Convert colors between HEX, RGB, HSL, and CMYK formats instantly. Includes a visual color picker and WCAG contrast preview.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/date-calculator.html" class="tool-card" data-tags="calculator" data-name="Date Calculator Day Difference Business Days Age">
     <div class="tool-card-top">
-      <div class="tool-icon">📅</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">Date Calculator</div>
     </div>
     <div class="tool-desc">Calculate date differences, add/subtract days, count business days, and compute exact age.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/bmi-calculator.html" class="tool-card" data-tags="calculator" data-name="BMI Calculator Body Mass Index Healthy Weight">
     <div class="tool-card-top">
-      <div class="tool-icon">⚖️</div>
+      <div class="tool-icon">âï¸</div>
       <div class="tool-name">BMI Calculator</div>
     </div>
     <div class="tool-desc">Calculate Body Mass Index with Metric or Imperial units. Shows BMI category, visual scale, and healthy weight range.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/loan-calculator.html" class="tool-card" data-tags="calculator" data-name="Loan Calculator Monthly Payment Amortization Mortgage">
     <div class="tool-card-top">
-      <div class="tool-icon">🏦</div>
+      <div class="tool-icon">ð¦</div>
       <div class="tool-name">Loan Calculator</div>
     </div>
     <div class="tool-desc">Calculate monthly payments, total interest, and view a year-by-year amortization schedule for any fixed-rate loan.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/ascii-table.html" class="tool-card" data-tags="reference" data-name="ASCII Table Character Code Decimal Hex Binary">
     <div class="tool-card-top">
-      <div class="tool-icon">🔣</div>
+      <div class="tool-icon">ð£</div>
       <div class="tool-name">ASCII Table</div>
     </div>
-    <div class="tool-desc">Full ASCII 0�?27 reference with decimal, hex, octal, and binary values. Search by character, code, or description.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-desc">Full ASCII 0 - 27 reference with decimal, hex, octal, and binary values. Search by character, code, or description.</div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/text-cleaner.html" class="tool-card" data-tags="text" data-name="Text Cleaner Remove Spaces Blank Lines HTML Tags">
     <div class="tool-card-top">
-      <div class="tool-icon">🧹</div>
+      <div class="tool-icon">ð§¹</div>
       <div class="tool-name">Text Cleaner</div>
     </div>
     <div class="tool-desc">Remove extra spaces, blank lines, duplicate lines, HTML tags, URLs and more. Live preview with one-click copy.</div>
-    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">text</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/css-minifier.html" class="tool-card" data-tags="format" data-name="CSS Minifier Compress Optimize Production">
     <div class="tool-card-top">
-      <div class="tool-icon">�?/div>
+      <div class="tool-icon">?</div>
       <div class="tool-name">CSS Minifier</div>
     </div>
     <div class="tool-desc">Compress CSS by removing comments, whitespace, and redundant code. Shows exact byte savings and compression ratio.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/js-minifier.html" class="tool-card" data-tags="format" data-name="JavaScript JS Minifier Compress Terser Uglify">
     <div class="tool-card-top">
-      <div class="tool-icon">�?/div>
+      <div class="tool-icon">?</div>
       <div class="tool-name">JS Minifier</div>
     </div>
     <div class="tool-desc">Compress JavaScript using Terser. Mangle variable names, remove dead code, and reduce file size for production.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/toml-json.html" class="tool-card" data-tags="convert" data-name="TOML JSON Converter Cargo pyproject Config">
     <div class="tool-card-top">
-      <div class="tool-icon">🔄</div>
-      <div class="tool-name">TOML �?JSON</div>
+      <div class="tool-icon">ð</div>
+      <div class="tool-name">TOML &rarr;JSON</div>
     </div>
     <div class="tool-desc">Convert between TOML and JSON. Supports tables, arrays of tables, inline tables, and all TOML v1.0 types.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/jwt-builder.html" class="tool-card" data-tags="encode" data-name="JWT Builder Generator Sign HS256 Token">
     <div class="tool-card-top">
-      <div class="tool-icon">🔑</div>
+      <div class="tool-icon">ð</div>
       <div class="tool-name">JWT Builder</div>
     </div>
     <div class="tool-desc">Build and sign JSON Web Tokens with HMAC (HS256/HS384/HS512). Set payload claims, expiry, and secret key.</div>
-    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">encode</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/color-blindness.html" class="tool-card" data-tags="design" data-name="Color Blindness Simulator Accessibility Protanopia Deuteranopia">
     <div class="tool-card-top">
-      <div class="tool-icon">👁�?/div>
+      <div class="tool-icon">ðï¸/div>
       <div class="tool-name">Color Blindness Simulator</div>
     </div>
     <div class="tool-desc">Simulate how images appear to people with color vision deficiency. Test UI for protanopia, deuteranopia, tritanopia, and more.</div>
-    <div class="tool-footer"><span class="tool-tag">design</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">design</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/xml-json.html" class="tool-card" data-tags="format" data-name="XML JSON Converter Parse Transform">
-    <div class="tool-card-top"><div class="tool-icon">🔄</div><div class="tool-name">XML �?JSON</div></div>
+    <div class="tool-card-top"><div class="tool-icon">ð</div><div class="tool-name">XML &rarr;JSON</div></div>
     <div class="tool-desc">Convert between XML and JSON. Handles nested elements, attributes, text nodes, and arrays automatically.</div>
-    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">format</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/number-format.html" class="tool-card" data-tags="convert" data-name="Number Formatter Thousand Separator Currency Scientific Notation">
-    <div class="tool-card-top"><div class="tool-icon">🔢</div><div class="tool-name">Number Formatter</div></div>
+    <div class="tool-card-top"><div class="tool-icon">ð¢</div><div class="tool-name">Number Formatter</div></div>
     <div class="tool-desc">Format numbers with thousand separators, currency, scientific notation, and in-words representation.</div>
-    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">convert</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/port-reference.html" class="tool-card" data-tags="reference" data-name="TCP UDP Port Reference Common Ports Networking">
-    <div class="tool-card-top"><div class="tool-icon">🔌</div><div class="tool-name">Port Reference</div></div>
+    <div class="tool-card-top"><div class="tool-icon">ð</div><div class="tool-name">Port Reference</div></div>
     <div class="tool-desc">Search 80+ common TCP/UDP port numbers by port or service name. Covers databases, messaging, monitoring, and more.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/mime-types.html" class="tool-card" data-tags="reference" data-name="MIME Types Content-Type File Extension HTTP Headers">
-    <div class="tool-card-top"><div class="tool-icon">📋</div><div class="tool-name">MIME Types</div></div>
+    <div class="tool-card-top"><div class="tool-icon">ð</div><div class="tool-name">MIME Types</div></div>
     <div class="tool-desc">Find the correct Content-Type header for any file extension. 150+ MIME types across web, image, video, audio, and document formats.</div>
-    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">reference</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <a href="tools/color-contrast-aa.html" class="tool-card" data-tags="design" data-name="WCAG Color Contrast Checker AA AAA Accessibility">
-    <div class="tool-card-top"><div class="tool-icon">⚖️</div><div class="tool-name">Contrast Checker (WCAG)</div></div>
+    <div class="tool-card-top"><div class="tool-icon">âï¸</div><div class="tool-name">Contrast Checker (WCAG)</div></div>
     <div class="tool-desc">Test multiple text/background color pairs against WCAG AA and AAA standards. Live preview with contrast ratio.</div>
-    <div class="tool-footer"><span class="tool-tag">design</span><span class="tool-arrow">�?/span></div>
+    <div class="tool-footer"><span class="tool-tag">design</span><span class="tool-arrow">&rarr;</span></div>
   </a>
   <div class="no-result" id="noResult">No tools match your search.</div>
 </div>
 
 <footer>
-  <a href="index.html">�?Back to Home</a> &nbsp;·&nbsp;
-  <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="index.html">&rarr;Back to Home</a> &nbsp;Â·&nbsp;
+  <a href="privacy.html">Privacy</a> &nbsp;Â·&nbsp;
   <a href="about.html">About</a>
 </footer>
 
 <script src="tools-data.js"></script>
-<script src="site-hierarchy.js"></script>
+<script src="site-hierarchy.js?v=5"></script>
 <script>window.STB_PAGE_CONTEXT = { pageType: 'all-tools', slug: 'all-tools' };</script>
-<script src="scripts/site-navigation.js?v=4"></script>
+<script src="scripts/site-navigation.js?v=7"></script>
 <script>
   const ALL_TOOLS = SITE_TOOLS;
   const TOOL_BY_HREF = new Map(ALL_TOOLS.map(tool => [tool.href, tool]));
@@ -1259,7 +1259,7 @@
 
   normalizeStaticLabels();
 
-  // ── Constants ────────────────────────────────────────────────────────────
+  // ââ Constants ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   const POPULAR_SLUGS = [
     'base64', 'json-formatter', 'password-generator', 'word-counter',
@@ -1267,15 +1267,15 @@
   ];
 
   const CATEGORY_SECTIONS = [
-    { label: '🖼�?Image Tools',       tags: ['image'] },
-    { label: '📄 PDF & Document',    tags: ['pdf'] },
-    { label: '📝 Text Tools',        tags: ['text'] },
-    { label: '🛠�?Developer Tools',   tags: ['encode', 'format'] },
-    { label: '📐 Converters',        tags: ['convert'] },
-    { label: '⚙️ Generators',        tags: ['generate'] },
-    { label: '🧮 Calculators',       tags: ['calculator'] },
-    { label: '🎨 Design',            tags: ['design'] },
-    { label: '📚 Reference',         tags: ['reference'] },
+    { label: 'ð¼ï¸Image Tools',       tags: ['image'] },
+    { label: 'ð PDF & Document',    tags: ['pdf'] },
+    { label: 'ð Text Tools',        tags: ['text'] },
+    { label: 'ð ï¸Developer Tools',   tags: ['encode', 'format'] },
+    { label: 'ð Converters',        tags: ['convert'] },
+    { label: 'âï¸ Generators',        tags: ['generate'] },
+    { label: 'ð§® Calculators',       tags: ['calculator'] },
+    { label: 'ð¨ Design',            tags: ['design'] },
+    { label: 'ð Reference',         tags: ['reference'] },
   ];
 
   CATEGORY_SECTIONS.splice(0, CATEGORY_SECTIONS.length,
@@ -1301,34 +1301,29 @@
   };
 
   const TAG_ICON_FALLBACKS = {
-    image: '�?, text: '�?, encode: '�?, format: '�?, convert: '�?,
-    generate: '�?, design: '�?, reference: '�?, calculator: '�?
-  };
-
-  Object.assign(TAG_ICON_FALLBACKS, {
-    image: '🖼�?,
-    text: '✏️',
-    encode: '🛠�?,
-    format: '🧩',
-    convert: '↔️',
-    generate: '�?,
-    design: '🎨',
-    reference: '📚',
-    calculator: '🧮',
-    pdf: '📄'
-  });
+    image: '???',
+    text: '??',
+    encode: '???',
+    format: '??',
+    convert: '??',
+    generate: '?',
+    design: '??',
+    reference: '??',
+    calculator: '??',
+    pdf: '??'
+  };;
 
   const MULTI_TAG = { developer: ['encode', 'format'] };
   const CAT_ALIAS  = { encode: 'developer', format: 'developer' };
   const LS_KEY     = 'stb_recent';
   const MAX_RECENT = 6;
 
-  // ── Helpers ──────────────────────────────────────────────────────────────
+  // ââ Helpers ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   function getToolIcon(tool) {
     const icon = (tool.icon || '').trim();
     return (!icon || icon === '?' || icon === '??' || icon === '???')
-      ? (TAG_ICON_FALLBACKS[tool.tag] || '�?) : icon;
+      ? (TAG_ICON_FALLBACKS[tool.tag] || ' - ) : icon;
   }
 
   function renderToolCard(tool) {
@@ -1336,11 +1331,11 @@
     return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}" data-name="${searchName}">
       <div class="tool-card-top"><div class="tool-icon">${getToolIcon(tool)}</div><div class="tool-name">${tool.name}</div></div>
       <div class="tool-desc">${tool.desc}</div>
-      <div class="tool-footer"><span class="tool-tag">${tool.tag}</span><span class="tool-arrow">�?/span></div>
+      <div class="tool-footer"><span class="tool-tag">${tool.tag}</span><span class="tool-arrow">&rarr;</span></div>
     </a>`;
   }
 
-  // ── Recently Used helpers ─────────────────────────────────────────────────
+  // ââ Recently Used helpers âââââââââââââââââââââââââââââââââââââââââââââââââ
 
   function renderToolCard(tool) {
     const searchName = `${tool.name} ${tool.tag} ${tool.desc}`.replace(/"/g, '&quot;');
@@ -1383,7 +1378,7 @@
     </div>`;
   }
 
-  // ── Grid rendering ───────────────────────────────────────────────────────
+  // ââ Grid rendering âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   let activeTag    = 'all';
   let activeAction = '';   // '' means no action filter active
@@ -1405,7 +1400,7 @@
     const limit = options.limit || tools.length;
     const visibleTools = tools.slice(0, limit);
     const actionHtml = options.href
-      ? `<a href="${options.href}" class="tool-section-link">${options.actionLabel || 'View all'} �?</a>`
+      ? `<a href="${options.href}" class="tool-section-link">${options.actionLabel || 'View all'} é?</a>`
       : (options.actionHtml || '');
 
     return `<div class="tool-section-title"><span class="tool-section-title__main">${label}${options.showCount === false ? '' : ` <span class="tool-section-count">${tools.length}</span>`}</span>${actionHtml}</div>
@@ -1417,7 +1412,7 @@
     const recentList  = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
     const recentTools = recentList.map(href => ALL_TOOLS.find(t => t.href === href)).filter(Boolean);
     const recentHtml  = recentTools.length
-      ? `<div class="tool-section-title">🕐 Recently Used <button id="clearRecent" class="quick-clear">Clear</button></div>
+      ? `<div class="tool-section-title">ð Recently Used <button id="clearRecent" class="quick-clear">Clear</button></div>
 <div class="tool-grid tool-grid--section">${recentTools.map(renderToolCard).join('')}</div>`
       : '';
 
@@ -1425,7 +1420,7 @@
     const popularTools = POPULAR_SLUGS
       .map(s => ALL_TOOLS.find(t => t.href.endsWith('/' + s + '.html') || t.href.endsWith(s + '.html')))
       .filter(Boolean);
-    const popularHtml = `<div class="tool-section-title">🔥 Popular</div>
+    const popularHtml = `<div class="tool-section-title">ð¥ Popular</div>
 <div class="tool-grid tool-grid--section">${popularTools.map(renderToolCard).join('')}</div>`;
 
     // Category sections
@@ -1550,7 +1545,7 @@
     }
 
     pageSub.textContent = `${ALL_TOOLS.length} browser-based tools across text, developer, image, design, calculator, and reference workflows.`;
-      // Mode unchanged �?just re-run filters
+      // Mode unchanged  - just re-run filters
     updateAssistDeck();
     applyFilters();
   }
@@ -1592,9 +1587,9 @@
     }
   }
 
-  // ── Init ─────────────────────────────────────────────────────────────────
+  // ââ Init âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
-  // URL param �?active tag or action
+  // URL param &rarr;active tag or action
   const urlParams = new URLSearchParams(window.location.search);
   let catParam = urlParams.get('cat');
   const actParam = urlParams.get('act');
@@ -1616,7 +1611,7 @@
 
   rebuildGrid();
 
-  // ── Event Listeners ──────────────────────────────────────────────────────
+  // ââ Event Listeners ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   // Record tool click + handle clearRecent (both dynamically rendered)
   document.addEventListener('click', e => {
@@ -1669,7 +1664,7 @@
     });
   });
 
-  // ── Nav search ───────────────────────────────────────────────────────────
+  // ââ Nav search âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());

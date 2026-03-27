@@ -163,7 +163,7 @@
       href: guide.href,
       label: guide.title,
       icon: guide.icon,
-      meta: 'guide',
+      meta: '',
       active: pageSlugFromHref(currentUrl) === pageSlugFromHref(guide.href)
     };
   }

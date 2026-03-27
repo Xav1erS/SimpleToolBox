@@ -3261,17 +3261,11 @@ body > .ds-seo-more {
 }
 
 .hub-shell > .page-header,
-.hub-shell > .results-head,
 .hub-shell > section {
   width: 100%;
 }
 
-.hub-shell > .results-head {
-  margin-top: 6px;
-}
-
-.hub-shell > .page-header + .hub-section,
-.hub-shell > .results-head + .hub-section {
+.hub-shell > .page-header + .hub-section {
   margin-top: 0;
 }
 
@@ -3361,13 +3355,6 @@ body > .ds-seo-more {
   backdrop-filter: blur(10px);
 }
 
-.hub-results-head {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 0 8px;
-}
-
 .hub-hero {
   width: 100%;
   margin: 0 0 28px;
@@ -3441,6 +3428,18 @@ body > .ds-seo-more {
 
 .hub-shell > section + section {
   margin-top: 10px;
+}
+
+.ds-has-directory.ds-directory-page--hub .hub-section > .hub-section__title,
+.ds-has-directory.ds-directory-page--hub .hub-seo > .hub-section__title,
+.ds-has-directory.ds-directory-page--hub .hub-guides > .hub-section__title,
+.ds-has-directory.ds-directory-page--hub .more-cats > .hub-section__title {
+  width: auto;
+  max-width: none;
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
 }
 
 .hub-section__title {
@@ -3735,11 +3734,6 @@ body > .ds-seo-more {
   .hub-page-header .page-highlights {
     gap: 6px;
     margin-top: 14px;
-  }
-
-  .hub-results-head {
-    align-items: flex-end;
-    padding: 0 0 6px;
   }
 
   .count-badge {

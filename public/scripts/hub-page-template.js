@@ -102,15 +102,6 @@
     );
   }
 
-  function renderResultsHead(hub) {
-    var count = typeof global.hubToolCount === 'function' ? global.hubToolCount(hub.key) : 0;
-    return (
-      '<div class="results-head hub-results-head">' +
-        '<span class="count-badge">' + escapeHtml(String(count)) + ' tools</span>' +
-      '</div>'
-    );
-  }
-
   function renderSections(config) {
     return (config.sections || []).map(function (section, index) {
       var tools = getSectionSlugs(section)
@@ -193,7 +184,6 @@
     mount.className = 'hub-shell';
     mount.innerHTML =
       renderHeader(hub, config) +
-      renderResultsHead(hub) +
       renderSections(config) +
       renderSeo(config) +
       renderGuides(hub.key) +

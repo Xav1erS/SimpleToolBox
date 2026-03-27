@@ -831,6 +831,10 @@
   function initSiteNavigation() {
     const context = getPageContext();
     if (!context.pageType) return;
+    if (document.body && document.body.dataset.stbSiteNavigationReady === '1') return;
+    if (document.body) {
+      document.body.dataset.stbSiteNavigationReady = '1';
+    }
 
     ensureBreadcrumb(context);
     insertDirectory(context);

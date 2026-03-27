@@ -3478,8 +3478,7 @@ body > .ds-seo-more {
 .hub-results-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: flex-end;
   padding: 2px 0 14px;
 }
 
@@ -3882,8 +3881,7 @@ body > .ds-seo-more {
   }
 
   .hub-results-head {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: flex-end;
     padding: 2px 0 10px;
   }
 

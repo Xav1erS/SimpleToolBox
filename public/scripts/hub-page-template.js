@@ -103,44 +103,13 @@
   }
 
   function renderToolbar(config) {
-    var sections = (config.sections || []).filter(function (section) {
-      return getSectionSlugs(section).length > 0;
-    });
-    if (!sections.length) return '';
-
-    return (
-      '<section class="filter-bar hub-toolbar">' +
-        '<div class="hub-toolbar__summary">' +
-          '<span class="hub-toolbar__summary-icon">&sect;</span>' +
-          '<span class="hub-toolbar__summary-copy">' +
-            '<strong class="hub-toolbar__summary-label">Section directory</strong>' +
-            '<span class="hub-toolbar__summary-text">Jump between workflow groups without leaving this hub.</span>' +
-          '</span>' +
-        '</div>' +
-        '<div class="filter-tags hub-toolbar__pills">' +
-          sections.map(function (section, index) {
-            var sectionId = getSectionId(section, index);
-            return (
-              '<a class="filter-tag ds-pill hub-toolbar__pill' + (index === 0 ? ' active' : '') + '" ' +
-                'href="#' + escapeHtml(sectionId) + '" data-hub-section-jump="' + escapeHtml(sectionId) + '">' +
-                escapeHtml(getSectionTitle(section, index)) +
-              '</a>'
-            );
-          }).join('') +
-        '</div>' +
-      '</section>'
-    );
+    return '';
   }
 
   function renderResultsHead(hub, config) {
     var count = typeof global.hubToolCount === 'function' ? global.hubToolCount(hub.key) : 0;
     return (
       '<div class="results-head hub-results-head">' +
-        '<div>' +
-          '<div class="results-kicker">Results</div>' +
-          '<h2 class="results-title">Browse tools by workflow cluster</h2>' +
-          '<p class="results-copy">Each section mirrors a task path inside this hub so related tools stay visually grouped.</p>' +
-        '</div>' +
         '<span class="count-badge">' + escapeHtml(String(count)) + ' tools</span>' +
       '</div>'
     );

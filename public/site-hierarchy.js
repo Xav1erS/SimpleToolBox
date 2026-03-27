@@ -27,14 +27,14 @@
   const TOOL_HUB_OVERRIDES = {};
 
   const GUIDE_PAGES = [
-    { slug: 'image-formats-guide', title: 'Image Formats Guide', href: 'image-formats-guide.html', hub: 'image', summary: 'PNG, JPG, WebP, SVG, and GIF comparison.' },
-    { slug: 'json-formatting-guide', title: 'JSON Formatting Guide', href: 'json-formatting-guide.html', hub: 'developer', summary: 'Prettify, minify, validate, and escape JSON.' },
-    { slug: 'regex-patterns', title: 'Regex Patterns', href: 'regex-patterns.html', hub: 'developer', summary: 'Common regex snippets, flags, and matching tips.' },
-    { slug: 'mime-types-guide', title: 'MIME Types Guide', href: 'mime-types-guide.html', hub: 'developer', summary: 'Pick the right Content-Type for files and APIs.' },
-    { slug: 'http-status-codes-explained', title: 'HTTP Status Codes', href: 'http-status-codes-explained.html', hub: 'developer', summary: 'Understand common 2xx, 4xx, and 5xx responses.' },
-    { slug: 'date-time-format-reference', title: 'Date & Time Formats', href: 'date-time-format-reference.html', hub: 'converter', summary: 'ISO 8601, Unix timestamps, and timezone notation.' },
-    { slug: 'pdf-page-sizes', title: 'PDF Page Sizes', href: 'pdf-page-sizes.html', hub: 'pdf', summary: 'A4, Letter, Legal, and print-ready sizes.' },
-    { slug: 'color-format-reference', title: 'Color Format Reference', href: 'color-format-reference.html', hub: 'design', summary: 'HEX, RGB, HSL, and CMYK in one guide.' }
+    { slug: 'image-formats-guide', title: 'Image Formats Guide', href: 'image-formats-guide.html', hub: 'image', icon: 'IMG', summary: 'PNG, JPG, WebP, SVG, and GIF comparison.' },
+    { slug: 'json-formatting-guide', title: 'JSON Formatting Guide', href: 'json-formatting-guide.html', hub: 'developer', icon: 'JSN', summary: 'Prettify, minify, validate, and escape JSON.' },
+    { slug: 'regex-patterns', title: 'Regex Patterns', href: 'regex-patterns.html', hub: 'developer', icon: 'RX', summary: 'Common regex snippets, flags, and matching tips.' },
+    { slug: 'mime-types-guide', title: 'MIME Types Guide', href: 'mime-types-guide.html', hub: 'developer', icon: 'MIME', summary: 'Pick the right Content-Type for files and APIs.' },
+    { slug: 'http-status-codes-explained', title: 'HTTP Status Codes', href: 'http-status-codes-explained.html', hub: 'developer', icon: 'HTTP', summary: 'Understand common 2xx, 4xx, and 5xx responses.' },
+    { slug: 'date-time-format-reference', title: 'Date & Time Formats', href: 'date-time-format-reference.html', hub: 'converter', icon: 'DT', summary: 'ISO 8601, Unix timestamps, and timezone notation.' },
+    { slug: 'pdf-page-sizes', title: 'PDF Page Sizes', href: 'pdf-page-sizes.html', hub: 'pdf', icon: 'PDF', summary: 'A4, Letter, Legal, and print-ready sizes.' },
+    { slug: 'color-format-reference', title: 'Color Format Reference', href: 'color-format-reference.html', hub: 'design', icon: 'CLR', summary: 'HEX, RGB, HSL, and CMYK in one guide.' }
   ];
 
   const GUIDE_HUB_MAP = GUIDE_PAGES.reduce((acc, guide) => {
@@ -145,6 +145,7 @@
       type: 'link',
       href: guide.href,
       label: guide.title,
+      icon: guide.icon,
       meta: 'guide',
       active: pageSlugFromHref(currentUrl) === pageSlugFromHref(guide.href)
     };
@@ -233,6 +234,23 @@
       ];
     }
 
+    if (pageType === 'tool') {
+      const tool = getToolBySlug(slug);
+      const hub = tool && getHubForTool(tool);
+      if (!tool || !hub) return [];
+
+      const siblingTools = getToolsForHub(hub.key)
+        .filter((item) => slugFromHref(item.href) !== slug)
+        .slice(0, 12);
+
+      return [
+        { title: 'Current Hub', items: [Object.assign({}, buildHubLinkItem(hub, currentUrl), { active: true })] },
+        { title: 'More Tools in This Hub', items: siblingTools.map((item) => buildToolLinkItem(item, currentUrl)) },
+        { title: 'Related Guides', items: getGuidePagesForHub(hub.key).map((guide) => buildGuideLinkItem(guide, currentUrl)) },
+        { title: 'Recently Used', items: [] }
+      ];
+    }
+
     return [];
   }
 
@@ -249,5 +267,6 @@
   global.getGuideMeta = getGuideMeta;
   global.getGuidePagesForHub = getGuidePagesForHub;
   global.getToolsForHub = getToolsForHub;
+  global.getToolBySlug = getToolBySlug;
   global.slugFromHref = global.slugFromHref || slugFromHref;
 })(window);

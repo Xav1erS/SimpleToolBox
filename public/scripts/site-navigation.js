@@ -366,9 +366,9 @@
     let currentNode = host.nextSibling;
     while (currentNode) {
       const nextNode = currentNode.nextSibling;
-      if (currentNode.nodeType === 1 && currentNode.tagName === 'SCRIPT') break;
       if (
         currentNode.nodeType === 1 &&
+        currentNode.tagName !== 'SCRIPT' &&
         !currentNode.classList.contains('ds-directory-host') &&
         !currentNode.classList.contains('ds-directory-backdrop') &&
         !currentNode.classList.contains('ds-directory-drawer')

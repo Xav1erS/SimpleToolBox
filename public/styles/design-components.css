@@ -3238,7 +3238,9 @@ body > .ds-seo-more {
 
 .hub-shell {
   width: 100%;
-  padding: 0 24px 80px;
+  max-width: none;
+  margin: 0;
+  padding: 0 0 80px;
 }
 
 .hub-hero {
@@ -3529,19 +3531,6 @@ body > .ds-seo-more {
   color: var(--ds-color-text-secondary);
 }
 
-.ds-has-directory .ds-shell__content > .hub-shell {
-  width: 100%;
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.ds-has-directory.ds-directory-page--hub .hub-shell {
-  width: min(1100px, calc(100% - (var(--stb-directory-edge) * 2) - var(--stb-directory-current-width) - var(--stb-directory-gap)));
-  margin-left: calc(var(--stb-directory-edge) + var(--stb-directory-current-width) + var(--stb-directory-gap));
-  margin-right: var(--stb-directory-edge);
-}
-
 .ds-has-directory.ds-directory-page--hub .hub-shell .hub-hero,
 .ds-has-directory.ds-directory-page--hub .hub-shell .hub-section,
 .ds-has-directory.ds-directory-page--hub .hub-shell .hub-seo,
@@ -3562,6 +3551,18 @@ body > .ds-seo-more {
     gap: 0;
   }
 
+  .hub-shell {
+    padding-bottom: 64px;
+  }
+
+  .hub-hero {
+    border-radius: 26px;
+  }
+
+  .hub-title {
+    font-size: clamp(40px, 6vw, 54px);
+  }
+
   .ds-shell__rail-slot {
     display: none;
   }
@@ -3577,7 +3578,7 @@ body > .ds-seo-more {
 
 @media (max-width: 640px) {
   .hub-shell {
-    padding: 0 16px 56px;
+    padding: 0 0 56px;
   }
 
   .hub-hero {

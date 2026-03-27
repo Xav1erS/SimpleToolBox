@@ -252,6 +252,16 @@ const HUB_PAGE_CONFIG = {
       ['password-generator', 'uuid-generator', 'qr-code-generator', 'hash-generator', 'random-number-generator', 'lorem-ipsum-generator', 'cron-builder', 'css-gradient-generator', 'color-palette', 'favicon-generator', 'password-strength-checker', 'color-scheme-generator', 'css-box-shadow-generator', 'placeholder-image-generator', 'random-color-generator', 'gradient-text-generator']
     ]
   },
+  design: {
+    sections: [
+      ['color-blindness', 'color-contrast-aa', 'contrast-checker', 'color-converter', 'color-palette', 'gradient-generator', 'favicon-generator', 'color-picker-from-image']
+    ]
+  },
+  reference: {
+    sections: [
+      ['ascii-table', 'port-reference', 'mime-types', 'chmod-calculator', 'http-status', 'ip-lookup', 'user-agent', 'currency-exchange-rate']
+    ]
+  },
   pdf: {
     sections: [
       ['pdf-to-image', 'image-to-pdf', 'pdf-page-counter', 'pdf-compress', 'pdf-merge', 'pdf-split', 'pdf-rotate-pages', 'pdf-extract-text', 'pdf-metadata-viewer', 'pdf-add-watermark', 'pdf-to-markdown']

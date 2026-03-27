@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Free Online Reference Tools | Lookup, Tables &amp; Technical Quick Checks</title>
+  <meta name="description" content="Free browser-based reference tools for ports, MIME types, HTTP status codes, IP lookup, ASCII values, exchange rate checks, and technical quick references." />
+  <link rel="canonical" href="https://simpletoolbox.dev/reference-tools" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://simpletoolbox.dev/reference-tools" />
+  <meta property="og:title" content="Free Online Reference Tools | Simple ToolBox" />
+  <meta property="og:description" content="Lookup tables and technical reference tools for developers, operators, and everyday troubleshooting." />
+  <meta property="og:site_name" content="Simple ToolBox" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/design-system.css?v=24" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Free Online Reference Tools",
+    "description": "Lookup and reference tools for ports, MIME types, HTTP statuses, ASCII values, IPs, and related technical checks.",
+    "url": "https://simpletoolbox.dev/reference-tools",
+    "isPartOf": { "@type": "WebSite", "name": "Simple ToolBox", "url": "https://simpletoolbox.dev" }
+  }
+  </script>
+  <style>
+    body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    .hub-hero { max-width: 1100px; margin: 0 auto; padding: 56px 24px 32px; }
+    .hub-breadcrumb { font-size: 12px; color: var(--ds-color-text-muted); margin-bottom: 16px; }
+    .hub-title { font-size: var(--ds-font-size-h1); font-weight: 700; line-height: 1.1; letter-spacing: -0.045em; margin-bottom: 12px; }
+    .hub-desc { font-size: var(--ds-font-size-body-lg); color: var(--ds-color-text-secondary); line-height: 1.7; max-width: 720px; margin-bottom: 8px; }
+    .hub-count { font-size: 13px; color: var(--ds-color-text-muted); }
+    .tool-section { max-width: 1100px; margin: 0 auto; padding: 0 24px 12px; }
+    .tool-section h2 { font-size: var(--ds-font-size-h3); font-weight: 700; letter-spacing: -0.03em; }
+    .tool-grid { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .tool-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: var(--ds-space-5); display: flex; flex-direction: column; gap: var(--ds-space-3); transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast), transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast); }
+    .tool-card:hover { border-color: var(--ds-color-border-accent); background: var(--ds-color-surface-strong); transform: translateY(-1px); box-shadow: var(--ds-shadow-card); }
+    .tool-card-top { display: flex; align-items: center; gap: 12px; }
+    .tool-icon { width: 40px; height: 40px; border-radius: var(--ds-radius-sm); background: var(--ds-color-surface-tint); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .tool-name { font-size: var(--ds-font-size-h4); font-weight: 600; line-height: 1.25; }
+    .tool-desc { font-size: var(--ds-font-size-body-sm); color: var(--ds-color-text-secondary); line-height: 1.6; flex: 1; }
+    .tool-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .tool-tag { display: inline-flex; align-items: center; min-height: 20px; padding: 0 8px; border-radius: var(--ds-radius-xs); background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.22); color: var(--ds-color-accent-soft); font-family: var(--ds-font-mono); font-size: var(--ds-font-size-micro); font-weight: 500; }
+    .tool-arrow { font-size: 16px; color: var(--ds-color-text-muted); transition: color 0.15s, transform 0.15s; }
+    .tool-card:hover .tool-arrow { color: var(--ds-color-accent); transform: translateX(3px); }
+    .hub-prose,
+    .more-cats { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
+    .hub-prose { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .hub-prose-card,
+    .cat-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 24px 28px; }
+    .hub-prose-card h2,
+    .more-cats h2 { font-size: var(--ds-font-size-h3); font-weight: 700; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .hub-prose-card p { font-size: var(--ds-font-size-body-sm); color: var(--ds-color-text-secondary); line-height: 1.8; margin-bottom: 10px; }
+    .hub-prose-card p:last-child { margin-bottom: 0; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .cat-card { padding: 18px 20px; transition: border-color 0.15s, background 0.15s; }
+    .cat-card:hover { border-color: var(--ds-color-border-accent); background: var(--ds-color-surface-strong); }
+    .cat-name { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .cat-meta { font-size: 12px; color: var(--ds-color-text-secondary); line-height: 1.6; }
+    footer { border-top: 1px solid var(--ds-color-border); padding: 24px; text-align: center; font-size: 12px; color: var(--ds-color-text-muted); }
+    footer a { color: var(--ds-color-text-secondary); }
+    footer a:hover { color: var(--ds-color-text-primary); }
+    @media (max-width: 768px) { .hub-prose { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .nav-actions .nav-link { display: none; }
+      .hub-hero { padding: 36px 16px 28px; }
+      .tool-section, .tool-grid, .hub-prose, .more-cats { padding-left: 16px; padding-right: 16px; }
+      .tool-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SBCZ6DT1R');
+  </script>
+</head>
+<body class="ds-page">
+<nav class="ds-nav" id="nav">
+  <a href="index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="navSearch" placeholder="Search tools..." autocomplete="off" />
+    <div class="nav-search-dropdown" id="navSearchDropdown"></div>
+  </div>
+  <div class="nav-actions">
+    <a href="https://github.com/Xav1erS/SimpleToolBox" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+    <a href="contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
+  </div>
+</nav>
+
+<div class="hub-hero">
+  <div class="hub-breadcrumb"><a href="index.html">Home</a> / Reference Tools</div>
+  <h1 class="hub-title">Free Online Reference Tools</h1>
+  <p class="hub-desc">Quick lookup tools for ports, MIME types, ASCII values, exchange rates, IP information, HTTP status codes, and other technical checks you need while working.</p>
+  <div class="hub-count" id="hubCount">0 tools · all free · privacy-first</div>
+</div>
+
+<div class="tool-section"><h2>Lookup Tables &amp; Technical References</h2></div>
+<div class="tool-grid" id="hubToolGrid"></div>
+
+<div class="hub-prose">
+  <div class="hub-prose-card">
+    <h2>What makes a good reference tool?</h2>
+    <p>Reference tools are about reducing interruption. You should be able to answer one focused question fast: which port is this, what MIME type do I need, what does this HTTP status mean, or what ASCII value matches this character.</p>
+    <p>These tools keep that workflow local and immediate, with no app install and no extra navigation overhead.</p>
+  </div>
+  <div class="hub-prose-card">
+    <h2>Typical workflow</h2>
+    <p>Use a reference tool to verify the fact, then jump into a related builder, formatter, or converter. For example, check a MIME type here, then switch to a URL or JSON tool in the relevant hub without losing context.</p>
+    <p>The new hub-level navigation keeps those next steps visible while you browse.</p>
+  </div>
+</div>
+
+<div class="more-cats">
+  <h2>More Categories</h2>
+  <div class="cat-grid" id="otherHubGrid"></div>
+</div>
+
+<footer>
+  <a href="index.html">Home</a> &nbsp;·&nbsp;
+  <a href="all-tools.html">All Tools</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="about.html">About</a>
+</footer>
+
+<script src="tools-data.js"></script>
+<script src="site-hierarchy.js"></script>
+<script>window.STB_PAGE_CONTEXT = { pageType: 'hub', slug: 'reference' };</script>
+<script src="scripts/site-navigation.js"></script>
+<script>
+  (function () {
+    const HUB_KEY = 'reference';
+    const NAV_TOOLS = SITE_TOOLS;
+    const LS_KEY = 'stb_recent';
+    const MAX_RECENT = 6;
+
+    function renderToolCard(tool) {
+      return '<a href="' + tool.href + '" class="tool-card">' +
+        '<div class="tool-card-top"><div class="tool-icon">' + tool.icon + '</div><div class="tool-name">' + tool.name + '</div></div>' +
+        '<div class="tool-desc">' + tool.desc + '</div>' +
+        '<div class="tool-footer"><span class="tool-tag">' + tool.tag + '</span><span class="tool-arrow">→</span></div>' +
+      '</a>';
+    }
+
+    function renderHubCard(hub) {
+      return '<a href="' + hub.href + '" class="cat-card"><span class="cat-name">' + hub.icon + ' ' + hub.title + '</span><span class="cat-meta">' + getToolsForHub(hub.key).length + ' tools</span></a>';
+    }
+
+    function navHighlightMatch(text, query) {
+      const value = String(text || '');
+      const lowerValue = value.toLowerCase();
+      const lowerQuery = String(query || '').toLowerCase();
+      const idx = lowerValue.indexOf(lowerQuery);
+      if (idx === -1) return value;
+      return value.slice(0, idx) + '<mark>' + value.slice(idx, idx + query.length) + '</mark>' + value.slice(idx + query.length);
+    }
+
+    function getRecentTools() {
+      const list = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+      return list.map(href => NAV_TOOLS.find(tool => tool.href === href)).filter(Boolean).slice(0, MAX_RECENT);
+    }
+
+    function renderSearchGroup(label, tools, query) {
+      if (!tools.length) return '';
+      return '<div class="search-dropdown-group"><div class="search-dropdown-label">' + label + '</div>' + tools.map((tool, index) =>
+        '<a href="' + tool.href + '" class="search-suggestion" data-idx="' + index + '">' +
+          '<span class="suggestion-icon">' + tool.icon + '</span>' +
+          '<div class="suggestion-text">' +
+            '<div class="suggestion-name">' + (query ? navHighlightMatch(tool.name, query) : tool.name) + '</div>' +
+            '<div class="suggestion-desc">' + (query ? tool.desc : ('Open ' + tool.name.toLowerCase() + ' instantly')) + '</div>' +
+          '</div>' +
+          '<span class="suggestion-tag">' + tool.tag + '</span>' +
+        '</a>'
+      ).join('') + '</div>';
+    }
+
+    function buildNavDropdown(dropdownEl, query) {
+      const normalizedQuery = String(query || '').trim().toLowerCase();
+      if (!normalizedQuery) {
+        const recentTools = getRecentTools();
+        const hubTools = getToolsForHub(HUB_KEY).filter(tool => !recentTools.includes(tool)).slice(0, 6);
+        dropdownEl.innerHTML = renderSearchGroup('Recently Used', recentTools, '') + renderSearchGroup('Reference Tools', hubTools, '');
+        if (!dropdownEl.innerHTML) {
+          dropdownEl.classList.remove('open');
+          return;
+        }
+        dropdownEl.classList.add('open');
+        return;
+      }
+
+      const results = searchTools(NAV_TOOLS, normalizedQuery, 6);
+      dropdownEl.innerHTML = results.length
+        ? results.map((tool, index) =>
+            '<a href="' + tool.href + '" class="search-suggestion" data-idx="' + index + '">' +
+              '<span class="suggestion-icon">' + tool.icon + '</span>' +
+              '<div class="suggestion-text">' +
+                '<div class="suggestion-name">' + navHighlightMatch(tool.name, normalizedQuery) + '</div>' +
+                '<div class="suggestion-desc">' + tool.desc + '</div>' +
+              '</div>' +
+              '<span class="suggestion-tag">' + tool.tag + '</span>' +
+            '</a>'
+          ).join('')
+        : '<div class="search-no-result">No tools found</div>';
+      dropdownEl.classList.add('open');
+    }
+
+    const tools = getToolsForHub(HUB_KEY);
+    document.getElementById('hubToolGrid').innerHTML = tools.map(renderToolCard).join('');
+    document.getElementById('hubCount').textContent = tools.length + ' tools · all free · privacy-first';
+    document.getElementById('otherHubGrid').innerHTML = HIERARCHY_HUBS.filter(hub => hub.key !== HUB_KEY).map(renderHubCard).join('');
+
+    const navSearchInput = document.getElementById('navSearch');
+    const navDropdown = document.getElementById('navSearchDropdown');
+    if (navSearchInput && navDropdown) {
+      navSearchInput.addEventListener('input', event => buildNavDropdown(navDropdown, event.target.value));
+      navSearchInput.addEventListener('focus', () => buildNavDropdown(navDropdown, navSearchInput.value));
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.nav-search')) navDropdown.classList.remove('open');
+      });
+    }
+  })();
+</script>
+</body>
+</html>

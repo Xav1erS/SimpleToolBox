@@ -540,15 +540,15 @@
   </div>
   <div class="filter-tags">
     <button class="filter-tag ds-pill active" data-filter="all">All</button>
-    <button class="filter-tag ds-pill" data-filter="developer">ð ï¸Developer</button>
-    <button class="filter-tag ds-pill" data-filter="convert">ð Convert</button>
-    <button class="filter-tag ds-pill" data-filter="generate">âï¸ Generate</button>
-    <button class="filter-tag ds-pill" data-filter="text">ð Text</button>
-    <button class="filter-tag ds-pill" data-filter="image">ð¼ï¸Image</button>
-    <button class="filter-tag ds-pill" data-filter="design">ð¨ Design</button>
-    <button class="filter-tag ds-pill" data-filter="reference">ð Reference</button>
-    <button class="filter-tag ds-pill" data-filter="calculator">ð§® Calculator</button>
-    <button class="filter-tag ds-pill" data-filter="pdf">ð PDF</button>
+    <button class="filter-tag ds-pill" data-filter="developer">🛠️ Developer</button>
+    <button class="filter-tag ds-pill" data-filter="convert">🔄 Convert</button>
+    <button class="filter-tag ds-pill" data-filter="generate">⚙️ Generate</button>
+    <button class="filter-tag ds-pill" data-filter="text">📝 Text</button>
+    <button class="filter-tag ds-pill" data-filter="image">🖼️ Image</button>
+    <button class="filter-tag ds-pill" data-filter="design">🎨 Design</button>
+    <button class="filter-tag ds-pill" data-filter="reference">📚 Reference</button>
+    <button class="filter-tag ds-pill" data-filter="calculator">🧮 Calculator</button>
+    <button class="filter-tag ds-pill" data-filter="pdf">📄 PDF</button>
   </div>
 </div>
 
@@ -1301,17 +1301,17 @@
   };
 
   const TAG_ICON_FALLBACKS = {
-    image: '???',
-    text: '??',
-    encode: '???',
-    format: '??',
-    convert: '??',
-    generate: '?',
-    design: '??',
-    reference: '??',
-    calculator: '??',
-    pdf: '??'
-  };;
+    image: '🖼️',
+    text: '📝',
+    encode: '🛠️',
+    format: '🧩',
+    convert: '↔️',
+    generate: '✨',
+    design: '🎨',
+    reference: '📚',
+    calculator: '🧮',
+    pdf: '📄'
+  };
 
   const MULTI_TAG = { developer: ['encode', 'format'] };
   const CAT_ALIAS  = { encode: 'developer', format: 'developer' };
@@ -1323,7 +1323,7 @@
   function getToolIcon(tool) {
     const icon = (tool.icon || '').trim();
     return (!icon || icon === '?' || icon === '??' || icon === '???')
-      ? (TAG_ICON_FALLBACKS[tool.tag] || ' - ) : icon;
+      ? (TAG_ICON_FALLBACKS[tool.tag] || '?') : icon;
   }
 
   function renderToolCard(tool) {

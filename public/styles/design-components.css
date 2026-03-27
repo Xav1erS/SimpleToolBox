@@ -3011,15 +3011,15 @@ body > .ds-seo-more {
 }
 
 .ds-has-directory.ds-directory-is-collapsed {
-  --stb-directory-current-width: 76px;
-  --stb-directory-gap: 18px;
+  --stb-directory-current-width: 64px;
+  --stb-directory-gap: 16px;
 }
 
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-rail {
-  width: 76px !important;
-  height: 76px !important;
+  width: 64px !important;
+  height: 64px !important;
   bottom: auto !important;
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -3047,10 +3047,11 @@ body > .ds-seo-more {
 }
 
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse {
-  width: 44px;
-  min-width: 44px;
-  min-height: 44px;
-  border-radius: 16px;
+  position: relative;
+  width: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.045);
   border-color: rgba(255, 255, 255, 0.08);
   color: var(--ds-color-text-primary);
@@ -3063,8 +3064,36 @@ body > .ds-seo-more {
 }
 
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse__icon {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse::after {
+  content: attr(aria-label);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 20, 24, 0.96);
+  color: var(--ds-color-text-primary);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 28px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-standard), transform var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse:hover::after,
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse:focus-visible::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .ds-has-directory .ds-shell__content > .page-header,

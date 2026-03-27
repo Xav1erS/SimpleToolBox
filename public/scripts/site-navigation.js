@@ -410,7 +410,7 @@
       collapseBtn.setAttribute('title', collapsed ? 'Open navigation' : 'Collapse navigation');
       const label = collapseBtn.querySelector('.ds-directory-collapse__label');
       const icon = collapseBtn.querySelector('.ds-directory-collapse__icon');
-      if (label) label.textContent = collapsed ? 'Open' : 'Collapse';
+      if (label) label.textContent = collapsed ? 'Menu' : 'Collapse';
       if (icon) icon.innerHTML = collapsed
         ? '<span class="ds-directory-collapse__glyph">&#9776;</span><span class="ds-directory-collapse__chevron">&rsaquo;</span>'
         : '&larr;';

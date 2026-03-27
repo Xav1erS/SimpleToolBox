@@ -2683,7 +2683,7 @@ body > .ds-seo-more {
   }
 
   .ds-has-directory.ds-directory-page--hub .hub-hero {
-    margin-top: 18px !important;
+    margin-top: 0 !important;
     padding: 30px 30px 28px !important;
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 30px;
@@ -3006,6 +3006,13 @@ body > .ds-seo-more {
   max-width: none !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
+}
+
+.ds-has-directory .ds-shell__content > .hub-hero,
+.ds-has-directory .ds-shell__content > .guide-hero,
+.ds-has-directory .ds-shell__content > .ds-tool-header,
+.ds-has-directory .ds-shell__content > .tool-header {
+  margin-top: 0 !important;
 }
 
 .ds-guide-rail-active .guide-toc {

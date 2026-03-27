@@ -107,27 +107,6 @@
     return 'hub-section-' + slugify(getSectionTitle(section, index)) + '-' + String(index + 1);
   }
 
-  function getHubSectionItems(hubKey, currentUrl) {
-    const config = getHubConfig(hubKey);
-    const sections = config && Array.isArray(config.sections) ? config.sections : [];
-
-    return sections
-      .map((section, index) => {
-        const slugs = getSectionSlugs(section);
-        if (!slugs.length) return null;
-
-        return {
-          type: 'link',
-          kind: 'toc',
-          href: '#' + getHubSectionId(section, index),
-          label: getSectionTitle(section, index),
-          icon: String(index + 1).padStart(2, '0'),
-          active: global.location.hash === ('#' + getHubSectionId(section, index))
-        };
-      })
-      .filter(Boolean);
-  }
-
   function getHubToolGroups(hubKey, currentUrl) {
     const config = getHubConfig(hubKey);
     const sections = config && Array.isArray(config.sections) ? config.sections : [];
@@ -142,7 +121,10 @@
         if (!items.length) return null;
 
         return {
+          kind: 'hub-section',
           title: getSectionTitle(section, index),
+          sectionId: getHubSectionId(section, index),
+          icon: String(index + 1).padStart(2, '0'),
           collapsible: true,
           startExpanded: index === 0,
           items: items
@@ -304,7 +286,6 @@
       const sectionGroups = getHubToolGroups(hub.key, currentUrl);
       return [
         { title: 'Current Hub', items: [buildHubLinkItem(hub, currentUrl)] },
-        { title: 'Sections', items: getHubSectionItems(hub.key, currentUrl) },
         ...sectionGroups,
         { title: 'Related Guides', items: getGuidePagesForHub(hub.key).map((guide) => buildGuideLinkItem(guide, currentUrl)) },
         { title: 'Other Hubs', items: HIERARCHY_HUBS.filter((item) => item.key !== hub.key).map((item) => buildHubLinkItem(item, currentUrl)) }

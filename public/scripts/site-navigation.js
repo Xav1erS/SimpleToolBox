@@ -254,14 +254,23 @@
   function renderDirectoryGroup(group, context, index) {
     const collapsible = !!group.collapsible;
     const expanded = group.startExpanded !== false;
-    const titleMarkup = collapsible
-      ? '<button type="button" class="ds-directory-group__toggle" data-directory-group-toggle aria-expanded="' + (expanded ? 'true' : 'false') + '">' +
-          '<span class="ds-directory-group__title-text">' + escapeHtml(group.title) + '</span>' +
-          '<span class="ds-directory-group__chevron" aria-hidden="true">&rsaquo;</span>' +
+    const isHubSection = group.kind === 'hub-section';
+    const titleMarkup = isHubSection
+      ? '<button type="button" class="ds-directory-section-trigger" data-directory-group-toggle data-directory-group-target="' + escapeHtml(group.sectionId || '') + '" aria-expanded="' + (expanded ? 'true' : 'false') + '">' +
+          '<span class="ds-directory-section-trigger__main">' +
+            '<span class="ds-directory-section-trigger__icon">' + escapeHtml(group.icon || '') + '</span>' +
+            '<span class="ds-directory-section-trigger__label">' + escapeHtml(group.title) + '</span>' +
+          '</span>' +
+          '<span class="ds-directory-section-trigger__chevron" aria-hidden="true">&rsaquo;</span>' +
         '</button>'
-      : '<h2 class="ds-directory-group__title">' + escapeHtml(group.title) + '</h2>';
+      : (collapsible
+        ? '<button type="button" class="ds-directory-group__toggle" data-directory-group-toggle aria-expanded="' + (expanded ? 'true' : 'false') + '">' +
+            '<span class="ds-directory-group__title-text">' + escapeHtml(group.title) + '</span>' +
+            '<span class="ds-directory-group__chevron" aria-hidden="true">&rsaquo;</span>' +
+          '</button>'
+        : '<h2 class="ds-directory-group__title">' + escapeHtml(group.title) + '</h2>');
 
-    return '<section class="ds-directory-group' + (collapsible ? ' is-collapsible' : '') + '" data-directory-group' + (expanded ? '' : ' data-collapsed="true"') + '>' +
+    return '<section class="ds-directory-group' + (collapsible ? ' is-collapsible' : '') + (isHubSection ? ' ds-directory-group--hub-section' : '') + '" data-directory-group' + (isHubSection ? ' data-directory-group-kind="hub-section"' : '') + (group.sectionId ? ' data-directory-group-target="' + escapeHtml(group.sectionId) + '"' : '') + (expanded ? '' : ' data-collapsed="true"') + '>' +
       titleMarkup +
       '<div class="ds-directory-group__content">' +
         renderDirectoryItems(group.items, context) +
@@ -337,6 +346,26 @@
         body +
       '</aside>'
     );
+  }
+
+  function setDirectoryGroupExpanded(group, expanded) {
+    if (!group) return;
+    group.setAttribute('data-collapsed', expanded ? 'false' : 'true');
+    const button = group.querySelector('[data-directory-group-toggle]');
+    if (button) {
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+  }
+
+  function setActiveHubDirectorySection(id) {
+    const groups = Array.from(document.querySelectorAll('[data-directory-group-kind="hub-section"]'));
+    if (!groups.length) return;
+
+    groups.forEach(function (group) {
+      const isActive = group.getAttribute('data-directory-group-target') === id;
+      group.classList.toggle('is-active', isActive);
+      setDirectoryGroupExpanded(group, isActive);
+    });
   }
 
   function insertDirectory(context) {
@@ -742,9 +771,7 @@
     if (!targets.length) return;
 
     const updateActiveLink = function (id) {
-      document.querySelectorAll('[data-directory-target]').forEach(function (link) {
-        link.classList.toggle('is-active', link.getAttribute('data-directory-target') === id);
-      });
+      setActiveHubDirectorySection(id);
     };
 
     const observer = new global.IntersectionObserver(function (entries) {
@@ -773,12 +800,30 @@
     document.querySelectorAll('[data-directory-group-toggle]').forEach(function (button) {
       if (button.dataset.stbBound === '1') return;
       button.dataset.stbBound = '1';
-      button.addEventListener('click', function () {
+      button.addEventListener('click', function (event) {
         const group = button.closest('[data-directory-group]');
         if (!group) return;
+        const targetId = button.getAttribute('data-directory-group-target');
+
+        if (targetId) {
+          event.preventDefault();
+          setActiveHubDirectorySection(targetId);
+          if (global.location.hash !== ('#' + targetId)) {
+            try {
+              global.history.replaceState(null, '', '#' + targetId);
+            } catch (error) {
+              global.location.hash = targetId;
+            }
+          }
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          return;
+        }
+
         const collapsed = group.getAttribute('data-collapsed') === 'true';
-        group.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
-        button.setAttribute('aria-expanded', collapsed ? 'true' : 'false');
+        setDirectoryGroupExpanded(group, collapsed);
       });
     });
   }

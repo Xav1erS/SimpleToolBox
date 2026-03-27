@@ -43,7 +43,7 @@ Each migrated tool page must keep this structure, in this order:
 ## Shell Contract
 
 - `body` must include `ds-page`.
-- The page must provide `#nav` so the shared directory rail and breadcrumb logic can attach correctly.
+- The page must provide `nav.ds-nav#nav` so the shared top navigation, directory rail, and breadcrumb logic can attach correctly.
 - The header must use `ds-tool-header`, `ds-tool-header__inner`, `ds-tool-header__title`, and `ds-tool-header__desc`.
 - The header must include `ds-tool-context` with at least:
   - one hub entry pill
@@ -155,6 +155,7 @@ The gold-standard page must not contain patterns that future migrations should r
 - invalid or messy HTML semantics such as nested `<label>` elements
 - redundant global re-exports after `tools-data.js` when the source file already exposes them
 - page-specific compatibility glue mixed into the shell without a clear reason
+- old `ds-tool-nav` top bars copied forward after the shared `ds-nav` shell is available
 - page-specific SEO wrappers that break the standard `.ds-seo-content -> .ds-related-tools -> .ds-seo-more` order
 - long custom SEO card stacks when the same material fits the standard required and optional slots
 

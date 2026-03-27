@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=42" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=43" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -135,14 +135,20 @@
       .panels-arrow { height: 36px; border-left: none; border-right: none; border-top: 1px solid var(--ds-color-border); border-bottom: 1px solid var(--ds-color-border); }
       .arrow-circle { transform: rotate(90deg); }
     }
+    .tool-noscript {
+      text-align: center;
+      padding: 40px;
+      color: #8b8b9a;
+      font-family: sans-serif;
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8SBCZ6DT1R');</script>
 </head>
-<body class="ds-page">
-<noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<body class="ds-page ds-tool-shell-ready">
+<noscript><div class="tool-noscript">This tool requires JavaScript to run.</div></noscript>
 
-<nav class="ds-tool-nav">
+<nav class="ds-tool-nav" id="nav">
   <a href="../index.html" class="ds-nav__brand">
     <div class="ds-nav__logo-icon">
       <img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
@@ -172,6 +178,11 @@
     <p class="ds-tool-header__desc">
       Compress CSS by removing comments, whitespace, and redundant code. Shows exact byte savings and compression ratio. Everything runs in your browser &mdash; no server, no tracking.
     </p>
+    <div class="ds-tool-context">
+      <a href="../developer-tools.html" class="ds-tool-context__pill ds-tool-context__pill--hub">Developer Tools</a>
+      <span class="ds-tool-context__pill"><span class="ds-tool-context__dot"></span>Runs locally</span>
+      <span class="ds-tool-context__pill">No data sent</span>
+    </div>
     <div class="ds-tool-tag-row">
       <span class="ds-tag">css minify</span>
       <span class="ds-tag">compress</span>
@@ -558,6 +569,14 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
+<script src="../site-hierarchy.js?v=6"></script>
+<script>
+  window.STB_PAGE_CONTEXT = {
+    pageType: 'tool',
+    slug: 'css-minifier'
+  };
+</script>
+<script src="../scripts/site-navigation.js?v=9"></script>
 <script src="../tool-page-icon.js"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>

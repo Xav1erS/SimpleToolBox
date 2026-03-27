@@ -2452,6 +2452,82 @@ body > .ds-seo-more {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent);
 }
 
+.ds-directory-group__toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ds-directory-group__toggle:hover .ds-directory-group__title-text,
+.ds-directory-group__toggle:focus-visible .ds-directory-group__title-text {
+  color: var(--ds-color-text-primary);
+}
+
+.ds-directory-group__toggle:focus-visible {
+  outline: none;
+}
+
+.ds-directory-group__title-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ds-color-text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.ds-directory-group__title-text::after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  min-width: 16px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent);
+}
+
+.ds-directory-group__chevron {
+  color: var(--ds-color-text-muted);
+  font-size: 13px;
+  transition: transform var(--ds-duration-fast) var(--ds-ease-standard), color var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.ds-directory-group__toggle:hover .ds-directory-group__chevron,
+.ds-directory-group__toggle:focus-visible .ds-directory-group__chevron {
+  color: var(--ds-color-text-primary);
+}
+
+.ds-directory-group__content {
+  overflow: hidden;
+  transition: grid-template-rows var(--ds-duration-fast) var(--ds-ease-standard), opacity var(--ds-duration-fast) var(--ds-ease-standard), margin-top var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.ds-directory-group.is-collapsible .ds-directory-group__content {
+  margin-top: 12px;
+}
+
+.ds-directory-group[data-collapsed="true"] .ds-directory-group__content {
+  margin-top: 0;
+  display: none;
+}
+
+.ds-directory-group[data-collapsed="true"] .ds-directory-group__chevron {
+  transform: rotate(0deg);
+}
+
+.ds-directory-group.is-collapsible:not([data-collapsed="true"]) .ds-directory-group__chevron {
+  transform: rotate(90deg);
+}
+
 .ds-directory-list {
   display: grid;
   gap: 8px;
@@ -2960,6 +3036,28 @@ body > .ds-seo-more {
   font-family: var(--ds-font-mono);
   font-size: 11px;
   letter-spacing: 0;
+}
+
+.ds-directory-link--toc {
+  position: relative;
+}
+
+.ds-directory-link--toc::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 9px;
+  bottom: 9px;
+  width: 2px;
+  border-radius: 999px;
+  background: rgba(94, 106, 210, 0.14);
+  opacity: 0;
+  transition: opacity var(--ds-duration-fast) var(--ds-ease-standard), background var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.ds-directory-link--toc.is-active::before {
+  opacity: 1;
+  background: linear-gradient(180deg, rgba(124, 133, 223, 0.9), rgba(94, 106, 210, 0.5));
 }
 
 .ds-directory-link--toc.is-active .ds-directory-link__icon {

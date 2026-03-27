@@ -82,6 +82,75 @@
     return GUIDE_PAGES.filter((guide) => guide.hub === hubKey);
   }
 
+  function getHubConfig(hubKey) {
+    return global.HUB_PAGE_CONFIG && global.HUB_PAGE_CONFIG[hubKey]
+      ? global.HUB_PAGE_CONFIG[hubKey]
+      : null;
+  }
+
+  function getSectionSlugs(section) {
+    return Array.isArray(section) ? section : (Array.isArray(section && section.slugs) ? section.slugs : []);
+  }
+
+  function getSectionTitle(section, index) {
+    return section && section.title ? section.title : ('Section ' + String(index + 1));
+  }
+
+  function slugify(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'section';
+  }
+
+  function getHubSectionId(section, index) {
+    return 'hub-section-' + slugify(getSectionTitle(section, index)) + '-' + String(index + 1);
+  }
+
+  function getHubSectionItems(hubKey, currentUrl) {
+    const config = getHubConfig(hubKey);
+    const sections = config && Array.isArray(config.sections) ? config.sections : [];
+
+    return sections
+      .map((section, index) => {
+        const slugs = getSectionSlugs(section);
+        if (!slugs.length) return null;
+
+        return {
+          type: 'link',
+          kind: 'toc',
+          href: '#' + getHubSectionId(section, index),
+          label: getSectionTitle(section, index),
+          icon: String(index + 1).padStart(2, '0'),
+          active: global.location.hash === ('#' + getHubSectionId(section, index))
+        };
+      })
+      .filter(Boolean);
+  }
+
+  function getHubToolGroups(hubKey, currentUrl) {
+    const config = getHubConfig(hubKey);
+    const sections = config && Array.isArray(config.sections) ? config.sections : [];
+
+    return sections
+      .map((section, index) => {
+        const items = getSectionSlugs(section)
+          .map((slug) => getToolBySlug(slug))
+          .filter(Boolean)
+          .map((tool) => buildToolLinkItem(tool, currentUrl));
+
+        if (!items.length) return null;
+
+        return {
+          title: getSectionTitle(section, index),
+          collapsible: true,
+          startExpanded: index === 0,
+          items: items
+        };
+      })
+      .filter(Boolean);
+  }
+
   function getToolBySlug(slug) {
     if (!Array.isArray(global.SITE_TOOLS)) return null;
     return global.SITE_TOOLS.find((tool) => slugFromHref(tool.href) === slug) || null;
@@ -232,9 +301,11 @@
     if (pageType === 'hub') {
       const hub = getHubByKey(slug) || getHubByPageSlug(slug);
       if (!hub) return [];
+      const sectionGroups = getHubToolGroups(hub.key, currentUrl);
       return [
         { title: 'Current Hub', items: [buildHubLinkItem(hub, currentUrl)] },
-        { title: 'Tools in This Hub', items: getToolsForHub(hub.key).map((tool) => buildToolLinkItem(tool, currentUrl)) },
+        { title: 'Sections', items: getHubSectionItems(hub.key, currentUrl) },
+        ...sectionGroups,
         { title: 'Related Guides', items: getGuidePagesForHub(hub.key).map((guide) => buildGuideLinkItem(guide, currentUrl)) },
         { title: 'Other Hubs', items: HIERARCHY_HUBS.filter((item) => item.key !== hub.key).map((item) => buildHubLinkItem(item, currentUrl)) }
       ];

@@ -13,7 +13,15 @@
   <meta property="og:description" content="Format and beautify JavaScript code for readability or minify for production. Configurable indent. Free, browser-based." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=42" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=43" />
+  <style>
+    .tool-noscript {
+      text-align: center;
+      padding: 40px;
+      color: #8b8b9a;
+      font-family: sans-serif;
+    }
+  </style>
     <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {
@@ -73,15 +81,15 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
 </head>
-<body class="ds-page">
+<body class="ds-page ds-tool-shell-ready">
 <noscript>
-  <div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">
+  <div class="tool-noscript">
     This tool requires JavaScript to run.
   </div>
 </noscript>
 
 <!-- NAV -->
-<nav class="ds-tool-nav">
+<nav class="ds-tool-nav" id="nav">
   <a href="../index.html" class="ds-nav__brand">
     <div class="ds-nav__logo-icon">
       <img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" />
@@ -113,6 +121,11 @@
       Beautify compressed JavaScript for readability or minify for production.
       Everything runs in your browser &middot; no server, no tracking.
     </p>
+    <div class="ds-tool-context">
+      <a href="../developer-tools.html" class="ds-tool-context__pill ds-tool-context__pill--hub">Developer Tools</a>
+      <span class="ds-tool-context__pill"><span class="ds-tool-context__dot"></span>Runs locally</span>
+      <span class="ds-tool-context__pill">No data sent</span>
+    </div>
     <div class="tool-tags ds-tool-tag-row">
       <span class="tool-tag-pill ds-tag">js beautify</span>
       <span class="tool-tag-pill ds-tag">js minify</span>
@@ -521,6 +534,14 @@ const arr = [1, 2, 3].map(f);</span>
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
+<script src="../site-hierarchy.js?v=6"></script>
+<script>
+  window.STB_PAGE_CONTEXT = {
+    pageType: 'tool',
+    slug: 'js-formatter'
+  };
+</script>
+<script src="../scripts/site-navigation.js?v=9"></script>
 <script src="../tool-page-icon.js"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>

@@ -80,7 +80,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=42" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=43" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -210,6 +210,12 @@
         flex-basis: 100%;
       }
     }
+    .tool-noscript {
+      text-align: center;
+      padding: 40px;
+      color: #8b8b9a;
+      font-family: sans-serif;
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SBCZ6DT1R"></script>
@@ -220,10 +226,10 @@
     gtag('config', 'G-8SBCZ6DT1R');
   </script>
 </head>
-<body class="ds-page">
-<noscript><div style="text-align:center;padding:40px;color:#8B8B9A;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
+<body class="ds-page ds-tool-shell-ready">
+<noscript><div class="tool-noscript">This tool requires JavaScript to run.</div></noscript>
 
-<nav class="ds-tool-nav">
+<nav class="ds-tool-nav" id="nav">
   <a href="../index.html" class="ds-nav__brand">
     <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox
@@ -246,6 +252,11 @@
       <h1 class="tool-title ds-tool-header__title">JSON Formatter</h1>
     </div>
     <p class="tool-desc-text ds-tool-header__desc">Prettify or minify JSON with syntax error detection. Choose your indent style. Everything runs in your browser — no server, no tracking.</p>
+    <div class="ds-tool-context">
+      <a href="../developer-tools.html" class="ds-tool-context__pill ds-tool-context__pill--hub">Developer Tools</a>
+      <span class="ds-tool-context__pill"><span class="ds-tool-context__dot"></span>Runs locally</span>
+      <span class="ds-tool-context__pill">No data sent</span>
+    </div>
     <div class="tool-tags ds-tool-tag-row">
       <span class="tool-tag-pill ds-tag">JSON.parse</span>
       <span class="tool-tag-pill ds-tag">prettify</span>
@@ -876,6 +887,14 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
+<script src="../site-hierarchy.js?v=6"></script>
+<script>
+  window.STB_PAGE_CONTEXT = {
+    pageType: 'tool',
+    slug: 'json-formatter'
+  };
+</script>
+<script src="../scripts/site-navigation.js?v=9"></script>
 <script src="../tool-page-icon.js"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>

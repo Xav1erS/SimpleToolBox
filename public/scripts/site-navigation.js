@@ -251,6 +251,24 @@
     }).join('') + '</div>';
   }
 
+  function renderDirectoryGroup(group, context, index) {
+    const collapsible = !!group.collapsible;
+    const expanded = group.startExpanded !== false;
+    const titleMarkup = collapsible
+      ? '<button type="button" class="ds-directory-group__toggle" data-directory-group-toggle aria-expanded="' + (expanded ? 'true' : 'false') + '">' +
+          '<span class="ds-directory-group__title-text">' + escapeHtml(group.title) + '</span>' +
+          '<span class="ds-directory-group__chevron" aria-hidden="true">&rsaquo;</span>' +
+        '</button>'
+      : '<h2 class="ds-directory-group__title">' + escapeHtml(group.title) + '</h2>';
+
+    return '<section class="ds-directory-group' + (collapsible ? ' is-collapsible' : '') + '" data-directory-group' + (expanded ? '' : ' data-collapsed="true"') + '>' +
+      titleMarkup +
+      '<div class="ds-directory-group__content">' +
+        renderDirectoryItems(group.items, context) +
+      '</div>' +
+    '</section>';
+  }
+
   function getDirectoryGroups(context) {
     const groups = global.getDirectoryEntriesForPage ? global.getDirectoryEntriesForPage(context) : [];
 
@@ -281,11 +299,8 @@
     });
     const headerMeta = getDirectoryHeaderMeta(context);
 
-    const body = '<div class="ds-directory-rail__body">' + groups.map(function (group) {
-      return '<section class="ds-directory-group">' +
-        '<h2 class="ds-directory-group__title">' + escapeHtml(group.title) + '</h2>' +
-        renderDirectoryItems(group.items, context) +
-      '</section>';
+    const body = '<div class="ds-directory-rail__body">' + groups.map(function (group, index) {
+      return renderDirectoryGroup(group, context, index);
     }).join('') + '</div>';
 
     return (
@@ -722,6 +737,52 @@
     });
   }
 
+  function bindHubRailObserver() {
+    const targets = Array.from(document.querySelectorAll('.hub-section[id]'));
+    if (!targets.length) return;
+
+    const updateActiveLink = function (id) {
+      document.querySelectorAll('[data-directory-target]').forEach(function (link) {
+        link.classList.toggle('is-active', link.getAttribute('data-directory-target') === id);
+      });
+    };
+
+    const observer = new global.IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        updateActiveLink(entry.target.id);
+      });
+    }, { rootMargin: '-18% 0px -72% 0px' });
+
+    targets.forEach(function (target) {
+      observer.observe(target);
+    });
+
+    if (global.location.hash) {
+      updateActiveLink(global.location.hash.replace(/^#/, ''));
+    } else if (targets[0]) {
+      updateActiveLink(targets[0].id);
+    }
+
+    global.addEventListener('hashchange', function () {
+      updateActiveLink(global.location.hash.replace(/^#/, ''));
+    });
+  }
+
+  function bindDirectoryGroupToggles() {
+    document.querySelectorAll('[data-directory-group-toggle]').forEach(function (button) {
+      if (button.dataset.stbBound === '1') return;
+      button.dataset.stbBound = '1';
+      button.addEventListener('click', function () {
+        const group = button.closest('[data-directory-group]');
+        if (!group) return;
+        const collapsed = group.getAttribute('data-collapsed') === 'true';
+        group.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+        button.setAttribute('aria-expanded', collapsed ? 'true' : 'false');
+      });
+    });
+  }
+
   function initSiteNavigation() {
     const context = getPageContext();
     if (!context.pageType) return;
@@ -732,6 +793,7 @@
     bindShellMetrics();
     applyCollapsedState();
     bindDirectoryActions();
+    bindDirectoryGroupToggles();
     bindToolSearch(context);
     scheduleShellSync();
 
@@ -741,6 +803,10 @@
 
     if (context.pageType === 'guide') {
       bindGuideRailObserver();
+    }
+
+    if (context.pageType === 'hub') {
+      bindHubRailObserver();
     }
   }
 

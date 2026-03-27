@@ -98,6 +98,7 @@
     .section-label,
     .hub-links,
     .guide-links,
+    .assist-deck,
     .tool-section-title,
     .tool-grid.tool-grid--section,
     .results-head,
@@ -173,12 +174,14 @@
     .section-label--hubs { order: 5; }
     .hub-links { order: 6; }
     .results-head { order: 7; }
-    #toolGrid { order: 8; }
-    .section-label--guides { order: 9; }
-    .guide-links { order: 10; }
-    footer { order: 11; }
+    .assist-deck { order: 8; }
+    #toolGrid { order: 9; }
+    .section-label--guides { order: 10; }
+    .guide-links { order: 11; }
+    footer { order: 12; }
     .hub-links,
-    .guide-links {
+    .guide-links,
+    .assist-deck {
       padding: 0 0 22px;
     }
     .hub-links {
@@ -282,6 +285,54 @@
       line-height: 1.6;
       margin: 0;
     }
+    .assist-deck {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+    .assist-deck[hidden] {
+      display: none !important;
+    }
+    .assist-section {
+      display: grid;
+      gap: 10px;
+    }
+    .assist-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ds-color-text-primary);
+    }
+    .assist-title__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .assist-title__meta {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ds-color-text-secondary);
+    }
+    .assist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .assist-grid .tool-card {
+      min-height: 0;
+      padding: 18px;
+      gap: 8px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.026) 0%, rgba(255,255,255,0.014) 100%);
+      box-shadow: none;
+      transform: none;
+    }
+    .assist-grid .tool-name { font-size: 15px; }
+    .assist-grid .tool-desc { font-size: 12px; line-height: 1.55; }
+    .assist-grid .tool-icon { width: 34px; height: 34px; font-size: 17px; }
     .count-badge {
       display: inline-flex;
       align-items: center;
@@ -378,6 +429,7 @@
       .section-label,
       .hub-links,
       .guide-links,
+      .assist-deck,
       .tool-section-title,
       .tool-grid.tool-grid--section,
       .results-head,
@@ -405,6 +457,7 @@
       .filter-tags::-webkit-scrollbar { display: none; }
       .hub-links { padding: 0 0 18px; grid-template-columns: none; display: flex; }
       .guide-links { padding: 0 0 18px; grid-template-columns: 1fr; }
+      .assist-deck { padding: 0 0 18px; gap: 12px; }
       .hub-link,
       .filter-tag { flex: 0 0 auto; }
       .filter-bar { padding: 16px 16px 12px; gap: 10px; border-radius: 18px 18px 0 0; }
@@ -415,6 +468,8 @@
       .results-title { font-size: 20px; }
       .results-copy { margin-bottom: 12px; }
       .count-badge { font-size: 11px; }
+      .assist-grid { grid-template-columns: 1fr; }
+      .assist-grid .tool-card { padding: 16px; }
       .tool-section-title { padding: 0 0 12px; font-size: 14px; }
       .tool-grid.tool-grid--section { margin: 0 auto 18px; padding: 0 0 2px; border-radius: 0; grid-template-columns: 1fr; }
       .tool-grid#toolGrid.tool-grid--grouped { padding: 0 0 56px; }
@@ -530,11 +585,13 @@
 <div class="results-head">
   <div>
     <div class="results-kicker">Browse the catalog</div>
-    <h2 class="results-title">Browse by recent, popular, or category</h2>
-    <p class="results-copy">Default view is trimmed for discovery. Search or filter any term to switch into direct results.</p>
+    <h2 class="results-title">Browse every tool from one grid</h2>
+    <p class="results-copy">Popular picks and recently used tools stay visible as lightweight helpers, while the main results grid stays consistent across every filter.</p>
   </div>
   <span class="count-badge" id="countBadge">201 tools</span>
 </div>
+
+<div class="assist-deck" id="assistDeck" hidden></div>
 
 <div class="tool-grid" id="toolGrid">
   <a href="tools/base64.html" class="tool-card" data-tags="encode" data-name="Base64 Encode Decode">
@@ -1184,6 +1241,7 @@
   const ALL_TOOLS = SITE_TOOLS;
   const TOOL_BY_HREF = new Map(ALL_TOOLS.map(tool => [tool.href, tool]));
   const toolGrid = document.getElementById('toolGrid');
+  const assistDeck = document.getElementById('assistDeck');
   const countBadge = document.getElementById('countBadge');
   const pageSub = document.querySelector('.page-sub');
   const toolSearchInput = document.getElementById('toolSearch');
@@ -1400,6 +1458,52 @@
       '<div class="no-result" id="noResult">No tools match your search.</div>';
   }
 
+  function renderAssistSection(label, tools, options = {}) {
+    if (!tools.length) return '';
+    const visibleTools = tools.slice(0, options.limit || tools.length);
+    const metaHtml = options.metaHtml || '';
+
+    return `<section class="assist-section">
+      <div class="assist-title">
+        <span class="assist-title__label">${label}</span>
+        ${metaHtml}
+      </div>
+      <div class="assist-grid">${visibleTools.map(renderToolCard).join('')}</div>
+    </section>`;
+  }
+
+  function renderAssistHTML() {
+    const recentTools = getRecentTools().slice(0, 3);
+    const popularTools = getPopularTools()
+      .filter(tool => !recentTools.some(recent => recent.href === tool.href))
+      .slice(0, 3);
+
+    const recentHtml = renderAssistSection('Recently Used', recentTools, {
+      metaHtml: recentTools.length
+        ? '<button id="clearRecent" class="quick-clear">Clear</button>'
+        : ''
+    });
+    const popularHtml = renderAssistSection('Popular Tools', popularTools, {
+      metaHtml: popularTools.length
+        ? '<span class="assist-title__meta">Quick picks</span>'
+        : ''
+    });
+
+    return popularHtml + recentHtml;
+  }
+
+  function updateAssistDeck() {
+    const shouldShow = activeTag === 'all' && !activeAction && !searchQuery;
+    if (!shouldShow) {
+      assistDeck.hidden = true;
+      assistDeck.innerHTML = '';
+      return;
+    }
+
+    assistDeck.innerHTML = renderAssistHTML();
+    assistDeck.hidden = !assistDeck.innerHTML.trim();
+  }
+
   function renderSectionBlock(label, tools, options = {}) {
     const limit = options.limit || tools.length;
     const visibleTools = tools.slice(0, limit);
@@ -1460,33 +1564,16 @@
   }
 
   function rebuildGrid() {
-    const needGrouped = activeTag === 'all' && !activeAction && !searchQuery;
-    const newMode = needGrouped ? 'grouped' : 'flat';
-
-    if (gridMode === newMode) {
-      // Mode unchanged — just re-run filters
-      if (needGrouped) {
-        toolGrid.classList.add('tool-grid--grouped');
-        toolGrid.innerHTML = renderGroupedHTML();
-        countBadge.textContent = ALL_TOOLS.length + ' tools';
-        pageSub.textContent = `${ALL_TOOLS.length} browser-based tools across text, developer, image, design, calculator, and reference workflows.`;
-        return;
-      }
-      applyFilters();
-      return;
-    }
-
-    gridMode = newMode;
-    if (needGrouped) {
-      toolGrid.classList.add('tool-grid--grouped');
-      toolGrid.innerHTML = renderGroupedHTML();
-      countBadge.textContent = ALL_TOOLS.length + ' tools';
-      pageSub.textContent = `${ALL_TOOLS.length} browser-based tools across text, developer, image, design, calculator, and reference workflows.`;
-    } else {
+    if (gridMode !== 'flat') {
+      gridMode = 'flat';
       toolGrid.classList.remove('tool-grid--grouped');
       toolGrid.innerHTML = renderFlatHTML();
-      applyFilters();
     }
+
+    pageSub.textContent = `${ALL_TOOLS.length} browser-based tools across text, developer, image, design, calculator, and reference workflows.`;
+      // Mode unchanged — just re-run filters
+    updateAssistDeck();
+    applyFilters();
   }
 
   function applyFilters() {
@@ -1560,7 +1647,7 @@
       rebuildGrid();
       return;
     }
-    const card = e.target.closest('#toolGrid .tool-card');
+    const card = e.target.closest('#toolGrid .tool-card, #assistDeck .tool-card');
     if (card) recordRecent(card.getAttribute('href'));
   });
 

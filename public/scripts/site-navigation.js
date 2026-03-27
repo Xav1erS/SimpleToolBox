@@ -125,6 +125,7 @@
   }
 
   function getRecentItems(currentUrl) {
+    const context = getPageContext();
     if (!Array.isArray(global.SITE_TOOLS)) return [];
     let recent = [];
     try {
@@ -145,7 +146,7 @@
           href: tool.href,
           label: tool.name,
           icon: tool.icon,
-          meta: tool.tag,
+          meta: context.pageType === 'tool' ? '' : tool.tag,
           active: normalizePath(tool.href) === normalizePath(currentUrl)
         };
       });

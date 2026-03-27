@@ -258,7 +258,7 @@
 
       return [
         { title: 'Current Hub', items: [Object.assign({}, buildHubLinkItem(hub, currentUrl), { active: true })] },
-        { title: 'Often Used With This', items: getOftenUsedToolsForTool(slug, hub.key).map((item) => buildToolLinkItem(item, currentUrl)) },
+        { title: 'Often Used With This', items: getOftenUsedToolsForTool(slug, hub.key).map((item) => Object.assign({}, buildToolLinkItem(item, currentUrl), { meta: '' })) },
         { title: 'Recently Used', items: [] }
       ];
     }

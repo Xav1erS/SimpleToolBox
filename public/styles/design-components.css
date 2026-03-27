@@ -2405,7 +2405,22 @@ body > .ds-seo-more {
 
 .ds-directory-collapse__icon {
   width: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   text-align: center;
+}
+
+.ds-directory-collapse__glyph {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.ds-directory-collapse__chevron {
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.82;
 }
 
 .ds-directory-rail__body,
@@ -2993,6 +3008,63 @@ body > .ds-seo-more {
 
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse__icon {
   width: auto;
+}
+
+.ds-has-directory.ds-directory-is-collapsed {
+  --stb-directory-current-width: 76px;
+  --stb-directory-gap: 18px;
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-rail {
+  width: 76px !important;
+  height: 76px !important;
+  bottom: auto !important;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-rail::before {
+  background:
+    radial-gradient(circle at top left, rgba(94, 106, 210, 0.22), transparent 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-rail__inner {
+  height: 100%;
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-rail__head {
+  min-height: 100%;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0;
+  background: transparent;
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-rail__body {
+  display: none;
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse {
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--ds-color-text-primary);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse__icon {
+  font-size: 18px;
+  line-height: 1;
 }
 
 .ds-has-directory .ds-shell__content > .page-header,

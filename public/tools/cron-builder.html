@@ -75,7 +75,7 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does cron support seconds?","acceptedAnswer":{"@type":"Answer","text":"Standard Unix cron uses five fields (no seconds). Some systems like Spring Scheduler and Quartz add a sixth field for seconds. This builder uses the standard five-field format compatible with Linux crontab, GitHub Actions, and most cloud schedulers."}},{"@type":"Question","name":"What timezone does cron use?","acceptedAnswer":{"@type":"Answer","text":"By default, cron uses the server's local timezone. GitHub Actions schedules use UTC. Always confirm the timezone of the system running your cron job to avoid off-by-one-hour errors."}},{"@type":"Question","name":"What does */5 * * * * mean?","acceptedAnswer":{"@type":"Answer","text":"It means every 5 minutes. The */n syntax means every n units starting from 0. So */5 in the minutes field fires at 0, 5, 10, 15, 20 ... 55."}},{"@type":"Question","name":"Can I run a job on the last day of the month?","acceptedAnswer":{"@type":"Answer","text":"Standard cron does not have an L (last) modifier — that is a Quartz extension. For standard cron, a common workaround is to schedule for the 28th-31st and check the date inside your script."}}]}
   </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=31" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=32" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);

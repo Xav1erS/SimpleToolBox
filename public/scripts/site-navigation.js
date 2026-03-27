@@ -406,10 +406,14 @@
     const collapseBtn = document.querySelector('[data-directory-collapse]');
     if (collapseBtn) {
       collapseBtn.setAttribute('aria-pressed', collapsed ? 'true' : 'false');
+      collapseBtn.setAttribute('aria-label', collapsed ? 'Open navigation' : 'Collapse navigation');
+      collapseBtn.setAttribute('title', collapsed ? 'Open navigation' : 'Collapse navigation');
       const label = collapseBtn.querySelector('.ds-directory-collapse__label');
       const icon = collapseBtn.querySelector('.ds-directory-collapse__icon');
-      if (label) label.textContent = collapsed ? 'Expand' : 'Collapse';
-      if (icon) icon.innerHTML = collapsed ? '&rarr;' : '&larr;';
+      if (label) label.textContent = collapsed ? 'Open' : 'Collapse';
+      if (icon) icon.innerHTML = collapsed
+        ? '<span class="ds-directory-collapse__glyph">&#9776;</span><span class="ds-directory-collapse__chevron">&rsaquo;</span>'
+        : '&larr;';
     }
   }
 

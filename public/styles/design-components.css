@@ -2552,7 +2552,7 @@ body > .ds-seo-more {
   }
 
   .ds-has-directory.ds-directory-page--all-tools .page-header {
-    margin-top: 18px !important;
+    margin-top: 0 !important;
     padding: 28px 28px 26px !important;
     border-radius: 30px !important;
     overflow: hidden;
@@ -3008,6 +3008,7 @@ body > .ds-seo-more {
   margin-right: 0 !important;
 }
 
+.ds-has-directory .ds-shell__content > .page-header,
 .ds-has-directory .ds-shell__content > .hub-hero,
 .ds-has-directory .ds-shell__content > .guide-hero,
 .ds-has-directory .ds-shell__content > .ds-tool-header,

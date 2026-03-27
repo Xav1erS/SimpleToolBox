@@ -75,7 +75,7 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between UUID v1 and v4?","acceptedAnswer":{"@type":"Answer","text":"v1 is time-based: it encodes the current timestamp and the machine's MAC address, making it sortable by creation time but potentially revealing system information. v4 is purely random and the recommended default for most applications."}},{"@type":"Question","name":"Can two UUIDs ever be the same?","acceptedAnswer":{"@type":"Answer","text":"Theoretically yes, but the probability is negligible. For v4, with 2^122 possible values, you would need to generate about 2.7 x 10^18 UUIDs before having a 50% chance of a single collision."}},{"@type":"Question","name":"Is UUID the same as GUID?","acceptedAnswer":{"@type":"Answer","text":"Yes. A GUID (Globally Unique Identifier) is Microsoft's term for the same RFC 4122 standard. The format and generation rules are identical."}},{"@type":"Question","name":"Should I use UUID or auto-increment ID?","acceptedAnswer":{"@type":"Answer","text":"Use UUID when you need IDs generated on the client side, across multiple servers, or when you don't want sequential IDs to be guessable. Use auto-increment when you need simplicity and your database is a single instance."}}]}
   </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=37" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=38" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);

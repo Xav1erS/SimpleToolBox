@@ -275,3 +275,66 @@ If taking over work, read in this order:
 3. [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\MEMORY.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\MEMORY.md)
 4. [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\QA.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\QA.md)
 5. [`C:\Users\Windows11\Documents\GitHub\SimpleToolBox\reports\preflight-report.md`](C:\Users\Windows11\Documents\GitHub\SimpleToolBox\reports\preflight-report.md)
+
+## Tool Shell Migration Snapshot (2026-03-28)
+
+The tool-page left-rail migration is not blocked by the shell itself. The real blocker is legacy page debt plus incomplete page contracts.
+
+Current 201-page split:
+
+- `12` pages can be migrated directly
+- `128` pages need encoding / bad-tag cleanup first, then can be batch-migrated
+- `61` pages need manual one-by-one handling because they also have structural gaps
+
+### Direct-Migration Set
+
+Current clean batch:
+
+- `base64`
+- `css-minifier`
+- `js-formatter`
+- `aes`
+- `color-palette`
+- `contrast-checker`
+- `countdown`
+- `gradient-generator`
+- `html-formatter`
+- `roman-numerals`
+- `url-builder`
+- `url-encode`
+
+### Main Failure Modes
+
+- legacy mojibake / dirty characters
+- broken closing tags that only surface after shell wiring changes
+- missing `ds-tool-main`
+- missing required SEO slots:
+  - `What is ...`
+  - `How to Use ...`
+- duplicate shell initialization
+
+Confirmed real pitfall:
+
+- `tool-page-icon.js` can trigger `initSiteNavigation()` after `site-navigation.js` already initialized.
+- Without idempotent guards, this double-binds the directory collapse button and makes it appear unclickable because one handler collapses and the other immediately expands.
+
+### Migration Order
+
+Do not mix groups.
+
+1. Migrate the `12` direct pages first.
+2. Run cleanup on the `128` dirty-but-structurally-usable pages, then batch-migrate them.
+3. Leave the `61` structural outliers for manual handling.
+
+### Completion Bar
+
+A tool page should not be considered fully migrated unless it includes all of:
+
+- shared `nav.ds-nav#nav`
+- `window.STB_PAGE_CONTEXT = { pageType: 'tool', slug }`
+- `site-navigation.js`
+- `ds-tool-context`
+- standard SEO block order:
+  - `.ds-seo-content`
+  - `.ds-related-tools`
+  - `.ds-seo-more`

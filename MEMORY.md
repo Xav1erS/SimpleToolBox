@@ -89,3 +89,65 @@ After that:
 Correct active frame:
 
 **106 tools, QA green, shared architecture stable, continue disciplined expansion toward 150.**
+
+## Tool Shell Migration Snapshot (2026-03-28)
+
+The tool-page left-rail migration is now better understood.
+
+This is not mainly a “shell is hard” problem.
+It is a “legacy page debt + contract mismatch” problem.
+
+### Current 201-page split
+
+- `12` pages can be migrated directly
+- `128` pages should be cleaned first, then batch-migrated
+- `61` pages need manual one-by-one handling
+
+### Why the first migrated pages were painful
+
+- old mojibake and dirty characters
+- broken closing tags that become visible after shell rewiring
+- some pages only partially matched the shell contract
+- duplicate initialization between shared scripts
+
+Confirmed example:
+
+- `tool-page-icon.js` and `site-navigation.js` could both initialize the directory shell
+- this caused the left-rail collapse button to bind twice
+- symptom: clicking the button looked like “no response”
+
+### Current best reference pages
+
+Direct migration candidates already closest to the target shell:
+
+- `base64`
+- `css-minifier`
+- `js-formatter`
+- `aes`
+- `color-palette`
+- `contrast-checker`
+- `countdown`
+- `gradient-generator`
+- `html-formatter`
+- `roman-numerals`
+- `url-builder`
+- `url-encode`
+
+### Migration rule going forward
+
+Never mix these three stages:
+
+1. direct pages first
+2. dirty-but-usable pages after cleanup
+3. structural outliers last
+
+And do not treat a page as “migrated” unless it has:
+
+- shared `nav.ds-nav#nav`
+- `STB_PAGE_CONTEXT`
+- `site-navigation.js`
+- `ds-tool-context`
+- standard SEO order:
+  - `.ds-seo-content`
+  - `.ds-related-tools`
+  - `.ds-seo-more`

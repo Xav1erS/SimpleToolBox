@@ -102,11 +102,7 @@
     );
   }
 
-  function renderToolbar(config) {
-    return '';
-  }
-
-  function renderResultsHead(hub, config) {
+  function renderResultsHead(hub) {
     var count = typeof global.hubToolCount === 'function' ? global.hubToolCount(hub.key) : 0;
     return (
       '<div class="results-head hub-results-head">' +
@@ -184,43 +180,6 @@
     );
   }
 
-  function bindSectionJumpUI(mount) {
-    var links = Array.from(mount.querySelectorAll('[data-hub-section-jump]'));
-    if (!links.length) return;
-
-    function setActive(id) {
-      links.forEach(function (link) {
-        link.classList.toggle('active', link.getAttribute('data-hub-section-jump') === id);
-      });
-    }
-
-    links.forEach(function (link) {
-      link.addEventListener('click', function () {
-        setActive(link.getAttribute('data-hub-section-jump'));
-      });
-    });
-
-    if (global.location.hash) {
-      setActive(global.location.hash.replace(/^#/, ''));
-    } else {
-      setActive(links[0].getAttribute('data-hub-section-jump'));
-    }
-
-    if (!global.IntersectionObserver) return;
-
-    var observer = new global.IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        setActive(entry.target.id);
-      });
-    }, { rootMargin: '-20% 0px -65% 0px', threshold: 0.1 });
-
-    links.forEach(function (link) {
-      var target = document.getElementById(link.getAttribute('data-hub-section-jump'));
-      if (target) observer.observe(target);
-    });
-  }
-
   function renderHubPage() {
     var context = global.STB_PAGE_CONTEXT || {};
     if (context.pageType !== 'hub' || !context.slug) return;
@@ -234,14 +193,11 @@
     mount.className = 'hub-shell';
     mount.innerHTML =
       renderHeader(hub, config) +
-      renderToolbar(config) +
-      renderResultsHead(hub, config) +
+      renderResultsHead(hub) +
       renderSections(config) +
       renderSeo(config) +
       renderGuides(hub.key) +
       renderOtherHubs(hub.key);
-
-    bindSectionJumpUI(mount);
   }
 
   if (document.readyState === 'loading') {

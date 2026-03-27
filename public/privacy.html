@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-US">
 <head>
   <meta charset="UTF-8" />
@@ -144,30 +144,30 @@
   </main>
 </div>
 
+<script src="tools-data.js"></script>
 <script>
-  const NAV_TOOLS = [
-    { name: 'Base64 Encode / Decode',       href: 'tools/base64.html',                 tag: 'encode',   icon: '馃摝', desc: 'Encode or decode text and files to Base64' },
-    { name: 'JSON Formatter',               href: 'tools/json-formatter.html',          tag: 'format',   icon: '馃帹', desc: 'Prettify, minify, validate JSON; convert to CSV or SQL' },
-    { name: 'Password Generator',           href: 'tools/password-generator.html',      tag: 'generate', icon: '馃攽', desc: 'Generate strong random passwords locally' },
-    { name: 'Timestamp Converter',          href: 'tools/timestamp.html',               tag: 'convert',  icon: '鈴憋笍', desc: 'Convert Unix timestamps to readable dates' },
-    { name: 'URL Encode / Decode',          href: 'tools/url-encode.html',              tag: 'encode',   icon: '馃敆', desc: 'Encode or decode URL parameters and components' },
-    { name: 'UUID Generator',               href: 'tools/uuid-generator.html',          tag: 'generate', icon: '馃啍', desc: 'Generate UUID v1/v4 identifiers in bulk' },
-    { name: 'Word Counter',                 href: 'tools/word-counter.html',            tag: 'text',     icon: '馃摑', desc: 'Count words, characters, and estimate reading time' },
-    { name: 'Random Number Generator',      href: 'tools/random-number-generator.html', tag: 'generate', icon: '馃幉', desc: 'Generate random numbers, shuffle lists, roll dice' },
-    { name: 'Unit Converter',               href: 'tools/unit-converter.html',          tag: 'convert',  icon: '馃搻', desc: 'Convert length, weight, temperature, speed and more' },
-    { name: 'Image Resizer',                href: 'tools/image-resizer.html',           tag: 'image',    icon: '馃柤锔? desc: 'Resize images client-side with preset dimensions' },
-    { name: 'YouTube Thumbnail Downloader', href: 'tools/youtube-thumbnail.html',       tag: 'image',    icon: '馃摵', desc: 'Download YouTube video thumbnails in all resolutions' },
-    { name: 'QR Code Generator',            href: 'tools/qr-code-generator.html',       tag: 'generate', icon: '馃摲', desc: 'Create QR codes for URLs, WiFi, contacts, email' },
-    { name: 'URL Slug Generator',           href: 'tools/slug-generator.html',          tag: 'text',     icon: '馃敆', desc: 'Convert titles to clean SEO-friendly URL slugs' },
-    { name: 'Lorem Ipsum Generator',        href: 'tools/lorem-ipsum-generator.html',   tag: 'text',     icon: '馃搫', desc: 'Generate placeholder text in multiple themes' },
-    { name: 'Color Picker',                 href: 'tools/color-picker.html',            tag: 'convert',  icon: '馃帹', desc: 'Convert colors between HEX, RGB, HSL, and CMYK' },
-    { name: 'Regex Tester',                 href: 'tools/regex-tester.html',            tag: 'text',     icon: '馃攳', desc: 'Test regular expressions with live match highlighting' },
-    { name: 'Markdown Preview',             href: 'tools/markdown-preview.html',        tag: 'text',     icon: '馃摑', desc: 'Write Markdown and see a live rendered preview' },
-    { name: 'Cron Expression Builder',      href: 'tools/cron-builder.html',            tag: 'generate', icon: '??, desc: 'Build cron expressions visually with descriptions' },
-    { name: 'JWT Decoder / Inspector',      href: 'tools/jwt-decoder.html',             tag: 'encode',   icon: '馃攼', desc: 'Decode JWT header, payload, signature and inspect claims' },
-    { name: 'HTML Entity Encode / Decode',  href: 'tools/html-entities.html',           tag: 'encode',   icon: '馃彿锔? desc: 'Encode or decode HTML entities  - named and numeric formats' },
-    { name: 'Hash Generator',               href: 'tools/hash-generator.html',          tag: 'generate', icon: '#锔忊儯', desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 from text or file' },
-  ];
+  const TAG_ICON_FALLBACKS = {
+    image: '🖼️',
+    text: '✍️',
+    encode: '📦',
+    format: '📋',
+    convert: '🔄',
+    generate: '🎲',
+    design: '🎨',
+    reference: '📚',
+    calculator: '🧮',
+    pdf: '📄'
+  };
+  const NAV_TOOLS = Array.isArray(window.SITE_TOOLS) ? window.SITE_TOOLS.slice(0, 20) : [];
+
+  function navSafeIcon(tool) {
+    const rawIcon = String(tool?.icon || '').trim();
+    if (!rawIcon || /閳|棣|馃|锔|\?\/(?:div|span)>/.test(rawIcon)) {
+      return TAG_ICON_FALLBACKS[tool?.tag] || '🧰';
+    }
+    return rawIcon;
+  }
+
   function navHighlightMatch(text, q) {
     const idx = text.toLowerCase().indexOf(q.toLowerCase());
     if (idx === -1) return text;
@@ -178,7 +178,7 @@
     if (!q) { dropdownEl.classList.remove('open'); dropdownEl.innerHTML = ''; return; }
     const results = NAV_TOOLS.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tag.toLowerCase().includes(q)).slice(0, 6);
     if (!results.length) { dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>'; }
-    else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${t.icon}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
+    else { dropdownEl.innerHTML = results.map((t, i) => `<a href="${t.href}" class="search-suggestion" data-idx="${i}"><span class="suggestion-icon">${navSafeIcon(t)}</span><div class="suggestion-text"><div class="suggestion-name">${navHighlightMatch(t.name, q)}</div><div class="suggestion-desc">${navHighlightMatch(t.desc, q)}</div></div></a>`).join(''); }
     dropdownEl.classList.add('open');
   }
   const navDropdown = document.getElementById('navSearchDropdown');
@@ -211,3 +211,4 @@
 </script>
 </body>
 </html>
+

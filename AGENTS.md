@@ -270,3 +270,70 @@ Product Hunt 已于 2026-03-29 上线。继续扩张工具数量，目标 300。
   3. 最后处理 `61` 个人工页
 - 不再接受“半迁移页”状态。
   - 已迁移完成的工具页必须同时满足：共享 `nav.ds-nav#nav`、`STB_PAGE_CONTEXT`、`site-navigation.js`、`ds-tool-context`、标准 SEO 骨架。
+
+### 防止再次踩坑的硬指令
+
+- 所有 HTML / CSS / JS 批量编辑必须使用 UTF-8 读写，禁止用系统默认编码重写整文件。
+- 工具页共享外壳迁移前，必须先运行：
+
+```bash
+python scripts/audit-tool-shell-migration.py
+```
+
+- 如果迁移只涉及单页，至少先运行：
+
+```bash
+python scripts/audit-tool-shell-migration.py <slug>
+```
+
+- `audit-tool-shell-migration.py` 报出以下任一问题时，不得直接进入批量迁移：
+  - `dirty_markup`
+  - `partial_shared_shell`
+  - `missing_ds_tool_main`
+  - `missing_what_section`
+  - `missing_how_section`
+- 所有共享初始化脚本必须幂等：
+  - 重复执行不得重复绑事件
+  - 重复执行不得重复插入壳层 DOM
+  - 重复执行不得回滚已有 UI 状态
+- 共享外壳迁移提交前，除常规 QA 外，必须人工确认：
+  - 左 rail 折叠按钮真实切换状态
+  - breadcrumb 正常
+  - 顶部搜索可用
+  - SEO / related / footer 未被结构错误打断
+
+### 长期防 Bug 方法
+
+- 共享外壳、SEO 骨架、工具业务逻辑不要在同一批改动里一起大改。
+  - 推荐拆分为：
+    1. 外壳接线
+    2. SEO 骨架
+    3. 工具交互或样式细化
+- 共享能力必须有单一所有权。
+  - `site-navigation.js` 负责导航壳层时，其他脚本不得再次手动初始化同一能力，除非显式做了幂等保护。
+- 改共享脚本或共享样式后，必须同步做缓存失效。
+  - 例如 bump `site-navigation.js?v=...`、`design-system.css?v=...`
+  - 否则本地验证通过，浏览器仍可能命中旧资源。
+- 对旧脏页，禁止“先叠新功能再顺手迁移”。
+  - 先清编码和坏标签
+  - 再接共享外壳
+  - 最后做功能或 UI 调整
+- 对高风险改动，必须做代表页抽样，而不是只看当前页。
+  - 至少覆盖：
+    - 1 个 text / developer 页
+    - 1 个 calculator 页
+    - 1 个 image 或 pdf 页
+    - 1 个已迁移基准页（如 `base64`）
+- 共享结构变更必须做桌面和移动端双检查。
+  - 桌面端重点看 rail、breadcrumb、版心
+  - 移动端重点看 drawer、顶部搜索、首屏工具可用性
+- 能用 HTML 实体表达的符号，优先不用直接 Unicode 字符。
+  - 例如中点、箭头、下拉箭头、乘号、长破折号
+  - 对旧页尤其如此，可减少编码链路出错概率
+- 对批量替换，优先做“小批次 + 复验”。
+  - 不要一次改几十页后再看结果
+  - 先拿 3-5 页验证流程，再扩大批次
+- 对共享外壳 PR，必须默认怀疑“结构合法但交互坏了”。
+  - 仅通过 `validate-tools.py` 不足以判定完成
+  - 必须补浏览器级交互确认
+- 一旦 `audit-tool-shell-migration.py` 把页面打到 `cleanup` 或 `manual` 组，后续任务中必须保留该分组，不得为了赶进度跳过。

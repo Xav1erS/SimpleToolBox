@@ -17,6 +17,14 @@ export function toolUrl(slug) {
 }
 
 /**
+ * Returns the file:// URL for any page under public/.
+ * @param {string} relativePath e.g. 'index.html' or 'developer-tools.html'
+ */
+export function publicUrl(relativePath) {
+  return `file://${PUBLIC_DIR}/${relativePath}`;
+}
+
+/**
  * Wait for a selector to be visible and return its text content.
  */
 export async function getText(page, selector) {

@@ -37,13 +37,20 @@ def detect_npx() -> tuple[str | None, list[str]]:
     return None, []
 
 
-def run_command(label: str, command: list[str], extra_paths: list[str] | None = None) -> dict:
+def run_command(
+    label: str,
+    command: list[str],
+    extra_paths: list[str] | None = None,
+    extra_env: dict[str, str] | None = None,
+) -> dict:
     try:
         env = os.environ.copy()
         if extra_paths:
             merged = [path for path in extra_paths if path]
             if merged:
                 env["PATH"] = os.pathsep.join(merged + [env.get("PATH", "")])
+        if extra_env:
+            env.update(extra_env)
         proc = subprocess.run(
             command,
             cwd=ROOT,
@@ -78,10 +85,31 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def count_failed_specs(report: dict) -> int | None:
+    if not report:
+        return None
+
+    count = 0
+
+    def walk_suites(suites: list[dict]) -> None:
+        nonlocal count
+        for suite in suites or []:
+            for spec in suite.get("specs", []):
+                if not spec.get("ok", True):
+                    count += 1
+            walk_suites(suite.get("suites", []))
+
+    walk_suites(report.get("suites", []))
+    return count
+
+
 def build_summary(commands: dict[str, dict]) -> dict:
     validation = load_json(REPORTS_DIR / "validation-report.json")
     metadata = load_json(REPORTS_DIR / "tools-meta-report.json")
     page_audit = load_json(REPORTS_DIR / "page-audit-report.json")
+    site_pages = load_json(REPORTS_DIR / "site-pages-report.json")
+    smoke_report = load_json(REPORTS_DIR / "playwright-smoke-report.json")
+    visual_report = load_json(REPORTS_DIR / "playwright-visual-report.json")
 
     validation_files = validation.get("files", {})
     missing_seo_fields = 0
@@ -108,6 +136,9 @@ def build_summary(commands: dict[str, dict]) -> dict:
 
     smoke = commands["smoke"]
     visual = commands["visual"]
+    site_pages_command = commands["site_pages"]
+    smoke_failures = count_failed_specs(smoke_report)
+    visual_failures = count_failed_specs(visual_report)
 
     metadata_failed_tools = metadata.get("failing_tools")
     if metadata_failed_tools is None and commands["metadata"]["status"] == "failed":
@@ -121,10 +152,11 @@ def build_summary(commands: dict[str, dict]) -> dict:
         "date": date.today().isoformat(),
         "tool_count": tool_count or 0,
         "metadata_validation_failed_tools": metadata_failed_tools if metadata_failed_tools is not None else 0,
+        "site_page_failures": site_pages.get("fail", 0),
         "page_load_failures": page_load_failures,
         "console_error_count": console_error_count,
-        "smoke_test_failures": None if smoke["status"] == "skipped" else (0 if smoke["status"] == "passed" else 1),
-        "visual_regression_failures": None if visual["status"] == "skipped" else (0 if visual["status"] == "passed" else 1),
+        "smoke_test_failures": None if smoke["status"] == "skipped" else (smoke_failures if smoke_failures is not None else (0 if smoke["status"] == "passed" else 1)),
+        "visual_regression_failures": None if visual["status"] == "skipped" else (visual_failures if visual_failures is not None else (0 if visual["status"] == "passed" else 1)),
         "missing_seo_fields": missing_seo_fields,
         "invalid_related_tools": invalid_related,
         "commands": commands,
@@ -138,6 +170,7 @@ def write_markdown(summary: dict) -> Path:
         f"- Date: {summary['date']}",
         f"- Total tools: {summary['tool_count']}",
         f"- Metadata validation failed tools: {summary['metadata_validation_failed_tools']}",
+        f"- Site page failures: {summary['site_page_failures']}",
         f"- Page load failures: {summary['page_load_failures']}",
         f"- Console error count: {summary['console_error_count']}",
         f"- Smoke test failures: {summary['smoke_test_failures'] if summary['smoke_test_failures'] is not None else 'SKIPPED'}",
@@ -171,12 +204,23 @@ def main() -> None:
         "validate": run_command("validate", [sys.executable, "scripts/validate-tools.py"]),
         "metadata": run_command("metadata", [sys.executable, "scripts/check-tools-meta.py"]),
         "page_audit": run_command("page_audit", [sys.executable, "scripts/page-audit.py"]),
+        "site_pages": run_command("site_pages", [sys.executable, "scripts/site-pages-audit.py"]),
     }
 
     npx, extra_paths = detect_npx()
     if npx:
-        commands["smoke"] = run_command("smoke", [npx, "playwright", "test", "tests/smoke/", "--project=Desktop Chrome"], extra_paths=extra_paths)
-        commands["visual"] = run_command("visual", [npx, "playwright", "test", "tests/visual/snapshot.test.js", "--project=Desktop Chrome"], extra_paths=extra_paths)
+        commands["smoke"] = run_command(
+            "smoke",
+            [npx, "playwright", "test", "tests/smoke/", "--project=Desktop Chrome"],
+            extra_paths=extra_paths,
+            extra_env={"PLAYWRIGHT_JSON_OUTPUT_FILE": str(REPORTS_DIR / "playwright-smoke-report.json")},
+        )
+        commands["visual"] = run_command(
+            "visual",
+            [npx, "playwright", "test", "tests/visual/snapshot.test.js", "--project=Desktop Chrome"],
+            extra_paths=extra_paths,
+            extra_env={"PLAYWRIGHT_JSON_OUTPUT_FILE": str(REPORTS_DIR / "playwright-visual-report.json")},
+        )
     else:
         commands["smoke"] = {"label": "smoke", "command": ["npx", "playwright", "test", "tests/smoke/", "--project=Desktop Chrome"], "exit_code": None, "stdout": "", "stderr": "npx not found in PATH", "status": "skipped"}
         commands["visual"] = {"label": "visual", "command": ["npx", "playwright", "test", "tests/visual/snapshot.test.js", "--project=Desktop Chrome"], "exit_code": None, "stdout": "", "stderr": "npx not found in PATH", "status": "skipped"}
@@ -190,6 +234,7 @@ def main() -> None:
     print("=" * 60)
     print(f"  Tools:                  {summary['tool_count']}")
     print(f"  Metadata failures:      {summary['metadata_validation_failed_tools']}")
+    print(f"  Site page failures:     {summary['site_page_failures']}")
     print(f"  Page load failures:     {summary['page_load_failures']}")
     print(f"  Console errors:         {summary['console_error_count']}")
     print(f"  Smoke test failures:    {summary['smoke_test_failures'] if summary['smoke_test_failures'] is not None else 'SKIPPED'}")
@@ -205,6 +250,7 @@ def main() -> None:
         commands["validate"]["status"] == "failed",
         commands["metadata"]["status"] == "failed",
         commands["page_audit"]["status"] == "failed",
+        commands["site_pages"]["status"] == "failed",
     ]
     sys.exit(1 if any(failed_required) else 0)
 

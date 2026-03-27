@@ -338,3 +338,64 @@ A tool page should not be considered fully migrated unless it includes all of:
   - `.ds-seo-content`
   - `.ds-related-tools`
   - `.ds-seo-more`
+
+## Hard Rules To Prevent Repeat Failures
+
+- All batch edits of HTML / CSS / JS must be written back as UTF-8.
+- Before any shared-shell migration work, run:
+
+```bash
+python scripts/audit-tool-shell-migration.py
+```
+
+- For a single page, run:
+
+```bash
+python scripts/audit-tool-shell-migration.py <slug>
+```
+
+- Do not move a page into batch migration if the audit reports:
+  - `dirty_markup`
+  - `partial_shared_shell`
+  - `missing_ds_tool_main`
+  - `missing_what_section`
+  - `missing_how_section`
+- Shared initialization code must stay idempotent:
+  - no duplicate event binding
+  - no duplicate shell insertion
+  - no silent state rollback on repeated init
+- Shared-shell PRs are not complete until someone confirms:
+  - directory collapse actually changes state
+  - breadcrumb still works
+  - top search still works
+  - SEO / related / footer were not structurally broken
+
+## Additional Prevention Rules
+
+- Do not combine shell rewiring, SEO skeleton rewiring, and tool-specific feature work in one large patch.
+  - Preferred order:
+    1. shell hookup
+    2. SEO skeleton normalization
+    3. product/UI refinement
+- Shared behaviors must have a single owner.
+  - If `site-navigation.js` owns the directory shell, other scripts should not manually re-run the same initialization unless it is explicitly idempotent.
+- After changing shared scripts or shared CSS, always invalidate cache on migrated pages.
+  - Bump resource query versions for shared assets.
+- Do not stack new features onto dirty legacy pages first.
+  - Clean encoding and broken tags first
+  - then attach shared shell
+  - then refine UI or behavior
+- For high-risk shared changes, always sample across page types, not just the current page:
+  - one text/developer page
+  - one calculator page
+  - one image or PDF page
+  - one already-migrated gold-standard page
+- Desktop and mobile verification are both required for shared layout work.
+- Prefer HTML entities for punctuation/symbols that often break under dirty encoding pipelines.
+  - especially arrows, middots, dropdown glyphs, multiply signs, long dashes
+- Batch migrations should use small verified waves.
+  - validate 3-5 pages first
+  - then widen the batch only after the workflow is proven
+- Treat “valid HTML + passing QA” as insufficient for shared-shell work.
+  - browser-level interaction checks are still required
+- If `audit-tool-shell-migration.py` classifies a page as `cleanup` or `manual`, do not skip that classification just to keep a batch moving.

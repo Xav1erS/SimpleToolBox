@@ -800,7 +800,7 @@
     <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
-  <input type="text" id="heroSearch" class="ds-input" placeholder="Search tools, e.g. Base64, JSON Formatter -  autocomplete="off" />
+    <input type="text" id="heroSearch" class="ds-input" placeholder="Search tools, e.g. Base64, JSON Formatter" autocomplete="off" />
     <span class="hero-search-enter">&rarr;</span>
     <div class="search-dropdown" id="heroSearchDropdown"></div>
   </div>
@@ -809,12 +809,8 @@
     <a href="all-tools.html" class="hero-cta-btn" id="heroBrowseCta">Browse All Tools &rarr;</a>
   </div>
 
-  <div class="hero-tags">
-          <a href="image-tools.html" class="hero-tag">🖼️ Image Tools</a>
-          <a href="developer-tools.html" class="hero-tag">🛠️ Developer Tools</a>
-    <a href="text-tools.html" class="hero-tag">✍️ Text Tools</a>
-          <a href="calculator-tools.html" class="hero-tag">🧮 Calculator Tools</a>
-          <a href="all-tools.html" class="hero-tag">📦 All Tools</a>
+  <div class="hero-tags" id="heroTags">
+    <!-- JS rendered -->
   </div>
 </section>
 
@@ -868,70 +864,7 @@
   </div>
   <p class="section-intro">Find the right tool by task  - pick a category to filter, or search above.</p>
   <div class="category-grid" id="categoryGrid">
-    <div class="category-card" style="--card-color:rgba(234,179,8,0.08)" data-name="image compress resize crop convert watermark" data-filter="image" data-href="image-tools.html">
-      <div class="category-icon">🖼️</div>
-      <div class="category-body">
-        <div class="category-name">Image Tools</div>
-        <div class="category-desc">Resize, compress, convert, crop, blur, and watermark images</div>
-        <span class="category-count">27 tools</span>
-      </div>
-    </div>
-    <div class="category-card" style="--card-color:rgba(168,85,247,0.08)" data-name="text string markdown diff word count sort" data-filter="text" data-href="text-tools.html">
-      <div class="category-icon">✍️</div>
-      <div class="category-body">
-        <div class="category-name">Text Tools</div>
-        <div class="category-desc">Word count, diff, regex tester, sort, clean, and reverse text</div>
-        <span class="category-count">28 tools</span>
-      </div>
-    </div>
-    <div class="category-card" style="--card-color:rgba(94,106,210,0.1)" data-name="encode decode format json xml base64 url css sql" data-filter="developer" data-href="developer-tools.html">
-      <div class="category-icon">🛠️</div>
-      <div class="category-body">
-        <div class="category-name">Developer Tools</div>
-        <div class="category-desc">Encode, decode, format, and validate JSON, XML, CSS, SQL and more</div>
-        <span class="category-count">24 tools</span>
-      </div>
-    </div>
-    <div class="category-card" style="--card-color:rgba(251,146,60,0.08)" data-name="pdf document convert image to pdf to image" data-filter="pdf" data-href="pdf-tools.html">
-      <div class="category-icon">📄</div>
-      <div class="category-body">
-        <div class="category-name">PDF &amp; Document</div>
-        <div class="category-desc">Convert, compress, merge, and split PDF files in your browser</div>
-        <span class="category-count">6 tools</span>
-      </div>
-    </div>
-    <div class="category-card" style="--card-color:rgba(236,72,153,0.08)" data-name="generator uuid password hash random qr code" data-filter="generate" data-href="generator-tools.html">
-      <div class="category-icon">🎲</div>
-      <div class="category-body">
-        <div class="category-name">Generators</div>
-        <div class="category-desc">UUID, password, QR code, hashes, random numbers, Lorem Ipsum</div>
-        <span class="category-count">11 tools</span>
-      </div>
-    </div>
-    <div class="category-card" style="--card-color:rgba(6,182,212,0.08)" data-name="calculator bmi loan date mortgage calorie gpa" data-filter="calculator" data-href="calculator-tools.html">
-      <div class="category-icon">🧮</div>
-      <div class="category-body">
-        <div class="category-name">Calculators</div>
-        <div class="category-desc">BMI, tip, GPA, calorie, loan, mortgage, percentage, and more</div>
-        <span class="category-count">16 tools</span>
-      </div>
-    </div>
-    <div class="category-card" style="--card-color:rgba(244,114,182,0.08)" data-name="design color palette gradient contrast accessibility" data-filter="design">
-      <div class="category-icon">🎨</div>
-      <div class="category-body">
-        <div class="category-name">Design Tools</div>
-        <div class="category-desc">Color conversion, palettes, gradients, and contrast checks</div>
-        <span class="category-count">7 tools</span>
-      </div>
-    </div>
-    <div class="category-card" style="--card-color:rgba(20,184,166,0.08)" data-name="reference http status ascii chmod port mime" data-filter="reference">
-      <div class="category-icon">📚</div>
-      <div class="category-body">
-        <div class="category-name">Reference</div>
-        <div class="category-desc">HTTP status codes, ASCII table, chmod calculator, ports, MIME</div>
-        <span class="category-count">7 tools</span>
-      </div>
-    </div>
+    <!-- JS rendered -->
   </div>
   <div class="no-result" id="noResult">No categories found. Try a different keyword.</div>
 </div>
@@ -947,204 +880,7 @@
   </div>
   <p class="section-intro">The tools people reach for most  - quick, reliable utilities for everyday tasks.</p>
   <div class="tool-grid" id="popularToolGrid">
-    <a href="tools/image-resizer.html" class="tool-card" data-tags="image">
-      <div class="tool-card-top">
-        <div class="tool-icon">🖼️</div>
-        <div class="tool-name">Image Resizer</div>
-      </div>
-      <div class="tool-desc">Resize images to any dimensions, change format and quality  - no upload needed.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">image</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/image-compressor.html" class="tool-card" data-tags="image">
-      <div class="tool-card-top">
-        <div class="tool-icon">🗜️</div>
-        <div class="tool-name">Image Compressor</div>
-      </div>
-      <div class="tool-desc">Reduce image file size by adjusting quality. JPEG, PNG, WebP output  - no upload needed.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">image</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/qr-code-generator.html" class="tool-card" data-tags="generate">
-      <div class="tool-card-top">
-        <div class="tool-icon">📱</div>
-        <div class="tool-name">QR Code Generator</div>
-      </div>
-      <div class="tool-desc">Create custom QR codes for URLs, WiFi, contacts, and email. Add colors and logo.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">generate</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/word-counter.html" class="tool-card" data-tags="text">
-      <div class="tool-card-top">
-        <div class="tool-icon">✍️</div>
-        <div class="tool-name">Word Counter</div>
-      </div>
-      <div class="tool-desc">Count words, characters, sentences, and estimate reading time in real time.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">text</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/password-generator.html" class="tool-card" data-tags="generate">
-      <div class="tool-card-top">
-        <div class="tool-icon">🎲</div>
-        <div class="tool-name">Password Generator</div>
-      </div>
-      <div class="tool-desc">Customize length and character sets to generate strong random passwords locally.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">generate</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/json-formatter.html" class="tool-card" data-tags="format">
-      <div class="tool-card-top">
-        <div class="tool-icon">📋</div>
-        <div class="tool-name">JSON Formatter</div>
-      </div>
-      <div class="tool-desc">Prettify or minify JSON with syntax highlighting, error detection, and tree view.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">format</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/base64.html" class="tool-card" data-tags="encode">
-      <div class="tool-card-top">
-        <div class="tool-icon">📦</div>
-        <div class="tool-name">Base64 Encode / Decode</div>
-      </div>
-      <div class="tool-desc">Convert text or file contents to and from Base64. URL-safe mode, one-click copy and download.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">encode</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/timestamp.html" class="tool-card" data-tags="convert">
-      <div class="tool-card-top">
-        <div class="tool-icon">⏱️</div>
-        <div class="tool-name">Timestamp Converter</div>
-      </div>
-      <div class="tool-desc">Convert Unix timestamps to human-readable dates and back, with timezone support.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">convert</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/unit-converter.html" class="tool-card" data-tags="convert">
-      <div class="tool-card-top">
-        <div class="tool-icon">📐</div>
-        <div class="tool-name">Unit Converter</div>
-      </div>
-      <div class="tool-desc">Convert length, weight, temperature, area, volume, speed, data, and time.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">convert</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/webp-converter.html" class="tool-card" data-tags="image">
-      <div class="tool-card-top">
-        <div class="tool-icon">🗂️</div>
-        <div class="tool-name">WebP Converter</div>
-      </div>
-      <div class="tool-desc">Convert any image to WebP, PNG, or JPEG. Compare file sizes and download instantly.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">image</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/youtube-thumbnail.html" class="tool-card" data-tags="image">
-      <div class="tool-card-top">
-        <div class="tool-icon">🖼️</div>
-        <div class="tool-name">YouTube Thumbnail Downloader</div>
-      </div>
-      <div class="tool-desc">Download YouTube thumbnails in all resolutions from any video URL.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">image</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/uuid-generator.html" class="tool-card" data-tags="generate">
-      <div class="tool-card-top">
-        <div class="tool-icon">🆔</div>
-        <div class="tool-name">UUID Generator</div>
-      </div>
-      <div class="tool-desc">Bulk-generate UUID v1/v4 with options for case, hyphens, and more.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">generate</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/regex-tester.html" class="tool-card" data-tags="text">
-      <div class="tool-card-top">
-        <div class="tool-icon">🔍</div>
-        <div class="tool-name">Regex Tester</div>
-      </div>
-      <div class="tool-desc">Test regular expressions with real-time match highlighting, group capture, and replace mode.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">text</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/date-calculator.html" class="tool-card" data-tags="calculator">
-      <div class="tool-card-top">
-        <div class="tool-icon">📅</div>
-        <div class="tool-name">Date Calculator</div>
-      </div>
-      <div class="tool-desc">Calculate date differences, business days, add or subtract days, and compute exact age.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">calculator</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/bmi-calculator.html" class="tool-card" data-tags="calculator">
-      <div class="tool-card-top">
-        <div class="tool-icon">⚖️</div>
-        <div class="tool-name">BMI Calculator</div>
-      </div>
-      <div class="tool-desc">Calculate Body Mass Index with Metric or Imperial units.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">calculator</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/hash-generator.html" class="tool-card" data-tags="generate">
-      <div class="tool-card-top">
-        <div class="tool-icon">#️⃣</div>
-        <div class="tool-name">Hash Generator</div>
-      </div>
-      <div class="tool-desc">Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from text or file input.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">generate</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/http-status.html" class="tool-card" data-tags="reference">
-      <div class="tool-card-top">
-        <div class="tool-icon">📗</div>
-        <div class="tool-name">HTTP Status Codes</div>
-      </div>
-      <div class="tool-desc">Quick reference for all HTTP status codes with descriptions and use-case examples.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">reference</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
-    <a href="tools/color-picker.html" class="tool-card" data-tags="design">
-      <div class="tool-card-top">
-        <div class="tool-icon">🎨</div>
-        <div class="tool-name">Color Picker</div>
-      </div>
-      <div class="tool-desc">Convert colors between HEX, RGB, HSL, and CMYK.</div>
-      <div class="tool-footer">
-        <span class="tool-tag">design</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>
+    <!-- JS rendered -->
   </div>
 </div>
 
@@ -1265,9 +1001,125 @@
     'hash-generator',
     'date-calculator'
   ];
+  const HOME_HERO_TAGS = [
+    { href: 'image-tools.html', icon: '🖼️', label: 'Image Tools' },
+    { href: 'developer-tools.html', icon: '🛠️', label: 'Developer Tools' },
+    { href: 'text-tools.html', icon: '✍️', label: 'Text Tools' },
+    { href: 'calculator-tools.html', icon: '🧮', label: 'Calculator Tools' },
+    { href: 'all-tools.html', icon: '📦', label: 'All Tools' }
+  ];
+  const HOME_CATEGORIES = [
+    {
+      name: 'Image Tools',
+      desc: 'Resize, compress, convert, crop, blur, and watermark images',
+      filter: 'image',
+      href: 'image-tools.html',
+      icon: '🖼️',
+      cardColor: 'rgba(234,179,8,0.08)',
+      searchText: 'image compress resize crop convert watermark'
+    },
+    {
+      name: 'Text Tools',
+      desc: 'Word count, diff, regex tester, sort, clean, and reverse text',
+      filter: 'text',
+      href: 'text-tools.html',
+      icon: '✍️',
+      cardColor: 'rgba(168,85,247,0.08)',
+      searchText: 'text string markdown diff word count sort'
+    },
+    {
+      name: 'Developer Tools',
+      desc: 'Encode, decode, format, and validate JSON, XML, CSS, SQL and more',
+      filter: 'developer',
+      href: 'developer-tools.html',
+      icon: '🛠️',
+      cardColor: 'rgba(94,106,210,0.1)',
+      searchText: 'encode decode format json xml base64 url css sql'
+    },
+    {
+      name: 'PDF & Document',
+      desc: 'Convert, compress, merge, and split PDF files in your browser',
+      filter: 'pdf',
+      href: 'pdf-tools.html',
+      icon: '📄',
+      cardColor: 'rgba(251,146,60,0.08)',
+      searchText: 'pdf document convert image to pdf to image'
+    },
+    {
+      name: 'Generators',
+      desc: 'UUID, password, QR code, hashes, random numbers, Lorem Ipsum',
+      filter: 'generate',
+      href: 'generator-tools.html',
+      icon: '🎲',
+      cardColor: 'rgba(236,72,153,0.08)',
+      searchText: 'generator uuid password hash random qr code'
+    },
+    {
+      name: 'Calculators',
+      desc: 'BMI, tip, GPA, calorie, loan, mortgage, percentage, and more',
+      filter: 'calculator',
+      href: 'calculator-tools.html',
+      icon: '🧮',
+      cardColor: 'rgba(6,182,212,0.08)',
+      searchText: 'calculator bmi loan date mortgage calorie gpa'
+    },
+    {
+      name: 'Design Tools',
+      desc: 'Color conversion, palettes, gradients, and contrast checks',
+      filter: 'design',
+      icon: '🎨',
+      cardColor: 'rgba(244,114,182,0.08)',
+      searchText: 'design color palette gradient contrast accessibility'
+    },
+    {
+      name: 'Reference',
+      desc: 'HTTP status codes, ASCII table, chmod calculator, ports, MIME',
+      filter: 'reference',
+      icon: '📚',
+      cardColor: 'rgba(20,184,166,0.08)',
+      searchText: 'reference http status ascii chmod port mime'
+    }
+  ];
+  const TAG_ICON_FALLBACKS = {
+    image: '🖼️',
+    text: '✍️',
+    encode: '📦',
+    format: '📋',
+    convert: '🔄',
+    generate: '🎲',
+    calculator: '🧮',
+    design: '🎨',
+    reference: '📚',
+    pdf: '📄'
+  };
+  const SLUG_ICON_FALLBACKS = {
+    'timestamp': '⏱️',
+    'unit-converter': '📐',
+    'webp-converter': '🗂️',
+    'uuid-generator': '🆔',
+    'regex-tester': '🔍',
+    'date-calculator': '📅',
+    'bmi-calculator': '⚖️',
+    'hash-generator': '#️⃣',
+    'http-status': '📗',
+    'color-picker': '🎨',
+    'qr-code-generator': '📱'
+  };
   const popularToolGrid = document.getElementById('popularToolGrid');
+  const newToolGrid = document.getElementById('newToolGrid');
+  const categoryGrid = document.getElementById('categoryGrid');
+  const heroTags = document.getElementById('heroTags');
   const heroBrowseCta = document.getElementById('heroBrowseCta');
   const TOOL_BY_HREF = new Map(TOOLS.map(tool => [tool.href, tool]));
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
   function slugFromHref(href) {
     return href.replace(/^tools\//, '').replace(/\.html$/, '');
@@ -1277,24 +1129,55 @@
     return TOOLS.find(tool => slugFromHref(tool.href) === slug) || null;
   }
 
+  function getSafeToolIcon(tool) {
+    const slug = slugFromHref(tool.href);
+    const rawIcon = String(tool.icon || '').trim();
+    if (SLUG_ICON_FALLBACKS[slug]) return SLUG_ICON_FALLBACKS[slug];
+    if (!rawIcon || /閳|棣|馃|锔|\?\/(?:div|span)>/.test(rawIcon)) {
+      return TAG_ICON_FALLBACKS[tool.tag] || '🧰';
+    }
+    return rawIcon;
+  }
+
   function getRecentTools() {
     const list = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
     return list.map(href => TOOLS.find(tool => tool.href === href)).filter(Boolean).slice(0, MAX_RECENT);
   }
 
-  function getPopularTools() {
-    return POPULAR_TOOL_SLUGS.map(getToolBySlug).filter(Boolean).slice(0, 6);
+  function getPopularTools(limit = POPULAR_TOOL_SLUGS.length) {
+    return POPULAR_TOOL_SLUGS.map(getToolBySlug).filter(Boolean).slice(0, limit);
   }
 
-  function renderToolCard(tool) {
-    return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}">
+  function renderHeroTags() {
+    if (!heroTags) return;
+    heroTags.innerHTML = HOME_HERO_TAGS.map(item => (
+      `<a href="${escapeHtml(item.href)}" class="hero-tag">${escapeHtml(item.icon)} ${escapeHtml(item.label)}</a>`
+    )).join('');
+  }
+
+  function renderCategories() {
+    if (!categoryGrid) return;
+    categoryGrid.innerHTML = HOME_CATEGORIES.map(category => (
+      `<div class="category-card" style="--card-color:${escapeHtml(category.cardColor)}" data-name="${escapeHtml(category.searchText)}" data-filter="${escapeHtml(category.filter)}"${category.href ? ` data-href="${escapeHtml(category.href)}"` : ''}>
+        <div class="category-icon">${escapeHtml(category.icon)}</div>
+        <div class="category-body">
+          <div class="category-name">${escapeHtml(category.name)}</div>
+          <div class="category-desc">${escapeHtml(category.desc)}</div>
+          <span class="category-count">0 tools</span>
+        </div>
+      </div>`
+    )).join('');
+  }
+
+  function renderToolCard(tool, { showNewBadge = false } = {}) {
+    return `<a href="${escapeHtml(tool.href)}" class="tool-card" data-tags="${escapeHtml(tool.tag)}">
       <div class="tool-card-top">
-        <div class="tool-icon">${tool.icon}</div>
-        <div class="tool-name">${tool.name}</div>
+        <div class="tool-icon">${escapeHtml(getSafeToolIcon(tool))}</div>
+        <div class="tool-name">${escapeHtml(tool.name)}${showNewBadge ? '<span class="badge-new">New</span>' : ''}</div>
       </div>
-      <div class="tool-desc">${tool.desc}</div>
+      <div class="tool-desc">${escapeHtml(tool.desc)}</div>
       <div class="tool-footer">
-        <span class="tool-tag">${tool.tag}</span>
+        <span class="tool-tag">${escapeHtml(tool.tag)}</span>
         <span class="tool-arrow">&rarr;</span>
       </div>
     </a>`;
@@ -1302,32 +1185,17 @@
 
   function renderPopularTools() {
     if (!popularToolGrid) return;
-    const tools = POPULAR_TOOL_SLUGS.map(getToolBySlug).filter(Boolean);
+    const tools = getPopularTools();
     popularToolGrid.innerHTML = tools.map(renderToolCard).join('');
   }
 
   // 閳光偓閳光偓 NEW TOOLS 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
   const NEW_TOOLS_COUNT = 6;
 
-  function renderNewToolCard(tool) {
-    return `<a href="${tool.href}" class="tool-card" data-tags="${tool.tag}">
-      <div class="tool-card-top">
-        <div class="tool-icon">${tool.icon}</div>
-        <div class="tool-name">${tool.name}<span class="badge-new">New</span></div>
-      </div>
-      <div class="tool-desc">${tool.desc}</div>
-      <div class="tool-footer">
-        <span class="tool-tag">${tool.tag}</span>
-        <span class="tool-arrow">&rarr;</span>
-      </div>
-    </a>`;
-  }
-
   function renderNewTools() {
-    const grid = document.getElementById('newToolGrid');
-    if (!grid) return;
+    if (!newToolGrid) return;
     const tools = TOOLS.slice(-NEW_TOOLS_COUNT);
-    grid.innerHTML = tools.map(renderNewToolCard).join('');
+    newToolGrid.innerHTML = tools.map(tool => renderToolCard(tool, { showNewBadge: true })).join('');
   }
 
   function syncHomepageCounts() {
@@ -1354,6 +1222,8 @@
     });
   }
 
+  renderHeroTags();
+  renderCategories();
   renderNewTools();
   renderPopularTools();
   syncHomepageCounts();
@@ -1375,7 +1245,7 @@
   }
 
   // Clear filter button
-  clearFilterBtn.addEventListener('click', () => {
+  clearFilterBtn?.addEventListener('click', () => {
     clearCategoryActive();
     clearSearch();
     filterTools('all');
@@ -1405,15 +1275,15 @@
   function renderSearchGroup(label, tools, q) {
     if (!tools.length) return '';
     return `<div class="search-dropdown-group">
-      <div class="search-dropdown-label">${label}</div>
+      <div class="search-dropdown-label">${escapeHtml(label)}</div>
       ${tools.map((t, i) =>
-        `<a href="${t.href}" class="search-suggestion" data-idx="${i}">
-          <span class="suggestion-icon">${t.icon}</span>
+        `<a href="${escapeHtml(t.href)}" class="search-suggestion" data-idx="${i}">
+          <span class="suggestion-icon">${escapeHtml(getSafeToolIcon(t))}</span>
           <div class="suggestion-text">
-            <div class="suggestion-name">${q ? highlightMatch(t.name, q) : t.name}</div>
-            <div class="suggestion-desc">${q ? t.desc : `Open ${t.name.toLowerCase()} instantly`}</div>
+            <div class="suggestion-name">${q ? highlightMatch(t.name, q) : escapeHtml(t.name)}</div>
+            <div class="suggestion-desc">${q ? escapeHtml(t.desc) : escapeHtml(`Open ${t.name.toLowerCase()} instantly`)}</div>
           </div>
-          <span class="suggestion-tag">${t.tag}</span>
+          <span class="suggestion-tag">${escapeHtml(t.tag)}</span>
         </a>`
       ).join('')}
     </div>`;
@@ -1423,7 +1293,7 @@
     const q = query.trim().toLowerCase();
     if (!q) {
       const recentTools = getRecentTools();
-      const popularTools = getPopularTools();
+      const popularTools = getPopularTools(6);
       dropdownEl.innerHTML =
         renderSearchGroup('Recently Used', recentTools, '') +
         renderSearchGroup('Popular Tools', popularTools.filter(t => !recentTools.includes(t)), '');
@@ -1441,13 +1311,13 @@
       dropdownEl.innerHTML = '<div class="search-no-result">No tools found</div>';
     } else {
       dropdownEl.innerHTML = results.map((t, i) =>
-        `<a href="${t.href}" class="search-suggestion" data-idx="${i}">
-          <span class="suggestion-icon">${t.icon}</span>
+        `<a href="${escapeHtml(t.href)}" class="search-suggestion" data-idx="${i}">
+          <span class="suggestion-icon">${escapeHtml(getSafeToolIcon(t))}</span>
           <div class="suggestion-text">
             <div class="suggestion-name">${highlightMatch(t.name, q)}</div>
-            <div class="suggestion-desc">${t.desc}</div>
+            <div class="suggestion-desc">${escapeHtml(t.desc)}</div>
           </div>
-          <span class="suggestion-tag">${t.tag}</span>
+          <span class="suggestion-tag">${escapeHtml(t.tag)}</span>
         </a>`
       ).join('');
     }
@@ -1457,12 +1327,12 @@
 
   function filterBySearch(query, shouldScroll) {
     const q = query.trim().toLowerCase();
-    toolCards.forEach(card => {
+    document.querySelectorAll('#popularToolGrid .tool-card').forEach(card => {
       if (!q) { card.style.display = ''; return; }
       const tool = TOOL_BY_HREF.get(card.getAttribute('href'));
       card.style.display = toolMatchesQuery(tool, q) ? '' : 'none';
     });
-    clearFilterBtn.style.display = q ? 'flex' : 'none';
+    if (clearFilterBtn) clearFilterBtn.style.display = q ? 'flex' : 'none';
     if (q && shouldScroll) document.getElementById('toolSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 

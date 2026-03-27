@@ -151,3 +151,32 @@ And do not treat a page as “migrated” unless it has:
   - `.ds-seo-content`
   - `.ds-related-tools`
   - `.ds-seo-more`
+
+## Migration Guardrails
+
+- Batch-editing tool pages without guaranteed UTF-8 writeback is forbidden.
+- Before shared-shell migration, always run:
+
+```bash
+python scripts/audit-tool-shell-migration.py
+```
+
+- For single-page migration, run:
+
+```bash
+python scripts/audit-tool-shell-migration.py <slug>
+```
+
+- If the audit reports `dirty_markup`, `partial_shared_shell`, `missing_ds_tool_main`, `missing_what_section`, or `missing_how_section`, do not treat the page as ready for batch migration.
+- Shared shell scripts must stay idempotent. Double-init bugs are now a known class of migration failure.
+- Shared-shell changes are not done until collapse, breadcrumb, top search, and post-workbench SEO structure are all confirmed.
+
+## Extra Prevention Notes
+
+- Never combine shell migration, SEO skeleton migration, and product feature changes in one big step.
+- Shared behavior should have one owner. Duplicate init paths are a known failure source.
+- After touching shared assets, bump page-level resource versions to avoid stale-cache false negatives.
+- Dirty legacy pages must be cleaned before they are used as migration targets.
+- Shared-shell work must be spot-checked on desktop and mobile, and across multiple page categories.
+- Prefer HTML entities over fragile direct punctuation symbols on legacy pages.
+- Small verified batches are safer than wide one-shot migrations.

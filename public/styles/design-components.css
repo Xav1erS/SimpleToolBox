@@ -2934,6 +2934,7 @@ body > .ds-seo-more {
   color: var(--ds-color-text-primary);
 }
 
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-headline,
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-headline__copy,
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-link__label,
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-link__meta,
@@ -2955,10 +2956,24 @@ body > .ds-seo-more {
 
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-rail__head {
   justify-content: center;
+  padding-inline: 0;
 }
 
 .ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse__label {
   display: none;
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse {
+  width: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 14px;
+}
+
+.ds-has-directory.ds-directory-is-collapsed .ds-directory-collapse__icon {
+  width: auto;
 }
 
 .ds-has-directory .ds-shell__content > .page-header,
@@ -2999,7 +3014,7 @@ body > .ds-seo-more {
 
 .ds-tool-shell-ready .ds-tool-header,
 .ds-tool-shell-ready .tool-header {
-  margin-top: 18px !important;
+  margin-top: 0 !important;
   padding: 30px 30px 28px !important;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 30px;
@@ -3117,7 +3132,7 @@ body > .ds-seo-more {
 @media (max-width: 640px) {
   .ds-tool-shell-ready .ds-tool-header,
   .ds-tool-shell-ready .tool-header {
-    margin-top: 12px !important;
+    margin-top: 0 !important;
     padding: 22px 18px 20px !important;
     border-radius: 22px;
   }

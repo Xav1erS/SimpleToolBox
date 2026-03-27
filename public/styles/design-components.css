@@ -2871,17 +2871,46 @@ body > .ds-seo-more {
 }
 
 .ds-directory-rail {
-  position: sticky !important;
-  top: calc(var(--ds-nav-height) + 18px) !important;
-  left: auto !important;
-  bottom: auto !important;
-  width: 100% !important;
-  max-height: calc(100vh - var(--ds-nav-height) - 36px);
+  position: fixed !important;
+  top: var(--stb-directory-top, calc(var(--ds-nav-height) + 18px)) !important;
+  left: var(--stb-shell-left, 24px) !important;
+  bottom: 24px !important;
+  width: var(--stb-directory-current-width) !important;
+  height: calc(100vh - var(--stb-directory-top, calc(var(--ds-nav-height) + 18px)) - 24px) !important;
+  max-height: none;
   border-radius: 30px;
+  z-index: 90;
 }
 
 .ds-directory-rail__inner {
   min-height: 0;
+  height: 100%;
+}
+
+.ds-directory-rail__body,
+.ds-directory-drawer .ds-directory-rail__body {
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124, 133, 223, 0.42) rgba(255, 255, 255, 0.03);
+  scrollbar-gutter: stable;
+}
+
+.ds-directory-rail__body::-webkit-scrollbar,
+.ds-directory-drawer .ds-directory-rail__body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ds-directory-rail__body::-webkit-scrollbar-track,
+.ds-directory-drawer .ds-directory-rail__body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 999px;
+}
+
+.ds-directory-rail__body::-webkit-scrollbar-thumb,
+.ds-directory-drawer .ds-directory-rail__body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(124, 133, 223, 0.56) 0%, rgba(94, 106, 210, 0.26) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
 }
 
 .ds-directory-link__icon {

@@ -203,7 +203,7 @@
       return {
         eyebrow: 'Tool',
         title: tool ? tool.name : 'Tool',
-        caption: 'Hub path, related guides, and recent tools.'
+        caption: 'Hub path, nearby tools, and recent tools.'
       };
     }
 

@@ -26,6 +26,10 @@
 
   const TOOL_HUB_OVERRIDES = {};
 
+  const TOOL_OFTEN_USED_WITH = {
+    base64: ['url-encode', 'jwt-decoder', 'hash-generator', 'html-entities', 'string-escape']
+  };
+
   const GUIDE_PAGES = [
     { slug: 'image-formats-guide', title: 'Image Formats Guide', href: 'image-formats-guide.html', hub: 'image', icon: 'IMG', summary: 'PNG, JPG, WebP, SVG, and GIF comparison.' },
     { slug: 'json-formatting-guide', title: 'JSON Formatting Guide', href: 'json-formatting-guide.html', hub: 'developer', icon: 'JSN', summary: 'Prettify, minify, validate, and escape JSON.' },
@@ -81,6 +85,19 @@
   function getToolBySlug(slug) {
     if (!Array.isArray(global.SITE_TOOLS)) return null;
     return global.SITE_TOOLS.find((tool) => slugFromHref(tool.href) === slug) || null;
+  }
+
+  function getOftenUsedToolsForTool(slug, hubKey) {
+    const overrideSlugs = TOOL_OFTEN_USED_WITH[slug];
+    if (Array.isArray(overrideSlugs) && overrideSlugs.length) {
+      return overrideSlugs
+        .map((toolSlug) => getToolBySlug(toolSlug))
+        .filter(Boolean);
+    }
+
+    return getToolsForHub(hubKey)
+      .filter((item) => slugFromHref(item.href) !== slug)
+      .slice(0, 6);
   }
 
   function getHubForTool(slugOrTool) {
@@ -239,14 +256,9 @@
       const hub = tool && getHubForTool(tool);
       if (!tool || !hub) return [];
 
-      const siblingTools = getToolsForHub(hub.key)
-        .filter((item) => slugFromHref(item.href) !== slug)
-        .slice(0, 12);
-
       return [
         { title: 'Current Hub', items: [Object.assign({}, buildHubLinkItem(hub, currentUrl), { active: true })] },
-        { title: 'More Tools in This Hub', items: siblingTools.map((item) => buildToolLinkItem(item, currentUrl)) },
-        { title: 'Related Guides', items: getGuidePagesForHub(hub.key).map((guide) => buildGuideLinkItem(guide, currentUrl)) },
+        { title: 'Often Used With This', items: getOftenUsedToolsForTool(slug, hub.key).map((item) => buildToolLinkItem(item, currentUrl)) },
         { title: 'Recently Used', items: [] }
       ];
     }

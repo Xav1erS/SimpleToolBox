@@ -114,7 +114,9 @@
       "Bash(__NEW_LINE_5d6a8428aecbaa5a__ python3:*)",
       "Bash(for slug:*)",
       "Bash(xargs grep:*)",
-      "Bash(do python:*)"
+      "Bash(do python:*)",
+      "Bash(grep -rh \"site-navigation\\\\|site-hierarchy\\\\|design-system.css\" public/*.html)",
+      "Bash(grep -rh \"site-navigation\\\\|site-hierarchy\\\\|design-system.css\\\\|design-components\" public/*.html public/styles/design-system.css)"
     ]
   }
 }

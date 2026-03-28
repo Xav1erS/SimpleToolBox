@@ -1,0 +1,3 @@
+line-sorter: '↕️' -> '鈫曪笍'
+word-wrap-formatter: '↵' -> '鈫�'
+remove-line-breaks: '↩️' -> '鈫╋笍'

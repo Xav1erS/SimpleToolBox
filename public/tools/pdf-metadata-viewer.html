@@ -220,22 +220,29 @@
 </head>
 <body>
 
-<nav class="ds-tool-nav">
+<nav class="ds-nav" id="nav">
   <a href="../index.html" class="ds-nav__brand">
     <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
     Simple ToolBox
   </a>
-  <div class="ds-tool-nav-divider"></div>
-  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
-  <div class="ds-tool-nav-divider"></div>
-  <div class="ds-tool-nav-name">
-    PDF Metadata Viewer
-    <span class="ds-tool-badge">pdf</span>
+
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" aria-label="Search tools" />
+    <kbd>Ctrl K</kbd>
+    <div class="search-dropdown" id="navSearchDropdown"></div>
   </div>
-  <div class="ds-tool-spacer"></div>
-  <div class="ds-tool-privacy">
-    <span class="ds-tool-privacy-dot"></span>
-    Runs locally 鈥?no data sent
+
+  <div class="nav-actions">
+    <a href="https://github.com/Xav1erS/SimpleToolBox" target="_blank" rel="noopener" class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      GitHub
+    </a>
+    <a href="../contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
   </div>
 </nav>
 
@@ -246,6 +253,11 @@
       <h1 class="ds-tool-header__title">PDF Metadata Viewer</h1>
     </div>
     <p class="ds-tool-header__desc">Inspect title, author, creation date, and all metadata inside a PDF file. Drop any PDF to view the full document properties 鈥?no uploads, everything runs in your browser.</p>
+    <div class="ds-tool-context">
+      <a href="../pdf-tools.html" class="ds-tool-context__pill ds-tool-context__pill--hub">PDF Tools</a>
+      <span class="ds-tool-context__pill"><span class="ds-tool-context__dot"></span>Runs locally</span>
+      <span class="ds-tool-context__pill">No data sent</span>
+    </div>
     <div class="ds-tool-tag-row">
       <span class="ds-tag">PDF</span>
       <span class="ds-tag">metadata</span>
@@ -285,14 +297,14 @@
         <div class="meta-section-title">Document Info</div>
         <table class="meta-table">
           <tbody>
-            <tr><td>Title</td><td id="mTitle"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Author</td><td id="mAuthor"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Subject</td><td id="mSubject"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Keywords</td><td id="mKeywords"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Creator</td><td id="mCreator"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Producer</td><td id="mProducer"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Created</td><td id="mCreated"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Modified</td><td id="mModified"><span class="meta-empty">鈥?/span></td></tr>
+            <tr><td>Title</td><td id="mTitle"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Author</td><td id="mAuthor"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Subject</td><td id="mSubject"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Keywords</td><td id="mKeywords"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Creator</td><td id="mCreator"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Producer</td><td id="mProducer"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Created</td><td id="mCreated"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Modified</td><td id="mModified"><span class="meta-empty">鈥</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -304,11 +316,11 @@
         <div class="meta-section-title">File Info</div>
         <table class="meta-table">
           <tbody>
-            <tr><td>PDF Version</td><td id="mVersion"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Pages</td><td id="mPages"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>File Size</td><td id="mSize"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Page Size (p.1)</td><td id="mPageSize"><span class="meta-empty">鈥?/span></td></tr>
-            <tr><td>Orientation</td><td id="mOrientation"><span class="meta-empty">鈥?/span></td></tr>
+            <tr><td>PDF Version</td><td id="mVersion"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Pages</td><td id="mPages"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>File Size</td><td id="mSize"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Page Size (p.1)</td><td id="mPageSize"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Orientation</td><td id="mOrientation"><span class="meta-empty">鈥</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -338,9 +350,9 @@
   <h2 class="ds-related-title">Related Tools</h2>
   <div class="ds-related-grid">
     <a href="pdf-page-counter.html" class="ds-related-card"><span class="ds-related-icon">馃搫</span><div><div class="ds-related-name">PDF Page Counter</div><div class="ds-related-desc">Count pages and view document metadata</div></div></a>
-    <a href="pdf-to-image.html" class="ds-related-card"><span class="ds-related-icon">馃柤锔?/span><div><div class="ds-related-name">PDF to Image</div><div class="ds-related-desc">Export PDF pages as PNG or JPEG images</div></div></a>
+    <a href="pdf-to-image.html" class="ds-related-card"><span class="ds-related-icon">馃柤锔</span><div><div class="ds-related-name">PDF to Image</div><div class="ds-related-desc">Export PDF pages as PNG or JPEG images</div></div></a>
     <a href="image-to-pdf.html" class="ds-related-card"><span class="ds-related-icon">馃搫</span><div><div class="ds-related-name">Image to PDF</div><div class="ds-related-desc">Combine images into a single PDF file</div></div></a>
-    <a href="pdf-compress.html" class="ds-related-card"><span class="ds-related-icon">馃棞锔?/span><div><div class="ds-related-name">PDF Compressor</div><div class="ds-related-desc">Reduce PDF file size in your browser</div></div></a>
+    <a href="pdf-compress.html" class="ds-related-card"><span class="ds-related-icon">馃棞锔</span><div><div class="ds-related-name">PDF Compressor</div><div class="ds-related-desc">Reduce PDF file size in your browser</div></div></a>
   </div>
 </div>
 
@@ -465,7 +477,7 @@
       el.textContent = String(value).trim();
       el.classList.remove('meta-empty');
     } else {
-      el.innerHTML = '<span class="meta-empty">鈥?/span>';
+      el.innerHTML = '<span class="meta-empty">鈥</span>';
     }
   }
 
@@ -618,6 +630,14 @@
   });
 </script>
 <script src="../tools-data.js"></script>
+<script src="../site-hierarchy.js?v=7"></script>
+<script>
+  window.STB_PAGE_CONTEXT = {
+    pageType: 'tool',
+    slug: 'pdf-metadata-viewer'
+  };
+</script>
+<script src="../scripts/site-navigation.js?v=10"></script>
 <script src="../tool-page-icon.js"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>

@@ -98,16 +98,37 @@
 </head>
 <body class="ds-page">
 <noscript><div style="text-align:center;padding:40px;color:#8b8b9a;font-family:sans-serif">This tool requires JavaScript to run.</div></noscript>
-<nav class="ds-tool-nav">
-  <a href="../index.html" class="ds-nav__brand"><div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>Simple ToolBox</a>
-  <div class="ds-tool-nav-divider"></div>
-  <a href="../all-tools.html" class="ds-tool-nav-link">All Tools</a>
-  <div class="ds-tool-nav-divider"></div>
-  <div class="ds-tool-nav-name">Currency Exchange Rate <span class="ds-tool-badge">reference</span></div>
-  <div class="ds-tool-spacer"></div>
-  <div class="ds-tool-privacy"><span class="ds-tool-privacy-dot"></span>Runs locally &middot; no data sent</div>
+<nav class="ds-nav" id="nav">
+  <a href="../index.html" class="ds-nav__brand">
+    <div class="ds-nav__logo-icon"><img src="../logo.svg" class="logo-img" width="28" height="28" alt="Simple ToolBox" /></div>
+    Simple ToolBox
+  </a>
+
+  <div class="nav-search">
+    <svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" aria-label="Search tools" />
+    <kbd>Ctrl K</kbd>
+    <div class="search-dropdown" id="navSearchDropdown"></div>
+  </div>
+
+  <div class="nav-actions">
+    <a href="https://github.com/Xav1erS/SimpleToolBox" target="_blank" rel="noopener" class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      GitHub
+    </a>
+    <a href="../contact.html" class="btn-primary ds-btn ds-btn--primary">Submit a Tool</a>
+  </div>
 </nav>
-<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃挶</div><h1 class="ds-tool-header__title">Currency Exchange Rate</h1></div><p class="ds-tool-header__desc">Manual exchange rate calculator and reference guide. Enter an amount and a rate to compute the converted value. For live rates, use a dedicated service.</p><div class="ds-tool-tag-row"><span class="ds-tag">exchange rate</span><span class="ds-tag">currency</span><span class="ds-tag">calculator</span></div></div></div>
+<div class="ds-tool-header"><div class="ds-tool-header__inner"><div class="ds-tool-header__row"><div class="ds-tool-header__icon">馃挶</div><h1 class="ds-tool-header__title">Currency Exchange Rate</h1></div><p class="ds-tool-header__desc">Manual exchange rate calculator and reference guide. Enter an amount and a rate to compute the converted value. For live rates, use a dedicated service.</p>
+    <div class="ds-tool-context">
+      <a href="../developer-tools.html" class="ds-tool-context__pill ds-tool-context__pill--hub">Developer Tools</a>
+      <span class="ds-tool-context__pill"><span class="ds-tool-context__dot"></span>Runs locally</span>
+      <span class="ds-tool-context__pill">No data sent</span>
+    </div><div class="ds-tool-tag-row"><span class="ds-tag">exchange rate</span><span class="ds-tag">currency</span><span class="ds-tag">calculator</span></div></div></div>
 <div class="ds-tool-main ds-tool-stack">
 
   <div class="notice-box">
@@ -133,7 +154,7 @@
       </div>
     </div>
     <div class="result-card" style="margin-top:14px">
-      <div class="result-main" id="resultMain">鈥?/div>
+      <div class="result-main" id="resultMain">鈥</div>
       <div class="result-sub" id="resultSub">Enter an amount and a rate above</div>
     </div>
   </div>
@@ -191,8 +212,8 @@
   <div class="ds-related-grid">
     <a href="currency-converter.html" class="ds-related-card"><span class="ds-related-icon">馃挶</span><div><div class="ds-related-name">Currency Converter</div><div class="ds-related-desc">Convert between 30+ currencies with approximate reference rates</div></div></a>
     <a href="percentage-change-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃搱</span><div><div class="ds-related-name">Percentage Change</div><div class="ds-related-desc">Calculate percentage increase or decrease between two values. Shows formula and absolute difference.</div></div></a>
-    <a href="tip-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃嵔锔?/span><div><div class="ds-related-name">Tip Calculator</div><div class="ds-related-desc">Calculate tip amount and split the bill among any number of people</div></div></a>
-    <a href="discount-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃彿锔?/span><div><div class="ds-related-name">Discount Calculator</div><div class="ds-related-desc">Calculate sale price and savings from a discount percentage</div></div></a>
+    <a href="tip-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃嵔锔</span><div><div class="ds-related-name">Tip Calculator</div><div class="ds-related-desc">Calculate tip amount and split the bill among any number of people</div></div></a>
+    <a href="discount-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃彿锔</span><div><div class="ds-related-name">Discount Calculator</div><div class="ds-related-desc">Calculate sale price and savings from a discount percentage</div></div></a>
     <a href="savings-calculator.html" class="ds-related-card"><span class="ds-related-icon">馃挵</span><div><div class="ds-related-name">Savings Calculator</div><div class="ds-related-desc">Project future savings with compound interest and monthly contributions</div></div></a>
   </div>
 </div>
@@ -306,6 +327,16 @@ EXAMPLES.forEach(e => {
   row.appendChild(btn);
 });
 </script>
+<script src="../tools-data.js"></script>
+<script src="../site-hierarchy.js?v=7"></script>
+<script>
+  window.STB_PAGE_CONTEXT = {
+    pageType: 'tool',
+    slug: 'currency-exchange-rate'
+  };
+</script>
+<script src="../scripts/site-navigation.js?v=10"></script>
+<script src="../tool-page-icon.js"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

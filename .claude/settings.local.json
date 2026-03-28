@@ -112,7 +112,9 @@
       "Bash(__NEW_LINE_c8661d029a9ca082__ python3:*)",
       "Bash(__NEW_LINE_acdb2a030b01611d__ python3:*)",
       "Bash(__NEW_LINE_5d6a8428aecbaa5a__ python3:*)",
-      "Bash(for slug:*)"
+      "Bash(for slug:*)",
+      "Bash(xargs grep:*)",
+      "Bash(do python:*)"
     ]
   }
 }

@@ -116,7 +116,7 @@
         const items = getSectionSlugs(section)
           .map((slug) => getToolBySlug(slug))
           .filter(Boolean)
-          .map((tool) => buildToolLinkItem(tool, currentUrl));
+          .map((tool) => Object.assign({}, buildToolLinkItem(tool, currentUrl), { meta: '' }));
 
         if (!items.length) return null;
 

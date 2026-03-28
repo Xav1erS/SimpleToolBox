@@ -309,7 +309,12 @@
     const headerMeta = getDirectoryHeaderMeta(context);
 
     const body = '<div class="ds-directory-rail__body">' + groups.map(function (group, index) {
-      return renderDirectoryGroup(group, context, index);
+      const isHubSection = group.kind === 'hub-section';
+      const prevIsHubSection = index > 0 && groups[index - 1].kind === 'hub-section';
+      const sectionHeader = (isHubSection && !prevIsHubSection)
+        ? '<div class="ds-directory-sections-label">Sections</div>'
+        : '';
+      return sectionHeader + renderDirectoryGroup(group, context, index);
     }).join('') + '</div>';
 
     return (
@@ -364,6 +369,7 @@
     groups.forEach(function (group) {
       const isActive = group.getAttribute('data-directory-group-target') === id;
       group.classList.toggle('is-active', isActive);
+      if (isActive && group.dataset.stbUserCollapsed === '1') return;
       setDirectoryGroupExpanded(group, isActive);
     });
   }
@@ -810,10 +816,12 @@
           const isExpanded = group.getAttribute('data-collapsed') !== 'true';
 
           if (isExpanded) {
+            group.dataset.stbUserCollapsed = '1';
             setDirectoryGroupExpanded(group, false);
             return;
           }
 
+          group.dataset.stbUserCollapsed = '';
           setActiveHubDirectorySection(targetId);
           if (global.location.hash !== ('#' + targetId)) {
             try {

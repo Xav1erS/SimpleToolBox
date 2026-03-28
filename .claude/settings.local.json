@@ -102,7 +102,16 @@
       "Bash(__NEW_LINE_ac18df9724d9ad3f__ grep:*)",
       "Bash(__NEW_LINE_ac18df9724d9ad3f__ done:*)",
       "Bash(__NEW_LINE_a83f4562dcb3fd48__ grep:*)",
-      "Bash(__NEW_LINE_a83f4562dcb3fd48__ done:*)"
+      "Bash(__NEW_LINE_a83f4562dcb3fd48__ done:*)",
+      "Bash(ls -la /c/Users/admin/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
+      "Bash(ls /c/Users/admin/Documents/GitHub/SimpleToolBox/public/tools/*.html)",
+      "Bash(__NEW_LINE_f0e5b9971f4752b9__ cd:*)",
+      "Bash(__NEW_LINE_f0e5b9971f4752b9__ python3:*)",
+      "Bash(__NEW_LINE_aff338c256206403__ cd:*)",
+      "Bash(__NEW_LINE_c8661d029a9ca082__ cd:*)",
+      "Bash(__NEW_LINE_c8661d029a9ca082__ python3:*)",
+      "Bash(__NEW_LINE_acdb2a030b01611d__ python3:*)",
+      "Bash(__NEW_LINE_5d6a8428aecbaa5a__ python3:*)"
     ]
   }
 }

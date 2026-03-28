@@ -807,6 +807,13 @@
 
         if (targetId) {
           event.preventDefault();
+          const isExpanded = group.getAttribute('data-collapsed') !== 'true';
+
+          if (isExpanded) {
+            setDirectoryGroupExpanded(group, false);
+            return;
+          }
+
           setActiveHubDirectorySection(targetId);
           if (global.location.hash !== ('#' + targetId)) {
             try {

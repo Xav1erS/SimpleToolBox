@@ -1,45 +1,31 @@
 # SimpleToolBox Memory
 
-## Current Snapshot (2026-03-23)
+## Current Snapshot (2026-03-28)
 
-- Tool count: **106**
+- Tool count: **201**
 - Shared tool list source: `public/tools-data.js`
 - Shared metadata source: `public/tools-meta.js`
 - Latest preflight: fully green
-- Main phase: **growth-first**, not migration-first
+- Main phase: **growth-first**, with disciplined shell migration where appropriate
 
-## What Just Happened
+## Active Frame
 
-- Added 6 new text tools:
-  - `duplicate-line-remover`
-  - `line-sorter`
-  - `list-deduplicator`
-  - `whitespace-trimmer`
-  - `sentence-counter`
-  - `keyword-density-checker`
-- Repaired a batch of old `reference` pages that had:
-  - lost runtime scripts
-  - missing local styles
-  - broken card/layout structure
-- Fixed the real footer issue:
-  - many pages had footer nested inside `.main` / `.ds-tool-main`
-  - now corrected so footer is back under `body`
-- Strengthened QA:
-  - missing runtime scripts are now caught by validation
-  - report generation is resilient to local `node/npx` PATH issues
+Correct active frame:
+
+**201 tools, QA green, shared architecture stable, continue disciplined expansion toward 300.**
 
 ## Real Current Focus
 
 The focus is no longer:
 
-- finish migration
-- polish every old page
+- polishing old pages without a clear reason
+- treating migration as the only storyline
 
 The real focus is:
 
-1. grow from **106 to 150**
+1. grow from **201 to 300**
 2. keep QA green
-3. keep shared data/template architecture converging
+3. keep shared data / template architecture converging
 4. improve tool competitiveness in parallel
 
 ## Priority Order
@@ -62,37 +48,25 @@ Always ask:
 - Is the tool obvious on first view?
 - Can it be started immediately?
 - Does it recover from common bad input?
-- Is output easy to copy/download?
+- Is output easy to copy / download?
 - Does it feel smooth on mobile?
+- Does it create a natural next step through related tools?
 
 ## Current Constraints
 
-- Some legacy pages still have minor copy/encoding debt.
+- Some legacy pages still have minor copy / encoding debt.
 - That debt is lower priority than adding high-value new tools unless it breaks usability.
-- Legacy cleanup should now be bug-driven, not open-ended.
+- Legacy cleanup should be bug-driven, not open-ended.
 
-## Immediate Next Step
+## Near-Term Direction
 
-Highest-priority next work:
+Suggested next-batch candidates:
 
-1. `csv-column-extractor`
-2. `text-list-to-array`
-3. `word-frequency-counter`
-
-After that:
-
-- move into a calculator batch
-- only revisit old pages when there is a real functional or structural issue
-
-## Active Frame
-
-Correct active frame:
-
-**106 tools, QA green, shared architecture stable, continue disciplined expansion toward 150.**
+1. calculator: `currency-converter-live`, `unit-price-calculator`, `sleep-calculator`
+2. image: `image-border-radius-preview`
+3. text: `text-to-morse`, `nato-alphabet`, `pig-latin-converter`
 
 ## Tool Shell Migration Snapshot (2026-03-28)
-
-The tool-page left-rail migration is now better understood.
 
 This is not mainly a “shell is hard” problem.
 It is a “legacy page debt + contract mismatch” problem.
@@ -112,9 +86,9 @@ It is a “legacy page debt + contract mismatch” problem.
 
 Confirmed example:
 
-- `tool-page-icon.js` and `site-navigation.js` could both initialize the directory shell
-- this caused the left-rail collapse button to bind twice
-- symptom: clicking the button looked like “no response”
+- `tool-page-icon.js` and `site-navigation.js` can both initialize the directory shell
+- this can double-bind the left-rail collapse button
+- symptom: the button looks like it does not work because one handler undoes the other
 
 ### Current best reference pages
 
@@ -141,7 +115,7 @@ Never mix these three stages:
 2. dirty-but-usable pages after cleanup
 3. structural outliers last
 
-And do not treat a page as “migrated” unless it has:
+Do not treat a page as “migrated” unless it has:
 
 - shared `nav.ds-nav#nav`
 - `STB_PAGE_CONTEXT`
@@ -171,12 +145,8 @@ python scripts/audit-tool-shell-migration.py <slug>
 - Shared shell scripts must stay idempotent. Double-init bugs are now a known class of migration failure.
 - Shared-shell changes are not done until collapse, breadcrumb, top search, and post-workbench SEO structure are all confirmed.
 
-## Extra Prevention Notes
+## QA Reminder
 
-- Never combine shell migration, SEO skeleton migration, and product feature changes in one big step.
-- Shared behavior should have one owner. Duplicate init paths are a known failure source.
-- After touching shared assets, bump page-level resource versions to avoid stale-cache false negatives.
-- Dirty legacy pages must be cleaned before they are used as migration targets.
-- Shared-shell work must be spot-checked on desktop and mobile, and across multiple page categories.
-- Prefer HTML entities over fragile direct punctuation symbols on legacy pages.
-- Small verified batches are safer than wide one-shot migrations.
+- Low risk: `python scripts/validate-tools.py <slug>`
+- Medium risk: full validate + page audit + report
+- High risk: full validate + page audit + smoke + visual + preflight

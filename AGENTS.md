@@ -8,7 +8,7 @@
 - 修改代码后，说明涉及的文件和关键变化。
 - 优先做最小必要修改，避免无关重构。
 
-## 当前真实状态（2026-03-26）
+## 当前真实状态（2026-03-28）
 
 - **201 个工具页**已上线，全站 preflight 全绿。
 - **6 个站点页**已完成设计系统迁移：`index`、`all-tools`、`about`、`privacy`、`terms`、`contact`。
@@ -36,40 +36,40 @@
 
 分多批新增，主要类别：
 
-**Image 工具：** webp-to-png、image-sepia、image-vignette、image-tint、image-noise
+**Image 工具：** `webp-to-png`、`image-sepia`、`image-vignette`、`image-tint`、`image-noise`
 
-**Text 工具：** reading-time-estimator、text-repeater、text-statistics、remove-line-breaks、remove-duplicate-words、word-scrambler
+**Text 工具：** `reading-time-estimator`、`text-repeater`、`text-statistics`、`remove-line-breaks`、`remove-duplicate-words`、`word-scrambler`
 
-**Calculator 工具：** tax-calculator、body-fat-calculator、scientific-calculator、retirement-calculator、time-duration-calculator、aspect-ratio-calculator、pace-calculator、tip-splitter、age-in-days、loan-amortization-calculator
+**Calculator 工具：** `tax-calculator`、`body-fat-calculator`、`scientific-calculator`、`retirement-calculator`、`time-duration-calculator`、`aspect-ratio-calculator`、`pace-calculator`、`tip-splitter`、`age-in-days`、`loan-amortization-calculator`
 
-**Generator / Design 工具：** color-scheme-generator、css-box-shadow-generator、placeholder-image-generator、random-color-generator、gradient-text-generator
+**Generator / Design 工具：** `color-scheme-generator`、`css-box-shadow-generator`、`placeholder-image-generator`、`random-color-generator`、`gradient-text-generator`
 
-**Developer 工具：** binary-calculator
+**Developer 工具：** `binary-calculator`
 
-**PDF 工具（第一批）：** pdf-to-image、image-to-pdf、pdf-page-counter、pdf-compress、pdf-merge、pdf-split、pdf-rotate-pages、pdf-extract-text、pdf-metadata-viewer、pdf-add-watermark、pdf-to-markdown
+**PDF 工具：** `pdf-to-image`、`image-to-pdf`、`pdf-page-counter`、`pdf-compress`、`pdf-merge`、`pdf-split`、`pdf-rotate-pages`、`pdf-extract-text`、`pdf-metadata-viewer`、`pdf-add-watermark`、`pdf-to-markdown`
 
 ### 全站定位统一
 
-- 从 "developer tools" 统一改为 "everyday tasks"
-- 首页描述、schema、meta 全部更新
+- 从 “developer tools” 统一改为 “everyday tasks”。
+- 首页描述、schema、meta 已同步更新。
 
 ### all-tools.html 重构
 
-- JS 渲染替代 156 条静态卡片
-- Popular / Recently Used 嵌入内容区
-- 筛选栏层级修正
+- JS 渲染替代旧静态卡片。
+- Popular / Recently Used 嵌入内容区。
+- 筛选栏层级已修正。
 
 ### 首页优化
 
-- Popular Tools 重排：image/text 工具置顶
-- New Tools 区块补充
-- footer Tools 区：占位 `#` 链接 → 真实 hub 页链接
-- stats：0 "Data Collected" 替换旧文案
+- Popular Tools 重排：image / text 工具置顶。
+- New Tools 区块已补充。
+- footer Tools 区：占位 `#` 链接已替换为真实 hub 页链接。
+- stats：`Data Collected` 已替换旧文案。
 
 ### 工具页全局
 
-- 全部 201 个工具页注入 `stb_recent` localStorage tracking snippet
-- `og:image`、`twitter:card: summary_large_image`、`apple-touch-icon` 补全
+- 全部 201 个工具页注入 `stb_recent` localStorage tracking snippet。
+- `og:image`、`twitter:card: summary_large_image`、`apple-touch-icon` 已补全。
 
 ## 项目最高策略
 
@@ -89,8 +89,8 @@ SimpleToolBox 是**任务导向型在线工具站**。
 
 ### 当前阶段目标
 
-- **201 → 300**：继续补齐场景词和组合页
-- **300 → 500**：关键词矩阵 + hub 网络 + 工具链
+- **201 → 300**：继续补齐场景词和组合页。
+- **300 → 500**：关键词矩阵 + hub 网络 + 工具链。
 
 ### 扩张优先级
 
@@ -103,20 +103,20 @@ SimpleToolBox 是**任务导向型在线工具站**。
 
 ### 当前不做或延后
 
-- 不大规模做 AI 轻工具
-- 不做场景页（暂）
-- 不做多语言
-- 不做关键词换皮页
+- 不大规模做 AI 轻工具。
+- 不做场景页（暂）。
+- 不做多语言。
+- 不做关键词换皮页。
 
 ## 工具竞争力策略
 
 好工具必须同时满足：
 
-1. **可发现**：对应明确任务词
-2. **可使用**：打开后能立刻开始
-3. **可完成**：能稳定产出用户真正想要的结果
-4. **可带走**：结果复制、下载、导出顺手
-5. **可继续**：有清晰的下一步 related tools 路径
+1. **可发现**：对应明确任务词。
+2. **可使用**：打开后能立刻开始。
+3. **可完成**：能稳定产出用户真正想要的结果。
+4. **可带走**：结果复制、下载、导出顺手。
+5. **可继续**：有清晰的下一步 related tools 路径。
 
 ### 好工具的 6 条统一标准
 
@@ -129,14 +129,14 @@ SimpleToolBox 是**任务导向型在线工具站**。
 
 ### 新工具上线前产品检查
 
-- 默认状态是否清楚可用
-- 首次进入是否知道下一步
-- 常见输入是否能一次成功
-- 错误提示是否是人话
-- 结果是否容易复制/下载
-- 移动端是否顺手
-- 是否有至少一个真实场景预设或示例
-- Related tools 是否构成自然下一步
+- 默认状态是否清楚可用。
+- 首次进入是否知道下一步。
+- 常见输入是否能一次成功。
+- 错误提示是否是人话。
+- 结果是否容易复制 / 下载。
+- 移动端是否顺手。
+- 是否有至少一个真实场景预设或示例。
+- Related tools 是否构成自然下一步。
 
 ## 新工具开发规范
 
@@ -166,9 +166,10 @@ SimpleToolBox 是**任务导向型在线工具站**。
 
 新增工具后必须：
 
-1. 在 `SITE_TOOLS` 中追加记录（tag 必须是有效值：`image` / `text` / `encode` / `format` / `convert` / `calculator` / `generate` / `reference` / `design` / `pdf`）
-2. 为对应 hub 分组更新 `HUB_PAGE_CONFIG`
-3. 在 `tools-meta.js` 中追加完整 metadata
+1. 在 `SITE_TOOLS` 中追加记录。
+2. `tag` 必须是有效值：`image` / `text` / `encode` / `format` / `convert` / `calculator` / `generate` / `reference` / `design` / `pdf`。
+3. 为对应 hub 分组更新 `HUB_PAGE_CONFIG`。
+4. 在 `tools-meta.js` 中追加完整 metadata。
 
 ### 有效 tag 列表
 
@@ -176,7 +177,7 @@ SimpleToolBox 是**任务导向型在线工具站**。
 image | text | encode | format | convert | calculator | generate | reference | design | pdf
 ```
 
-> ⚠️ `calculate` 是非法 tag，必须用 `calculator`。
+> `calculate` 是非法 tag，必须用 `calculator`。
 
 ### tools-meta.js category 与 tools-data.js tag 对照
 
@@ -202,8 +203,8 @@ image | text | encode | format | convert | calculator | generate | reference | d
 
 | 变动类型 | 示例 | 必须执行 |
 | --- | --- | --- |
-| 低风险 | 单工具逻辑/文案修改 | `python scripts/validate-tools.py <slug>` |
-| 中风险 | 新增工具、tools-data.js、tools-meta.js | 全量 validate + page audit + 总报告 |
+| 低风险 | 单工具逻辑 / 文案修改 | `python scripts/validate-tools.py <slug>` |
+| 中风险 | 新增工具、`tools-data.js`、`tools-meta.js` | 全量 validate + page audit + 总报告 |
 | 高风险 | 设计系统、全局布局、共享组件 | 全量 validate + page audit + smoke + visual + 总报告 |
 
 默认总入口：
@@ -215,7 +216,7 @@ python scripts/generate-report.py
 ## 当前约束
 
 - 旧工具页仍有少量历史编码脏字符，优先级低于新增工具。
-- 旧 `reference` 页已从"坏掉"修回可用状态，不应继续无上限投入。
+- 旧 `reference` 页已从“坏掉”修回可用状态，不应继续无上限投入。
 
 ## 下一步
 
@@ -225,14 +226,14 @@ Product Hunt 已于 2026-03-29 上线。继续扩张工具数量，目标 300。
 
 1. 更多 calculator：`currency-converter-live`、`unit-price-calculator`、`sleep-calculator`
 2. 更多 image 工具：`image-border-radius-preview`、`color-palette-from-image`（已有）
-3. 更多 text 工具：`text-to-morse`（已有 morse-code）、`nato-alphabet`、`pig-latin-converter`
+3. 更多 text 工具：`text-to-morse`、`nato-alphabet`、`pig-latin-converter`
 
 ## 成功标准
 
-1. 工具数稳定增长，每个新页对应明确任务词
-2. 共享数据源和模板持续收敛
-3. QA 一直保持自动可验证
-4. 站点从"工具集合"变成"任务搜索入口"
+1. 工具数稳定增长，每个新页对应明确任务词。
+2. 共享数据源和模板持续收敛。
+3. QA 一直保持自动可验证。
+4. 站点从“工具集合”变成“任务搜索入口”。
 
 ## 工具页共享外壳迁移现状（2026-03-28）
 

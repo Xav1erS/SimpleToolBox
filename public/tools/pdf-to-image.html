@@ -473,10 +473,10 @@
     }
 
     const numPages = pdfDoc.numPages;
-    progressLabel.textContent = `Rendering page 1 of ${numPages}—;
+    progressLabel.textContent = `Rendering page 1 of ${numPages}...`;
 
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Rendering page ${i} of ${numPages}—;
+      progressLabel.textContent = `Rendering page ${i} of ${numPages}...`;
       progressFill.style.width = ((i - 1) / numPages * 100) + '%';
 
       const page = await pdfDoc.getPage(i);
@@ -551,7 +551,7 @@
   btnDownloadAll.addEventListener('click', async () => {
     if (!renderedCanvases.length) return;
     btnDownloadAll.disabled = true;
-    btnDownloadAll.textContent = 'Downloading—;
+    btnDownloadAll.textContent = 'Downloading...';
     for (let i = 0; i < renderedCanvases.length; i++) {
       downloadCanvas(renderedCanvases[i], `${currentFilename}-page-${i + 1}`);
       // Small delay between downloads to avoid browser throttling

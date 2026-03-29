@@ -421,7 +421,7 @@
 
       for (let i = 0; i < files.length; i++) {
         const imgData = files[i].dataUrl;
-        progressLabel.textContent = `Processing image ${i + 1} of ${files.length}—;
+        progressLabel.textContent = `Processing image ${i + 1} of ${files.length}...`;
         progressFill.style.width = ((i / files.length) * 90) + '%';
 
         // Measure natural dimensions
@@ -484,7 +484,7 @@
       }
 
       progressFill.style.width = '100%';
-      progressLabel.textContent = 'Saving PDF—;
+      progressLabel.textContent = 'Saving PDF...';
 
       const filename = files.length === 1
         ? files[0].name.replace(/\.[^.]+$/, '.pdf')

@@ -609,7 +609,7 @@
   // Copy All as Text
   btnCopy.addEventListener('click', () => {
     const lines = Object.entries(currentMeta)
-      .map(([k, v]) => `${k}: ${v || '—}`)
+      .map(([k, v]) => `${k}: ${v || '—'}`)
       .join('\n');
     navigator.clipboard.writeText(lines).then(() => {
       copyToast.classList.add('visible');

@@ -465,10 +465,10 @@
     numPages = pdfDoc.numPages;
     rotations = new Array(numPages).fill(0);
 
-    progressLabel.textContent = `Rendering thumbnails—;
+    progressLabel.textContent = 'Rendering thumbnails...';
 
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Rendering page ${i} of ${numPages}—;
+      progressLabel.textContent = `Rendering page ${i} of ${numPages}...`;
       progressFill.style.width = ((i - 1) / numPages * 100) + '%';
 
       const page     = await pdfDoc.getPage(i);
@@ -537,7 +537,7 @@
   btnApply.addEventListener('click', async () => {
     if (!pdfDoc) return;
     btnApply.disabled = true;
-    btnApply.textContent = 'Processing—;
+    btnApply.textContent = 'Processing...';
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
@@ -561,7 +561,7 @@
       });
 
       for (let i = 1; i <= numPages; i++) {
-        progressLabel.textContent = `Processing page ${i} of ${numPages}—;
+        progressLabel.textContent = `Processing page ${i} of ${numPages}...`;
         progressFill.style.width  = ((i - 1) / numPages * 100) + '%';
 
         const page     = await freshDoc.getPage(i);

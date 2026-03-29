@@ -537,7 +537,7 @@
   async function applyAndDownload() {
     if (!pdfDoc) return;
     btnApply.disabled = true;
-    btnApply.textContent = 'Processing—;
+    btnApply.textContent = 'Processing...';
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
 
@@ -556,7 +556,7 @@
     });
 
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Processing page ${i} of ${numPages}—;
+      progressLabel.textContent = `Processing page ${i} of ${numPages}...`;
       progressFill.style.width = ((i - 1) / numPages * 100) + '%';
 
       if (i > 1) {

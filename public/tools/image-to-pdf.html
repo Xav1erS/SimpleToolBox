@@ -478,7 +478,7 @@
 
       for (let i = 0; i < images.length; i++) {
         const imgData = images[i].dataUrl;
-        progressLabel.textContent = `Processing image ${i + 1} of ${images.length}—;
+        progressLabel.textContent = `Processing image ${i + 1} of ${images.length}...`;
         progressFill.style.width = ((i / images.length) * 90) + '%';
 
         // Get natural dimensions via Image element
@@ -539,7 +539,7 @@
       }
 
       progressFill.style.width = '100%';
-      progressLabel.textContent = 'Saving PDF—;
+      progressLabel.textContent = 'Saving PDF...';
 
       pdf.save('images.pdf');
 

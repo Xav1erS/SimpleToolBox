@@ -463,7 +463,7 @@
   const imgPreview = document.getElementById('imgPreview');
   const btnChange  = document.getElementById('btnChange');
   const fileInput  = document.getElementById('fileInput');
-  const canvas     = document.getElementById('canvas');
+  const canvas     = document.getElementById('canvas') || document.createElement('canvas');
   const ctx        = canvas.getContext('2d');
   const btnDownload= document.getElementById('btnDownload');
   const qualityWrap= document.getElementById('qualityWrap');

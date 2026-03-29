@@ -410,7 +410,7 @@
 
     // List items —collect consecutive <li> into <ul>
     html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-    html = html.replace(/(<li>[\s\S]*?<\</li>)(\n(?!<li>)|$)/g, '<ul>$1</ul>$2');
+    html = html.replace(/(<li>[\s\S]*?<\/li>)(\n(?!<li>)|$)/g, '<ul>$1</ul>$2');
 
     // Paragraphs for non-tag lines
     html = html.replace(/^(?!<[hupl\/])(.+)$/gm, function(match) {

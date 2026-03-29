@@ -579,7 +579,7 @@
     let pdf = null;
 
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Rendering page ${i} of ${numPages}—;
+      progressLabel.textContent = `Rendering page ${i} of ${numPages}...`;
       progressFill.style.width = ((i - 1) / numPages * 100) + '%';
 
       const page = await pdfDoc.getPage(i);
@@ -614,7 +614,7 @@
       progressFill.style.width = (i / numPages * 100) + '%';
     }
 
-    progressLabel.textContent = 'Building compressed PDF—;
+    progressLabel.textContent = 'Building compressed PDF...';
 
     // Get output as blob
     const pdfArrayBuffer = pdf.output('arraybuffer');

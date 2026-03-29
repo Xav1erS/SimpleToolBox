@@ -76,6 +76,37 @@
       '</nav>';
   }
 
+  function ensureNavSearchMarkup(context) {
+    const nav = document.getElementById('nav') || document.querySelector('.ds-nav, .ds-tool-nav');
+    if (!nav || document.getElementById('navSearch')) return;
+
+    const markup =
+      '<div class="nav-search">' +
+        '<svg class="nav-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+          '<circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>' +
+        '</svg>' +
+        '<input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" aria-label="Search tools" />' +
+        '<kbd>Ctrl K</kbd>' +
+        '<div class="search-dropdown" id="navSearchDropdown"></div>' +
+      '</div>';
+
+    if (context.pageType === 'tool') {
+      const spacer = nav.querySelector('.ds-tool-spacer');
+      if (spacer) {
+        spacer.insertAdjacentHTML('beforebegin', markup);
+        return;
+      }
+    }
+
+    const actions = nav.querySelector('.nav-actions, .ds-tool-nav-actions');
+    if (actions) {
+      actions.insertAdjacentHTML('beforebegin', markup);
+      return;
+    }
+
+    nav.insertAdjacentHTML('beforeend', markup);
+  }
+
   function ensureBreadcrumb(context) {
     const items = (global.getBreadcrumbForPage ? global.getBreadcrumbForPage(context) : []).map(function (item) {
       return Object.assign({}, item, { href: hrefForContext(context, item.href) });
@@ -856,6 +887,7 @@
     }
 
     ensureBreadcrumb(context);
+    ensureNavSearchMarkup(context);
     insertDirectory(context);
     ensureShell(context);
     bindShellMetrics();

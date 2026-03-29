@@ -1,7 +1,7 @@
 (function syncToolPageShell() {
   const RECENT_KEY = 'stb_recent';
   const MAX_RECENT = 6;
-  const SITE_NAVIGATION_SRC = '../scripts/site-navigation.js?v=11';
+  const SITE_NAVIGATION_SRC = '../scripts/site-navigation.js?v=12';
 
   function slugFromPathname() {
     const path = window.location.pathname.replace(/\/+$/, '');

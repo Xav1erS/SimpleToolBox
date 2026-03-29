@@ -387,7 +387,7 @@
 
   <!-- Result -->
   <div class="result-box" id="resultBox">
-    <div class="result-success" id="resultMsg"><span>鉁</span> Merged successfully</div>
+    <div class="result-success" id="resultMsg"><span>&#x2705;</span> Merged successfully</div>
     <div class="result-btns">
       <button class="btn-download" id="btnDownload">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -505,7 +505,7 @@
   let mergedBlob  = null;
   let dragSrcIdx  = null;
 
-  // 鈹€鈹€ File management 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // File management
 
   function updateUI() {
     const count = fileEntries.length;
@@ -545,7 +545,7 @@
 
     const handle = document.createElement('span');
     handle.className = 'drag-handle';
-    handle.textContent = '鉅?;
+    handle.textContent = '\u2630';
     handle.title = 'Drag to reorder';
 
     const name = document.createElement('span');
@@ -557,7 +557,7 @@
     badge.className = 'page-badge';
     badge.textContent = entry.pageCount !== null
       ? entry.pageCount + ' page' + (entry.pageCount !== 1 ? 's' : '')
-      : '—;
+      : '\u2014';
 
     const removeBtn = document.createElement('button');
     removeBtn.className = 'remove-btn';
@@ -632,7 +632,7 @@
     updateUI();
   }
 
-  // 鈹€鈹€ Drop zone 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // Drop zone
 
   dropZone.addEventListener('click', () => fileInput.click());
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
@@ -650,7 +650,7 @@
 
   btnAddMore.addEventListener('click', () => fileInput.click());
 
-  // 鈹€鈹€ Merge 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // Merge
 
   btnMerge.addEventListener('click', async () => {
     if (fileEntries.length < 2) return;
@@ -677,7 +677,7 @@
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Starting—;
+    progressLabel.textContent = 'Starting...';
 
     let doc = null;
     let globalPage = 0;
@@ -709,7 +709,7 @@
 
         for (let pi = 1; pi <= numPages; pi++) {
           globalPage++;
-          progressLabel.textContent = `Merging page ${globalPage} of ${globalTotal}—;
+          progressLabel.textContent = `Merging page ${globalPage} of ${globalTotal}...`;
 
           const page = await pdfDoc.getPage(pi);
           const scale = 1.5;
@@ -752,14 +752,14 @@
       if (!doc) throw new Error('No valid pages were processed.');
 
       progressFill.style.width = '100%';
-      progressLabel.textContent = 'Finalizing—;
+      progressLabel.textContent = 'Finalizing...';
       await new Promise(r => setTimeout(r, 200));
 
       mergedBlob = doc.output('blob');
       const totalPagesActual = globalPage;
 
       progressWrap.classList.remove('visible');
-      resultMsg.innerHTML = `<span>鉁</span> Merged successfully —${totalPagesActual} page${totalPagesActual !== 1 ? 's' : ''} total`;
+      resultMsg.innerHTML = `<span>&#x2705;</span> Merged successfully — ${totalPagesActual} page${totalPagesActual !== 1 ? 's' : ''} total`;
       resultBox.classList.add('visible');
 
     } catch (err) {
@@ -773,7 +773,7 @@
     btnMerge.disabled = fileEntries.length < 2;
   });
 
-  // 鈹€鈹€ Download 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // Download
 
   btnDownload.addEventListener('click', () => {
     if (!mergedBlob) return;
@@ -785,7 +785,7 @@
     setTimeout(() => URL.revokeObjectURL(url), 2000);
   });
 
-  // 鈹€鈹€ Reset 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // Reset
 
   btnReset.addEventListener('click', () => {
     fileEntries = [];
@@ -806,7 +806,7 @@
     slug: 'pdf-merge'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../scripts/site-navigation.js?v=12"></script>
 <script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>

@@ -56,7 +56,7 @@
       "name": "What does */5 * * * * mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It means \"every 5 minutes\". The */n syntax means \"every n units starting from 0\". So */5 in the minutes field fires at 0, 5, 10, 15, 20 鈥?55."
+        "text": "It means \"every 5 minutes\". The */n syntax means \"every n units starting from 0\". So */5 in the minutes field fires at 0, 5, 10, 15, 20 —55."
       }
     },
     {
@@ -64,7 +64,7 @@
       "name": "Can I run a job on the last day of the month?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Standard cron doesn't have an \"L\" (last) modifier 鈥?that's a Quartz extension. For standard cron, a common workaround is to schedule for the 28th鈥?1st and check the date inside your script."
+        "text": "Standard cron doesn't have an \"L\" (last) modifier —that's a Quartz extension. For standard cron, a common workaround is to schedule for the 28th—1st and check the date inside your script."
       }
     }
   ]
@@ -72,10 +72,10 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does cron support seconds?","acceptedAnswer":{"@type":"Answer","text":"Standard Unix cron uses five fields (no seconds). Some systems like Spring Scheduler and Quartz add a sixth field for seconds. This builder uses the standard five-field format compatible with Linux crontab, GitHub Actions, and most cloud schedulers."}},{"@type":"Question","name":"What timezone does cron use?","acceptedAnswer":{"@type":"Answer","text":"By default, cron uses the server's local timezone. GitHub Actions schedules use UTC. Always confirm the timezone of the system running your cron job to avoid off-by-one-hour errors."}},{"@type":"Question","name":"What does */5 * * * * mean?","acceptedAnswer":{"@type":"Answer","text":"It means every 5 minutes. The */n syntax means every n units starting from 0. So */5 in the minutes field fires at 0, 5, 10, 15, 20 ... 55."}},{"@type":"Question","name":"Can I run a job on the last day of the month?","acceptedAnswer":{"@type":"Answer","text":"Standard cron does not have an L (last) modifier 鈥?that is a Quartz extension. For standard cron, a common workaround is to schedule for the 28th-31st and check the date inside your script."}}]}
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does cron support seconds?","acceptedAnswer":{"@type":"Answer","text":"Standard Unix cron uses five fields (no seconds). Some systems like Spring Scheduler and Quartz add a sixth field for seconds. This builder uses the standard five-field format compatible with Linux crontab, GitHub Actions, and most cloud schedulers."}},{"@type":"Question","name":"What timezone does cron use?","acceptedAnswer":{"@type":"Answer","text":"By default, cron uses the server's local timezone. GitHub Actions schedules use UTC. Always confirm the timezone of the system running your cron job to avoid off-by-one-hour errors."}},{"@type":"Question","name":"What does */5 * * * * mean?","acceptedAnswer":{"@type":"Answer","text":"It means every 5 minutes. The */n syntax means every n units starting from 0. So */5 in the minutes field fires at 0, 5, 10, 15, 20 ... 55."}},{"@type":"Question","name":"Can I run a job on the last day of the month?","acceptedAnswer":{"@type":"Answer","text":"Standard cron does not have an L (last) modifier —that is a Quartz extension. For standard cron, a common workaround is to schedule for the 28th-31st and check the date inside your script."}}]}
   </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -675,7 +675,7 @@
   }
 
   /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
-     CRON EVALUATOR 鈥?next N run times
+     CRON EVALUATOR —next N run times
   鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
   function matchesCronField(value, expr) {
     if (expr === '*') return true;
@@ -805,15 +805,15 @@
       html = `<span style="font-family:var(--mono);font-size:20px;color:var(--text-muted);padding-top:4px;">*</span>`;
     } else if (s.type === 'at') {
       html = `
-        <label>Value (${f.min}鈥?{f.max})</label>
+        <label>Value (${f.min}—{f.max})</label>
         <input type="number" min="${f.min}" max="${f.max}" value="${clamp(s.at, f.min, f.max)}" data-role="at">
       `;
     } else if (s.type === 'range') {
       html = `
-        <label>From 鈥?To</label>
+        <label>From —To</label>
         <div class="ctrl-row">
           <input type="number" min="${f.min}" max="${f.max}" value="${clamp(s.rangeFrom, f.min, f.max)}" data-role="rangeFrom" title="From">
-          <span class="ctrl-sep">鈥</span>
+          <span class="ctrl-sep">—</span>
           <input type="number" min="${f.min}" max="${f.max}" value="${clamp(s.rangeTo, f.min, f.max)}" data-role="rangeTo" title="To">
         </div>
       `;
@@ -853,7 +853,7 @@
       <div class="field-card" id="field-card-${i}">
         <div>
           <div class="field-name">${f.name}</div>
-          <div class="field-range">${f.min} 鈥?${f.max}${f.hint ? ' 路 ' + f.hint : ''}</div>
+          <div class="field-range">${f.min} —${f.max}${f.hint ? ' &middot; ' + f.hint : ''}</div>
         </div>
         <div class="field-seg">
           ${TYPES.map(t => `<button class="field-seg-btn" data-type="${t.toLowerCase()}">${t}</button>`).join('')}
@@ -967,8 +967,8 @@
     slug: 'cron-builder'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

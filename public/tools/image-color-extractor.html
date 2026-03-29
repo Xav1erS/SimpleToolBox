@@ -47,7 +47,7 @@
       "name": "How accurate are the extracted color values?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The values are pixel-accurate 鈥?the tool reads the exact RGBA values of the pixel under your cursor using the Canvas getImageData API, then converts them to HEX, RGB, and HSL mathematically."
+        "text": "The values are pixel-accurate —the tool reads the exact RGBA values of the pixel under your cursor using the Canvas getImageData API, then converts them to HEX, RGB, and HSL mathematically."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main{max-width:1100px;margin:0 auto;padding:28px 24px 64px}
     .tool-layout{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
@@ -181,17 +181,17 @@
           <div class="color-values">
             <div class="color-row">
               <span class="color-label">HEX</span>
-              <span class="color-value" id="hexValue">鈥</span>
+              <span class="color-value" id="hexValue">—</span>
               <button class="copy-btn" id="copyHex" data-target="hex">Copy</button>
             </div>
             <div class="color-row">
               <span class="color-label">RGB</span>
-              <span class="color-value" id="rgbValue">鈥</span>
+              <span class="color-value" id="rgbValue">—</span>
               <button class="copy-btn" id="copyRgb" data-target="rgb">Copy</button>
             </div>
             <div class="color-row">
               <span class="color-label">HSL</span>
-              <span class="color-value" id="hslValue">鈥</span>
+              <span class="color-value" id="hslValue">—</span>
               <button class="copy-btn" id="copyHsl" data-target="hsl">Copy</button>
             </div>
           </div>
@@ -375,7 +375,7 @@
       const sw = document.createElement('div');
       sw.className = 'history-swatch';
       sw.style.background = c.hex;
-      sw.title = `${c.hex} 路 ${c.rgb}`;
+      sw.title = `${c.hex} &middot; ${c.rgb}`;
       sw.addEventListener('click', () => {
         updateColorDisplay(...hexToRgb(c.hex));
       });
@@ -500,8 +500,8 @@
     slug: 'image-color-extractor'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

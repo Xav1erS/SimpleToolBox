@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -243,7 +243,7 @@
 
   <!-- Progress -->
   <div class="progress-bar-wrap" id="progressWrap">
-    <div class="progress-label" id="progressLabel">Extracting text鈥</div>
+    <div class="progress-label" id="progressLabel">Extracting text—</div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -252,9 +252,9 @@
   <!-- Info bar (shown after load) -->
   <div class="info-bar" id="infoBar">
     <span>File:</span>
-    <span class="info-badge" id="infoFilename">鈥</span>
+    <span class="info-badge" id="infoFilename">—</span>
     <span>·</span>
-    <span class="info-badge" id="infoPages">鈥</span>
+    <span class="info-badge" id="infoPages">—</span>
     <span>pages</span>
     <button class="btn-change-pdf" id="btnChangePdf">Change PDF</button>
   </div>
@@ -449,14 +449,14 @@
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Extracting text鈥?;
+    progressLabel.textContent = 'Extracting text—;
     resultSection.classList.remove('visible');
 
     const pageParts = [];
 
     for (let idx = 0; idx < pagesToProcess.length; idx++) {
       const pageNum = pagesToProcess[idx];
-      progressLabel.textContent = `Extracting page ${pageNum} of ${totalPages}鈥;
+      progressLabel.textContent = `Extracting page ${pageNum} of ${totalPages}—;
       progressFill.style.width = (idx / pagesToProcess.length * 100) + '%';
 
       const page = await currentPdfDoc.getPage(pageNum);
@@ -479,7 +479,7 @@
           } else if (diff > Y_THRESHOLD) {
             pageText += '\n';
           } else {
-            // Same line 鈥?join with space if not already spaced
+            // Same line —join with space if not already spaced
             const last = pageText[pageText.length - 1];
             if (last && last !== ' ' && last !== '\n' && item.str[0] !== ' ') {
               pageText += ' ';
@@ -510,14 +510,14 @@
     const wordCount = fullText.trim() ? fullText.trim().split(/\s+/).length : 0;
     const charCount = fullText.length;
     extractInfo.innerHTML =
-      `<span>${pagesToProcess.length}</span> page${pagesToProcess.length !== 1 ? 's' : ''} extracted &nbsp;路&nbsp; ` +
-      `<span>~${wordCount.toLocaleString()}</span> words &nbsp;路&nbsp; ` +
+      `<span>${pagesToProcess.length}</span> page${pagesToProcess.length !== 1 ? 's' : ''} extracted &nbsp;&middot;&nbsp; ` +
+      `<span>~${wordCount.toLocaleString()}</span> words &nbsp;&middot;&nbsp; ` +
       `<span>${charCount.toLocaleString()}</span> characters`;
 
     extractTextarea.value = fullText;
     resultSection.classList.add('visible');
 
-    progressLabel.textContent = `Done 鈥?${pagesToProcess.length} page${pagesToProcess.length !== 1 ? 's' : ''} extracted.`;
+    progressLabel.textContent = `Done —${pagesToProcess.length} page${pagesToProcess.length !== 1 ? 's' : ''} extracted.`;
     setTimeout(() => { progressWrap.classList.remove('visible'); }, 1600);
   }
 
@@ -534,7 +534,7 @@
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Loading PDF鈥?;
+    progressLabel.textContent = 'Loading PDF—;
 
     const arrayBuffer = await file.arrayBuffer();
     try {
@@ -620,8 +620,8 @@
     slug: 'pdf-extract-text'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

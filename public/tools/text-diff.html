@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .inputs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -312,7 +312,7 @@ function diff(a, b) {
 }
 
 function renderDiff(d, view) {
-  if (!d.length) { diffBody.innerHTML = '<div class="diff-empty">No differences found 鈥?the texts are identical.</div>'; return; }
+  if (!d.length) { diffBody.innerHTML = '<div class="diff-empty">No differences found —the texts are identical.</div>'; return; }
   let addedN=0, removedN=0, unchangedN=0;
   let lnA=1, lnB=1;
   let html = '';
@@ -397,8 +397,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey 
     slug: 'text-diff'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

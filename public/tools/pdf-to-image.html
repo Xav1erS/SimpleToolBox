@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF to Image Converter",
-  "description": "Convert PDF pages to PNG or JPEG images online for free. Preview all pages, download individually or in bulk. Runs entirely in your browser 鈥?no file uploads.",
+  "description": "Convert PDF pages to PNG or JPEG images online for free. Preview all pages, download individually or in bulk. Runs entirely in your browser —no file uploads.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -289,7 +289,7 @@
 
   <!-- Progress -->
   <div class="progress-bar-wrap" id="progressWrap">
-    <div class="progress-label" id="progressLabel">Rendering pages鈥</div>
+    <div class="progress-label" id="progressLabel">Rendering pages—</div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -298,9 +298,9 @@
   <!-- Info bar (shown after load) -->
   <div class="info-bar" id="infoBar">
     <span>PDF loaded:</span>
-    <span class="info-badge" id="infoFilename">鈥</span>
+    <span class="info-badge" id="infoFilename">—</span>
     <span>·</span>
-    <span class="info-badge" id="infoPages">鈥</span>
+    <span class="info-badge" id="infoPages">—</span>
     <span>pages</span>
     <button class="btn-change-pdf" id="btnChangePdf">Change PDF</button>
   </div>
@@ -460,7 +460,7 @@
     // Show progress
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Loading PDF鈥?;
+    progressLabel.textContent = 'Loading PDF—;
 
     const arrayBuffer = await file.arrayBuffer();
     let pdfDoc;
@@ -473,10 +473,10 @@
     }
 
     const numPages = pdfDoc.numPages;
-    progressLabel.textContent = `Rendering page 1 of ${numPages}鈥;
+    progressLabel.textContent = `Rendering page 1 of ${numPages}—;
 
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Rendering page ${i} of ${numPages}鈥;
+      progressLabel.textContent = `Rendering page ${i} of ${numPages}—;
       progressFill.style.width = ((i - 1) / numPages * 100) + '%';
 
       const page = await pdfDoc.getPage(i);
@@ -535,7 +535,7 @@
       progressFill.style.width = (i / numPages * 100) + '%';
     }
 
-    progressLabel.textContent = `Done 鈥?${numPages} page${numPages > 1 ? 's' : ''} rendered.`;
+    progressLabel.textContent = `Done —${numPages} page${numPages > 1 ? 's' : ''} rendered.`;
     setTimeout(() => { progressWrap.classList.remove('visible'); }, 1800);
 
     // Show info bar
@@ -551,7 +551,7 @@
   btnDownloadAll.addEventListener('click', async () => {
     if (!renderedCanvases.length) return;
     btnDownloadAll.disabled = true;
-    btnDownloadAll.textContent = 'Downloading鈥?;
+    btnDownloadAll.textContent = 'Downloading—;
     for (let i = 0; i < renderedCanvases.length; i++) {
       downloadCanvas(renderedCanvases[i], `${currentFilename}-page-${i + 1}`);
       // Small delay between downloads to avoid browser throttling
@@ -598,8 +598,8 @@
     slug: 'pdf-to-image'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

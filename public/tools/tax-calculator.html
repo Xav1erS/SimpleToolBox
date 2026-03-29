@@ -31,15 +31,15 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "How accurate is the income tax estimate?", "acceptedAnswer": { "@type": "Answer", "text": "The income tax calculator uses 2024 US federal tax brackets for illustration. It does not account for deductions, credits, state taxes, or other adjustments. Use it as a rough estimate only." } },
-    { "@type": "Question", "name": "How is sales tax calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Sales tax = price 脳 rate 梅 100. The total is price + tax. You can also work backwards from a tax-inclusive price." } },
+    { "@type": "Question", "name": "How is sales tax calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Sales tax = price × rate 梅 100. The total is price + tax. You can also work backwards from a tax-inclusive price." } },
     { "@type": "Question", "name": "Is my data sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run entirely in your browser. Nothing is sent to any server." } },
-    { "@type": "Question", "name": "Which tax year does this use?", "acceptedAnswer": { "@type": "Answer", "text": "The income tax estimate uses 2024 US federal tax brackets. Tax laws change annually 鈥?verify with official IRS publications for exact figures." } }
+    { "@type": "Question", "name": "Which tax year does this use?", "acceptedAnswer": { "@type": "Answer", "text": "The income tax estimate uses 2024 US federal tax brackets. Tax laws change annually —verify with official IRS publications for exact figures." } }
   ]
 }
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main{max-width:700px;margin:0 auto;padding:28px 24px 64px}
     .tab-bar{display:flex;border-bottom:1px solid var(--ds-color-border);margin-bottom:24px}
@@ -85,9 +85,9 @@
       <div class="field"><label>Mode</label><select id="sMode"><option value="exclusive">Add tax to price (exclusive)</option><option value="inclusive">Price already includes tax (inclusive)</option></select></div>
     </div>
     <div class="result-card" id="salesResult">
-      <div class="result-row"><span class="result-label">Pre-tax Price</span><span class="result-value" id="sPretax">—/span></div>
-      <div class="result-row"><span class="result-label">Tax Amount</span><span class="result-value" id="sTaxAmt">—/span></div>
-      <div class="result-row highlight"><span class="result-label">Total</span><span class="result-value" id="sTotal">—/span></div>
+      <div class="result-row"><span class="result-label">Pre-tax Price</span><span class="result-value" id="sPretax">—</span></div>
+      <div class="result-row"><span class="result-label">Tax Amount</span><span class="result-value" id="sTaxAmt">—</span></div>
+      <div class="result-row highlight"><span class="result-label">Total</span><span class="result-value" id="sTotal">—</span></div>
     </div>
   </div>
   <!-- Income Tax -->
@@ -97,10 +97,10 @@
       <div class="field"><label>Filing Status</label><select id="iStatus"><option value="single">Single</option><option value="married">Married Filing Jointly</option><option value="hoh">Head of Household</option></select></div>
     </div>
     <div class="result-card" style="margin-bottom:16px">
-      <div class="result-row"><span class="result-label">Gross Income</span><span class="result-value" id="iGross">—/span></div>
-      <div class="result-row"><span class="result-label">Estimated Federal Tax</span><span class="result-value" id="iTax">—/span></div>
-      <div class="result-row"><span class="result-label">Effective Tax Rate</span><span class="result-value" id="iRate">—/span></div>
-      <div class="result-row highlight"><span class="result-label">Take-home (after federal tax)</span><span class="result-value" id="iTakeHome">—/span></div>
+      <div class="result-row"><span class="result-label">Gross Income</span><span class="result-value" id="iGross">—</span></div>
+      <div class="result-row"><span class="result-label">Estimated Federal Tax</span><span class="result-value" id="iTax">—</span></div>
+      <div class="result-row"><span class="result-label">Effective Tax Rate</span><span class="result-value" id="iRate">—</span></div>
+      <div class="result-row highlight"><span class="result-label">Take-home (after federal tax)</span><span class="result-value" id="iTakeHome">—</span></div>
     </div>
     <div class="result-card">
       <table class="brackets-table" id="bracketsTable">
@@ -124,17 +124,17 @@
 document.querySelectorAll('.tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.tab,.tab-panel').forEach(el=>el.classList.remove('active'));t.classList.add('active');document.getElementById('tab-'+t.dataset.tab).classList.add('active');});});
 // Sales tax
 const sPrice=document.getElementById('sPrice'),sRate=document.getElementById('sRate'),sMode=document.getElementById('sMode'),sPretax=document.getElementById('sPretax'),sTaxAmt=document.getElementById('sTaxAmt'),sTotal=document.getElementById('sTotal');
-function fmt(n){return isNaN(n)?'鈥?:'$'+n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+function fmt(n){return isNaN(n)?'—:'$'+n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
 function calcSales(){
   const p=parseFloat(sPrice.value),r=parseFloat(sRate.value);
-  if(isNaN(p)||isNaN(r)){sPretax.textContent=sTaxAmt.textContent=sTotal.textContent='鈥?;return;}
+  if(isNaN(p)||isNaN(r)){sPretax.textContent=sTaxAmt.textContent=sTotal.textContent='—;return;}
   let pretax,tax,total;
   if(sMode.value==='exclusive'){pretax=p;tax=p*r/100;total=p+tax;}
   else{total=p;pretax=p/(1+r/100);tax=total-pretax;}
   sPretax.textContent=fmt(pretax);sTaxAmt.textContent=fmt(tax);sTotal.textContent=fmt(total);
 }
 [sPrice,sRate,sMode].forEach(el=>el.addEventListener('input',calcSales));
-// Income tax 鈥?2024 US federal brackets
+// Income tax —2024 US federal brackets
 const BRACKETS={
   single:[[11600,0.10],[44725,0.12],[95375,0.22],[201050,0.24],[383900,0.32],[487450,0.35],[Infinity,0.37]],
   married:[[23200,0.10],[89450,0.12],[190750,0.22],[364200,0.24],[462500,0.32],[693750,0.35],[Infinity,0.37]],
@@ -143,7 +143,7 @@ const BRACKETS={
 const iIncome=document.getElementById('iIncome'),iStatus=document.getElementById('iStatus'),iGross=document.getElementById('iGross'),iTax=document.getElementById('iTax'),iRate=document.getElementById('iRate'),iTakeHome=document.getElementById('iTakeHome'),bracketsBody=document.getElementById('bracketsBody');
 function calcIncome(){
   const income=parseFloat(iIncome.value);
-  if(isNaN(income)||income<0){[iGross,iTax,iRate,iTakeHome].forEach(el=>el.textContent='鈥?);bracketsBody.innerHTML='';return;}
+  if(isNaN(income)||income<0){[iGross,iTax,iRate,iTakeHome].forEach(el=>el.textContent='—);bracketsBody.innerHTML='';return;}
   const brackets=BRACKETS[iStatus.value];
   let tax=0,prev=0,rows='';
   brackets.forEach(([limit,rate],i)=>{
@@ -152,8 +152,8 @@ function calcIncome(){
     tax+=bracketTax;
     const isActive=income>prev;
     const from=fmt2(prev),to=limit===Infinity?'above':fmt2(limit);
-    const rangeStr=limit===Infinity?`Over ${fmt2(prev)}`:`${fmt2(prev)} 鈥?${fmt2(limit)}`;
-    rows+=`<tr${isActive&&taxable>0?' class="active-bracket"':''}><td>${(rate*100).toFixed(0)}%</td><td>${rangeStr}</td><td>${bracketTax>0?fmt(bracketTax):'鈥?}</td></tr>`;
+    const rangeStr=limit===Infinity?`Over ${fmt2(prev)}`:`${fmt2(prev)} —${fmt2(limit)}`;
+    rows+=`<tr${isActive&&taxable>0?' class="active-bracket"':''}><td>${(rate*100).toFixed(0)}%</td><td>${rangeStr}</td><td>${bracketTax>0?fmt(bracketTax):'—}</td></tr>`;
     prev=limit;
     if(income<=limit)return;
   });
@@ -166,7 +166,7 @@ function fmt2(n){return'$'+n.toLocaleString();}
 </script>
 <footer><a href="../index.html">→Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

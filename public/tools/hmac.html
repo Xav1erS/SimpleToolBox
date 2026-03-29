@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -304,10 +304,10 @@
         <button class="ds-tool-pane__btn" id="btnClear">Clear</button>
       </div>
     </div>
-    <textarea class="ds-tool-textarea" id="messageInput" placeholder="Enter message to authenticate— spellcheck="false" style="min-height:120px;resize:vertical;"></textarea>
+    <textarea class="ds-tool-textarea" id="messageInput" placeholder="Enter message to authenticate… spellcheck="false" style="min-height:120px;resize:vertical;"></textarea>
     <div class="key-row">
       <span class="key-label">Secret Key</span>
-      <input type="text" class="key-input" id="keyInput" placeholder="Enter secret key— autocomplete="off" spellcheck="false" />
+      <input type="text" class="key-input" id="keyInput" placeholder="Enter secret key… autocomplete="off" spellcheck="false" />
     </div>
     <div class="key-warning" id="keyWarning">Secret key is required to generate HMAC.</div>
   </div>
@@ -349,22 +349,22 @@
     </div>
     <div class="result-row" id="rowSha1" style="display:none;">
       <span class="result-algo"><span class="algo-dot dot-sha1"></span>HMAC-SHA-1</span>
-      <span class="result-value empty" id="valSha1">Awaiting input鈥</span>
+      <span class="result-value empty" id="valSha1">Awaiting input—</span>
       <button class="btn-copy-result" data-id="valSha1">Copy</button>
     </div>
     <div class="result-row" id="rowSha256">
       <span class="result-algo"><span class="algo-dot dot-sha256"></span>HMAC-SHA-256</span>
-      <span class="result-value empty" id="valSha256">Awaiting input鈥</span>
+      <span class="result-value empty" id="valSha256">Awaiting input—</span>
       <button class="btn-copy-result" data-id="valSha256">Copy</button>
     </div>
     <div class="result-row" id="rowSha384" style="display:none;">
       <span class="result-algo"><span class="algo-dot dot-sha384"></span>HMAC-SHA-384</span>
-      <span class="result-value empty" id="valSha384">Awaiting input鈥</span>
+      <span class="result-value empty" id="valSha384">Awaiting input—</span>
       <button class="btn-copy-result" data-id="valSha384">Copy</button>
     </div>
     <div class="result-row" id="rowSha512" style="display:none;">
       <span class="result-algo"><span class="algo-dot dot-sha512"></span>HMAC-SHA-512</span>
-      <span class="result-value empty" id="valSha512">Awaiting input鈥</span>
+      <span class="result-value empty" id="valSha512">Awaiting input—</span>
       <button class="btn-copy-result" data-id="valSha512">Copy</button>
     </div>
   </div>
@@ -506,8 +506,8 @@
       return;
     }
     keyWarning.classList.remove('show');
-    if (!msg) { setResult(currentAlgo, 'Awaiting input鈥?, 'empty'); return; }
-    setResult(currentAlgo, 'Computing鈥?, 'loading');
+    if (!msg) { setResult(currentAlgo, 'Awaiting input—, 'empty'); return; }
+    setResult(currentAlgo, 'Computing—, 'loading');
     try {
       const result = await generateHMAC(msg, key, currentAlgo, currentFmt);
       setResult(currentAlgo, result, '');
@@ -529,7 +529,7 @@
       btn.classList.add('active');
       currentAlgo = btn.dataset.algo;
       updateVisibleRow();
-      setResult(currentAlgo, 'Awaiting input鈥?, 'empty');
+      setResult(currentAlgo, 'Awaiting input—, 'empty');
       scheduleRun();
     });
   });
@@ -558,14 +558,14 @@
   btnClearAll.addEventListener('click', () => {
     messageInput.value = ''; keyInput.value = '';
     keyWarning.classList.remove('show');
-    Object.keys(ALGO_VAL_MAP).forEach(a => setResult(a, 'Awaiting input鈥?, 'empty'));
+    Object.keys(ALGO_VAL_MAP).forEach(a => setResult(a, 'Awaiting input—, 'empty'));
   });
 
   document.querySelectorAll('.btn-copy-result').forEach(btn => {
     btn.addEventListener('click', () => {
       const el = document.getElementById(btn.dataset.id);
       const val = el ? el.textContent : '';
-      if (!val || val === 'Awaiting input鈥? || val === 'Computing鈥? || val.startsWith('Error')) return;
+      if (!val || val === 'Awaiting input— || val === 'Computing— || val.startsWith('Error')) return;
       navigator.clipboard.writeText(val).catch(() => {
         const ta = document.createElement('textarea');
         ta.value = val; ta.style.cssText = 'position:fixed;opacity:0';
@@ -597,8 +597,8 @@
     slug: 'hmac'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

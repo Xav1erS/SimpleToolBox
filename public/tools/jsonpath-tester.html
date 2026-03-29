@@ -13,7 +13,7 @@
   <meta property="og:description" content="Test JSONPath expressions against JSON data. Supports $, *, [], ?() filter expressions. Real-time results. Free, browser-based, no data sent." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     /* Path bar */
     .path-bar { display: flex; align-items: center; gap: 8px; background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 8px 12px; }
@@ -67,7 +67,7 @@
       "name": "Is JSONPath the same as jq?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No 鈥?jq is a separate query language. JSONPath is standardized in RFC 9535 and supported by many libraries."
+        "text": "No —jq is a separate query language. JSONPath is standardized in RFC 9535 and supported by many libraries."
       }
     },
     {
@@ -75,20 +75,20 @@
       "name": "Can I use multiple expressions at once?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Currently one expression at a time 鈥?results show all matching nodes."
+        "text": "Currently one expression at a time —results show all matching nodes."
       }
     },
     {
       "@type": "Question",
-      "name": "What does JSONPath Tester Online 鈥?Query & Test JSONPath Expressions Free do?",
+      "name": "What does JSONPath Tester Online —Query & Test JSONPath Expressions Free do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "JSONPath Tester Online 鈥?Query & Test JSONPath Expressions Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "JSONPath Tester Online —Query & Test JSONPath Expressions Free runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is JSONPath Tester Online 鈥?Query & Test JSONPath Expressions Free free to use?",
+      "name": "Is JSONPath Tester Online —Query & Test JSONPath Expressions Free free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -209,7 +209,7 @@
   <div class="results-panel">
     <div class="results-header">
       <span class="results-label">Results</span>
-      <span class="results-badge zero" id="resultsBadge">鈥</span>
+      <span class="results-badge zero" id="resultsBadge">—</span>
       <button class="io-btn ds-tool-pane__btn" id="btnCopyResults">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         Copy
@@ -343,7 +343,7 @@
 
     inputPanel.classList.remove('has-error');
     resultsBadge.className = 'results-badge zero';
-    resultsBadge.textContent = '鈥?;
+    resultsBadge.textContent = '—;
     lastResults = '';
 
     if (!raw) {
@@ -438,7 +438,7 @@
     jsonStat.textContent = '0 chars';
     resultsOutput.innerHTML = '<div class="results-empty">Paste JSON and enter a JSONPath expression to see results</div>';
     resultsBadge.className = 'results-badge zero';
-    resultsBadge.textContent = '鈥?;
+    resultsBadge.textContent = '—;
     lastResults = '';
   });
 
@@ -486,8 +486,8 @@
     slug: 'jsonpath-tester'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

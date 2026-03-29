@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "JPG to PNG Converter",
-  "description": "Convert JPG/JPEG images to PNG online for free. Drag and drop any JPEG, get a lossless PNG instantly. 100% client-side 鈥?your images are never uploaded.",
+  "description": "Convert JPG/JPEG images to PNG online for free. Drag and drop any JPEG, get a lossless PNG instantly. 100% client-side —your images are never uploaded.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -47,7 +47,7 @@
       "name": "Does converting JPG to PNG improve quality?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Any quality lost during the original JPEG compression cannot be recovered. However, saving as PNG prevents any further quality loss 鈥?your PNG will be a perfect lossless copy of the JPEG, no worse and no better."
+        "text": "No. Any quality lost during the original JPEG compression cannot be recovered. However, saving as PNG prevents any further quality loss —your PNG will be a perfect lossless copy of the JPEG, no worse and no better."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Will the PNG have a transparent background?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not automatically 鈥?JPEG images don't have transparency information. The resulting PNG will have the same opaque background as the original JPEG. To add transparency, use a background removal tool after converting."
+        "text": "Not automatically —JPEG images don't have transparency information. The resulting PNG will have the same opaque background as the original JPEG. To add transparency, use a background removal tool after converting."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
@@ -203,13 +203,13 @@
       <div class="size-compare">
         <div class="size-box">
           <div class="size-box-label">Original</div>
-          <div class="size-box-val" id="sizeOriginal">鈥</div>
-          <div class="size-box-fmt" id="fmtOriginal">鈥</div>
+          <div class="size-box-val" id="sizeOriginal">—</div>
+          <div class="size-box-fmt" id="fmtOriginal">—</div>
         </div>
-        <div class="size-arrow">鈫</div>
+        <div class="size-arrow">→</div>
         <div class="size-box">
           <div class="size-box-label">Output</div>
-          <div class="size-box-val" id="sizeOutput">鈥</div>
+          <div class="size-box-val" id="sizeOutput">—</div>
           <div class="size-box-fmt">PNG</div>
         </div>
       </div>
@@ -244,15 +244,15 @@
       <div class="img-meta">
         <div>
           <div class="meta-lbl">Dimensions</div>
-          <div class="meta-val" id="metaDimensions">鈥</div>
+          <div class="meta-val" id="metaDimensions">—</div>
         </div>
         <div>
           <div class="meta-lbl">Source Format</div>
-          <div class="meta-val" id="metaFormat">鈥</div>
+          <div class="meta-val" id="metaFormat">—</div>
         </div>
         <div>
           <div class="meta-lbl">Filename</div>
-          <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">鈥</div>
+          <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
         </div>
       </div>
     </div>
@@ -378,10 +378,10 @@
         const diff = origSize - blob.size;
         const pct = ((Math.abs(diff) / origSize) * 100).toFixed(1);
         if (diff > 0) {
-          savingBadge.textContent = `鈫?${fmtBytes(diff)} smaller (${pct}%)`;
+          savingBadge.textContent = `→${fmtBytes(diff)} smaller (${pct}%)`;
           savingBadge.style.color = '#22c55e';
         } else {
-          savingBadge.textContent = `鈫?${fmtBytes(-diff)} larger (+${pct}%)`;
+          savingBadge.textContent = `→${fmtBytes(-diff)} larger (+${pct}%)`;
           savingBadge.style.color = 'var(--ds-color-text-muted)';
         }
         savingBadge.classList.add('visible');
@@ -401,7 +401,7 @@
       const img = new Image();
       img.onload = () => {
         srcImage = img;
-        metaDimensions.textContent = `${img.naturalWidth} 脳 ${img.naturalHeight}`;
+        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
         metaFormat.textContent = mimeToLabel(file.type);
         imgPreview.src = e.target.result;
         dropZone.style.display = 'none';
@@ -452,8 +452,8 @@
     slug: 'jpg-to-png'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Image Rotate Tool",
-  "description": "Rotate and flip images online for free. Rotate 90掳, 180掳, 270掳, flip horizontally or vertically. Download as JPEG or PNG instantly. No upload 鈥?runs in your browser.",
+  "description": "Rotate and flip images online for free. Rotate 90掳, 180掳, 270掳, flip horizontally or vertically. Download as JPEG or PNG instantly. No upload —runs in your browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -47,7 +47,7 @@
       "name": "Does rotating lose image quality?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For 90掳 and 180掳 rotations, the pixel data is rearranged without any resampling 鈥?no quality is lost for PNG output. For JPEG output, re-encoding applies JPEG compression, which may introduce minor quality changes. Use PNG output for pixel-perfect lossless rotation."
+        "text": "For 90掳 and 180掳 rotations, the pixel data is rearranged without any resampling —no quality is lost for PNG output. For JPEG output, re-encoding applies JPEG compression, which may introduce minor quality changes. Use PNG output for pixel-perfect lossless rotation."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Can I undo a rotation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?clicking 90掳 CW four times returns to the original orientation. Or click 90掳 CCW to reverse a clockwise rotation. Reload the page to start fresh."
+        "text": "Yes —clicking 90掳 CW four times returns to the original orientation. Or click 90掳 CCW to reverse a clockwise rotation. Reload the page to start fresh."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
@@ -189,11 +189,11 @@
       <div class="panel-label">Rotate</div>
       <div class="transform-grid">
         <button class="tfm-btn" id="btn90cw">
-          <span class="tfm-btn-icon">鈫</span>
+          <span class="tfm-btn-icon">→</span>
           90° CW
         </button>
         <button class="tfm-btn" id="btn90ccw">
-          <span class="tfm-btn-icon">鈫</span>
+          <span class="tfm-btn-icon">→</span>
           90° CCW
         </button>
         <button class="tfm-btn" id="btn180">
@@ -255,7 +255,7 @@
     <div class="img-meta" id="imgMeta" style="display:none">
       <div>
         <div class="meta-lbl">Output Size</div>
-        <div class="meta-val" id="metaDimensions">鈥</div>
+        <div class="meta-val" id="metaDimensions">—</div>
       </div>
       <div>
         <div class="meta-lbl">Transform</div>
@@ -263,7 +263,7 @@
       </div>
       <div>
         <div class="meta-lbl">Filename</div>
-        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">鈥</div>
+        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
       </div>
     </div>
   </div>
@@ -386,7 +386,7 @@
   function updatePreview() {
     if (!srcImage) return;
     drawTransformed(previewCanvas, pCtx);
-    metaDimensions.textContent = `${previewCanvas.width} 脳 ${previewCanvas.height}`;
+    metaDimensions.textContent = `${previewCanvas.width} × ${previewCanvas.height}`;
     const parts = [];
     if (rotation) parts.push(`${rotation}掳`);
     if (flipH) parts.push('Flip H');
@@ -468,8 +468,8 @@
     slug: 'image-rotate'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

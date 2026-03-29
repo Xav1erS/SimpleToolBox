@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
@@ -250,7 +250,7 @@
   const inputText = document.getElementById('inputText');
   const limitInput = document.getElementById('limitInput');
 
-  // Emoji regex (Unicode property escapes 鈥?modern browsers)
+  // Emoji regex (Unicode property escapes —modern browsers)
   let emojiRe;
   try { emojiRe = /\p{Emoji_Presentation}|\p{Extended_Pictographic}/gu; } catch(e) { emojiRe = null; }
 
@@ -297,7 +297,7 @@
       bar.style.width = pct + '%';
       bar.style.background = pct >= 100 ? '#e06c6c' : pct >= 85 ? '#e0c36c' : '#7fd17f';
       const rem = lim - total;
-      document.getElementById('limitInfo').textContent = rem >= 0 ? `${total} / ${lim} 鈥?${rem} remaining` : `${Math.abs(rem)} over limit`;
+      document.getElementById('limitInfo').textContent = rem >= 0 ? `${total} / ${lim} —${rem} remaining` : `${Math.abs(rem)} over limit`;
     } else {
       barArea.style.display = 'none';
     }
@@ -323,8 +323,8 @@
     slug: 'char-counter'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

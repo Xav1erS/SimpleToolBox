@@ -13,7 +13,7 @@
   <meta property="og:description" content="Encode or decode HTML entities. Named and numeric formats supported. Runs entirely in your browser." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -145,10 +145,10 @@
     },
     {
       "@type": "Question",
-      "name": "What does HTML Entity Encoder / Decoder Online 鈥?Escape HTML Free do?",
+      "name": "What does HTML Entity Encoder / Decoder Online —Escape HTML Free do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "HTML Entity Encoder / Decoder Online 鈥?Escape HTML Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "HTML Entity Encoder / Decoder Online —Escape HTML Free runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     }
   ]
@@ -248,10 +248,10 @@
           <button class="io-btn" id="btnSample">Sample</button>
         </div>
       </div>
-      <textarea class="io-textarea" id="inputText" placeholder="Paste or type text to encode / decode— spellcheck="false"></textarea>
+      <textarea class="io-textarea" id="inputText" placeholder="Paste or type text to encode / decode… spellcheck="false"></textarea>
     </div>
     <div class="arrow-col">
-      <div class="arrow-icon">鈫</div>
+      <div class="arrow-icon">→</div>
     </div>
     <div class="io-panel">
       <div class="io-header">
@@ -264,7 +264,7 @@
           <button class="io-btn" id="btnSwap">⇀Swap</button>
         </div>
       </div>
-      <textarea class="io-textarea" id="outputText" placeholder="Result will appear here— readonly spellcheck="false"></textarea>
+      <textarea class="io-textarea" id="outputText" placeholder="Result will appear here… readonly spellcheck="false"></textarea>
       <div class="stats-row" id="statsRow" style="display:none">
         <span>Input: <span class="stat-chip" id="statIn">0</span> chars</span>
         <span>Output: <span class="stat-chip" id="statOut">0</span> chars</span>
@@ -370,11 +370,11 @@
     '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', "'": 'apos',
     '漏': 'copy', '庐': 'reg', '鈩?: 'trade',
     '鈧?: 'euro', '拢': 'pound', '楼': 'yen', '垄': 'cent',
-    '掳': 'deg', '卤': 'plusmn', '脳': 'times', '梅': 'divide',
-    '鈥?: 'mdash', '鈥?: 'ndash', '鈥?: 'hellip',
+    '掳': 'deg', '卤': 'plusmn', '×': 'times', '梅': 'divide',
+    '—: 'mdash', '—: 'ndash', '—: 'hellip',
     '\u00A0': 'nbsp', '芦': 'laquo', '禄': 'raquo',
     '录': 'frac14', '陆': 'frac12', '戮': 'frac34',
-    '鈫?: 'larr', '鈫?: 'rarr', '鈫?: 'uarr', '鈫?: 'darr',
+    '→: 'larr', '→: 'rarr', '→: 'uarr', '→: 'darr',
     '鈾?: 'spades', '鈾?: 'clubs', '鈾?: 'hearts', '鈾?: 'diams',
     '鉁?: '#10003', '鉁?: '#10007',
   };
@@ -387,9 +387,9 @@
     ['\u00A0', 'nbsp', 'Non-breaking space'],
     ['漏', 'copy', 'Copyright'], ['庐', 'reg', 'Registered'], ['鈩?, 'trade', 'Trademark'],
     ['鈧?, 'euro', 'Euro'], ['拢', 'pound', 'Pound'], ['楼', 'yen', 'Yen'], ['垄', 'cent', 'Cent'],
-    ['掳', 'deg', 'Degree'], ['卤', 'plusmn', 'Plus-minus'], ['脳', 'times', 'Multiply'], ['梅', 'divide', 'Divide'],
-    ['鈥?, 'mdash', 'Em dash'], ['鈥?, 'ndash', 'En dash'], ['鈥?, 'hellip', 'Ellipsis'],
-    ['鈫?, 'larr', 'Left arrow'], ['鈫?, 'rarr', 'Right arrow'],
+    ['掳', 'deg', 'Degree'], ['卤', 'plusmn', 'Plus-minus'], ['×', 'times', 'Multiply'], ['梅', 'divide', 'Divide'],
+    ['—, 'mdash', 'Em dash'], ['—, 'ndash', 'En dash'], ['—, 'hellip', 'Ellipsis'],
+    ['→, 'larr', 'Left arrow'], ['→, 'rarr', 'Right arrow'],
     ['录', 'frac14', 'One quarter'], ['陆', 'frac12', 'One half'], ['戮', 'frac34', 'Three quarters'],
   ];
 
@@ -462,7 +462,7 @@
     document.getElementById('outputLabel').textContent = 'HTML Entities';
     document.getElementById('encodeFormat').style.display = '';
     document.getElementById('encodeScope').parentElement && (document.getElementById('encodeScope').style.display = '');
-    document.getElementById('inputText').placeholder = 'Paste or type text to encode鈥?;
+    document.getElementById('inputText').placeholder = 'Paste or type text to encode—;
     process();
   });
   document.getElementById('modeDecode').addEventListener('click', () => {
@@ -471,7 +471,7 @@
     document.getElementById('modeEncode').classList.remove('active');
     document.getElementById('inputLabel').textContent = 'HTML Entities';
     document.getElementById('outputLabel').textContent = 'Plain Text';
-    document.getElementById('inputText').placeholder = 'Paste HTML entities to decode, e.g. &amp;lt;div&amp;gt;鈥?;
+    document.getElementById('inputText').placeholder = 'Paste HTML entities to decode, e.g. &amp;lt;div&amp;gt;—;
     process();
   });
 
@@ -512,7 +512,7 @@
 
   document.getElementById('btnSample').addEventListener('click', () => {
     const samples = {
-      encode: '<div class="hero">\n  <h1>Hello & "World"</h1>\n  <p>漏 2025 路 Price: 拢99 鈫?鈧?15</p>\n</div>',
+      encode: '<div class="hero">\n  <h1>Hello & "World"</h1>\n  <p>漏 2025 &middot; Price: 拢99 →鈧?15</p>\n</div>',
       decode: '&lt;div class=&quot;hero&quot;&gt;\n  &lt;h1&gt;Hello &amp; &ldquo;World&rdquo;&lt;/h1&gt;\n  &lt;p&gt;&copy; 2025 &middot; Price: &pound;99 &rarr; &euro;115&lt;/p&gt;\n&lt;/div&gt;',
     };
     document.getElementById('inputText').value = samples[mode];
@@ -547,13 +547,13 @@
   const refTable = document.getElementById('refTable');
   refTable.innerHTML = REF_ITEMS.map(([ch, name, desc]) => {
     const code = ch.codePointAt(0);
-    const display = ch === '\u00A0' ? '鈳? : ch;
+    const display = ch === '\u00A0' ? '&#9251;' : ch;
     const named = `&amp;${name};`;
     const decimal = `&amp;#${code};`;
     return `<div class="ref-item">
       <span class="ref-char">${display}</span>
-      <span class="ref-name">${named} <button class="ref-copy-btn" data-copy="&${name};" title="Copy">鈳?/button></span>
-      <span class="ref-num">${decimal} <button class="ref-copy-btn" data-copy="&#${code};" title="Copy">鈳?/button></span>
+      <span class="ref-name">${named} <button class="ref-copy-btn" data-copy="&${name};" title="Copy">Copy</button></span>
+      <span class="ref-num">${decimal} <button class="ref-copy-btn" data-copy="&#${code};" title="Copy">Copy</button></span>
       <span class="ref-desc">${desc}</span>
     </div>`;
   }).join('');
@@ -584,8 +584,8 @@
     slug: 'html-entities'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

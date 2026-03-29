@@ -31,7 +31,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "What method does this calculator use?", "acceptedAnswer": { "@type": "Answer", "text": "The US Navy circumference method. It uses neck, waist, and hip (for women) measurements combined with height to estimate body fat percentage." } },
-    { "@type": "Question", "name": "How accurate is this estimate?", "acceptedAnswer": { "@type": "Answer", "text": "The Navy method is generally within 3-4% of DEXA scan results. It is an estimate 鈥?for clinical accuracy, consult a healthcare professional." } },
+    { "@type": "Question", "name": "How accurate is this estimate?", "acceptedAnswer": { "@type": "Answer", "text": "The Navy method is generally within 3-4% of DEXA scan results. It is an estimate —for clinical accuracy, consult a healthcare professional." } },
     { "@type": "Question", "name": "Where should I measure my waist?", "acceptedAnswer": { "@type": "Answer", "text": "Measure at the narrowest point (for women) or at the navel level (for men). Keep the tape horizontal and relaxed, not sucked in." } },
     { "@type": "Question", "name": "Is my data sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run in your browser. Nothing is sent to any server." } }
   ]
@@ -39,7 +39,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main{max-width:640px;margin:0 auto;padding:28px 24px 64px}
     .card{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:24px;margin-bottom:20px}
@@ -96,12 +96,12 @@
   </div>
   <div class="result-card" id="resultCard" style="display:none">
     <div class="result-hero">
-      <div class="result-pct" id="resPct">—/div>
+      <div class="result-pct" id="resPct">—</div>
       <div class="result-pct-label">Body Fat Percentage</div>
       <div class="result-category" id="resCat"></div>
     </div>
-    <div class="result-row"><span class="result-label">Fat Mass</span><span class="result-value" id="resFatMass">—/span></div>
-    <div class="result-row"><span class="result-label">Lean Mass</span><span class="result-value" id="resLeanMass">—/span></div>
+    <div class="result-row"><span class="result-label">Fat Mass</span><span class="result-value" id="resFatMass">—</span></div>
+    <div class="result-row"><span class="result-label">Lean Mass</span><span class="result-value" id="resLeanMass">—</span></div>
   </div>
   <div class="card" style="padding:16px 20px">
     <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--ds-color-text-muted);margin-bottom:10px">Body Fat Categories</div>
@@ -119,8 +119,8 @@
 'use strict';
 let gender='male',unit='cm';
 const CATS={
-  male:[['Essential Fat','2鈥?%'],['Athletes','6鈥?3%'],['Fitness','14鈥?7%'],['Average','18鈥?4%'],['Obese','25%+']],
-  female:[['Essential Fat','10鈥?3%'],['Athletes','14鈥?0%'],['Fitness','21鈥?4%'],['Average','25鈥?1%'],['Obese','32%+']]
+  male:[['Essential Fat','2—%'],['Athletes','6—3%'],['Fitness','14—7%'],['Average','18—4%'],['Obese','25%+']],
+  female:[['Essential Fat','10—3%'],['Athletes','14—0%'],['Fitness','21—4%'],['Average','25—1%'],['Obese','32%+']]
 };
 function buildCatTable(){
   const catTable=document.getElementById('catTable');
@@ -155,13 +155,13 @@ document.getElementById('btnCalc').addEventListener('click',()=>{
   const catEl=document.getElementById('resCat');
   catEl.textContent=cat;catEl.style.background=(catColors[cat]||'#888')+'22';catEl.style.color=catColors[cat]||'#888';
   resultCard.style.display='block';
-  document.getElementById('resFatMass').textContent='鈥?;
-  document.getElementById('resLeanMass').textContent='鈥?;
+  document.getElementById('resFatMass').textContent='—;
+  document.getElementById('resLeanMass').textContent='—;
 });
 </script>
 <footer><a href="../index.html">→Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

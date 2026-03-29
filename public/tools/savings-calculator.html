@@ -39,7 +39,7 @@
       "name": "How is compound interest calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "FV = PV 脳 (1 + r/n)^(n脳t) + PMT 脳 [((1+r/n)^(n脳t) 鈭?1) / (r/n)], where PV is the starting balance, PMT is the monthly contribution, r is the annual rate, n is the compounding frequency, and t is the years."
+        "text": "FV = PV × (1 + r/n)^(n×t) + PMT × [((1+r/n)^(n×t) 鈭?1) / (r/n)], where PV is the starting balance, PMT is the monthly contribution, r is the annual rate, n is the compounding frequency, and t is the years."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -189,19 +189,19 @@
   <div class="result-grid">
     <div class="result-card result-card--accent">
       <div class="result-card__label">Future Balance</div>
-      <div class="result-card__value" id="rFuture">鈥</div>
+      <div class="result-card__value" id="rFuture">—</div>
     </div>
     <div class="result-card">
       <div class="result-card__label">Total Contributions</div>
-      <div class="result-card__value" id="rContrib">鈥</div>
+      <div class="result-card__value" id="rContrib">—</div>
     </div>
     <div class="result-card result-card--warn">
       <div class="result-card__label">Interest Earned</div>
-      <div class="result-card__value" id="rInterest">鈥</div>
+      <div class="result-card__value" id="rInterest">—</div>
     </div>
     <div class="result-card">
       <div class="result-card__label">Total Return</div>
-      <div class="result-card__value" id="rReturn">鈥</div>
+      <div class="result-card__value" id="rReturn">—</div>
     </div>
   </div>
 
@@ -212,13 +212,13 @@
       <div class="growth-bar__interest" id="barInterest" style="width:30%"></div>
     </div>
     <div class="growth-legend">
-      <span><i style="background:#5e6ad2"></i>Contributions: <span id="legContrib">鈥</span></span>
-      <span><i style="background:#7fd17f"></i>Interest: <span id="legInterest">鈥</span></span>
+      <span><i style="background:#5e6ad2"></i>Contributions: <span id="legContrib">—</span></span>
+      <span><i style="background:#7fd17f"></i>Interest: <span id="legInterest">—</span></span>
     </div>
   </div>
 
   <div class="table-toggle">
-    <button id="tableBtn">Show Year-by-Year Growth ▀/button>
+    <button id="tableBtn">Show Year-by-Year Growth &#9662;/button>
     <div class="table-wrap" id="tableWrap">
       <table class="growth-table">
         <thead><tr><th>Year</th><th>Contributions</th><th>Interest</th><th>Balance</th></tr></thead>
@@ -401,8 +401,8 @@
     slug: 'savings-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

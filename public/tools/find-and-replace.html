@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .search-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -172,12 +172,12 @@
 
   <div>
     <div style="font-size:12px;font-weight:600;color:var(--ds-color-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Preview (matches highlighted)</div>
-    <div class="preview-box" id="previewBox"><span style="color:var(--ds-color-text-muted)">Match preview will appear here鈥</span></div>
+    <div class="preview-box" id="previewBox"><span style="color:var(--ds-color-text-muted)">Match preview will appear here—</span></div>
   </div>
 
   <div class="ds-tool-pane">
     <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Result</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnCopyHeader">Copy</button></div></div>
-    <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Result appears after Replace All— readonly spellcheck="false"></textarea>
+    <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Result appears after Replace All… readonly spellcheck="false"></textarea>
     <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="outputStat">0 chars</span></div>
   </div>
 
@@ -209,7 +209,7 @@
     <a href="text-diff.html" class="ds-related-card"><span class="ds-related-icon">⚖️</span><div><div class="ds-related-name">Text Diff</div><div class="ds-related-desc">Compare two texts line by line and highlight added, removed, and unchanged lines</div></div></a>
     <a href="whitespace-trimmer.html" class="ds-related-card"><span class="ds-related-icon">✂️</span><div><div class="ds-related-name">Whitespace Trimmer</div><div class="ds-related-desc">Trim spaces and tabs from each line and clean blank rows</div></div></a>
     <a href="text-cleaner.html" class="ds-related-card"><span class="ds-related-icon">🧹</span><div><div class="ds-related-name">Text Cleaner</div><div class="ds-related-desc">Remove extra spaces, blank lines, HTML tags and more</div></div></a>
-    <a href="word-wrap-formatter.html" class="ds-related-card"><span class="ds-related-icon">鈫</span><div><div class="ds-related-name">Word Wrap Formatter</div><div class="ds-related-desc">Wrap long lines at a custom column width —72, 80, 100, or any character limit</div></div></a>
+    <a href="word-wrap-formatter.html" class="ds-related-card"><span class="ds-related-icon">→</span><div><div class="ds-related-name">Word Wrap Formatter</div><div class="ds-related-desc">Wrap long lines at a custom column width —72, 80, 100, or any character limit</div></div></a>
   </div>
 </div>
 
@@ -309,13 +309,13 @@ function updatePreview() {
   const text = inputText.value;
   const pattern = findField.value;
   if (!text || !pattern) {
-    previewBox.innerHTML = text ? escHtml(text.slice(0, 2000)) : '<span style="color:var(--ds-color-text-muted)">Match preview will appear here鈥</span>';
+    previewBox.innerHTML = text ? escHtml(text.slice(0, 2000)) : '<span style="color:var(--ds-color-text-muted)">Match preview will appear here—</span>';
     matchBadge.className = 'match-badge idle';
     matchBadge.textContent = 'No search';
     return;
   }
   const re = buildRegex(pattern, false);
-  if (!re) { previewBox.innerHTML = escHtml(text.slice(0, 2000)); matchBadge.className = 'match-badge idle'; matchBadge.textContent = '鈥?; return; }
+  if (!re) { previewBox.innerHTML = escHtml(text.slice(0, 2000)); matchBadge.className = 'match-badge idle'; matchBadge.textContent = '—; return; }
   const matches = [...text.matchAll(re)];
   const count = matches.length;
   if (count === 0) {
@@ -381,8 +381,8 @@ replaceField.addEventListener('input', () => {});
     slug: 'find-and-replace'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

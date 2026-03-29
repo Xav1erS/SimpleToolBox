@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -154,7 +154,7 @@
       </div>
     </div>
     <div class="result-card" style="margin-top:14px">
-      <div class="result-main" id="resultMain">鈥</div>
+      <div class="result-main" id="resultMain">—</div>
       <div class="result-sub" id="resultSub">Enter an amount and a rate above</div>
     </div>
   </div>
@@ -268,11 +268,11 @@
 
 <script>
 const EXAMPLES = [
-  { label: '100 USD 脳 0.92 = EUR', amount: 100, rate: 0.92 },
-  { label: '500 GBP 脳 1.27 = USD', amount: 500, rate: 1.27 },
-  { label: '1000 JPY 脳 0.0065 = USD', amount: 1000, rate: 0.0065 },
-  { label: '200 EUR 脳 1.08 = USD', amount: 200, rate: 1.08 },
-  { label: '50 USD 脳 7.24 = CNY', amount: 50, rate: 7.24 },
+  { label: '100 USD × 0.92 = EUR', amount: 100, rate: 0.92 },
+  { label: '500 GBP × 1.27 = USD', amount: 500, rate: 1.27 },
+  { label: '1000 JPY × 0.0065 = USD', amount: 1000, rate: 0.0065 },
+  { label: '200 EUR × 1.08 = USD', amount: 200, rate: 1.08 },
+  { label: '50 USD × 7.24 = CNY', amount: 50, rate: 7.24 },
 ];
 
 function calc() {
@@ -282,13 +282,13 @@ function calc() {
   const subEl  = document.getElementById('resultSub');
 
   if (isNaN(amount) || isNaN(rate) || rate <= 0) {
-    mainEl.textContent = '鈥?;
+    mainEl.textContent = '—;
     subEl.textContent  = 'Enter an amount and a rate above';
     return;
   }
   const result = amount * rate;
   mainEl.textContent = result.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 });
-  subEl.textContent  = `${amount.toLocaleString()} 脳 ${rate} = ${result.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}`;
+  subEl.textContent  = `${amount.toLocaleString()} × ${rate} = ${result.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}`;
 }
 
 document.getElementById('inputAmount').addEventListener('input', calc);
@@ -304,7 +304,7 @@ document.getElementById('btnSwap').addEventListener('click', () => {
 
 document.getElementById('btnCopy').addEventListener('click', () => {
   const val = document.getElementById('resultMain').textContent;
-  if (val && val !== '鈥?) {
+  if (val && val !== '—) {
     navigator.clipboard.writeText(val).then(() => {
       const btn = document.getElementById('btnCopy');
       btn.textContent = 'Copied!';
@@ -335,8 +335,8 @@ EXAMPLES.forEach(e => {
     slug: 'currency-exchange-rate'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

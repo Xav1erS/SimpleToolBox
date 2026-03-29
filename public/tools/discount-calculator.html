@@ -39,7 +39,7 @@
       "name": "How is the sale price calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sale price = original price 脳 (1 鈭?discount% / 100). For example, a $100 item at 20% off costs $80."
+        "text": "Sale price = original price × (1 鈭?discount% / 100). For example, a $100 item at 20% off costs $80."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "How do I find the discount % between two prices?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use the second calculator: enter the original price and the sale price. The tool calculates (original 鈭?sale) / original 脳 100."
+        "text": "Use the second calculator: enter the original price and the sale price. The tool calculates (original 鈭?sale) / original × 100."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "Is there a currency option?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The tool uses $ as a placeholder. The math works for any currency 鈥?just treat the numbers as your local currency."
+        "text": "The tool uses $ as a placeholder. The math works for any currency —just treat the numbers as your local currency."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .calc-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
@@ -139,9 +139,9 @@
     </div>
     <hr class="sep" />
     <div class="result-row">
-      <div class="result-pill result-pill--green"><div class="result-pill__label">Sale price</div><div class="result-pill__value" id="r1Sale">鈥</div></div>
-      <div class="result-pill"><div class="result-pill__label">You save</div><div class="result-pill__value" id="r1Save">鈥</div></div>
-      <div class="result-pill"><div class="result-pill__label">Pay</div><div class="result-pill__value" id="r1Pct">鈥</div></div>
+      <div class="result-pill result-pill--green"><div class="result-pill__label">Sale price</div><div class="result-pill__value" id="r1Sale">—</div></div>
+      <div class="result-pill"><div class="result-pill__label">You save</div><div class="result-pill__value" id="r1Save">—</div></div>
+      <div class="result-pill"><div class="result-pill__label">Pay</div><div class="result-pill__value" id="r1Pct">—</div></div>
     </div>
   </div>
 
@@ -154,8 +154,8 @@
     </div>
     <hr class="sep" />
     <div class="result-row">
-      <div class="result-pill result-pill--green"><div class="result-pill__label">Discount</div><div class="result-pill__value" id="r2Pct">鈥</div></div>
-      <div class="result-pill"><div class="result-pill__label">Saved</div><div class="result-pill__value" id="r2Save">鈥</div></div>
+      <div class="result-pill result-pill--green"><div class="result-pill__label">Discount</div><div class="result-pill__value" id="r2Pct">—</div></div>
+      <div class="result-pill"><div class="result-pill__label">Saved</div><div class="result-pill__value" id="r2Save">—</div></div>
     </div>
   </div>
 
@@ -250,7 +250,7 @@
     const orig = parseFloat(document.getElementById('origPrice').value);
     const pct = parseFloat(document.getElementById('discPct').value);
     if (isNaN(orig) || isNaN(pct) || orig < 0 || pct < 0 || pct > 100) {
-      ['r1Sale','r1Save','r1Pct'].forEach(id => document.getElementById(id).textContent = '鈥?); return;
+      ['r1Sale','r1Save','r1Pct'].forEach(id => document.getElementById(id).textContent = '—); return;
     }
     const save = orig * pct / 100;
     const sale = orig - save;
@@ -263,7 +263,7 @@
     const orig = parseFloat(document.getElementById('revOrig').value);
     const sale = parseFloat(document.getElementById('revSale').value);
     if (isNaN(orig) || isNaN(sale) || orig <= 0 || sale < 0) {
-      ['r2Pct','r2Save'].forEach(id => document.getElementById(id).textContent = '鈥?); return;
+      ['r2Pct','r2Save'].forEach(id => document.getElementById(id).textContent = '—); return;
     }
     const save = orig - sale;
     const pct = save / orig * 100;
@@ -282,8 +282,8 @@
     slug: 'discount-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

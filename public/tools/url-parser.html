@@ -45,7 +45,7 @@
       "name": "Are percent-encoded characters decoded?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?%20 鈫?space and all other percent-encoded sequences are decoded in the display."
+        "text": "Yes —%20 →space and all other percent-encoded sequences are decoded in the display."
       }
     },
     {
@@ -58,15 +58,15 @@
     },
     {
       "@type": "Question",
-      "name": "What does URL Parser & Builder Online 鈥?Parse & Construct URLs Free do?",
+      "name": "What does URL Parser & Builder Online —Parse & Construct URLs Free do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "URL Parser & Builder Online 鈥?Parse & Construct URLs Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "URL Parser & Builder Online —Parse & Construct URLs Free runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is URL Parser & Builder Online 鈥?Parse & Construct URLs Free free to use?",
+      "name": "Is URL Parser & Builder Online —Parse & Construct URLs Free free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -77,7 +77,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     html { scroll-behavior: smooth; }
     body {
@@ -310,7 +310,7 @@
       </div>
 
       <div class="panels-arrow ds-tool-arrow">
-        <div class="arrow-circle ds-tool-arrow__circle">鈫</div>
+        <div class="arrow-circle ds-tool-arrow__circle">→</div>
       </div>
 
       <div class="io-panel ds-tool-pane parse-output-pane" id="parseOutputPanel">
@@ -331,7 +331,7 @@
           </div>
         </div>
         <div class="ds-tool-pane__footer">
-          <span class="ds-tool-stat" id="parseOutputStat">鈥</span>
+          <span class="ds-tool-stat" id="parseOutputStat">—</span>
         </div>
       </div>
     </div>
@@ -390,7 +390,7 @@
       </div>
 
       <div class="panels-arrow ds-tool-arrow">
-        <div class="arrow-circle ds-tool-arrow__circle">鈫</div>
+        <div class="arrow-circle ds-tool-arrow__circle">→</div>
       </div>
 
       <div class="io-panel ds-tool-pane" id="buildOutputPanel">
@@ -406,8 +406,7 @@
         <textarea
           class="io-textarea ds-tool-textarea"
           id="buildOutput"
-          placeholder="Assembled URL will appear here—
-          readonly
+          placeholder="Assembled URL will appear here… readonly
           spellcheck="false"
         ></textarea>
         <div class="ds-tool-pane__footer">
@@ -566,7 +565,7 @@
 
     if (!raw) {
       urlBreakdown.innerHTML = `<div style="color: var(--ds-color-text-muted); font-size: 13px; padding: 20px 0; text-align: center;">Enter a URL on the left to see its components.</div>`;
-      parseOutputStat.textContent = '鈥?;
+      parseOutputStat.textContent = '—;
       return;
     }
 
@@ -578,7 +577,7 @@
       parseError.style.display = '';
       parseInputPanel.classList.add('has-error');
       urlBreakdown.innerHTML = `<div style="color: #ef4444; font-size: 13px; padding: 20px 0; text-align: center;">Could not parse URL: ${escapeHtml(e.message)}</div>`;
-      parseOutputStat.textContent = '鈥?;
+      parseOutputStat.textContent = '—;
       return;
     }
 
@@ -611,7 +610,7 @@
     }
 
     urlBreakdown.innerHTML = html;
-    parseOutputStat.textContent = `${URL_FIELDS.length} fields 路 ${params.length} params`;
+    parseOutputStat.textContent = `${URL_FIELDS.length} fields &middot; ${params.length} params`;
 
     // Attach copy buttons
     urlBreakdown.querySelectorAll('.url-copy-btn').forEach(btn => {
@@ -839,8 +838,8 @@
     slug: 'url-parser'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

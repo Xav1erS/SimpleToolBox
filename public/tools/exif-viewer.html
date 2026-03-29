@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "EXIF Data Viewer",
-  "description": "Read camera model, GPS coordinates, exposure settings, and full EXIF metadata from any image file. Runs entirely in your browser 鈥?no image is uploaded.",
+  "description": "Read camera model, GPS coordinates, exposure settings, and full EXIF metadata from any image file. Runs entirely in your browser —no image is uploaded.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .drop-zone { border: 2px dashed var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 48px 24px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
@@ -260,7 +260,7 @@
 <script>
   'use strict';
 
-  // Minimal EXIF parser 鈥?reads Exif IFD from JPEG / TIFF ArrayBuffer
+  // Minimal EXIF parser —reads Exif IFD from JPEG / TIFF ArrayBuffer
   // Supports the most common tags without external dependencies
 
   const EXIF_TAGS = {
@@ -352,9 +352,9 @@
         } else if (type === 7) { // UNDEFINED
           value = numValues <= 4 ? '0x' + Array.from(new Uint8Array(buf, dataOffset, numValues)).map(b => b.toString(16).padStart(2,'0')).join('') : `[${numValues} bytes]`;
         } else {
-          value = '鈥?;
+          value = '—;
         }
-      } catch { value = '鈥?; }
+      } catch { value = '—; }
 
       entries[tag] = value;
     }
@@ -414,7 +414,7 @@
     if (tag === 'ISOSpeedRatings') return val;
     if (tag === 'ExposureBiasValue') return (val >= 0 ? '+' : '') + val.toFixed(2) + ' EV';
     if (Array.isArray(val)) return val.map(v => typeof v === 'number' ? v.toFixed(4) : v).join(', ');
-    if (typeof val === 'number') return isNaN(val) ? '鈥? : (Number.isInteger(val) ? val : val.toFixed(6));
+    if (typeof val === 'number') return isNaN(val) ? '— : (Number.isInteger(val) ? val : val.toFixed(6));
     return String(val);
   }
 
@@ -486,7 +486,7 @@
       img.src = URL.createObjectURL(file);
       document.getElementById('previewInfo').innerHTML = `
         <strong>${file.name}</strong><br>
-        ${(file.size/1024).toFixed(1)} KB 路 ${file.type || 'unknown type'}
+        ${(file.size/1024).toFixed(1)} KB &middot; ${file.type || 'unknown type'}
       `;
       document.getElementById('previewWrap').classList.add('show');
 
@@ -537,8 +537,8 @@
     slug: 'exif-viewer'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

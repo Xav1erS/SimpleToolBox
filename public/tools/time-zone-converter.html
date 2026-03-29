@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Time Zone Converter",
-  "description": "Convert a time between any two time zones. Shows UTC offset and local time. No sign-in required 鈥?runs entirely in your browser.",
+  "description": "Convert a time between any two time zones. Shows UTC offset and local time. No sign-in required —runs entirely in your browser.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .tz-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; }
@@ -128,7 +128,7 @@
         <label class="field-label" for="tzFrom">From time zone</label>
         <select class="field-select" id="tzFrom"></select>
       </div>
-      <div class="tz-arrow">→/div>
+      <div class="tz-arrow">→</div>
       <div class="field-group">
         <label class="field-label" for="tzTo">To time zone</label>
         <select class="field-select" id="tzTo"></select>
@@ -137,7 +137,7 @@
   </div>
 
   <div class="result-card" id="resultCard">
-    <div class="result-time" id="resultTime">—/div>
+    <div class="result-time" id="resultTime">—</div>
     <div class="result-date" id="resultDate"></div>
     <div class="result-offset" id="resultOffset"></div>
   </div>
@@ -283,7 +283,7 @@ function convert() {
   const tzTo   = document.getElementById('tzTo').value;
 
   if (!dtVal) {
-    document.getElementById('resultTime').textContent = '鈥?;
+    document.getElementById('resultTime').textContent = '—;
     document.getElementById('resultDate').textContent = '';
     document.getElementById('resultOffset').textContent = '';
     return;
@@ -319,7 +319,7 @@ function convert() {
 
     const fromOff = getOffset(tzFrom, result);
     const toOff   = getOffset(tzTo, result);
-    document.getElementById('resultOffset').textContent = `${tzFrom} (${fromOff}) 鈫?${tzTo} (${toOff})`;
+    document.getElementById('resultOffset').textContent = `${tzFrom} (${fromOff}) →${tzTo} (${toOff})`;
   } catch (e) {
     document.getElementById('resultTime').textContent = 'Error';
     document.getElementById('resultDate').textContent = e.message;
@@ -372,6 +372,7 @@ document.getElementById('btnSwap').addEventListener('click', () => {
 // Refresh world clock every 30s
 setInterval(renderWorldClock, 30000);
 </script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "WebP Converter",
-  "description": "Convert images to WebP, PNG, or JPEG online for free. Drag and drop any image, choose output format and quality, download instantly. Privacy-first 鈥?runs entirely in your browser.",
+  "description": "Convert images to WebP, PNG, or JPEG online for free. Drag and drop any image, choose output format and quality, download instantly. Privacy-first —runs entirely in your browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -39,7 +39,7 @@
       "name": "Does WebP support transparency (alpha channel)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. WebP supports both lossy and lossless compression with transparency. Convert PNG images with alpha channels to WebP to get smaller files while preserving transparency 鈥?something JPEG cannot do."
+        "text": "Yes. WebP supports both lossy and lossless compression with transparency. Convert PNG images with alpha channels to WebP to get smaller files while preserving transparency —something JPEG cannot do."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "Can I convert WebP back to JPEG or PNG?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. This tool converts any image format to any other 鈥?including converting WebP back to JPEG or PNG. Simply select the target format and download."
+        "text": "Yes. This tool converts any image format to any other —including converting WebP back to JPEG or PNG. Simply select the target format and download."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Is WebP supported in all browsers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. WebP is supported in Chrome, Firefox, Safari (since 14), Edge, and Opera 鈥?covering over 97% of global browser usage as of 2025. It is safe to use as the primary format for web images."
+        "text": "Yes. WebP is supported in Chrome, Firefox, Safari (since 14), Edge, and Opera —covering over 97% of global browser usage as of 2025. It is safe to use as the primary format for web images."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
@@ -245,13 +245,13 @@
       <div class="size-compare">
         <div class="size-box">
           <div class="size-box-label">Original</div>
-          <div class="size-box-val" id="sizeOriginal">鈥</div>
-          <div class="size-box-fmt" id="fmtOriginal">鈥</div>
+          <div class="size-box-val" id="sizeOriginal">—</div>
+          <div class="size-box-fmt" id="fmtOriginal">—</div>
         </div>
-        <div class="size-arrow">鈫</div>
+        <div class="size-arrow">→</div>
         <div class="size-box">
           <div class="size-box-label">Output</div>
-          <div class="size-box-val" id="sizeOutput">鈥</div>
+          <div class="size-box-val" id="sizeOutput">—</div>
           <div class="size-box-fmt" id="fmtOutput">WebP</div>
         </div>
       </div>
@@ -286,15 +286,15 @@
       <div class="img-meta">
         <div>
           <div class="meta-lbl">Dimensions</div>
-          <div class="meta-val" id="metaDimensions">鈥</div>
+          <div class="meta-val" id="metaDimensions">—</div>
         </div>
         <div>
           <div class="meta-lbl">Source Format</div>
-          <div class="meta-val" id="metaFormat">鈥</div>
+          <div class="meta-val" id="metaFormat">—</div>
         </div>
         <div>
           <div class="meta-lbl">Filename</div>
-          <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">鈥</div>
+          <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
         </div>
       </div>
     </div>
@@ -433,10 +433,10 @@
         const diff = origSize - blob.size;
         const pct = ((Math.abs(diff) / origSize) * 100).toFixed(1);
         if (diff > 0) {
-          savingBadge.textContent = `鈫?${fmtBytes(diff)} smaller (${pct}%)`;
+          savingBadge.textContent = `→${fmtBytes(diff)} smaller (${pct}%)`;
           savingBadge.style.color = '#22c55e';
         } else if (diff < 0) {
-          savingBadge.textContent = `鈫?${fmtBytes(-diff)} larger (+${pct}%)`;
+          savingBadge.textContent = `→${fmtBytes(-diff)} larger (+${pct}%)`;
           savingBadge.style.color = 'var(--ds-color-text-muted)';
         } else {
           savingBadge.textContent = 'Same size';
@@ -480,7 +480,7 @@
       const img = new Image();
       img.onload = () => {
         srcImage = img;
-        metaDimensions.textContent = `${img.naturalWidth} 脳 ${img.naturalHeight}`;
+        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
         metaFormat.textContent = mimeToLabel(origType);
         imgPreview.src = e.target.result;
         dropZone.style.display = 'none';
@@ -534,8 +534,8 @@
     slug: 'webp-converter'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

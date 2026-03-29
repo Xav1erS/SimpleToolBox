@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .calc-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
@@ -140,7 +140,7 @@
     </div>
     <hr class="calc-divider" />
     <div style="display:flex;align-items:center;gap:12px">
-      <span class="calc-result empty" id="r1">鈥</span>
+      <span class="calc-result empty" id="r1">—</span>
       <button class="copy-small" id="cp1">Copy</button>
     </div>
   </div>
@@ -156,7 +156,7 @@
     </div>
     <hr class="calc-divider" />
     <div style="display:flex;align-items:center;gap:12px">
-      <span class="calc-result empty" id="r2">鈥</span>
+      <span class="calc-result empty" id="r2">—</span>
       <button class="copy-small" id="cp2">Copy</button>
     </div>
   </div>
@@ -172,7 +172,7 @@
     </div>
     <hr class="calc-divider" />
     <div style="display:flex;align-items:center;gap:12px">
-      <span class="calc-result empty" id="r3">鈥</span>
+      <span class="calc-result empty" id="r3">—</span>
       <button class="copy-small" id="cp3">Copy</button>
     </div>
   </div>
@@ -268,13 +268,13 @@
 
   function setResult(id, val, suffix) {
     const el = document.getElementById(id);
-    if (val === null) { el.textContent = '鈥?; el.className = 'calc-result empty'; }
+    if (val === null) { el.textContent = '—; el.className = 'calc-result empty'; }
     else { el.textContent = val + (suffix || ''); el.className = 'calc-result'; }
   }
 
   function copyResult(id, btnId) {
     const txt = document.getElementById(id).textContent;
-    if (!txt || txt === '鈥?) return;
+    if (!txt || txt === '—) return;
     navigator.clipboard.writeText(txt).then(() => { const b = document.getElementById(btnId); b.textContent = 'Copied!'; setTimeout(() => b.textContent = 'Copy', 1500); }).catch(() => {});
   }
 
@@ -312,8 +312,8 @@
     slug: 'percentage-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

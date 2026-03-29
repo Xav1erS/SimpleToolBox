@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF Page Rotator",
-  "description": "Rotate individual PDF pages or the entire document online for free. Choose 90掳, 180掳, or 270掳 rotation per page. Runs entirely in your browser 鈥?no file uploads.",
+  "description": "Rotate individual PDF pages or the entire document online for free. Choose 90掳, 180掳, or 270掳 rotation per page. Runs entirely in your browser —no file uploads.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -274,7 +274,7 @@
 
   <!-- Progress -->
   <div class="progress-bar-wrap" id="progressWrap">
-    <div class="progress-label" id="progressLabel">Loading PDF鈥</div>
+    <div class="progress-label" id="progressLabel">Loading PDF—</div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -283,9 +283,9 @@
   <!-- Info bar (shown after load) -->
   <div class="info-bar" id="infoBar">
     <span>PDF loaded:</span>
-    <span class="info-badge" id="infoFilename">鈥</span>
+    <span class="info-badge" id="infoFilename">—</span>
     <span>·</span>
-    <span class="info-badge" id="infoPages">鈥</span>
+    <span class="info-badge" id="infoPages">—</span>
     <span>pages</span>
     <button class="btn-change-pdf" id="btnChangePdf">Change PDF</button>
   </div>
@@ -450,7 +450,7 @@
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Loading PDF鈥?;
+    progressLabel.textContent = 'Loading PDF—;
 
     pdfArrayBuffer = await file.arrayBuffer();
 
@@ -465,10 +465,10 @@
     numPages = pdfDoc.numPages;
     rotations = new Array(numPages).fill(0);
 
-    progressLabel.textContent = `Rendering thumbnails鈥;
+    progressLabel.textContent = `Rendering thumbnails—;
 
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Rendering page ${i} of ${numPages}鈥;
+      progressLabel.textContent = `Rendering page ${i} of ${numPages}—;
       progressFill.style.width = ((i - 1) / numPages * 100) + '%';
 
       const page     = await pdfDoc.getPage(i);
@@ -510,7 +510,7 @@
       progressFill.style.width = (i / numPages * 100) + '%';
     }
 
-    progressLabel.textContent = `Done 鈥?${numPages} page${numPages > 1 ? 's' : ''} loaded.`;
+    progressLabel.textContent = `Done —${numPages} page${numPages > 1 ? 's' : ''} loaded.`;
     setTimeout(() => { progressWrap.classList.remove('visible'); }, 1500);
 
     infoFilename.textContent = file.name;
@@ -537,11 +537,11 @@
   btnApply.addEventListener('click', async () => {
     if (!pdfDoc) return;
     btnApply.disabled = true;
-    btnApply.textContent = 'Processing鈥?;
+    btnApply.textContent = 'Processing—;
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Building rotated PDF鈥?;
+    progressLabel.textContent = 'Building rotated PDF—;
 
     try {
       // Re-open the PDF from buffer so we can render at higher quality
@@ -561,7 +561,7 @@
       });
 
       for (let i = 1; i <= numPages; i++) {
-        progressLabel.textContent = `Processing page ${i} of ${numPages}鈥;
+        progressLabel.textContent = `Processing page ${i} of ${numPages}—;
         progressFill.style.width  = ((i - 1) / numPages * 100) + '%';
 
         const page     = await freshDoc.getPage(i);
@@ -605,7 +605,7 @@
         const imgData = outCanvas.toDataURL('image/jpeg', 0.92);
 
         if (i === 1) {
-          // First page already added during jsPDF init 鈥?set its size
+          // First page already added during jsPDF init —set its size
           pdf.internal.pageSize.width  = outW;
           pdf.internal.pageSize.height = outH;
           pdf.addImage(imgData, 'JPEG', 0, 0, outW, outH);
@@ -623,7 +623,7 @@
       const baseName = (currentFile.name || 'document').replace(/\.pdf$/i, '');
       pdf.save(baseName + '-rotated.pdf');
 
-      progressLabel.textContent = 'Done 鈥?PDF saved.';
+      progressLabel.textContent = 'Done —PDF saved.';
       setTimeout(() => { progressWrap.classList.remove('visible'); }, 1800);
 
     } catch (err) {
@@ -675,8 +675,8 @@
     slug: 'pdf-rotate-pages'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

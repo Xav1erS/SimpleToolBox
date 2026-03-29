@@ -55,7 +55,7 @@
       "name": "What page size should I choose?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A4 is the international standard used in most countries. Letter is the North American standard (8.5脳11 inches). Choose 'Fit to Image' if you want each PDF page to match the exact pixel dimensions of each image."
+        "text": "A4 is the international standard used in most countries. Letter is the North American standard (8.5×11 inches). Choose 'Fit to Image' if you want each PDF page to match the exact pixel dimensions of each image."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
@@ -248,7 +248,7 @@
       <button class="btn-add-more" id="btnAddMore">+ Add more images</button>
       <div class="progress-bar-wrap" id="progressWrap">
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
-        <div class="progress-label" id="progressLabel">Processing鈥</div>
+        <div class="progress-label" id="progressLabel">Processing—</div>
       </div>
     </div>
   </div>
@@ -429,7 +429,7 @@
   fileInput.addEventListener('change', () => { loadFiles(fileInput.files); fileInput.value = ''; });
   btnAddMore.addEventListener('click', () => fileInput.click());
 
-  // Option buttons 鈥?page size
+  // Option buttons —page size
   document.querySelectorAll('[data-page]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-page]').forEach(b => b.classList.remove('active'));
@@ -438,7 +438,7 @@
     });
   });
 
-  // Option buttons 鈥?orientation
+  // Option buttons —orientation
   document.querySelectorAll('[data-orient]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-orient]').forEach(b => b.classList.remove('active'));
@@ -447,7 +447,7 @@
     });
   });
 
-  // Option buttons 鈥?margin
+  // Option buttons —margin
   document.querySelectorAll('[data-margin]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-margin]').forEach(b => b.classList.remove('active'));
@@ -462,7 +462,7 @@
     btnConvert.disabled = true;
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Starting鈥?;
+    progressLabel.textContent = 'Starting—;
 
     try {
       const { jsPDF } = window.jspdf;
@@ -478,7 +478,7 @@
 
       for (let i = 0; i < images.length; i++) {
         const imgData = images[i].dataUrl;
-        progressLabel.textContent = `Processing image ${i + 1} of ${images.length}鈥;
+        progressLabel.textContent = `Processing image ${i + 1} of ${images.length}—;
         progressFill.style.width = ((i / images.length) * 90) + '%';
 
         // Get natural dimensions via Image element
@@ -539,7 +539,7 @@
       }
 
       progressFill.style.width = '100%';
-      progressLabel.textContent = 'Saving PDF鈥?;
+      progressLabel.textContent = 'Saving PDF—;
 
       pdf.save('images.pdf');
 
@@ -569,8 +569,8 @@
     slug: 'image-to-pdf'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -38,7 +38,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main{max-width:580px;margin:0 auto;padding:28px 24px 64px}
     .card{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);padding:24px;margin-bottom:16px}
@@ -117,10 +117,10 @@
   </div>
   <div id="results" style="display:none">
     <div class="result-card">
-      <div class="result-row"><span class="result-base">BIN</span><span class="result-val accent" id="rBin">鈥</span><button class="copy-btn" data-target="rBin">Copy</button></div>
-      <div class="result-row"><span class="result-base">DEC</span><span class="result-val" id="rDec">鈥</span><button class="copy-btn" data-target="rDec">Copy</button></div>
-      <div class="result-row"><span class="result-base">HEX</span><span class="result-val" id="rHex">鈥</span><button class="copy-btn" data-target="rHex">Copy</button></div>
-      <div class="result-row"><span class="result-base">OCT</span><span class="result-val" id="rOct">鈥</span><button class="copy-btn" data-target="rOct">Copy</button></div>
+      <div class="result-row"><span class="result-base">BIN</span><span class="result-val accent" id="rBin">—</span><button class="copy-btn" data-target="rBin">Copy</button></div>
+      <div class="result-row"><span class="result-base">DEC</span><span class="result-val" id="rDec">—</span><button class="copy-btn" data-target="rDec">Copy</button></div>
+      <div class="result-row"><span class="result-base">HEX</span><span class="result-val" id="rHex">—</span><button class="copy-btn" data-target="rHex">Copy</button></div>
+      <div class="result-row"><span class="result-base">OCT</span><span class="result-val" id="rOct">—</span><button class="copy-btn" data-target="rOct">Copy</button></div>
     </div>
   </div>
   <!-- AUTO-SEO-SECTIONS:START -->
@@ -150,7 +150,7 @@ document.getElementById('btnCalc').addEventListener('click',()=>{
   let result;
   if(op==='+')result=a+b;
   else if(op==='鈭?)result=a-b;
-  else if(op==='脳')result=a*b;
+  else if(op==='×')result=a*b;
   else if(op==='梅'){if(b===0){err.textContent='Cannot divide by zero.';err.style.display='block';document.getElementById('results').style.display='none';return;}result=Math.trunc(a/b);}
   const neg=result<0;const abs=Math.abs(result);
   document.getElementById('rBin').textContent=(neg?'-':'')+abs.toString(2);
@@ -171,8 +171,8 @@ document.querySelectorAll('.copy-btn').forEach(btn=>{btn.addEventListener('click
     slug: 'binary-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

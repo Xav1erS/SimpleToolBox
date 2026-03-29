@@ -13,7 +13,7 @@
   <meta property="og:description" content="Calculate date differences, business days, add/subtract days, and compute exact age." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {
@@ -57,7 +57,7 @@
       "name": "Can I calculate working days (excluding weekends)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?the Business Days section counts only weekdays (Monday鈥揊riday) between your two dates."
+        "text": "Yes —the Business Days section counts only weekdays (Monday—揊riday) between your two dates."
       }
     },
     {
@@ -407,7 +407,7 @@
     const box = document.getElementById('diffResult');
     box.classList.add('show');
     document.getElementById('diffDays').textContent = absDays + ' day' + (absDays !== 1 ? 's' : '') + (days < 0 ? ' before' : days > 0 ? ' after' : '');
-    let sub = `<span>${weeks}</span> week${weeks!==1?'s':''} and <span>${remDays}</span> day${remDays!==1?'s':''} 路 `;
+    let sub = `<span>${weeks}</span> week${weeks!==1?'s':''} and <span>${remDays}</span> day${remDays!==1?'s':''} &middot; `;
     sub += `approx. <span>${months}</span> month${months!==1?'s':''} / <span>${years}</span> year${years!==1?'s':''}`;
     document.getElementById('diffSub').innerHTML = sub;
   }
@@ -464,7 +464,7 @@
     box.classList.add('show');
     document.getElementById('bizDays').textContent = count + ' business day' + (count!==1?'s':'');
     document.getElementById('bizSub').innerHTML =
-      'Out of <span>' + totalDays + '</span> total days 路 <span>' + weekendDays + '</span> weekend day' + (weekendDays!==1?'s':'') + ' excluded';
+      'Out of <span>' + totalDays + '</span> total days &middot; <span>' + weekendDays + '</span> weekend day' + (weekendDays!==1?'s':'') + ' excluded';
   }
   document.getElementById('bizStart').addEventListener('input', calcBiz);
   document.getElementById('bizEnd').addEventListener('input', calcBiz);
@@ -508,7 +508,7 @@
   document.querySelectorAll('.result-copy-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const ids = copyMap[btn.dataset.copy];
-      const text = ids.map(id => document.getElementById(id).textContent.trim()).filter(Boolean).join(' 路 ');
+      const text = ids.map(id => document.getElementById(id).textContent.trim()).filter(Boolean).join(' &middot; ');
       navigator.clipboard.writeText(text).catch(() => {});
       btn.textContent = '鉁?Copied';
       btn.classList.add('copied');
@@ -524,8 +524,8 @@
     slug: 'date-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Compress to 100KB",
-  "description": "Compress images to a specific file size (100KB, 50KB, 200KB, or any size) online for free. Auto-adjusts quality to hit your target. No upload 鈥?runs entirely in your browser.",
+  "description": "Compress images to a specific file size (100KB, 50KB, 200KB, or any size) online for free. Auto-adjusts quality to hit your target. No upload —runs entirely in your browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -39,7 +39,7 @@
       "name": "What if the image can't be compressed to my target size?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If the target is extremely small (e.g., 10KB for a high-resolution photo), the tool will compress to the lowest quality possible and show \"Best effort 鈥?target not fully met.\" In that case, try resizing the image dimensions first using the Image Resizer , then compressing."
+        "text": "If the target is extremely small (e.g., 10KB for a high-resolution photo), the tool will compress to the lowest quality possible and show \"Best effort —target not fully met.\" In that case, try resizing the image dimensions first using the Image Resizer , then compressing."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Why does the output size sometimes exceed the target by a few KB?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "JPEG compression is not perfectly predictable 鈥?the actual output size depends on image complexity. The algorithm tries to get as close as possible while staying under the target, but final blob size may vary by 1鈥? KB. If strict compliance is required, set your target slightly lower (e.g., 95KB instead of 100KB)."
+        "text": "JPEG compression is not perfectly predictable —the actual output size depends on image complexity. The algorithm tries to get as close as possible while staying under the target, but final blob size may vary by 1— KB. If strict compliance is required, set your target slightly lower (e.g., 95KB instead of 100KB)."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
@@ -229,19 +229,19 @@
       <div class="result-box">
         <div class="result-row">
           <span class="result-label">Original</span>
-          <span class="result-val" id="resultOriginal">鈥</span>
+          <span class="result-val" id="resultOriginal">—</span>
         </div>
         <div class="result-row">
           <span class="result-label">Output</span>
-          <span class="result-val" id="resultOutput">鈥</span>
+          <span class="result-val" id="resultOutput">—</span>
         </div>
         <div class="result-row">
           <span class="result-label">Quality used</span>
-          <span class="result-val" id="resultQuality">鈥</span>
+          <span class="result-val" id="resultQuality">—</span>
         </div>
         <div class="result-row">
           <span class="result-label">Status</span>
-          <span class="result-badge" id="resultStatus">鈥</span>
+          <span class="result-badge" id="resultStatus">—</span>
         </div>
       </div>
     </div>
@@ -278,15 +278,15 @@
       <div class="img-meta">
         <div>
           <div class="meta-lbl">Dimensions</div>
-          <div class="meta-val" id="metaDimensions">鈥</div>
+          <div class="meta-val" id="metaDimensions">—</div>
         </div>
         <div>
           <div class="meta-lbl">Source Format</div>
-          <div class="meta-val" id="metaFormat">鈥</div>
+          <div class="meta-val" id="metaFormat">—</div>
         </div>
         <div>
           <div class="meta-lbl">Filename</div>
-          <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">鈥</div>
+          <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
         </div>
       </div>
     </div>
@@ -494,9 +494,9 @@
     origSize = file.size;
     fileName = file.name.replace(/\.[^.]+$/, '');
     resultOriginal.textContent = fmtBytes(origSize);
-    resultOutput.textContent = '鈥?;
-    resultQuality.textContent = '鈥?;
-    resultStatus.textContent = '鈥?;
+    resultOutput.textContent = '—;
+    resultQuality.textContent = '—;
+    resultStatus.textContent = '—;
     resultStatus.className = 'result-badge';
     resultBlob = null;
     btnDownload.disabled = true;
@@ -506,7 +506,7 @@
       const img = new Image();
       img.onload = () => {
         srcImage = img;
-        metaDimensions.textContent = `${img.naturalWidth} 脳 ${img.naturalHeight}`;
+        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
         metaFormat.textContent = mimeToLabel(file.type);
         imgPreview.src = e.target.result;
         dropZone.style.display = 'none';
@@ -553,8 +553,8 @@
     slug: 'compress-to-100kb'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

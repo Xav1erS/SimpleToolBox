@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "GPA Calculator",
-  "description": "Calculate your GPA by entering course grades and credit hours. Supports letter grades (A鈥揊) and 4.0 scale. Add up to 20 courses and see weighted GPA instantly.",
+  "description": "Calculate your GPA by entering course grades and credit hours. Supports letter grades (A—揊) and 4.0 scale. Add up to 20 courses and see weighted GPA instantly.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .course-table { width: 100%; border-collapse: collapse; }
@@ -140,9 +140,9 @@
     </div>
   </div>
   <div class="result-grid">
-    <div class="result-card"><div class="result-card__label">GPA</div><div class="result-card__value" id="rGpa">鈥</div></div>
-    <div class="result-card"><div class="result-card__label">Total Credits</div><div class="result-card__value" id="rCredits">鈥</div></div>
-    <div class="result-card"><div class="result-card__label">Grade Points</div><div class="result-card__value" id="rPoints">鈥</div></div>
+    <div class="result-card"><div class="result-card__label">GPA</div><div class="result-card__value" id="rGpa">—</div></div>
+    <div class="result-card"><div class="result-card__label">Total Credits</div><div class="result-card__value" id="rCredits">—</div></div>
+    <div class="result-card"><div class="result-card__label">Grade Points</div><div class="result-card__value" id="rPoints">—</div></div>
   </div>
   <div>
     <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ds-color-text-muted);margin-bottom:6px"><span>0.0</span><span id="barLabel"></span><span>4.0</span></div>
@@ -261,9 +261,9 @@
       totalCredits += cr;
     }
     const gpa = totalCredits > 0 ? totalPoints / totalCredits : null;
-    document.getElementById('rGpa').textContent = gpa !== null ? gpa.toFixed(2) : '鈥?;
-    document.getElementById('rCredits').textContent = totalCredits > 0 ? totalCredits : '鈥?;
-    document.getElementById('rPoints').textContent = totalCredits > 0 ? totalPoints.toFixed(1) : '鈥?;
+    document.getElementById('rGpa').textContent = gpa !== null ? gpa.toFixed(2) : '—;
+    document.getElementById('rCredits').textContent = totalCredits > 0 ? totalCredits : '—;
+    document.getElementById('rPoints').textContent = totalCredits > 0 ? totalPoints.toFixed(1) : '—;
     const pct = gpa !== null ? Math.min(100, gpa / 4 * 100) : 0;
     document.getElementById('gpaBar').style.width = pct + '%';
     document.getElementById('barLabel').textContent = gpa !== null ? `GPA ${gpa.toFixed(2)}` : '';
@@ -299,8 +299,8 @@
     slug: 'gpa-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

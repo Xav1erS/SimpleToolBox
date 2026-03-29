@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF Page Counter & Metadata Viewer",
-  "description": "Count PDF pages and view document metadata instantly. No upload required 鈥?runs entirely in your browser using PDF.js.",
+  "description": "Count PDF pages and view document metadata instantly. No upload required —runs entirely in your browser using PDF.js.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -47,7 +47,7 @@
       "name": "What metadata fields are shown?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The tool displays Title, Author, Subject, Creator, Producer, Creation Date, and Modification Date 鈥?all read from the PDF's internal document information dictionary. Fields not present in the file are shown as a dash."
+        "text": "The tool displays Title, Author, Subject, Creator, Producer, Creation Date, and Modification Date —all read from the PDF's internal document information dictionary. Fields not present in the file are shown as a dash."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -305,7 +305,7 @@
     <!-- Page count stat -->
     <div class="stat-hero">
       <div class="stat-label">Total Pages</div>
-      <div class="stat-number" id="statPages">鈥</div>
+      <div class="stat-number" id="statPages">—</div>
       <div class="stat-unit" id="statUnit">pages</div>
     </div>
 
@@ -315,39 +315,39 @@
       <div class="meta-grid">
         <div class="meta-row">
           <div class="meta-key">File Name</div>
-          <div class="meta-val" id="mFilename">鈥</div>
+          <div class="meta-val" id="mFilename">—</div>
         </div>
         <div class="meta-row">
           <div class="meta-key">File Size</div>
-          <div class="meta-val" id="mSize">鈥</div>
+          <div class="meta-val" id="mSize">—</div>
         </div>
         <div class="meta-row">
           <div class="meta-key">Title</div>
-          <div class="meta-val" id="mTitle">鈥</div>
+          <div class="meta-val" id="mTitle">—</div>
         </div>
         <div class="meta-row">
           <div class="meta-key">Author</div>
-          <div class="meta-val" id="mAuthor">鈥</div>
+          <div class="meta-val" id="mAuthor">—</div>
         </div>
         <div class="meta-row">
           <div class="meta-key">Subject</div>
-          <div class="meta-val" id="mSubject">鈥</div>
+          <div class="meta-val" id="mSubject">—</div>
         </div>
         <div class="meta-row">
           <div class="meta-key">Creator</div>
-          <div class="meta-val" id="mCreator">鈥</div>
+          <div class="meta-val" id="mCreator">—</div>
         </div>
         <div class="meta-row">
           <div class="meta-key">Producer</div>
-          <div class="meta-val" id="mProducer">鈥</div>
+          <div class="meta-val" id="mProducer">—</div>
         </div>
         <div class="meta-row">
           <div class="meta-key">Created</div>
-          <div class="meta-val" id="mCreated">鈥</div>
+          <div class="meta-val" id="mCreated">—</div>
         </div>
         <div class="meta-row">
           <div class="meta-key">Modified</div>
-          <div class="meta-val" id="mModified">鈥</div>
+          <div class="meta-val" id="mModified">—</div>
         </div>
       </div>
     </div>
@@ -483,7 +483,7 @@
       el.textContent = value.trim();
       el.classList.remove('empty');
     } else {
-      el.textContent = '鈥?;
+      el.textContent = '—;
       el.classList.add('empty');
     }
   }
@@ -579,8 +579,8 @@
     slug: 'pdf-page-counter'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

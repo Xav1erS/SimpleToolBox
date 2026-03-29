@@ -17,7 +17,7 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Temperature Converter 鈥?掳C, 掳F, K",
+  "name": "Temperature Converter —掳C, 掳F, K",
   "description": "Convert temperatures between Celsius, Fahrenheit, and Kelvin instantly. Real-time conversion, common reference points, and formula explanations.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
@@ -39,7 +39,7 @@
       "name": "How do you convert Celsius to Fahrenheit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Multiply by 9/5 then add 32. For example, 100掳C 脳 9/5 + 32 = 212掳F."
+        "text": "Multiply by 9/5 then add 32. For example, 100掳C × 9/5 + 32 = 212掳F."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .temp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -236,8 +236,8 @@ function fToC(f) { return round((f - 32) * 5/9); }
 function kToC(k) { return round(k - 273.15); }
 
 const FORMULAS = {
-  C: val => `${val}掳C = ${val} 脳 9/5 + 32 = ${cToF(val)}掳F  |  ${val} + 273.15 = ${cToK(val)} K`,
-  F: val => `${val}掳F = (${val} 鈭?32) 脳 5/9 = ${fToC(val)}掳C`,
+  C: val => `${val}掳C = ${val} × 9/5 + 32 = ${cToF(val)}掳F  |  ${val} + 273.15 = ${cToK(val)} K`,
+  F: val => `${val}掳F = (${val} 鈭?32) × 5/9 = ${fToC(val)}掳C`,
   K: val => `${val} K = ${val} 鈭?273.15 = ${kToC(val)}掳C`,
 };
 
@@ -285,6 +285,7 @@ document.getElementById('btnClear').addEventListener('click', () => {
   ['cardC','cardF','cardK'].forEach(c => document.getElementById(c).classList.remove('active'));
 });
 </script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

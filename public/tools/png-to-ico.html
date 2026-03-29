@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PNG to ICO Converter",
-  "description": "Convert PNG, JPG, or WebP images to .ico favicon files. Choose sizes 16脳16 to 256脳256. No upload, instant download in your browser.",
+  "description": "Convert PNG, JPG, or WebP images to .ico favicon files. Choose sizes 16×16 to 256×256. No upload, instant download in your browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -39,7 +39,7 @@
       "name": "Is my image uploaded to a server?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Everything runs entirely in your browser using the Canvas API. Your image never leaves your device 鈥?there is no server upload at any stage."
+        "text": "No. Everything runs entirely in your browser using the Canvas API. Your image never leaves your device —there is no server upload at any stage."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "Which sizes should I include in a favicon ICO file?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For a modern favicon, 16脳16 and 32脳32 are the minimum. Including 48脳48 ensures sharp display in Windows taskbars. Adding 64脳64 and higher covers high-DPI displays and application icons. Most sites include 16, 32, and 48 at minimum."
+        "text": "For a modern favicon, 16×16 and 32×32 are the minimum. Including 48×48 ensures sharp display in Windows taskbars. Adding 64×64 and higher covers high-DPI displays and application icons. Most sites include 16, 32, and 48 at minimum."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "Is the ICO format still supported across browsers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. ICO remains the most universally supported favicon format. All major browsers 鈥?Chrome, Firefox, Safari, and Edge 鈥?load favicon.ico correctly. It is the safest choice for the root-level favicon.ico file."
+        "text": "Yes. ICO remains the most universally supported favicon format. All major browsers —Chrome, Firefox, Safari, and Edge —load favicon.ico correctly. It is the safest choice for the root-level favicon.ico file."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 780px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -199,8 +199,8 @@
       <div class="preview-row">
         <img id="previewThumb" class="preview-thumb" alt="Preview" />
         <div class="preview-info">
-          <div class="preview-name" id="previewName">—/div>
-          <div class="preview-dims" id="previewDims">—/div>
+          <div class="preview-name" id="previewName">—</div>
+          <div class="preview-dims" id="previewDims">—</div>
         </div>
         <button class="btn-change" id="btnChange">Change</button>
       </div>
@@ -233,7 +233,7 @@
     <div class="panel-section" id="resultSection" style="display:none">
       <div class="panel-label">Result</div>
       <div class="result-row">
-        <div class="result-icon">✀/div>
+        <div class="result-icon">✀</div>
         <div class="result-info">
           <div class="result-label" id="resultLabel">favicon.ico ready</div>
           <div class="result-sizes" id="resultSizes"></div>
@@ -330,7 +330,7 @@
 </footer>
 
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>
 // 鈹€鈹€ ICO assembly 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 async function createIco(imgElement, sizes) {
@@ -419,7 +419,7 @@ function loadFile(file) {
       srcImage = img;
       previewThumb.src = e.target.result;
       previewName.textContent = file.name;
-      previewDims.textContent = `${img.naturalWidth} 脳 ${img.naturalHeight} px`;
+      previewDims.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
       uploadSection.style.display = 'none';
       previewSection.style.display = '';
       resultSection.style.display = 'none';
@@ -456,7 +456,7 @@ btnGenerate.addEventListener('click', async () => {
   }
 
   btnGenerate.disabled = true;
-  statusMsg.textContent = 'Generating鈥?;
+  statusMsg.textContent = 'Generating—;
   statusMsg.className = 'status-msg';
 
   try {
@@ -469,8 +469,8 @@ btnGenerate.addEventListener('click', async () => {
     btnDownload.href     = lastObjUrl;
     btnDownload.download = filename;
 
-    const sizeLabel = sizes.map(s => `${s}脳${s}`).join(', ');
-    resultLabel.textContent = filename + ' 鈥?' + (icoBlob.size / 1024).toFixed(1) + ' KB';
+    const sizeLabel = sizes.map(s => `${s}×${s}`).join(', ');
+    resultLabel.textContent = filename + ' —' + (icoBlob.size / 1024).toFixed(1) + ' KB';
     resultSizes.textContent = 'Contains: ' + sizeLabel;
 
     resultSection.style.display = '';

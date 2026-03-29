@@ -47,7 +47,7 @@
       "name": "What metadata fields does this tool show?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The tool shows Title, Author, Subject, Keywords, Creator (authoring application), Producer (PDF library), Creation Date, Modification Date, PDF Version, page count, file size, page dimensions, and orientation 鈥?all read from the PDF's internal document information dictionary."
+        "text": "The tool shows Title, Author, Subject, Keywords, Creator (authoring application), Producer (PDF library), Creation Date, Modification Date, PDF Version, page count, file size, page dimensions, and orientation —all read from the PDF's internal document information dictionary."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -297,14 +297,14 @@
         <div class="meta-section-title">Document Info</div>
         <table class="meta-table">
           <tbody>
-            <tr><td>Title</td><td id="mTitle"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Author</td><td id="mAuthor"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Subject</td><td id="mSubject"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Keywords</td><td id="mKeywords"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Creator</td><td id="mCreator"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Producer</td><td id="mProducer"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Created</td><td id="mCreated"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Modified</td><td id="mModified"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>Title</td><td id="mTitle"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Author</td><td id="mAuthor"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Subject</td><td id="mSubject"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Keywords</td><td id="mKeywords"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Creator</td><td id="mCreator"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Producer</td><td id="mProducer"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Created</td><td id="mCreated"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Modified</td><td id="mModified"><span class="meta-empty">—</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -316,11 +316,11 @@
         <div class="meta-section-title">File Info</div>
         <table class="meta-table">
           <tbody>
-            <tr><td>PDF Version</td><td id="mVersion"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Pages</td><td id="mPages"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>File Size</td><td id="mSize"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Page Size (p.1)</td><td id="mPageSize"><span class="meta-empty">鈥</span></td></tr>
-            <tr><td>Orientation</td><td id="mOrientation"><span class="meta-empty">鈥</span></td></tr>
+            <tr><td>PDF Version</td><td id="mVersion"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Pages</td><td id="mPages"><span class="meta-empty">—</span></td></tr>
+            <tr><td>File Size</td><td id="mSize"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Page Size (p.1)</td><td id="mPageSize"><span class="meta-empty">—</span></td></tr>
+            <tr><td>Orientation</td><td id="mOrientation"><span class="meta-empty">—</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -447,7 +447,7 @@
 
   function formatDate(raw) {
     if (!raw) return null;
-    // PDF date format: D:YYYYMMDDHHmmSSOHH'mm' 鈥?strip prefix and parse
+    // PDF date format: D:YYYYMMDDHHmmSSOHH'mm' —strip prefix and parse
     const m = raw.replace(/^D:/, '').match(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/);
     if (m) {
       try {
@@ -477,7 +477,7 @@
       el.textContent = String(value).trim();
       el.classList.remove('meta-empty');
     } else {
-      el.innerHTML = '<span class="meta-empty">鈥</span>';
+      el.innerHTML = '<span class="meta-empty">—</span>';
     }
   }
 
@@ -533,7 +533,7 @@
     let orientStr     = '';
     if (pageW && pageH) {
       const sizeName = getPageSizeName(pageW, pageH);
-      pageSizeStr = `${pageW} 脳 ${pageH} pt (${sizeName})`;
+      pageSizeStr = `${pageW} × ${pageH} pt (${sizeName})`;
       orientStr   = pageW > pageH ? 'Landscape' : 'Portrait';
     }
 
@@ -609,7 +609,7 @@
   // Copy All as Text
   btnCopy.addEventListener('click', () => {
     const lines = Object.entries(currentMeta)
-      .map(([k, v]) => `${k}: ${v || '鈥?}`)
+      .map(([k, v]) => `${k}: ${v || '—}`)
       .join('\n');
     navigator.clipboard.writeText(lines).then(() => {
       copyToast.classList.add('visible');
@@ -637,8 +637,8 @@
     slug: 'pdf-metadata-viewer'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

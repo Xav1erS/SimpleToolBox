@@ -40,7 +40,7 @@
       "name": "Does it support Unicode characters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Basic ASCII (0鈥?27) is fully supported. Extended UTF-8 characters are encoded as multi-byte binary sequences."
+        "text": "Basic ASCII (0—27) is fully supported. Extended UTF-8 characters are encoded as multi-byte binary sequences."
       }
     },
     {
@@ -48,20 +48,20 @@
       "name": "Why are there spaces between groups?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Spaces separate bytes for readability 鈥?the converter accepts binary with or without spaces."
+        "text": "Spaces separate bytes for readability —the converter accepts binary with or without spaces."
       }
     },
     {
       "@type": "Question",
-      "name": "What does Binary to Text Converter Online 鈥?ASCII Binary Free do?",
+      "name": "What does Binary to Text Converter Online —ASCII Binary Free do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Binary to Text Converter Online 鈥?ASCII Binary Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Binary to Text Converter Online —ASCII Binary Free runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is Binary to Text Converter Online 鈥?ASCII Binary Free free to use?",
+      "name": "Is Binary to Text Converter Online —ASCII Binary Free free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -253,7 +253,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here— spellcheck="false" autocomplete="off"></textarea>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here… spellcheck="false" autocomplete="off"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat" id="inputStat">0 chars</span>
       </div>
@@ -261,7 +261,7 @@
 
     <!-- ARROW -->
     <div class="ds-tool-arrow">
-      <div class="ds-tool-arrow__circle" id="arrowIcon">鈫</div>
+      <div class="ds-tool-arrow__circle" id="arrowIcon">→</div>
     </div>
 
     <!-- OUTPUT panel -->
@@ -275,7 +275,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea out-textarea" id="outputText" placeholder="Output will appear here— readonly spellcheck="false"></textarea>
+      <textarea class="ds-tool-textarea out-textarea" id="outputText" placeholder="Output will appear here… readonly spellcheck="false"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat out-stat" id="outputStat">0 bytes</span>
         <span class="ds-tool-error out-error" id="errorMsg">Invalid binary input</span>
@@ -445,7 +445,7 @@
     if (parts.length === 0) return '';
     for (const p of parts) {
       if (!/^[01]{8}$/.test(p)) {
-        throw new Error('Invalid binary: "' + p + '" 鈥?must be 8-bit groups');
+        throw new Error('Invalid binary: "' + p + '" —must be 8-bit groups');
       }
     }
     const bytes = parts.map(b => parseInt(b, 2));
@@ -485,7 +485,7 @@
       const charCount = inp.length;
       const byteCount = new TextEncoder().encode(inp).length;
       inputStat.textContent = charCount
-        ? `${charCount.toLocaleString()} char${charCount !== 1 ? 's' : ''} 路 ${byteCount.toLocaleString()} byte${byteCount !== 1 ? 's' : ''}`
+        ? `${charCount.toLocaleString()} char${charCount !== 1 ? 's' : ''} &middot; ${byteCount.toLocaleString()} byte${byteCount !== 1 ? 's' : ''}`
         : '0 chars';
       outputStat.textContent = out
         ? `${out.length.toLocaleString()} chars`
@@ -494,7 +494,7 @@
       inputStat.textContent = inp.trim() ? `${inp.trim().length.toLocaleString()} chars` : '0 chars';
       const byteCount = out ? new TextEncoder().encode(out).length : 0;
       outputStat.textContent = out
-        ? `${out.length.toLocaleString()} char${out.length !== 1 ? 's' : ''} 路 ${byteCount} byte${byteCount !== 1 ? 's' : ''}`
+        ? `${out.length.toLocaleString()} char${out.length !== 1 ? 's' : ''} &middot; ${byteCount} byte${byteCount !== 1 ? 's' : ''}`
         : '0 bytes';
     }
   }
@@ -517,16 +517,16 @@
       inputLabel.textContent  = 'Plain Text';
       outputLabel.textContent = 'Binary';
       runLabel.textContent    = 'Encode';
-      inputText.placeholder   = 'Type or paste text here鈥?;
-      outputText.placeholder  = 'Binary output will appear here鈥?;
-      arrowIcon.textContent   = '鈫?;
+      inputText.placeholder   = 'Type or paste text here—;
+      outputText.placeholder  = 'Binary output will appear here—;
+      arrowIcon.textContent   = '→;
     } else {
       inputLabel.textContent  = 'Binary String';
       outputLabel.textContent = 'Plain Text';
       runLabel.textContent    = 'Decode';
-      inputText.placeholder   = 'Paste binary string here鈥?(e.g. 01001000 01101001)';
-      outputText.placeholder  = 'Decoded text will appear here鈥?;
-      arrowIcon.textContent   = '鈫?;
+      inputText.placeholder   = 'Paste binary string here—(e.g. 01001000 01101001)';
+      outputText.placeholder  = 'Decoded text will appear here—;
+      arrowIcon.textContent   = '→;
     }
 
     outputPanel.classList.remove('has-error');
@@ -624,8 +624,8 @@
     slug: 'binary-text'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

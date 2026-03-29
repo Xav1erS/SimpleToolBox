@@ -48,7 +48,7 @@
       "name": "Can I generate the same number twice in list mode?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. List mode generates a set of unique numbers 鈥?each value appears at most once. If you need duplicates allowed, use the single-number mode multiple times."
+        "text": "No. List mode generates a set of unique numbers —each value appears at most once. If you need duplicates allowed, use the single-number mode multiple times."
       }
     },
     {
@@ -61,10 +61,10 @@
     },
     {
       "@type": "Question",
-      "name": "What does Random Number Generator Online 鈥?Free & Customizable do?",
+      "name": "What does Random Number Generator Online —Free & Customizable do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Random Number Generator Online 鈥?Free & Customizable runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Random Number Generator Online —Free & Customizable runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     }
   ]
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -710,7 +710,7 @@
     const iMin = Math.ceil(min), iMax = Math.floor(max);
     const range = iMax - iMin + 1;
 
-    // Integer range may collapse after rounding (e.g. min=5.4, max=5.5 鈫?iMin=6 > iMax=5)
+    // Integer range may collapse after rounding (e.g. min=5.4, max=5.5 →iMin=6 > iMax=5)
     if (numType === 'int' && range < 1) {
       rangeError.textContent = 'No integers exist in this range';
       rangeError.classList.add('visible');
@@ -758,7 +758,7 @@
   function renderOutput() {
     if (numbers.length === 0) return;
     outputTitle.textContent = `${numbers.length} Number${numbers.length !== 1 ? 's' : ''}`;
-    outputFooter.textContent = `min: ${Math.min(...numbers)}  路  max: ${Math.max(...numbers)}  路  sum: ${numbers.reduce((a,b)=>a+b,0).toLocaleString()}`;
+    outputFooter.textContent = `min: ${Math.min(...numbers)}  &middot;  max: ${Math.max(...numbers)}  &middot;  sum: ${numbers.reduce((a,b)=>a+b,0).toLocaleString()}`;
     outputList.innerHTML = numbers.map((n, i) => `
       <div class="num-row">
         <span class="num-index">${i + 1}</span>
@@ -886,7 +886,7 @@
 
   document.getElementById('btnRollDice').addEventListener('click', () => {
     const count = +diceCountSlider.value;
-    diceResultLabel.textContent = `${count}d${currentDie} 鈥?Rolling鈥;
+    diceResultLabel.textContent = `${count}d${currentDie} —Rolling—;
     // Animate
     let frames = 0;
     const maxFrames = 8;
@@ -934,7 +934,7 @@
     });
     const stats = document.createElement('div');
     stats.className = 'coin-stats';
-    stats.textContent = count > 1 ? `Heads: ${headsN}  路  Tails: ${count - headsN}` : (results[0] === 'heads' ? 'Heads' : 'Tails');
+    stats.textContent = count > 1 ? `Heads: ${headsN}  &middot;  Tails: ${count - headsN}` : (results[0] === 'heads' ? 'Heads' : 'Tails');
     diceResultBody.innerHTML = '';
     diceResultBody.appendChild(display);
     diceResultBody.appendChild(stats);
@@ -961,8 +961,8 @@
     slug: 'random-number-generator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -13,7 +13,7 @@
   <meta property="og:description" content="Convert XML to JSON and JSON to XML instantly. Free, browser-based, no data sent." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
     <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {
@@ -326,7 +326,7 @@
   let currentMode = 'xml-to-json';
   let indentSize = 2;
 
-  // XML 鈫?JSON
+  // XML →JSON
   function xmlNodeToObj(node) {
     const obj = {};
     if (node.attributes && node.attributes.length > 0) {
@@ -366,7 +366,7 @@
     return JSON.stringify(result, null, indentSize);
   }
 
-  // JSON 鈫?XML
+  // JSON →XML
   function objToXml(key, val, indent) {
     indent = indent || '';
     const ni = indent + '  ';
@@ -483,8 +483,8 @@
     slug: 'xml-json'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

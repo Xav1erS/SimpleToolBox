@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Text to Speech Online",
-  "description": "Convert text to speech in your browser. Choose voice, speed, and pitch. Powered by the Web Speech API 鈥?no upload required.",
+  "description": "Convert text to speech in your browser. Choose voice, speed, and pitch. Powered by the Web Speech API —no upload required.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -55,7 +55,7 @@
       "name": "Can I change the reading speed?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Use the Speed slider (0.5脳 to 2脳) to slow down or speed up playback."
+        "text": "Yes. Use the Speed slider (0.5× to 2×) to slow down or speed up playback."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .controls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -188,8 +188,8 @@
   </div>
 
   <div class="player-bar">
-    <button class="play-btn" id="btnPlay" title="Play">▀/button>
-    <button class="play-btn" id="btnStop" title="Stop" style="background:var(--ds-color-surface);border:1px solid var(--ds-color-border);color:var(--ds-color-text-secondary);font-size:14px" disabled>▀/button>
+    <button class="play-btn" id="btnPlay" title="Play">&#9654;</button>
+    <button class="play-btn" id="btnStop" title="Stop" style="background:var(--ds-color-surface);border:1px solid var(--ds-color-border);color:var(--ds-color-text-secondary);font-size:14px" disabled>&#9632;</button>
     <div class="progress-wrap">
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
       <div class="word-count" id="wordStatus">Ready</div>
@@ -209,7 +209,7 @@
       <li>Choose a voice from the dropdown. Filter by language if needed.</li>
       <li>Adjust Speed and Pitch sliders to your preference.</li>
       <li>Click the play button to start listening. Click again to pause or resume.</li>
-      <li>Click the stop button (▀ to end playback at any time.</li>
+      <li>Click the stop button (&#9632;) to end playback at any time.</li>
     </ol>
   </section>
 </div>
@@ -297,7 +297,7 @@ function loadVoices() {
   // Populate voice list
   const filtered = currentLang ? voices.filter(v => v.lang.startsWith(currentLang)) : voices;
   voiceSelect.innerHTML = filtered.length
-    ? filtered.map((v, i) => `<option value="${voices.indexOf(v)}">${v.name} (${v.lang})${v.default ? ' 鈥?default' : ''}</option>`).join('')
+    ? filtered.map((v, i) => `<option value="${voices.indexOf(v)}">${v.name} (${v.lang})${v.default ? ' —default' : ''}</option>`).join('')
     : '<option>No voices for this language</option>';
 }
 
@@ -348,7 +348,7 @@ function speak() {
     speaking = false;
     document.getElementById('btnPlay').textContent = '鈻?;
     document.getElementById('btnStop').disabled = true;
-    document.getElementById('wordStatus').textContent = 'Error 鈥?try a different voice';
+    document.getElementById('wordStatus').textContent = 'Error —try a different voice';
   };
   currentUtter = utter;
   synth.speak(utter);
@@ -405,13 +405,13 @@ document.querySelectorAll('.speed-preset-btn').forEach(btn => {
     const rate = parseFloat(btn.dataset.rate);
     const slider = document.getElementById('rateSlider');
     slider.value = rate;
-    document.getElementById('rateLabel').textContent = rate.toFixed(1) + '脳';
+    document.getElementById('rateLabel').textContent = rate.toFixed(1) + '×';
     document.querySelectorAll('.speed-preset-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   });
 });
 document.getElementById('rateSlider').addEventListener('input', function() {
-  document.getElementById('rateLabel').textContent = parseFloat(this.value).toFixed(1) + '脳';
+  document.getElementById('rateLabel').textContent = parseFloat(this.value).toFixed(1) + '×';
   // Sync active state on preset buttons
   const val = parseFloat(this.value);
   document.querySelectorAll('.speed-preset-btn').forEach(b => {
@@ -427,8 +427,8 @@ document.getElementById('rateSlider').addEventListener('input', function() {
     slug: 'text-to-speech'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

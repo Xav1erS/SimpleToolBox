@@ -39,7 +39,7 @@
       "name": "What tip percentage should I leave?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Common tip amounts are 15% for standard service, 18% for good service, and 20鈥?5% for excellent service. The right amount depends on your location and the quality of service."
+        "text": "Common tip amounts are 15% for standard service, 18% for good service, and 20—5% for excellent service. The right amount depends on your location and the quality of service."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -159,10 +159,10 @@
     </div>
   </div>
   <div class="result-grid">
-    <div class="result-card"><div class="result-card__label">Tip Amount</div><div class="result-card__value" id="rTip">鈥</div></div>
-    <div class="result-card result-card--accent"><div class="result-card__label">Total Bill</div><div class="result-card__value" id="rTotal">鈥</div></div>
-    <div class="result-card"><div class="result-card__label">Per Person</div><div class="result-card__value" id="rPer">鈥</div><div class="result-card__sub" id="rPerSub"></div></div>
-    <div class="result-card"><div class="result-card__label">Tip Per Person</div><div class="result-card__value" id="rTipPer">鈥</div></div>
+    <div class="result-card"><div class="result-card__label">Tip Amount</div><div class="result-card__value" id="rTip">—</div></div>
+    <div class="result-card result-card--accent"><div class="result-card__label">Total Bill</div><div class="result-card__value" id="rTotal">—</div></div>
+    <div class="result-card"><div class="result-card__label">Per Person</div><div class="result-card__value" id="rPer">—</div><div class="result-card__sub" id="rPerSub"></div></div>
+    <div class="result-card"><div class="result-card__label">Tip Per Person</div><div class="result-card__value" id="rTipPer">—</div></div>
   </div>
   <!-- AUTO-SEO-SECTIONS:START -->
 <div class="ds-seo-content">
@@ -256,7 +256,7 @@
   function fmt(n) { return '$' + n.toFixed(2); }
 
   function setResult(id, val) {
-    document.getElementById(id).textContent = val === null ? '鈥? : val;
+    document.getElementById(id).textContent = val === null ? '— : val;
   }
 
   function calc() {
@@ -301,8 +301,8 @@
     slug: 'tip-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

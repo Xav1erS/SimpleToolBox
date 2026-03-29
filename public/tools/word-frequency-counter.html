@@ -55,7 +55,7 @@
       "name": "Is the text uploaded anywhere?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Analysis runs entirely in your browser 鈥?nothing is sent to any server."
+        "text": "No. Analysis runs entirely in your browser —nothing is sent to any server."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .options-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -243,7 +243,7 @@
       if (chkStop.checked && STOP.has(w)) continue;
       map.set(w, (map.get(w) || 0) + 1);
     }
-    statSummary.textContent = `${words.length.toLocaleString()} words 路 ${map.size.toLocaleString()} unique`;
+    statSummary.textContent = `${words.length.toLocaleString()} words &middot; ${map.size.toLocaleString()} unique`;
     const min = Math.max(1, parseInt(minCount.value) || 1);
     const limit = Math.max(5, parseInt(topN.value) || 50);
     const sorted = [...map.entries()].filter(([,c]) => c >= min).sort((a,b) => b[1] - a[1]).slice(0, limit);
@@ -282,8 +282,8 @@
     slug: 'word-frequency-counter'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -295,7 +295,7 @@
         </button>
       </div>
     </div>
-    <textarea class="ds-tool-textarea" id="textInput" placeholder="Start typing or paste your text here— spellcheck="false" style="min-height:420px; line-height:1.75; resize:vertical;"></textarea>
+    <textarea class="ds-tool-textarea" id="textInput" placeholder="Start typing or paste your text here… spellcheck="false" style="min-height:420px; line-height:1.75; resize:vertical;"></textarea>
     <div class="ds-tool-pane__footer">
       <span class="ds-tool-stat" id="charLiveCount">0 characters</span>
     </div>
@@ -340,11 +340,11 @@
       <div class="stat-card-header">Time Estimates</div>
       <div class="time-row">
         <span class="time-label"><span class="time-icon">📖</span>Reading time</span>
-        <span class="time-val" id="statReadTime">鈥</span>
+        <span class="time-val" id="statReadTime">—</span>
       </div>
       <div class="time-row">
         <span class="time-label"><span class="time-icon">馃帣锔</span>Speaking time</span>
-        <span class="time-val" id="statSpeakTime">鈥</span>
+        <span class="time-val" id="statSpeakTime">—</span>
       </div>
     </div>
 
@@ -353,15 +353,15 @@
       <div class="stat-card-header">Word Analysis</div>
       <div class="stat-grid">
         <div class="stat-item">
-          <div class="stat-num" id="statAvgWord">鈥</div>
+          <div class="stat-num" id="statAvgWord">—</div>
           <div class="stat-lbl">Avg length</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num" id="statLongest">鈥</div>
+          <div class="stat-num" id="statLongest">—</div>
           <div class="stat-lbl">Longest word</div>
         </div>
         <div class="stat-item full">
-          <div class="stat-num" id="statAvgSentence">鈥</div>
+          <div class="stat-num" id="statAvgSentence">—</div>
           <div class="stat-lbl">Avg words / sentence</div>
         </div>
       </div>
@@ -584,12 +584,12 @@
     elLines.textContent      = s.lines.toLocaleString();
     elCharLive.textContent   = `${s.chars.toLocaleString()} character${s.chars !== 1 ? 's' : ''}`;
 
-    elReadTime.textContent   = s.words > 0 ? fmtTime(s.readSec)  : '鈥?;
-    elSpeakTime.textContent  = s.words > 0 ? fmtTime(s.speakSec) : '鈥?;
+    elReadTime.textContent   = s.words > 0 ? fmtTime(s.readSec)  : '—;
+    elSpeakTime.textContent  = s.words > 0 ? fmtTime(s.speakSec) : '—;
 
-    elAvgWord.textContent    = s.avgWord  ?? '鈥?;
-    elLongest.textContent    = s.longest  || '鈥?;
-    elAvgSent.textContent    = s.avgSent  ?? '鈥?;
+    elAvgWord.textContent    = s.avgWord  ?? '—;
+    elLongest.textContent    = s.longest  || '—;
+    elAvgSent.textContent    = s.avgSent  ?? '—;
 
     if (s.topWords.length === 0) {
       elTopWords.innerHTML = '<div class="empty-words">Type some text to see top words</div>';
@@ -677,8 +677,8 @@
     slug: 'word-counter'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

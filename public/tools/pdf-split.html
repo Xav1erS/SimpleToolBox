@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF Splitter",
-  "description": "Split a PDF by page range or extract every page as a separate file. No upload, instant download 鈥?runs entirely in your browser.",
+  "description": "Split a PDF by page range or extract every page as a separate file. No upload, instant download —runs entirely in your browser.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -47,7 +47,7 @@
       "name": "How do I specify page ranges?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Enter ranges like 1-3, 5, 7-9 separated by commas. Each comma-separated entry produces one output PDF. For example, '1-3, 5, 7-9' produces three PDFs: pages 1鈥?, page 5, and pages 7鈥?."
+        "text": "Enter ranges like 1-3, 5, 7-9 separated by commas. Each comma-separated entry produces one output PDF. For example, '1-3, 5, 7-9' produces three PDFs: pages 1—, page 5, and pages 7—."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -352,9 +352,9 @@
   <!-- Info bar (shown after load) -->
   <div class="info-bar" id="infoBar">
     <span>PDF loaded:</span>
-    <span class="info-badge" id="infoFilename">鈥</span>
+    <span class="info-badge" id="infoFilename">—</span>
     <span>·</span>
-    <span class="info-badge" id="infoPages">鈥</span>
+    <span class="info-badge" id="infoPages">—</span>
     <span>pages</span>
     <button class="btn-change-pdf" id="btnChangePdf">Change PDF</button>
   </div>
@@ -393,7 +393,7 @@
 
   <!-- Progress -->
   <div class="progress-bar-wrap" id="progressWrap">
-    <div class="progress-label" id="progressLabel">Processing鈥</div>
+    <div class="progress-label" id="progressLabel">Processing—</div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -559,7 +559,7 @@
         const from = parseInt(dashMatch[1], 10);
         const to   = parseInt(dashMatch[2], 10);
         if (from < 1 || to < 1) throw `Range "${part}" contains a page number less than 1.`;
-        if (from > to) throw `Range "${part}" is invalid 鈥?start must be 鈮?end.`;
+        if (from > to) throw `Range "${part}" is invalid —start must be 鈮?end.`;
         if (to > max)  throw `Range "${part}" exceeds the document's ${max} pages.`;
         const pages = [];
         for (let p = from; p <= to; p++) pages.push(p);
@@ -630,7 +630,7 @@
     const blobs = [];
     for (let i = 0; i < ranges.length; i++) {
       const pages = ranges[i];
-      progressLabel.textContent = `Building PDF ${i + 1} of ${ranges.length} (pages ${pages[0]}鈥?{pages[pages.length - 1]})鈥;
+      progressLabel.textContent = `Building PDF ${i + 1} of ${ranges.length} (pages ${pages[0]}—{pages[pages.length - 1]})—;
       progressFill.style.width  = (i / ranges.length * 100) + '%';
       const blob = await buildPdf(pages);
       if (blob) {
@@ -648,7 +648,7 @@
   async function splitEveryPage() {
     const blobs = [];
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Processing page ${i} of ${numPages}鈥;
+      progressLabel.textContent = `Processing page ${i} of ${numPages}—;
       progressFill.style.width  = ((i - 1) / numPages * 100) + '%';
       const blob = await buildPdf([i]);
       if (blob) {
@@ -719,7 +719,7 @@
     btnSplit.disabled = true;
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Starting鈥?;
+    progressLabel.textContent = 'Starting—;
 
     try {
       if (currentMode === 'range') {
@@ -728,12 +728,12 @@
         resultBlobs = await splitEveryPage();
       }
 
-      progressLabel.textContent = `Done 鈥?${resultBlobs.length} PDF${resultBlobs.length !== 1 ? 's' : ''} created.`;
+      progressLabel.textContent = `Done —${resultBlobs.length} PDF${resultBlobs.length !== 1 ? 's' : ''} created.`;
       setTimeout(() => { progressWrap.classList.remove('visible'); }, 1800);
 
       // Render results
       const total = resultBlobs.length;
-      resultTitle.textContent = `Split complete 鈥?${total} PDF${total !== 1 ? 's' : ''} ready`;
+      resultTitle.textContent = `Split complete —${total} PDF${total !== 1 ? 's' : ''} ready`;
       renderResults(resultBlobs);
 
       // Show ZIP button only when multiple files
@@ -755,7 +755,7 @@
   btnDlZip.addEventListener('click', async () => {
     if (!resultBlobs.length) return;
     btnDlZip.disabled = true;
-    btnDlZip.textContent = 'Building ZIP鈥?;
+    btnDlZip.textContent = 'Building ZIP—;
     try {
       const zip = new JSZip();
       for (const { name, blob } of resultBlobs) {
@@ -784,7 +784,7 @@
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Loading PDF鈥?;
+    progressLabel.textContent = 'Loading PDF—;
 
     const arrayBuffer = await file.arrayBuffer();
     try {
@@ -795,7 +795,7 @@
       return;
     }
 
-    progressLabel.textContent = `PDF loaded 鈥?${numPages} page${numPages > 1 ? 's' : ''}.`;
+    progressLabel.textContent = `PDF loaded —${numPages} page${numPages > 1 ? 's' : ''}.`;
     setTimeout(() => { progressWrap.classList.remove('visible'); }, 1500);
 
     infoFilename.textContent = file.name;
@@ -851,8 +851,8 @@
     slug: 'pdf-split'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

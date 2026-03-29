@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .drop-zone { border: 2px dashed var(--ds-color-border); border-radius: var(--ds-radius-md); padding: 48px 24px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
@@ -371,11 +371,11 @@
     const parts = [];
     if (fields.Make || fields.Model) parts.push(`<strong>Camera:</strong> ${[fields.Make, fields.Model].filter(Boolean).join(' ')}`);
     if (fields.DateTime) parts.push(`<strong>Date:</strong> ${fields.DateTime}`);
-    if (fields.Width && fields.Height) parts.push(`<strong>Dimensions:</strong> ${fields.Width} 脳 ${fields.Height}`);
+    if (fields.Width && fields.Height) parts.push(`<strong>Dimensions:</strong> ${fields.Width} × ${fields.Height}`);
     if (fields.Artist) { parts.push(`<strong>Artist:</strong> ${fields.Artist}`); document.getElementById('mAuthor').value = fields.Artist; }
 
     document.getElementById('exifReadout').innerHTML = parts.length
-      ? parts.join(' &nbsp;路&nbsp; ')
+      ? parts.join(' &nbsp;&middot;&nbsp; ')
       : 'No readable EXIF fields found. You can still add metadata fields below.';
   }
 
@@ -435,8 +435,8 @@
     slug: 'image-metadata-editor'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

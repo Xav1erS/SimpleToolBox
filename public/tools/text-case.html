@@ -45,7 +45,7 @@
       "name": "Does it handle camelCase input correctly?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?camelCase and PascalCase boundaries are detected and split before converting to other formats."
+        "text": "Yes —camelCase and PascalCase boundaries are detected and split before converting to other formats."
       }
     },
     {
@@ -53,20 +53,20 @@
       "name": "Can I convert multiple lines at once?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?paste multi-line text and each line is converted independently."
+        "text": "Yes —paste multi-line text and each line is converted independently."
       }
     },
     {
       "@type": "Question",
-      "name": "What does Text Case Converter Online 鈥?camelCase, snake_case & More do?",
+      "name": "What does Text Case Converter Online —camelCase, snake_case & More do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Text Case Converter Online 鈥?camelCase, snake_case & More runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Text Case Converter Online —camelCase, snake_case & More runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is Text Case Converter Online 鈥?camelCase, snake_case & More free to use?",
+      "name": "Is Text Case Converter Online —camelCase, snake_case & More free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -77,7 +77,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     html { scroll-behavior: smooth; }
     body {
@@ -269,7 +269,7 @@
         </button>
       </div>
     </div>
-    <textarea class="input-textarea" id="inputText" placeholder="Type or paste text here— spellcheck="false"></textarea>
+    <textarea class="input-textarea" id="inputText" placeholder="Type or paste text here… spellcheck="false"></textarea>
     <div class="pane-footer">
       <span class="pane-stat" id="inputStat">0 chars</span>
     </div>
@@ -456,7 +456,7 @@
     row.className = 'result-row';
     row.innerHTML = `
       <span class="result-case-label">${c.label}</span>
-      <span class="result-value empty" data-id="${c.label}">鈥</span>
+      <span class="result-value empty" data-id="${c.label}">—</span>
       <button class="result-copy" data-id="${c.label}">Copy</button>
     `;
     grid.appendChild(row);
@@ -472,7 +472,7 @@
   rows.forEach(({ valueEl, copyEl }) => {
     copyEl.addEventListener('click', () => {
       const val = valueEl.textContent;
-      if (!val || val === '鈥?) return;
+      if (!val || val === '—) return;
       navigator.clipboard.writeText(val).catch(() => {});
       copyEl.textContent = '鉁?Copied';
       copyEl.classList.add('copied');
@@ -483,7 +483,7 @@
     });
   });
 
-  // 鈹€鈹€ Input 鈫?update all rows 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // 鈹€鈹€ Input →update all rows 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   const inputText = document.getElementById('inputText');
   const inputStat = document.getElementById('inputStat');
 
@@ -493,7 +493,7 @@
     const tokens = tokenize(raw);
     rows.forEach(r => {
       if (!raw.trim()) {
-        r.valueEl.textContent = '鈥?;
+        r.valueEl.textContent = '—;
         r.valueEl.className = 'result-value empty';
       } else {
         r.valueEl.textContent = r.fn(tokens);
@@ -531,8 +531,8 @@
     slug: 'text-case'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

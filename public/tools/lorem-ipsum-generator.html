@@ -19,7 +19,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Lorem Ipsum Generator",
-  "description": "Generate placeholder text online 鈥?classic Lorem Ipsum, Chinese characters, tech jargon, or business language. Output as plain text, HTML, or Markdown. Free, no sign-up.",
+  "description": "Generate placeholder text online —classic Lorem Ipsum, Chinese characters, tech jargon, or business language. Output as plain text, HTML, or Markdown. Free, no sign-up.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -40,7 +40,7 @@
       "name": "Is lorem ipsum real Latin?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Mostly no. It is based on Cicero's de Finibus but scrambled and modified to make it meaningless. This is intentional 鈥?designers don't want readers parsing the content instead of evaluating the layout."
+        "text": "Mostly no. It is based on Cicero's de Finibus but scrambled and modified to make it meaningless. This is intentional —designers don't want readers parsing the content instead of evaluating the layout."
       }
     },
     {
@@ -48,7 +48,7 @@
       "name": "Is it safe to ship lorem ipsum to production?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Lorem ipsum is for development and design review only. Always replace it with real copy before a public launch 鈥?some users and search engines may notice placeholder text."
+        "text": "No. Lorem ipsum is for development and design review only. Always replace it with real copy before a public launch —some users and search engines may notice placeholder text."
       }
     },
     {
@@ -61,10 +61,10 @@
     },
     {
       "@type": "Question",
-      "name": "What does Lorem Ipsum Generator Online 鈥?Random Placeholder Text Free do?",
+      "name": "What does Lorem Ipsum Generator Online —Random Placeholder Text Free do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lorem Ipsum Generator Online 鈥?Random Placeholder Text Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Lorem Ipsum Generator Online —Random Placeholder Text Free runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     }
   ]
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -479,8 +479,8 @@
     outputText.value = output;
     const wc = output.split(/\s+/).filter(Boolean).length;
     const cc = output.length;
-    outputLabel.textContent = `Output 鈥?${paragraphs.length} paragraph${paragraphs.length !== 1 ? 's' : ''}`;
-    outputFooter.textContent = `${wc.toLocaleString()} words  路  ${cc.toLocaleString()} characters`;
+    outputLabel.textContent = `Output —${paragraphs.length} paragraph${paragraphs.length !== 1 ? 's' : ''}`;
+    outputFooter.textContent = `${wc.toLocaleString()} words  &middot;  ${cc.toLocaleString()} characters`;
   }
 
   document.getElementById('btnGenerate').addEventListener('click', generate);
@@ -531,8 +531,8 @@
     slug: 'lorem-ipsum-generator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -17,7 +17,7 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Torque Converter 鈥?N路m, ft路lb, in路lb, kgf路m",
+  "name": "Torque Converter —N&middot;m, ft&middot;lb, in&middot;lb, kgf&middot;m",
   "description": "Convert torque between newton-meters, foot-pounds, inch-pounds, kilogram-force meters, kilonewton-meters, and newton-centimeters. Type in any field for instant conversion.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
@@ -36,18 +36,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How many ft路lb is 1 N路m?",
+      "name": "How many ft&middot;lb is 1 N&middot;m?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "1 N路m = 0.7376 ft路lb (foot-pounds)."
+        "text": "1 N&middot;m = 0.7376 ft&middot;lb (foot-pounds)."
       }
     },
     {
       "@type": "Question",
-      "name": "How many in路lb is 1 N路m?",
+      "name": "How many in&middot;lb is 1 N&middot;m?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "1 N路m = 8.851 in路lb (inch-pounds)."
+        "text": "1 N&middot;m = 8.851 in&middot;lb (inch-pounds)."
       }
     },
     {
@@ -55,15 +55,15 @@
       "name": "What is the difference between torque and force?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Force is a push or pull (measured in newtons). Torque is a rotational force 鈥?force applied at a distance from a pivot point. Torque = Force x Lever Arm length."
+        "text": "Force is a push or pull (measured in newtons). Torque is a rotational force —force applied at a distance from a pivot point. Torque = Force x Lever Arm length."
       }
     },
     {
       "@type": "Question",
-      "name": "What is kgf路m used for?",
+      "name": "What is kgf&middot;m used for?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Kilogram-force meter (kgf路m) is a legacy unit used in older engineering literature and some Asian countries. 1 kgf路m = 9.80665 N路m."
+        "text": "Kilogram-force meter (kgf&middot;m) is a legacy unit used in older engineering literature and some Asian countries. 1 kgf&middot;m = 9.80665 N&middot;m."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .conv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -197,7 +197,7 @@
   <div class="ds-related-grid">
     <a href="force-converter.html" class="ds-related-card"><span class="ds-related-icon">💪</span><div><div class="ds-related-name">Force Converter</div><div class="ds-related-desc">Convert force between newtons, kilonewtons, pound-force, kilogram-force, and dyne.</div></div></a>
     <a href="pressure-converter.html" class="ds-related-card"><span class="ds-related-icon">🔩</span><div><div class="ds-related-name">Pressure Converter</div><div class="ds-related-desc">Convert pressure between Pa, kPa, bar, psi, atm, and mmHg. Type in any field to update all others.</div></div></a>
-    <a href="energy-converter.html" class="ds-related-card"><span class="ds-related-icon">⚀/span><div><div class="ds-related-name">Energy Converter</div><div class="ds-related-desc">Convert energy between joules, kJ, calories, kcal, Wh, kWh, MJ, and BTU. Type in any field to update all others.</div></div></a>
+    <a href="energy-converter.html" class="ds-related-card"><span class="ds-related-icon">⚀</span><div><div class="ds-related-name">Energy Converter</div><div class="ds-related-desc">Convert energy between joules, kJ, calories, kcal, Wh, kWh, MJ, and BTU. Type in any field to update all others.</div></div></a>
     <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
   </div>
 </div>
@@ -251,22 +251,22 @@
 <footer class="ds-footer"><div class="ds-footer__inner"><span>© 2025 Simple ToolBox</span><nav class="ds-footer__nav"><a href="../about.html">About</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../contact.html">Contact</a></nav></div></footer>
 
 <script>
-// All factors relative to N路m
+// All factors relative to N&middot;m
 const UNITS = {
-  Nm:   { factor: 1,           label: 'N路m' },
-  Knm:  { factor: 1000,        label: 'kN路m' },
-  Ftlb: { factor: 1.3558179,   label: 'ft路lb' },
-  Inlb: { factor: 0.1129848,   label: 'in路lb' },
-  Kgfm: { factor: 9.80665,     label: 'kgf路m' },
-  Ncm:  { factor: 0.01,        label: 'N路cm' },
+  Nm:   { factor: 1,           label: 'N&middot;m' },
+  Knm:  { factor: 1000,        label: 'kN&middot;m' },
+  Ftlb: { factor: 1.3558179,   label: 'ft&middot;lb' },
+  Inlb: { factor: 0.1129848,   label: 'in&middot;lb' },
+  Kgfm: { factor: 9.80665,     label: 'kgf&middot;m' },
+  Ncm:  { factor: 0.01,        label: 'N&middot;cm' },
 };
 
 const EXAMPLES = [
-  { unit: 'Nm',   val: 100,  label: '100 N路m' },
-  { unit: 'Ftlb', val: 100,  label: '100 ft路lb' },
-  { unit: 'Nm',   val: 25,   label: '25 N路m' },
-  { unit: 'Inlb', val: 50,   label: '50 in路lb' },
-  { unit: 'Nm',   val: 200,  label: '200 N路m' },
+  { unit: 'Nm',   val: 100,  label: '100 N&middot;m' },
+  { unit: 'Ftlb', val: 100,  label: '100 ft&middot;lb' },
+  { unit: 'Nm',   val: 25,   label: '25 N&middot;m' },
+  { unit: 'Inlb', val: 50,   label: '50 in&middot;lb' },
+  { unit: 'Nm',   val: 200,  label: '200 N&middot;m' },
 ];
 
 const round = (n, dp = 6) => Math.round(n * 10**dp) / 10**dp;
@@ -315,6 +315,7 @@ EXAMPLES.forEach(e => {
   row.appendChild(btn);
 });
 </script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

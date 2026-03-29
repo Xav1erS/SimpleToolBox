@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF Compressor",
-  "description": "Reduce PDF file size online for free. Three quality presets, instant download, no file uploads 鈥?runs entirely in your browser.",
+  "description": "Reduce PDF file size online for free. Three quality presets, instant download, no file uploads —runs entirely in your browser.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 900px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -363,7 +363,7 @@
 
   <!-- Progress -->
   <div class="progress-bar-wrap" id="progressWrap">
-    <div class="progress-label" id="progressLabel">Rendering pages鈥</div>
+    <div class="progress-label" id="progressLabel">Rendering pages—</div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -374,17 +374,17 @@
     <div class="result-stats">
       <div class="stat-block">
         <div class="stat-label">Original</div>
-        <div class="stat-value" id="statOriginal">鈥</div>
+        <div class="stat-value" id="statOriginal">—</div>
       </div>
-      <div class="stat-arrow">鈫</div>
+      <div class="stat-arrow">→</div>
       <div class="stat-block">
         <div class="stat-label">Compressed</div>
-        <div class="stat-value" id="statCompressed">鈥</div>
+        <div class="stat-value" id="statCompressed">—</div>
       </div>
       <div class="stat-arrow" style="font-size:16px;opacity:0.4;">|</div>
       <div class="stat-block stat-savings" id="statSavingsBlock">
         <div class="stat-label">Savings</div>
-        <div class="stat-value" id="statSavings">鈥</div>
+        <div class="stat-value" id="statSavings">—</div>
         <div class="savings-note" id="statSavingsNote"></div>
       </div>
     </div>
@@ -488,9 +488,9 @@
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
   const PRESETS = {
-    high:   { scale: 1.5, quality: 0.85, label: 'High quality 鈥?renders at 1.5脳 scale, JPEG quality 85%. Expected reduction: 30鈥?0%.' },
-    medium: { scale: 1.0, quality: 0.70, label: 'Medium quality 鈥?renders at 1脳 scale, JPEG quality 70%. Expected reduction: 50鈥?0%.' },
-    low:    { scale: 0.75, quality: 0.55, label: 'Low quality 鈥?renders at 0.75脳 scale, JPEG quality 55%. Expected reduction: 70鈥?5%.' }
+    high:   { scale: 1.5, quality: 0.85, label: 'High quality —renders at 1.5× scale, JPEG quality 85%. Expected reduction: 30—0%.' },
+    medium: { scale: 1.0, quality: 0.70, label: 'Medium quality —renders at 1× scale, JPEG quality 70%. Expected reduction: 50—0%.' },
+    low:    { scale: 0.75, quality: 0.55, label: 'Low quality —renders at 0.75× scale, JPEG quality 55%. Expected reduction: 70—5%.' }
   };
 
   const dropZone      = document.getElementById('dropZone');
@@ -560,7 +560,7 @@
     resultPanel.classList.remove('visible');
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Loading PDF鈥?;
+    progressLabel.textContent = 'Loading PDF—;
 
     const arrayBuffer = await currentFile.arrayBuffer();
     let pdfDoc;
@@ -579,7 +579,7 @@
     let pdf = null;
 
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Rendering page ${i} of ${numPages}鈥;
+      progressLabel.textContent = `Rendering page ${i} of ${numPages}—;
       progressFill.style.width = ((i - 1) / numPages * 100) + '%';
 
       const page = await pdfDoc.getPage(i);
@@ -596,7 +596,7 @@
 
       // Page dimensions in mm (PDF points: 1pt = 0.352778mm)
       // viewport is in px at the given scale; convert to mm using 72 DPI baseline
-      const pxToMm = 25.4 / 96; // 96 px/in 鈫?mm
+      const pxToMm = 25.4 / 96; // 96 px/in →mm
       const widthMm  = (viewport.width  / preset.scale) * pxToMm;
       const heightMm = (viewport.height / preset.scale) * pxToMm;
 
@@ -614,7 +614,7 @@
       progressFill.style.width = (i / numPages * 100) + '%';
     }
 
-    progressLabel.textContent = 'Building compressed PDF鈥?;
+    progressLabel.textContent = 'Building compressed PDF—;
 
     // Get output as blob
     const pdfArrayBuffer = pdf.output('arraybuffer');
@@ -635,7 +635,7 @@
     statSavingsBlock.classList.toggle('stat-savings-neg', increased);
 
     if (increased) {
-      statSavingsNote.textContent = 'File grew 鈥?source is already compressed. Try High preset.';
+      statSavingsNote.textContent = 'File grew —source is already compressed. Try High preset.';
     } else {
       statSavingsNote.textContent = `Saved ${formatBytes(savedBytes)}`;
     }
@@ -689,8 +689,8 @@
     slug: 'pdf-compress'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

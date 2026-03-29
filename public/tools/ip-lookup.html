@@ -45,7 +45,7 @@
       "name": "Is GeoIP precise enough to find a home address?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No 鈥?city-level accuracy means within 25鈥?0 km. GeoIP is never precise enough for individual location tracking."
+        "text": "No —city-level accuracy means within 25—0 km. GeoIP is never precise enough for individual location tracking."
       }
     },
     {
@@ -53,20 +53,20 @@
       "name": "Does it work with IPv6?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?both IPv4 and IPv6 addresses are supported."
+        "text": "Yes —both IPv4 and IPv6 addresses are supported."
       }
     },
     {
       "@type": "Question",
-      "name": "What does IP Address Lookup & Geolocation Online 鈥?Free IP Info Tool do?",
+      "name": "What does IP Address Lookup & Geolocation Online —Free IP Info Tool do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "IP Address Lookup & Geolocation Online 鈥?Free IP Info Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "IP Address Lookup & Geolocation Online —Free IP Info Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is IP Address Lookup & Geolocation Online 鈥?Free IP Info Tool free to use?",
+      "name": "Is IP Address Lookup & Geolocation Online —Free IP Info Tool free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -77,7 +77,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     html { scroll-behavior: smooth; }
     body {
@@ -276,8 +276,7 @@
       <div class="ds-card__body">
         <div class="lookup-bar">
           <input class="lookup-input" id="lookupInput" type="text"
-            placeholder="Enter IP address (leave blank for your own IP)—
-            autocomplete="off" />
+            placeholder="Enter IP address (leave blank for your own IP)… autocomplete="off" />
           <button class="ds-tool-primary" id="btnLookup">
             Look Up
           </button>
@@ -287,19 +286,19 @@
 
   <!-- Loading state -->
   <div class="loading-card" id="loadingCard" style="display:none">
-    <div class="loading-text">Looking up IP—/div>
+    <div class="loading-text">Looking up IP—</div>
   </div>
 
   <!-- Error state -->
   <div class="error-card" id="errorCard" style="display:none">
-    <div class="error-icon">⚀/div>
-    <div class="error-msg" id="errorMsg">—/div>
+    <div class="error-icon">⚀</div>
+    <div class="error-msg" id="errorMsg">—</div>
   </div>
 
   <!-- Results card -->
   <div class="ip-card" id="ipCard" style="display:none">
     <div class="ip-card__header">
-      <div class="ip-address" id="resultIp">—/div>
+      <div class="ip-address" id="resultIp">—</div>
       <div class="ip-type" id="resultType"></div>
     </div>
     <div class="ip-grid" id="ipGrid">
@@ -410,7 +409,7 @@
   }
 
   function renderResult(data) {
-    resultIp.textContent = data.ip || '鈥?;
+    resultIp.textContent = data.ip || '—;
     resultType.textContent = data.version || (data.ip && data.ip.includes(':') ? 'IPv6' : 'IPv4');
 
     ipGrid.innerHTML = '';
@@ -418,8 +417,8 @@
       const val = data[f.key];
       const row = document.createElement('div');
       row.className = 'ip-row';
-      const displayVal = (val !== null && val !== undefined && val !== '') ? String(val) : '鈥?;
-      const isEmpty = displayVal === '鈥?;
+      const displayVal = (val !== null && val !== undefined && val !== '') ? String(val) : '—;
+      const isEmpty = displayVal === '—;
       row.innerHTML = `
         <span class="ip-row-key">${f.label}</span>
         <span class="ip-row-val${isEmpty ? ' empty' : ''}">${displayVal}</span>
@@ -456,7 +455,7 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

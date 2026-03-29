@@ -40,7 +40,7 @@
       "name": "Is this Bitcoin's Base58Check?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No 鈥?this is standard Base58 without checksum. Bitcoin's Base58Check adds a 4-byte SHA256d checksum."
+        "text": "No —this is standard Base58 without checksum. Bitcoin's Base58Check adds a 4-byte SHA256d checksum."
       }
     },
     {
@@ -53,15 +53,15 @@
     },
     {
       "@type": "Question",
-      "name": "What does Base58 Encoder / Decoder Online 鈥?Bitcoin & IPFS Format do?",
+      "name": "What does Base58 Encoder / Decoder Online —Bitcoin & IPFS Format do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Base58 Encoder / Decoder Online 鈥?Bitcoin & IPFS Format runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Base58 Encoder / Decoder Online —Bitcoin & IPFS Format runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is Base58 Encoder / Decoder Online 鈥?Bitcoin & IPFS Format free to use?",
+      "name": "Is Base58 Encoder / Decoder Online —Bitcoin & IPFS Format free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -244,7 +244,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here— spellcheck="false" autocomplete="off"></textarea>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here… spellcheck="false" autocomplete="off"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat io-stat-inline" id="inputStat">0 chars</span>
       </div>
@@ -252,7 +252,7 @@
 
     <!-- ARROW -->
     <div class="ds-tool-arrow">
-      <div class="ds-tool-arrow__circle" id="arrowIcon">鈫</div>
+      <div class="ds-tool-arrow__circle" id="arrowIcon">→</div>
     </div>
 
     <!-- OUTPUT -->
@@ -266,7 +266,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea" id="outputText" placeholder="Output will appear here— readonly spellcheck="false"></textarea>
+      <textarea class="ds-tool-textarea" id="outputText" placeholder="Output will appear here… readonly spellcheck="false"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat io-stat-inline" id="outputStat">0 chars</span>
         <span class="ds-tool-error io-error-inline" id="errorMsg"></span>
@@ -478,7 +478,7 @@
       outputPanel.classList.add('has-error');
       outputText.value = '';
       errorMsg.textContent = e.message || (mode === 'decode'
-        ? 'Invalid Base58 鈥?check input'
+        ? 'Invalid Base58 —check input'
         : 'Encoding failed');
     }
     updateStats();
@@ -499,7 +499,7 @@
     inputLabel.textContent  = m === 'encode' ? 'Plain Text'    : 'Base58 String';
     outputLabel.textContent = m === 'encode' ? 'Base58'        : 'Decoded Text';
     runLabel.textContent    = m === 'encode' ? 'Encode'        : 'Decode';
-    inputText.placeholder   = m === 'encode' ? 'Type or paste text here鈥? : 'Paste Base58 string here鈥?;
+    inputText.placeholder   = m === 'encode' ? 'Type or paste text here— : 'Paste Base58 string here—;
     outputPanel.classList.remove('has-error');
     run();
   }
@@ -596,8 +596,8 @@
     slug: 'base58'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

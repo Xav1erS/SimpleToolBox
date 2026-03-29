@@ -3422,7 +3422,7 @@ body > .ds-seo-more {
 }
 
 .ds-tool-shell-ready .ds-tool-header__row {
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   margin-bottom: 14px;
 }
@@ -4020,6 +4020,11 @@ body > .ds-seo-more {
   .ds-tool-shell-ready .ds-tool-header__title,
   .ds-tool-shell-ready .tool-title {
     font-size: clamp(28px, 10vw, 40px);
+  }
+
+  .ds-tool-shell-ready .ds-tool-header__row,
+  .ds-tool-shell-ready .tool-title-row {
+    align-items: flex-start;
   }
 
   .ds-tool-shell-ready .ds-tool-main,

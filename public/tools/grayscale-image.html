@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Grayscale Image Tool",
-  "description": "Convert images to grayscale or black and white online for free. Adjust intensity, download as JPEG or PNG. No upload 鈥?runs entirely in your browser.",
+  "description": "Convert images to grayscale or black and white online for free. Adjust intensity, download as JPEG or PNG. No upload —runs entirely in your browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -39,7 +39,7 @@
       "name": "What is the difference between Grayscale and Black & White mode?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Grayscale converts each pixel to a shade of gray based on its luminance 鈥?you get the full tonal range from pure black to pure white with all the gray shades in between. Black & White mode applies a threshold: pixels brighter than the threshold become pure white, and darker pixels become pure black. B&W is better for text, documents, and graphic art; Grayscale is better for photos."
+        "text": "Grayscale converts each pixel to a shade of gray based on its luminance —you get the full tonal range from pure black to pure white with all the gray shades in between. Black & White mode applies a threshold: pixels brighter than the threshold become pure white, and darker pixels become pure black. B&W is better for text, documents, and graphic art; Grayscale is better for photos."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "Will my image look the same after converting to grayscale?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Visually yes 鈥?the shapes, edges, and tones are all preserved. Only the color information is removed. The image will look like a classic black-and-white photo."
+        "text": "Visually yes —the shapes, edges, and tones are all preserved. Only the color information is removed. The image will look like a classic black-and-white photo."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "Which output format should I use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "JPEG is recommended for photos 鈥?it produces smaller files. PNG is better when you need lossless output (e.g., for logos or documents where sharp edges matter)."
+        "text": "JPEG is recommended for photos —it produces smaller files. PNG is better when you need lossless output (e.g., for logos or documents where sharp edges matter)."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
@@ -259,11 +259,11 @@
     <div class="img-meta" id="imgMeta" style="display:none">
       <div>
         <div class="meta-lbl">Dimensions</div>
-        <div class="meta-val" id="metaDimensions">鈥</div>
+        <div class="meta-val" id="metaDimensions">—</div>
       </div>
       <div>
         <div class="meta-lbl">Filename</div>
-        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">鈥</div>
+        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
       </div>
     </div>
   </div>
@@ -395,7 +395,7 @@
       const img = new Image();
       img.onload = () => {
         srcImage = img;
-        metaDimensions.textContent = `${img.naturalWidth} 脳 ${img.naturalHeight}`;
+        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
         dropZone.style.display   = 'none';
         canvasWrap.style.display = 'flex';
         imgMeta.style.display    = 'grid';
@@ -476,8 +476,8 @@
     slug: 'grayscale-image'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

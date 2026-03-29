@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
     .panel, .preview-panel { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
@@ -195,9 +195,9 @@
     <div class="img-wrap" id="imgWrap" style="display:none">
       <img class="img-preview" id="imgPreview" alt="Preview" />
       <div class="img-meta">
-        <div><div class="meta-lbl">Source Size</div><div class="meta-val" id="metaSourceSize">鈥</div></div>
-        <div><div class="meta-lbl">Export Size</div><div class="meta-val" id="metaExportSize">鈥</div></div>
-        <div><div class="meta-lbl">Filename</div><div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">鈥</div></div>
+        <div><div class="meta-lbl">Source Size</div><div class="meta-val" id="metaSourceSize">—</div></div>
+        <div><div class="meta-lbl">Export Size</div><div class="meta-val" id="metaExportSize">—</div></div>
+        <div><div class="meta-lbl">Filename</div><div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div></div>
       </div>
     </div>
   </div>
@@ -320,7 +320,7 @@
       currentImage = img;
       currentText = text;
       currentFilename = filename;
-      metaSourceSize.textContent = `${img.width} 脳 ${img.height}`;
+      metaSourceSize.textContent = `${img.width} × ${img.height}`;
       metaFilename.textContent = filename;
       imgPreview.src = url;
       imgWrap.style.display = 'flex';
@@ -338,7 +338,7 @@
     canvas.height = currentImage.height * currentScale;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
-    metaExportSize.textContent = `${canvas.width} 脳 ${canvas.height}`;
+    metaExportSize.textContent = `${canvas.width} × ${canvas.height}`;
     const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
     if (!blob) return;
     btnDownload.disabled = false;
@@ -399,8 +399,8 @@
     slug: 'svg-to-png'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Blur Image Tool",
-  "description": "Apply a blur effect to images online for free. Adjust blur intensity, download as JPEG or PNG. Blur faces, backgrounds, or sensitive info. No upload 鈥?runs in your browser.",
+  "description": "Apply a blur effect to images online for free. Adjust blur intensity, download as JPEG or PNG. Blur faces, backgrounds, or sensitive info. No upload —runs in your browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -47,7 +47,7 @@
       "name": "What blur radius should I use for privacy purposes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For effective privacy blur that obscures recognizable details (faces, license plates, screen content), a radius of 20鈥?0px is recommended. The \"Privacy\" preset at 30px provides strong anonymization for most images."
+        "text": "For effective privacy blur that obscures recognizable details (faces, license plates, screen content), a radius of 20—0px is recommended. The \"Privacy\" preset at 30px provides strong anonymization for most images."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Does blurring an image reduce file size?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Often yes 鈥?blurred images have less detail and more uniform color areas, which makes JPEG compression more effective. A heavily blurred image can be 30鈥?0% smaller than the original at the same quality setting."
+        "text": "Often yes —blurred images have less detail and more uniform color areas, which makes JPEG compression more effective. A heavily blurred image can be 30—0% smaller than the original at the same quality setting."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "Can I undo the blur?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Once downloaded, blur cannot be reversed 鈥?blurring permanently destroys the image detail in those areas. The original file in your browser is not modified; just reload the page and upload the original again."
+        "text": "Once downloaded, blur cannot be reversed —blurring permanently destroys the image detail in those areas. The original file in your browser is not modified; just reload the page and upload the original again."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
@@ -242,11 +242,11 @@
     <div class="img-meta" id="imgMeta" style="display:none">
       <div>
         <div class="meta-lbl">Dimensions</div>
-        <div class="meta-val" id="metaDimensions">鈥</div>
+        <div class="meta-val" id="metaDimensions">—</div>
       </div>
       <div>
         <div class="meta-lbl">Filename</div>
-        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">鈥</div>
+        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
       </div>
     </div>
   </div>
@@ -394,7 +394,7 @@
       const img = new Image();
       img.onload = () => {
         srcImage = img;
-        metaDimensions.textContent = `${img.naturalWidth} 脳 ${img.naturalHeight}`;
+        metaDimensions.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
         dropZone.style.display   = 'none';
         canvasWrap.style.display = 'flex';
         imgMeta.style.display    = 'grid';
@@ -443,8 +443,8 @@
     slug: 'blur-image'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

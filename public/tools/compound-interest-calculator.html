@@ -47,7 +47,7 @@
       "name": "What does compounding frequency mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It is how often interest is applied per year. Monthly compounding (12脳/yr) grows faster than annual (1脳/yr) at the same nominal rate."
+        "text": "It is how often interest is applied per year. Monthly compounding (12×/yr) grows faster than annual (1×/yr) at the same nominal rate."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
@@ -135,10 +135,10 @@
     </div>
   </div>
   <div class="result-row">
-    <div class="result-card result-card--accent"><div class="result-card__label">Final Balance</div><div class="result-card__value" id="rBalance">—/div></div>
-    <div class="result-card"><div class="result-card__label">Total Interest</div><div class="result-card__value" id="rInterest">—/div></div>
-    <div class="result-card"><div class="result-card__label">Total Contributed</div><div class="result-card__value" id="rContributed">—/div></div>
-    <div class="result-card"><div class="result-card__label">Effective Rate (APY)</div><div class="result-card__value" id="rApy">—/div></div>
+    <div class="result-card result-card--accent"><div class="result-card__label">Final Balance</div><div class="result-card__value" id="rBalance">—</div></div>
+    <div class="result-card"><div class="result-card__label">Total Interest</div><div class="result-card__value" id="rInterest">—</div></div>
+    <div class="result-card"><div class="result-card__label">Total Contributed</div><div class="result-card__value" id="rContributed">—</div></div>
+    <div class="result-card"><div class="result-card__label">Effective Rate (APY)</div><div class="result-card__value" id="rApy">—</div></div>
   </div>
   <section class="ds-card">
     <div class="ds-card__body">
@@ -261,7 +261,7 @@
   calc();
 </script>
 <footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
-<script src="../tools-data.js"></script><script src="../tool-page-icon.js"></script>
+<script src="../tools-data.js"></script><script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

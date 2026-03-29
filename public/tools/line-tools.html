@@ -39,7 +39,7 @@
       "name": "Is deduplication case-sensitive?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?\"Apple\" and \"apple\" are treated as different lines. Use the lowercase conversion first if you want case-insensitive deduplication."
+        "text": "Yes —\"Apple\" and \"apple\" are treated as different lines. Use the lowercase conversion first if you want case-insensitive deduplication."
       }
     },
     {
@@ -47,20 +47,20 @@
       "name": "Can I filter with a regex pattern?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?the filter field accepts regular expressions."
+        "text": "Yes —the filter field accepts regular expressions."
       }
     },
     {
       "@type": "Question",
-      "name": "What does Line Tools Online 鈥?Sort, Deduplicate & Reverse Lines Free do?",
+      "name": "What does Line Tools Online —Sort, Deduplicate & Reverse Lines Free do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Line Tools Online 鈥?Sort, Deduplicate & Reverse Lines Free runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Line Tools Online —Sort, Deduplicate & Reverse Lines Free runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is Line Tools Online 鈥?Sort, Deduplicate & Reverse Lines Free free to use?",
+      "name": "Is Line Tools Online —Sort, Deduplicate & Reverse Lines Free free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -223,7 +223,7 @@
       </div>
     </div>
     <textarea class="io-textarea ds-tool-textarea" id="inputText"
-      placeholder="Paste or type your lines here— spellcheck="false" autocomplete="off"></textarea>
+      placeholder="Paste or type your lines here… spellcheck="false" autocomplete="off"></textarea>
     <div class="io-footer ds-tool-pane__footer">
       <span class="io-stat ds-tool-stat" id="inputStat">0 lines</span>
     </div>
@@ -269,7 +269,7 @@
       </div>
     </div>
     <textarea class="io-textarea ds-tool-textarea" id="outputText"
-      placeholder="Result will appear here after clicking an operation— readonly spellcheck="false"></textarea>
+      placeholder="Result will appear here after clicking an operation… readonly spellcheck="false"></textarea>
     <div class="io-footer ds-tool-pane__footer">
       <span class="io-stat ds-tool-stat" id="outputStat">0 lines</span>
     </div>
@@ -421,11 +421,11 @@
 
   const operations = {
     opSortAZ: {
-      label: 'Sorted A鈫抁',
+      label: 'Sorted A→抁',
       fn(lines) { return [...lines].sort((a, b) => a.localeCompare(b)); }
     },
     opSortZA: {
-      label: 'Sorted Z鈫扐',
+      label: 'Sorted Z→扐',
       fn(lines) { return [...lines].sort((a, b) => b.localeCompare(a)); }
     },
     opDedup: {
@@ -531,8 +531,8 @@
     slug: 'line-tools'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

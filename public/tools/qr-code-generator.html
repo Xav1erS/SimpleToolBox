@@ -56,7 +56,7 @@
       "name": "How much data can a QR code hold?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The maximum depends on the error correction level. At Level L, a QR code can store up to 2,953 bytes of data. At Level H, the limit is 1,273 bytes. URLs are typically 50鈥?00 characters, well within limits."
+        "text": "The maximum depends on the error correction level. At Level L, a QR code can store up to 2,953 bytes of data. At Level H, the limit is 1,273 bytes. URLs are typically 50—00 characters, well within limits."
       }
     },
     {
@@ -64,7 +64,7 @@
       "name": "Does the QR code expire?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "QR codes generated here are static 鈥?they do not expire and contain no tracking. The data is encoded directly in the image. For dynamic QR codes that can be updated, you would need a separate redirect service."
+        "text": "QR codes generated here are static —they do not expire and contain no tracking. The data is encoded directly in the image. For dynamic QR codes that can be updated, you would need a separate redirect service."
       }
     }
   ]
@@ -73,7 +73,7 @@
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -778,7 +778,7 @@
     const bytes = new TextEncoder().encode(val).length;
     const cap = QR_BYTE_CAP[currentECL] || 2331;
     const pct = Math.round(bytes / cap * 100);
-    stat.textContent = `${val.length.toLocaleString()} chars 路 ${bytes.toLocaleString()} bytes 路 ${pct}% QR capacity`;
+    stat.textContent = `${val.length.toLocaleString()} chars &middot; ${bytes.toLocaleString()} bytes &middot; ${pct}% QR capacity`;
     stat.style.color = pct > 90 ? 'var(--red)' : pct > 70 ? 'var(--yellow)' : '';
   }
   document.getElementById('textInput').addEventListener('input', updateTextStat);
@@ -811,8 +811,8 @@
     slug: 'qr-code-generator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

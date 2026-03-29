@@ -849,6 +849,10 @@
     if (document.body && document.body.dataset.stbSiteNavigationReady === '1') return;
     if (document.body) {
       document.body.dataset.stbSiteNavigationReady = '1';
+      document.body.classList.add('ds-page');
+      if (context.pageType === 'tool') {
+        document.body.classList.add('ds-tool-shell-ready');
+      }
     }
 
     ensureBreadcrumb(context);
@@ -882,4 +886,3 @@
     initSiteNavigation();
   }
 })(window);
-

@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "JPG to PDF Converter",
-  "description": "Convert JPG and JPEG photos to PDF instantly in your browser. Supports one or multiple images, customizable page size and margins. No upload required 鈥?all processing runs locally.",
+  "description": "Convert JPG and JPEG photos to PDF instantly in your browser. Supports one or multiple images, customizable page size and margins. No upload required —all processing runs locally.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -55,7 +55,7 @@
       "name": "What page size should I choose?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A4 is the international standard used in most countries. Letter is the North American standard (8.5脳11 inches). Choose 'Fit to Image' if you want each PDF page to exactly match the pixel dimensions of each photo."
+        "text": "A4 is the international standard used in most countries. Letter is the North American standard (8.5×11 inches). Choose 'Fit to Image' if you want each PDF page to exactly match the pixel dimensions of each photo."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -223,7 +223,7 @@
 
       <div class="progress-bar-wrap" id="progressWrap">
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
-        <div class="progress-label" id="progressLabel">Processing—/div>
+        <div class="progress-label" id="progressLabel">Processing—</div>
       </div>
     </div>
 
@@ -404,7 +404,7 @@
     btnConvert.disabled = true;
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Starting鈥?;
+    progressLabel.textContent = 'Starting—;
 
     try {
       const { jsPDF } = window.jspdf;
@@ -421,7 +421,7 @@
 
       for (let i = 0; i < files.length; i++) {
         const imgData = files[i].dataUrl;
-        progressLabel.textContent = `Processing image ${i + 1} of ${files.length}鈥;
+        progressLabel.textContent = `Processing image ${i + 1} of ${files.length}—;
         progressFill.style.width = ((i / files.length) * 90) + '%';
 
         // Measure natural dimensions
@@ -484,7 +484,7 @@
       }
 
       progressFill.style.width = '100%';
-      progressLabel.textContent = 'Saving PDF鈥?;
+      progressLabel.textContent = 'Saving PDF—;
 
       const filename = files.length === 1
         ? files[0].name.replace(/\.[^.]+$/, '.pdf')
@@ -511,7 +511,7 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

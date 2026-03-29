@@ -55,7 +55,7 @@
       "name": "Is my CSV data uploaded?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. All processing happens in your browser 鈥?nothing is sent to a server."
+        "text": "No. All processing happens in your browser —nothing is sent to a server."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .col-select-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -264,7 +264,7 @@ Eve Davis,eve@example.com,Marketing,74000`;
     document.getElementById('statCols').textContent = `${headers.length} columns`;
     const sel = document.getElementById('colSelect');
     const prev = sel.value;
-    sel.innerHTML = '<option value="">鈥?select column 鈥?/option>' +
+    sel.innerHTML = '<option value="">—select column —/option>' +
       headers.map((h, i) => `<option value="${i}"${prev == i ? ' selected' : ''}>${i+1}: ${h}</option>`).join('');
     if (prev !== '' && headers[parseInt(prev)]) sel.value = prev;
     extract();
@@ -322,8 +322,8 @@ Eve Davis,eve@example.com,Marketing,74000`;
     slug: 'csv-column-extractor'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

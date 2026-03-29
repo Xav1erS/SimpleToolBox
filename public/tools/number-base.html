@@ -58,15 +58,15 @@
     },
     {
       "@type": "Question",
-      "name": "What does Number Base Converter Online 鈥?Binary, Octal, Decimal & Hex do?",
+      "name": "What does Number Base Converter Online —Binary, Octal, Decimal & Hex do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Number Base Converter Online 鈥?Binary, Octal, Decimal & Hex runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Number Base Converter Online —Binary, Octal, Decimal & Hex runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is Number Base Converter Online 鈥?Binary, Octal, Decimal & Hex free to use?",
+      "name": "Is Number Base Converter Online —Binary, Octal, Decimal & Hex free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -77,7 +77,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     html { scroll-behavior: smooth; }
     body {
@@ -347,19 +347,19 @@
     <div class="ops-body" id="opsBody">
       <div class="ops-row">
         <span class="ops-row-label">Bit length</span>
-        <span class="ops-value muted" id="opsBitLen">鈥</span>
+        <span class="ops-value muted" id="opsBitLen">—</span>
       </div>
       <div class="ops-row">
         <span class="ops-row-label">Bytes</span>
-        <span class="ops-value muted" id="opsBytes">鈥</span>
+        <span class="ops-value muted" id="opsBytes">—</span>
       </div>
       <div class="ops-row">
         <span class="ops-row-label">NOT (1's)</span>
-        <span class="ops-value muted" id="opsNot">鈥</span>
+        <span class="ops-value muted" id="opsNot">—</span>
       </div>
       <div class="ops-row">
         <span class="ops-row-label">Unsigned</span>
-        <span class="ops-value muted" id="opsUnsigned">鈥</span>
+        <span class="ops-value muted" id="opsUnsigned">—</span>
       </div>
     </div>
   </div>
@@ -383,27 +383,27 @@
     <div class="bitwise-results">
       <div class="bitwise-row">
         <span class="bitwise-row-label">A AND B</span>
-        <span class="bitwise-row-val muted" id="bwAnd">鈥</span>
+        <span class="bitwise-row-val muted" id="bwAnd">—</span>
         <button class="bitwise-copy" data-bw="bwAnd">Copy</button>
       </div>
       <div class="bitwise-row">
         <span class="bitwise-row-label">A OR B</span>
-        <span class="bitwise-row-val muted" id="bwOr">鈥</span>
+        <span class="bitwise-row-val muted" id="bwOr">—</span>
         <button class="bitwise-copy" data-bw="bwOr">Copy</button>
       </div>
       <div class="bitwise-row">
         <span class="bitwise-row-label">A XOR B</span>
-        <span class="bitwise-row-val muted" id="bwXor">鈥</span>
+        <span class="bitwise-row-val muted" id="bwXor">—</span>
         <button class="bitwise-copy" data-bw="bwXor">Copy</button>
       </div>
       <div class="bitwise-row">
         <span class="bitwise-row-label">A &lt;&lt; 1</span>
-        <span class="bitwise-row-val muted" id="bwShl">鈥</span>
+        <span class="bitwise-row-val muted" id="bwShl">—</span>
         <button class="bitwise-copy" data-bw="bwShl">Copy</button>
       </div>
       <div class="bitwise-row">
         <span class="bitwise-row-label">A &gt;&gt; 1</span>
-        <span class="bitwise-row-val muted" id="bwShr">鈥</span>
+        <span class="bitwise-row-val muted" id="bwShr">—</span>
         <button class="bitwise-copy" data-bw="bwShr">Copy</button>
       </div>
     </div>
@@ -524,10 +524,10 @@
   let updating = false;
 
   function clearOps() {
-    opsBitLen.textContent   = '鈥?;
-    opsBytes.textContent    = '鈥?;
-    opsNot.textContent      = '鈥?;
-    opsUnsigned.textContent = '鈥?;
+    opsBitLen.textContent   = '—;
+    opsBytes.textContent    = '—;
+    opsNot.textContent      = '—;
+    opsUnsigned.textContent = '—;
     [opsBitLen, opsBytes, opsNot, opsUnsigned].forEach(el => {
       el.className = 'ops-value muted';
     });
@@ -650,7 +650,7 @@
     const a = parseBwInput(bwA);
     const b = parseBwInput(bwB);
     if (a === null || b === null) {
-      bwIds.forEach(id => { bwEls[id].textContent = '鈥?; bwEls[id].className = 'bitwise-row-val muted'; });
+      bwIds.forEach(id => { bwEls[id].textContent = '—; bwEls[id].className = 'bitwise-row-val muted'; });
       return;
     }
     const results = {
@@ -673,7 +673,7 @@
     btn.addEventListener('click', () => {
       const id  = btn.dataset.bw;
       const val = bwEls[id].textContent;
-      if (!val || val === '鈥?) return;
+      if (!val || val === '—) return;
       // copy just the decimal value
       const dec = val.split(' ')[0];
       navigator.clipboard.writeText(dec).catch(() => {});
@@ -697,8 +697,8 @@
     slug: 'number-base'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

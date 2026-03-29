@@ -1,6 +1,7 @@
 (function syncToolPageShell() {
   const RECENT_KEY = 'stb_recent';
   const MAX_RECENT = 6;
+  const SITE_NAVIGATION_SRC = '../scripts/site-navigation.js?v=11';
 
   function slugFromPathname() {
     const path = window.location.pathname.replace(/\/+$/, '');
@@ -52,7 +53,7 @@
   }
 
   function loadSharedNavigation(callback) {
-    ensureScript('../scripts/site-navigation.js', 'site-navigation', callback);
+    ensureScript(SITE_NAVIGATION_SRC, 'site-navigation', callback);
   }
 
   function findTool(slug) {
@@ -301,12 +302,10 @@
     if (!tool) return;
 
     window.STB_PAGE_CONTEXT = { pageType: 'tool', slug: slug };
-    document.body.classList.add('ds-page', 'ds-tool-shell-ready');
 
     replaceTopNav();
     syncToolIcon(tool);
     ensureToolContext(tool);
-    bindToolSearch(tool);
 
     loadSharedNavigation(function () {
       if (typeof window.initSiteNavigation === 'function') {

@@ -40,7 +40,7 @@
       "name": "How accurate are the conversions?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Conversions use standard SI-defined ratios and are accurate to JavaScript's floating-point precision (15鈥?7 significant digits). For most practical purposes, results are exact. Temperature conversions use the official formulas: 掳C = (掳F 鈭?32) 脳 5/9, K = 掳C + 273.15."
+        "text": "Conversions use standard SI-defined ratios and are accurate to JavaScript's floating-point precision (15—7 significant digits). For most practical purposes, results are exact. Temperature conversions use the official formulas: 掳C = (掳F 鈭?32) × 5/9, K = 掳C + 273.15."
       }
     },
     {
@@ -61,10 +61,10 @@
     },
     {
       "@type": "Question",
-      "name": "What does Unit Converter Online 鈥?Length, Weight, Temperature & More do?",
+      "name": "What does Unit Converter Online —Length, Weight, Temperature & More do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Unit Converter Online 鈥?Length, Weight, Temperature & More runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Unit Converter Online —Length, Weight, Temperature & More runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     }
   ]
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -253,7 +253,7 @@
   <div class="ref-card">
     <div class="ref-header">
       <span class="ref-title">All conversions</span>
-      <span class="ref-subtitle" id="refSubtitle">1 unit = —/span>
+      <span class="ref-subtitle" id="refSubtitle">1 unit = —</span>
     </div>
     <div class="ref-grid" id="refGrid"></div>
   </div>
@@ -488,7 +488,7 @@
   const refSub   = document.getElementById('refSubtitle');
 
   function fmtNum(n) {
-    if (!isFinite(n)) return '鈥?;
+    if (!isFinite(n)) return '—;
     // Use toPrecision for very large or very small, otherwise fixed
     const abs = Math.abs(n);
     if (abs === 0) return '0';
@@ -583,7 +583,7 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

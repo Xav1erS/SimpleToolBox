@@ -39,7 +39,7 @@
       "name": "Can I set custom decimal places?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?decimal precision is adjustable from 0 to 20 places."
+        "text": "Yes —decimal precision is adjustable from 0 to 20 places."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -207,7 +207,7 @@
 <div class="ds-tool-main ds-tool-stack">
 
   <div class="input-card">
-    <input class="num-input" id="numInput" type="text" placeholder="Enter a number— autocomplete="off" spellcheck="false" />
+    <input class="num-input" id="numInput" type="text" placeholder="Enter a number… autocomplete="off" spellcheck="false" />
     <div class="num-hint" id="numHint">Type any integer or decimal number</div>
   </div>
 
@@ -267,32 +267,32 @@
   <div class="results-grid" id="resultsGrid">
     <div class="result-card" id="rc-standard">
       <div class="result-label">Standard</div>
-      <div class="result-value empty" id="rv-standard">鈥</div>
+      <div class="result-value empty" id="rv-standard">—</div>
       <div class="result-copy-hint">Click to copy</div>
     </div>
     <div class="result-card" id="rc-scientific">
       <div class="result-label">Scientific Notation</div>
-      <div class="result-value empty" id="rv-scientific">鈥</div>
+      <div class="result-value empty" id="rv-scientific">—</div>
       <div class="result-copy-hint">Click to copy</div>
     </div>
     <div class="result-card" id="rc-engineering">
       <div class="result-label">Engineering Notation</div>
-      <div class="result-value empty" id="rv-engineering">鈥</div>
+      <div class="result-value empty" id="rv-engineering">—</div>
       <div class="result-copy-hint">Click to copy</div>
     </div>
     <div class="result-card" id="rc-words">
       <div class="result-label">In Words (EN)</div>
-      <div class="result-value empty" id="rv-words">鈥</div>
+      <div class="result-value empty" id="rv-words">—</div>
       <div class="result-copy-hint">Click to copy</div>
     </div>
     <div class="result-card" id="rc-binary">
       <div class="result-label">Binary (integer part)</div>
-      <div class="result-value empty" id="rv-binary">鈥</div>
+      <div class="result-value empty" id="rv-binary">—</div>
       <div class="result-copy-hint">Click to copy</div>
     </div>
     <div class="result-card" id="rc-hex">
       <div class="result-label">Hexadecimal (integer part)</div>
-      <div class="result-value empty" id="rv-hex">鈥</div>
+      <div class="result-value empty" id="rv-hex">—</div>
       <div class="result-copy-hint">Click to copy</div>
     </div>
   </div>
@@ -405,7 +405,7 @@
   }
   const MAGNITUDES = ['','thousand','million','billion','trillion','quadrillion'];
   function numberToWords(n) {
-    if (isNaN(n) || !isFinite(n)) return '鈥?;
+    if (isNaN(n) || !isFinite(n)) return '—;
     if (n === 0) return 'zero';
     let neg = n < 0; n = Math.abs(Math.round(n));
     if (n > 999999999999999) return '鈮?' + n.toExponential(2) + ' (too large)';
@@ -420,7 +420,7 @@
     const exp = Math.floor(Math.log10(Math.abs(n)));
     const engExp = Math.floor(exp / 3) * 3;
     const mantissa = n / Math.pow(10, engExp);
-    return mantissa.toPrecision(4).replace(/\.?0+$/, '') + ' 脳 10^' + engExp;
+    return mantissa.toPrecision(4).replace(/\.?0+$/, '') + ' × 10^' + engExp;
   }
 
   function formatStandard(num, sepT, sepD, decPlaces, prefix) {
@@ -437,7 +437,7 @@
 
     function setResult(id, val) {
       const rv = document.getElementById('rv-' + id);
-      if (!raw || isNaN(num)) { rv.textContent = '鈥?; rv.className = 'result-value empty'; return; }
+      if (!raw || isNaN(num)) { rv.textContent = '—; rv.className = 'result-value empty'; return; }
       rv.textContent = val;
       rv.className = 'result-value';
     }
@@ -456,7 +456,7 @@
     const prefix = document.getElementById('currencyPrefix').value;
 
     setResult('standard', formatStandard(num, sepT, sepD, decPlaces, prefix));
-    setResult('scientific', num.toExponential(4).replace(/\.?0+e/, 'e').replace('e+','e+').replace('e','脳10^'));
+    setResult('scientific', num.toExponential(4).replace(/\.?0+e/, 'e').replace('e+','e+').replace('e','×10^'));
     setResult('engineering', toEngineering(num));
     setResult('words', numberToWords(num));
 
@@ -467,7 +467,7 @@
 
   async function copyCard(cardId, valId) {
     const val = document.getElementById(valId).textContent;
-    if (!val || val === '鈥?) return;
+    if (!val || val === '—) return;
     const card = document.getElementById(cardId);
     const hint = card.querySelector('.result-copy-hint');
     try { await navigator.clipboard.writeText(val); } catch {}
@@ -500,8 +500,8 @@
     slug: 'number-format'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

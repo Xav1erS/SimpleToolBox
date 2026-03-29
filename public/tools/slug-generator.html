@@ -40,7 +40,7 @@
       "name": "What is the difference between a slug and a URL?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A URL is the full web address (e.g. https://example.com/blog/my-post ). The slug is only the last meaningful segment 鈥?my-post 鈥?that identifies the specific page."
+        "text": "A URL is the full web address (e.g. https://example.com/blog/my-post ). The slug is only the last meaningful segment —my-post —that identifies the specific page."
       }
     },
     {
@@ -48,7 +48,7 @@
       "name": "Should I use hyphens or underscores in slugs?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Hyphens are strongly preferred. Google treats hyphens as word separators in URLs, but underscores are treated as word joiners 鈥?meaning hello-world matches searches for \"hello\" and \"world\", while hello_world is treated as one token."
+        "text": "Hyphens are strongly preferred. Google treats hyphens as word separators in URLs, but underscores are treated as word joiners —meaning hello-world matches searches for \"hello\" and \"world\", while hello_world is treated as one token."
       }
     },
     {
@@ -56,15 +56,15 @@
       "name": "How long should a URL slug be?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Keep slugs under 60鈥?5 characters. Shorter slugs are easier to share and read in search results. Remove stop words like \"a\", \"the\", \"and\" to shorten without losing meaning."
+        "text": "Keep slugs under 60—5 characters. Shorter slugs are easier to share and read in search results. Remove stop words like \"a\", \"the\", \"and\" to shorten without losing meaning."
       }
     },
     {
       "@type": "Question",
-      "name": "What does URL Slug Generator Online 鈥?Convert Text to SEO-Friendly Slugs do?",
+      "name": "What does URL Slug Generator Online —Convert Text to SEO-Friendly Slugs do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "URL Slug Generator Online 鈥?Convert Text to SEO-Friendly Slugs runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "URL Slug Generator Online —Convert Text to SEO-Friendly Slugs runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     }
   ]
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <script src="https://cdn.jsdelivr.net/npm/pinyin-pro/dist/index.min.js"></script>
   <style>
     :root {
@@ -254,7 +254,7 @@
     <div class="ds-card__header">Slug</div>
     <div class="ds-card__body" style="display:flex;flex-direction:column;gap:12px">
       <div class="slug-output-wrap">
-        <span class="slug-val" id="slugVal">鈥</span>
+        <span class="slug-val" id="slugVal">—</span>
         <span class="slug-len" id="slugLen"></span>
       </div>
       <div class="seo-hint">
@@ -263,7 +263,7 @@
       </div>
       <div class="url-preview">
         <span class="url-base" id="urlBase">https://example.com/blog/</span>
-        <span class="url-slug-part" id="urlSlugPart">鈥</span>
+        <span class="url-slug-part" id="urlSlugPart">—</span>
       </div>
       <div class="copy-actions">
         <button class="btn-copy" id="btnCopySlug">
@@ -456,9 +456,9 @@
     const maxLen = Math.max(10, parseInt(maxLenInput.value) || 60);
     const len    = slug.length;
 
-    slugVal.textContent      = slug || '鈥?;
+    slugVal.textContent      = slug || '—;
     urlBase.textContent      = baseUrl || 'https://example.com/blog/';
-    urlSlugPart.textContent  = slug || '鈥?;
+    urlSlugPart.textContent  = slug || '—;
 
     if (!slug) {
       slugLen.textContent = '';
@@ -475,11 +475,11 @@
     } else if (len <= 75) {
       slugLen.className = 'slug-len warn';
       seoDot.className  = 'seo-dot warn';
-      seoText.textContent = `Slightly long for SEO 鈥?consider shortening (> 60 chars).`;
+      seoText.textContent = `Slightly long for SEO —consider shortening (> 60 chars).`;
     } else {
       slugLen.className = 'slug-len over';
       seoDot.className  = 'seo-dot over';
-      seoText.textContent = `Too long for SEO 鈥?consider reducing Max Length (> 75 chars).`;
+      seoText.textContent = `Too long for SEO —consider reducing Max Length (> 75 chars).`;
     }
   }
 
@@ -489,7 +489,7 @@
 
   // Copy helpers
   async function copyText(text, btn) {
-    if (!text || text === '鈥?) return;
+    if (!text || text === '—) return;
     const orig = btn.innerHTML;
     try { await navigator.clipboard.writeText(text); } catch {
       const ta = Object.assign(document.createElement('textarea'), { value: text });
@@ -528,8 +528,8 @@
     slug: 'slug-generator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

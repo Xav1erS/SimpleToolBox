@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .control-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
@@ -227,7 +227,7 @@
   const phraseSize = document.getElementById('phraseSize');
   const topTerms = document.getElementById('topTerms');
   function tokens(text){ return (text.toLowerCase().match(/\\b[a-z0-9'-]+\\b/g) || []); }
-  function analyze(){ const raw=inputText.value; const words=tokens(raw); const keyword=keywordInput.value.trim().toLowerCase(); const densityBase=words.length||1; const mentions=keyword ? ((raw.toLowerCase().match(new RegExp(keyword.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&'),'g'))||[]).length) : 0; document.getElementById('charStat').textContent=`${raw.length.toLocaleString()} chars`; document.getElementById('wordCount').textContent=`${words.length}`; document.getElementById('mentionCount').textContent=`${mentions}`; document.getElementById('densityValue').textContent=`${((mentions/densityBase)*100).toFixed(2)}%`; const size=parseInt(phraseSize.value,10); const map=new Map(); for(let i=0;i<=words.length-size;i++){ const phrase=words.slice(i,i+size).join(' '); map.set(phrase,(map.get(phrase)||0)+1); } const top=[...map.entries()].sort((a,b)=>b[1]-a[1]).slice(0,8).filter((item)=>item[0].trim()!==''); document.getElementById('uniqueTerms').textContent=`${map.size}`; if(!top.length){ topTerms.innerHTML='<div class=\"result-card\"><div class=\"result-card__meta\">No data yet</div><div>Paste text and enter a keyword to see density and frequent terms.</div></div>'; return; } topTerms.innerHTML=top.map(([term,count],index)=>`<div class=\"result-card\"><div class=\"result-card__meta\">#${index+1} 路 ${count} match${count===1?'':'es'}</div><div>${term.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`).join(''); }
+  function analyze(){ const raw=inputText.value; const words=tokens(raw); const keyword=keywordInput.value.trim().toLowerCase(); const densityBase=words.length||1; const mentions=keyword ? ((raw.toLowerCase().match(new RegExp(keyword.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&'),'g'))||[]).length) : 0; document.getElementById('charStat').textContent=`${raw.length.toLocaleString()} chars`; document.getElementById('wordCount').textContent=`${words.length}`; document.getElementById('mentionCount').textContent=`${mentions}`; document.getElementById('densityValue').textContent=`${((mentions/densityBase)*100).toFixed(2)}%`; const size=parseInt(phraseSize.value,10); const map=new Map(); for(let i=0;i<=words.length-size;i++){ const phrase=words.slice(i,i+size).join(' '); map.set(phrase,(map.get(phrase)||0)+1); } const top=[...map.entries()].sort((a,b)=>b[1]-a[1]).slice(0,8).filter((item)=>item[0].trim()!==''); document.getElementById('uniqueTerms').textContent=`${map.size}`; if(!top.length){ topTerms.innerHTML='<div class=\"result-card\"><div class=\"result-card__meta\">No data yet</div><div>Paste text and enter a keyword to see density and frequent terms.</div></div>'; return; } topTerms.innerHTML=top.map(([term,count],index)=>`<div class=\"result-card\"><div class=\"result-card__meta\">#${index+1} &middot; ${count} match${count===1?'':'es'}</div><div>${term.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`).join(''); }
   [inputText, keywordInput, phraseSize].forEach((el)=>el.addEventListener('input', analyze));
   document.getElementById('btnSample').addEventListener('click',()=>{inputText.value=SAMPLE;keywordInput.value='keyword';analyze();});
   document.getElementById('btnClear').addEventListener('click',()=>{inputText.value='';keywordInput.value='';analyze();});
@@ -242,8 +242,8 @@
     slug: 'keyword-density-checker'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

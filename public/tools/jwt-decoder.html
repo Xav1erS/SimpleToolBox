@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
 <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -254,7 +254,7 @@
     <div class="status-bar" id="statusBar">
       <div class="status-item">
         <span class="status-dot none" id="statusDot"></span>
-        <span class="status-text" id="statusText">Awaiting token鈥</span>
+        <span class="status-text" id="statusText">Awaiting token—</span>
       </div>
     </div>
   </div>
@@ -411,7 +411,7 @@
     if (diff < 0) return { cls: 'expired', label: `Expired ${Math.abs(Math.round(diff/60))} min ago` };
     if (diff < 300) return { cls: 'warn', label: `Expires in ${Math.round(diff/60)} min` };
     if (diff < 3600) return { cls: 'warn', label: `Expires in ${Math.round(diff/60)} min` };
-    return { cls: 'valid', label: `Valid 路 expires ${formatTime(payload.exp)}` };
+    return { cls: 'valid', label: `Valid &middot; expires ${formatTime(payload.exp)}` };
   }
 
   function renderClaimValue(key, val) {
@@ -442,7 +442,7 @@
       errorBanner.classList.remove('show');
       statusDot.className = 'status-dot none';
       statusText.className = 'status-text';
-      statusText.textContent = 'Awaiting token鈥?;
+      statusText.textContent = 'Awaiting token—;
       decodedArea.innerHTML = `<div class="empty-state"><div class="empty-icon">馃攼</div><div class="empty-title">Paste a JWT to decode</div><div class="empty-sub">Supports HS256, RS256, ES256 and all standard JWT algorithms</div></div>`;
       copyRow.style.display = 'none';
       parsedData = { header: null, payload: null, sig: '' };
@@ -592,8 +592,8 @@
     slug: 'jwt-decoder'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

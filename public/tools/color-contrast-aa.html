@@ -39,7 +39,7 @@
       "name": "What is the difference between AA and AAA?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AA is the standard compliance level required by most regulations. AAA is enhanced 鈥?not required for all content but improves readability."
+        "text": "AA is the standard compliance level required by most regulations. AAA is enhanced —not required for all content but improves readability."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "Does this check non-text contrast?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "WCAG 1.4.11 requires 3:1 contrast for UI components and graphical elements 鈥?this checker covers that requirement."
+        "text": "WCAG 1.4.11 requires 3:1 contrast for UI components and graphical elements —this checker covers that requirement."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -256,7 +256,7 @@
 <div class="ds-tool-header">
   <div class="ds-tool-header__inner">
     <div class="ds-tool-header__row">
-      <div class="ds-tool-header__icon">♀/div>
+      <div class="ds-tool-header__icon">♀</div>
       <h1 class="ds-tool-header__title">WCAG Color Contrast Checker</h1>
     </div>
     <p class="ds-tool-header__desc">Test multiple text/background color pairs against WCAG 2.1 AA and AAA standards. Live preview shows exactly how text will look at different sizes and weights.</p>
@@ -526,13 +526,13 @@
             <div class="preview-label" style="color:${p.fg}">Preview on background</div>
             <div class="preview-normal">Normal text (16px)</div>
             <div class="preview-bold">Bold text (14px bold)</div>
-            <div class="preview-small">Small text (12px) 鈥?harder to read</div>
+            <div class="preview-small">Small text (12px) —harder to read</div>
           </div>
           <div class="preview-block" style="background:${p.fg};color:${p.bg}">
             <div class="preview-label" style="color:${p.bg}">Inverted colors</div>
             <div class="preview-normal">Normal text (16px)</div>
             <div class="preview-bold">Bold text (14px bold)</div>
-            <div class="preview-small">Small text (12px) 鈥?harder to read</div>
+            <div class="preview-small">Small text (12px) —harder to read</div>
           </div>
         </div>
       </div>`;
@@ -560,8 +560,8 @@
     // Try up to 200 times to find a random AA pair
     for (let i = 0; i < 200; i++) {
       const h = Math.random() * 360;
-      const s = 20 + Math.random() * 70;   // 20鈥?0%
-      const l = 10 + Math.random() * 75;   // 10鈥?5%
+      const s = 20 + Math.random() * 70;   // 20—0%
+      const l = 10 + Math.random() * 75;   // 10—5%
       const bg = hslToHex(h, s, l);
       // Try both white and black as foreground
       for (const fg of ['#ffffff', '#000000']) {
@@ -598,7 +598,7 @@
       const r = contrastRatio(p.fg, p.bg);
       const aaOk  = r >= 4.5 ? '鉁? : '鉁?;
       const aaaOk = r >= 7   ? '鉁? : '鉁?;
-      lines.push(`  /* pair ${i+1} 鈥?contrast ${r.toFixed(1)}:1  AA ${aaOk}  AAA ${aaaOk} */`);
+      lines.push(`  /* pair ${i+1} —contrast ${r.toFixed(1)}:1  AA ${aaOk}  AAA ${aaaOk} */`);
       lines.push(`  --color-pair-${i+1}-fg: ${p.fg};`);
       lines.push(`  --color-pair-${i+1}-bg: ${p.bg};`);
     });
@@ -675,7 +675,7 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -13,7 +13,7 @@
   <meta property="og:description" content="Remove extra spaces, blank lines, HTML tags, URLs, and duplicate lines from text. Live preview." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {
@@ -41,7 +41,7 @@
       "name": "Does it remove HTML tags?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes 鈥?enable the \"strip HTML tags\" option to remove all HTML markup from pasted content."
+        "text": "Yes —enable the \"strip HTML tags\" option to remove all HTML markup from pasted content."
       }
     },
     {
@@ -49,20 +49,20 @@
       "name": "Will it remove all special characters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Only the characters you enable 鈥?each cleaning operation is optional."
+        "text": "Only the characters you enable —each cleaning operation is optional."
       }
     },
     {
       "@type": "Question",
-      "name": "What does Text Cleaner 鈥?Remove Extra Spaces, Blank Lines & HTML Tags do?",
+      "name": "What does Text Cleaner —Remove Extra Spaces, Blank Lines & HTML Tags do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Text Cleaner 鈥?Remove Extra Spaces, Blank Lines & HTML Tags runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Text Cleaner —Remove Extra Spaces, Blank Lines & HTML Tags runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is Text Cleaner 鈥?Remove Extra Spaces, Blank Lines & HTML Tags free to use?",
+      "name": "Is Text Cleaner —Remove Extra Spaces, Blank Lines & HTML Tags free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -153,7 +153,10 @@
 
 <div class="ds-tool-header">
   <div class="ds-tool-header__inner">
-    <h1 class="ds-tool-header__title">Text Cleaner</h1>
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🧹</div>
+      <h1 class="ds-tool-header__title">Text Cleaner</h1>
+    </div>
     <p class="ds-tool-header__desc">Remove extra spaces, blank lines, duplicate lines, HTML tags, URLs and more. Live preview with one-click copy.</p>
     <div class="ds-tool-tag-row">
       <span class="ds-tool-tag">text</span>
@@ -198,7 +201,7 @@
         <button class="pane-btn" id="btnPaste">Paste</button>
       </div>
     </div>
-    <textarea id="inputText" placeholder="Paste or type text here— spellcheck="false"></textarea>
+    <textarea id="inputText" placeholder="Paste or type text here… spellcheck="false"></textarea>
     <div class="pane-footer">
       <span id="inChars">0 chars</span>
       <span id="inLines">0 lines</span>
@@ -212,7 +215,7 @@
         <button class="pane-btn" id="btnCopy">Copy</button>
       </div>
     </div>
-    <textarea id="outputText" readonly placeholder="Cleaned text will appear here— spellcheck="false"></textarea>
+    <textarea id="outputText" readonly placeholder="Cleaned text will appear here… spellcheck="false"></textarea>
     <div class="pane-footer">
       <span id="outChars">0 chars</span>
       <span id="outLines">0 lines</span>
@@ -426,7 +429,7 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

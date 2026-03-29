@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Resize for Instagram",
-  "description": "Resize images to exact Instagram dimensions online for free. Feed square, portrait, landscape, Story, and Reels sizes. No upload 鈥?runs entirely in your browser.",
+  "description": "Resize images to exact Instagram dimensions online for free. Feed square, portrait, landscape, Story, and Reels sizes. No upload —runs entirely in your browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -39,7 +39,7 @@
       "name": "What is the best Instagram image size for reach?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Portrait (1080脳1350) takes up the most vertical space in the Instagram feed, which typically leads to better engagement and reach. If your image is already square or landscape, Feed Square (1080脳1080) is fine."
+        "text": "Portrait (1080×1350) takes up the most vertical space in the Instagram feed, which typically leads to better engagement and reach. If your image is already square or landscape, Feed Square (1080×1080) is fine."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Will Instagram compress my image after uploading?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Instagram re-compresses uploaded images. To minimize quality loss, upload JPEG at high quality (85鈥?00%) and at the exact pixel dimensions. Uploading an oversized image forces Instagram to scale it down, which adds another compression step."
+        "text": "Yes. Instagram re-compresses uploaded images. To minimize quality loss, upload JPEG at high quality (85—00%) and at the exact pixel dimensions. Uploading an oversized image forces Instagram to scale it down, which adds another compression step."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
 
@@ -273,15 +273,15 @@
     <div class="img-meta" id="imgMeta" style="display:none">
       <div>
         <div class="meta-lbl">Output Size</div>
-        <div class="meta-val" id="metaOutput">鈥</div>
+        <div class="meta-val" id="metaOutput">—</div>
       </div>
       <div>
         <div class="meta-lbl">Original</div>
-        <div class="meta-val" id="metaOriginal">鈥</div>
+        <div class="meta-val" id="metaOriginal">—</div>
       </div>
       <div>
         <div class="meta-lbl">Filename</div>
-        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">鈥</div>
+        <div class="meta-val" id="metaFilename" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
       </div>
     </div>
   </div>
@@ -398,7 +398,7 @@
   function updatePreview() {
     if (!srcImage) return;
     drawFit(previewCanvas, pCtx, targetW, targetH);
-    metaOutput.textContent = `${targetW} 脳 ${targetH}`;
+    metaOutput.textContent = `${targetW} × ${targetH}`;
   }
 
   function loadFile(file) {
@@ -410,7 +410,7 @@
       const img = new Image();
       img.onload = () => {
         srcImage = img;
-        metaOriginal.textContent = `${img.naturalWidth} 脳 ${img.naturalHeight}`;
+        metaOriginal.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
         dropZone.style.display   = 'none';
         canvasWrap.style.display = 'flex';
         imgMeta.style.display    = 'grid';
@@ -486,8 +486,8 @@
     slug: 'resize-for-instagram'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

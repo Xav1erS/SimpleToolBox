@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Base64 to Image Converter",
-  "description": "Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF and more. Runs locally 鈥?nothing is sent.",
+  "description": "Paste a Base64 string or data URI to preview the image and download it. Supports JPEG, PNG, WebP, GIF and more. Runs locally —nothing is sent.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .input-area { width: 100%; box-sizing: border-box; padding: 14px; background: var(--ds-color-surface); color: var(--ds-color-text-primary); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); font-family: var(--ds-font-mono, monospace); font-size: 12px; resize: vertical; min-height: 130px; word-break: break-all; white-space: pre-wrap; }
@@ -284,7 +284,7 @@
         b64 = raw.slice(comma + 1);
         dataUri = raw;
       } else {
-        // Raw base64 鈥?strip whitespace
+        // Raw base64 —strip whitespace
         b64 = raw.replace(/\s/g, '');
         mime = detectMime(b64);
         dataUri = `data:${mime};base64,${b64}`;
@@ -301,7 +301,7 @@
     img.onload = () => {
       document.getElementById('previewMeta').innerHTML = `
         <span>Format: ${mime}</span>
-        <span>Dimensions: ${img.naturalWidth} 脳 ${img.naturalHeight}px</span>
+        <span>Dimensions: ${img.naturalWidth} × ${img.naturalHeight}px</span>
         <span>Base64 size: ${(b64.length / 1024).toFixed(1)} KB</span>
         <span>Approx original: ${(b64.length * 0.75 / 1024).toFixed(1)} KB</span>
       `;
@@ -353,8 +353,8 @@
     slug: 'base64-to-image'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

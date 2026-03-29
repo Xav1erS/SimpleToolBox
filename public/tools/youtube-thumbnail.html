@@ -19,7 +19,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "YouTube Thumbnail Downloader",
-  "description": "Download YouTube video thumbnails in all resolutions 鈥?HD (1280脳720), SD, medium, and default quality. Paste any YouTube URL and download instantly. Free, no sign-up.",
+  "description": "Download YouTube video thumbnails in all resolutions —HD (1280×720), SD, medium, and default quality. Paste any YouTube URL and download instantly. Free, no sign-up.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -48,7 +48,7 @@
       "name": "Why is maxresdefault not always available?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "YouTube only generates the 1280脳720 maxresdefault thumbnail for videos that were uploaded in HD quality. Older or low-resolution videos may not have this size; hqdefault (480脳360) is always available as a fallback."
+        "text": "YouTube only generates the 1280×720 maxresdefault thumbnail for videos that were uploaded in HD quality. Older or low-resolution videos may not have this size; hqdefault (480×360) is always available as a fallback."
       }
     },
     {
@@ -61,10 +61,10 @@
     },
     {
       "@type": "Question",
-      "name": "What does YouTube Thumbnail Downloader Online 鈥?Free HD Preview Tool do?",
+      "name": "What does YouTube Thumbnail Downloader Online —Free HD Preview Tool do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "YouTube Thumbnail Downloader Online 鈥?Free HD Preview Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "YouTube Thumbnail Downloader Online —Free HD Preview Tool runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     }
   ]
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -331,11 +331,11 @@
   const btnDlAll     = document.getElementById('btnDlAll');
 
   const RESOLUTIONS = [
-    { key: 'maxresdefault', label: 'Max Resolution', dims: '1280 脳 720' },
-    { key: 'sddefault',     label: 'SD',             dims: '640 脳 480' },
-    { key: 'hqdefault',     label: 'HQ',             dims: '480 脳 360' },
-    { key: 'mqdefault',     label: 'MQ',             dims: '320 脳 180' },
-    { key: 'default',       label: 'Default',        dims: '120 脳 90' },
+    { key: 'maxresdefault', label: 'Max Resolution', dims: '1280 × 720' },
+    { key: 'sddefault',     label: 'SD',             dims: '640 × 480' },
+    { key: 'hqdefault',     label: 'HQ',             dims: '480 × 360' },
+    { key: 'mqdefault',     label: 'MQ',             dims: '320 × 180' },
+    { key: 'default',       label: 'Default',        dims: '120 × 90' },
   ];
 
   function extractVideoId(input) {
@@ -412,7 +412,7 @@
       const img = card.querySelector('.thumb-img');
       img.addEventListener('load', () => {
         img.classList.remove('loading');
-        // YouTube returns a 120脳90 placeholder for missing resolutions
+        // YouTube returns a 120×90 placeholder for missing resolutions
         if (img.naturalWidth <= 120 && res.key !== 'default' && res.key !== 'mqdefault') {
           card.classList.add('unavailable');
         } else {
@@ -448,13 +448,13 @@
   btnFetch.addEventListener('click', fetchThumbnails);
   urlInput.addEventListener('keydown', e => { if (e.key === 'Enter') fetchThumbnails(); });
 
-  // Individual download 鈥?event delegation
+  // Individual download —event delegation
   thumbGrid.addEventListener('click', async e => {
     const btn = e.target.closest('.btn-dl');
     if (!btn) return;
     btn.classList.add('downloading');
     const origHtml = btn.innerHTML;
-    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Saving鈥;
+    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Saving—;
     await downloadImage(btn.dataset.url, btn.dataset.filename);
     setTimeout(() => {
       btn.innerHTML = origHtml;
@@ -482,7 +482,7 @@
   <a href="../about.html">About</a>
 </footer>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

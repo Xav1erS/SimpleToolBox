@@ -40,7 +40,7 @@
       "name": "What regex flavor does this tester use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This tool uses the JavaScript RegExp engine built into your browser. JavaScript regex supports most standard features 鈥?character classes, quantifiers, groups, lookaheads, lookbehinds 鈥?but differs from other flavors (PCRE, Python, Java) in some edge cases like named backreferences and certain Unicode properties."
+        "text": "This tool uses the JavaScript RegExp engine built into your browser. JavaScript regex supports most standard features —character classes, quantifiers, groups, lookaheads, lookbehinds —but differs from other flavors (PCRE, Python, Java) in some edge cases like named backreferences and certain Unicode properties."
       }
     },
     {
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     /* MAIN */
     .main { max-width: 1000px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 16px; }
@@ -310,8 +310,7 @@
         type="text"
         class="pattern-input"
         id="patternInput"
-        placeholder="Enter regex pattern—
-        spellcheck="false"
+        placeholder="Enter regex pattern… spellcheck="false"
         autocomplete="off"
       />
       <span class="pattern-slash right">/</span>
@@ -340,8 +339,7 @@
     <textarea
       class="test-textarea"
       id="testInput"
-      placeholder="Paste or type your test string here—
-      spellcheck="false"
+      placeholder="Paste or type your test string here… spellcheck="false"
     ></textarea>
 
     <!-- Match Preview (Match tab) -->
@@ -615,7 +613,7 @@
         allMatches.push(m);
       }
     } else {
-      // Global 鈥?iterate
+      // Global —iterate
       let m;
       const re = new RegExp(regex.source, regex.flags);
       while ((m = re.exec(text)) !== null) {
@@ -657,7 +655,7 @@
     }
 
     const items = allMatches.map((m, i) => {
-      const matchText = m[0].length > 60 ? m[0].slice(0, 60) + '鈥? : m[0];
+      const matchText = m[0].length > 60 ? m[0].slice(0, 60) + '— : m[0];
       // Capture groups
       let groupsHtml = '';
       const groups = flagG.checked ? m.fullMatch : m;
@@ -832,8 +830,8 @@
     slug: 'regex-tester'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

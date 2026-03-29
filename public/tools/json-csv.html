@@ -13,7 +13,7 @@
   <meta property="og:description" content="Free online JSON to CSV and CSV to JSON converter. Supports custom delimiters and header row options. Runs entirely in your browser." />
   <meta property="og:site_name" content="SimpleToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
     <!-- AUTO-STRUCTURED-DATA:START -->
 <script type="application/ld+json">
 {
@@ -158,7 +158,7 @@
         <span class="ds-tool-stat" id="inputStat">0 chars</span>
       </div>
     </div>
-    <div class="ds-tool-arrow" id="arrowEl">鈫</div>
+    <div class="ds-tool-arrow" id="arrowEl">→</div>
     <div class="ds-tool-pane">
       <div class="ds-tool-pane__header">
         <span class="ds-tool-pane__label" id="outputLabel">CSV Output</span>
@@ -317,12 +317,12 @@ Bob,25</span>
       inputLabel.textContent  = 'JSON Input';
       outputLabel.textContent = 'CSV Output';
       inputArea.placeholder   = '[{"name":"Alice","age":30},{"name":"Bob","age":25}]';
-      arrowEl.textContent = '鈫?;
+      arrowEl.textContent = '→;
     } else {
       inputLabel.textContent  = 'CSV Input';
       outputLabel.textContent = 'JSON Output';
       inputArea.placeholder   = 'name,age\nAlice,30\nBob,25';
-      arrowEl.textContent = '鈫?;
+      arrowEl.textContent = '→;
     }
   }
 
@@ -341,7 +341,7 @@ Bob,25</span>
     errorBox.style.display = 'none';
   }
 
-  // ---- JSON 鈫?CSV ----
+  // ---- JSON →CSV ----
   function jsonToCSV(jsonStr, delimiter, hasHeader) {
     const data = JSON.parse(jsonStr);
     if (!Array.isArray(data) || data.length === 0) {
@@ -365,7 +365,7 @@ Bob,25</span>
     return rows.join('\n');
   }
 
-  // ---- CSV 鈫?JSON ----
+  // ---- CSV →JSON ----
   function parseCsvLine(line, delimiter) {
     const vals = [];
     let i = 0;
@@ -518,8 +518,8 @@ Bob,25</span>
     slug: 'json-csv'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

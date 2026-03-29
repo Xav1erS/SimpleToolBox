@@ -39,7 +39,7 @@
       "name": "What is a MET value?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "MET (Metabolic Equivalent of Task) measures the energy cost of an activity relative to sitting still (1 MET). Running at 8 km/h has a MET of 8, meaning it burns 8脳 more energy than sitting."
+        "text": "MET (Metabolic Equivalent of Task) measures the energy cost of an activity relative to sitting still (1 MET). Running at 8 km/h has a MET of 8, meaning it burns 8× more energy than sitting."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "What is the formula used?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Calories (kcal) = MET 脳 body weight (kg) 脳 duration (hours). This is the standard formula derived from the Compendium of Physical Activities."
+        "text": "Calories (kcal) = MET × body weight (kg) × duration (hours). This is the standard formula derived from the Compendium of Physical Activities."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "Can I enter weight in pounds?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Toggle the unit button between kg and lbs 鈥?the tool converts automatically."
+        "text": "Yes. Toggle the unit button between kg and lbs —the tool converts automatically."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -161,7 +161,7 @@
   <div class="result-card" id="resultCard">
     <div class="result-flame">🔥</div>
     <div class="result-body">
-      <div class="result-cal" id="resultCal">鈥</div>
+      <div class="result-cal" id="resultCal">—</div>
       <div class="result-unit">kcal</div>
       <div class="result-note" id="resultNote">Select an activity below</div>
     </div>
@@ -331,14 +331,14 @@ function calc() {
   const noteEl = document.getElementById('resultNote');
 
   if (!selectedActivity || !wKg || isNaN(min) || min <= 0) {
-    document.getElementById('resultCal').textContent = '鈥?;
+    document.getElementById('resultCal').textContent = '—;
     noteEl.textContent = selectedActivity ? 'Enter weight and duration' : 'Select an activity below';
     return;
   }
-  // Formula: kcal = MET 脳 weight_kg 脳 duration_hours
+  // Formula: kcal = MET × weight_kg × duration_hours
   const kcal = Math.round(selectedActivity.met * wKg * (min / 60));
   document.getElementById('resultCal').textContent = kcal.toLocaleString();
-  noteEl.textContent = `${selectedActivity.name} 路 ${min} min 路 ${weightUnit === 'kg' ? wKg.toFixed(1) + ' kg' : document.getElementById('inputWeight').value + ' lbs'} 路 MET ${selectedActivity.met}`;
+  noteEl.textContent = `${selectedActivity.name} &middot; ${min} min &middot; ${weightUnit === 'kg' ? wKg.toFixed(1) + ' kg' : document.getElementById('inputWeight').value + ' lbs'} &middot; MET ${selectedActivity.met}`;
 }
 
 function renderCategories() {
@@ -385,8 +385,8 @@ renderActivities();
     slug: 'calorie-burn-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

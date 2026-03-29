@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF Watermark",
-  "description": "Add custom text watermarks to all pages of a PDF. Choose position, opacity, font size, and color. Runs entirely in your browser 鈥?no file uploads.",
+  "description": "Add custom text watermarks to all pages of a PDF. Choose position, opacity, font size, and color. Runs entirely in your browser —no file uploads.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -47,7 +47,7 @@
       "name": "Does the watermark preserve the original text layer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The output PDF is rasterized 鈥?each page is rendered to a canvas image and then embedded into the new PDF. The original text layer and vector content are replaced by a high-resolution image. This is the standard trade-off for client-side watermarking without a server."
+        "text": "The output PDF is rasterized —each page is rendered to a canvas image and then embedded into the new PDF. The original text layer and vector content are replaced by a high-resolution image. This is the standard trade-off for client-side watermarking without a server."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "What opacity range is available?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You can set opacity between 10% and 80%. A value of 30% is a good default 鈥?visible enough to mark the document but not so heavy that it obscures the content."
+        "text": "You can set opacity between 10% and 80%. A value of 30% is a good default —visible enough to mark the document but not so heavy that it obscures the content."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     .main { max-width: 900px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -230,9 +230,9 @@
   <!-- Info bar (shown after load) -->
   <div class="info-bar" id="infoBar">
     <span>Loaded:</span>
-    <span class="info-badge" id="infoFilename">—/span>
+    <span class="info-badge" id="infoFilename">—</span>
     <span>·</span>
-    <span class="info-badge" id="infoPages">—/span>
+    <span class="info-badge" id="infoPages">—</span>
     <span>pages</span>
     <button class="btn-change-pdf" id="btnChangePdf">Change PDF</button>
   </div>
@@ -301,7 +301,7 @@
 
   <!-- Progress -->
   <div class="progress-bar-wrap" id="progressWrap">
-    <div class="progress-label" id="progressLabel">Processing—/div>
+    <div class="progress-label" id="progressLabel">Processing—</div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -511,7 +511,7 @@
   async function updatePreview() {
     if (!pdfDoc) return;
     btnUpdatePreview.disabled = true;
-    btnUpdatePreview.textContent = 'Rendering鈥?;
+    btnUpdatePreview.textContent = 'Rendering—;
     try {
       const page   = await pdfDoc.getPage(1);
       const canvas = await renderPage(page);
@@ -537,7 +537,7 @@
   async function applyAndDownload() {
     if (!pdfDoc) return;
     btnApply.disabled = true;
-    btnApply.textContent = 'Processing鈥?;
+    btnApply.textContent = 'Processing—;
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
 
@@ -556,7 +556,7 @@
     });
 
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Processing page ${i} of ${numPages}鈥;
+      progressLabel.textContent = `Processing page ${i} of ${numPages}—;
       progressFill.style.width = ((i - 1) / numPages * 100) + '%';
 
       if (i > 1) {
@@ -577,7 +577,7 @@
       progressFill.style.width = (i / numPages * 100) + '%';
     }
 
-    progressLabel.textContent = `Done 鈥?${numPages} page${numPages > 1 ? 's' : ''} processed.`;
+    progressLabel.textContent = `Done —${numPages} page${numPages > 1 ? 's' : ''} processed.`;
 
     const baseName = currentFile.name.replace(/\.pdf$/i, '');
     pdf.save(`${baseName}-watermarked.pdf`);
@@ -600,7 +600,7 @@
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Loading PDF鈥?;
+    progressLabel.textContent = 'Loading PDF—;
 
     pdfArrayBuffer = await file.arrayBuffer();
     try {
@@ -612,7 +612,7 @@
     }
 
     progressFill.style.width = '100%';
-    progressLabel.textContent = `PDF loaded 鈥?${pdfDoc.numPages} page${pdfDoc.numPages > 1 ? 's' : ''}.`;
+    progressLabel.textContent = `PDF loaded —${pdfDoc.numPages} page${pdfDoc.numPages > 1 ? 's' : ''}.`;
     setTimeout(() => { progressWrap.classList.remove('visible'); }, 1200);
 
     infoFilename.textContent = file.name;
@@ -659,7 +659,7 @@
   fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
 </script>
 <script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

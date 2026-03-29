@@ -13,7 +13,7 @@
   <meta property="og:description" content="Full ASCII 0-127 reference with Dec, Hex, Oct, Bin values. Search and click to copy." />
   <meta property="og:site_name" content="Simple ToolBox" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
 
@@ -75,10 +75,10 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Is extended ASCII (128鈥?55) included?",
+      "name": "Is extended ASCII (128—55) included?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This table shows standard 7-bit ASCII (0鈥?27). Extended ASCII (Latin-1, Code Page 437) varies by system."
+        "text": "This table shows standard 7-bit ASCII (0—27). Extended ASCII (Latin-1, Code Page 437) varies by system."
       }
     },
     {
@@ -91,15 +91,15 @@
     },
     {
       "@type": "Question",
-      "name": "What does ASCII Table 鈥?Full Character Code Reference (Dec, Hex, Oct, Bin) do?",
+      "name": "What does ASCII Table —Full Character Code Reference (Dec, Hex, Oct, Bin) do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ASCII Table 鈥?Full Character Code Reference (Dec, Hex, Oct, Bin) runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "ASCII Table —Full Character Code Reference (Dec, Hex, Oct, Bin) runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     },
     {
       "@type": "Question",
-      "name": "Is ASCII Table 鈥?Full Character Code Reference (Dec, Hex, Oct, Bin) free to use?",
+      "name": "Is ASCII Table —Full Character Code Reference (Dec, Hex, Oct, Bin) free to use?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. This tool is free to use and does not require sign-up."
@@ -140,7 +140,10 @@
 
 <div class="ds-tool-header">
   <div class="ds-tool-header__inner">
-    <h1 class="ds-tool-header__title">ASCII Table</h1>
+    <div class="ds-tool-header__row">
+      <div class="ds-tool-header__icon">🔣</div>
+      <h1 class="ds-tool-header__title">ASCII Table</h1>
+    </div>
     <p class="ds-tool-header__desc">Complete ASCII 0—27 reference with decimal, hexadecimal, octal, and binary values. Search by character, code, or name. Click any row to copy.</p>
     <div class="ds-tool-context">
       <a href="../developer-tools.html" class="ds-tool-context__pill ds-tool-context__pill--hub">Developer Tools</a>
@@ -162,7 +165,7 @@
   <div class="search-bar">
     <div class="search-wrap">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="searchInput" placeholder="Search by char, decimal, hex, or description— autocomplete="off" />
+      <input type="text" id="searchInput" placeholder="Search by char, decimal, hex, or description… autocomplete="off" />
     </div>
     <span class="result-count" id="resultCount">128 characters</span>
   </div>
@@ -321,7 +324,7 @@
 
     let lastGroup = null;
     data.forEach(([dec, ch, desc]) => {
-      const group = dec < 32 ? 'Control Characters (0鈥?1)' : dec === 127 ? 'Delete (127)' : 'Printable Characters (32鈥?26)';
+      const group = dec < 32 ? 'Control Characters (0—1)' : dec === 127 ? 'Delete (127)' : 'Printable Characters (32—26)';
       if (group !== lastGroup) {
         const gh = document.createElement('tr');
         gh.className = 'group-header';
@@ -333,7 +336,7 @@
       const hex = '0x' + dec.toString(16).toUpperCase().padStart(2, '0');
       const oct = dec.toString(8).padStart(3, '0');
       const bin = dec.toString(2).padStart(8, '0');
-      const charDisplay = dec < 32 || dec === 127 ? `<span style="color:var(--ds-color-text-muted);font-size:11px">${ch}</span>` : dec === 32 ? '鈳? : ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch === '&' ? '&amp;' : ch;
+      const charDisplay = dec < 32 || dec === 127 ? `<span style="color:var(--ds-color-text-muted);font-size:11px">${ch}</span>` : dec === 32 ? '&#9251;' : ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch === '&' ? '&amp;' : ch;
       const copyChar = dec < 32 || dec === 127 ? '' : (dec === 92 ? '\\' : ch);
 
       const tr = document.createElement('tr');
@@ -399,8 +402,8 @@
     slug: 'ascii-table'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

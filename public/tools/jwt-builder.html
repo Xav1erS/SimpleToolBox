@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
 <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=47" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -452,7 +452,7 @@
       </div>
       <div class="card-body">
         <div class="token-display" id="tokenDisplay">
-          <span style="color:var(--ds-color-text-muted);font-style:italic">Fill in the fields above to generate a token鈥</span>
+          <span style="color:var(--ds-color-text-muted);font-style:italic">Fill in the fields above to generate a token—</span>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
           <div style="display:flex;gap:8px;font-size:11px;color:var(--ds-color-text-muted)">
@@ -649,7 +649,7 @@
     const encoding = document.getElementById('secretEncoding').value;
 
     if (!secret) {
-      tokenDisplay.innerHTML = '<span style="color:var(--ds-color-text-muted);font-style:italic">Enter a signing secret to generate a token鈥</span>';
+      tokenDisplay.innerHTML = '<span style="color:var(--ds-color-text-muted);font-style:italic">Enter a signing secret to generate a token—</span>';
       tokenStat.textContent = '';
       generatedToken = '';
       return;
@@ -749,7 +749,7 @@
     document.getElementById('algSelect').value = 'HS256';
     document.getElementById('secretInput').value = '';
     document.getElementById('secretEncoding').value = 'utf8';
-    tokenDisplay.innerHTML = '<span style="color:var(--ds-color-text-muted);font-style:italic">Fill in the fields above to generate a token鈥</span>';
+    tokenDisplay.innerHTML = '<span style="color:var(--ds-color-text-muted);font-style:italic">Fill in the fields above to generate a token—</span>';
     tokenStat.textContent = '';
     generatedToken = '';
     errorBanner.classList.remove('show');
@@ -773,8 +773,8 @@
     slug: 'jwt-builder'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=10"></script>
-<script src="../tool-page-icon.js"></script>
+<script src="../scripts/site-navigation.js?v=11"></script>
+<script src="../tool-page-icon.js?v=2"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

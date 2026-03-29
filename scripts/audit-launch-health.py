@@ -4,7 +4,9 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 import sys
+import tempfile
 from collections import Counter
 from pathlib import Path
 
@@ -14,6 +16,10 @@ from tooling_utils import list_tool_files, read_text, save_json_report
 MOJIBAKE_PATTERNS = ("鈥", "鈫", "脳", "路", "璺", "婕", "鈳", "▀")
 COMMENT_BLOCK = re.compile(r"<!--.*?-->", re.DOTALL)
 SCRIPT_BLOCK = re.compile(r"<script\b[^>]*>.*?</script>", re.DOTALL | re.IGNORECASE)
+INLINE_SCRIPT_BLOCK = re.compile(
+    r"<script\b(?:(?!\bsrc=)[^>])*>(.*?)</script>",
+    re.DOTALL | re.IGNORECASE,
+)
 JSON_LD_BLOCK = re.compile(
     r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>.*?</script>",
     re.DOTALL | re.IGNORECASE,
@@ -48,6 +54,44 @@ def classify_index(
     return "visible_html"
 
 
+def inline_script_syntax_errors(text: str) -> list[dict[str, object]]:
+    issues: list[dict[str, object]] = []
+    for index, match in enumerate(INLINE_SCRIPT_BLOCK.finditer(text)):
+        raw = match.group(1) or ""
+        script = raw.strip()
+        if not script:
+          continue
+        if "@context" in script and '"FAQPage"' in script:
+          continue
+        if "@context" in script and '"SoftwareApplication"' in script:
+          continue
+
+        with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8") as handle:
+            handle.write(script)
+            temp_path = Path(handle.name)
+
+        try:
+            result = subprocess.run(
+                ["node", "--check", str(temp_path)],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+            )
+            if result.returncode != 0:
+                stderr = (result.stderr or "").strip().splitlines()
+                issues.append(
+                    {
+                        "script_index": index,
+                        "message": stderr[-1] if stderr else "inline script syntax error",
+                    }
+                )
+        finally:
+            temp_path.unlink(missing_ok=True)
+
+    return issues
+
+
 def audit_file(path: Path) -> dict[str, object]:
     text = read_text(path)
     comment_ranges = ranges_for(COMMENT_BLOCK, text)
@@ -57,6 +101,7 @@ def audit_file(path: Path) -> dict[str, object]:
 
     hits: list[dict[str, object]] = []
     counts = Counter()
+    syntax_errors = inline_script_syntax_errors(text)
 
     for token in MOJIBAKE_PATTERNS:
         start = 0
@@ -74,6 +119,7 @@ def audit_file(path: Path) -> dict[str, object]:
         "file": str(path),
         "mojibake_total": len(hits),
         "mojibake_by_bucket": dict(counts),
+        "inline_script_syntax_errors": syntax_errors,
         "missing_header_row": 'ds-tool-header__row' not in text,
         "missing_tool_page_icon": 'tool-page-icon.js' not in text,
         "missing_site_navigation": 'site-navigation.js' not in text,
@@ -87,6 +133,7 @@ def build_report(items: list[dict[str, object]]) -> dict[str, object]:
         "missing_header_row": [],
         "missing_tool_page_icon": [],
         "missing_site_navigation": [],
+        "inline_script_syntax_errors": [],
     }
 
     for item in items:
@@ -113,6 +160,7 @@ def build_report(items: list[dict[str, object]]) -> dict[str, object]:
             "missing_header_row": len(flagged["missing_header_row"]),
             "missing_tool_page_icon": len(flagged["missing_tool_page_icon"]),
             "missing_site_navigation": len(flagged["missing_site_navigation"]),
+            "inline_script_syntax_errors": len(flagged["inline_script_syntax_errors"]),
         },
         "flags": flagged,
         "top_offenders": top_offenders,
@@ -137,6 +185,7 @@ def print_summary(report: dict[str, object]) -> None:
     print(f"  Missing header row:         {summary['missing_header_row']}")
     print(f"  Missing tool-page-icon.js:  {summary['missing_tool_page_icon']}")
     print(f"  Missing site-navigation.js: {summary['missing_site_navigation']}")
+    print(f"  Inline script syntax errs:  {summary['inline_script_syntax_errors']}")
     print("=" * 60)
     for item in report["top_offenders"][:12]:
         print(f"  {item['slug']}: {item['mojibake_total']} hits")

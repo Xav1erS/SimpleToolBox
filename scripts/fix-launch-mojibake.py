@@ -35,6 +35,7 @@ TARGETED_REPLACEMENTS = [
     (re.compile(r": '—;"), r": '\\u2014';"),
     (re.compile(r"progressLabel\.textContent = 'Starting—;"), "progressLabel.textContent = 'Starting...';"),
     (re.compile(r"progressLabel\.textContent = 'Finalizing—;"), "progressLabel.textContent = 'Finalizing...';"),
+    (re.compile(r"runLabel\.innerHTML = '<span class=\"spinner\"></span>Minifying—;"), "runLabel.innerHTML = '<span class=\"spinner\"></span>Minifying...';"),
     (re.compile(r"of \$\{globalTotal\}—;"), "of ${globalTotal}...`;"),
     (re.compile(r"<span>鉁</span>"), "<span>&#x2705;</span>"),
     (re.compile(r'(<button class="play-btn" id="btnPlay"[^>]*>)▀</button>'), r"\1&#9654;</button>"),

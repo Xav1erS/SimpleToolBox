@@ -2,6 +2,26 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/tools/file-size-converter",
+      "destination": "/tools/data-storage-converter",
+      "permanent": true
+    },
+    {
+      "source": "/tools/file-size-converter.html",
+      "destination": "/tools/data-storage-converter",
+      "permanent": true
+    },
+    {
+      "source": "/tools/text-case-converter",
+      "destination": "/tools/text-case",
+      "permanent": true
+    },
+    {
+      "source": "/tools/text-case-converter.html",
+      "destination": "/tools/text-case",
+      "permanent": true
+    },
+    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true

@@ -7,6 +7,16 @@ const DESKTOP_CASES = [
   { label: 'homepage', url: publicUrl('index.html'), type: 'site', expectDirectory: false },
   { label: 'all-tools', url: publicUrl('all-tools.html'), type: 'directory', expectDirectory: true },
   { label: 'webp-converter', url: toolUrl('webp-converter'), type: 'tool', expectDirectory: true },
+  {
+    label: 'js-minifier',
+    url: toolUrl('js-minifier'),
+    type: 'tool',
+    expectDirectory: true,
+    relatedIconChecks: [
+      { href: 'css-minifier.html', icon: '⚡' },
+      { href: 'json-formatter.html', icon: '🧾' },
+    ],
+  },
   { label: 'pdf-merge', url: toolUrl('pdf-merge'), type: 'tool', expectDirectory: true },
   { label: 'bmi-calculator', url: toolUrl('bmi-calculator'), type: 'tool', expectDirectory: true },
   { label: 'text-cleaner', url: toolUrl('text-cleaner'), type: 'tool', expectDirectory: true },
@@ -55,7 +65,7 @@ async function assertToolHeaderAlignment(page) {
   const row = page.locator('.ds-tool-header__row').first();
   await expect(row).toBeVisible();
   const alignItems = await row.evaluate(node => getComputedStyle(node).alignItems);
-  expect(alignItems).toBe('center');
+  expect(alignItems).toBe('flex-start');
 }
 
 async function assertDesktopDirectoryBehavior(page) {
@@ -65,6 +75,14 @@ async function assertDesktopDirectoryBehavior(page) {
   await expect.poll(async () => page.evaluate(() => document.body.classList.contains('ds-directory-is-collapsed'))).toBe(true);
   await toggle.click();
   await expect.poll(async () => page.evaluate(() => document.body.classList.contains('ds-directory-is-collapsed'))).toBe(false);
+}
+
+async function assertRelatedIcons(page, checks) {
+  for (const check of checks || []) {
+    const icon = page.locator(`.ds-related-card[href="${check.href}"] .ds-related-icon, .related-card[href="${check.href}"] .related-icon`).first();
+    await expect(icon).toBeVisible();
+    await expect(icon).toHaveText(check.icon);
+  }
 }
 
 async function assertMobileDrawerBehavior(page) {
@@ -102,6 +120,10 @@ test.describe('Launch readiness smoke', () => {
       if (item.type === 'tool') {
         await expect.poll(async () => casePage.evaluate(() => document.body.classList.contains('ds-tool-shell-ready'))).toBe(true);
         await assertToolHeaderAlignment(casePage);
+      }
+
+      if (item.relatedIconChecks) {
+        await assertRelatedIcons(casePage, item.relatedIconChecks);
       }
 
       if (item.expectDirectory) {

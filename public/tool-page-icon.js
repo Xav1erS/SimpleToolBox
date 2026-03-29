@@ -64,11 +64,32 @@
     }) || null;
   }
 
+  function slugFromHref(href) {
+    const raw = String(href || '').split('#')[0].split('?')[0];
+    return raw.split('/').pop().replace(/\.html$/, '');
+  }
+
   function syncToolIcon(tool) {
     const iconEl = document.querySelector('.ds-tool-header__icon, .tool-title-icon');
     if (iconEl && tool && tool.icon) {
       iconEl.innerHTML = tool.icon;
     }
+  }
+
+  function syncRelatedToolIcons() {
+    document.querySelectorAll('.ds-related-card, .related-card').forEach(function (card) {
+      const relatedTool = findTool(slugFromHref(card.getAttribute('href')));
+      if (!relatedTool || !relatedTool.icon) return;
+
+      let iconEl = card.querySelector('.ds-related-icon, .related-icon');
+      if (!iconEl) {
+        iconEl = document.createElement('span');
+        iconEl.className = card.classList.contains('ds-related-card') ? 'ds-related-icon' : 'related-icon';
+        card.insertAdjacentElement('afterbegin', iconEl);
+      }
+
+      iconEl.innerHTML = relatedTool.icon;
+    });
   }
 
   function replaceTopNav() {
@@ -305,6 +326,7 @@
 
     replaceTopNav();
     syncToolIcon(tool);
+    syncRelatedToolIcons();
     ensureToolContext(tool);
 
     loadSharedNavigation(function () {

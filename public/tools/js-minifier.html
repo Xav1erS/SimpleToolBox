@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=48" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
   <script src="https://cdn.jsdelivr.net/npm/terser@5/dist/bundle.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -479,7 +479,7 @@ function generateToken(userId) {
       return;
     }
 
-    runLabel.innerHTML = '<span class="spinner"></span>Minifying—;
+    runLabel.innerHTML = '<span class="spinner"></span>Minifying...';
     btnRun.disabled = true;
 
     try {
@@ -567,7 +567,7 @@ function generateToken(userId) {
   };
 </script>
 <script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=2"></script>
+<script src="../tool-page-icon.js?v=3"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -558,14 +558,14 @@
   btnClearAll.addEventListener('click', () => {
     messageInput.value = ''; keyInput.value = '';
     keyWarning.classList.remove('show');
-    Object.keys(ALGO_VAL_MAP).forEach(a => setResult(a, 'Awaiting input—, 'empty'));
+    Object.keys(ALGO_VAL_MAP).forEach(a => setResult(a, 'Awaiting input...', 'empty'));
   });
 
   document.querySelectorAll('.btn-copy-result').forEach(btn => {
     btn.addEventListener('click', () => {
       const el = document.getElementById(btn.dataset.id);
       const val = el ? el.textContent : '';
-      if (!val || val === 'Awaiting input— || val === 'Computing— || val.startsWith('Error')) return;
+      if (!val || val === 'Awaiting input...' || val === 'Computing...' || val.startsWith('Error')) return;
       navigator.clipboard.writeText(val).catch(() => {
         const ta = document.createElement('textarea');
         ta.value = val; ta.style.cssText = 'position:fixed;opacity:0';

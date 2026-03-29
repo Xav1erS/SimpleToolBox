@@ -254,7 +254,7 @@
         </button>
       </div>
     </div>
-    <textarea class="output-textarea" id="outputText" readonly placeholder="Click Generate to create placeholder text—></textarea>
+    <textarea class="output-textarea" id="outputText" readonly placeholder="Click Generate to create placeholder text..."></textarea>
     <div class="output-footer" id="outputFooter"></div>
   </div>
 
@@ -343,7 +343,7 @@
   // 鈹€鈹€ WORD BANKS 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   const LOREM_WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum curabitur pretium tincidunt lacus nulla gravida orci a odio tempus diam mi dictum lacus blandit arcu viverra feugiat nibh facilisis fermentum auctor ligula volutpat'.split(' ');
 
-  const CHINESE_CHARS = '鐨勪竴鏄湪涓嶄簡鏈夊拰浜鸿繖涓ぇ涓轰笂涓浗鎴戜互瑕佷粬鏃舵潵鐢ㄤ滑鐢熷埌浣滃湴浜庡嚭灏卞垎瀵规垚浼氬彲涓诲彂骞村姩鍚屽伐涔熻兘涓嬭繃瀛愯浜х闈㈣€屾柟鍚庡瀹氳瀛︽硶鎵€姘戝緱缁忓崄涓変箣杩涚潃绛夐儴搴﹀鐢靛姏閲屽姘村寲楂樿嚜浜岀悊璧峰皬鐗╃幇瀹炲姞閲忛兘涓や綋鍒舵満褰撲娇鐐逛粠涓氭湰鍘绘妸鎬уソ搴斿紑瀹冨悎杩樺洜鐢卞叾浜涚劧鍓嶅澶╂斂鍥涙棩閭ｇぞ涔変簨骞冲舰鐩稿叏琛ㄩ棿鏍蜂笌鍏冲悇閲嶆柊绾垮唴鏁版蹇冨姏鐞嗘牱鍗庢捣寤鸿鐣屾劅鎯呬骇涓氬姛绛夊彂鐜板師鏉?.split('');
+  const CHINESE_CHARS = '的一是在不了有人这中大为上个国我以要他时来用们生到作地于出就分对成会可主发年动同工也能下过子说产种面而方后多定行学法所民得经十之进着等部度家电力里如水化高自二理起小物现实加量都两体制机当使点从业本去把性好应开它合还因由其些然前外天政四日那社义事平形相全表间样与关各重新线内数正心力理样建设界感情产业功等发现原来'.split('');
 
   const TECH_WORDS = 'function component render state props hook context reducer async await promise callback interface type generic module export import class extends implements static abstract method parameter return boolean string number object array null undefined error exception try catch finally fetch api endpoint request response json token auth bearer middleware pipeline schema migration query mutation subscription websocket event listener observer iterator generator closure prototype prototype scope lexical binary heap stack queue graph tree node leaf root branch traversal recursive linear logarithmic complexity algorithm data structure framework library package dependency version release deploy build test lint format debug refactor optimize performance cache memory thread process concurrent parallel distributed microservice container docker kubernetes cloud'.split(' ');
 
@@ -363,7 +363,7 @@
     }
     if (theme === 'chinese') {
       const len = randInt(8, 24);
-      return pickMany(CHINESE_CHARS, len).join('') + '銆?;
+      return pickMany(CHINESE_CHARS, len).join('') + '。';
     }
     if (theme === 'tech') {
       const len = randInt(6, 14);

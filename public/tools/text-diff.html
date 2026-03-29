@@ -330,7 +330,7 @@ function renderDiff(d, view) {
   for (const line of d) {
     if (view === 'added' && line.type !== 'added') { if (line.type==='removed') {} else lnA++, lnB++; if (line.type==='removed') lnA++; continue; }
     if (view === 'removed' && line.type !== 'removed') { if (line.type==='added') {} else lnA++, lnB++; if (line.type==='added') lnB++; continue; }
-    const sign = line.type==='added' ? '+' : line.type==='removed' ? '− : ' ';
+    const sign = line.type==='added' ? '+' : line.type==='removed' ? '−' : ' ';
     const numA = line.type==='added' ? '' : lnA;
     const numB = line.type==='removed' ? '' : lnB;
     const numStr = `${numA || ''}`;

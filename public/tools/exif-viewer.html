@@ -352,9 +352,9 @@
         } else if (type === 7) { // UNDEFINED
           value = numValues <= 4 ? '0x' + Array.from(new Uint8Array(buf, dataOffset, numValues)).map(b => b.toString(16).padStart(2,'0')).join('') : `[${numValues} bytes]`;
         } else {
-          value = '—;
+          value = '—';
         }
-      } catch { value = '—; }
+      } catch { value = '—'; }
 
       entries[tag] = value;
     }
@@ -414,7 +414,7 @@
     if (tag === 'ISOSpeedRatings') return val;
     if (tag === 'ExposureBiasValue') return (val >= 0 ? '+' : '') + val.toFixed(2) + ' EV';
     if (Array.isArray(val)) return val.map(v => typeof v === 'number' ? v.toFixed(4) : v).join(', ');
-    if (typeof val === 'number') return isNaN(val) ? '— : (Number.isInteger(val) ? val : val.toFixed(6));
+    if (typeof val === 'number') return isNaN(val) ? '—' : (Number.isInteger(val) ? val : val.toFixed(6));
     return String(val);
   }
 

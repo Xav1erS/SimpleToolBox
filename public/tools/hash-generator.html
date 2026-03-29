@@ -441,7 +441,7 @@
   function setLoading() {
     ['valMd5','valSha1','valSha256','valSha512'].forEach(id => {
       const el = document.getElementById(id);
-      el.textContent = 'Computing—;
+      el.textContent = 'Computing...';
       el.className = 'hash-value loading';
     });
   }
@@ -620,7 +620,7 @@
   document.querySelectorAll('.btn-copy-hash').forEach(btn => {
     btn.addEventListener('click', () => {
       const val = document.getElementById(btn.dataset.id)?.textContent;
-      if (!val || val === 'Awaiting input— || val === 'Computing—) return;
+      if (!val || val === 'Awaiting input...' || val === 'Computing...') return;
       navigator.clipboard.writeText(val).then(() => {
         btn.classList.add('copied');
         const orig = btn.textContent;

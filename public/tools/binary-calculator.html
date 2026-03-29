@@ -149,7 +149,7 @@ document.getElementById('btnCalc').addEventListener('click',()=>{
   const a=parseInt(aStr,2),b=parseInt(bStr,2);
   let result;
   if(op==='+')result=a+b;
-  else if(op==='−)result=a-b;
+  else if(op==='−')result=a-b;
   else if(op==='×')result=a*b;
   else if(op==='梅'){if(b===0){err.textContent='Cannot divide by zero.';err.style.display='block';document.getElementById('results').style.display='none';return;}result=Math.trunc(a/b);}
   const neg=result<0;const abs=Math.abs(result);

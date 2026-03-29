@@ -425,7 +425,7 @@
     const lines = [];
 
     for (let p = 1; p <= pdfDoc.numPages; p++) {
-      progressLabel.textContent = 'Converting page ' + p + ' of ' + pdfDoc.numPages + '—;
+      progressLabel.textContent = 'Converting page ' + p + ' of ' + pdfDoc.numPages + '...';
       progressFill.style.width = ((p - 1) / pdfDoc.numPages * 100) + '%';
 
       const page = await pdfDoc.getPage(p);

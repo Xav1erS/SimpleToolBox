@@ -138,7 +138,7 @@
         <select id="fromCur"></select>
       </div>
       <div style="display:flex;justify-content:center">
-        <button class="swap-btn" id="btnSwap" title="Swap currencies">⇀/button>
+        <button class="swap-btn" id="btnSwap" title="Swap currencies">&#8646;</button>
       </div>
       <div class="converter-row">
         <input type="number" id="amountTo" readonly style="opacity:0.8;cursor:default" />
@@ -174,7 +174,7 @@
       <li>Select the source currency from the first dropdown.</li>
       <li>Select the target currency from the second dropdown.</li>
       <li>Read the converted result and the exchange rate below.</li>
-      <li>Click ⇀to swap the two currencies.</li>
+          <li>Click the swap button to reverse the two currencies.</li>
     </ol>
   </section>
 </div>
@@ -236,7 +236,7 @@
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Are the rates live?</strong><p>No. The rates are approximate reference values baked into the tool. For live rates before financial transactions, use your bank or a real-time provider.</p></div>
         <div class="ds-seo-faq-item"><strong>Which currencies are supported?</strong><p>30+ major currencies including USD, EUR, GBP, JPY, CAD, AUD, CHF, CNY, INR, KRW, MXN, BRL, and more.</p></div>
-        <div class="ds-seo-faq-item"><strong>How do I swap the currencies?</strong><p>Click the ⇀button between the two currency selectors to reverse the conversion direction.</p></div>
+        <div class="ds-seo-faq-item"><strong>How do I swap the currencies?</strong><p>Click the swap button between the two currency selectors to reverse the conversion direction.</p></div>
         <div class="ds-seo-faq-item"><strong>Why use approximate rates?</strong><p>For quick estimates —travel planning, price comparisons, or ballpark figures —approximate rates are sufficient and faster than waiting for a live API.</p></div>
       </div>
     </details>
@@ -255,9 +255,9 @@
     SAR:3.75, MYR:4.72, IDR:15650, PHP:56.3
   };
   const SYMBOLS = {
-    USD:'$',EUR:'鈧?,GBP:'拢',JPY:'楼',CNY:'楼',KRW:'鈧?,INR:'鈧?,
-    MXN:'$',BRL:'R$',TRY:'鈧?,PLN:'z艂',HUF:'Ft',ILS:'鈧?,
-    THB:'喔?,IDR:'Rp',PHP:'鈧?,SAR:'锓?,AED:'丿.廿'
+    USD:'$', EUR:'€', GBP:'£', JPY:'¥', CNY:'¥', KRW:'₩', INR:'₹',
+    MXN:'$', BRL:'R$', TRY:'₺', PLN:'zł', HUF:'Ft', ILS:'₪',
+    THB:'฿', IDR:'Rp', PHP:'₱', SAR:'﷼', AED:'د.إ'
   };
   const NAMES = {
     USD:'US Dollar',EUR:'Euro',GBP:'British Pound',JPY:'Japanese Yen',CAD:'Canadian Dollar',

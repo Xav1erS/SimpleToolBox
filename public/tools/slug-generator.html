@@ -456,9 +456,9 @@
     const maxLen = Math.max(10, parseInt(maxLenInput.value) || 60);
     const len    = slug.length;
 
-    slugVal.textContent      = slug || '—;
+    slugVal.textContent = slug || '—';
     urlBase.textContent      = baseUrl || 'https://example.com/blog/';
-    urlSlugPart.textContent  = slug || '—;
+    urlSlugPart.textContent = slug || '—';
 
     if (!slug) {
       slugLen.textContent = '';

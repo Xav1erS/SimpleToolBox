@@ -418,7 +418,7 @@
       const row = document.createElement('div');
       row.className = 'ip-row';
       const displayVal = (val !== null && val !== undefined && val !== '') ? String(val) : '\u2014';
-      const isEmpty = displayVal === '—;
+      const isEmpty = displayVal === '—';
       row.innerHTML = `
         <span class="ip-row-key">${f.label}</span>
         <span class="ip-row-val${isEmpty ? ' empty' : ''}">${displayVal}</span>

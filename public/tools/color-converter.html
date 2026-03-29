@@ -815,7 +815,7 @@ function wcagBadges(ratio) {
 function renderBadges(container, ratio) {
   const badges = wcagBadges(ratio);
   container.innerHTML = badges.map(b =>
-    `<span class="wcag-badge ${b.pass ? 'pass' : 'fail'}">${b.label} ${b.pass ? '&#10003; : '&#10003;}</span>`
+    `<span class="wcag-badge ${b.pass ? 'pass' : 'fail'}">${b.label} ${b.pass ? '&#10003;' : '&#10007;'}</span>`
   ).join('');
 }
 
@@ -936,7 +936,7 @@ function setupCopy(btnId, getValueFn) {
       document.body.removeChild(ta);
     });
     const orig = btn.innerHTML;
-    btn.innerHTML = '&#10003;;
+    btn.innerHTML = '&#10003;';
     btn.classList.add('copied');
     setTimeout(() => {
       btn.innerHTML = orig;

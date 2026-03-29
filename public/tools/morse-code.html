@@ -576,9 +576,9 @@
     outputLabel.textContent = m === 'encode' ? 'Morse Code'   : 'Plain Text';
     runLabel.textContent    = m === 'encode' ? 'Encode'       : 'Decode';
     inputText.placeholder   = m === 'encode'
-      ? 'Type or paste text here—
+      ? 'Type or paste text here…'
       : 'Paste Morse code here (e.g. .... . .-.. .-.. --- / .-- --- .-. .-.. -..)';
-    arrowIcon.textContent   = m === 'encode' ? '→ : '→;
+    arrowIcon.textContent = '→';
     outputPanel.classList.remove('has-error');
     errorMsg.style.display  = 'none';
     run();

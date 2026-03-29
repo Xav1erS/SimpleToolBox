@@ -325,7 +325,7 @@ function speak() {
 
   utter.onstart = () => {
     speaking = true;
-    document.getElementById('btnPlay').textContent = '鈴?;
+    document.getElementById('btnPlay').textContent = 'Pause';
     document.getElementById('btnStop').disabled = false;
     document.getElementById('wordStatus').textContent = `Speaking... (0 / ${wordCount} words)`;
   };
@@ -339,14 +339,14 @@ function speak() {
   };
   utter.onend = () => {
     speaking = false;
-    document.getElementById('btnPlay').textContent = '&#9662;;
+    document.getElementById('btnPlay').textContent = 'Play';
     document.getElementById('btnStop').disabled = true;
     document.getElementById('progressFill').style.width = '100%';
     document.getElementById('wordStatus').textContent = 'Done';
   };
   utter.onerror = () => {
     speaking = false;
-    document.getElementById('btnPlay').textContent = '&#9662;;
+    document.getElementById('btnPlay').textContent = 'Play';
     document.getElementById('btnStop').disabled = true;
     document.getElementById('wordStatus').textContent = 'Error —try a different voice';
   };
@@ -357,11 +357,11 @@ function speak() {
 document.getElementById('btnPlay').addEventListener('click', () => {
   if (synth.speaking && !synth.paused) {
     synth.pause();
-    document.getElementById('btnPlay').textContent = '&#9662;;
+    document.getElementById('btnPlay').textContent = 'Play';
     document.getElementById('wordStatus').textContent = 'Paused';
   } else if (synth.paused) {
     synth.resume();
-    document.getElementById('btnPlay').textContent = '鈴?;
+    document.getElementById('btnPlay').textContent = 'Pause';
     document.getElementById('wordStatus').textContent = `Speaking... (${wordIndex} / ${wordCount} words)`;
   } else {
     speak();
@@ -371,7 +371,7 @@ document.getElementById('btnPlay').addEventListener('click', () => {
 document.getElementById('btnStop').addEventListener('click', () => {
   synth.cancel();
   speaking = false;
-  document.getElementById('btnPlay').textContent = '&#9662;;
+  document.getElementById('btnPlay').textContent = 'Play';
   document.getElementById('btnStop').disabled = true;
   document.getElementById('progressFill').style.width = '0%';
   document.getElementById('wordStatus').textContent = 'Stopped';
@@ -396,7 +396,7 @@ document.getElementById('btnClear').addEventListener('click', () => {
   synth.cancel();
   document.getElementById('progressFill').style.width = '0%';
   document.getElementById('wordStatus').textContent = 'Ready';
-  document.getElementById('btnPlay').textContent = '&#9662;;
+  document.getElementById('btnPlay').textContent = 'Play';
   document.getElementById('btnStop').disabled = true;
 });
 

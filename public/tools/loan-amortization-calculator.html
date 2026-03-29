@@ -116,7 +116,7 @@ function renderTable(){
     tbody.appendChild(tr);
   });
   const sm=document.getElementById('showMore');
-  if(fullRows.length>12&&!showAll){sm.style.display='block';sm.textContent='Show all '+fullRows.length+' payments &#9662;;}
+  if(fullRows.length>12&&!showAll){sm.style.display='block';sm.textContent='Show all '+fullRows.length+' payments &#9662;';}
   else sm.style.display='none';
 }
 function calc(){
@@ -131,7 +131,7 @@ function calc(){
   let d=startVal?new Date(startVal+'-01'):null;
   for(let i=1;i<=n;i++){
     const intPmt=bal*r;const prinPmt=M-intPmt;bal-=prinPmt;
-    const dateStr=d?d.toLocaleDateString('en-US',{year:'numeric',month:'short'}):'—;
+    const dateStr=d?d.toLocaleDateString('en-US',{year:'numeric',month:'short'}):'—';
     fullRows.push({n:i,date:dateStr,pay:M,prin:prinPmt,int:intPmt,bal});
     if(d){d=new Date(d.getFullYear(),d.getMonth()+1,1);}
   }

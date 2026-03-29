@@ -250,7 +250,7 @@
     const orig = parseFloat(document.getElementById('origPrice').value);
     const pct = parseFloat(document.getElementById('discPct').value);
     if (isNaN(orig) || isNaN(pct) || orig < 0 || pct < 0 || pct > 100) {
-      ['r1Sale','r1Save','r1Pct'].forEach(id => document.getElementById(id).textContent = '—); return;
+      ['r1Sale','r1Save','r1Pct'].forEach(id => document.getElementById(id).textContent = '—'); return;
     }
     const save = orig * pct / 100;
     const sale = orig - save;
@@ -263,7 +263,7 @@
     const orig = parseFloat(document.getElementById('revOrig').value);
     const sale = parseFloat(document.getElementById('revSale').value);
     if (isNaN(orig) || isNaN(sale) || orig <= 0 || sale < 0) {
-      ['r2Pct','r2Save'].forEach(id => document.getElementById(id).textContent = '—); return;
+      ['r2Pct','r2Save'].forEach(id => document.getElementById(id).textContent = '—'); return;
     }
     const save = orig - sale;
     const pct = save / orig * 100;

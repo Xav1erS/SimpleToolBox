@@ -393,7 +393,7 @@
 
   <!-- Progress -->
   <div class="progress-bar-wrap" id="progressWrap">
-    <div class="progress-label" id="progressLabel">Processing—</div>
+    <div class="progress-label" id="progressLabel">Processing...</div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -458,7 +458,7 @@
           </div>
           <div class="ds-seo-example__row">
             <span class="ds-seo-example__label">Output</span>
-            <span class="ds-seo-example__value">3 PDFs: pages 1—, pages 4—, and pages 7—0 —downloaded as split.zip</span>
+            <span class="ds-seo-example__value">3 PDFs: pages 1-3, pages 4-6, and pages 7-10 downloaded as split.zip</span>
           </div>
         </div>
       </div>
@@ -559,7 +559,7 @@
         const from = parseInt(dashMatch[1], 10);
         const to   = parseInt(dashMatch[2], 10);
         if (from < 1 || to < 1) throw `Range "${part}" contains a page number less than 1.`;
-        if (from > to) throw `Range "${part}" is invalid —start must be 鈮?end.`;
+        if (from > to) throw `Range "${part}" is invalid: start must be less than or equal to end.`;
         if (to > max)  throw `Range "${part}" exceeds the document's ${max} pages.`;
         const pages = [];
         for (let p = from; p <= to; p++) pages.push(p);
@@ -630,7 +630,7 @@
     const blobs = [];
     for (let i = 0; i < ranges.length; i++) {
       const pages = ranges[i];
-      progressLabel.textContent = `Building PDF ${i + 1} of ${ranges.length} (pages ${pages[0]}—{pages[pages.length - 1]})—;
+      progressLabel.textContent = `Building PDF ${i + 1} of ${ranges.length} (pages ${pages[0]}-${pages[pages.length - 1]})...`;
       progressFill.style.width  = (i / ranges.length * 100) + '%';
       const blob = await buildPdf(pages);
       if (blob) {
@@ -648,7 +648,7 @@
   async function splitEveryPage() {
     const blobs = [];
     for (let i = 1; i <= numPages; i++) {
-      progressLabel.textContent = `Processing page ${i} of ${numPages}—;
+      progressLabel.textContent = `Processing page ${i} of ${numPages}...`;
       progressFill.style.width  = ((i - 1) / numPages * 100) + '%';
       const blob = await buildPdf([i]);
       if (blob) {
@@ -755,7 +755,7 @@
   btnDlZip.addEventListener('click', async () => {
     if (!resultBlobs.length) return;
     btnDlZip.disabled = true;
-    btnDlZip.textContent = 'Building ZIP—;
+    btnDlZip.textContent = 'Building ZIP...';
     try {
       const zip = new JSZip();
       for (const { name, blob } of resultBlobs) {

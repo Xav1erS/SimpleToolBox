@@ -655,7 +655,7 @@
     }
 
     const items = allMatches.map((m, i) => {
-      const matchText = m[0].length > 60 ? m[0].slice(0, 60) + '— : m[0];
+      const matchText = m[0].length > 60 ? m[0].slice(0, 60) + '...' : m[0];
       // Capture groups
       let groupsHtml = '';
       const groups = flagG.checked ? m.fullMatch : m;

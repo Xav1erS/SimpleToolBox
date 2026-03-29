@@ -500,7 +500,7 @@
 
       function badge(label, pass) {
         return `<span class="wcag-badge ${pass ? 'badge-pass' : 'badge-fail'}">
-          ${pass ? '&#10003; : '&#10003;} ${label}
+          ${pass ? '&#10003;' : '&#10007;'} ${label}
         </span>`;
       }
 
@@ -596,8 +596,8 @@
     const lines = [':root {'];
     src.forEach((p, i) => {
       const r = contrastRatio(p.fg, p.bg);
-      const aaOk  = r >= 4.5 ? '&#10003; : '&#10003;;
-      const aaaOk = r >= 7   ? '&#10003; : '&#10003;;
+      const aaOk  = r >= 4.5 ? '&#10003;' : '&#10007;';
+      const aaaOk = r >= 7   ? '&#10003;' : '&#10007;';
       lines.push(`  /* pair ${i+1} —contrast ${r.toFixed(1)}:1  AA ${aaOk}  AAA ${aaaOk} */`);
       lines.push(`  --color-pair-${i+1}-fg: ${p.fg};`);
       lines.push(`  --color-pair-${i+1}-bg: ${p.bg};`);

@@ -456,7 +456,7 @@
 
     for (let idx = 0; idx < pagesToProcess.length; idx++) {
       const pageNum = pagesToProcess[idx];
-      progressLabel.textContent = `Extracting page ${pageNum} of ${totalPages}—;
+    progressLabel.textContent = `Extracting page ${pageNum} of ${totalPages}...`;
       progressFill.style.width = (idx / pagesToProcess.length * 100) + '%';
 
       const page = await currentPdfDoc.getPage(pageNum);

@@ -216,7 +216,7 @@
       document.getElementById('statAvg').textContent = parseFloat((sum / nums.length).toFixed(4));
       document.getElementById('resultArea').innerHTML = nums.map(n => `<span class="number-chip">${n}</span>`).join('');
     } else {
-      ['statSum','statMin','statMax','statAvg'].forEach(id => document.getElementById(id).textContent = '—);
+      ['statSum','statMin','statMax','statAvg'].forEach(id => document.getElementById(id).textContent = '—');
       document.getElementById('resultArea').innerHTML = '<span style="color:var(--ds-color-text-muted);font-size:14px">No numbers found.</span>';
     }
     return nums;

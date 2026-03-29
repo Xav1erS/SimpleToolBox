@@ -7,6 +7,7 @@ const DESKTOP_CASES = [
   { label: 'homepage', url: publicUrl('index.html'), type: 'site', expectDirectory: false },
   { label: 'all-tools', url: publicUrl('all-tools.html'), type: 'directory', expectDirectory: true },
   { label: 'webp-converter', url: toolUrl('webp-converter'), type: 'tool', expectDirectory: true },
+  { label: 'password-generator', url: toolUrl('password-generator'), type: 'tool', expectDirectory: true },
   {
     label: 'js-minifier',
     url: toolUrl('js-minifier'),
@@ -26,6 +27,7 @@ const DESKTOP_CASES = [
 
 const MOBILE_CASES = [
   { label: 'homepage', url: publicUrl('index.html'), type: 'site', expectDirectory: false },
+  { label: 'password-generator', url: toolUrl('password-generator'), type: 'tool', expectDirectory: true },
   { label: 'webp-converter', url: toolUrl('webp-converter'), type: 'tool', expectDirectory: true },
   { label: 'image-tools', url: publicUrl('image-tools.html'), type: 'directory', expectDirectory: true },
 ];
@@ -90,7 +92,7 @@ async function assertMobileDrawerBehavior(page) {
   await expect(toggle).toBeVisible();
   await toggle.click();
   await expect.poll(async () => page.evaluate(() => document.body.classList.contains('ds-directory-drawer-open'))).toBe(true);
-  await page.locator('[data-directory-close], [data-directory-backdrop]').first().click();
+  await page.keyboard.press('Escape');
   await expect.poll(async () => page.evaluate(() => document.body.classList.contains('ds-directory-drawer-open'))).toBe(false);
 }
 

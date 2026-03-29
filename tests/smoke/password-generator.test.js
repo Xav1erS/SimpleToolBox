@@ -39,7 +39,7 @@ test.describe('Password Generator', () => {
 
   test('copy button does not crash', async ({ page }) => {
     await page.goto(URL);
-    const copyBtn = page.locator('#btnCopyAll, .copy-btn, button:has-text("Copy"), [class*="copy"]').first();
+    const copyBtn = page.locator('#btnCopyAll').first();
     await expect(copyBtn).toBeVisible();
     await copyBtn.click();
     await page.waitForTimeout(500);

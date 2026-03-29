@@ -2,6 +2,7 @@
  * Test helpers for SimpleToolbox smoke tests.
  */
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -22,6 +23,16 @@ export function toolUrl(slug) {
  */
 export function publicUrl(relativePath) {
   return `file://${PUBLIC_DIR}/${relativePath}`;
+}
+
+/**
+ * Returns all tool slugs from public/tools-data.js without executing it in Node.
+ */
+export function getAllToolSlugs() {
+  const file = path.resolve(PUBLIC_DIR, 'tools-data.js');
+  const source = fs.readFileSync(file, 'utf8');
+  const hrefMatches = source.matchAll(/href:\s*'tools\/([^']+)\.html'/g);
+  return [...new Set(Array.from(hrefMatches, match => match[1]))];
 }
 
 /**

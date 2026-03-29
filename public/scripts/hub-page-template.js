@@ -90,13 +90,17 @@
     return (
       '<section class="page-header hub-page-header">' +
         '<div class="hub-breadcrumb"></div>' +
-        '<div class="hero-kicker">' + escapeHtml(hubLabel) + '</div>' +
-        '<h1 class="page-title hub-page-header__title">' + escapeHtml(hero.title || hub.title) + '</h1>' +
-        '<p class="page-sub hub-page-header__sub">' + escapeHtml(hero.description || '') + '</p>' +
-        '<div class="page-highlights">' +
-          '<span class="page-highlight">' + escapeHtml(String(count)) + ' tools</span>' +
-          '<span class="page-highlight">' + escapeHtml(String(sectionCount)) + ' sections</span>' +
-          '<span class="page-highlight">Privacy-first</span>' +
+        '<div class="hub-page-header__layout">' +
+          '<div class="hub-page-header__content">' +
+            '<div class="hero-kicker">' + escapeHtml(hubLabel) + '</div>' +
+            '<h1 class="page-title hub-page-header__title">' + escapeHtml(hero.title || hub.title) + '</h1>' +
+            '<p class="page-sub hub-page-header__sub">' + escapeHtml(hero.description || '') + '</p>' +
+          '</div>' +
+          '<div class="page-highlights hub-page-header__meta">' +
+            '<span class="page-highlight">' + escapeHtml(String(count)) + ' tools</span>' +
+            '<span class="page-highlight">' + escapeHtml(String(sectionCount)) + ' sections</span>' +
+            '<span class="page-highlight">Privacy-first</span>' +
+          '</div>' +
         '</div>' +
       '</section>'
     );

@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "install-hooks": "python scripts/install-git-hooks.py",
+    "revision-assets": "python scripts/revision-assets.py",
+    "deploy:prepare": "python scripts/generate-report.py",
     "lint": "eslint public/tools/*.html public/*.html --ext .html",
     "gen-sitemap": "node scripts/gen-sitemap.js",
     "check-meta": "python scripts/check-tools-meta.py",

@@ -77,7 +77,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     html { scroll-behavior: smooth; }
     body {
@@ -565,7 +565,7 @@
 
     if (!raw) {
       urlBreakdown.innerHTML = `<div style="color: var(--ds-color-text-muted); font-size: 13px; padding: 20px 0; text-align: center;">Enter a URL on the left to see its components.</div>`;
-      parseOutputStat.textContent = '—;
+      parseOutputStat.textContent = '—';
       return;
     }
 
@@ -577,7 +577,7 @@
       parseError.style.display = '';
       parseInputPanel.classList.add('has-error');
       urlBreakdown.innerHTML = `<div style="color: #ef4444; font-size: 13px; padding: 20px 0; text-align: center;">Could not parse URL: ${escapeHtml(e.message)}</div>`;
-      parseOutputStat.textContent = '—;
+      parseOutputStat.textContent = '—';
       return;
     }
 
@@ -628,7 +628,7 @@
     row.innerHTML = `
       <input class="form-input param-key-input" type="text" placeholder="key" value="${escapeAttr(key)}" spellcheck="false" autocomplete="off" />
       <input class="form-input param-val-input" type="text" placeholder="value" value="${escapeAttr(val)}" spellcheck="false" autocomplete="off" />
-      <button class="param-del" title="Remove">鉁?/button>`;
+      <button class="param-del" title="Remove">&#10003;/button>`;
     row.querySelector('.param-del').addEventListener('click', () => {
       row.remove();
       runBuild();
@@ -830,16 +830,16 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'url-parser'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

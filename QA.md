@@ -199,6 +199,37 @@ Outputs:
 
 This is the recommended release gate entry point.
 
+Before the report runs, it now automatically refreshes cache-busting hashes for shared CSS / JS references.
+
+### 8. Git Hooks
+
+Install the tracked repository hooks once per clone:
+
+```bash
+python scripts/install-git-hooks.py
+```
+
+After installation, every `git commit` will:
+
+- block accidental `node_modules/` commits
+- block oversized staged files
+- run `python scripts/revision-assets.py`
+- restage updated HTML asset references automatically
+
+### 9. Deploy Preparation
+
+Use this as the deployment entry command:
+
+```bash
+npm run deploy:prepare
+```
+
+It runs the full preflight pipeline through:
+
+```bash
+python scripts/generate-report.py
+```
+
 ---
 
 ## Change Risk Tiers

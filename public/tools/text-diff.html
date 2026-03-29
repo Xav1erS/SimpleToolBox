@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .inputs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -322,7 +322,7 @@ function renderDiff(d, view) {
     else unchangedN++;
   }
   statAdded.textContent = `+${addedN} added`;
-  statRemoved.textContent = `鈭?{removedN} removed`;
+  statRemoved.textContent = `−{removedN} removed`;
   statUnchanged.textContent = `${unchangedN} unchanged`;
   statsRow.style.display = 'flex';
 
@@ -330,7 +330,7 @@ function renderDiff(d, view) {
   for (const line of d) {
     if (view === 'added' && line.type !== 'added') { if (line.type==='removed') {} else lnA++, lnB++; if (line.type==='removed') lnA++; continue; }
     if (view === 'removed' && line.type !== 'removed') { if (line.type==='added') {} else lnA++, lnB++; if (line.type==='added') lnB++; continue; }
-    const sign = line.type==='added' ? '+' : line.type==='removed' ? '鈭? : ' ';
+    const sign = line.type==='added' ? '+' : line.type==='removed' ? '− : ' ';
     const numA = line.type==='added' ? '' : lnA;
     const numB = line.type==='removed' ? '' : lnB;
     const numStr = `${numA || ''}`;
@@ -389,16 +389,16 @@ textB.addEventListener('input', updateStats);
 // Ctrl+Enter to compare
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) run(); });
 </script>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'text-diff'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

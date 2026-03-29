@@ -201,6 +201,7 @@ def write_markdown(summary: dict) -> Path:
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     commands = {
+        "asset_revision": run_command("asset_revision", [sys.executable, "scripts/revision-assets.py"]),
         "validate": run_command("validate", [sys.executable, "scripts/validate-tools.py"]),
         "metadata": run_command("metadata", [sys.executable, "scripts/check-tools-meta.py"]),
         "page_audit": run_command("page_audit", [sys.executable, "scripts/page-audit.py"]),
@@ -247,6 +248,7 @@ def main() -> None:
     print("=" * 60 + "\n")
 
     failed_required = [
+        commands["asset_revision"]["status"] == "failed",
         commands["validate"]["status"] == "failed",
         commands["metadata"]["status"] == "failed",
         commands["page_audit"]["status"] == "failed",

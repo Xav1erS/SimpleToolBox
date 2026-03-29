@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     /* MAIN */
     .main { max-width: 1000px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 16px; }
@@ -310,7 +310,7 @@
         type="text"
         class="pattern-input"
         id="patternInput"
-        placeholder="Enter regex pattern… spellcheck="false"
+        placeholder="Enter regex pattern…" spellcheck="false"
         autocomplete="off"
       />
       <span class="pattern-slash right">/</span>
@@ -339,7 +339,7 @@
     <textarea
       class="test-textarea"
       id="testInput"
-      placeholder="Paste or type your test string here… spellcheck="false"
+      placeholder="Paste or type your test string here…" spellcheck="false"
     ></textarea>
 
     <!-- Match Preview (Match tab) -->
@@ -360,7 +360,7 @@
     <div id="replaceSection" style="display:none;">
       <div class="replace-row">
         <span class="replace-label">Replace with</span>
-        <input type="text" class="replace-input" id="replaceInput" placeholder='Replacement string (use $1, $2—for groups)' spellcheck="false" />
+        <input type="text" class="replace-input" id="replaceInput" placeholder='Replacement string (use $1, $2-7for groups)' spellcheck="false" />
       </div>
       <div class="match-preview-header">
         <span class="match-preview-label">Result</span>
@@ -435,7 +435,7 @@
   <div class="ds-related-grid">
     <a href="json-formatter.html" class="ds-related-card"><span class="ds-related-icon">🎨</span><div><div class="ds-related-name">JSON Formatter</div><div class="ds-related-desc">Prettify, minify, validate JSON; convert to CSV or SQL</div></div></a>
     <a href="string-escape.html" class="ds-related-card"><span class="ds-related-icon">🔤</span><div><div class="ds-related-name">String Escape / Unescape</div><div class="ds-related-desc">Escape or unescape strings for JSON, JavaScript and HTML</div></div></a>
-    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">鈱</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
   </div>
 </div>
 
@@ -738,7 +738,7 @@
     if (!lastMatches.length) return;
     const text = lastMatches.map(m => m[0]).join('\n');
     navigator.clipboard.writeText(text).then(() => {
-      btnCopyMatches.textContent = '鉁?Copied';
+      btnCopyMatches.textContent = '&#10003;Copied';
       btnCopyMatches.classList.add('copied');
       setTimeout(() => {
         btnCopyMatches.textContent = 'Copy matches';
@@ -751,7 +751,7 @@
   btnCopyResult.addEventListener('click', () => {
     if (!lastReplaceResult) return;
     navigator.clipboard.writeText(lastReplaceResult).then(() => {
-      btnCopyResult.textContent = '鉁?Copied';
+      btnCopyResult.textContent = '&#10003;Copied';
       btnCopyResult.classList.add('copied');
       setTimeout(() => {
         btnCopyResult.textContent = 'Copy result';
@@ -822,16 +822,16 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'regex-tester'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

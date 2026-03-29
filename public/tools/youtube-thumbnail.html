@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -454,7 +454,7 @@
     if (!btn) return;
     btn.classList.add('downloading');
     const origHtml = btn.innerHTML;
-    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Saving—;
+    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Saving...`;
     await downloadImage(btn.dataset.url, btn.dataset.filename);
     setTimeout(() => {
       btn.innerHTML = origHtml;
@@ -481,8 +481,8 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

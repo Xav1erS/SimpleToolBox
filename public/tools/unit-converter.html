@@ -40,7 +40,7 @@
       "name": "How accurate are the conversions?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Conversions use standard SI-defined ratios and are accurate to JavaScript's floating-point precision (15—7 significant digits). For most practical purposes, results are exact. Temperature conversions use the official formulas: 掳C = (掳F 鈭?32) × 5/9, K = 掳C + 273.15."
+        "text": "Conversions use standard SI-defined ratios and are accurate to JavaScript's floating-point precision (15—7 significant digits). For most practical purposes, results are exact. Temperature conversions use the official formulas: 掳C = (掳F −32) × 5/9, K = 掳C + 273.15."
       }
     },
     {
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -488,7 +488,7 @@
   const refSub   = document.getElementById('refSubtitle');
 
   function fmtNum(n) {
-    if (!isFinite(n)) return '—;
+    if (!isFinite(n)) return '—';
     // Use toPrecision for very large or very small, otherwise fixed
     const abs = Math.abs(n);
     if (abs === 0) return '0';
@@ -582,8 +582,8 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

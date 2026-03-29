@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -522,7 +522,7 @@
       <div class="note-title">About Color Formats</div>
       <ul class="note-list">
         <li><strong>HEX</strong> —Most common in web / CSS / HTML. Compact 6-character hexadecimal notation (e.g. <code>#FF5733</code>).</li>
-        <li><strong>RGB</strong> —Used in screen-based programming, CSS, and canvas APIs. Each channel (Red, Green, Blue) ranges 0—55.</li>
+        <li><strong>RGB</strong> —Used in screen-based programming, CSS, and canvas APIs. Each channel (Red, Green, Blue) ranges 0-955.</li>
         <li><strong>HSL</strong> —Hue, Saturation, Lightness. More intuitive for humans —easy to tweak brightness or tone a color.</li>
         <li><strong>CMYK</strong> —Cyan, Magenta, Yellow, Key (Black). Used in print design and professional publishing workflows.</li>
         <li>Edit any field and all other formats update automatically. Supports both short-form (<code>255, 87, 51</code>) and full-form (<code>rgb(255, 87, 51)</code>) input.</li>
@@ -815,7 +815,7 @@ function wcagBadges(ratio) {
 function renderBadges(container, ratio) {
   const badges = wcagBadges(ratio);
   container.innerHTML = badges.map(b =>
-    `<span class="wcag-badge ${b.pass ? 'pass' : 'fail'}">${b.label} ${b.pass ? '鉁? : '鉁?}</span>`
+    `<span class="wcag-badge ${b.pass ? 'pass' : 'fail'}">${b.label} ${b.pass ? '&#10003; : '&#10003;}</span>`
   ).join('');
 }
 
@@ -936,7 +936,7 @@ function setupCopy(btnId, getValueFn) {
       document.body.removeChild(ta);
     });
     const orig = btn.innerHTML;
-    btn.innerHTML = '鉁?;
+    btn.innerHTML = '&#10003;;
     btn.classList.add('copied');
     setTimeout(() => {
       btn.innerHTML = orig;
@@ -967,16 +967,16 @@ setupCopy('copyCmyk', () => cmykInput.value);
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'color-converter'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

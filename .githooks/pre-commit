@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -eu
+
+if git diff --cached --name-only | grep -q "^node_modules/"; then
+  echo ""
+  echo "  COMMIT BLOCKED: node_modules/ files are staged."
+  echo "  Run: git rm -r --cached node_modules/"
+  echo ""
+  exit 1
+fi
+
+tmp_file=$(mktemp 2>/dev/null || printf '.git/.pre-commit-staged.tmp')
+trap 'rm -f "$tmp_file"' EXIT INT TERM
+git diff --cached --name-only > "$tmp_file"
+
+while IFS= read -r file; do
+  [ -z "$file" ] && continue
+  if [ -f "$file" ]; then
+    size=$(wc -c < "$file")
+    if [ "$size" -gt 2097152 ]; then
+      echo ""
+      echo "  COMMIT BLOCKED: large file detected: $file ($(( size / 1024 )) KB)"
+      echo "  If intentional, use: git commit --no-verify"
+      echo ""
+      exit 1
+    fi
+  fi
+done < "$tmp_file"
+
+echo ""
+echo "  Refreshing shared asset revisions..."
+python scripts/revision-assets.py >/dev/null
+
+git add public/*.html public/tools/*.html
+
+echo "  Asset revisions refreshed and HTML references restaged."
+echo ""

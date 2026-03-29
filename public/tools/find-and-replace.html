@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .search-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -177,7 +177,7 @@
 
   <div class="ds-tool-pane">
     <div class="ds-tool-pane__header"><span class="ds-tool-pane__label">Result</span><div class="ds-tool-pane__actions"><button class="io-btn ds-tool-pane__btn" id="btnCopyHeader">Copy</button></div></div>
-    <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Result appears after Replace All… readonly spellcheck="false"></textarea>
+    <textarea class="io-textarea ds-tool-textarea" id="outputText" placeholder="Result appears after Replace All…" readonly spellcheck="false"></textarea>
     <div class="ds-tool-pane__footer"><span class="ds-tool-stat" id="outputStat">0 chars</span></div>
   </div>
 
@@ -315,7 +315,7 @@ function updatePreview() {
     return;
   }
   const re = buildRegex(pattern, false);
-  if (!re) { previewBox.innerHTML = escHtml(text.slice(0, 2000)); matchBadge.className = 'match-badge idle'; matchBadge.textContent = '—; return; }
+  if (!re) { previewBox.innerHTML = escHtml(text.slice(0, 2000)); matchBadge.className = 'match-badge idle'; matchBadge.textContent = '—'; return; }
   const matches = [...text.matchAll(re)];
   const count = matches.length;
   if (count === 0) {
@@ -373,16 +373,16 @@ findField.addEventListener('input', updatePreview);
 replaceField.addEventListener('input', () => {});
 [optCI, optWW, optRE, optML].forEach(el => el.addEventListener('change', updatePreview));
 </script>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'find-and-replace'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

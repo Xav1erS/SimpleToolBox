@@ -40,7 +40,7 @@
       "name": "Does it support Unicode characters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Basic ASCII (0—27) is fully supported. Extended UTF-8 characters are encoded as multi-byte binary sequences."
+        "text": "Basic ASCII (0-927) is fully supported. Extended UTF-8 characters are encoded as multi-byte binary sequences."
       }
     },
     {
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -253,7 +253,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here… spellcheck="false" autocomplete="off"></textarea>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here…" spellcheck="false" autocomplete="off"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat" id="inputStat">0 chars</span>
       </div>
@@ -275,7 +275,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea out-textarea" id="outputText" placeholder="Output will appear here… readonly spellcheck="false"></textarea>
+      <textarea class="ds-tool-textarea out-textarea" id="outputText" placeholder="Output will appear here…" readonly spellcheck="false"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat out-stat" id="outputStat">0 bytes</span>
         <span class="ds-tool-error out-error" id="errorMsg">Invalid binary input</span>
@@ -306,7 +306,7 @@
     <span class="ds-tool-note__icon">💡</span>
     <div class="ds-tool-note__text info-text">
       <strong>Binary / Text</strong> represents each character as a sequence of 8-bit groups using
-      <strong>UTF-8</strong> encoding. ASCII characters (A–Z, 0—, etc.) are <code>1 byte</code> (e.g. <code>A</code> →<code>01000001</code>).
+      <strong>UTF-8</strong> encoding. ASCII characters (A–Z, 0-9, etc.) are <code>1 byte</code> (e.g. <code>A</code> →<code>01000001</code>).
       Extended Latin characters like <code>é</code> are <code>2 bytes</code>.
       Chinese / Japanese / Korean characters and most emoji are <code>3— bytes</code> each.
       The delimiter controls how bytes are separated: <strong>Space</strong> (most readable),
@@ -388,7 +388,7 @@
     <details class="ds-seo-collapse">
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
-        <div class="ds-seo-faq-item"><strong>Does it support Unicode characters?</strong><p>Basic ASCII (0—27) is fully supported. Extended UTF-8 characters are encoded as multi-byte binary sequences.</p></div>
+        <div class="ds-seo-faq-item"><strong>Does it support Unicode characters?</strong><p>Basic ASCII (0-927) is fully supported. Extended UTF-8 characters are encoded as multi-byte binary sequences.</p></div>
         <div class="ds-seo-faq-item"><strong>Why are there spaces between groups?</strong><p>Spaces separate bytes for readability —the converter accepts binary with or without spaces.</p></div>
         <div class="ds-seo-faq-item"><strong>What does Binary to Text Converter Online —ASCII Binary Free do?</strong><p>Binary to Text Converter Online —ASCII Binary Free runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
         <div class="ds-seo-faq-item"><strong>Is Binary to Text Converter Online —ASCII Binary Free free to use?</strong><p>Yes. This tool is free to use and does not require sign-up.</p></div>
@@ -517,8 +517,8 @@
       inputLabel.textContent  = 'Plain Text';
       outputLabel.textContent = 'Binary';
       runLabel.textContent    = 'Encode';
-      inputText.placeholder   = 'Type or paste text here—;
-      outputText.placeholder  = 'Binary output will appear here—;
+      inputText.placeholder = 'Type or paste text here…';
+      outputText.placeholder = 'Binary output will appear here…';
       arrowIcon.textContent   = '→;
     } else {
       inputLabel.textContent  = 'Binary String';
@@ -616,16 +616,16 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'binary-text'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

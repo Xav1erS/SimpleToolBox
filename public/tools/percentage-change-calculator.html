@@ -39,7 +39,7 @@
       "name": "What is percentage change?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new 鈭?old) 梅 |old| × 100."
+        "text": "Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new −old) 梅 |old| × 100."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "What does a negative percentage change mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A negative result means the value decreased. For example, 鈭?5% means the new value is 25% lower than the original."
+        "text": "A negative result means the value decreased. For example, −5% means the new value is 25% lower than the original."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .input-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; }
@@ -255,7 +255,7 @@ function calc() {
   const statsEl = document.getElementById('statsRow');
 
   if (isNaN(from) || isNaN(to)) {
-    pctEl.textContent = '—;
+    pctEl.textContent = '—';
     pctEl.className = 'result-pct neutral';
     lblEl.textContent = 'Enter both values to calculate';
     fmlEl.textContent = '';
@@ -263,7 +263,7 @@ function calc() {
     return;
   }
   if (from === 0) {
-    pctEl.textContent = '鈭?;
+    pctEl.textContent = '—';
     pctEl.className = 'result-pct neutral';
     lblEl.textContent = 'Original value cannot be zero';
     fmlEl.textContent = '';
@@ -279,7 +279,7 @@ function calc() {
   pctEl.textContent = (isIncrease ? '+' : '') + fmt(rounded) + '%';
   pctEl.className = 'result-pct ' + (isZero ? 'neutral' : isIncrease ? 'increase' : 'decrease');
   lblEl.textContent = isZero ? 'No change' : (isIncrease ? 'Increase' : 'Decrease') + ` from ${fmt(from)} to ${fmt(to)}`;
-  fmlEl.textContent = `Formula: (${fmt(to)} 鈭?${fmt(from)}) 梅 |${fmt(from)}| × 100 = ${fmt(rounded)}%`;
+  fmlEl.textContent = `Formula: (${fmt(to)} −${fmt(from)}) 梅 |${fmt(from)}| × 100 = ${fmt(rounded)}%`;
 
   // Stats
   const absDiff = Math.abs(to - from);
@@ -288,7 +288,7 @@ function calc() {
 
   document.getElementById('statAbsDiff').textContent = fmt(Math.round(absDiff * 10000) / 10000);
   document.getElementById('statMultiplier').textContent = fmt(Math.round(mult * 10000) / 10000) + '×';
-  document.getElementById('statReverse').textContent = rev !== null ? (rev > 0 ? '+' : '') + fmt(Math.round(rev * 10000) / 10000) + '%' : '—;
+  document.getElementById('statReverse').textContent = rev !== null ? (rev > 0 ? '+' : '') + fmt(Math.round(rev * 10000) / 10000) + '%' : '\u2014';
   statsEl.style.display = 'grid';
 }
 
@@ -323,7 +323,7 @@ EXAMPLES.forEach(e => {
   row.appendChild(btn);
 });
 </script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

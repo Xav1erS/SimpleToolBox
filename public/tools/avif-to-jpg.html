@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -287,8 +287,8 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>
 (function () {
   'use strict';
@@ -420,11 +420,11 @@
 
   // ---- Per-file conversion ----
   async function convertFile(i) {
-    setStatus(i, '', 'Converting—);
+    setStatus(i, '', 'Converting...');
     try {
       const blob = await convertAvif(files[i]);
       resultBlobs[i] = blob;
-      setStatus(i, 'done', '鉁?Done');
+      setStatus(i, 'done', '&#10003;Done');
       addDownloadLink(i, blob);
     } catch (err) {
       resultBlobs[i] = null;

@@ -75,7 +75,7 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between UUID v1 and v4?","acceptedAnswer":{"@type":"Answer","text":"v1 is time-based: it encodes the current timestamp and the machine's MAC address, making it sortable by creation time but potentially revealing system information. v4 is purely random and the recommended default for most applications."}},{"@type":"Question","name":"Can two UUIDs ever be the same?","acceptedAnswer":{"@type":"Answer","text":"Theoretically yes, but the probability is negligible. For v4, with 2^122 possible values, you would need to generate about 2.7 x 10^18 UUIDs before having a 50% chance of a single collision."}},{"@type":"Question","name":"Is UUID the same as GUID?","acceptedAnswer":{"@type":"Answer","text":"Yes. A GUID (Globally Unique Identifier) is Microsoft's term for the same RFC 4122 standard. The format and generation rules are identical."}},{"@type":"Question","name":"Should I use UUID or auto-increment ID?","acceptedAnswer":{"@type":"Answer","text":"Use UUID when you need IDs generated on the client side, across multiple servers, or when you don't want sequential IDs to be guessable. Use auto-increment when you need simplicity and your database is a single instance."}}]}
   </script>
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     :root {
       --bg:            var(--ds-color-bg);
@@ -493,16 +493,16 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'uuid-generator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

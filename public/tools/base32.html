@@ -47,7 +47,7 @@
       "name": "Is Base32 the same as Base32Hex?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. RFC 4648 defines two Base32 variants: standard Base32 (A—揨, 2—) and Base32Hex (0—, A—揤). They encode the same data but use different alphabets. This tool uses the standard Base32 alphabet by default."
+        "text": "No. RFC 4648 defines two Base32 variants: standard Base32 (A—揨, 2-7) and Base32Hex (0-9, A—揤). They encode the same data but use different alphabets. This tool uses the standard Base32 alphabet by default."
       }
     },
     {
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -220,7 +220,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here… spellcheck="false" autocomplete="off"></textarea>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here…" spellcheck="false" autocomplete="off"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat" id="inputStat">0 chars</span>
       </div>
@@ -240,7 +240,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea out-textarea" id="outputText" placeholder="Output will appear here… readonly spellcheck="false"></textarea>
+      <textarea class="ds-tool-textarea out-textarea" id="outputText" placeholder="Output will appear here…" readonly spellcheck="false"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat out-stat" id="outputStat">0 chars</span>
         <span class="ds-tool-error out-error" id="errorMsg">Invalid Base32 string</span>
@@ -268,8 +268,8 @@
     <span class="ds-tool-note__icon">💡</span>
     <div class="ds-tool-note__text info-text">
       <strong>Base32</strong> encodes binary data as ASCII text using 32 printable characters with <code>=</code> padding to a multiple of 8.
-      <strong>RFC 4648</strong> uses <code>A–Z</code> and <code>2—</code>; it avoids visually ambiguous characters like <code>0</code>, <code>1</code>, <code>8</code>, <code>9</code>.
-      <strong>Extended Hex</strong> (base32hex) uses <code>0—</code> and <code>A–V</code>, preserving sort order —useful for Crockford and NanoID variants.
+      <strong>RFC 4648</strong> uses <code>A–Z</code> and <code>2-7</code>; it avoids visually ambiguous characters like <code>0</code>, <code>1</code>, <code>8</code>, <code>9</code>.
+      <strong>Extended Hex</strong> (base32hex) uses <code>0-9</code> and <code>A–V</code>, preserving sort order —useful for Crockford and NanoID variants.
       All processing happens entirely in your browser —nothing is sent to any server.
     </div>
   </div>
@@ -370,8 +370,8 @@
     inputLabel.textContent = m === 'encode' ? 'Plain Text' : 'Base32 String';
     outputLabel.textContent = m === 'encode' ? 'Base32' : 'Decoded Text';
     runLabel.textContent = m === 'encode' ? 'Encode' : 'Decode';
-    inputText.placeholder = m === 'encode' ? 'Type or paste text here— : 'Paste Base32 string here—;
-    arrowIcon.textContent = m === 'encode' ? '→ : '→;
+    inputText.placeholder = m === 'encode' ? 'Type or paste text here…' : 'Paste Base32 string here…';
+    arrowIcon.textContent = '→';
     outputPanel.classList.remove('has-error');
     run();
   }
@@ -502,7 +502,7 @@
       <summary>Frequently Asked Questions</summary>
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>Why does the output end with &quot;=&quot; characters?</strong><p>Base32 encodes data in 5-byte blocks. When the input length is not a multiple of 5, &quot;=&quot; padding characters are added to the output to make the total length a multiple of 8. Padding is part of the RFC 4648 standard and required by most decoders.</p></div>
-        <div class="ds-seo-faq-item"><strong>Is Base32 the same as Base32Hex?</strong><p>No. RFC 4648 defines two Base32 variants: standard Base32 (A–Z, 2—) and Base32Hex (0—, A–V). They encode the same data but use different alphabets. This tool uses the standard Base32 alphabet by default.</p></div>
+        <div class="ds-seo-faq-item"><strong>Is Base32 the same as Base32Hex?</strong><p>No. RFC 4648 defines two Base32 variants: standard Base32 (A–Z, 2-7) and Base32Hex (0-9, A–V). They encode the same data but use different alphabets. This tool uses the standard Base32 alphabet by default.</p></div>
         <div class="ds-seo-faq-item"><strong>Can I decode a TOTP secret key with this tool?</strong><p>Yes. TOTP secret keys are Base32-encoded strings. You can paste them here to see the raw bytes, but note that this tool outputs decoded text —binary secrets may not display correctly as text.</p></div>
         <div class="ds-seo-faq-item"><strong>Is my data stored or sent anywhere?</strong><p>No. All encoding and decoding happens locally in your browser using JavaScript. Nothing is sent to a server.</p></div>
       </div>
@@ -517,16 +517,16 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'base32'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

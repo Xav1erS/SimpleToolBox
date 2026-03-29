@@ -31,7 +31,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "Can I add more than two durations?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click 'Add Row' to add as many time entries as needed. The total is calculated from all rows." } },
-    { "@type": "Question", "name": "How does subtraction work?", "acceptedAnswer": { "@type": "Answer", "text": "Toggle the sign on any row to '鈭? to subtract that duration from the total. Rows default to addition." } },
+    { "@type": "Question", "name": "How does subtraction work?", "acceptedAnswer": { "@type": "Answer", "text": "Toggle the sign on any row to '− to subtract that duration from the total. Rows default to addition." } },
     { "@type": "Question", "name": "What format is the result shown in?", "acceptedAnswer": { "@type": "Answer", "text": "The result is shown as HH:MM:SS and also as total hours, minutes, and seconds separately." } },
     { "@type": "Question", "name": "Is my data sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run in your browser. Nothing is sent to any server." } }
   ]
@@ -39,7 +39,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     .main{max-width:640px;margin:0 auto;padding:28px 24px 64px}
     .duration-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
@@ -109,7 +109,7 @@ function render(){
   list.innerHTML='';
   rows.forEach((r,i)=>{
     const row=document.createElement('div');row.className='duration-row';
-    row.innerHTML=`<button class="sign-btn ${r.sign>0?'plus':'minus'}" data-i="${i}">${r.sign>0?'+':'鈭?}</button><div class="time-inputs"><div class="time-field"><input type="number" min="0" max="999" value="${r.h}" data-i="${i}" data-f="h" /><label>H</label></div><span class="time-sep">:</span><div class="time-field"><input type="number" min="0" max="59" value="${r.m}" data-i="${i}" data-f="m" /><label>M</label></div><span class="time-sep">:</span><div class="time-field"><input type="number" min="0" max="59" value="${r.s}" data-i="${i}" data-f="s" /><label>S</label></div></div>${rows.length>1?`<button class="remove-btn" data-i="${i}">×</button>`:''}`;
+    row.innerHTML=`<button class="sign-btn ${r.sign>0?'plus':'minus'}" data-i="${i}">${r.sign>0?'+':'−'}</button><div class="time-inputs"><div class="time-field"><input type="number" min="0" max="999" value="${r.h}" data-i="${i}" data-f="h" /><label>H</label></div><span class="time-sep">:</span><div class="time-field"><input type="number" min="0" max="59" value="${r.m}" data-i="${i}" data-f="m" /><label>M</label></div><span class="time-sep">:</span><div class="time-field"><input type="number" min="0" max="59" value="${r.s}" data-i="${i}" data-f="s" /><label>S</label></div></div>${rows.length>1?`<button class="remove-btn" data-i="${i}">×</button>`:''}`;
     list.appendChild(row);
   });
   list.querySelectorAll('.sign-btn').forEach(btn=>{btn.addEventListener('click',()=>{const i=+btn.dataset.i;rows[i].sign*=-1;render();calc();});});
@@ -121,8 +121,8 @@ document.getElementById('btnClear').addEventListener('click',()=>{rows=[{h:0,m:0
 render();calc();
 </script>
 <footer><a href="../index.html">→Home</a> &nbsp;·&nbsp; <a href="../all-tools.html">All Tools</a> &nbsp;·&nbsp; <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../about.html">About</a></footer>
-<script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

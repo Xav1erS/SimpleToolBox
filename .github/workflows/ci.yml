@@ -43,30 +43,11 @@ jobs:
           print(f"OK: sitemap 中 {len(urls)} 个 URL 全部有对应文件")
           EOF
 
-      # ── 检查：所有 HTML 引用的 CSS 版本号一致 ──
-      - name: Verify CSS version consistency
+      # ── 检查：共享资源 revision 已更新且工作树保持干净 ──
+      - name: Verify asset revisions are current
         run: |
-          python - <<'EOF'
-          import re, os, sys
-
-          ds = open("public/styles/design-system.css", encoding="utf-8").read()
-          comp_v = re.search(r'design-components\.css\?v=(\d+)', ds).group(1)
-
-          versions = set()
-          for root, _, files in os.walk("public"):
-              for f in files:
-                  if f.endswith(".html"):
-                      content = open(os.path.join(root, f), encoding="utf-8").read()
-                      m = re.search(r'design-system\.css\?v=(\d+)', content)
-                      if m:
-                          versions.add(m.group(1))
-
-          if len(versions) > 1:
-              print(f"ERROR: HTML 文件中存在多个不同的 CSS 版本号: {versions}")
-              sys.exit(1)
-
-          print(f"OK: design-components.css?v={comp_v}, HTML 引用版本一致: {versions}")
-          EOF
+          python scripts/revision-assets.py
+          git diff --exit-code -- public package.json scripts .github/workflows/ci.yml
 
       # ── 检查：logo.svg 存在且无旧文件名引用 ──
       - name: Verify logo references

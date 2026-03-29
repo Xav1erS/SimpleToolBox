@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -405,7 +405,7 @@
   }
   const MAGNITUDES = ['','thousand','million','billion','trillion','quadrillion'];
   function numberToWords(n) {
-    if (isNaN(n) || !isFinite(n)) return '—;
+    if (isNaN(n) || !isFinite(n)) return '—';
     if (n === 0) return 'zero';
     let neg = n < 0; n = Math.abs(Math.round(n));
     if (n > 999999999999999) return '鈮?' + n.toExponential(2) + ' (too large)';
@@ -437,7 +437,7 @@
 
     function setResult(id, val) {
       const rv = document.getElementById('rv-' + id);
-      if (!raw || isNaN(num)) { rv.textContent = '—; rv.className = 'result-value empty'; return; }
+      if (!raw || isNaN(num)) { rv.textContent = '—'; rv.className = 'result-value empty'; return; }
       rv.textContent = val;
       rv.className = 'result-value';
     }
@@ -467,12 +467,12 @@
 
   async function copyCard(cardId, valId) {
     const val = document.getElementById(valId).textContent;
-    if (!val || val === '—) return;
+    if (!val || val === '—') return;
     const card = document.getElementById(cardId);
     const hint = card.querySelector('.result-copy-hint');
     try { await navigator.clipboard.writeText(val); } catch {}
     card.classList.add('copied');
-    hint.textContent = '鉁?Copied!';
+    hint.textContent = '&#10003;Copied!';
     hint.className = 'result-copy-hint copied-msg';
     setTimeout(() => { card.classList.remove('copied'); hint.textContent = 'Click to copy'; hint.className = 'result-copy-hint'; }, 1500);
   }
@@ -492,16 +492,16 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'number-format'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

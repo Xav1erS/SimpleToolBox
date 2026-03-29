@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     .main { max-width: 900px; margin: 0 auto; padding: 28px 24px 64px; }
 
@@ -321,7 +321,7 @@
       <li>Drop a PDF onto the upload area, or click to browse and select one.</li>
       <li>Enter your watermark text —for example "CONFIDENTIAL" or "DRAFT".</li>
       <li>Choose a position: Diagonal Center covers the full page; corner and edge options place the text discreetly.</li>
-      <li>Adjust font size, opacity (10—0%), and color to match your needs.</li>
+      <li>Adjust font size, opacity (10-90%), and color to match your needs.</li>
       <li>Click "Update Preview" to see how page 1 will look.</li>
       <li>Click "Apply to All Pages &amp; Download" to generate and save the watermarked PDF.</li>
     </ol>
@@ -511,7 +511,7 @@
   async function updatePreview() {
     if (!pdfDoc) return;
     btnUpdatePreview.disabled = true;
-    btnUpdatePreview.textContent = 'Rendering—;
+    btnUpdatePreview.textContent = 'Rendering...';
     try {
       const page   = await pdfDoc.getPage(1);
       const canvas = await renderPage(page);
@@ -600,7 +600,7 @@
 
     progressWrap.classList.add('visible');
     progressFill.style.width = '0%';
-    progressLabel.textContent = 'Loading PDF—;
+    progressLabel.textContent = 'Loading PDF...';
 
     pdfArrayBuffer = await file.arrayBuffer();
     try {
@@ -658,8 +658,8 @@
   });
   fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
 </script>
-<script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

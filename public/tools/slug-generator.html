@@ -56,7 +56,7 @@
       "name": "How long should a URL slug be?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Keep slugs under 60—5 characters. Shorter slugs are easier to share and read in search results. Remove stop words like \"a\", \"the\", \"and\" to shorten without losing meaning."
+        "text": "Keep slugs under 60-95 characters. Shorter slugs are easier to share and read in search results. Remove stop words like \"a\", \"the\", \"and\" to shorten without losing meaning."
       }
     },
     {
@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <script src="https://cdn.jsdelivr.net/npm/pinyin-pro/dist/index.min.js"></script>
   <style>
     :root {
@@ -355,7 +355,7 @@
       <div class="ds-seo-collapse__body">
         <div class="ds-seo-faq-item"><strong>What is the difference between a slug and a URL?</strong><p>A URL is the full web address (e.g. https://example.com/blog/my-post ). The slug is only the last meaningful segment —my-post —that identifies the specific page.</p></div>
         <div class="ds-seo-faq-item"><strong>Should I use hyphens or underscores in slugs?</strong><p>Hyphens are strongly preferred. Google treats hyphens as word separators in URLs, but underscores are treated as word joiners —meaning hello-world matches searches for &quot;hello&quot; and &quot;world&quot;, while hello_world is treated as one token.</p></div>
-        <div class="ds-seo-faq-item"><strong>How long should a URL slug be?</strong><p>Keep slugs under 60—5 characters. Shorter slugs are easier to share and read in search results. Remove stop words like &quot;a&quot;, &quot;the&quot;, &quot;and&quot; to shorten without losing meaning.</p></div>
+        <div class="ds-seo-faq-item"><strong>How long should a URL slug be?</strong><p>Keep slugs under 60-95 characters. Shorter slugs are easier to share and read in search results. Remove stop words like &quot;a&quot;, &quot;the&quot;, &quot;and&quot; to shorten without losing meaning.</p></div>
         <div class="ds-seo-faq-item"><strong>What does URL Slug Generator Online —Convert Text to SEO-Friendly Slugs do?</strong><p>URL Slug Generator Online —Convert Text to SEO-Friendly Slugs runs entirely in your browser and helps you complete this task without uploading data to a server.</p></div>
       </div>
     </details>
@@ -489,7 +489,7 @@
 
   // Copy helpers
   async function copyText(text, btn) {
-    if (!text || text === '—) return;
+    if (!text || text === '—') return;
     const orig = btn.innerHTML;
     try { await navigator.clipboard.writeText(text); } catch {
       const ta = Object.assign(document.createElement('textarea'), { value: text });
@@ -520,16 +520,16 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'slug-generator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

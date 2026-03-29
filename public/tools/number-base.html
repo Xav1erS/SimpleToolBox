@@ -77,7 +77,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     html { scroll-behavior: smooth; }
     body {
@@ -440,7 +440,7 @@
   <div class="ds-related-grid">
     <a href="unit-converter.html" class="ds-related-card"><span class="ds-related-icon">📐</span><div><div class="ds-related-name">Unit Converter</div><div class="ds-related-desc">Convert length, weight, temperature, speed and more</div></div></a>
     <a href="timestamp.html" class="ds-related-card"><span class="ds-related-icon">⏱️</span><div><div class="ds-related-name">Timestamp Converter</div><div class="ds-related-desc">Convert Unix timestamps to readable dates</div></div></a>
-    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">鈱</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
+    <a href="hash-generator.html" class="ds-related-card"><span class="ds-related-icon">#️⃣</span><div><div class="ds-related-name">Hash Generator</div><div class="ds-related-desc">Generate MD5, SHA-1, SHA-256, SHA-512 from text or file</div></div></a>
   </div>
 </div>
 
@@ -527,7 +527,7 @@
     opsBitLen.textContent   = '—;
     opsBytes.textContent    = '—;
     opsNot.textContent      = '—;
-    opsUnsigned.textContent = '—;
+    opsUnsigned.textContent = '—';
     [opsBitLen, opsBytes, opsNot, opsUnsigned].forEach(el => {
       el.className = 'ops-value muted';
     });
@@ -617,7 +617,7 @@
       const val = input.value;
       if (!val) return;
       navigator.clipboard.writeText(val).catch(() => {});
-      copy.textContent = '鉁?;
+      copy.textContent = '✓';
       copy.classList.add('copied');
       setTimeout(() => {
         copy.textContent = 'Copy';
@@ -650,7 +650,7 @@
     const a = parseBwInput(bwA);
     const b = parseBwInput(bwB);
     if (a === null || b === null) {
-      bwIds.forEach(id => { bwEls[id].textContent = '—; bwEls[id].className = 'bitwise-row-val muted'; });
+      bwIds.forEach(id => { bwEls[id].textContent = '—'; bwEls[id].className = 'bitwise-row-val muted'; });
       return;
     }
     const results = {
@@ -673,11 +673,11 @@
     btn.addEventListener('click', () => {
       const id  = btn.dataset.bw;
       const val = bwEls[id].textContent;
-      if (!val || val === '—) return;
+      if (!val || val === '—') return;
       // copy just the decimal value
       const dec = val.split(' ')[0];
       navigator.clipboard.writeText(dec).catch(() => {});
-      btn.textContent = '鉁?;
+      btn.textContent = '✓';
       btn.classList.add('copied');
       setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
     });
@@ -689,16 +689,16 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'number-base'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

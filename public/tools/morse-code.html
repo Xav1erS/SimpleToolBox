@@ -72,7 +72,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -262,7 +262,7 @@
     </div>
     <p class="ds-tool-header__desc">Encode plain text to Morse code or decode Morse code back to text. Supports all letters, digits, and common punctuation. Everything runs in your browser —no server, no tracking.</p>
     <div class="ds-tool-tag-row">
-      <span class="ds-tag">A–Z &amp; 0—</span>
+      <span class="ds-tag">A–Z &amp; 0-9</span>
       <span class="ds-tag">punctuation</span>
       <span class="ds-tag">real-time</span>
       <span class="ds-tag">client-side only</span>
@@ -319,7 +319,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here… spellcheck="false" autocomplete="off"></textarea>
+      <textarea class="ds-tool-textarea" id="inputText" placeholder="Type or paste text here…" spellcheck="false" autocomplete="off"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat" id="inputStat">0 chars</span>
       </div>
@@ -341,7 +341,7 @@
           </button>
         </div>
       </div>
-      <textarea class="ds-tool-textarea" id="outputText" placeholder="Output will appear here… readonly spellcheck="false"></textarea>
+      <textarea class="ds-tool-textarea" id="outputText" placeholder="Output will appear here…" readonly spellcheck="false"></textarea>
       <div class="ds-tool-pane__footer">
         <span class="ds-tool-stat" id="outputStat">0 chars</span>
         <span class="ds-tool-error" id="errorMsg" style="display:none">Unknown Morse sequence</span>
@@ -622,12 +622,12 @@
       document.body.removeChild(ta);
     }
     btn.classList.add('copied');
-    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ${label || '鉁?Copied'}`;
+    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ${label || '&#10003;Copied'}`;
     setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1500);
   }
 
-  btnCopyHeader.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyHeader, '鉁?Copied'));
-  btnCopyResult.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyResult, '鉁?Copied'));
+  btnCopyHeader.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyHeader, '&#10003;Copied'));
+  btnCopyResult.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyResult, '&#10003;Copied'));
 
   // 鈹€鈹€ Paste / Clear 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
   btnPaste.addEventListener('click', async () => {
@@ -701,8 +701,8 @@
   <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
   <a href="../about.html">About</a>
 </footer>
-<script src="../tools-data.js"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../tools-data.js?v=b7d17671af"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

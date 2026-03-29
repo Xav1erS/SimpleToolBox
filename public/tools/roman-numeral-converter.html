@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .mode-tabs { display: flex; gap: 8px; }
@@ -302,7 +302,7 @@ function setMode(m) {
   document.getElementById('inputVal').placeholder = toRoman ? 'e.g. 2024' : 'e.g. MMXXIV';
   document.getElementById('resultLabel').textContent = toRoman ? 'Roman numeral' : 'Arabic number';
   document.getElementById('inputVal').value = '';
-  document.getElementById('resultVal').textContent = '—;
+  document.getElementById('resultVal').textContent = '—';
   document.getElementById('resultHint').textContent = '';
   document.getElementById('errorMsg').textContent = '';
   renderExamples();
@@ -327,7 +327,7 @@ function convert() {
   const hintEl = document.getElementById('resultHint');
 
   if (!raw) {
-    resultEl.textContent = '—;
+    resultEl.textContent = '—';
     hintEl.textContent = '';
     errorEl.textContent = '';
     return;
@@ -337,7 +337,7 @@ function convert() {
     const n = parseInt(raw, 10);
     if (isNaN(n) || String(n) !== raw || n < 1 || n > 3999) {
       errorEl.textContent = 'Enter a whole number between 1 and 3999';
-      resultEl.textContent = '—;
+      resultEl.textContent = '—';
       hintEl.textContent = '';
       document.getElementById('inputVal').classList.add('error');
       return;
@@ -352,7 +352,7 @@ function convert() {
     const n = fromRoman(roman);
     if (n === null) {
       errorEl.textContent = 'Invalid Roman numeral —use I, V, X, L, C, D, M only (standard form)';
-      resultEl.textContent = '—;
+      resultEl.textContent = '—';
       hintEl.textContent = '';
       document.getElementById('inputVal').classList.add('error');
       return;
@@ -369,7 +369,7 @@ document.getElementById('tabToArabic').addEventListener('click', () => setMode('
 document.getElementById('inputVal').addEventListener('input', convert);
 document.getElementById('btnCopy').addEventListener('click', () => {
   const val = document.getElementById('resultVal').textContent;
-  if (val && val !== '—) {
+  if (val && val !== '—') {
     navigator.clipboard.writeText(val).then(() => {
       const btn = document.getElementById('btnCopy');
       btn.textContent = 'Copied!';
@@ -380,7 +380,7 @@ document.getElementById('btnCopy').addEventListener('click', () => {
 
 renderExamples();
 </script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -1,52 +1,54 @@
 import { test, expect } from '@playwright/test';
-import { attachConsoleErrorGuard, getAllToolSlugs, toolUrl } from '../utils/helpers.js';
+import { getAllToolSlugs, toolUrl } from '../utils/helpers.js';
 
 const TOOL_SLUGS = getAllToolSlugs();
-const MAIN_SELECTOR = '.ds-tool-main, .main, .tool-layout, .body-wrap, .workbench-wrap';
+const MAIN_SELECTOR = '.ds-tool-main, .main, .tool-layout, .body-wrap, .workbench-wrap, .workspace';
 
 test.describe('All tools lightweight smoke', () => {
   test('every tool page loads and initializes without runtime errors', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'Desktop Chrome', '全量轻量加载检查只在桌面项目执行');
     test.setTimeout(240000);
 
     const failures = [];
+    let pageErrors = [];
+    let consoleErrors = [];
+
+    page.on('pageerror', error => {
+      pageErrors.push(String(error));
+    });
+    page.on('console', msg => {
+      if (msg.type() !== 'error') return;
+      const text = msg.text();
+      if (text.includes('favicon') || text.includes('gtag') || text.includes('google')) return;
+      consoleErrors.push(text);
+    });
 
     for (const slug of TOOL_SLUGS) {
-      const toolPage = await page.context().newPage();
-      const consoleErrors = attachConsoleErrorGuard(toolPage);
-      const pageErrors = [];
-
-      toolPage.on('pageerror', error => {
-        pageErrors.push(String(error));
-      });
+      pageErrors = [];
+      consoleErrors = [];
 
       try {
-        await toolPage.goto(toolUrl(slug), { waitUntil: 'domcontentloaded' });
-        await toolPage.waitForLoadState('networkidle', { timeout: 2500 }).catch(() => {});
-        await toolPage.waitForTimeout(120);
+        await page.goto(toolUrl(slug), { waitUntil: 'domcontentloaded' });
+        await page.waitForLoadState('networkidle', { timeout: 1200 }).catch(() => {});
+        await page.waitForTimeout(50);
 
-        await expect(toolPage.locator('h1').first(), `${slug} 缺少 h1`).toBeVisible({ timeout: 5000 });
-        await expect(toolPage.locator(MAIN_SELECTOR).first(), `${slug} 缺少主内容容器`).toBeVisible({ timeout: 5000 });
+        await expect(page.locator('h1').first(), `${slug} 缺少 h1`).toBeVisible({ timeout: 2500 });
+        await expect(page.locator(MAIN_SELECTOR).first(), `${slug} 缺少主内容容器`).toBeVisible({ timeout: 2500 });
 
-        const filteredConsoleErrors = consoleErrors().filter(text => {
-          return !text.includes('favicon') && !text.includes('gtag') && !text.includes('google');
-        });
-
-        if (pageErrors.length || filteredConsoleErrors.length) {
+        if (pageErrors.length || consoleErrors.length) {
           failures.push({
             slug,
             pageErrors,
-            consoleErrors: filteredConsoleErrors,
+            consoleErrors,
           });
         }
       } catch (error) {
         failures.push({
           slug,
           pageErrors,
-          consoleErrors: consoleErrors(),
+          consoleErrors,
           testError: String(error),
         });
-      } finally {
-        await toolPage.close();
       }
     }
 

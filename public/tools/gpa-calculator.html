@@ -39,7 +39,7 @@
       "name": "What grade point scale does this use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The standard US 4.0 scale: A/A+ = 4.0, A鈭?= 3.7, B+ = 3.3, B = 3.0, B鈭?= 2.7, C+ = 2.3, C = 2.0, C鈭?= 1.7, D+ = 1.3, D = 1.0, D鈭?= 0.7, F = 0.0."
+        "text": "The standard US 4.0 scale: A/A+ = 4.0, A−= 3.7, B+ = 3.3, B = 3.0, B−= 2.7, C+ = 2.3, C = 2.0, C−= 1.7, D+ = 1.3, D = 1.0, D−= 0.7, F = 0.0."
       }
     },
     {
@@ -63,7 +63,7 @@
       "name": "Does it support plus/minus grades?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. All standard plus and minus letter grades (A+, A, A鈭? B+, etc.) are supported."
+        "text": "Yes. All standard plus and minus letter grades (A+, A, A− B+, etc.) are supported."
       }
     }
   ]
@@ -71,7 +71,7 @@
 </script>
 <!-- AUTO-STRUCTURED-DATA:END -->
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../styles/design-system.css?v=49" />
+  <link rel="stylesheet" href="../styles/design-system.css?v=09eb640add" />
   <style>
     body { font-family: var(--ds-font-sans); background: var(--ds-color-bg); color: var(--ds-color-text-primary); min-height: 100vh; }
     .course-table { width: 100%; border-collapse: collapse; }
@@ -160,7 +160,7 @@
       <li>Enter the course name (optional), letter grade, and credit hours for each course.</li>
       <li>Click &#x27;Add Course&#x27; to add more rows as needed.</li>
       <li>Read your GPA, total credits, and total grade points from the result cards.</li>
-      <li>The GPA bar shows your score visually on the 0.0—.0 scale.</li>
+      <li>The GPA bar shows your score visually on the 0.0-9.0 scale.</li>
     </ol>
   </section>
 </div>
@@ -247,7 +247,7 @@
         <td><input type="text" value="${c.name}" placeholder="e.g. Calculus I" data-i="${i}" data-field="name" /></td>
         <td><select data-i="${i}" data-field="grade">${GRADES.map(g => `<option value="${g}"${g===c.grade?' selected':''}>${g}</option>`).join('')}</select></td>
         <td><input type="number" value="${c.credits}" min="0.5" max="12" step="0.5" data-i="${i}" data-field="credits" /></td>
-        <td><button class="btn-rm" data-i="${i}" title="Remove">鉁?/button></td>
+        <td><button class="btn-rm" data-i="${i}" title="Remove">&#10003;/button></td>
       </tr>`).join('');
     calc();
   }
@@ -261,9 +261,9 @@
       totalCredits += cr;
     }
     const gpa = totalCredits > 0 ? totalPoints / totalCredits : null;
-    document.getElementById('rGpa').textContent = gpa !== null ? gpa.toFixed(2) : '—;
-    document.getElementById('rCredits').textContent = totalCredits > 0 ? totalCredits : '—;
-    document.getElementById('rPoints').textContent = totalCredits > 0 ? totalPoints.toFixed(1) : '—;
+    document.getElementById('rGpa').textContent = gpa !== null ? gpa.toFixed(2) : '\u2014';
+    document.getElementById('rCredits').textContent = totalCredits > 0 ? totalCredits : '\u2014';
+    document.getElementById('rPoints').textContent = totalCredits > 0 ? totalPoints.toFixed(1) : '\u2014';
     const pct = gpa !== null ? Math.min(100, gpa / 4 * 100) : 0;
     document.getElementById('gpaBar').style.width = pct + '%';
     document.getElementById('barLabel').textContent = gpa !== null ? `GPA ${gpa.toFixed(2)}` : '';
@@ -292,15 +292,15 @@
   renderTable();
 </script>
 <footer><a href="../index.html">&larr; Home</a> &nbsp;&middot;&nbsp;<a href="../all-tools.html">All Tools</a> &nbsp;&middot;&nbsp;<a href="../privacy.html">Privacy</a> &nbsp;&middot;&nbsp;<a href="../about.html">About</a></footer>
-<script src="../tools-data.js"></script><script src="../site-hierarchy.js?v=7"></script>
+<script src="../tools-data.js?v=b7d17671af"></script><script src="../site-hierarchy.js?v=c4faab8f17"></script>
 <script>
   window.STB_PAGE_CONTEXT = {
     pageType: 'tool',
     slug: 'gpa-calculator'
   };
 </script>
-<script src="../scripts/site-navigation.js?v=12"></script>
-<script src="../tool-page-icon.js?v=3"></script>
+<script src="../scripts/site-navigation.js?v=98ea6fea52"></script>
+<script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>(function(){try{var k="stb_recent",p="tools/"+location.pathname.split("/").pop(),l=JSON.parse(localStorage.getItem(k)||"[]");l=[p,...l.filter(function(x){return x!==p})].slice(0,6);localStorage.setItem(k,JSON.stringify(l));}catch(e){}})();</script>
 </body>
 </html>

@@ -8,9 +8,9 @@
 - 修改代码后，说明涉及的文件和关键变化。
 - 优先做最小必要修改，避免无关重构。
 
-## 当前真实状态（2026-03-28）
+## 当前真实状态（2026-03-29）
 
-- **201 个工具页**已上线，全站 preflight 全绿。
+- **201 个工具页**已上线，QA 201/201 通过，0 错误 0 警告。
 - **6 个站点页**已完成设计系统迁移：`index`、`all-tools`、`about`、`privacy`、`terms`、`contact`。
 - **8 个 hub 页**已存在并接入共享数据源：
   - `image-tools`、`developer-tools`、`text-tools`、`calculator-tools`
@@ -18,19 +18,29 @@
   - `all-tools`（JS 渲染，支持分组 + 搜索 + Popular / Recently Used）
 - `public/tools-data.js` 是首页、all-tools、8 个 hub 页共享的唯一工具数据源。
 - `public/tools-meta.js` 已覆盖全部 201 个工具（0 errors，0 warnings）。
-- **Product Hunt 已提交，2026-03-29 上线。**
+- **Product Hunt 已于 2026-03-29 正式上线。**
 - **sitemap.xml** 已同步全部工具页（211 URLs = 201 tools + 10 site pages）。
 
-### 最新 preflight（2026-03-26）
+### 最新 QA（2026-03-29）
 
 - Tools: 201
-- Metadata failures: 0
-- Page load failures: 0
-- Console errors: 0
-- Smoke test failures: 0
-- Visual failures: 0
+- Validate: 201/201 pass, 0 errors, 0 warnings
+- 编码脏字符：已全量修复（工具页 + 站点页）
 
 ## 最近已完成的重要进展
+
+### 全量编码 / 图标乱码修复（2026-03-29）
+
+全站 GBK 乱码已彻底清除，涉及工具页和站点页。
+
+- **`scripts/fix-encoding-corruption.py`**（已有脚本）：修复 4 个内容区 CJK mojibake 的工具页（image-compressor、image-resizer、markdown-preview、timestamp）。
+- **`scripts/fix-icon-corruption.py`**（新建脚本）：映射替换法修复 79 个工具页的 emoji 图标 GBK 乱码。从 `tools-data.js` 读取权威图标，计算预期乱码形式，仅替换 HTML 内容区（跳过 `<script>`/`<style>` 块）。
+- **页头布局修复**（10 个页面）：补充缺失的 `ds-tool-header__row` flex 容器，使图标和标题出现在同一行（aes、color-palette、contrast-checker、countdown、gradient-generator、html-formatter、json-csv、roman-numerals、url-builder、user-agent）。
+- **裸闭合标签修复**（31 个页面，53 处）：图标替换后部分页出现 `emoji/div>` 而非 `emoji</div>`，用正则补回缺失的 `<`。
+- **`public/index.html`**：修复 `璺?` → `&middot;`（hero badge），`婕?` → `&copy;`（footer），`&#x2713;` → `&#x2705;`（feature card 图标）。
+- **`public/privacy.html`**、**`public/terms.html`**：修复 `路`（U+8DEF，`&middot;` 的 GBK 腐坏） → `&middot;`。
+- **`public/tools/js-formatter.html`**：去掉页头标题的 `max-width: 11ch` 内联样式。
+- **`public/all-tools.html`**、`about.html`、`contact.html`：剩余 CJK 字符全在 `<script>` 内的 rawIcon 检测正则或 JS 注释里，不影响渲染，不做修改。`all-tools.html` 通过 `normalizeStaticLabels()` 和 `CATEGORY_SECTIONS.splice()` 在运行时自修复。
 
 ### 工具增长（106 → 201，跨越 200 里程碑）
 
@@ -215,7 +225,7 @@ python scripts/generate-report.py
 
 ## 当前约束
 
-- 旧工具页仍有少量历史编码脏字符，优先级低于新增工具。
+- 工具页编码脏字符已全量修复，无需再惦记此历史债务。
 - 旧 `reference` 页已从“坏掉”修回可用状态，不应继续无上限投入。
 
 ## 下一步

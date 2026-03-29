@@ -8,7 +8,7 @@
 - After code changes, mention the touched files and the key changes.
 - Prefer the minimum necessary change.
 
-## Current Actual State (2026-03-28)
+## Current Actual State (2026-03-29)
 
 - Tool count: **201**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
@@ -23,15 +23,23 @@
   - `all-tools`
 - `public/tools-data.js` is the shared source for homepage, all-tools, and hub pages.
 - `public/tools-meta.js` is the shared source for JSON-LD, FAQ, learn-more, and related tools.
-- Product Hunt launch date: **2026-03-29**
-- Latest preflight remains fully green:
-  - metadata failures: 0
-  - page load failures: 0
-  - console errors: 0
-  - smoke failures: 0
-  - visual failures: 0
+- Product Hunt launched: **2026-03-29** (live)
+- Latest QA: 201/201 pass, 0 errors, 0 warnings
 
 ## What Was Finished Recently
+
+### Full Encoding / Icon Corruption Fix Pass (2026-03-29)
+
+All known GBK-corruption artefacts in tool pages and site pages have been resolved.
+
+- **`scripts/fix-encoding-corruption.py`** (pre-existing): fixed 4 tool pages that had CJK mojibake in content (image-compressor, image-resizer, markdown-preview, timestamp).
+- **`scripts/fix-icon-corruption.py`** (new script): mapping-based reversal of GBK-corrupted emoji icons across 79 tool pages. Reads authoritative icon from `tools-data.js`, computes expected corrupted form, replaces in HTML (skipping `<script>`/`<style>` blocks).
+- **Header layout fix** (10 pages): added missing `ds-tool-header__row` flex wrapper so icon and title appear on the same row (aes, color-palette, contrast-checker, countdown, gradient-generator, html-formatter, json-csv, roman-numerals, url-builder, user-agent).
+- **Bare closing tag fix** (31 pages, 53 occurrences): after icon replacement, some pages had `emoji/div>` instead of `emoji</div>`. Fixed with regex adding the missing `<`.
+- **`public/index.html`**: fixed `璺? v1.0` → `&middot; v1.0` (hero badge), `婕?2026` → `&copy; 2026` (footer), `&#x2713;` → `&#x2705;` (feature card icon).
+- **`public/privacy.html`** and **`public/terms.html`**: fixed `路` (U+8DEF, GBK corruption of `&middot;`) → `&middot;` in the document meta line.
+- **`public/tools/js-formatter.html`**: removed `max-width: 11ch` inline style from tool header title.
+- **`public/all-tools.html`** and **`public/about.html`** / **`public/contact.html`**: remaining CJK chars are all inside `<script>` blocks (rawIcon detection regex) or JS comments — intentional, no fix needed. `all-tools.html` is self-healing via `normalizeStaticLabels()` and `CATEGORY_SECTIONS.splice()` at runtime.
 
 ### Growth to 201
 

@@ -1,18 +1,20 @@
 # SimpleToolBox Memory
 
-## Current Snapshot (2026-03-28)
+## Current Snapshot (2026-03-29)
 
 - Tool count: **201**
 - Shared tool list source: `public/tools-data.js`
 - Shared metadata source: `public/tools-meta.js`
 - Latest preflight: fully green
+- Full lightweight smoke: fully green
+- Launch-health audit: mojibake 0 / inline script syntax 0
 - Main phase: **growth-first**, with disciplined shell migration where appropriate
 
 ## Active Frame
 
 Correct active frame:
 
-**201 tools, QA green, shared architecture stable, continue disciplined expansion toward 300.**
+**201 tools, QA green, lightweight runtime sweep green, continue disciplined expansion toward 300.**
 
 ## Real Current Focus
 
@@ -54,9 +56,19 @@ Always ask:
 
 ## Current Constraints
 
-- Some legacy pages still have minor copy / encoding debt.
-- That debt is lower priority than adding high-value new tools unless it breaks usability.
-- Legacy cleanup should be bug-driven, not open-ended.
+- User-visible encoding / script-init blockers have been cleared in the current QA lane.
+- Not all structural / shell-migration debt is gone.
+- `missing site-navigation.js: 70` is still present as a static-wiring metric, but is not the same as a current runtime blocker.
+- Legacy cleanup should remain bug-driven, not open-ended.
+
+## Runtime Stability Reminder
+
+The repo now has a practical first-load runtime safety net for all tools.
+
+- `tests/smoke/all-tools-light.test.js` is the fast full-site sweep.
+- `scripts/audit-launch-health.py` is the static launch-health sweep.
+- Treat these as the primary answer to “do we still need manual page-by-page checking?”
+- Manual review is still useful for failed pages and representative spot checks, but no longer the main detection method.
 
 ## Near-Term Direction
 
@@ -76,6 +88,12 @@ It is a “legacy page debt + contract mismatch” problem.
 - `12` pages can be migrated directly
 - `128` pages should be cleaned first, then batch-migrated
 - `61` pages need manual one-by-one handling
+
+This split is about shell migration debt, not about current runtime health.
+Do not confuse:
+
+- runtime blockers cleared
+- migration debt cleared
 
 ### Why the first migrated pages were painful
 

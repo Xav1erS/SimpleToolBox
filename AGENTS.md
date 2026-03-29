@@ -26,6 +26,20 @@
 - Tools: 201
 - Validate: 201/201 pass, 0 errors, 0 warnings
 - 编码脏字符：已全量修复（工具页 + 站点页）
+- 全量轻量 smoke：201/201 pass
+- `audit-launch-health.py`：mojibake 0，inline script syntax 0，missing header row 0，missing tool-page-icon.js 0
+
+### 当前非阻塞遗留（2026-03-29）
+
+- **并非所有历史遗留都已清空。**
+- 当前已清掉的是“会影响页面加载、脚本初始化、用户可见乱码、页头结构缺失”的阻塞问题。
+- 当前仍存在但**不作为本轮阻塞项**的主要遗留：
+  - `70` 个工具页未静态引用 `site-navigation.js`
+  - 这批页面里很多仍通过 `tool-page-icon.js` 动态加载共享导航，并不等于页面坏掉
+  - 共享外壳迁移分组债务仍在，不能因为运行稳定就视为已完成结构统一
+- 因此当前真实口径应表述为：
+  - **上线稳定性阻塞项已清零**
+  - **结构统一 / 迁移债务尚未清零**
 
 ## 最近已完成的重要进展
 
@@ -41,6 +55,34 @@
 - **`public/privacy.html`**、**`public/terms.html`**：修复 `路`（U+8DEF，`&middot;` 的 GBK 腐坏） → `&middot;`。
 - **`public/tools/js-formatter.html`**：去掉页头标题的 `max-width: 11ch` 内联样式。
 - **`public/all-tools.html`**、`about.html`、`contact.html`：剩余 CJK 字符全在 `<script>` 内的 rawIcon 检测正则或 JS 注释里，不影响渲染，不做修改。`all-tools.html` 通过 `normalizeStaticLabels()` 和 `CATEGORY_SECTIONS.splice()` 在运行时自修复。
+
+### 全量运行稳定性补强（2026-03-29）
+
+为避免继续靠人工逐页撞问题，已补齐一条“201 页可自动扫首屏运行时故障”的检查链。
+
+- **`tests/smoke/all-tools-light.test.js`**：新增并跑通 201 个工具页的全量轻量 smoke。
+  - 检查页面可打开
+  - `h1` 存在
+  - 主内容容器存在
+  - 无 `pageerror`
+  - 无关键 `console error`
+- **`scripts/audit-launch-health.py`**：新增 inline script 语法检查，不再只扫 mojibake。
+- **`tests/smoke/password-generator.test.js`**：从“元素存在”升级到“真的能生成密码、再次点击结果会变化、复制不报错”。
+- **本轮已批量修复并验证通过的代表坏页**包括：
+  - `password-generator`
+  - `color-converter`
+  - `currency-converter`
+  - `text-to-speech`
+  - `pdf-split`
+  - `pdf-extract-text`
+  - `pdf-to-markdown`
+  - `tax-calculator`
+  - `scientific-calculator`
+  - `lorem-ipsum-generator`
+  - `random-number-generator`
+- 当前结果：
+  - `npx playwright test tests/smoke/all-tools-light.test.js --project="Desktop Chrome"`：通过
+  - `python scripts/audit-launch-health.py`：`Inline script syntax errs: 0`
 
 ### 工具增长（106 → 201，跨越 200 里程碑）
 
@@ -227,6 +269,8 @@ python scripts/generate-report.py
 
 - 工具页编码脏字符已全量修复，无需再惦记此历史债务。
 - 旧 `reference` 页已从“坏掉”修回可用状态，不应继续无上限投入。
+- 仍不能把“运行稳定”误写成“所有结构遗留都已完成”。
+- `missing site-navigation.js: 70` 目前只是静态接线统计，不是当前运行阻塞清单。
 
 ## 下一步
 
@@ -348,3 +392,6 @@ python scripts/audit-tool-shell-migration.py <slug>
   - 仅通过 `validate-tools.py` 不足以判定完成
   - 必须补浏览器级交互确认
 - 一旦 `audit-tool-shell-migration.py` 把页面打到 `cleanup` 或 `manual` 组，后续任务中必须保留该分组，不得为了赶进度跳过。
+- 运行稳定性体检与共享外壳迁移必须分开记账：
+  - 前者可以清零
+  - 后者仍可能保留非阻塞债务

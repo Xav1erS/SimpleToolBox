@@ -25,6 +25,25 @@
 - `public/tools-meta.js` is the shared source for JSON-LD, FAQ, learn-more, and related tools.
 - Product Hunt launched: **2026-03-29** (live)
 - Latest QA: 201/201 pass, 0 errors, 0 warnings
+- Full lightweight smoke: **201/201 pass**
+- Launch-health audit: **mojibake 0 / inline script syntax 0 / missing header row 0 / missing tool-page-icon.js 0**
+
+## Remaining Non-Blocking Debt (2026-03-29)
+
+- Not all historical debt is gone.
+- What is cleared:
+  - user-visible mojibake
+  - inline-script syntax breakage
+  - lightweight runtime blockers detectable on first load
+  - missing `ds-tool-header__row`
+  - missing `tool-page-icon.js`
+- What is still not fully cleared:
+  - `70` tool pages do not statically reference `site-navigation.js`
+  - many of those still work because navigation is dynamically loaded by `tool-page-icon.js`
+  - shell migration / structural unification debt still exists and should not be silently re-labeled as “finished”
+- Correct phrasing:
+  - **launch-stability blockers are cleared**
+  - **shared-shell migration debt is not fully cleared**
 
 ## What Was Finished Recently
 
@@ -40,6 +59,36 @@ All known GBK-corruption artefacts in tool pages and site pages have been resolv
 - **`public/privacy.html`** and **`public/terms.html`**: fixed `路` (U+8DEF, GBK corruption of `&middot;`) → `&middot;` in the document meta line.
 - **`public/tools/js-formatter.html`**: removed `max-width: 11ch` inline style from tool header title.
 - **`public/all-tools.html`** and **`public/about.html`** / **`public/contact.html`**: remaining CJK chars are all inside `<script>` blocks (rawIcon detection regex) or JS comments — intentional, no fix needed. `all-tools.html` is self-healing via `normalizeStaticLabels()` and `CATEGORY_SECTIONS.splice()` at runtime.
+
+### Full Runtime Stability Sweep (2026-03-29)
+
+To stop relying on manual discovery, the repo now has a real first-load runtime sweep for all 201 tools.
+
+- **`tests/smoke/all-tools-light.test.js`**
+  - opens every tool page
+  - checks `h1`
+  - checks a main content container
+  - fails on `pageerror`
+  - fails on critical `console error`
+- **`scripts/audit-launch-health.py`**
+  - now checks inline-script syntax in addition to mojibake
+- **`tests/smoke/password-generator.test.js`**
+  - upgraded from “elements exist” to “tool actually works”
+- Representative repaired pages in this pass include:
+  - `password-generator`
+  - `color-converter`
+  - `currency-converter`
+  - `text-to-speech`
+  - `pdf-split`
+  - `pdf-extract-text`
+  - `pdf-to-markdown`
+  - `tax-calculator`
+  - `scientific-calculator`
+  - `lorem-ipsum-generator`
+  - `random-number-generator`
+- Current result:
+  - `npx playwright test tests/smoke/all-tools-light.test.js --project="Desktop Chrome"` passes
+  - `python scripts/audit-launch-health.py` reports `Inline script syntax errs: 0`
 
 ### Growth to 201
 
@@ -211,6 +260,15 @@ Run:
 - smoke
 - visual
 - preflight
+
+### Additional Stability Rule
+
+For launch-stability work, passing `validate-tools.py` alone is not enough.
+
+Minimum extra checks should now include:
+
+- `npx playwright test tests/smoke/all-tools-light.test.js --project="Desktop Chrome"`
+- `python scripts/audit-launch-health.py`
 
 ## Tool Shell Migration Snapshot (2026-03-28)
 

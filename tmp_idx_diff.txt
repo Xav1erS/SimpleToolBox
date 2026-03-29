@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -793,3 +793,3 @@
+     <span class="hero-badge-dot"></span>
+-    Actively maintained 璺?v1.0
++    Actively maintained 跀v1.0
+   </div>
+@@ -969,3 +969,3 @@
+   <div class="footer-bottom">
+-    <p>婕?2026 Simple ToolBox. All rights reserved.</p>
++    <p>漀2026 Simple ToolBox. All rights reserved.</p>
+     <div class="footer-bottom-links">

@@ -116,7 +116,12 @@
       "Bash(xargs grep:*)",
       "Bash(do python:*)",
       "Bash(grep -rh \"site-navigation\\\\|site-hierarchy\\\\|design-system.css\" public/*.html)",
-      "Bash(grep -rh \"site-navigation\\\\|site-hierarchy\\\\|design-system.css\\\\|design-components\" public/*.html public/styles/design-system.css)"
+      "Bash(grep -rh \"site-navigation\\\\|site-hierarchy\\\\|design-system.css\\\\|design-components\" public/*.html public/styles/design-system.css)",
+      "Bash(python3 scripts/fix-encoding-corruption.py public/privacy.html public/terms.html --dry-run)",
+      "Bash(python3 scripts/fix-encoding-corruption.py --help)",
+      "Bash(/tmp/hub_vs_alltools_analysis.md:*)",
+      "Read(//tmp/**)",
+      "Bash(python3:*)"
     ]
   }
 }

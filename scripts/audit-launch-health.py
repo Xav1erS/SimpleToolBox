@@ -27,6 +27,13 @@ JSON_LD_BLOCK = re.compile(
 META_TAG = re.compile(r"<meta\b[^>]*(?:content|property|name)=[^>]*>", re.IGNORECASE)
 TITLE_TAG = re.compile(r"<title\b[^>]*>.*?</title>", re.DOTALL | re.IGNORECASE)
 
+# Detects HTML attributes accidentally embedded inside a placeholder value.
+# Example: placeholder="Enter text… spellcheck="false"
+# The value ends at the inner quote, making the attr visible as placeholder text.
+EMBEDDED_ATTR_IN_PLACEHOLDER = re.compile(
+    r'placeholder="[^"]*\s+(?:spellcheck|autocomplete|autocorrect|autocapitalize|rows|cols|maxlength|readonly)(?:=|")',
+)
+
 
 def ranges_for(pattern: re.Pattern[str], text: str) -> list[tuple[int, int]]:
     return [match.span() for match in pattern.finditer(text)]
@@ -114,6 +121,11 @@ def audit_file(path: Path) -> dict[str, object]:
             hits.append({"token": token, "bucket": bucket, "index": index})
             start = index + len(token)
 
+    embedded_attr_hits = [
+        m.group(0)[:80]
+        for m in EMBEDDED_ATTR_IN_PLACEHOLDER.finditer(text)
+    ]
+
     return {
         "slug": path.stem,
         "file": str(path),
@@ -123,6 +135,7 @@ def audit_file(path: Path) -> dict[str, object]:
         "missing_header_row": 'ds-tool-header__row' not in text,
         "missing_tool_page_icon": 'tool-page-icon.js' not in text,
         "missing_site_navigation": 'site-navigation.js' not in text,
+        "embedded_attr_in_placeholder": embedded_attr_hits,
     }
 
 
@@ -134,6 +147,7 @@ def build_report(items: list[dict[str, object]]) -> dict[str, object]:
         "missing_tool_page_icon": [],
         "missing_site_navigation": [],
         "inline_script_syntax_errors": [],
+        "embedded_attr_in_placeholder": [],
     }
 
     for item in items:
@@ -161,6 +175,7 @@ def build_report(items: list[dict[str, object]]) -> dict[str, object]:
             "missing_tool_page_icon": len(flagged["missing_tool_page_icon"]),
             "missing_site_navigation": len(flagged["missing_site_navigation"]),
             "inline_script_syntax_errors": len(flagged["inline_script_syntax_errors"]),
+            "embedded_attr_in_placeholder": len(flagged["embedded_attr_in_placeholder"]),
         },
         "flags": flagged,
         "top_offenders": top_offenders,
@@ -186,6 +201,7 @@ def print_summary(report: dict[str, object]) -> None:
     print(f"  Missing tool-page-icon.js:  {summary['missing_tool_page_icon']}")
     print(f"  Missing site-navigation.js: {summary['missing_site_navigation']}")
     print(f"  Inline script syntax errs:  {summary['inline_script_syntax_errors']}")
+    print(f"  Attr embedded in placeholder:{summary['embedded_attr_in_placeholder']}")
     print("=" * 60)
     for item in report["top_offenders"][:12]:
         print(f"  {item['slug']}: {item['mojibake_total']} hits")

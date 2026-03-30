@@ -31,7 +31,7 @@ def display_title(meta: dict) -> str:
 
 
 def canonical_for_slug(slug: str) -> str:
-    return f"https://simpletoolbox.dev/tools/{slug}"
+    return f"https://www.simpletoolbox.dev/tools/{slug}"
 
 
 def render_structured_data(meta: dict) -> str:

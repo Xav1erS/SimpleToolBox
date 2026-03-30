@@ -14,7 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const TOOLS_DIR = path.join(ROOT, 'public', 'tools');
 const SITEMAP_PATH = path.join(ROOT, 'public', 'sitemap.xml');
-const BASE = 'https://simpletoolbox.dev';
+const BASE = 'https://www.simpletoolbox.dev';
 const TODAY = new Date().toISOString().slice(0, 10);
 
 const PUBLIC_DIR = path.join(ROOT, 'public');

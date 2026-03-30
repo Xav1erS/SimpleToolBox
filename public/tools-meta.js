@@ -4734,8 +4734,8 @@ const TOOLS_META = [
         }
       ],
       example: {
-        input: "Docs: https://simpletoolbox.dev/tools/url-encode.html and www.example.com/pricing",
-        output: "https://simpletoolbox.dev/tools/url-encode.html\nhttps://www.example.com/pricing"
+        input: "Docs: https://www.simpletoolbox.dev/tools/url-encode.html and www.example.com/pricing",
+        output: "https://www.simpletoolbox.dev/tools/url-encode.html\nhttps://www.example.com/pricing"
       },
       seoContent: {
         whatIsTitle: "What is URL Extractor?",

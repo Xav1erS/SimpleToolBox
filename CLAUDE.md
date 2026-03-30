@@ -7,6 +7,7 @@
 - Before commands, edits, or tests, briefly say what you are about to do.
 - After code changes, mention the touched files and the key changes.
 - Prefer the minimum necessary change.
+- After completing each task, suggest 2–3 concrete next steps relevant to the current project state.
 
 ## Current Actual State (2026-03-30)
 

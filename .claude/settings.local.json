@@ -125,7 +125,11 @@
       "Bash(python -c \":*)",
       "Bash(grep -rL \"ds-tool-main\" /Users/sunxin/Desktop/SimpleToolBox/public/tools/*.html)",
       "Bash(do f=\"/Users/sunxin/Desktop/SimpleToolBox/public/tools/$slug.html\" echo \"=== $slug footer ===\" grep -n \"tools-data\\\\|site-hierarchy\\\\|STB_PAGE\\\\|site-navigation\\\\|tool-page-icon\\\\|stb_recent\\\\|</body>\" \"$f\")",
-      "Bash(do f=\"/Users/sunxin/Desktop/SimpleToolBox/public/tools/$slug.html\" echo \"=== $slug ===\" grep -n \"ds-tool-header__desc\\\\|ds-tool-tag-row\\\\|ds-tool-context\\\\|</div>\" \"$f\")"
+      "Bash(do f=\"/Users/sunxin/Desktop/SimpleToolBox/public/tools/$slug.html\" echo \"=== $slug ===\" grep -n \"ds-tool-header__desc\\\\|ds-tool-tag-row\\\\|ds-tool-context\\\\|</div>\" \"$f\")",
+      "Bash(grep -rL \"STB_PAGE_CONTEXT\" /Users/sunxin/Desktop/SimpleToolBox/public/tools/*.html)",
+      "Bash(do f=\"/Users/sunxin/Desktop/SimpleToolBox/public/tools/$slug.html\" echo \"=== $slug ===\" grep -n 'STB_PAGE_CONTEXT\\\\|site-navigation\\\\|ds-tool-context\\\\|class=\"\"\"\"ds-nav\"\"\"\"\\\\|ds-tool-context__pill' \"$f\")",
+      "Bash(grep -rl 'class=\"\"\"\"main\"\"\"\"' /Users/sunxin/Desktop/SimpleToolBox/public/tools/*.html)",
+      "Bash(xargs basename:*)"
     ]
   }
 }

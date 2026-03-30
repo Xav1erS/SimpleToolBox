@@ -2,6 +2,12 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "simpletoolbox.dev" }],
+      "destination": "https://www.simpletoolbox.dev/:path*",
+      "permanent": true
+    },
+    {
       "source": "/tools/file-size-converter",
       "destination": "/tools/data-storage-converter",
       "permanent": true

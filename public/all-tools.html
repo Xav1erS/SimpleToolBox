@@ -50,18 +50,8 @@
     .filter-tag.active { background: var(--ds-color-accent); border-color: var(--ds-color-accent); color: #fff; }
     .count-badge { font-size: 12px; color: var(--ds-color-text-muted); margin-left: auto; white-space: nowrap; }
 
-    /* Tool grid */
-    .tool-grid { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-    .tool-card { background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); padding: var(--ds-space-5); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: var(--ds-space-3); transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast), transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast); }
-    .tool-card:hover { border-color: var(--ds-color-border-accent); background: var(--ds-color-surface-strong); transform: translateY(-2px); box-shadow: var(--ds-shadow-card); }
-    .tool-card-top { display: flex; align-items: center; gap: 12px; }
-    .tool-icon { font-size: 22px; width: 40px; height: 40px; background: var(--ds-color-surface-tint); border-radius: var(--ds-radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .tool-name { font-size: var(--ds-font-size-h4); font-weight: 600; color: var(--ds-color-text-primary); line-height: 1.25; letter-spacing: var(--ds-letter-normal); }
-    .tool-desc { font-size: var(--ds-font-size-body-sm); color: var(--ds-color-text-secondary); line-height: 1.6; flex: 1; }
-    .tool-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
-    .tool-tag { display: inline-flex; align-items: center; min-height: 20px; padding: 0 8px; border-radius: var(--ds-radius-xs); background: var(--ds-color-surface-tint); border: 1px solid rgba(94,106,210,0.22); color: var(--ds-color-accent-soft); font-family: var(--ds-font-mono); font-size: var(--ds-font-size-micro); font-weight: 500; letter-spacing: 0.02em; }
-    .tool-arrow { font-size: 16px; color: var(--ds-color-text-muted); transition: color 0.15s, transform 0.15s; }
-    .tool-card:hover .tool-arrow { color: var(--ds-color-accent); transform: translateX(3px); }
+    /* Tool grid — global base in design-components.css */
+    .tool-grid { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
     .no-result { text-align: center; padding: 80px 24px; color: var(--ds-color-text-muted); grid-column: 1/-1; display: none; }
     .no-result.show { display: block; }
     .nr-link { color: var(--ds-color-accent); text-decoration: none; }
@@ -334,30 +324,6 @@
 
     .tool-grid {
       padding: 0 0 88px;
-      gap: 14px;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    }
-    .tool-card {
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.018) 100%);
-      gap: 10px;
-    }
-    .tool-card-top { align-items: flex-start; }
-    .tool-icon {
-      width: 38px;
-      height: 38px;
-      font-size: 18px;
-      border: 1px solid rgba(94,106,210,0.16);
-    }
-    .tool-name {
-      font-size: 16px;
-      line-height: 1.25;
-    }
-    .tool-desc { font-size: 13px; }
-    .tool-tag {
-      min-height: 24px;
-      padding: 0 10px;
-      font-size: 12px;
     }
 
     .tool-section-title {

@@ -122,7 +122,10 @@
       "Bash(/tmp/hub_vs_alltools_analysis.md:*)",
       "Read(//tmp/**)",
       "Bash(python3:*)",
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "Bash(grep -rL \"ds-tool-main\" /Users/sunxin/Desktop/SimpleToolBox/public/tools/*.html)",
+      "Bash(do f=\"/Users/sunxin/Desktop/SimpleToolBox/public/tools/$slug.html\" echo \"=== $slug footer ===\" grep -n \"tools-data\\\\|site-hierarchy\\\\|STB_PAGE\\\\|site-navigation\\\\|tool-page-icon\\\\|stb_recent\\\\|</body>\" \"$f\")",
+      "Bash(do f=\"/Users/sunxin/Desktop/SimpleToolBox/public/tools/$slug.html\" echo \"=== $slug ===\" grep -n \"ds-tool-header__desc\\\\|ds-tool-tag-row\\\\|ds-tool-context\\\\|</div>\" \"$f\")"
     ]
   }
 }

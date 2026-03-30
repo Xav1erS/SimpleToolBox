@@ -395,7 +395,7 @@
   let currentFilename = '';
   let totalPages      = 0;
 
-  // 鈹€鈹€ Minimal Markdown preview renderer 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Minimal Markdown preview renderer 
   function renderMarkdown(md) {
     // Escape HTML entities first to prevent injection
     let html = md
@@ -408,7 +408,7 @@
     html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
     html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
 
-    // List items —collect consecutive <li> into <ul>
+    // List items collect consecutive <li> into <ul>
     html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
     html = html.replace(/(<li>[\s\S]*?<\/li>)(\n(?!<li>)|$)/g, '<ul>$1</ul>$2');
 
@@ -420,7 +420,7 @@
     return html;
   }
 
-  // 鈹€鈹€ Heuristic PDF →Markdown conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Heuristic PDF Markdown conversion 
   async function pdfToMarkdown(pdfDoc) {
     const lines = [];
 
@@ -491,7 +491,7 @@
     return lines.join('\n');
   }
 
-  // 鈹€鈹€ Load and convert PDF 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Load and convert PDF 
   async function loadFile(file) {
     if (!file || file.type !== 'application/pdf') {
       alert('Please select a valid PDF file.');
@@ -547,7 +547,7 @@
     setTimeout(() => { progressWrap.classList.remove('visible'); }, 1600);
   }
 
-  // 鈹€鈹€ Tab switcher 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Tab switcher 
   function showTab(tab) {
     if (tab === 'source') {
       mdTextarea.style.display = '';
@@ -569,7 +569,7 @@
   tabSource.addEventListener('click', () => showTab('source'));
   tabPreview.addEventListener('click', () => showTab('preview'));
 
-  // 鈹€鈹€ Copy Markdown 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy Markdown 
   btnCopy.addEventListener('click', async () => {
     const text = mdTextarea.value;
     if (!text) return;
@@ -584,7 +584,7 @@
     }
   });
 
-  // 鈹€鈹€ Download .md 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Download .md 
   btnDownload.addEventListener('click', () => {
     const text = mdTextarea.value;
     if (!text) return;
@@ -600,7 +600,7 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 
-  // 鈹€鈹€ Drop zone interactions 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Drop zone interactions 
   dropZone.addEventListener('click', () => fileInput.click());
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
@@ -611,7 +611,7 @@
   });
   fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
 
-  // 鈹€鈹€ Change PDF 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Change PDF 
   btnChangePdf.addEventListener('click', () => {
     dropZone.style.display = '';
     resultSection.classList.remove('visible');

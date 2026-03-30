@@ -179,7 +179,7 @@
   </div>
 </div>
 
-<div class="main">
+<div class="main ds-tool-main">
   <div class="tool-card">
 
     <!-- UPLOAD SECTION -->
@@ -256,7 +256,7 @@
     <p>This tool converts PNG, JPG, WebP, or any browser-readable image into a multi-size <code>.ico</code> file suitable for use as a website favicon. The ICO binary is assembled directly in JavaScript using the Canvas API —no server, no upload, no third-party library.</p>
   </section>
   <section class="ds-seo-section">
-    <h2 class="ds-seo-section__title">How to Create a Favicon ICO File</h2>
+    <h2 class="ds-seo-section__title">How to Use PNG to ICO Converter</h2>
     <ol>
       <li>Drop or select your source image (PNG, JPG, or WebP recommended).</li>
       <li>Check the sizes you want included —16×16, 32×32, and 48×48 cover most needs.</li>
@@ -332,7 +332,7 @@
 <script src="../tools-data.js?v=b7d17671af"></script>
 <script src="../tool-page-icon.js?v=17f2e2203c"></script>
 <script>
-// 鈹€鈹€ ICO assembly 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+//  ICO assembly 
 async function createIco(imgElement, sizes) {
   const blobs = await Promise.all(sizes.map(size => {
     const c = document.createElement('canvas');
@@ -370,7 +370,7 @@ async function createIco(imgElement, sizes) {
   return new Blob([out.buffer], { type: 'image/x-icon' });
 }
 
-// 鈹€鈹€ UI state 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+//  UI state 
 const dropZone      = document.getElementById('dropZone');
 const fileInput     = document.getElementById('fileInput');
 const uploadSection = document.getElementById('uploadSection');

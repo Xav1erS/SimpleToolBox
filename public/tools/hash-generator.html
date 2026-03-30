@@ -32,7 +32,7 @@
       --mono:          var(--ds-font-mono);
     }
 
-    /* 鈹€鈹€ LOGO OVERRIDE 鈹€鈹€ */
+    /*  LOGO OVERRIDE  */
 
     /* PANEL outer wrappers */
     .panel, .results-panel {
@@ -40,7 +40,7 @@
       border-radius: var(--radius-md); overflow: hidden;
     }
 
-    /* TABS (underline style —different from ds-tool-modebar pill style) */
+    /* TABS (underline style different from ds-tool-modebar pill style) */
     .tabs-bar { display: flex; gap: 2px; padding: 6px 16px 0; border-bottom: 1px solid var(--border); }
     .tab-btn { padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--text-muted); border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; margin-bottom: -1px; }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -362,7 +362,7 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
-  // 鈹€鈹€ MD5 pure-JS implementation 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  MD5 pure-JS implementation 
   // Based on the canonical RSA Data Security MD5 algorithm, public domain
   function md5(input) {
     function safeAdd(x, y) { const lsw = (x & 0xFFFF) + (y & 0xFFFF); const msw = (x >> 16) + (y >> 16) + (lsw >> 16); return (msw << 16) | (lsw & 0xFFFF); }
@@ -409,13 +409,13 @@
     }).join('');
   }
 
-  // 鈹€鈹€ Web Crypto SHA helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Web Crypto SHA helpers 
   async function sha(algo, buffer) {
     const hashBuffer = await crypto.subtle.digest(algo, buffer);
     return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  State 
   let currentBuffer = null;
   let caseMode = 'lower';
   let currentTab = 'text';
@@ -515,7 +515,7 @@
     await computeFromBuffer(buffer);
   }
 
-  // 鈹€鈹€ Tabs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Tabs 
   document.getElementById('tabText').addEventListener('click', () => {
     currentTab = 'text';
     document.getElementById('tabText').classList.add('active');
@@ -534,7 +534,7 @@
     else { hashes.md5 = hashes.sha1 = hashes.sha256 = hashes.sha512 = ''; refreshDisplay(); }
   });
 
-  // 鈹€鈹€ Text input 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Text input 
   function updateInputStat(val) {
     const chars = val.length;
     const bytes = new TextEncoder().encode(val).length;
@@ -562,7 +562,7 @@
     computeFromText(s);
   });
 
-  // 鈹€鈹€ File drop 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  File drop 
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
 
@@ -602,7 +602,7 @@
     reader.readAsArrayBuffer(file);
   }
 
-  // 鈹€鈹€ Case toggle 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Case toggle 
   document.getElementById('caseLower').addEventListener('click', () => {
     caseMode = 'lower';
     document.getElementById('caseLower').classList.add('active');
@@ -616,7 +616,7 @@
     refreshDisplay();
   });
 
-  // 鈹€鈹€ Copy buttons 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy buttons 
   document.querySelectorAll('.btn-copy-hash').forEach(btn => {
     btn.addEventListener('click', () => {
       const val = document.getElementById(btn.dataset.id)?.textContent;

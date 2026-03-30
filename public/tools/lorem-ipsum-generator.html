@@ -95,7 +95,7 @@
       --mono:          var(--ds-font-mono);
     }
 
-    /* 鈹€鈹€ LOGO OVERRIDE 鈹€鈹€ */
+    /*  LOGO OVERRIDE  */
 
     /* Theme tabs */
     .theme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
@@ -340,10 +340,10 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
-  // 鈹€鈹€ WORD BANKS 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  WORD BANKS 
   const LOREM_WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum curabitur pretium tincidunt lacus nulla gravida orci a odio tempus diam mi dictum lacus blandit arcu viverra feugiat nibh facilisis fermentum auctor ligula volutpat'.split(' ');
 
-  const CHINESE_CHARS = '的一是在不了有人这中大为上个国我以要他时来用们生到作地于出就分对成会可主发年动同工也能下过子说产种面而方后多定行学法所民得经十之进着等部度家电力里如水化高自二理起小物现实加量都两体制机当使点从业本去把性好应开它合还因由其些然前外天政四日那社义事平形相全表间样与关各重新线内数正心力理样建设界感情产业功等发现原来'.split('');
+  const CHINESE_CHARS = '\u7684\u4E00\u662F\u5728\u4E0D\u4E86\u6709\u4EBA\u8FD9\u4E2D\u5927\u4E3A\u4E0A\u4E2A\u56FD\u6211\u4EE5\u8981\u4ED6\u65F6\u6765\u7528\u4EEC\u751F\u5230\u4F5C\u5730\u4E8E\u51FA\u5C31\u5206\u5BF9\u6210\u4F1A\u53EF\u4E3B\u53D1\u5E74\u52A8\u540C\u5DE5\u4E5F\u80FD\u4E0B\u8FC7\u5B50\u8BF4\u4EA7\u79CD\u9762\u800C\u65B9\u540E\u591A\u5B9A\u884C\u5B66\u6CD5\u6240\u6C11\u5F97\u7ECF\u5341\u4E4B\u8FDB\u7740\u7B49\u90E8\u5EA6\u5BB6\u7535\u529B\u91CC\u5982\u6C34\u5316\u9AD8\u81EA\u4E8C\u7406\u8D77\u5C0F\u7269\u73B0\u5B9E\u52A0\u91CF\u90FD\u4E24\u4F53\u5236\u673A\u5F53\u4F7F\u70B9\u4ECE\u4E1A\u672C\u53BB\u628A\u6027\u597D\u5E94\u5F00\u5B83\u5408\u8FD8\u56E0\u7531\u5176\u4E9B\u7136\u524D\u5916\u5929\u653F\u56DB\u65E5\u90A3\u793E\u4E49\u4E8B\u5E73\u5F62\u76F8\u5168\u8868\u95F4\u6837\u4E0E\u5173\u5404\u91CD\u65B0\u7EBF\u5185\u6570\u6B63\u5FC3\u529B\u7406\u6837\u5EFA\u8BBE\u754C\u611F\u60C5\u4EA7\u4E1A\u529F\u7B49\u53D1\u73B0\u539F\u6765'.split('');
 
   const TECH_WORDS = 'function component render state props hook context reducer async await promise callback interface type generic module export import class extends implements static abstract method parameter return boolean string number object array null undefined error exception try catch finally fetch api endpoint request response json token auth bearer middleware pipeline schema migration query mutation subscription websocket event listener observer iterator generator closure prototype prototype scope lexical binary heap stack queue graph tree node leaf root branch traversal recursive linear logarithmic complexity algorithm data structure framework library package dependency version release deploy build test lint format debug refactor optimize performance cache memory thread process concurrent parallel distributed microservice container docker kubernetes cloud'.split(' ');
 
@@ -353,7 +353,7 @@
   function pickMany(arr, n) { const r = []; for (let i = 0; i < n; i++) r.push(pick(arr)); return r; }
   function randInt(min, max) { return min + Math.floor(Math.random() * (max - min + 1)); }
 
-  // 鈹€鈹€ SENTENCE BUILDERS 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  SENTENCE BUILDERS 
   function buildSentence(theme) {
     if (theme === 'lorem') {
       const len = randInt(6, 18);
@@ -390,7 +390,7 @@
     return pickMany(bank, n).join(theme === 'chinese' ? '' : ' ');
   }
 
-  // 鈹€鈹€ STATE 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  STATE 
   let currentTheme = 'lorem';
   let currentUnit  = 'paragraphs';
   let currentFmt   = 'text';

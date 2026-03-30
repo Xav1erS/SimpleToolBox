@@ -55,7 +55,7 @@
       "name": "What are Unicode code points beyond BMP?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Characters outside the Basic Multilingual Plane (code points above U+FFFF) include most emoji and some rare scripts. JavaScript strings store these as two 'surrogate pair' code units, so na茂ve .length counts them as 2. This tool correctly counts them as 1."
+        "text": "Characters outside the Basic Multilingual Plane (code points above U+FFFF) include most emoji and some rare scripts. JavaScript strings store these as two 'surrogate pair' code units, so na\u8302ve .length counts them as 2. This tool correctly counts them as 1."
       }
     },
     {
@@ -245,12 +245,12 @@
 </div>
 <script>
   'use strict';
-  const SAMPLE = 'Hello, World! 馃實\nThis tool counts every character: letters (脛盲), digits (123), punctuation (!?,), spaces, and emoji 馃帀馃敟.\nUnicode: caf茅, na茂ve, r茅sum茅.';
+  const SAMPLE = 'Hello, World! \u9983\u5BE6\nThis tool counts every character: letters (\u811B\u76F2), digits (123), punctuation (!?,), spaces, and emoji \u9983\u5E00\u9983\u655F.\nUnicode: caf\u8305, na\u8302ve, r\u8305sum\u8305.';
 
   const inputText = document.getElementById('inputText');
   const limitInput = document.getElementById('limitInput');
 
-  // Emoji regex (Unicode property escapes —modern browsers)
+  // Emoji regex (Unicode property escapes modern browsers)
   let emojiRe;
   try { emojiRe = /\p{Emoji_Presentation}|\p{Extended_Pictographic}/gu; } catch(e) { emojiRe = null; }
 

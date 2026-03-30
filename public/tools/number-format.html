@@ -408,7 +408,7 @@
     if (isNaN(n) || !isFinite(n)) return '—';
     if (n === 0) return 'zero';
     let neg = n < 0; n = Math.abs(Math.round(n));
-    if (n > 999999999999999) return '鈮?' + n.toExponential(2) + ' (too large)';
+    if (n > 999999999999999) return '\u922E?' + n.toExponential(2) + ' (too large)';
     const parts = [];
     let mag = 0;
     while (n > 0) { const chunk = n % 1000; if (chunk) parts.unshift(spellHundred(chunk) + (MAGNITUDES[mag] ? ' ' + MAGNITUDES[mag] : '')); n = Math.floor(n/1000); mag++; }

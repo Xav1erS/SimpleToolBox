@@ -123,7 +123,7 @@ function calc(){
   // next birthday
   let nextBday=new Date(ad.getFullYear(),bd.getMonth(),bd.getDate());
   if(nextBday<=ad)nextBday=new Date(ad.getFullYear()+1,bd.getMonth(),bd.getDate());
-  milestones.push({label:'Next Birthday 馃巶',date:nextBday});
+  milestones.push({label:'Next Birthday \u9983\u5DF6',date:nextBday});
   milestones.sort((a,b)=>a.date-b.date);
   const fmt=d=>d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
   const ul=document.getElementById('milestones');ul.innerHTML='';

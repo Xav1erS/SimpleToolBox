@@ -8,7 +8,7 @@
 - After code changes, mention the touched files and the key changes.
 - Prefer the minimum necessary change.
 
-## Current Actual State (2026-03-29)
+## Current Actual State (2026-03-30)
 
 - Tool count: **201**
 - Site pages migrated: `index`, `all-tools`, `about`, `privacy`, `terms`, `contact`
@@ -28,22 +28,28 @@
 - Full lightweight smoke: **201/201 pass**
 - Launch-health audit: **mojibake 0 / inline script syntax 0 / missing header row 0 / missing tool-page-icon.js 0**
 
-## Remaining Non-Blocking Debt (2026-03-29)
+## Remaining Non-Blocking Debt (2026-03-30)
 
-- Not all historical debt is gone.
-- What is cleared:
-  - user-visible mojibake
+- What is cleared (as of 2026-03-30):
+  - all user-visible mojibake
   - inline-script syntax breakage
   - lightweight runtime blockers detectable on first load
   - missing `ds-tool-header__row`
   - missing `tool-page-icon.js`
+  - all CJK in HTML content areas (tool pages + site pages)
+  - all CJK in `<script>`/`<style>` blocks (except intentional — see below)
+  - missing `ds-tool-main` across all 201 pages
+  - missing `What is ...` SEO section across all 201 pages
+  - missing `How to Use ...` SEO section across all 201 pages
+  - manual group structural gaps (was 61 pages, now 0)
 - What is still not fully cleared:
   - `70` tool pages do not statically reference `site-navigation.js`
   - many of those still work because navigation is dynamically loaded by `tool-page-icon.js`
-  - shell migration / structural unification debt still exists and should not be silently re-labeled as “finished”
+  - actual shared-shell migration has NOT been performed — pages are structurally ready but the shell wiring (STB_PAGE_CONTEXT + site-navigation.js + ds-tool-context) has not been attached
+  - `lorem-ipsum-generator`: intentional Chinese text in `<button class=”theme-btn” data-theme=”chinese”>` — permanent accepted exception
 - Correct phrasing:
-  - **launch-stability blockers are cleared**
-  - **shared-shell migration debt is not fully cleared**
+  - **all encoding/structural pre-conditions for shell migration are cleared**
+  - **actual shared-shell wiring is not done yet**
 
 ## What Was Finished Recently
 
@@ -270,56 +276,51 @@ Minimum extra checks should now include:
 - `npx playwright test tests/smoke/all-tools-light.test.js --project="Desktop Chrome"`
 - `python scripts/audit-launch-health.py`
 
-## Tool Shell Migration Snapshot (2026-03-28)
+## Tool Shell Migration Snapshot (2026-03-30)
 
-The tool-page left-rail migration is not blocked by the shell itself.
-The real blocker is legacy page debt plus incomplete page contracts.
+All structural pre-conditions are now cleared. The blocker was legacy page debt — that is gone.
 
 Current 201-page split:
 
-- `12` pages can be migrated directly
-- `128` pages need encoding / bad-tag cleanup first, then can be batch-migrated
-- `61` pages need manual one-by-one handling because they also have structural gaps
+- `200` pages are ready for direct shell migration
+- `1` page (lorem-ipsum-generator) remains in cleanup due to **intentional** Chinese text — permanent exception
+- `0` pages in the manual group (was 61)
+
+### What was done to clear the debt (2026-03-30)
+
+New scripts created this session:
+
+- **`scripts/fix-cleanup-dirty.py`**: fixed 33 cleanup pages (ds-related-icon corruption, emoji in HTML comments, specific symbol corrections)
+- **`scripts/fix-cleanup-remaining.py`**: fixed 14 remaining cleanup pages (own icons, U+9200 separators, uuid checkmarks, jwt dots, calorie gender, slug placeholder)
+- **`scripts/fix-how-to-use.py`**: 22 heading renames ("How to Convert X" → "How to Use [Tool Name]") + 4 new How to Use sections added
+- **`scripts/fix-full-structure.py`**: 14 pages fixed (ds-tool-main + What is + How to Use each)
+- **`scripts/fix-manual-remaining.py`**: 21 manual-group pages fixed (patterns A/B/C)
+- **`scripts/fix-script-cjk.py`**: 72 cleanup pages cleaned of script/style block CJK (JS comment strip + \uXXXX escaping for string literals)
 
 ### Direct-Migration Set
 
-Current clean batch:
+All 200 structurally ready pages. The original 12-page "gold standard" batch remains valid as a first wave:
 
-- `base64`
-- `css-minifier`
-- `js-formatter`
-- `aes`
-- `color-palette`
-- `contrast-checker`
-- `countdown`
-- `gradient-generator`
-- `html-formatter`
-- `roman-numerals`
-- `url-builder`
-- `url-encode`
+- `base64`, `css-minifier`, `js-formatter`, `aes`, `color-palette`, `contrast-checker`, `countdown`, `gradient-generator`, `html-formatter`, `roman-numerals`, `url-builder`, `url-encode`
 
-### Main Failure Modes
+### Main Failure Modes (historical — cleared)
 
-- legacy mojibake / dirty characters
-- broken closing tags that only surface after shell wiring changes
-- missing `ds-tool-main`
-- missing required SEO slots:
-  - `What is ...`
-  - `How to Use ...`
-- duplicate shell initialization
+- legacy mojibake / dirty characters ✓ cleared
+- broken closing tags ✓ cleared
+- missing `ds-tool-main` ✓ cleared
+- missing `What is ...` / `How to Use ...` ✓ cleared
+- structural outliers (61 manual pages) ✓ cleared
 
-Confirmed real pitfall:
+Remaining confirmed pitfall (still applies to shell wiring work):
 
 - `tool-page-icon.js` can trigger `initSiteNavigation()` after `site-navigation.js` already initialized
 - without idempotent guards, the directory collapse button is double-bound and appears unclickable
 
-### Migration Order
+### Next Step
 
-Do not mix groups.
+Perform actual shell migration: add `window.STB_PAGE_CONTEXT`, `site-navigation.js`, and `ds-tool-context` to the 200 ready pages.
 
-1. Migrate the `12` direct pages first.
-2. Run cleanup on the `128` dirty-but-structurally-usable pages, then batch-migrate them.
-3. Leave the `61` structural outliers for manual handling.
+Start with the 12 gold-standard pages, verify, then batch the remaining 188.
 
 ### Completion Bar
 

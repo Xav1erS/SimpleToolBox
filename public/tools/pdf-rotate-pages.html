@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF Page Rotator",
-  "description": "Rotate individual PDF pages or the entire document online for free. Choose 90掳, 180掳, or 270掳 rotation per page. Runs entirely in your browser —no file uploads.",
+  "description": "Rotate individual PDF pages or the entire document online for free. Choose 90\u63B3, 180\u63B3, or 270\u63B3 rotation per page. Runs entirely in your browser —no file uploads.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -55,7 +55,7 @@
       "name": "What rotation angles are supported?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You can rotate each page by 0掳 (no change), 90掳 clockwise, 180掳, or 270掳 clockwise (equivalent to 90掳 counter-clockwise)."
+        "text": "You can rotate each page by 0\u63B3 (no change), 90\u63B3 clockwise, 180\u63B3, or 270\u63B3 clockwise (equivalent to 90\u63B3 counter-clockwise)."
       }
     },
     {
@@ -421,7 +421,7 @@
   let currentFile  = null;
   let pdfArrayBuffer = null;
 
-  // 鈹€鈹€ Helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Helpers 
 
   function normalise(deg) {
     return ((deg % 360) + 360) % 360;
@@ -438,7 +438,7 @@
     });
   }
 
-  // 鈹€鈹€ Load PDF 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Load PDF 
 
   async function loadPdf(file) {
     currentFile = file;
@@ -490,7 +490,7 @@
 
       const sel = document.createElement('select');
       sel.className = 'rot-select';
-      [['0掳', 0], ['90掳 CW', 90], ['180掳', 180], ['270掳 CW', 270]].forEach(([label, val]) => {
+      [['0\u63B3', 0], ['90\u63B3 CW', 90], ['180\u63B3', 180], ['270\u63B3 CW', 270]].forEach(([label, val]) => {
         const opt = document.createElement('option');
         opt.value = val;
         opt.textContent = label;
@@ -522,7 +522,7 @@
     actionRow.style.display = 'flex';
   }
 
-  // 鈹€鈹€ Quick rotate buttons 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Quick rotate buttons 
 
   btnAllCCW.addEventListener('click',   () => setAllRotations(-90));
   btnAllCW.addEventListener('click',    () => setAllRotations(90));
@@ -532,7 +532,7 @@
     syncSelects();
   });
 
-  // 鈹€鈹€ Apply & Download 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Apply & Download 
 
   btnApply.addEventListener('click', async () => {
     if (!pdfDoc) return;
@@ -605,7 +605,7 @@
         const imgData = outCanvas.toDataURL('image/jpeg', 0.92);
 
         if (i === 1) {
-          // First page already added during jsPDF init —set its size
+          // First page already added during jsPDF init set its size
           pdf.internal.pageSize.width  = outW;
           pdf.internal.pageSize.height = outH;
           pdf.addImage(imgData, 'JPEG', 0, 0, outW, outH);
@@ -635,7 +635,7 @@
     btnApply.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Apply &amp; Download';
   });
 
-  // 鈹€鈹€ File load helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  File load helpers 
 
   function loadFile(file) {
     if (!file || file.type !== 'application/pdf') {

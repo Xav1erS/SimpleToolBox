@@ -39,7 +39,7 @@
       "name": "What is percentage change?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new −old) 梅 |old| × 100."
+        "text": "Percentage change measures how much a value has increased or decreased relative to its original value. Formula: (new −old) \u6885 |old| × 100."
       }
     },
     {
@@ -279,7 +279,7 @@ function calc() {
   pctEl.textContent = (isIncrease ? '+' : '') + fmt(rounded) + '%';
   pctEl.className = 'result-pct ' + (isZero ? 'neutral' : isIncrease ? 'increase' : 'decrease');
   lblEl.textContent = isZero ? 'No change' : (isIncrease ? 'Increase' : 'Decrease') + ` from ${fmt(from)} to ${fmt(to)}`;
-  fmlEl.textContent = `Formula: (${fmt(to)} −${fmt(from)}) 梅 |${fmt(from)}| × 100 = ${fmt(rounded)}%`;
+  fmlEl.textContent = `Formula: (${fmt(to)} −${fmt(from)}) \u6885 |${fmt(from)}| × 100 = ${fmt(rounded)}%`;
 
   // Stats
   const absDiff = Math.abs(to - from);

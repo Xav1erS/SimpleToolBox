@@ -260,7 +260,7 @@
 <script>
   'use strict';
 
-  // Minimal EXIF parser —reads Exif IFD from JPEG / TIFF ArrayBuffer
+  // Minimal EXIF parser reads Exif IFD from JPEG / TIFF ArrayBuffer
   // Supports the most common tags without external dependencies
 
   const EXIF_TAGS = {
@@ -290,7 +290,7 @@
     0x001D: 'GPSDateStamp'
   };
 
-  const ORIENTATION_MAP = { 1:'Normal',2:'Mirror H',3:'180掳',4:'Mirror V',5:'Mirror H + 90掳 CW',6:'90掳 CW',7:'Mirror H + 90掳 CCW',8:'90掳 CCW' };
+  const ORIENTATION_MAP = { 1:'Normal',2:'Mirror H',3:'180\u63B3',4:'Mirror V',5:'Mirror H + 90\u63B3 CW',6:'90\u63B3 CW',7:'Mirror H + 90\u63B3 CCW',8:'90\u63B3 CCW' };
   const EXPOSURE_PROG = { 0:'Not defined',1:'Manual',2:'Program AE',3:'Aperture priority',4:'Shutter priority',5:'Creative',6:'Action',7:'Portrait',8:'Landscape' };
   const METERING = { 0:'Unknown',1:'Average',2:'Center-weighted',3:'Spot',4:'Multi-spot',5:'Pattern',6:'Partial' };
   const FLASH_MAP = { 0:'No flash',1:'Flash fired',5:'Strobe,no detection',7:'Flash+strobe',9:'Flash compulsory',13:'Flash compulsory+strobe',15:'Flash compulsory+strobe+no ret.',16:'Flash suppressed',24:'No flash,auto mode',25:'Flash,auto',29:'Flash+no detection,auto',31:'Flash+no detection+strobe,auto',32:'No flash,unavailable',65:'Flash,red-eye',69:'Flash+strobe,red-eye',71:'Flash+strobe+no ret,red-eye',73:'Flash compulsory,red-eye',77:'Flash compulsory+no ret,red-eye',79:'Flash compulsory+strobe+no ret,red-eye',89:'Flash auto,red-eye',93:'Flash auto+no ret,red-eye',95:'Flash auto+strobe+no ret,red-eye' };

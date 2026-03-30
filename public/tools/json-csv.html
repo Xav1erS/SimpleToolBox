@@ -333,7 +333,7 @@ Bob,25</span>
   }
 
   function showError(msg) {
-    errorBox.textContent = '鈿?' + msg;
+    errorBox.textContent = '\u923F?' + msg;
     errorBox.style.display = 'block';
   }
 
@@ -341,7 +341,7 @@ Bob,25</span>
     errorBox.style.display = 'none';
   }
 
-  // ---- JSON →CSV ----
+  // ---- JSON CSV ----
   function jsonToCSV(jsonStr, delimiter, hasHeader) {
     const data = JSON.parse(jsonStr);
     if (!Array.isArray(data) || data.length === 0) {

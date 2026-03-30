@@ -529,7 +529,7 @@
   let currentMode  = 'range'; // 'range' | 'every'
   let resultBlobs  = []; // [{name, blob, pages}]
 
-  // 鈹€鈹€ Mode toggle 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Mode toggle 
   [modeRange, modeEvery].forEach(btn => {
     btn.addEventListener('click', () => {
       [modeRange, modeEvery].forEach(b => b.classList.remove('active'));
@@ -546,7 +546,7 @@
     });
   });
 
-  // 鈹€鈹€ Range parsing 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Range parsing 
   function parseRanges(str, max) {
     // Returns array of page-number arrays, e.g. [[1,2,3],[5],[7,8,9]]
     // Throws string error message on invalid input.
@@ -586,7 +586,7 @@
     rangeInput.classList.add('error');
   }
 
-  // 鈹€鈹€ Render page to canvas (2x scale) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Render page to canvas (2x scale) 
   async function renderPageToCanvas(page) {
     const scale    = 2;
     const viewport = page.getViewport({ scale });
@@ -597,7 +597,7 @@
     return { canvas, viewport };
   }
 
-  // 鈹€鈹€ Build a jsPDF from an array of page numbers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Build a jsPDF from an array of page numbers 
   async function buildPdf(pageNumbers) {
     const { jsPDF } = window.jspdf;
     let doc = null;
@@ -625,7 +625,7 @@
     return doc ? doc.output('blob') : null;
   }
 
-  // 鈹€鈹€ Split by range 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Split by range 
   async function splitByRange(ranges) {
     const blobs = [];
     for (let i = 0; i < ranges.length; i++) {
@@ -644,7 +644,7 @@
     return blobs;
   }
 
-  // 鈹€鈹€ Split every page 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Split every page 
   async function splitEveryPage() {
     const blobs = [];
     for (let i = 1; i <= numPages; i++) {
@@ -659,7 +659,7 @@
     return blobs;
   }
 
-  // 鈹€鈹€ Trigger download of a single blob 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Trigger download of a single blob 
   function downloadBlob(blob, filename) {
     const url = URL.createObjectURL(blob);
     const a   = Object.assign(document.createElement('a'), { href: url, download: filename });
@@ -669,7 +669,7 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  // 鈹€鈹€ Render result list UI 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Render result list UI 
   function renderResults(blobs) {
     resultList.innerHTML = '';
     blobs.forEach(({ name, blob, pages }) => {
@@ -698,7 +698,7 @@
     });
   }
 
-  // 鈹€鈹€ Main split action 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Main split action 
   btnSplit.addEventListener('click', async () => {
     clearError();
     resultArea.classList.remove('visible');
@@ -751,7 +751,7 @@
     }
   });
 
-  // 鈹€鈹€ ZIP download 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  ZIP download 
   btnDlZip.addEventListener('click', async () => {
     if (!resultBlobs.length) return;
     btnDlZip.disabled = true;
@@ -769,7 +769,7 @@
     }
   });
 
-  // 鈹€鈹€ Load PDF file 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Load PDF file 
   async function loadPdf(file) {
     if (!file || file.type !== 'application/pdf') {
       alert('Please select a valid PDF file.');
@@ -805,7 +805,7 @@
     splitPanel.classList.add('visible');
   }
 
-  // 鈹€鈹€ Drop zone events 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Drop zone events 
   dropZone.addEventListener('click', () => fileInput.click());
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
@@ -818,7 +818,7 @@
     if (fileInput.files[0]) loadPdf(fileInput.files[0]);
   });
 
-  // 鈹€鈹€ Change / Split Another 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Change / Split Another 
   function resetToUpload() {
     dropZone.style.display = '';
     infoBar.classList.remove('visible');

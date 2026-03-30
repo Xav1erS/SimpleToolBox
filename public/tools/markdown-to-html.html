@@ -343,7 +343,7 @@ Write your **Markdown** here and see it convert to HTML instantly.
   const btnClearAll   = document.getElementById('btnClearAll');
   const outputPanel   = document.getElementById('outputPanel');
 
-  // 鈹€鈹€ Conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Conversion 
   function run() {
     const input = inputText.value;
 
@@ -382,7 +382,7 @@ Write your **Markdown** here and see it convert to HTML instantly.
     outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
   }
 
-  // 鈹€鈹€ Output mode switching 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Output mode switching 
   function setOutputMode(nextMode) {
     outputMode = nextMode;
     const isSource = nextMode === 'source';
@@ -402,22 +402,22 @@ Write your **Markdown** here and see it convert to HTML instantly.
   btnSource.addEventListener('click', () => setOutputMode('source'));
   btnPreview.addEventListener('click', () => setOutputMode('preview'));
 
-  // 鈹€鈹€ Options 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Options 
   chkGfm.addEventListener('change', run);
   chkBreaks.addEventListener('change', run);
 
-  // 鈹€鈹€ Swap 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Swap 
   btnSwap.addEventListener('click', () => {
     if (!htmlResult) return;
     inputText.value = htmlResult;
     run();
   });
 
-  // 鈹€鈹€ Live conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Live conversion 
   inputText.addEventListener('input', run);
   btnRun.addEventListener('click', run);
 
-  // 鈹€鈹€ Copy helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy helpers 
   async function copyText(text, button) {
     if (!text) return;
     const originalHtml = button.innerHTML;
@@ -457,7 +457,7 @@ Write your **Markdown** here and see it convert to HTML instantly.
   btnClearInput.addEventListener('click', clearAll);
   btnClearAll.addEventListener('click', clearAll);
 
-  // 鈹€鈹€ Init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Init 
   setOutputMode('source');
   run();
 </script>

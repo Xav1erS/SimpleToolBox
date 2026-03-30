@@ -335,7 +335,7 @@
   const outputPanel   = document.getElementById('outputPanel');
   const errorMsg      = document.getElementById('errorMsg');
 
-  // 鈹€鈹€ Validation 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Validation 
   function validateXml(text) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/xml');
@@ -347,7 +347,7 @@
     return null;
   }
 
-  // 鈹€鈹€ Conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Conversion 
   function run() {
     const input = inputText.value.trim();
     outputPanel.classList.remove('has-error');
@@ -392,7 +392,7 @@
     outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
   }
 
-  // 鈹€鈹€ Mode switching 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Mode switching 
   function setMode(nextMode) {
     mode = nextMode;
     const isBeautify = nextMode === 'beautify';
@@ -407,7 +407,7 @@
   btnBeautify.addEventListener('click', () => setMode('beautify'));
   btnMinify.addEventListener('click', () => setMode('minify'));
 
-  // 鈹€鈹€ Indent control 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Indent control 
   indentCtrl.querySelectorAll('.seg-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       indent = btn.dataset.indent === '4' ? '    ' : '  ';
@@ -417,7 +417,7 @@
     });
   });
 
-  // 鈹€鈹€ Swap 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Swap 
   btnSwap.addEventListener('click', () => {
     const output = outputText.value;
     if (!output) return;
@@ -427,11 +427,11 @@
     run();
   });
 
-  // 鈹€鈹€ Live conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Live conversion 
   inputText.addEventListener('input', run);
   btnRun.addEventListener('click', run);
 
-  // 鈹€鈹€ Copy helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy helpers 
   async function copyText(text, button) {
     if (!text) return;
     const originalHtml = button.innerHTML;

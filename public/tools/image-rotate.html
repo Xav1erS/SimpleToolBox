@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Image Rotate Tool",
-  "description": "Rotate and flip images online for free. Rotate 90掳, 180掳, 270掳, flip horizontally or vertically. Download as JPEG or PNG instantly. No upload —runs in your browser.",
+  "description": "Rotate and flip images online for free. Rotate 90\u63B3, 180\u63B3, 270\u63B3, flip horizontally or vertically. Download as JPEG or PNG instantly. No upload —runs in your browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -47,7 +47,7 @@
       "name": "Does rotating lose image quality?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For 90掳 and 180掳 rotations, the pixel data is rearranged without any resampling —no quality is lost for PNG output. For JPEG output, re-encoding applies JPEG compression, which may introduce minor quality changes. Use PNG output for pixel-perfect lossless rotation."
+        "text": "For 90\u63B3 and 180\u63B3 rotations, the pixel data is rearranged without any resampling —no quality is lost for PNG output. For JPEG output, re-encoding applies JPEG compression, which may introduce minor quality changes. Use PNG output for pixel-perfect lossless rotation."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Can I undo a rotation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes —clicking 90掳 CW four times returns to the original orientation. Or click 90掳 CCW to reverse a clockwise rotation. Reload the page to start fresh."
+        "text": "Yes —clicking 90\u63B3 CW four times returns to the original orientation. Or click 90\u63B3 CCW to reverse a clockwise rotation. Reload the page to start fresh."
       }
     },
     {
@@ -388,7 +388,7 @@
     drawTransformed(previewCanvas, pCtx);
     metaDimensions.textContent = `${previewCanvas.width} × ${previewCanvas.height}`;
     const parts = [];
-    if (rotation) parts.push(`${rotation}掳`);
+    if (rotation) parts.push(`${rotation}\u63B3`);
     if (flipH) parts.push('Flip H');
     if (flipV) parts.push('Flip V');
     metaTransform.textContent = parts.length ? parts.join(' + ') : 'None';

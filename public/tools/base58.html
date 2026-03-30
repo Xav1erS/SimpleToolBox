@@ -387,18 +387,18 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
-  // 鈹€鈹€ Alphabets 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Alphabets 
   const ALPHABETS = {
     bitcoin: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
     flickr:  '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
     ripple:  'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz',
   };
 
-  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  State 
   let mode      = 'encode';
   let alphaKey  = 'bitcoin';
 
-  // 鈹€鈹€ Core logic 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Core logic 
   function base58Encode(str, alphabet) {
     const bytes = new TextEncoder().encode(str);
     let n = BigInt(0);
@@ -437,7 +437,7 @@
     return new TextDecoder().decode(new Uint8Array(bytes));
   }
 
-  // 鈹€鈹€ DOM refs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  DOM refs 
   const btnEncode    = document.getElementById('btnEncode');
   const btnDecode    = document.getElementById('btnDecode');
   const btnSwap      = document.getElementById('btnSwap');
@@ -458,7 +458,7 @@
   const outputPanel  = document.getElementById('outputPanel');
   const errorMsg     = document.getElementById('errorMsg');
 
-  // 鈹€鈹€ Run 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Run 
   function run() {
     const inp = inputText.value;
     const alphabet = ALPHABETS[alphaKey];
@@ -491,7 +491,7 @@
     outputStat.textContent = oc ? oc.toLocaleString() + ' chars' : '0 chars';
   }
 
-  // 鈹€鈹€ Mode switch 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Mode switch 
   function setMode(m) {
     mode = m;
     btnEncode.classList.toggle('active', m === 'encode');
@@ -507,7 +507,7 @@
   btnEncode.addEventListener('click', () => setMode('encode'));
   btnDecode.addEventListener('click', () => setMode('decode'));
 
-  // 鈹€鈹€ Alphabet selector 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Alphabet selector 
   alphaGroup.addEventListener('click', e => {
     const btn = e.target.closest('.alpha-btn');
     if (!btn) return;
@@ -517,7 +517,7 @@
     run();
   });
 
-  // 鈹€鈹€ Swap 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Swap 
   btnSwap.addEventListener('click', () => {
     const out = outputText.value;
     if (!out) return;
@@ -525,10 +525,10 @@
     setMode(mode === 'encode' ? 'decode' : 'encode');
   });
 
-  // 鈹€鈹€ Live update 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Live update 
   inputText.addEventListener('input', run);
 
-  // 鈹€鈹€ Clipboard helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Clipboard helpers 
   async function copyToClipboard(text, btn, label) {
     if (!text) return;
     const orig = btn.innerHTML;
@@ -549,7 +549,7 @@
   btnCopyHeader.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyHeader, '&#10003;Copied'));
   btnCopyResult.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyResult, '&#10003;Copied'));
 
-  // 鈹€鈹€ Paste / clear 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Paste / clear 
   btnPaste.addEventListener('click', async () => {
     try {
       inputText.value = await navigator.clipboard.readText();
@@ -569,15 +569,15 @@
     updateStats();
   });
 
-  // 鈹€鈹€ Run button 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Run button 
   btnRun.addEventListener('click', run);
 
-  // 鈹€鈹€ Ctrl/Cmd+Enter shortcut 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Ctrl/Cmd+Enter shortcut 
   document.addEventListener('keydown', e => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run();
   });
 
-  // 鈹€鈹€ Init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Init 
   setMode('encode');
 </script>
 

@@ -8,7 +8,7 @@
 - 修改代码后，说明涉及的文件和关键变化。
 - 优先做最小必要修改，避免无关重构。
 
-## 当前真实状态（2026-03-29）
+## 当前真实状态（2026-03-30）
 
 - **201 个工具页**已上线，QA 201/201 通过，0 错误 0 警告。
 - **6 个站点页**已完成设计系统迁移：`index`、`all-tools`、`about`、`privacy`、`terms`、`contact`。
@@ -21,25 +21,39 @@
 - **Product Hunt 已于 2026-03-29 正式上线。**
 - **sitemap.xml** 已同步全部工具页（211 URLs = 201 tools + 10 site pages）。
 
-### 最新 QA（2026-03-29）
+### 最新 QA（2026-03-30）
 
 - Tools: 201
 - Validate: 201/201 pass, 0 errors, 0 warnings
-- 编码脏字符：已全量修复（工具页 + 站点页）
+- 编码脏字符（HTML 内容区）：已全量修复
+- 脚本/样式块内 CJK：已全量清理（除 lorem-ipsum-generator 的有意中文按钮）
 - 全量轻量 smoke：201/201 pass
 - `audit-launch-health.py`：mojibake 0，inline script syntax 0，missing header row 0，missing tool-page-icon.js 0
+- `ds-tool-main`：201/201 已具备
+- `What is ...` SEO 段：201/201 已具备
+- `How to Use ...` SEO 段：201/201 已具备
 
-### 当前非阻塞遗留（2026-03-29）
+### 当前非阻塞遗留（2026-03-30）
 
-- **并非所有历史遗留都已清空。**
-- 当前已清掉的是“会影响页面加载、脚本初始化、用户可见乱码、页头结构缺失”的阻塞问题。
-- 当前仍存在但**不作为本轮阻塞项**的主要遗留：
-  - `70` 个工具页未静态引用 `site-navigation.js`
-  - 这批页面里很多仍通过 `tool-page-icon.js` 动态加载共享导航，并不等于页面坏掉
-  - 共享外壳迁移分组债务仍在，不能因为运行稳定就视为已完成结构统一
-- 因此当前真实口径应表述为：
-  - **上线稳定性阻塞项已清零**
-  - **结构统一 / 迁移债务尚未清零**
+- 已清空的债务（截至本轮）：
+  - 所有用户可见乱码 ✓
+  - 所有 inline-script 语法错误 ✓
+  - 所有首屏运行时阻塞 ✓
+  - 所有缺失 `ds-tool-header__row` ✓
+  - 所有缺失 `tool-page-icon.js` ✓
+  - 所有 HTML 内容区 CJK（工具页 + 站点页）✓
+  - 所有 `<script>`/`<style>` 块内 CJK（除有意保留项）✓
+  - 所有缺失 `ds-tool-main` ✓
+  - 所有缺失 `What is ...` SEO 段 ✓
+  - 所有缺失 `How to Use ...` SEO 段 ✓
+  - 61 个人工分组的结构缺口 ✓ → 已全部修复，手工组清零
+- 仍未完成的：
+  - `70` 个工具页未静态引用 `site-navigation.js`（通过 `tool-page-icon.js` 动态加载，运行不受影响）
+  - **实际共享外壳接线尚未执行**：200 个页面已具备所有前提条件，但 `STB_PAGE_CONTEXT` + `site-navigation.js` + `ds-tool-context` 的接线工作尚未做
+  - `lorem-ipsum-generator`：`<button class=”theme-btn” data-theme=”chinese”>` 中存在有意保留的中文字符，永久例外
+- 正确口径：
+  - **共享外壳迁移的所有结构前提已清零**
+  - **实际外壳接线尚未完成**
 
 ## 最近已完成的重要进展
 
@@ -289,42 +303,37 @@ Product Hunt 已于 2026-03-29 上线。继续扩张工具数量，目标 300。
 3. QA 一直保持自动可验证。
 4. 站点从“工具集合”变成“任务搜索入口”。
 
-## 工具页共享外壳迁移现状（2026-03-28）
+## 工具页共享外壳迁移现状（2026-03-30）
 
-围绕“工具页左侧栏外壳 + SEO 骨架统一”已完成一次全量静态审计，当前 201 个工具页应按以下三组推进，不能混做：
+所有结构前提已清零。下一步是执行真正的外壳接线。
 
-- **12 个可直接批量迁移**
-  - 特征：结构干净，已具备稳定外壳基础，且 `What is ...` / `How to Use ...` 两个必选 SEO 槽位齐全。
-  - 当前可作为优先迁移样板的页包括：`base64`、`css-minifier`、`js-formatter`、`aes`、`color-palette`、`contrast-checker`、`countdown`、`gradient-generator`、`html-formatter`、`roman-numerals`、`url-builder`、`url-encode`。
+当前 201 个工具页状态：
 
-- **128 个先清理再批量迁移**
-  - 特征：外壳和 SEO 骨架大体齐，但仍带历史编码脏字符、坏闭合标签或旧图标乱码。
-  - 这组不要直接接共享导航和左 rail；应先做“脏字符 / 坏标签清理”，再按批量模板迁移。
+- **200 个可直接迁移**：所有脏字符已清，`ds-tool-main` 已齐，`What is ...` + `How to Use ...` 已齐
+- **1 个永久 cleanup 例外**：`lorem-ipsum-generator`，存在有意保留的中文按钮文本
+- **0 个人工分组**（原 61 个，本轮已全量修复）
 
-- **61 个需要人工单页处理**
-  - 特征：除了脏字符，还叠加结构缺口。
-  - 当前高频问题统计：
-    - `48` 个缺 `How to Use ...`
-    - `35` 个缺 `ds-tool-main`
-    - `22` 个缺 `What is ...`
-    - `5` 个连主内容容器都不完整
-  - 这组必须单页修复，不适合先走自动批量迁移。
+### 本轮（2026-03-30）新增的修复脚本
 
-### 迁移策略更新
+- **`scripts/fix-cleanup-dirty.py`**：修复 33 个 cleanup 页的 ds-related-icon 乱码、HTML 注释内 emoji、特定符号错误
+- **`scripts/fix-cleanup-remaining.py`**：修复 14 个剩余 cleanup 页（own icon、U+9200 分隔符、uuid checkmark、jwt 指示点、calorie 性别、slug placeholder）
+- **`scripts/fix-how-to-use.py`**：22 个标题重命名（”How to Convert X” → “How to Use [Tool Name]”）+ 4 个新增 How to Use 段
+- **`scripts/fix-full-structure.py`**：14 个页面补全（ds-tool-main + What is + How to Use）
+- **`scripts/fix-manual-remaining.py`**：21 个人工分组页修复（Pattern A/B/C）
+- **`scripts/fix-script-cjk.py`**：72 个 cleanup 页清理 script/style 块内 CJK（JS 注释去非 ASCII + 字符串 \uXXXX 转义）
 
-- 后续迁移必须先做“迁移前体检”，至少检查：
-  - 是否存在 mojibake / 脏字符
-  - 是否存在坏闭合标签
-  - 是否具备 `ds-tool-main`
-  - 是否具备 `What is ...` / `How to Use ...`
+### 直迁首批（黄金样本，建议第一波）
+
+`base64`、`css-minifier`、`js-formatter`、`aes`、`color-palette`、`contrast-checker`、`countdown`、`gradient-generator`、`html-formatter`、`roman-numerals`、`url-builder`、`url-encode`
+
+先迁这 12 页，验证通过后再扩大至剩余 188 页。
+
+### 迁移策略
+
 - 共享外壳脚本必须保持**幂等初始化**。
-  - 已确认的真实坑：`tool-page-icon.js` 与 `site-navigation.js` 重复初始化，会导致左侧栏折叠按钮点击后立刻被回滚，看起来像“无法点击”。
-- 后续批量迁移顺序固定为：
-  1. 先迁 `12` 个直迁页
-  2. 再清理 `128` 个脏页并批量迁移
-  3. 最后处理 `61` 个人工页
-- 不再接受“半迁移页”状态。
-  - 已迁移完成的工具页必须同时满足：共享 `nav.ds-nav#nav`、`STB_PAGE_CONTEXT`、`site-navigation.js`、`ds-tool-context`、标准 SEO 骨架。
+  - 已确认的真实坑：`tool-page-icon.js` 与 `site-navigation.js` 重复初始化，会导致左侧栏折叠按钮点击后立刻被回滚，看起来像”无法点击”。
+- 每页接线必须同时具备：共享 `nav.ds-nav#nav`、`STB_PAGE_CONTEXT`、`site-navigation.js`、`ds-tool-context`、标准 SEO 骨架。
+- 迁移前运行：`python scripts/audit-tool-shell-migration.py`，确认无 `dirty_markup` / `missing_ds_tool_main` / `missing_what_section` / `missing_how_section`。
 
 ### 防止再次踩坑的硬指令
 

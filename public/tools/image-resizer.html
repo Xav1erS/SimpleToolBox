@@ -40,7 +40,7 @@
       "name": "Will resizing reduce image quality?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Downscaling (making an image smaller) has minimal visual impact at moderate quality settings. Upscaling (enlarging) will reduce sharpness because the extra pixels are interpolated 閳?there is no new detail to add. Use a quality setting of 80閳?0% for JPEG to get a good balance of size and clarity."
+        "text": "Downscaling (making an image smaller) has minimal visual impact at moderate quality settings. Upscaling (enlarging) will reduce sharpness because the extra pixels are interpolated \u95B3?there is no new detail to add. Use a quality setting of 80\u95B3?0% for JPEG to get a good balance of size and clarity."
       }
     },
     {
@@ -56,15 +56,15 @@
       "name": "Is there a maximum file size?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "There is no enforced limit 閳?processing happens in your browser. Very large images (50+ MB) may be slow to process depending on your device's memory. For most photos and graphics, resizing is instant."
+        "text": "There is no enforced limit \u95B3?processing happens in your browser. Very large images (50+ MB) may be slow to process depending on your device's memory. For most photos and graphics, resizing is instant."
       }
     },
     {
       "@type": "Question",
-      "name": "What does Image Resizer Online Free 閳?Resize Images Without Uploading do?",
+      "name": "What does Image Resizer Online Free \u95B3?Resize Images Without Uploading do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Image Resizer Online Free 閳?Resize Images Without Uploading runs entirely in your browser and helps you complete this task without uploading data to a server."
+        "text": "Image Resizer Online Free \u95B3?Resize Images Without Uploading runs entirely in your browser and helps you complete this task without uploading data to a server."
       }
     }
   ]
@@ -488,7 +488,7 @@
       : '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/>';
   });
 
-  // Dimension sync 閳?clears active preset and refreshes output meta on every keystroke
+  // Dimension sync ?clears active preset and refreshes output meta on every keystroke
   inWidth.addEventListener('input', () => {
     document.querySelectorAll('.btn-preset, .btn-social-preset').forEach(b => b.classList.remove('active'));
     if (aspectLocked && origW) {
@@ -563,7 +563,7 @@
         origH = img.naturalHeight;
         inWidth.value  = origW;
         inHeight.value = origH;
-        metaOriginal.textContent = `${origW} 鑴?${origH}`;
+        metaOriginal.textContent = `${origW} \u9474?${origH}`;
 
         // Show preview
         imgPreview.src = e.target.result;
@@ -588,7 +588,7 @@
   function updateOutputMeta() {
     const w = parseInt(inWidth.value) || origW;
     const h = parseInt(inHeight.value) || origH;
-    metaOutput.textContent = `${w} 鑴?${h}`;
+    metaOutput.textContent = `${w} \u9474?${h}`;
     // Estimate size by rendering to canvas
     canvas.width = w;
     canvas.height = h;

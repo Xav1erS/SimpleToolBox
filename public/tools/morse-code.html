@@ -469,7 +469,7 @@
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
 <script>
-  // 鈹€鈹€ Morse table 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Morse table 
   const MORSE = {
     'A':'.-',   'B':'-...', 'C':'-.-.', 'D':'-..', 'E':'.',
     'F':'..-.', 'G':'--.', 'H':'....', 'I':'..', 'J':'.---',
@@ -487,11 +487,11 @@
   const REVERSE = {};
   for (const [ch, code] of Object.entries(MORSE)) REVERSE[code] = ch;
 
-  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  State 
   let mode = 'encode';
   let wordSep = 'slash'; // 'slash' | 'double'
 
-  // 鈹€鈹€ DOM refs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  DOM refs 
   const btnEncode     = document.getElementById('btnEncode');
   const btnDecode     = document.getElementById('btnDecode');
   const sepSlash      = document.getElementById('sepSlash');
@@ -514,7 +514,7 @@
   const errorMsg      = document.getElementById('errorMsg');
   const arrowIcon     = document.getElementById('arrowIcon');
 
-  // 鈹€鈹€ Encode 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Encode 
   function encodeText(text) {
     const sep = wordSep === 'slash' ? ' / ' : '  ';
     const words = text.toUpperCase().split(' ');
@@ -527,7 +527,7 @@
     return encoded.join(sep);
   }
 
-  // 鈹€鈹€ Decode 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Decode 
   function decodeMorse(morse) {
     const sep = wordSep === 'slash' ? ' / ' : '  ';
     const words = morse.split(sep);
@@ -544,7 +544,7 @@
     return { result: decoded, hasError };
   }
 
-  // 鈹€鈹€ Run 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Run 
   function run() {
     const inp = inputText.value;
     errorMsg.style.display = 'none';
@@ -577,7 +577,7 @@
     outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
   }
 
-  // 鈹€鈹€ Mode switch 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Mode switch 
   function setMode(m) {
     mode = m;
     btnEncode.classList.toggle('active', m === 'encode');
@@ -597,7 +597,7 @@
   btnEncode.addEventListener('click', () => setMode('encode'));
   btnDecode.addEventListener('click', () => setMode('decode'));
 
-  // 鈹€鈹€ Word separator 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Word separator 
   function setSep(s) {
     wordSep = s;
     sepSlash.classList.toggle('active', s === 'slash');
@@ -607,7 +607,7 @@
   sepSlash.addEventListener('click',  () => setSep('slash'));
   sepDouble.addEventListener('click', () => setSep('double'));
 
-  // 鈹€鈹€ Swap 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Swap 
   btnSwap.addEventListener('click', () => {
     const out = outputText.value;
     if (!out) return;
@@ -615,10 +615,10 @@
     setMode(mode === 'encode' ? 'decode' : 'encode');
   });
 
-  // 鈹€鈹€ Live update 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Live update 
   inputText.addEventListener('input', run);
 
-  // 鈹€鈹€ Clipboard 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Clipboard 
   async function copyToClipboard(text, btn, label) {
     if (!text) return;
     const orig = btn.innerHTML;
@@ -639,7 +639,7 @@
   btnCopyHeader.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyHeader, '&#10003;Copied'));
   btnCopyResult.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyResult, '&#10003;Copied'));
 
-  // 鈹€鈹€ Paste / Clear 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Paste / Clear 
   btnPaste.addEventListener('click', async () => {
     try {
       inputText.value = await navigator.clipboard.readText();
@@ -663,15 +663,15 @@
     updateStats();
   });
 
-  // 鈹€鈹€ Run button 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Run button 
   btnRun.addEventListener('click', run);
 
-  // 鈹€鈹€ Keyboard: Ctrl/Cmd+Enter 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Keyboard: Ctrl/Cmd+Enter 
   document.addEventListener('keydown', e => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run();
   });
 
-  // 鈹€鈹€ Reference table toggle 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Reference table toggle 
   const refToggleBtn  = document.getElementById('refToggleBtn');
   const refBody       = document.getElementById('refBody');
   const refToggleIcon = document.getElementById('refToggleIcon');
@@ -682,7 +682,7 @@
     refToggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
-  // 鈹€鈹€ Build reference table 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Build reference table 
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const digits  = '0123456789'.split('');
   const refLettersEl = document.getElementById('refLetters');
@@ -701,7 +701,7 @@
     refDigitsEl.appendChild(div);
   });
 
-  // 鈹€鈹€ Init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Init 
   setMode('encode');
 </script>
 </div>

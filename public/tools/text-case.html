@@ -95,10 +95,10 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
-    /* 鈹€鈹€ layout 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+    /*  layout  */
     .main { max-width: 760px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 16px; }
 
-    /* 鈹€鈹€ input pane 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+    /*  input pane  */
     .input-pane {
       background: var(--ds-color-surface);
       border: 1px solid var(--ds-color-border);
@@ -138,7 +138,7 @@
     .pane-footer { padding: 8px 16px; border-top: 1px solid var(--ds-color-border); display: flex; justify-content: flex-end; }
     .pane-stat { font-size: 11px; color: var(--ds-color-text-muted); }
 
-    /* 鈹€鈹€ case result grid 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+    /*  case result grid  */
     .results-grid { display: flex; flex-direction: column; gap: 8px; }
     .result-row {
       background: var(--ds-color-surface);
@@ -377,7 +377,7 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
-  // 鈹€鈹€ Case converters 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Case converters 
   function tokenize(text) {
     // split on whitespace, underscores, hyphens, dots, slashes
     // also split camelCase/PascalCase boundaries
@@ -449,7 +449,7 @@
     },
   ];
 
-  // 鈹€鈹€ Build result rows 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Build result rows 
   const grid = document.getElementById('resultsGrid');
   const rows = CASES.map(c => {
     const row = document.createElement('div');
@@ -468,7 +468,7 @@
     };
   });
 
-  // 鈹€鈹€ Copy handler 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy handler 
   rows.forEach(({ valueEl, copyEl }) => {
     copyEl.addEventListener('click', () => {
       const val = valueEl.textContent;
@@ -483,7 +483,7 @@
     });
   });
 
-  // 鈹€鈹€ Input →update all rows 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Input update all rows 
   const inputText = document.getElementById('inputText');
   const inputStat = document.getElementById('inputStat');
 

@@ -258,7 +258,7 @@
   const outputPanel   = document.getElementById('outputPanel');
   const errorMsg      = document.getElementById('errorMsg');
 
-  // 鈹€鈹€ Conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Conversion 
   function run() {
     const input = inputText.value.trim();
     outputPanel.classList.remove('has-error');
@@ -295,7 +295,7 @@
     outputStat.textContent = oc ? `${oc.toLocaleString()} chars` : '0 chars';
   }
 
-  // 鈹€鈹€ Mode switching 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Mode switching 
   function setMode(nextMode) {
     mode = nextMode;
     const isY2J = nextMode === 'yaml2json';
@@ -313,7 +313,7 @@
   btnYamlToJson.addEventListener('click', () => setMode('yaml2json'));
   btnJsonToYaml.addEventListener('click', () => setMode('json2yaml'));
 
-  // 鈹€鈹€ Indent control 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Indent control 
   indentCtrl.querySelectorAll('.seg-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       indent = parseInt(btn.dataset.indent);
@@ -323,7 +323,7 @@
     });
   });
 
-  // 鈹€鈹€ Swap 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Swap 
   btnSwap.addEventListener('click', () => {
     const output = outputText.value;
     if (!output) return;
@@ -331,11 +331,11 @@
     setMode(mode === 'yaml2json' ? 'json2yaml' : 'yaml2json');
   });
 
-  // 鈹€鈹€ Live conversion 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Live conversion 
   inputText.addEventListener('input', run);
   btnRun.addEventListener('click', run);
 
-  // 鈹€鈹€ Copy helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy helpers 
   async function copyText(text, button) {
     if (!text) return;
     const originalHtml = button.innerHTML;

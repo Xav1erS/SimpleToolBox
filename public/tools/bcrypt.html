@@ -474,16 +474,16 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
-  // 鈹€鈹€ bcryptjs init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  bcryptjs init 
   const bcrypt = (window.dcodeIO && window.dcodeIO.bcrypt) || window.bcrypt;
 
-  // 鈹€鈹€ Salt round timing hints 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Salt round timing hints 
   const ROUND_HINTS = { 8: '~10ms', 10: '~100ms', 12: '~400ms', 14: '~1.5s' };
 
   let saltRounds  = 10;
   let currentMode = 'hash'; // 'hash' | 'verify'
 
-  // 鈹€鈹€ Element refs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Element refs 
   const btnHashMode     = document.getElementById('btnHashMode');
   const btnVerifyMode   = document.getElementById('btnVerifyMode');
   const hashModePanel   = document.getElementById('hashModePanel');
@@ -511,7 +511,7 @@
   const verifyBadge     = document.getElementById('verifyBadge');
   const verifyDetail    = document.getElementById('verifyDetail');
 
-  // 鈹€鈹€ Mode switching 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Mode switching 
   function setMode(mode) {
     currentMode = mode;
     const isHash = mode === 'hash';
@@ -524,7 +524,7 @@
   btnHashMode.addEventListener('click', () => setMode('hash'));
   btnVerifyMode.addEventListener('click', () => setMode('verify'));
 
-  // 鈹€鈹€ Salt rounds control 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Salt rounds control 
   roundsCtrl.querySelectorAll('.seg-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       saltRounds = parseInt(btn.dataset.rounds, 10);
@@ -534,7 +534,7 @@
     });
   });
 
-  // 鈹€鈹€ Hash function 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Hash function 
   function doHash() {
     const text = hashInput.value.trim();
     if (!text) return;
@@ -555,7 +555,7 @@
     });
   }
 
-  // 鈹€鈹€ Verify function 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Verify function 
   function doVerify() {
     const text = verifyText.value.trim();
     const hash = verifyHash.value.trim();
@@ -570,7 +570,7 @@
       btnVerify.disabled = false;
       verifyLoading.style.display = 'none';
       verifyBadge.className = 'verify-badge ' + (result ? 'match' : 'nomatch');
-      verifyBadge.textContent = result ? '鉁?Match' : '鉁?No Match';
+      verifyBadge.textContent = result ? '\u9241?Match' : '\u9241?No Match';
       verifyDetail.textContent = result
         ? 'The plain text matches the hash.'
         : (err ? 'Invalid hash format.' : 'The plain text does NOT match the hash.');
@@ -578,7 +578,7 @@
     });
   }
 
-  // 鈹€鈹€ Copy helper 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy helper 
   async function copyTextFn(text, button) {
     if (!text) return;
     const originalHtml = button.innerHTML;
@@ -600,7 +600,7 @@
     }, 1500);
   }
 
-  // 鈹€鈹€ Event bindings 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Event bindings 
   btnHash.addEventListener('click', doHash);
   hashInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) doHash();
@@ -623,7 +623,7 @@
     verifyLoading.style.display = 'none';
   });
 
-  // 鈹€鈹€ Init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Init 
   setMode('hash');
 </script>
 </div>

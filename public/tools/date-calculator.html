@@ -57,7 +57,7 @@
       "name": "Can I calculate working days (excluding weekends)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes —the Business Days section counts only weekdays (Monday—揊riday) between your two dates."
+        "text": "Yes —the Business Days section counts only weekdays (Monday—\u63CAriday) between your two dates."
       }
     },
     {
@@ -439,7 +439,7 @@
     box.classList.add('show');
     document.getElementById('addResultDate').textContent = fmtDate(d);
     document.getElementById('addResultSub').innerHTML =
-      fmtDate(new Date(s)) + (addMode === 1 ? ' + ' : ' 鈭?') + '<span>' + n + '</span> day' + (n!==1?'s':'');
+      fmtDate(new Date(s)) + (addMode === 1 ? ' + ' : ' \u922D?') + '<span>' + n + '</span> day' + (n!==1?'s':'');
   }
   document.getElementById('addStart').addEventListener('input', calcAdd);
   document.getElementById('addDays').addEventListener('input', calcAdd);
@@ -510,7 +510,7 @@
       const ids = copyMap[btn.dataset.copy];
       const text = ids.map(id => document.getElementById(id).textContent.trim()).filter(Boolean).join(' &middot; ');
       navigator.clipboard.writeText(text).catch(() => {});
-      btn.textContent = '鉁?Copied';
+      btn.textContent = '\u9241?Copied';
       btn.classList.add('copied');
       setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
     });

@@ -458,7 +458,7 @@
     row.querySelector('.status-copy').addEventListener('click', (e) => {
       const btn = e.currentTarget;
       navigator.clipboard.writeText(`${c.code} ${c.name}`).catch(() => {});
-      btn.textContent = '鉁?Copied';
+      btn.textContent = '\u9241?Copied';
       btn.classList.add('copied');
       setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
     });

@@ -40,7 +40,7 @@
       "name": "How accurate are the conversions?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Conversions use standard SI-defined ratios and are accurate to JavaScript's floating-point precision (15—7 significant digits). For most practical purposes, results are exact. Temperature conversions use the official formulas: 掳C = (掳F −32) × 5/9, K = 掳C + 273.15."
+        "text": "Conversions use standard SI-defined ratios and are accurate to JavaScript's floating-point precision (15—7 significant digits). For most practical purposes, results are exact. Temperature conversions use the official formulas: \u63B3C = (\u63B3F −32) × 5/9, K = \u63B3C + 273.15."
       }
     },
     {
@@ -93,7 +93,7 @@
       --mono:          var(--ds-font-mono);
     }
 
-    /* 鈹€鈹€ LOGO OVERRIDE 鈹€鈹€ */
+    /*  LOGO OVERRIDE  */
 
     /* PAGE BODY */
     .body-wrap { max-width: 960px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 20px; }
@@ -214,7 +214,7 @@
   </div>
 </div>
 
-<div class="body-wrap">
+<div class="body-wrap ds-tool-main">
 
   <!-- TABS -->
   <div class="tabs-scroll">
@@ -345,7 +345,7 @@
 </div>
 
 <script>
-  // 鈹€鈹€ Unit Definitions 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Unit Definitions 
   // Each category: array of { key, label, toBase, fromBase }
   // For non-linear (temperature), toBase/fromBase are functions.
   // For linear, toBase is a multiplier (value * toBase = base unit value).
@@ -381,12 +381,12 @@
       base: 'c',
       units: [
         {
-          key: 'c', label: 'Celsius (掳C)',
+          key: 'c', label: 'Celsius (\u63B3C)',
           toBase: v => v,
           fromBase: v => v,
         },
         {
-          key: 'f', label: 'Fahrenheit (掳F)',
+          key: 'f', label: 'Fahrenheit (\u63B3F)',
           toBase: v => (v - 32) * 5 / 9,
           fromBase: v => v * 9 / 5 + 32,
         },
@@ -396,7 +396,7 @@
           fromBase: v => v + 273.15,
         },
         {
-          key: 'r', label: 'Rankine (掳R)',
+          key: 'r', label: 'Rankine (\u63B3R)',
           toBase: v => (v - 491.67) * 5 / 9,
           fromBase: v => (v + 273.15) * 9 / 5,
         },
@@ -405,16 +405,16 @@
     area: {
       base: 'm2',
       units: [
-        { key: 'mm2', label: 'mm虏',            toBase: 0.000001 },
-        { key: 'cm2', label: 'cm虏',            toBase: 0.0001 },
-        { key: 'm2',  label: 'm虏',             toBase: 1 },
-        { key: 'km2', label: 'km虏',            toBase: 1e6 },
-        { key: 'in2', label: 'in虏',            toBase: 0.00064516 },
-        { key: 'ft2', label: 'ft虏',            toBase: 0.09290304 },
-        { key: 'yd2', label: 'yd虏',            toBase: 0.83612736 },
+        { key: 'mm2', label: 'mm\u864F',            toBase: 0.000001 },
+        { key: 'cm2', label: 'cm\u864F',            toBase: 0.0001 },
+        { key: 'm2',  label: 'm\u864F',             toBase: 1 },
+        { key: 'km2', label: 'km\u864F',            toBase: 1e6 },
+        { key: 'in2', label: 'in\u864F',            toBase: 0.00064516 },
+        { key: 'ft2', label: 'ft\u864F',            toBase: 0.09290304 },
+        { key: 'yd2', label: 'yd\u864F',            toBase: 0.83612736 },
         { key: 'ac',  label: 'Acre (ac)',       toBase: 4046.8564224 },
         { key: 'ha',  label: 'Hectare (ha)',    toBase: 10000 },
-        { key: 'mi2', label: 'mi虏',            toBase: 2589988.110336 },
+        { key: 'mi2', label: 'mi\u864F',            toBase: 2589988.110336 },
       ],
     },
     volume: {
@@ -422,7 +422,7 @@
       units: [
         { key: 'ml',   label: 'Millilitre (ml)',  toBase: 0.001 },
         { key: 'l',    label: 'Litre (L)',         toBase: 1 },
-        { key: 'm3',   label: 'm鲁',               toBase: 1000 },
+        { key: 'm3',   label: 'm\u9C81',               toBase: 1000 },
         { key: 'tsp',  label: 'Teaspoon (tsp)',   toBase: 0.00492892 },
         { key: 'tbsp', label: 'Tablespoon (tbsp)',toBase: 0.01478676 },
         { key: 'floz', label: 'Fl. oz (US)',      toBase: 0.02957353 },
@@ -440,7 +440,7 @@
         { key: 'mph',  label: 'mph',              toBase: 0.44704 },
         { key: 'knot', label: 'Knot',             toBase: 0.514444 },
         { key: 'fps',  label: 'ft/s',             toBase: 0.3048 },
-        { key: 'mach', label: 'Mach (鈮?sea lvl)', toBase: 340.29 },
+        { key: 'mach', label: 'Mach (\u922E?sea lvl)', toBase: 340.29 },
       ],
     },
     data: {
@@ -462,7 +462,7 @@
       base: 's',
       units: [
         { key: 'ns',  label: 'Nanosecond (ns)',   toBase: 1e-9 },
-        { key: 'us',  label: 'Microsecond (碌s)',  toBase: 1e-6 },
+        { key: 'us',  label: 'Microsecond (\u788Cs)',  toBase: 1e-6 },
         { key: 'ms',  label: 'Millisecond (ms)',  toBase: 0.001 },
         { key: 's',   label: 'Second (s)',         toBase: 1 },
         { key: 'min', label: 'Minute (min)',       toBase: 60 },
@@ -475,7 +475,7 @@
     },
   };
 
-  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  State 
   let currentCat = 'length';
   let activeInput = 'from'; // 'from' | 'to'
 

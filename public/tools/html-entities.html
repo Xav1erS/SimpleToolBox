@@ -368,12 +368,12 @@
 <script>
   const NAMED_MAP = {
     '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', "'": 'apos',
-    '漏': 'copy', '庐': 'reg', '™': 'trade',
-    '€': 'euro', '拢': 'pound', '楼': 'yen', '垄': 'cent',
-    '掳': 'deg', '卤': 'plusmn', '×': 'times', '梅': 'divide',
+    '\u6F0F': 'copy', '\u5E90': 'reg', '™': 'trade',
+    '€': 'euro', '\u62E2': 'pound', '\u697C': 'yen', '\u5784': 'cent',
+    '\u63B3': 'deg', '\u5364': 'plusmn', '×': 'times', '\u6885': 'divide',
     '—': 'mdash', '–': 'ndash', '…': 'hellip',
-    '\u00A0': 'nbsp', '芦': 'laquo', '禄': 'raquo',
-    '录': 'frac14', '陆': 'frac12', '戮': 'frac34',
+    '\u00A0': 'nbsp', '\u82A6': 'laquo', '\u7984': 'raquo',
+    '\u5F55': 'frac14', '\u9646': 'frac12', '\u622E': 'frac34',
     '←': 'larr', '→': 'rarr', '↑': 'uarr', '↓': 'darr',
     '♠': 'spades', '♣': 'clubs', '♥': 'hearts', '♦': 'diams',
     '✓': '#10003', '✗': '#10007',
@@ -385,12 +385,12 @@
     ['&', 'amp', 'Ampersand'], ['<', 'lt', 'Less-than'], ['>', 'gt', 'Greater-than'],
     ['"', 'quot', 'Double quote'], ["'", 'apos', 'Single quote'],
     ['\u00A0', 'nbsp', 'Non-breaking space'],
-    ['漏', 'copy', 'Copyright'], ['庐', 'reg', 'Registered'], ['™', 'trade', 'Trademark'],
-    ['€', 'euro', 'Euro'], ['拢', 'pound', 'Pound'], ['楼', 'yen', 'Yen'], ['垄', 'cent', 'Cent'],
-    ['掳', 'deg', 'Degree'], ['卤', 'plusmn', 'Plus-minus'], ['×', 'times', 'Multiply'], ['梅', 'divide', 'Divide'],
+    ['\u6F0F', 'copy', 'Copyright'], ['\u5E90', 'reg', 'Registered'], ['™', 'trade', 'Trademark'],
+    ['€', 'euro', 'Euro'], ['\u62E2', 'pound', 'Pound'], ['\u697C', 'yen', 'Yen'], ['\u5784', 'cent', 'Cent'],
+    ['\u63B3', 'deg', 'Degree'], ['\u5364', 'plusmn', 'Plus-minus'], ['×', 'times', 'Multiply'], ['\u6885', 'divide', 'Divide'],
     ['—', 'mdash', 'Em dash'], ['–', 'ndash', 'En dash'], ['…', 'hellip', 'Ellipsis'],
     ['←', 'larr', 'Left arrow'], ['→', 'rarr', 'Right arrow'],
-    ['录', 'frac14', 'One quarter'], ['陆', 'frac12', 'One half'], ['戮', 'frac34', 'Three quarters'],
+    ['\u5F55', 'frac14', 'One quarter'], ['\u9646', 'frac12', 'One half'], ['\u622E', 'frac34', 'Three quarters'],
   ];
 
   let mode = 'encode';
@@ -512,7 +512,7 @@
 
   document.getElementById('btnSample').addEventListener('click', () => {
     const samples = {
-      encode: '<div class="hero">\n  <h1>Hello & "World"</h1>\n  <p>漏 2025 &middot; Price: 拢99 →鈧?15</p>\n</div>',
+      encode: '<div class="hero">\n  <h1>Hello & "World"</h1>\n  <p>\u6F0F 2025 &middot; Price: \u62E299 →\u9227?15</p>\n</div>',
       decode: '&lt;div class=&quot;hero&quot;&gt;\n  &lt;h1&gt;Hello &amp; &ldquo;World&rdquo;&lt;/h1&gt;\n  &lt;p&gt;&copy; 2025 &middot; Price: &pound;99 &rarr; &euro;115&lt;/p&gt;\n&lt;/div&gt;',
     };
     document.getElementById('inputText').value = samples[mode];

@@ -82,7 +82,7 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
-    /* 鈹€鈹€ CARDS 鈹€鈹€ */
+    /*  CARDS  */
     .card {
       background: var(--ds-color-surface);
       border: 1px solid var(--ds-color-border);
@@ -105,7 +105,7 @@
     }
     .card-body { padding: 20px 16px; }
 
-    /* 鈹€鈹€ OCTAL INPUT 鈹€鈹€ */
+    /*  OCTAL INPUT  */
     .octal-input-row {
       display: flex;
       align-items: center;
@@ -133,7 +133,7 @@
     .octal-input:focus { border-color: var(--ds-color-accent); }
     .octal-hint { font-size: 12px; color: var(--ds-color-text-muted); }
 
-    /* 鈹€鈹€ PRESETS 鈹€鈹€ */
+    /*  PRESETS  */
     .preset-row {
       display: flex;
       flex-wrap: wrap;
@@ -158,7 +158,7 @@
       border-color: rgba(94,106,210,0.3);
     }
 
-    /* 鈹€鈹€ PERMISSION MATRIX 鈹€鈹€ */
+    /*  PERMISSION MATRIX  */
     .perm-matrix {
       margin-top: 20px;
       overflow-x: auto;
@@ -202,7 +202,7 @@
     }
     .perm-cell { padding: 8px 0 !important; }
 
-    /* 鈹€鈹€ CUSTOM CHECKBOX 鈹€鈹€ */
+    /*  CUSTOM CHECKBOX  */
     .perm-check-wrap {
       display: inline-flex;
       align-items: center;
@@ -250,7 +250,7 @@
     .col-head-w { color: #fb923c !important; }
     .col-head-x { color: #4ade80 !important; }
 
-    /* 鈹€鈹€ OUTPUT CARD 鈹€鈹€ */
+    /*  OUTPUT CARD  */
     .output-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -284,7 +284,7 @@
     .output-item-value.medium { font-size: 15px; }
     .output-item-value.small { font-size: 12px; color: var(--ds-color-text-secondary); }
 
-    /* 鈹€鈹€ COMMAND ROW 鈹€鈹€ */
+    /*  COMMAND ROW  */
     .cmd-row {
       margin-top: 12px;
       display: flex;
@@ -337,7 +337,7 @@
     .btn-copy:hover { color: var(--ds-color-text-primary); background: rgba(255,255,255,0.08); }
     .btn-copy.copied { color: #22c55e; border-color: rgba(34,197,94,0.3); }
 
-    /* 鈹€鈹€ LS PREVIEW 鈹€鈹€ */
+    /*  LS PREVIEW  */
     .ls-preview {
       margin-top: 12px;
       background: var(--ds-color-bg);
@@ -361,7 +361,7 @@
     }
     .ls-perm { color: var(--ds-color-text-primary); }
 
-    /* 鈹€鈹€ NOTE 鈹€鈹€ */
+    /*  NOTE  */
     .note-box {
       background: var(--ds-color-surface);
       border: 1px solid var(--ds-color-border);
@@ -411,7 +411,7 @@
       margin-bottom: 10px;
     }
 
-    /* 鈹€鈹€ RELATED TOOLS 鈹€鈹€ */
+    /*  RELATED TOOLS  */
     .related-tools { }
     .related-title {
       font-size: 13px;
@@ -440,7 +440,7 @@
     }
     .related-link:hover { color: var(--ds-color-accent); border-color: rgba(94,106,210,0.3); background: var(--ds-color-surface-tint); }
 
-    /* 鈹€鈹€ MOBILE 鈹€鈹€ */
+    /*  MOBILE  */
     @media (max-width: 480px) {
       .card-header { padding: 10px 12px; }
       .card-body { padding: 14px 12px; }
@@ -731,7 +731,7 @@
 (function () {
   'use strict';
 
-  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  State 
   const checks = Array.from(document.querySelectorAll('.perm-check'));
   const octalInput  = document.getElementById('octalInput');
   const outOctal    = document.getElementById('outOctal');
@@ -743,7 +743,7 @@
   const copyBtn     = document.getElementById('copyBtn');
   const presetBtns  = document.querySelectorAll('.preset-btn');
 
-  // 鈹€鈹€ Core calculation 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Core calculation 
   function getBits() {
     return checks.map(c => c.checked ? 1 : 0);
   }
@@ -763,7 +763,7 @@
            triplet(bits[6], bits[7], bits[8]);
   }
 
-  // 鈹€鈹€ Update UI 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Update UI 
   function update() {
     const bits    = getBits();
     const [o,g,x] = calcOctal(bits);
@@ -788,7 +788,7 @@
     });
   }
 
-  // 鈹€鈹€ Apply octal →checkboxes 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Apply octal checkboxes 
   function applyOctal(valStr) {
     // Accept 3-digit (755) or 4-digit with leading zero (0755)
     const s = valStr.replace(/^0+/, '') || '0';
@@ -802,7 +802,7 @@
     return true;
   }
 
-  // 鈹€鈹€ Event Listeners 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Event Listeners 
   checks.forEach(c => c.addEventListener('change', update));
 
   octalInput.addEventListener('input', function () {
@@ -826,7 +826,7 @@
     const [o,g,x] = calcOctal(bits);
     const cmd    = 'chmod ' + o + g + x + ' ' + fname;
     navigator.clipboard.writeText(cmd).then(() => {
-      copyBtn.textContent = '鉁?Copied';
+      copyBtn.textContent = '\u9241?Copied';
       copyBtn.classList.add('copied');
       setTimeout(() => {
         copyBtn.textContent = 'Copy Command';
@@ -842,7 +842,7 @@
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      copyBtn.textContent = '鉁?Copied';
+      copyBtn.textContent = '\u9241?Copied';
       copyBtn.classList.add('copied');
       setTimeout(() => {
         copyBtn.textContent = 'Copy Command';
@@ -851,7 +851,7 @@
     });
   });
 
-  // 鈹€鈹€ Init with 644 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Init with 644 
   applyOctal('644');
   update();
 

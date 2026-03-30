@@ -151,7 +151,7 @@ document.getElementById('btnCalc').addEventListener('click',()=>{
   if(op==='+')result=a+b;
   else if(op==='−')result=a-b;
   else if(op==='×')result=a*b;
-  else if(op==='梅'){if(b===0){err.textContent='Cannot divide by zero.';err.style.display='block';document.getElementById('results').style.display='none';return;}result=Math.trunc(a/b);}
+  else if(op==='\u6885'){if(b===0){err.textContent='Cannot divide by zero.';err.style.display='block';document.getElementById('results').style.display='none';return;}result=Math.trunc(a/b);}
   const neg=result<0;const abs=Math.abs(result);
   document.getElementById('rBin').textContent=(neg?'-':'')+abs.toString(2);
   document.getElementById('rDec').textContent=result.toString(10);

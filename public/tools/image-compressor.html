@@ -47,7 +47,7 @@
       "name": "What quality setting should I use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For most web images, 75閳?5% quality strikes the best balance between file size and visual fidelity. For thumbnails or previews, 60閳?0% is acceptable. Below 50% visible artifacts may appear in photographs."
+        "text": "For most web images, 75\u95B3?5% quality strikes the best balance between file size and visual fidelity. For thumbnails or previews, 60\u95B3?0% is acceptable. Below 50% visible artifacts may appear in photographs."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Why does PNG output have no quality effect?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PNG is a lossless format 閳?quality does not apply. For significant size reduction, switch to JPEG or WebP, which are lossy formats."
+        "text": "PNG is a lossless format \u95B3?quality does not apply. For significant size reduction, switch to JPEG or WebP, which are lossy formats."
       }
     },
     {
@@ -411,11 +411,11 @@
         const saved = origSize - compressed;
         const pct = ((saved / origSize) * 100).toFixed(1);
         if (saved > 0) {
-          savingBadge.textContent = `閳?${fmtBytes(saved)} saved (${pct}%)`;
+          savingBadge.textContent = `\u95B3?${fmtBytes(saved)} saved (${pct}%)`;
           savingBadge.style.color = '#22c55e';
         } else {
           const extra = -saved;
-          savingBadge.textContent = `閳?${fmtBytes(extra)} larger 閳?try lower quality or JPEG/WebP`;
+          savingBadge.textContent = `\u95B3?${fmtBytes(extra)} larger \u95B3?try lower quality or JPEG/WebP`;
           savingBadge.style.color = 'var(--ds-color-text-muted)';
         }
         savingBadge.classList.add('visible');
@@ -455,7 +455,7 @@
       const img = new Image();
       img.onload = () => {
         srcImage = img;
-        metaDimensions.textContent = `${img.naturalWidth} 鑴?${img.naturalHeight}`;
+        metaDimensions.textContent = `${img.naturalWidth} \u9474?${img.naturalHeight}`;
         imgPreview.src = e.target.result;
         dropZone.style.display = 'none';
         imgWrap.style.display  = 'flex';

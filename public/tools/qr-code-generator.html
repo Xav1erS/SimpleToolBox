@@ -483,7 +483,7 @@
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
 <script>
-  // 鈹€鈹€ STATE 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  STATE 
   let qrCanvas    = null;    // The canvas element created by qrcode.js
   let qrContainer = null;    // The wrapper div inserted by generate()
   let logoDataUrl = null;    // Logo image data URL
@@ -492,7 +492,7 @@
   let currentType = 'text';
   let wifiSec = 'WPA';
 
-  // 鈹€鈹€ REFS 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  REFS 
   const qrWrap         = document.getElementById('qrWrap');
   const qrPlaceholder  = document.getElementById('qrPlaceholder');
   const qrLogoOverlay  = document.getElementById('qrLogoOverlay');
@@ -506,7 +506,7 @@
   const logoThumb      = document.getElementById('logoThumb');
   const logoFileName   = document.getElementById('logoFileName');
 
-  // 鈹€鈹€ INPUT TYPE TABS 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  INPUT TYPE TABS 
   document.querySelectorAll('.input-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       currentType = tab.dataset.type;
@@ -517,7 +517,7 @@
     });
   });
 
-  // 鈹€鈹€ CONTENT BUILDER 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  CONTENT BUILDER 
   function buildContent() {
     if (currentType === 'text') {
       return document.getElementById('textInput').value.trim();
@@ -548,7 +548,7 @@
     return '';
   }
 
-  // 鈹€鈹€ QR GENERATION 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // \u9239€\u9239€ QR GENERATION \u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€
   const ECL_MAP = { L: QRCode.CorrectLevel.L, M: QRCode.CorrectLevel.M, Q: QRCode.CorrectLevel.Q, H: QRCode.CorrectLevel.H };
 
   function generate() {
@@ -588,7 +588,7 @@
     }
   }
 
-  // 鈹€鈹€ STYLE CONTROLS 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // \u9239€\u9239€ STYLE CONTROLS \u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€
   function syncColor(picker, hex) {
     picker.addEventListener('input', () => { hex.value = picker.value; });
     hex.addEventListener('input', () => {
@@ -630,7 +630,7 @@
     });
   });
 
-  // 鈹€鈹€ LOGO UPLOAD 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // \u9239€\u9239€ LOGO UPLOAD \u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€
   logoDropzone.addEventListener('click', () => logoFile.click());
   logoDropzone.addEventListener('dragover', e => { e.preventDefault(); logoDropzone.classList.add('drag'); });
   logoDropzone.addEventListener('dragleave', () => logoDropzone.classList.remove('drag'));
@@ -670,7 +670,7 @@
     generate();
   });
 
-  // 鈹€鈹€ DOWNLOAD 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // \u9239€\u9239€ DOWNLOAD \u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€
   function getQrCanvas() {
     // Return a high-res canvas at currentSize
     const content = buildContent();
@@ -727,7 +727,7 @@
     a.click(); URL.revokeObjectURL(a.href);
   });
 
-  // 鈹€鈹€ RESET 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  RESET 
   function resetAll() {
     // Clear QR
     if (qrContainer) { qrContainer.remove(); qrContainer = null; qrCanvas = null; }
@@ -769,7 +769,7 @@
   document.getElementById('btnReset').addEventListener('click', resetAll);
   document.getElementById('btnGenerate').addEventListener('click', generate);
 
-  // 鈹€鈹€ TEXT INPUT STAT 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  TEXT INPUT STAT 
   const QR_BYTE_CAP = { L: 2953, M: 2331, Q: 1663, H: 1273 };
   function updateTextStat() {
     const val = document.getElementById('textInput').value;

@@ -399,12 +399,12 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
-  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  State 
   let mode      = 'encode'; // 'encode' | 'decode'
   let delimiter = 'space';  // 'space' | 'none' | 'newline'
   let debounceTimer;
 
-  // 鈹€鈹€ DOM refs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  DOM refs 
   const btnEncode    = document.getElementById('btnEncode');
   const btnDecode    = document.getElementById('btnDecode');
   const delimGroup   = document.getElementById('delimGroup');
@@ -426,7 +426,7 @@
   const errorMsg     = document.getElementById('errorMsg');
   const arrowIcon    = document.getElementById('arrowIcon');
 
-  // 鈹€鈹€ Core logic 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Core logic 
   function textToBinary(text, delim) {
     const bytes = new TextEncoder().encode(text);
     const binaries = Array.from(bytes).map(b => b.toString(2).padStart(8, '0'));
@@ -452,7 +452,7 @@
     return new TextDecoder().decode(new Uint8Array(bytes));
   }
 
-  // 鈹€鈹€ Run 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Run 
   function run() {
     const inp = inputText.value;
     outputPanel.classList.remove('has-error');
@@ -499,7 +499,7 @@
     }
   }
 
-  // 鈹€鈹€ Debounced live update 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Debounced live update 
   function scheduleRun() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(run, 300);
@@ -507,7 +507,7 @@
 
   inputText.addEventListener('input', scheduleRun);
 
-  // 鈹€鈹€ Mode switch 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Mode switch 
   function setMode(m) {
     mode = m;
     btnEncode.classList.toggle('active', m === 'encode');
@@ -536,7 +536,7 @@
   btnEncode.addEventListener('click', () => setMode('encode'));
   btnDecode.addEventListener('click', () => setMode('decode'));
 
-  // 鈹€鈹€ Delimiter switch 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Delimiter switch 
   delimGroup.addEventListener('click', e => {
     const btn = e.target.closest('.seg-btn');
     if (!btn) return;
@@ -546,7 +546,7 @@
     run();
   });
 
-  // 鈹€鈹€ Swap 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Swap 
   btnSwap.addEventListener('click', () => {
     const out = outputText.value;
     if (!out) return;
@@ -554,7 +554,7 @@
     setMode(mode === 'encode' ? 'decode' : 'encode');
   });
 
-  // 鈹€鈹€ Clipboard helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Clipboard helpers 
   async function copyToClipboard(text, btn, label) {
     if (!text) return;
     const orig = btn.innerHTML;
@@ -575,7 +575,7 @@
   btnCopyHeader.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyHeader, 'Copied'));
   btnCopyResult.addEventListener('click', () => copyToClipboard(outputText.value, btnCopyResult, 'Copied!'));
 
-  // 鈹€鈹€ Paste / Clear 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Paste / Clear 
   btnPaste.addEventListener('click', async () => {
     try {
       const text = await navigator.clipboard.readText();
@@ -599,13 +599,13 @@
   });
   btnClearAll.addEventListener('click', clearAll);
 
-  // 鈹€鈹€ Run button + Ctrl/Cmd+Enter 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Run button + Ctrl/Cmd+Enter 
   btnRun.addEventListener('click', run);
   document.addEventListener('keydown', e => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); run(); }
   });
 
-  // 鈹€鈹€ Init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Init 
   setMode('encode');
 </script>
 

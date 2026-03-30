@@ -31,7 +31,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "How accurate is the income tax estimate?", "acceptedAnswer": { "@type": "Answer", "text": "The income tax calculator uses 2024 US federal tax brackets for illustration. It does not account for deductions, credits, state taxes, or other adjustments. Use it as a rough estimate only." } },
-    { "@type": "Question", "name": "How is sales tax calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Sales tax = price × rate 梅 100. The total is price + tax. You can also work backwards from a tax-inclusive price." } },
+    { "@type": "Question", "name": "How is sales tax calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Sales tax = price × rate \u6885 100. The total is price + tax. You can also work backwards from a tax-inclusive price." } },
     { "@type": "Question", "name": "Is my data sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run entirely in your browser. Nothing is sent to any server." } },
     { "@type": "Question", "name": "Which tax year does this use?", "acceptedAnswer": { "@type": "Answer", "text": "The income tax estimate uses 2024 US federal tax brackets. Tax laws change annually —verify with official IRS publications for exact figures." } }
   ]
@@ -138,7 +138,7 @@ function calcSales(){
   sPretax.textContent=fmt(pretax);sTaxAmt.textContent=fmt(tax);sTotal.textContent=fmt(total);
 }
 [sPrice,sRate,sMode].forEach(el=>el.addEventListener('input',calcSales));
-// Income tax —2024 US federal brackets
+// Income tax 2024 US federal brackets
 const BRACKETS={
   single:[[11600,0.10],[44725,0.12],[95375,0.22],[201050,0.24],[383900,0.32],[487450,0.35],[Infinity,0.37]],
   married:[[23200,0.10],[89450,0.12],[190750,0.22],[364200,0.24],[462500,0.32],[693750,0.35],[Infinity,0.37]],

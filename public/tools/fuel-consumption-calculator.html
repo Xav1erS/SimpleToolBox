@@ -39,7 +39,7 @@
       "name": "How do I convert mpg to L/100km?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For US mpg: L/100km = 235.215 梅 mpg. For UK mpg: L/100km = 282.481 梅 mpg. For example, 30 US mpg = 235.215 梅 30 = 7.84 L/100km."
+        "text": "For US mpg: L/100km = 235.215 \u6885 mpg. For UK mpg: L/100km = 282.481 \u6885 mpg. For example, 30 US mpg = 235.215 \u6885 30 = 7.84 L/100km."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "What is the difference between US mpg and UK mpg?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The US gallon is 3.785 litres; the UK (imperial) gallon is 4.546 litres. So 30 UK mpg is more fuel-efficient than 30 US mpg. 30 UK mpg 鈮?25 US mpg."
+        "text": "The US gallon is 3.785 litres; the UK (imperial) gallon is 4.546 litres. So 30 UK mpg is more fuel-efficient than 30 US mpg. 30 UK mpg \u922E?25 US mpg."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "How do I calculate trip fuel cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Fuel cost = (distance 梅 100) × L/100km × price per litre. For example: 200 km 梅 100 × 7 L/100km × $1.50/L = $21.00."
+        "text": "Fuel cost = (distance \u6885 100) × L/100km × price per litre. For example: 200 km \u6885 100 × 7 L/100km × $1.50/L = $21.00."
       }
     },
     {
@@ -328,7 +328,7 @@ function calcTrip() {
   const litres = dist / 100 * l100;
   const cost   = litres * price;
   resEl.textContent = cost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  noteEl.textContent = `${dist} km 梅 100 × ${l100} L/100km × ${price}/L = ${round(litres, 2)} L used`;
+  noteEl.textContent = `${dist} km \u6885 100 × ${l100} L/100km × ${price}/L = ${round(litres, 2)} L used`;
 }
 
 ['MpgUS','MpgUK','L100','KmL'].forEach(k => {

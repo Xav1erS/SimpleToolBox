@@ -495,7 +495,7 @@
 <!-- AUTO-SEO-SECTIONS:END -->
 
 <script>
-  // 鈹€鈹€ DOM refs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  DOM refs 
   const patternInput   = document.getElementById('patternInput');
   const flagG          = document.getElementById('flagG');
   const flagI          = document.getElementById('flagI');
@@ -518,13 +518,13 @@
   const qrefBody          = document.getElementById('qrefBody');
   const qrefChevron       = document.getElementById('qrefChevron');
 
-  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  State 
   let currentMode = 'match';
   let patternDebounce = null;
   let lastMatches = [];
   let lastReplaceResult = '';
 
-  // 鈹€鈹€ Tab switching 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Tab switching 
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentMode = btn.dataset.tab;
@@ -543,7 +543,7 @@
     });
   });
 
-  // 鈹€鈹€ Build regex 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Build regex 
   function buildRegex() {
     const pat = patternInput.value;
     if (!pat) return { regex: null, error: null, empty: true };
@@ -559,12 +559,12 @@
     }
   }
 
-  // 鈹€鈹€ Escape HTML 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Escape HTML 
   function escapeHtml(s) {
     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
-  // 鈹€鈹€ Run everything 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Run everything 
   function runAll() {
     const { regex, error, empty } = buildRegex();
     const text = testInput.value;
@@ -613,7 +613,7 @@
         allMatches.push(m);
       }
     } else {
-      // Global —iterate
+      // Global iterate
       let m;
       const re = new RegExp(regex.source, regex.flags);
       while ((m = re.exec(text)) !== null) {
@@ -720,7 +720,7 @@
     btnCopyResult.classList.remove('copied');
   }
 
-  // 鈹€鈹€ Event listeners 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Event listeners 
   patternInput.addEventListener('input', () => {
     clearTimeout(patternDebounce);
     patternDebounce = setTimeout(runAll, 200);
@@ -733,7 +733,7 @@
     cb.addEventListener('change', runAll);
   });
 
-  // 鈹€鈹€ Copy Matches 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy Matches 
   btnCopyMatches.addEventListener('click', () => {
     if (!lastMatches.length) return;
     const text = lastMatches.map(m => m[0]).join('\n');
@@ -747,7 +747,7 @@
     });
   });
 
-  // 鈹€鈹€ Copy Result 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy Result 
   btnCopyResult.addEventListener('click', () => {
     if (!lastReplaceResult) return;
     navigator.clipboard.writeText(lastReplaceResult).then(() => {
@@ -760,7 +760,7 @@
     });
   });
 
-  // 鈹€鈹€ Quick Reference 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Quick Reference 
   qrefToggle.addEventListener('click', () => {
     const open = qrefBody.classList.toggle('open');
     qrefChevron.classList.toggle('open', open);
@@ -812,7 +812,7 @@
   buildChips(COMMON_PATTERNS, 'qrefChips');
   buildChips(SYNTAX_PATTERNS, 'qrefSyntax');
 
-  // 鈹€鈹€ Init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Init 
   runAll();
 </script>
 </div>

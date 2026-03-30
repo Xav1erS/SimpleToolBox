@@ -17,7 +17,7 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Temperature Converter —掳C, 掳F, K",
+  "name": "Temperature Converter —\u63B3C, \u63B3F, K",
   "description": "Convert temperatures between Celsius, Fahrenheit, and Kelvin instantly. Real-time conversion, common reference points, and formula explanations.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
@@ -39,7 +39,7 @@
       "name": "How do you convert Celsius to Fahrenheit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Multiply by 9/5 then add 32. For example, 100掳C × 9/5 + 32 = 212掳F."
+        "text": "Multiply by 9/5 then add 32. For example, 100\u63B3C × 9/5 + 32 = 212\u63B3F."
       }
     },
     {
@@ -47,7 +47,7 @@
       "name": "What is absolute zero in Celsius?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Absolute zero is 鈭?73.15掳C (0 K or 鈭?59.67掳F). It is the lowest theoretically possible temperature."
+        "text": "Absolute zero is \u922D?73.15\u63B3C (0 K or \u922D?59.67\u63B3F). It is the lowest theoretically possible temperature."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "What is normal body temperature in Fahrenheit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "98.6掳F, which equals 37掳C or 310.15 K."
+        "text": "98.6\u63B3F, which equals 37\u63B3C or 310.15 K."
       }
     },
     {
@@ -236,9 +236,9 @@ function fToC(f) { return round((f - 32) * 5/9); }
 function kToC(k) { return round(k - 273.15); }
 
 const FORMULAS = {
-  C: val => `${val}掳C = ${val} × 9/5 + 32 = ${cToF(val)}掳F  |  ${val} + 273.15 = ${cToK(val)} K`,
-  F: val => `${val}掳F = (${val} 鈭?32) × 5/9 = ${fToC(val)}掳C`,
-  K: val => `${val} K = ${val} 鈭?273.15 = ${kToC(val)}掳C`,
+  C: val => `${val}\u63B3C = ${val} × 9/5 + 32 = ${cToF(val)}\u63B3F  |  ${val} + 273.15 = ${cToK(val)} K`,
+  F: val => `${val}\u63B3F = (${val} \u922D?32) × 5/9 = ${fToC(val)}\u63B3C`,
+  K: val => `${val} K = ${val} \u922D?273.15 = ${kToC(val)}\u63B3C`,
 };
 
 let updating = false;

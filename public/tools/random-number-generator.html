@@ -56,7 +56,7 @@
       "name": "What is the maximum range I can use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The minimum and maximum values can be any integers within JavaScript's safe integer range (卤2 53 ). For list mode, the count must be less than or equal to the size of the range."
+        "text": "The minimum and maximum values can be any integers within JavaScript's safe integer range (\u53642 53 ). For list mode, the count must be less than or equal to the size of the range."
       }
     },
     {
@@ -95,7 +95,7 @@
       --mono:          var(--ds-font-mono);
     }
 
-    /* 鈹€鈹€ LOGO OVERRIDE 鈹€鈹€ */
+    /*  LOGO OVERRIDE  */
 
     /* MAIN LAYOUT */
     .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
@@ -710,7 +710,7 @@
     const iMin = Math.ceil(min), iMax = Math.floor(max);
     const range = iMax - iMin + 1;
 
-    // Integer range may collapse after rounding (e.g. min=5.4, max=5.5 →iMin=6 > iMax=5)
+    // Integer range may collapse after rounding (e.g. min=5.4, max=5.5 iMin=6 > iMax=5)
     if (numType === 'int' && range < 1) {
       rangeError.textContent = 'No integers exist in this range';
       rangeError.classList.add('visible');
@@ -800,7 +800,7 @@
 
   btnGenerate.addEventListener('click', generateNumbers);
 
-  // 鈹€鈹€ MODE SWITCHING 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  MODE SWITCHING 
   let currentMode = 'numbers';
   const modeEls = {
     numbers: document.getElementById('modeNumbers'),
@@ -816,7 +816,7 @@
     });
   });
 
-  // 鈹€鈹€ LIST RANDOMIZER 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  LIST RANDOMIZER 
   const listInput  = document.getElementById('listInput');
   const listOutput = document.getElementById('listOutput');
   const listResultInfo = document.getElementById('listResultInfo');
@@ -864,7 +864,7 @@
     setTimeout(() => { btn.textContent = orig; }, 1500);
   });
 
-  // 鈹€鈹€ DICE & COIN 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  DICE & COIN 
   let currentDie = 6;
   const diceCountSlider = document.getElementById('diceCount');
   const diceCountVal    = document.getElementById('diceCountVal');
@@ -940,7 +940,7 @@
     diceResultBody.appendChild(stats);
   });
 
-  // 鈹€鈹€ KEYBOARD SHORTCUTS 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  KEYBOARD SHORTCUTS 
   document.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === 'g') && !['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) {
       if (currentMode === 'numbers') generateNumbers();

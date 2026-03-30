@@ -96,12 +96,12 @@
       --mono:          var(--ds-font-mono);
     }
 
-    /* 閳光偓閳光偓 LOGO OVERRIDE 閳光偓閳光偓 */
+    /*  LOGO OVERRIDE  */
 
-    /* 閳光偓閳光偓 MAIN 閳光偓閳光偓 */
+    /*  MAIN  */
     .main { max-width: 900px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 16px; }
 
-    /* 閳光偓閳光偓 LIVE CLOCK 閳光偓閳光偓 */
+    /*  LIVE CLOCK  */
     .live-clock {
       background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md);
       padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
@@ -112,12 +112,12 @@
     .btn-use-now { display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-dim); border: 1px solid rgba(94,106,210,0.3); transition: background 0.2s; }
     .btn-use-now:hover { background: rgba(94,106,210,0.2); }
 
-    /* 閳光偓閳光偓 CONVERTER CARDS 閳光偓閳光偓 */
+    /*  CONVERTER CARDS  */
     .card-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
     .card-badge { font-family: var(--mono); font-size: 10px; background: rgba(20,184,166,0.12); border: 1px solid rgba(20,184,166,0.3); color: var(--teal); padding: 2px 7px; border-radius: 4px; }
 
 
-    /* 閳光偓閳光偓 INPUTS 閳光偓閳光偓 */
+    /*  INPUTS  */
     .field-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; }
     .field-group { display: flex; flex-direction: column; gap: 6px; }
     .field-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
@@ -151,13 +151,13 @@
     .btn-copy-result:hover { color: var(--text-primary); background: rgba(255,255,255,0.08); }
     .btn-copy-result.copied { color: var(--green); border-color: rgba(34,197,94,0.3); }
 
-    /* 閳光偓閳光偓 UNIT TOGGLE 閳光偓閳光偓 */
+    /*  UNIT TOGGLE  */
     .seg-ctrl { display: flex; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
     .seg-btn { padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--text-secondary); transition: color 0.15s, background 0.15s; }
     .seg-btn.active { background: var(--accent-dim); color: var(--accent); }
     .seg-btn:not(.active):hover { background: rgba(255,255,255,0.04); color: var(--text-primary); }
 
-    /* 閳光偓閳光偓 INFO 閳光偓閳光偓 */
+    /*  INFO  */
     .info-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 18px; display: flex; align-items: flex-start; gap: 12px; }
     .info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
     .info-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
@@ -433,7 +433,7 @@
   const sign = offsetMin >= 0 ? '+' : '-';
   const oh = String(Math.floor(Math.abs(offsetMin) / 60)).padStart(2, '0');
   const om = String(Math.abs(offsetMin) % 60).padStart(2, '0');
-  tzInfo.textContent = `UTC${sign}${oh}:${om} 閳?${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
+  tzInfo.textContent = `UTC${sign}${oh}:${om} \u95B3?${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
 
   // Live clock
   function tickClock() {

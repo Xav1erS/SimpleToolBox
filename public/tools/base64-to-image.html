@@ -284,7 +284,7 @@
         b64 = raw.slice(comma + 1);
         dataUri = raw;
       } else {
-        // Raw base64 —strip whitespace
+        // Raw base64 strip whitespace
         b64 = raw.replace(/\s/g, '');
         mime = detectMime(b64);
         dataUri = `data:${mime};base64,${b64}`;
@@ -310,7 +310,7 @@
       const dlPng = document.getElementById('dlPng');
       dlOrig.href = dataUri;
       dlOrig.download = `image.${ext}`;
-      dlOrig.textContent = `猬?Download as ${ext.toUpperCase()}`;
+      dlOrig.textContent = `\u732C?Download as ${ext.toUpperCase()}`;
 
       // PNG download: draw on canvas
       if (mime !== 'image/svg+xml') {

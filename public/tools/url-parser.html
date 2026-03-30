@@ -500,7 +500,7 @@
 <script>
   let currentMode = 'parse'; // 'parse' | 'build'
 
-  // 鈹€鈹€ Element refs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Element refs 
   const btnParseModeBtn  = document.getElementById('btnParse');
   const btnBuildModeBtn  = document.getElementById('btnBuild');
   const parseMode        = document.getElementById('parseMode');
@@ -539,7 +539,7 @@
   const btnCopyResult    = document.getElementById('btnCopyResult');
   const btnClearAll      = document.getElementById('btnClearAll');
 
-  // 鈹€鈹€ URL component rows definition 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  URL component rows definition 
   const URL_FIELDS = [
     { key: 'Protocol',  prop: 'protocol' },
     { key: 'Username',  prop: 'username' },
@@ -553,7 +553,7 @@
     { key: 'Origin',    prop: 'origin' },
   ];
 
-  // 鈹€鈹€ Parse logic 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Parse logic 
   function runParse() {
     const raw = parseInput.value.trim();
     parseInputStat.textContent = parseInput.value.length
@@ -621,7 +621,7 @@
     });
   }
 
-  // 鈹€鈹€ Build logic 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Build logic 
   function addParamRow(key = '', val = '') {
     const row = document.createElement('div');
     row.className = 'param-builder-row';
@@ -690,7 +690,7 @@
     buildOutputStat.textContent = `${parsed.href.length.toLocaleString()} chars`;
   }
 
-  // 鈹€鈹€ Mode switching 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Mode switching 
   function setMode(mode) {
     currentMode = mode;
     const isParse = mode === 'parse';
@@ -705,7 +705,7 @@
   btnParseModeBtn.addEventListener('click', () => setMode('parse'));
   btnBuildModeBtn.addEventListener('click', () => setMode('build'));
 
-  // 鈹€鈹€ Copy helper 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy helper 
   async function copyTextFn(text, button, defaultLabel, doneLabel) {
     if (!text) return;
     const originalHtml = button.innerHTML;
@@ -727,7 +727,7 @@
     }, 1500);
   }
 
-  // 鈹€鈹€ Escape helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Escape helpers 
   function escapeHtml(str) {
     return String(str)
       .replace(/&/g, '&amp;')
@@ -739,7 +739,7 @@
     return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  // 鈹€鈹€ Event bindings 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // \u9239€\u9239€ Event bindings \u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€
   parseInput.addEventListener('input', runParse);
   btnRun.addEventListener('click', () => {
     if (currentMode === 'parse') runParse(); else runBuild();
@@ -819,7 +819,7 @@
   [buildProtocol, buildUsername, buildPassword, buildHostname, buildPort, buildPathname, buildHash]
     .forEach(el => el.addEventListener('input', runBuild));
 
-  // 鈹€鈹€ Init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  // \u9239€\u9239€ Init \u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€\u9239€
   addParamRow();
   setMode('parse');
 </script>

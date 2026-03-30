@@ -117,7 +117,7 @@
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 
-    /* 鈹€鈹€ MAIN 鈹€鈹€ */
+    /*  MAIN  */
     .main {
       max-width: 900px;
       margin: 0 auto;
@@ -128,7 +128,7 @@
     }
 
 
-    /* 鈹€鈹€ EXPRESSION BAR 鈹€鈹€ */
+    /*  EXPRESSION BAR  */
     .expr-bar {
       padding: 20px 24px;
       display: flex;
@@ -173,7 +173,7 @@
       padding: 0;
     }
 
-    /* 鈹€鈹€ FIELD CARDS 鈹€鈹€ */
+    /*  FIELD CARDS  */
     .fields-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -253,7 +253,7 @@
       padding: 4px 0;
     }
 
-    /* 鈹€鈹€ NEXT RUNS 鈹€鈹€ */
+    /*  NEXT RUNS  */
     .runs-list {
       padding: 4px 0;
     }
@@ -280,7 +280,7 @@
       font-size: 13px; color: var(--red); text-align: center;
     }
 
-    /* 鈹€鈹€ PRESETS 鈹€鈹€ */
+    /*  PRESETS  */
     .presets-wrap {
       padding: 14px 16px;
       display: flex; flex-wrap: wrap; gap: 8px;
@@ -313,7 +313,7 @@
       color: var(--text-muted);
     }
 
-    /* 鈹€鈹€ MANUAL INPUT 鈹€鈹€ */
+    /*  MANUAL INPUT  */
     .manual-wrap {
       padding: 14px 16px;
       display: flex; align-items: center; gap: 10px;
@@ -520,9 +520,9 @@
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
 <script>
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      FIELD DEFINITIONS
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   const FIELDS = [
     { id: 'minute', name: 'Minute',       min: 0, max: 59 },
     { id: 'hour',   name: 'Hour',         min: 0, max: 23 },
@@ -544,9 +544,9 @@
     { label: 'First day of month',   expr: '0 0 1 * *' },
   ];
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      STATE
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   // Each field has: { type: 'every'|'at'|'range'|'step', at, rangeFrom, rangeTo, stepEvery, stepFrom }
   const state = FIELDS.map(f => ({
     type: 'every',
@@ -557,9 +557,9 @@
     stepFrom: f.min,
   }));
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      EXPRESSION BUILDER
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   function fieldExpr(i) {
     const s = state[i];
     const f = FIELDS[i];
@@ -586,9 +586,9 @@
     return Math.min(Math.max(v, min), max);
   }
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      HUMAN-READABLE DESCRIPTION
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   const FIELD_NAMES = ['minute', 'hour', 'day of month', 'month', 'day of week'];
 
   function describeField(expr, name) {
@@ -630,9 +630,9 @@
     return sentence.charAt(0).toUpperCase() + sentence.slice(1);
   }
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      PARSE EXPRESSION INTO STATE
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   function parseFieldIntoState(expr, i) {
     const f = FIELDS[i];
     const s = state[i];
@@ -674,9 +674,9 @@
     return true;
   }
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
-     CRON EVALUATOR —next N run times
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+  /* 
+     CRON EVALUATOR next N run times
+   */
   function matchesCronField(value, expr) {
     if (expr === '*') return true;
     const stepMatch = expr.match(/^(\*|(\d+))\/(\d+)$/);
@@ -755,9 +755,9 @@
     return `in ${diffDay}d`;
   }
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      RENDER UI
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   function renderExprBar() {
     const expr = buildExpr();
     const parts = expr.split(' ');
@@ -844,9 +844,9 @@
     highlightActivePreset();
   }
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      BUILD FIELD CARDS DOM
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   function buildFieldsGrid() {
     const grid = document.getElementById('fieldsGrid');
     grid.innerHTML = FIELDS.map((f, i) => `
@@ -891,9 +891,9 @@
     });
   }
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      PRESETS
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   function buildPresets() {
     const wrap = document.getElementById('presetsWrap');
     wrap.innerHTML = PRESETS.map((p, i) => `
@@ -919,9 +919,9 @@
     });
   }
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      MANUAL INPUT
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   document.getElementById('manualInput').addEventListener('input', e => {
     const raw = e.target.value.trim();
     const ok  = loadExpr(raw);
@@ -931,9 +931,9 @@
     }
   });
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      COPY BUTTON
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   document.getElementById('btnCopyExpr').addEventListener('click', async () => {
     const expr = buildExpr();
     try {
@@ -945,9 +945,9 @@
     } catch {}
   });
 
-  /* 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  /* 
      INIT
-  鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */
+   */
   buildFieldsGrid();
   buildPresets();
   refreshAll();

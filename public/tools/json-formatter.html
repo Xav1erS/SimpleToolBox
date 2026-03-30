@@ -584,14 +584,14 @@
 
 <script src="../scripts/tool-persist.js?v=00ceba9a1a"></script>
 <script>
-  // 閳光偓閳光偓 STATE 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+  //  STATE 
   let indentValue  = 4;
   let currentMode  = 'format'; // 'format' | 'json-csv' | 'csv-json'
   const HISTORY_KEY = 'stb_json_history';
   const PERSIST_ID  = 'json-formatter';
   const EXAMPLE_JSON = `[\n  { "id": 1, "name": "Alice", "role": "engineer", "active": true },\n  { "id": 2, "name": "Bob",   "role": "designer",  "active": false },\n  { "id": 3, "name": "Carol","role": "manager",   "active": true }\n]`;
 
-  // 閳光偓閳光偓 ELEMENT REFS 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+  //  ELEMENT REFS 
   const inputText     = document.getElementById('inputText');
   const outputText    = document.getElementById('outputText');
   const inputStat     = document.getElementById('inputStat');
@@ -631,7 +631,7 @@
   const csvJsonInputStat= document.getElementById('csvJsonInputStat');
   const jsonFromCsvStat= document.getElementById('jsonFromCsvStat');
 
-  // 閳光偓閳光偓 MODE SWITCHING 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+  //  MODE SWITCHING 
   document.querySelectorAll('.mode-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       currentMode = tab.dataset.mode;
@@ -643,7 +643,7 @@
     });
   });
 
-  // 閳光偓閳光偓 FORMAT MODE 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+  //  FORMAT MODE 
   [[document.getElementById('ind2'), 2], [document.getElementById('ind4'), 4], [document.getElementById('indTab'), '\t']].forEach(([btn, val]) => {
     btn.addEventListener('click', () => {
       indentValue = val;
@@ -749,7 +749,7 @@
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && currentMode === 'format') prettify();
   });
 
-  // 閳光偓閳光偓 HISTORY 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+  //  HISTORY 
   function loadHistory() { try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch { return []; } }
   function saveHistory(text) {
     const h = loadHistory().filter(e => e.text !== text);
@@ -783,7 +783,7 @@
     if (!e.target.closest('.history-wrap')) historyDropdown.classList.remove('open');
   });
 
-  // 閳光偓閳光偓 JSON to CSV 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+  //  JSON to CSV 
   function csvEscape(v) {
     const s = (v === null || v === undefined) ? '' : typeof v === 'object' ? JSON.stringify(v) : String(v);
     return (s.includes(',') || s.includes('"') || s.includes('\n')) ? `"${s.replace(/"/g, '""')}"` : s;
@@ -838,7 +838,7 @@
   });
   btnCopySql.addEventListener('click', () => copyText(sqlOutput.value, btnCopySql));
 
-  // 閳光偓閳光偓 CSV to JSON 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+  //  CSV to JSON 
   function parseCsvRow(line) {
     const result = []; let cur = '', inQ = false;
     for (let i = 0; i < line.length; i++) {
@@ -882,7 +882,7 @@
     if (e.key === 'Escape') { e.preventDefault(); clearAll(); }
   });
 
-  // 閳光偓閳光偓 INIT 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+  //  INIT 
   (function () {
     const s = ToolPersist.load(PERSIST_ID);
     if (s && s.input) { inputText.value = s.input; prettify(); }

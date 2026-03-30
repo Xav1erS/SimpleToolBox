@@ -464,7 +464,7 @@
 </details>
 <!-- AUTO-SEO-SECTIONS:END -->
 <script>
-  // 鈹€鈹€ DOM refs 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  DOM refs 
   const nativeInput  = document.getElementById('nativeColorInput');
   const hexInput     = document.getElementById('hexInput');
   const rgbR         = document.getElementById('rgbR');
@@ -488,7 +488,7 @@
   const valCmyk      = document.getElementById('valCmyk');
   const btnCopyAll   = document.getElementById('btnCopyAll');
 
-  // 鈹€鈹€ Named colors list 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Named colors list 
   const NAMED_COLORS = [
     ['red',     [255,0,0]],    ['blue',    [0,0,255]],
     ['green',   [0,128,0]],    ['yellow',  [255,255,0]],
@@ -502,7 +502,7 @@
     ['violet',  [238,130,238]],['gold',    [255,215,0]],
   ];
 
-  // 鈹€鈹€ Conversion helpers 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Conversion helpers 
   function hexToRgb(hex) {
     hex = hex.replace(/^#/, '');
     if (hex.length === 3) hex = hex.split('').map(c => c+c).join('');
@@ -578,7 +578,7 @@
     return best;
   }
 
-  // 鈹€鈹€ State 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  State 
   let currentRgb = [94, 106, 210];
   let updating = false;
 
@@ -635,7 +635,7 @@
     updating = false;
   }
 
-  // 鈹€鈹€ Event listeners 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Event listeners 
   nativeInput.addEventListener('input', () => {
     const [r, g, b] = hexToRgb(nativeInput.value);
     applyColor(r, g, b, 'native');
@@ -697,7 +697,7 @@
     });
   });
 
-  // 鈹€鈹€ Copy buttons 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Copy buttons 
   async function copyText(text, btn) {
     const orig = btn.innerHTML;
     try { await navigator.clipboard.writeText(text); } catch {
@@ -739,7 +739,7 @@
     setTimeout(() => {}, 0);
   });
 
-  // 鈹€鈹€ Color history 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Color history 
   const HISTORY_KEY = 'stb_color_history';
   let history = [];
 
@@ -774,7 +774,7 @@
     });
   }
 
-  // 鈹€鈹€ Init 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  //  Init 
   loadHistory();
   applyColor(94, 106, 210, 'init');
 </script>

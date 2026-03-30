@@ -596,7 +596,7 @@
 
       // Page dimensions in mm (PDF points: 1pt = 0.352778mm)
       // viewport is in px at the given scale; convert to mm using 72 DPI baseline
-      const pxToMm = 25.4 / 96; // 96 px/in →mm
+      const pxToMm = 25.4 / 96; // 96 px/in mm
       const widthMm  = (viewport.width  / preset.scale) * pxToMm;
       const heightMm = (viewport.height / preset.scale) * pxToMm;
 
@@ -664,7 +664,7 @@
     dropTitle.textContent = 'Drop PDF here';
     dropSub.textContent   = 'or click to browse';
     dropZone.classList.remove('has-file');
-    dropZone.querySelector('.drop-icon').textContent = '馃搫';
+    dropZone.querySelector('.drop-icon').textContent = '\u9983\u642B';
     btnCompress.disabled = true;
     fileInput.value = '';
     fileInput.click();

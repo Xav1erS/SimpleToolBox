@@ -121,7 +121,8 @@
       "Bash(python3 scripts/fix-encoding-corruption.py --help)",
       "Bash(/tmp/hub_vs_alltools_analysis.md:*)",
       "Read(//tmp/**)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(python -c \":*)"
     ]
   }
 }

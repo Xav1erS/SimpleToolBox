@@ -2950,6 +2950,14 @@ body > .ds-seo-more {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
 
+  .ds-has-directory.ds-directory-page--all-tools .tool-card:hover,
+  .ds-has-directory.ds-directory-page--hub .tool-card:hover {
+    border-color: var(--ds-color-border-accent) !important;
+    background: var(--ds-color-surface-strong) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(94, 106, 210, 0.1) !important;
+  }
+
   .ds-has-directory.ds-directory-page--hub .hub-hero {
     margin-top: 0 !important;
     padding: 30px 30px 28px !important;

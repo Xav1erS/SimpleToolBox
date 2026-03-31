@@ -3440,7 +3440,8 @@ body > .ds-seo-more {
 .ds-tool-shell-ready .tool-desc-text {
   max-width: 780px;
   font-size: 16px;
-  line-height: 1.72;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .ds-tool-shell-ready .ds-tool-header__icon,

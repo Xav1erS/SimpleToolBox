@@ -2954,8 +2954,8 @@ body > .ds-seo-more {
   .ds-has-directory.ds-directory-page--hub .tool-card:hover {
     border-color: var(--ds-color-border-accent) !important;
     background: var(--ds-color-surface-strong) !important;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(94, 106, 210, 0.1) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
   }
 
   .ds-has-directory.ds-directory-page--hub .hub-hero {
@@ -3753,16 +3753,28 @@ body > .ds-seo-more {
   flex-direction: column;
   gap: 10px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
   will-change: transform;
   transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast),
               transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast);
 }
+.tool-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(94, 106, 210, 0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
 .tool-card:hover {
   border-color: var(--ds-color-border-accent);
   background: var(--ds-color-surface-strong);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(94, 106, 210, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
+.tool-card:hover::before { opacity: 1; }
 .tool-card-top { display: flex; align-items: flex-start; gap: 12px; }
 .tool-icon {
   font-size: 18px;
@@ -3887,7 +3899,19 @@ body > .ds-seo-more {
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast), transform var(--ds-duration-fast);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast),
+              transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast);
+}
+.cat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(94, 106, 210, 0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
 
 .guide-card-link:hover,
@@ -3895,7 +3919,9 @@ body > .ds-seo-more {
   border-color: var(--ds-color-border-accent);
   background: var(--ds-color-surface-strong);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
+.cat-card:hover::before { opacity: 1; }
 
 .guide-card-link__icon,
 .cat-icon {

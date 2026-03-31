@@ -1098,6 +1098,7 @@
   max-width: 560px;
   color: var(--ds-color-text-secondary);
   font-size: 14px;
+  margin: 0;
 }
 
 .ds-tool-tag-row {

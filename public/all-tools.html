@@ -1201,7 +1201,7 @@
 
   toolSearchInput.placeholder = 'Search tools...';
   navSearchInput.placeholder = 'Search tools...';
-  document.querySelector('.nav-search kbd').textContent = 'Ctrl K';
+  document.querySelector('.nav-search kbd').textContent = /Macintosh/.test(navigator.userAgent) ? '⌘K' : 'Ctrl K';
 
   const STATIC_LABEL_FIXES = {
     hubs: ['Image Tools', 'Developer Tools', 'Text Tools', 'Calculator Tools', 'Conversion Tools', 'Generators', 'PDF & Document'],

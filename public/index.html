@@ -1331,6 +1331,7 @@
       input.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
+  { const kbdEl = document.querySelector('.nav-search kbd'); if (kbdEl && /Macintosh/.test(navigator.userAgent)) kbdEl.textContent = '⌘K'; }
 
   // Fade-in on scroll
   const observer = new IntersectionObserver(

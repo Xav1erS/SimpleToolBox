@@ -86,7 +86,7 @@
           '<circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>' +
         '</svg>' +
         '<input type="text" id="navSearch" class="ds-input" placeholder="Search tools..." autocomplete="off" aria-label="Search tools" />' +
-        '<kbd>Ctrl K</kbd>' +
+        '<kbd>' + (/Macintosh/.test(navigator.userAgent) ? '⌘K' : 'Ctrl K') + '</kbd>' +
         '<div class="search-dropdown" id="navSearchDropdown"></div>' +
       '</div>';
 

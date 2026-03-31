@@ -197,6 +197,7 @@
     else if (e.key === 'Escape') { navDropdown.classList.remove('open'); }
   });
   document.addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); document.getElementById('navSearch').focus(); } });
+  { const kbdEl = document.querySelector('.nav-search kbd'); if (kbdEl && /Macintosh/.test(navigator.userAgent)) kbdEl.textContent = '⌘K'; }
   window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 
   const sections = document.querySelectorAll('.doc-section[id]');

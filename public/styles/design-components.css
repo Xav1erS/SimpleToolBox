@@ -3744,14 +3744,15 @@ body > .ds-seo-more {
   flex-direction: column;
   gap: 10px;
   cursor: pointer;
+  will-change: transform;
   transition: border-color var(--ds-duration-fast), background var(--ds-duration-fast),
               transform var(--ds-duration-fast), box-shadow var(--ds-duration-fast);
 }
 .tool-card:hover {
   border-color: var(--ds-color-border-accent);
   background: var(--ds-color-surface-strong);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(94, 106, 210, 0.1);
 }
 .tool-card-top { display: flex; align-items: flex-start; gap: 12px; }
 .tool-icon {

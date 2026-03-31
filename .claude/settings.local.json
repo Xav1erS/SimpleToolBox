@@ -131,7 +131,11 @@
       "Bash(grep -rl 'class=\"\"\"\"main\"\"\"\"' /Users/sunxin/Desktop/SimpleToolBox/public/tools/*.html)",
       "Bash(xargs basename:*)",
       "Bash(npx playwright:*)",
-      "Bash(echo \"EXIT:$?\")"
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(grep -rL \"ds-tool-context\" public/tools/*.html)",
+      "Bash(grep -rL \"ds-tool-tag-row\\\\|ds-tool-tag\" public/tools/*.html)",
+      "Bash(grep -l \"ds-tool-header\" /Users/sunxin/Desktop/SimpleToolBox/public/tools/*.html)",
+      "Bash(then echo:*)"
     ]
   }
 }
